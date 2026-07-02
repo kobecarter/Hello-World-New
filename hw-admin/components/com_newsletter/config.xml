@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<component>
+   <id>com_newsletter</id>
+   <nom>Gestion newsletter</nom>
+   <class>newsletter</class>
+   <table>newsletter</table>
+   <traduction>0</traduction>
+   <url>0</url>
+   <icon>envelope</icon>
+   <system>0</system>
+   <position>param</position>
+</component>

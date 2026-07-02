@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<component>
+   <id>com_popup</id>
+   <nom>Gestion des popups</nom>
+   <class>popup</class>
+   <table>popup</table>
+   <traduction>1</traduction>
+   <url>0</url>
+   <icon>window-restore</icon>
+   <system>0</system>
+   <position>param</position>
+</component>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<component>
+<id>com_pack</id>
+<nom>Gestion des packs</nom>
+<class>pack</class>
+<table>pack</table>
+<traduction>1</traduction>
+<url>1</url>
+<icon>cubes</icon>
+<system>0</system>
+<position>side</position>
+</component>

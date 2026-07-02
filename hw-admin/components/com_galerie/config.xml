@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<component>
+    <id>com_galerie</id>
+    <nom>Gestion des galeries</nom>
+    <class>galerie</class>
+    <table>galerie</table>
+    <traduction>1</traduction>
+    <url>1</url>
+    <icon>fas fa-images</icon>
+    <system>0</system>
+    <position>side</position>
+</component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <id>com_slider</id>
+    <nom>Gestion des sliders</nom>
+    <class>slide</class>
+    <table>slide</table>
+    <traduction>1</traduction>
+    <url>0</url>
+    <icon>photo</icon>
+    <system>0</system>
+    <position>side</position>
+</module>

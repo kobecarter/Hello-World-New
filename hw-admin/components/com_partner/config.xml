@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <id>com_partner</id>
+    <nom>Gestion des partenaires</nom>
+    <class>partner</class>
+    <table>partner</table>
+    <traduction>1</traduction>
+    <url>0</url>
+    <icon>far fa-handshake</icon>
+    <system>0</system>
+    <position>side</position>
+</module>

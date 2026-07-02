@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+	    <meta content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
+	        name="viewport" />
+
+	    <meta name="website" content="<?php echo $siteURL; ?>">
+	    <?php getSeoMeta($_GET); ?>
+  <!-- Google Tag Manager -->
+	    <script>
+	    (function(w, d, s, l, i) {
+	        w[l] = w[l] || [];
+	        w[l].push({
+	            'gtm.start': new Date().getTime(),
+	            event: 'gtm.js'
+	        });
+	        var f = d.getElementsByTagName(s)[0],
+	            j = d.createElement(s),
+	            dl = l != 'dataLayer' ? '&l=' + l : '';
+	        j.async = true;
+	        j.src =
+	            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+	        f.parentNode.insertBefore(j, f);
+	    })(window, document, 'script', 'dataLayer', 'GTM-KN2KF6H8');
+	    </script>
+	    <!-- End Google Tag Manager -->
+	   
+
+	    <!-- Meta Pixel Code -->
+	    <script>
+	    ! function(f, b, e, v, n, t, s) {
+	        if (f.fbq) return;
+	        n = f.fbq = function() {
+	            n.callMethod ?
+	                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+	        };
+	        if (!f._fbq) f._fbq = n;
+	        n.push = n;
+	        n.loaded = !0;
+	        n.version = '2.0';
+	        n.queue = [];
+	        t = b.createElement(e);
+	        t.async = !0;
+	        t.src = v;
+	        s = b.getElementsByTagName(e)[0];
+	        s.parentNode.insertBefore(t, s)
+	    }(window, document, 'script',
+	        'https://connect.facebook.net/en_US/fbevents.js');
+	    fbq('init', '1306708063569247');
+	    fbq('track', 'PageView');
+	    </script>
+	    <noscript><img height="1" width="1" style="display:none"
+	            src="https://www.facebook.com/tr?id=1306708063569247&ev=PageView&noscript=1" /></noscript>
+	    <!-- End Meta Pixel Code -->
+
+<!-- FavIcon -->
+<link rel="shortcut icon" href="<?= $siteURL; ?>assets/img/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;0,800;0,900;1,100;1,200;1,300&family=Raleway:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/all.min.css">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/themify-icons.css">
+<link rel="stylesheet" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css" async defer>
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
+	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=2.8">
+<style>
+
+.glass-mega{
+  -webkit-backdrop-filter: blur(26px) saturate(155%);
+  backdrop-filter: blur(26px) saturate(155%);
+}
+
+/* SUBMENU */
+.has-sub{position:relative;display:flex;align-items:center}
+.sub-arr{font-size:.38rem;margin-left:.32rem;vertical-align:middle;transition:transform .28s;color:inherit}
+.has-sub.open .sub-arr{transform:rotate(180deg)}
+.sub-menu{position:absolute;top:calc(100% + 1rem);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;min-width:210px;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:200;box-shadow:0 12px 40px rgba(0,0,0,.09)}
+.has-sub.open .sub-menu{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.sub-menu::before{content:'';position:absolute;top:-1rem;left:0;right:0;height:1rem}
+.sub-menu a{display:block;padding:.75rem 1.3rem;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);font-weight:500;border-bottom:1px solid var(--border);transition:color .18s,background .18s;white-space:nowrap}
+.sub-menu a:last-child{border-bottom:none}
+.sub-menu a:hover{color:var(--gold);background:var(--bg2)}
+/* lang-sel en haut → dropdown s'ouvre vers le bas */
+header .lang-drop{bottom:auto;top:calc(100% + .6rem)}
+header .lang-btn{font-size:.72rem;padding:.72rem 1.35rem}
+.hdr-cta{display:inline-flex;align-items:center;gap:.5rem;padding:.82rem 2rem;border:1px solid var(--gold);color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:transparent;transition:all .3s;position:relative;overflow:hidden;white-space:nowrap;border-radius:50px}
+.hdr-cta::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .3s;z-index:0}
+.hdr-cta:hover::before{transform:translateX(0)}
+.hdr-cta span{position:relative;z-index:1}
+.hdr-cta:hover{color:var(--bg)}
+.burger{display:none;cursor:pointer;flex-direction:column;gap:5px;background:none;border:none;padding:.4rem}
+.burger i{display:block;width:22px;height:2px;background:var(--txt);transition:all .3s}
+@media(max-width:991px){.hdr-nav,header .lang-sel{display:none}.burger{display:flex}header{padding:1.2rem 1.5rem}header.scrolled{padding:1rem 1.5rem}}
+
+/* MOBILE NAV */
+.mobile-nav{position:fixed;inset:0;background:var(--bg);z-index:700;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2.5rem;transform:translateX(100%);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.mobile-nav.open{transform:none}
+.mobile-nav a{font-family:var(--fd);font-weight:200;font-size:clamp(2.5rem,8vw,4rem);color:var(--txt);letter-spacing:-.01em;transition:color .2s}
+.mobile-nav a:hover{color:var(--gold)}
+
+/* STATS */
+.stats{padding:7rem 0;background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:22px;overflow:hidden}
+.stat-item{padding:3.5rem 2.5rem;border-right:1px solid var(--border);text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--fd);font-weight:200;font-size:clamp(3.5rem,6vw,6.5rem);line-height:1;color:var(--txt);letter-spacing:-.03em;margin-bottom:.5rem}
+.stat-suf{color:var(--gold)}
+.stat-label{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--txt2)}
+@media(max-width:767px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-item:nth-child(2){border-right:none}.stat-item:nth-child(1),.stat-item:nth-child(2){border-bottom:1px solid var(--border)}}
+@media(max-width:420px){.stats-grid{grid-template-columns:1fr}.stat-item{border-right:none!important;border-bottom:1px solid var(--border)}.stat-item:last-child{border-bottom:none}}
+
+/* 3D TILT SHINE */
+.tilt-shine{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity .3s;background:radial-gradient(circle at var(--sx,50%) var(--sy,50%),rgba(201,169,110,.13) 0%,transparent 55%)}
+.ai-card:hover .tilt-shine,.svc-card:hover .tilt-shine{opacity:1}
+.port-item:hover .tilt-shine{opacity:1}
+.tilt-shine.port-shine{background:radial-gradient(circle at var(--sx,50%) var(--sy,50%),rgba(201,169,110,.07) 0%,transparent 50%)}
+
+/* CTA BAND */
+/* POURQUOI HELLO WORLD */
+.why-hw{padding:8rem 0;background:var(--bg2);overflow:visible;position:relative}
+.why-hw::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 30% 50%,rgba(139,106,34,.03) 0%,transparent 70%);pointer-events:none}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.why-intro{font-family:var(--fm);font-size:.88rem;font-weight:300;color:var(--txt2);line-height:1.9;margin-bottom:2.5rem}
+.why-list{list-style:none;border-top:1px solid var(--border)}
+.why-item{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--border)}
+.why-ico{width:18px;height:18px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem;color:var(--gold);font-size:.4rem}
+.why-txt{font-family:var(--fm);font-size:.82rem;font-weight:300;color:var(--txt2);line-height:1.75}
+.why-txt strong{color:var(--txt);font-weight:500}
+/* Bubble scene — cercles concentriques alignés à gauche */
+.bubble-scene{position:relative;height:480px;overflow:visible}
+/* Centre décalé en bas-gauche comme dans la capture */
+.bub-wrap{position:absolute;top:50%;left:70px;transform:translate(0,-50%) scale(1.4);width:520px;height:520px}
+.bub{position:absolute;border-radius:50%;}
+.bub-4{width:520px;height:520px;background:rgba(0,0,0,.04)}
+.bub-3{width:370px;height:370px;background:rgba(0,0,0,.06);left: 15px;bottom: 50px;}
+.bub-2{width:240px;height:240px;background:rgba(0,0,0,.08);left: 30px; bottom: 100px;}
+.bub-1{width:125px;height:125px;background:rgba(0,0,0,.11);left: 45px;bottom: 140px;}
+/* Labels dans les anneaux — zone supérieure visible, diagonale */
+.bl{position:absolute;z-index:5;opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;text-align: center;}
+.bl.on{opacity:1;transform:none}
+/* centre bub-wrap à (2%+260px, 72%*480=346px) = approx (275px, 346px) dans la scène */
+.bl-4{top:30px; left:500px; transition-delay:.36s}
+.bl-3{top:110px;left:320px;transition-delay:.24s}
+.bl-2{top:188px;left:180px;transition-delay:.12s}
+.bl-1{top: 290px;left: 70px;transition-delay:0s}
+.bub-val{display:block;font-family:var(--fm);font-weight:200;font-size:2.4rem;color:var(--txt);line-height:1;letter-spacing:-.03em}
+.bub-suf{color:var(--gold);font-size:.5em;font-weight:400}
+.bub-lbl{font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);margin-top:.4rem}
+@media(max-width:991px){.why-grid{grid-template-columns:1fr}.bubble-scene{height:380px}.bub-wrap{width:400px;height:400px;top:70%}.bub-4{width:400px;height:400px}.bub-3{width:285px;height:285px}.bub-2{width:185px;height:185px}.bub-1{width:96px;height:96px}.bl-4{top:22px;left:52px}.bl-3{top:84px;left:106px}.bl-2{top:144px;left:150px}.bl-1{top:193px;left:180px}}
+
+
+/* PARALLAX */
+[data-px]{will-change:transform}
+</style>
+
+<style>
+/* DARK HERO HEADER OVERRIDE */
+header.hdr-light:not(.scrolled){background:transparent}
+header.hdr-light:not(.scrolled) .hdr-nav a{color:rgba(247,245,242,.45)}
+header.hdr-light:not(.scrolled) .hdr-nav a:hover,
+header.hdr-light:not(.scrolled) .hdr-nav a.active{color:rgba(247,245,242,.9)}
+header.hdr-light:not(.scrolled) .logo-hw img{filter:brightness(0) invert(1) opacity(.85)}
+header.hdr-light:not(.scrolled) .burger i{background:var(--bg)}
+header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);color:rgba(247,245,242,.5)}
+
+/* HERO */
+.sol-hero{position:relative;min-height:100vh;display:flex;flex-direction:column;background:#06050a;overflow:hidden}
+#sol-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.sol-hero-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:12rem 0 6rem}
+.sol-hero-label{font-size:.6rem;letter-spacing:.48em;text-transform:uppercase;color:rgba(139,106,34,.7);display:flex;align-items:center;gap:.9rem;margin-bottom:2.2rem}
+.sol-hero-label::before{content:'';width:36px;height:1px;background:rgba(139,106,34,.7)}
+.sol-hero-title{font-family:var(--fm);font-weight:300;font-size:clamp(3.2rem,7vw,9rem);line-height:.9;letter-spacing:-.04em;color:#f5f3f0;margin-bottom:2.5rem}
+.sol-hero-title em{display:block;font-style:italic;color:var(--gold2);font-family:var(--fd);font-weight:200;font-size:.72em}
+.sol-hero-sub{font-size:.95rem;font-weight:300;color:rgba(247,245,242,.38);max-width:540px;line-height:1.9;margin-bottom:3.5rem}
+.sol-hero-badges{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:4rem}
+.badge{display:inline-flex;align-items:center;gap:.55rem;padding:.42rem 1rem;border:1px solid rgba(247,245,242,.09);font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,245,242,.32)}
+.badge i{color:var(--gold2);font-size:.6rem}
+.sol-hero-foot{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:2rem 0;border-top:1px solid rgba(255,255,255,.05)}
+.sol-hero-scroll{font-family:var(--fm);font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(247,245,242,.2);display:flex;align-items:center;gap:.8rem}
+.sol-hero-scroll::before{content:'';width:1px;height:40px;background:linear-gradient(to bottom,rgba(247,245,242,.12),transparent);flex-shrink:0}
+.sol-cta-pill{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 2.2rem;background:var(--gold);color:var(--txt);font-family:var(--fb);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-radius:50px;transition:all .3s;position:relative;overflow:hidden}
+.sol-cta-pill::before{content:'';position:absolute;inset:0;background:var(--gold2);transform:translateX(-101%);transition:transform .3s;z-index:0}
+.sol-cta-pill:hover::before{transform:translateX(0)}
+.sol-cta-pill > *{position:relative;z-index:1}
+
+/* PRODUCTS SECTION */
+.products{padding:8rem 0;background:var(--bg3);border-top:1px solid var(--border)}
+.products-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;gap:2rem;flex-wrap:wrap}
+.products-lead{font-size:.88rem;color:var(--txt2);max-width:400px;line-height:1.85;font-weight:300}
+
+/* PRODUCT CARD — distinct from ai-card */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:22px;overflow:hidden}
+.prod-card{padding:3rem 2.6rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;transition:background .35s;cursor:default;background:var(--bg3)}
+.prod-card:nth-child(3n){border-right:none}
+.prod-card:nth-child(n+4){border-bottom:none}
+.prod-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2),transparent);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
+.prod-card:hover{background:var(--bg2)}
+.prod-card:hover::after{transform:scaleX(1)}
+.prod-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
+.prod-badge{font-family:var(--fm);font-size:.52rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid rgba(139,106,34,.3);color:var(--gold);background:rgba(139,106,34,.04)}
+.prod-icon-wrap{width:56px;height:56px;border:1px solid rgba(139,106,34,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);background:var(--bg3);transition:all .35s}
+.prod-card:hover .prod-icon-wrap{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.prod-name{font-family:var(--fd);font-weight:300;font-size:1.5rem;color:var(--txt);margin-bottom:.75rem;letter-spacing:-.02em;line-height:1.1}
+.prod-name strong{font-family:var(--fm);font-weight:700;font-size:.7em;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:.3rem;text-transform:uppercase}
+.prod-desc{font-size:.78rem;font-weight:300;color:var(--txt2);line-height:1.9;font-family:var(--fm);margin-bottom:2rem}
+.prod-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.prod-tag{font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;padding:.22rem .65rem;border:1px solid var(--border);color:var(--txt2);font-family:var(--fm);font-weight:500}
+@media(max-width:991px){.prod-grid{grid-template-columns:repeat(2,1fr)}.prod-card:nth-child(3n){border-right:1px solid var(--border)}.prod-card:nth-child(2n){border-right:none}}
+@media(max-width:575px){.prod-grid{grid-template-columns:1fr}.prod-card{border-right:none!important}.prod-card:last-child{border-bottom:none}}
+
+/* GOUVERNANCE */
+/*
+.gouv{padding:8rem 0;background:var(--bg)}
+.gouv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:22px;overflow:hidden;margin-top:4rem}
+.gouv-card{padding:3.5rem 3rem;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background .35s}
+.gouv-card:last-child{border-right:none}
+.gouv-card:hover{background:var(--bg2)}
+.gouv-num{font-family:var(--fd);font-weight:200;font-size:8rem;line-height:1;color:rgba(0,0,0,.04);position:absolute;top:-1.5rem;right:1.5rem;letter-spacing:-.06em;user-select:none;pointer-events:none}
+.gouv-icon{width:52px;height:52px;border:1px solid rgba(139,106,34,.2);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:2rem;font-size:1.1rem;transition:all .35s}
+.gouv-card:hover .gouv-icon{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.gouv-title{font-family:var(--fm);font-weight:500;font-size:1rem;color:var(--txt);margin-bottom:.9rem;letter-spacing:-.01em}
+.gouv-desc{font-family:var(--fm);font-size:.78rem;font-weight:300;color:var(--txt2);line-height:1.85}
+@media(max-width:767px){.gouv-grid{grid-template-columns:1fr}.gouv-card{border-right:none!important;border-bottom:1px solid var(--border)}.gouv-card:last-child{border-bottom:none}}
+*/
+
+/* WEB MOBILE HERO */
+.wm-hero{position:relative;padding:10rem 0 9rem;background:var(--bg);overflow:hidden;height: 100vh;}
+.wm-hero-grid{position:absolute;inset:0;z-index:0;overflow:hidden}
+.wm-hero-grid svg{width:100%;height:100%;opacity:.045}
+.wm-hero .container{position:relative;z-index:2}
+.wm-hero-inner{display:grid;grid-template-columns:1fr 400px;gap:4rem}
+.wm-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
+.wm-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
+.wm-hero-title{font-family:var(--fm);font-weight:300;font-size:84px;line-height:1.1;letter-spacing:-.04em;color:var(--txt);margin-bottom:2.5rem}
+.wm-hero-title em{font-style:normal;color:var(--gold);font-weight:200}
+.wm-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:3rem}
+.wm-hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.wm-hero-side{position:relative}
+.wm-screen{background:var(--txt);border-radius:18px;overflow:hidden;aspect-ratio:9/16;max-width:200px;margin:0 auto;position:relative;box-shadow:0 40px 120px rgba(0,0,0,.18)}
+.wm-screen::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,106,34,.12) 0%,transparent 60%)}
+.wm-screen-gfx{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:24px 16px}
+.wm-bar{height:4px;border-radius:2px;background:rgba(247,245,242,.08)}
+.wm-bar.hi{background:rgba(139,106,34,.4);width:60%}
+.wm-bar.mid{width:80%}
+.wm-bar.sm{width:45%}
+.wm-screen-dot{width:32px;height:32px;border-radius:50%;background:rgba(139,106,34,.3);margin:8px 0}
+.wm-tablet{position:absolute;right:-40px;top:60px;background:#1a1815;border-radius:12px;width:260px;aspect-ratio:4/3;box-shadow:0 24px 80px rgba(0,0,0,.22);overflow:hidden}
+.wm-tablet::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(139,106,34,.04) 28px,rgba(139,106,34,.04) 29px)}
+@media(max-width:1024px){.wm-hero-inner{grid-template-columns:1fr}.wm-hero-side{display:none}}
+</style>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+      <!-- Event snippet for Contact (hello world) conversion page -->
+	    <script>
+	    gtag('event', 'conversion', {
+	        'send_to': 'AW-988470532/wIfpCLro748DEIS6q9cD'
+	    });
+	    </script>
+
+	    <!-- Event snippet for Envoi de formulaire pour prospects conversion page -->
+	    <script>
+	    gtag('event', 'conversion', {
+	        'send_to': 'AW-988470532/gtHMCIHqpZADEIS6q9cD'
+	    });
+	    </script>
+
+
+	    <!-- Google Tag Manager -->
+	    <script>
+	    (function(w, d, s, l, i) {
+	        w[l] = w[l] || [];
+	        w[l].push({
+	            'gtm.start': new Date().getTime(),
+	            event: 'gtm.js'
+	        });
+	        var f = d.getElementsByTagName(s)[0],
+	            j = d.createElement(s),
+	            dl = l != 'dataLayer' ? '&l=' + l : '';
+	        j.async = true;
+	        j.src =
+	            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+	        f.parentNode.insertBefore(j, f);
+	    })(window, document, 'script', 'dataLayer', 'GTM-KZNQF2R');
+	    </script>
+	    <!-- End Google Tag Manager -->
+</head>
+<body>
+    <!-- Whatsapp btns -->
+    <ul class="whatsapp-buttons">
+            <?php $quotePage = getComponent("com_contact&task=quote"); ?>
+	        <?php $clientPage = getComponent("com_client"); ?>
+	         <li class="devis-link">
+	            <a href="<?php echo $quotePage->getLink(); ?>" class="devis-clignote click custom-tooltip"
+	                title="Obtenez un devis gratuit" aria-label="Obtenez un devis gratuit" data-id="4">
+	                <i class="fa fa-calculator"></i>
+	            </a>
+	        </li>
+	         <li class="whatsapp-link">
+	             <a title="Hamid notre digital expert" aria-label="Hamid notre digital expert" data-id="5" data-toggle="tooltip"  href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20"
+	                class="click" target="_blank" title="Whatsapp chat"><i class="fab fa-whatsapp"></i></a>
+	         </li>
+	         <li class="whatsapp-link">
+	             <a class="click custom-tooltip" title="Manar votre assistante rapide WhatsApp" aria-label="Manar votre assistante rapide WhatsApp" data-id="5" data-toggle="tooltip" id="chat-bubble" href="https://wa.me/212664606612?text=Bonjour" target="_blank" title="Whatsapp chat">
+                   <i class="fab fa-whatsapp"></i>
+                   <span>1</span></a>
+	         </li>
+	         <li class="apple-app"><a href="https://apps.apple.com/ma/app/hello-world-agency/id1566017621?l=fr-FR" target="_blank" title="Application HelloWorld Agency Maroc sur l'App Store"><i class="fab fa-apple"></i></a></li>
+	        <li class="espace-client"><a href="<?php echo $clientPage->getLink(); ?>" title="Login Client"><i class="fa fa-user-circle"></i></a></li>
+	     </ul>
+<!-- End whatsapp btns -->
+<div class="cur" id="cur"></div>
+<div class="cur2" id="cur2"></div>
+
+<!--<nav class="mobile-nav" id="mobileNav">-->
+<!--  <a href="#services" onclick="closeMobileNav()">Solutions IA</a>-->
+<!--  <a href="#work" onclick="closeMobileNav()">Web &amp; Mobile</a>-->
+<!--  <a href="#services" onclick="closeMobileNav()">SaaS &amp; Produits</a>-->
+<!--  <a href="#services" onclick="closeMobileNav()">Marketplace</a>-->
+<!--  <a href="#services" onclick="closeMobileNav()">Formations IA</a>-->
+<!--  <a href="#services" onclick="closeMobileNav()">Brand Experience</a>-->
+<!--  <a href="#team" onclick="closeMobileNav()">Nos agences</a>-->
+<!--</nav>-->
+
+<?php
+$headerColor = '';
+if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['task']) && $_GET['task'] == 'showDetails') $headerColor = 'hdr-light';
+?>
+
+
+<header class="navshell <?php echo $headerColor; ?>" id="navshell">
+  <nav class="navbar glass-nav">
+    <div class="nav-row">
+      <a href="<?php echo $siteURL; ?>" class="logo-hw logo"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="<?php echo $config->getNom(); ?>"></a>
+      <ul class="nav-links" role="menubar">
+                <?php
+      $solutionIA = service::find(17, $_SESSION['lang']);
+      $webMobile = service::find(107, $_SESSION['lang']);
+      $saasProduit = service::find(1, $_SESSION['lang']);
+      $marketplace = getComponent("com_produit");
+      $formationIa = getComponent("com_formation");
+      $brandExperience = service::find(18, $_SESSION['lang']);
+      $agence = getComponent("com_agence");
+      ?>
+       
+        <li><a href="<?php echo $solutionIA->getLink() ?>" class="navlink" data-menu="solutions" aria-haspopup="true" aria-expanded="false">Solutions IA<span class="caret">▼</span></a></li>
+        <li><a href="<?php echo $webMobile->getLink() ?>" class="navlink" data-menu="web" aria-haspopup="true" aria-expanded="false">Web &amp; Mobile<span class="caret">▼</span></a></li>
+        <li><a href="<?php echo $saasProduit->getLink() ?>" class="navlink" data-menu="saas" aria-haspopup="true" aria-expanded="false">SaaS & Produits<span class="caret">▼</span></a></li>
+        <li><a href="<?php echo $marketplace->getLink() ?>" class="navlink" data-menu="market" aria-haspopup="true" aria-expanded="false">Marketplace<span class="caret">▼</span></a></li>
+        <li><a href="<?php echo $formationIa->getLink() ?>" class="navlink" data-menu="form" aria-haspopup="true" aria-expanded="false">Formations IA<span class="caret">▼</span></a></li>
+        <li><a href="<?php echo $brandExperience->getLink()?>" class="navlink" data-menu="brand" aria-haspopup="true" aria-expanded="false">Brand Experience<span class="caret">▼</span></a></li>
+        <li><a href="<?php echo $agence->getLink() ?>" class="navlink" data-menu="agencies" aria-haspopup="true" aria-expanded="false">Nos agences<span class="caret">▼</span></a></li>
+        
+      </ul>
+       <div class="lang-sel" id="langSel">
+        <button class="lang-btn" id="langBtn" aria-label="Select language">
+          <i class="fa fa-globe lang-ico"></i>
+          <span id="langCur">FR</span>
+          <i class="fa fa-chevron-down lang-arr"></i>
+        </button>
+        <div class="lang-drop" id="langDrop">
+            <a href="#" class="lang-opt active"><span class="flag">🇫🇷</span> Français</a>
+          <a href="#" class="lang-opt"><span class="flag">🇬🇧</span> English</a>
+          
+        
+        </div>
+      </div>
+      <button class="mm-burger" id="mmBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mmDrawer">
+        <span class="mm-bar-b"></span><span class="mm-bar-b"></span><span class="mm-bar-b"></span>
+      </button>
+      <!-- <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></button> -->
+    </div>
+    
+    
+  </nav>
+    <div class="mega-wrap">
+    <?php
+    // top menu
+    $topMenu = new menu(3, $db);
+    $topMenu->getMegaMenu();
+    ?>
+    </div>
+    
+    <!-- MOBILE DRAWER -->
+  <div class="mm-drawer" id="mmDrawer" role="dialog" aria-modal="true" aria-label="<?php echo $config->getNom(); ?>">
+    <div class="mm-drawer-inner">
+      <div class="mm-drawer-top">
+        <a href="<?php echo $siteURL; ?>"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="Hello World Agency" style="height:64px"></a>
+        <button class="mm-close" id="mmClose" aria-label="Fermer le menu"></button>
+      </div>
+      <?php
+      // top menu
+      $topMenu = new menu(3, $db);
+      $topMenu->getMenuMobile();
+      ?>
+    </div>
+  </div>
+  
+</header>
+<!--
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+  <div class="drawer-inner">
+    <div class="drawer-top"><span class="logo-text">Hello World</span><button class="x-btn" id="closeDrawer" aria-label="Fermer le menu"></button></div>
+    <nav class="drawer-nav" id="drawerNav"></nav>
+  </div>
+</div>
+-->
+
+<?php echo $page_content; ?>
+
+<footer>
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12">
+	                    <h3 class="big-title">Rencontrez-nous...</h3>
+	                    <div class="apps text-center">
+	                        <a href="#" class="item my-2"><img width="100" height="100"
+	                                src="<?php echo $siteURL; ?>images/playstore.webp" alt="Play store"></a>
+	                        <a href="https://apps.apple.com/ma/app/hello-world-agency/id1566017621?l=fr-FR" class="item my-2"><img width="100" height="100"
+	                                src="<?php echo $siteURL; ?>images/appstore.webp" alt="App store"></a>
+	                    </div>
+	                </div>
+	                <div class="col-sm-6 col-md-3">
+	                    <div class="item-agency">
+	                            <?php
+                			$marrakechPage = new page(33, $db, $_SESSION['lang']);
+                			?>
+	                        <h4><a href="<?php echo $marrakechPage->getLink(); ?>">Marrakech</a></h4>
+
+	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link active" id="home-tab" title="Mobile" data-toggle="tab" href="#home"
+	                                    role="tab" aria-controls="home" aria-selected="true"><i class="ti-mobile"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="profile-tab" title="Email" data-toggle="tab" href="#profile"
+	                                    role="tab" aria-controls="profile" aria-selected="false"><i
+	                                        class="ti-email"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="contact-tab" title="location" data-toggle="tab" href="#contact"
+	                                    role="tab" aria-controls="contact" aria-selected="false"><i
+	                                        class="ti-location-pin"></i></a>
+	                            </li>
+	                        </ul>
+	                        <div class="tab-content" id="myTabContent">
+	                            <div class="tab-pane fade show active" id="home" role="tabpanel"
+	                                aria-labelledby="home-tab"><a
+	                                    href="tel:<?php echo $config->getTel(); ?>"><?php echo $config->getTel(); ?></a>
+	                            </div>
+	                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><a
+	                                    href="mailto:<?php echo $config->getEmail(); ?>"><?php echo $config->getEmail(); ?></a>
+	                            </div>
+	                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+	                                <?php echo $config->getAdresse(); ?></div>
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="col-sm-6 col-md-3">
+	                    <div class="item-agency">
+	                        	    <?php
+                			$casaPage = new page(32, $db, $_SESSION['lang']);
+                			?>
+	                        <h4><a href="<?php echo $casaPage->getLink(); ?>">Casablanca</a></h4>
+
+	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link active" id="home-tab" title="Mobile" data-toggle="tab"
+	                                    href="#tel-casa" role="tab" aria-controls="home" aria-selected="true"><i
+	                                        class="ti-mobile"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="profile-tab" title="Email" data-toggle="tab" href="#mail-casa"
+	                                    role="tab" aria-controls="profile" aria-selected="false"><i
+	                                        class="ti-email"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="contact-tab" title="location" data-toggle="tab"
+	                                    href="#adresse-casa" role="tab" aria-controls="contact" aria-selected="false"><i
+	                                        class="ti-location-pin"></i></a>
+	                            </li>
+	                        </ul>
+	                        <div class="tab-content" id="myTabContent">
+	                            <div class="tab-pane fade show active" id="tel-casa" role="tabpanel"
+	                                aria-labelledby="home-tab"><a
+	                                    href="tel:<?php echo $config->getTel2(); ?>"><?php echo $config->getTel2(); ?></a>
+	                            </div>
+	                            <div class="tab-pane fade" id="mail-casa" role="tabpanel" aria-labelledby="profile-tab"><a
+	                                    href="mailto:<?php echo $config->getEmail(); ?>"><?php echo $config->getEmail(); ?></a>
+	                            </div>
+	                            <div class="tab-pane fade" id="adresse-casa" role="tabpanel" aria-labelledby="contact-tab">
+	                                70 allé phonex Ain sbaa Casablanca - Maroc</div>
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="col-sm-6 col-md-3">
+	                    <div class="item-agency">
+	                          	    <?php
+                			$londonPage = new page(34, $db, $_SESSION['lang']);
+                			?>
+	                         <h4><a href="<?php echo $londonPage->getLink(); ?>">Londres</a></h4>
+
+	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link active" id="home-tab" title="Mobile" data-toggle="tab"
+	                                    href="#tel-londre" role="tab" aria-controls="home" aria-selected="true"><i
+	                                        class="ti-mobile"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="profile-tab" title="Email" data-toggle="tab"
+	                                    href="#email-londre" role="tab" aria-controls="profile" aria-selected="false"><i
+	                                        class="ti-email"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="contact-tab" title="location" data-toggle="tab"
+	                                    href="#adresse-londre" role="tab" aria-controls="contact" aria-selected="false"><i
+	                                        class="ti-location-pin"></i></a>
+	                            </li>
+	                        </ul>
+	                        <div class="tab-content" id="myTabContent">
+	                            <div class="tab-pane fade show active" id="tel-londre" role="tabpanel"
+	                                aria-labelledby="home-tab"><a href="tel:+44 5 24 42 31 56">+44 5 24 42 31 56</a></div>
+	                            <div class="tab-pane fade" id="email-londre" role="tabpanel" aria-labelledby="profile-tab">
+	                                <a href="mailto:contact@helloworldlabel.uk">contact@helloworldlabel.uk</a>
+	                            </div>
+	                            <div class="tab-pane fade" id="adresse-londre" role="tabpanel"
+	                                aria-labelledby="contact-tab">Hello World (London) Ltd, 3rd Floor, 86-90 Paul Street,
+	                                London<br>EC2A 4NE</div>
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="col-sm-6 col-md-3">
+	                    <div class="item-agency">
+	                        <h4>Dubai</h4>
+
+	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link active" id="home-tab" title="Mobile" data-toggle="tab"
+	                                    href="#tel-dubai" role="tab" aria-controls="home" aria-selected="true"><i
+	                                        class="ti-mobile"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="profile-tab" title="Email" data-toggle="tab"
+	                                    href="#email-dubai" role="tab" aria-controls="profile" aria-selected="false"><i
+	                                        class="ti-email"></i></a>
+	                            </li>
+	                            <li class="nav-item" role="presentation">
+	                                <a class="nav-link" id="contact-tab" title="location" data-toggle="tab"
+	                                    href="#adresse-dubai" role="tab" aria-controls="contact" aria-selected="false"><i
+	                                        class="ti-location-pin"></i></a>
+	                            </li>
+	                        </ul>
+	                        <div class="tab-content" id="myTabContent">
+	                            <div class="tab-pane fade show active" id="tel-dubai" role="tabpanel"
+	                                aria-labelledby="home-tab"><a href="tel:+971543399752">+971 54 339 9752</a></div>
+	                            <div class="tab-pane fade" id="email-dubai" role="tabpanel" aria-labelledby="profile-tab">
+	                                <a href="mailto:contact@helloworldlabel.ae">contact@helloworldlabel.ae</a>
+	                            </div>
+	                            <div class="tab-pane fade" id="adresse-dubai" role="tabpanel"
+	                                aria-labelledby="contact-tab">Dubai Silicon Oasis, DDP, Building A, Dubai, United Arab
+	                                Emirates</div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </footer>
+	    <section class="bottom">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12">
+	                    <ul class="footer-bottom-menu">
+	                        <?php
+							// bottom menu
+							$bottomMenu = new menu(2, $db);
+							$bottomMenu->getMenu();
+							?>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fal fa-arrow-up"></i>
+</button>
+
+<script>
+var homePage = <?php echo isHome() ? 'true' : 'false'; ?>;
+var siteURL = '<?php echo $siteURL; ?>';
+var apiURL = '<?php echo $apiURL; ?>';
+var platURL = '<?php echo $platURL; ?>';
+var task = '<?php echo isset($_GET['task']) ? $_GET['task'] : '' ?>';
+var SUCCES_ENVOI = '<?= $lang['DEMANDE_ENVOI_SUCCES'][$_SESSION['lang']]; ?>';
+var CHAMPS_OBLIG = '<?= $lang['REMPLIR_CHAMP_OBLIG'][$_SESSION['lang']]; ?>';
+var EMAIL_EXISTE = '<?= $lang['EMAIL_EXIST_DEJA'][$_SESSION['lang']]; ?>';
+var ERREUR_EXEC = '<?= $lang['ERREUR_EXEC'][$_SESSION['lang']]; ?>';
+<?php
+$confirmPage = new page(19, $db, $_SESSION['lang']);
+$congPage = new page(31, $db, $_SESSION['lang']);
+$confirmPageDevis = new page(20, $db, $_SESSION['lang']);
+$confirmPageDevis = new page(20, $db, $_SESSION['lang']);
+?>
+var REDIRECT_LINK = '<?php echo $confirmPage->getLink(); ?>';
+var REDIRECT_LINK_QUOTE = '<?php echo $confirmPageDevis->getLink(); ?>';
+var REDIRECT_LINK_CONG = '<?php echo $congPage->getLink(); ?>';
+</script>
+
+<script src='<?php echo $siteURL; ?>assets/js/jquery-3.3.1.min.js'></script>
+<script src='<?php echo $siteURL; ?>assets/js/bootstrap.min.js'></script>
+<script src='<?php echo $siteURL; ?>assets/js/owl.carousel.min.js'></script>
+<script src='<?php echo $siteURL; ?>assets/js/isotope.pkg.min.js'></script>
+<script src='<?php echo $siteURL; ?>assets/js/jquery.form.js'></script>
+<script src='<?php echo $siteURL; ?>flip-book/js/flipbook.min.js'></script>
+<script src='<?php echo $siteURL; ?>assets/js/main.js'></script>
+<script>
+/* CURSOR */
+const cur  = document.getElementById('cur');
+const cur2 = document.getElementById('cur2');
+document.addEventListener('mousemove', e => {
+  cur.style.left  = e.clientX + 'px';
+  cur.style.top   = e.clientY + 'px';
+  cur2.style.left = e.clientX + 'px';
+  cur2.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.svc-card,.port-item,.testi-card').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.style.transform = 'translate(-50%,-50%) scale(2.5)');
+  el.addEventListener('mouseleave', () => cur.style.transform = 'translate(-50%,-50%) scale(1)');
+});
+
+/* HEADER + BACK-TOP */
+const hdr     = document.getElementById('hdr');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  hdr.classList.toggle('scrolled', s > 80);
+  backTop.classList.toggle('show', s > 600);
+}, { passive: true });
+
+/* MEGA MENU */
+(function() {
+  const bar = document.getElementById('mmBar');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    bar && bar.classList.toggle('mm-scrolled', s > 60);
+    backTop && backTop.classList.toggle('show', s > 600);
+  }, { passive: true });
+
+  const panels = document.querySelectorAll('.mm-panel');
+  const triggers = document.querySelectorAll('[data-panel]');
+  let closeTimer;
+
+  function openPanel(id) {
+    clearTimeout(closeTimer);
+    panels.forEach(p => { const open = p.dataset.panel === id; p.classList.toggle('mm-open', open); });
+    triggers.forEach(t => { t.setAttribute('aria-expanded', t.dataset.panel === id ? 'true' : 'false'); });
+  }
+  function closePanels() {
+    closeTimer = setTimeout(() => {
+      panels.forEach(p => p.classList.remove('mm-open'));
+      triggers.forEach(t => t.setAttribute('aria-expanded', 'false'));
+    }, 180);
+  }
+
+  triggers.forEach(t => {
+    t.addEventListener('mouseenter', () => openPanel(t.dataset.panel));
+    t.addEventListener('focus', () => openPanel(t.dataset.panel));
+  });
+  panels.forEach(p => {
+    p.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+    p.addEventListener('mouseleave', closePanels);
+  });
+  triggers.forEach(t => t.addEventListener('mouseleave', closePanels));
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.mm-bar')) closePanels();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanels(); });
+
+  // Mobile drawer
+  const burger = document.getElementById('mmBurger');
+  const drawer = document.getElementById('mmDrawer');
+  const closeBtn = document.getElementById('mmClose');
+  function openDrawer() { drawer.classList.add('mm-open'); burger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { drawer.classList.remove('mm-open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+  burger && burger.addEventListener('click', openDrawer);
+  closeBtn && closeBtn.addEventListener('click', closeDrawer);
+  drawer && drawer.addEventListener('click', e => { if (e.target === drawer) closeDrawer(); });
+
+  // Mobile accordion
+  document.querySelectorAll('.mm-acc-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const id = head.dataset.acc;
+      const body = document.getElementById(id);
+      const isOpen = head.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.mm-acc-head').forEach(h => h.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('.mm-acc-body').forEach(b => { b.classList.remove('mm-open'); b.style.maxHeight = ''; });
+      if (!isOpen) { head.setAttribute('aria-expanded', 'true'); body.classList.add('mm-open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+})();
+
+/* SCROLL REVEAL */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* FOOTER TOP BORDER LINE */
+const footEl = document.querySelector('footer');
+if (footEl) {
+  const footIO = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('foot-in'); footIO.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  footIO.observe(footEl);
+}
+
+/* STAT COUNTERS */
+const statDefs = [
+  { id: 's1', target: 140, suf: '<span class="bub-suf">+</span>' },
+  { id: 's2', target: 98,  suf: '<span class="bub-suf">%</span>' },
+  { id: 's3', target: 24,  suf: '<span class="bub-suf">+</span>' },
+  { id: 's4', target: 12,  suf: '' },
+];
+function animateCount(el, target, suf) {
+  const dur = 1800, start = performance.now();
+  (function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 4);
+    el.innerHTML = Math.floor(eased * target) + suf;
+    if (p < 1) requestAnimationFrame(step);
+  })(start);
+}
+const statsIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      statsIo.unobserve(e.target);
+      e.target.classList.add('on');
+      statDefs.forEach(d => {
+        const el = e.target.querySelector('#' + d.id);
+        if (el) animateCount(el, d.target, d.suf);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
+
+/* HERO CANVAS — flowing wave terrain */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, t = 0;
+  const LINES = 40, SEGS = 240;
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.0055;
+    for (let l = 0; l < LINES; l++) {
+      const p = l / (LINES - 1);
+      const yBase = H * 0.1 + H * 0.8 * p;
+      const amp   = H * 0.058 * (0.2 + p * 0.8);
+      const bright = 1 - Math.abs(p - 0.42) * 1.9;
+      const alpha  = Math.max(0.015, Math.min(bright * 0.115, 0.115));
+      ctx.beginPath();
+      for (let i = 0; i <= SEGS; i++) {
+        const x = (i / SEGS) * W;
+        const n = i / SEGS;
+        const y = yBase
+          + Math.sin(n * Math.PI * 3.6 + t * 1.75 + l * 0.34) * amp
+          + Math.sin(n * Math.PI * 6.8 - t * 1.08 + l * 0.19) * amp * 0.4
+          + Math.sin(n * Math.PI * 1.4 + t * 0.62 + l * 0.07) * amp * 0.2;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(13,11,9,${alpha})`;
+      ctx.lineWidth = 0.65;
+      ctx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  resize(); draw();
+  window.addEventListener('resize', resize);
+})();
+
+/* FANCY TITLE — char split + wave hover */
+(function(){
+  function splitChars(el) {
+    el.classList.add('fancy-title');
+    let ci = 0;
+    function proc(node) {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        for (const c of node.textContent) {
+          const s = document.createElement('span');
+          if (c === ' ' || c === ' ') {
+            s.className = 'ch sp';
+            s.innerHTML = '&nbsp;';
+          } else {
+            s.className = 'ch';
+            s.style.setProperty('--ci', ci++);
+            s.textContent = c;
+          }
+          frag.appendChild(s);
+        }
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1 && node.tagName !== 'BR') {
+        Array.from(node.childNodes).forEach(proc);
+      }
+    }
+    Array.from(el.childNodes).forEach(proc);
+  }
+  document.querySelectorAll('.hero-title, .sec-title, .port-title').forEach(splitChars);
+})();
+
+/* FAQ ACCORDION */
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const body = item.querySelector('.faq-body');
+    const isOpen = btn.classList.contains('open');
+    // ferme tous
+    document.querySelectorAll('.faq-btn.open').forEach(b => {
+      b.classList.remove('open');
+      b.closest('.faq-item').querySelector('.faq-body').classList.remove('open');
+    });
+    if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+  });
+});
+
+/* SUBMENU — hover avec délai pour éviter la fermeture prématurée */
+(function() {
+  document.querySelectorAll('.has-sub').forEach(el => {
+    let timer;
+    el.addEventListener('mouseenter', () => {
+      clearTimeout(timer);
+      el.classList.add('open');
+    });
+    el.addEventListener('mouseleave', () => {
+      timer = setTimeout(() => el.classList.remove('open'), 180);
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.has-sub')) {
+      document.querySelectorAll('.has-sub.open').forEach(el => el.classList.remove('open'));
+    }
+  });
+})();
+
+/* 3D TILT */
+(function(){
+  function initTilt(selector, angle, shineClass){
+    document.querySelectorAll(selector).forEach(function(el){
+      var shine = document.createElement('div');
+      shine.className = shineClass ? 'tilt-shine ' + shineClass : 'tilt-shine';
+      el.appendChild(shine);
+      el.addEventListener('mouseenter', function(){
+        el.style.transition = 'transform .06s linear, background .35s';
+      });
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        var dx = (e.clientX - r.left - r.width * .5) / (r.width * .5);
+        var dy = (e.clientY - r.top - r.height * .5) / (r.height * .5);
+        el.style.transform = 'perspective(900px) rotateX(' + (-dy * angle) + 'deg) rotateY(' + (dx * angle) + 'deg) translateZ(8px)';
+        shine.style.setProperty('--sx', ((dx + 1) / 2 * 100) + '%');
+        shine.style.setProperty('--sy', ((dy + 1) / 2 * 100) + '%');
+      });
+      el.addEventListener('mouseleave', function(){
+        el.style.transition = 'transform .65s cubic-bezier(.34,1.56,.64,1), background .35s';
+        el.style.transform = '';
+      });
+    });
+  }
+  initTilt('.ai-card', 7);
+  initTilt('.svc-card', 6);
+  initTilt('.srv-card', 5);
+  initTilt('.port-item', 4, 'port-shine');
+
+  var hero = document.querySelector('.hero');
+  var heroInner = document.querySelector('.hero-inner');
+  if (hero && heroInner) {
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      var dx = (e.clientX - r.left - r.width * .5) / r.width;
+      var dy = (e.clientY - r.top - r.height * .5) / r.height;
+      heroInner.style.transition = 'transform .1s linear';
+      heroInner.style.transform = 'perspective(1400px) rotateX(' + (-dy * 2.5) + 'deg) rotateY(' + (dx * 2.5) + 'deg)';
+    });
+    hero.addEventListener('mouseleave', function(){
+      heroInner.style.transition = 'transform .9s cubic-bezier(.34,1.56,.64,1)';
+      heroInner.style.transform = '';
+    });
+  }
+})();
+
+/* TESTIMONIALS CAROUSEL */
+(function() {
+  var track = document.querySelector('.testi-track');
+  if (!track) return;
+  var items = track.querySelectorAll('.testi-item');
+  var controls = document.querySelector('.testi-controls');
+  var dotsWrap = document.querySelector('.testi-dots');
+  var current = 0, perPage = 3, maxIdx = 0, autoTimer, dots = [];
+
+  function getPerPage() {
+    return window.innerWidth <= 575 ? 1 : window.innerWidth <= 991 ? 2 : 3;
+  }
+
+  function buildDots() {
+    perPage = getPerPage();
+    maxIdx = Math.max(0, items.length - perPage);
+    items.forEach(function(item) { item.style.flexBasis = (100 / perPage) + '%'; });
+    dotsWrap.innerHTML = '';
+    for (var i = 0; i <= maxIdx; i++) {
+      var d = document.createElement('button');
+      d.className = 'testi-dot' + (i === current ? ' active' : '');
+      (function(idx) { d.addEventListener('click', function() { clearTimeout(autoTimer); goTo(idx); startAuto(); }); })(i);
+      dotsWrap.appendChild(d);
+    }
+    dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
+    controls.style.display = maxIdx > 0 ? 'flex' : 'none';
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, maxIdx));
+    track.style.transform = 'translateX(-' + (current * 100 / perPage) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  function startAuto() {
+    autoTimer = setTimeout(function() { goTo(current >= maxIdx ? 0 : current + 1); startAuto(); }, 5000);
+  }
+
+  document.querySelector('.testi-prev').addEventListener('click', function() { clearTimeout(autoTimer); goTo(current - 1); startAuto(); });
+  document.querySelector('.testi-next').addEventListener('click', function() { clearTimeout(autoTimer); goTo(current + 1); startAuto(); });
+
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) { clearTimeout(autoTimer); goTo(current + (dx < 0 ? 1 : -1)); startAuto(); }
+  });
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() { buildDots(); goTo(Math.min(current, maxIdx)); }, 150);
+  });
+
+  buildDots();
+  startAuto();
+})();
+
+/* LANG SELECTOR */
+(function() {
+  const sel = document.getElementById('langSel');
+  const btn = document.getElementById('langBtn');
+  const cur = document.getElementById('langCur');
+  if (!sel) return;
+  btn.addEventListener('click', e => { e.stopPropagation(); sel.classList.toggle('open'); });
+  document.addEventListener('click', () => sel.classList.remove('open'));
+  sel.querySelectorAll('.lang-opt').forEach(opt => {
+    opt.addEventListener('click', e => {
+      e.preventDefault();
+      sel.querySelectorAll('.lang-opt').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      cur.textContent = opt.textContent.trim().split(' ')[1].slice(0,2).toUpperCase();
+      sel.classList.remove('open');
+    });
+  });
+})();
+
+/* PARALLAX ENGINE */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const isMobile = () => window.innerWidth < 900;
+  const items = Array.from(document.querySelectorAll('[data-px]')).map(el => ({
+    el, f: parseFloat(el.dataset.px)
+  }));
+  if (!items.length) return;
+  let ticking = false;
+  function update() {
+    if (isMobile()) { items.forEach(({ el }) => { el.style.translate = ''; }); ticking = false; return; }
+    const vh = window.innerHeight;
+    items.forEach(({ el, f }) => {
+      const r = el.getBoundingClientRect();
+      const cy = r.top + r.height / 2 - vh / 2;
+      el.style.translate = '0 ' + (cy * f).toFixed(2) + 'px';
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+<script>
+// document.querySelectorAll('.custom-sublink.pop').forEach(function(el) {
+//     el.remove();
+// });
+function decodeUtf8Base64(base64) {
+    const binary = atob(base64);
+    const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+    return new TextDecoder('utf-8').decode(bytes);
+}
+
+// document.querySelectorAll('.card').forEach(card => {
+
+//     card.addEventListener('mouseenter', function() {
+
+//         const encoded = this.dataset.packs;
+
+//         if (!encoded) return;
+
+//         document.getElementById('packsGrid').innerHTML =
+//             decodeUtf8Base64(encoded);
+
+//     });
+
+// });
+
+// const firstCard = document.querySelector('.card');
+
+// if(firstCard){
+
+//     document.getElementById('packsGrid').innerHTML =
+//         decodeUtf8Base64(firstCard.dataset.packs);
+
+// }
+
+
+
+document.querySelectorAll('.card, .custom-sublink').forEach(item => {
+
+    item.addEventListener('mouseenter', function() {
+
+        const encoded = this.dataset.packs;
+        if (!encoded) return;
+
+        const mega = this.closest('.mega');
+        const grid = mega.querySelector('.packs-grid');
+
+        if(grid){
+            grid.innerHTML = decodeUtf8Base64(encoded);
+        }
+
+    });
+
+});
+
+
+(function () {
+    
+    
+
+  'use strict';
+
+  var ICONS = {
+    chat:'<path d="M5 4h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>',
+    whatsapp:'<path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.3A9 9 0 1 0 12 3z"/><path d="M8.5 9c0 3.6 2.9 6.5 6.5 6.5"/>',
+    mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>',
+    robot:'<rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4"/><circle cx="9" cy="13.5" r="1.1"/><circle cx="15" cy="13.5" r="1.1"/>',
+    headset:'<path d="M5 13a7 7 0 0 1 14 0"/><rect x="3" y="13" width="3.5" height="6" rx="1.6"/><rect x="17.5" y="13" width="3.5" height="6" rx="1.6"/><path d="M19 19a3 3 0 0 1-3 3h-2"/>',
+    users:'<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3 3 0 0 1 0 5.6"/><path d="M21 20a6 6 0 0 0-4.5-5.8"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+    target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+    chart:'<path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M3 20h18"/>',
+    home:'<path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/>',
+    hotel:'<path d="M3 18v-6h12a4 4 0 0 1 4 4v2"/><path d="M3 12V7"/><circle cx="7" cy="10" r="1.5"/><path d="M3 18h18"/>',
+    bag:'<path d="M6 8h12l1 12H5z"/><path d="M9 8a3 3 0 0 1 6 0"/>',
+    heart:'<path d="M12 20s-7-4.5-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.5-7 9-7 9z"/>',
+    globe:'<circle cx="12" cy="12" r="8"/><path d="M4 12h16"/><path d="M12 4a13 13 0 0 1 0 16 13 13 0 0 1 0-16z"/>',
+    mobile:'<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
+    lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+    rocket:'<path d="M12 3c3 2 5 6 5 10l-2.5 3h-5L7 13c0-4 2-8 5-10z"/><circle cx="12" cy="10" r="1.6"/><path d="M9 16l-2 4 4-1.5"/>',
+    building:'<rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/>',
+    dash:'<path d="M4 14a8 8 0 0 1 16 0"/><path d="M12 14l4-3"/><path d="M4 19h16"/>',
+    palette:'<path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2s-1-2 0-3 3 0 3-2a7 7 0 0 0-7-9z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16" cy="11" r="1"/>',
+    camera:'<rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-2h5L16 7"/>',
+    star:'<path d="M12 3l2.5 6 6 .5-4.5 4 1.5 6L12 16l-5.5 3.5 1.5-6L3.5 9.5 9.5 9z"/>',
+    share:'<circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 11l6.6-3.5M8.2 13l6.6 3.5"/>',
+    event:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/><path d="M8 14l2 2 4-4"/>',
+    press:'<path d="M3 10v4l10 4V6z"/><path d="M13 8h4a3 3 0 0 1 0 6h-4"/><path d="M16 14v5"/>',
+    printer:'<rect x="6" y="3" width="12" height="6" rx="1"/><rect x="3" y="9" width="18" height="8" rx="2"/><rect x="7" y="14" width="10" height="6" rx="1"/>',
+    pin:'<path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+    cap:'<path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1.5 10 1.5 10 0v-5"/><path d="M21 9v5"/>',
+    pen:'<path d="M14 4l6 6L9 21H3v-6z"/><path d="M12 6l6 6"/>',
+    phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+    gear:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2 2M16.4 16.4l2 2M18.4 5.6l-2 2M7.6 16.4l-2 2"/>'
+  };
+  function svg(id){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[id]||ICONS.chat)+'</svg>'; }
+
+  // remplir les icônes de repli dans les tuiles
+  Array.prototype.slice.call(document.querySelectorAll('[data-thumb]')).forEach(function(t){
+    var host = t.closest('[data-ico]');
+    var ico = host ? host.getAttribute('data-ico') : 'chat';
+    var box = t.querySelector('.thumb-ico'); if (box) box.innerHTML = svg(ico);
+  });
+
+  var navshell = document.getElementById('navshell');
+  var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-menu]'));
+  var panels   = Array.prototype.slice.call(document.querySelectorAll('[data-panel]'));
+  var openKey = null, closeTimer = null;
+  function panelFor(k){ return document.querySelector('[data-panel="' + k + '"]'); }
+  function open(k){ clearTimeout(closeTimer); if (openKey===k) return;
+    panels.forEach(function(p){p.classList.remove('is-open');}); triggers.forEach(function(t){t.setAttribute('aria-expanded','false');});
+    var p=panelFor(k), t=triggers.filter(function(x){return x.dataset.menu===k;})[0];
+    if(p)p.classList.add('is-open'); if(t)t.setAttribute('aria-expanded','true'); openKey=k; }
+  function close(){ panels.forEach(function(p){p.classList.remove('is-open');}); triggers.forEach(function(t){t.setAttribute('aria-expanded','false');}); openKey=null; }
+  function scheduleClose(){ clearTimeout(closeTimer); closeTimer=setTimeout(close,150); }
+  triggers.forEach(function(t){ var k=t.dataset.menu;
+    t.addEventListener('mouseenter',function(){open(k);});
+    t.addEventListener('focus',function(){open(k);});
+    t.addEventListener('click',function(e){e.preventDefault();(openKey===k)?close():open(k);}); });
+  navshell.addEventListener('mouseleave',scheduleClose);
+  navshell.addEventListener('mouseenter',function(){clearTimeout(closeTimer);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  document.addEventListener('click',function(e){if(!navshell.contains(e.target))close();});
+
+  function initials(name){ var p=name.replace(/^Dr\.\s*/,'').trim().split(' '); return ((p[0]||'')[0]||'')+((p[1]||'')[0]||''); }
+  function pop(el){ if(!el)return; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
+  function clean(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+
+  panels.forEach(function(panel){
+    var vico   = panel.querySelector('[data-vico]');
+    var vgrad  = panel.querySelector('[data-vgrad]');
+    var vimg   = panel.querySelector('[data-vimg]');
+    var vlink  = panel.querySelector('.vimg-link');
+    var vTitle = panel.querySelector('[data-vtitle]');
+    var vDesc  = panel.querySelector('[data-vdesc]');
+    var vServ  = panel.querySelector('[data-vservice]');
+    var fTitle = panel.querySelector('[data-foottitle]');
+    var fQuote = panel.querySelector('[data-quote]');
+    // var fAuthor= panel.querySelector('[data-author]');
+    // var fRole  = panel.querySelector('[data-role]');
+    var fAva   = panel.querySelector('[data-ava]');
+    var vEl    = panel.querySelector('.visual');
+
+    if (vimg){ vimg.addEventListener('error', function(){ this.style.display='none'; });
+               vimg.addEventListener('load', function(){ this.style.display=''; }); }
+
+    var def = {
+      service:vEl.dataset.defService, desc:vEl.dataset.defDesc, ico:vEl.dataset.defIco, grad:vEl.dataset.defGrad,
+      img:vEl.dataset.defImg, 
+      cat:vEl.dataset.defCat
+    };
+
+    function apply(d, animate){
+      vgrad.className = 'vimg-wrap ' + (d.grad||'');
+      vico.innerHTML = svg(d.ico);
+      if (d.img){ vimg.style.display=''; vimg.src=d.img; } else { vimg.style.display='none'; vimg.removeAttribute('src'); }
+      vTitle.innerHTML = clean(d.service);
+      vDesc.textContent = d.desc;
+      vServ.textContent = clean(d.service);
+      fTitle.textContent = 'Ce qu\u2019ils ont pensé de ' + (d.cat ? d.cat : clean(d.service));
+    //   fQuote.textContent = '\u00AB ' + d.quote + ' \u00BB';
+    //   fAuthor.textContent = d.author; fRole.textContent = d.role; fAva.textContent = initials(d.author);
+    //   if (animate){ pop(vlink); pop(fQuote); }
+    }
+    apply(def, false);
+
+    var content = panel.querySelector('.mega-content');
+    var links = Array.prototype.slice.call(panel.querySelectorAll('.sublink, .card'));
+    links.forEach(function(a){
+      a.addEventListener('mouseenter', function(){
+        apply({service:a.dataset.service, desc:a.dataset.desc, ico:a.dataset.ico, grad:a.dataset.grad,
+               img:a.dataset.img, quote:null, author:null, role:null, cat:null}, true);
+      });
+    });
+    if (content){ content.addEventListener('mouseleave', function(){ apply(def, true); }); }
+  });
+
+   /* ---- Version mobile : volet + accordéons générés depuis les panneaux ---- */
+  var burger=document.getElementById('burger'), drawer=document.getElementById('drawer'),
+      drawerNav=document.getElementById('drawerNav'), closeBtn=document.getElementById('closeDrawer');
+  if (burger && drawer && drawerNav){
+    var html='<a class="m-link" href="#">Accueil</a>';
+    triggers.forEach(function(t){
+      var label=t.textContent.replace('▼','').trim();
+      var panel=panelFor(t.dataset.menu);
+      
+      
+    var items = Array.prototype.slice.call(panel.querySelectorAll('.sublink, .card'));
+    var body = '';
+    
+    var seen = new Set();
+    
+    items.forEach(function(a){
+    
+      var href = a.getAttribute('href') || '';
+      var label = (a.dataset.service || a.textContent).trim();
+    
+      // clé unique plus stable
+      var key = href + '|' + label;
+    
+      if(seen.has(key)) return;
+      seen.add(key);
+    
+      body += '<a class="acc-item" href="'+href+'">' +
+              '<span class="thumb '+(a.dataset.grad||'')+'">' +
+              '<span class="thumb-ico">'+svg(a.dataset.ico)+'</span>' +
+              '</span>' +
+              '<b>'+clean(label)+'</b>' +
+              '</a>';
+    });
+    
+    
+    
+      html+='<button class="acc-head" aria-expanded="false" data-acc>'+label+' <span class="chev">\u25BC</span></button><div class="acc-body"><div class="acc-inner">'+body+'</div></div>';
+    });
+    html+='<a class="m-link" href="https://www.helloworld-agency.com/new/nos-agences/">Nos agences</a>';
+    drawerNav.innerHTML=html;
+
+    function openD(){drawer.classList.add('open');burger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+    function closeD(){drawer.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+    burger.addEventListener('click',openD);
+    if(closeBtn) closeBtn.addEventListener('click',closeD);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeD();});
+
+    var heads=Array.prototype.slice.call(drawerNav.querySelectorAll('[data-acc]'));
+    heads.forEach(function(head){
+      var b=head.nextElementSibling;
+      head.addEventListener('click',function(){
+        var isOpen=head.getAttribute('aria-expanded')==='true';
+        heads.forEach(function(h){if(h!==head){h.setAttribute('aria-expanded','false');h.nextElementSibling.style.maxHeight=null;h.nextElementSibling.classList.remove('open');}});
+        if(isOpen){head.setAttribute('aria-expanded','false');b.style.maxHeight=null;b.classList.remove('open');}
+        else{head.setAttribute('aria-expanded','true');b.classList.add('open');b.style.maxHeight=b.scrollHeight+'px';}
+      });
+    });
+    window.addEventListener('resize',function(){
+      drawerNav.querySelectorAll('.acc-body.open').forEach(function(b){b.style.maxHeight=b.scrollHeight+'px';});
+      if(window.innerWidth>1000) closeD();
+    });
+  }
+
+})();
+</script>
+
+    <!-- Start of HubSpot Embed Code -->
+	       <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/143509868.js">
+	    </script>
+	    <!-- End of HubSpot Embed Code -->
+</body>
+</html>

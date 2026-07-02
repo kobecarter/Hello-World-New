@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<component>
+<id>com_video</id>
+<nom>Gestion des vidéos</nom>
+<class>video</class>
+<table>video</table>
+<traduction>1</traduction>
+<url>0</url>
+<icon>fas fa-video</icon>
+<system>0</system>
+<position>param</position>
+</component>

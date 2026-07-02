@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <id>com_tool</id>
+    <nom>Gestion des outils</nom>
+    <class>tool</class>
+    <table>tool</table>
+    <traduction>1</traduction>
+    <url>0</url>
+    <icon>tools</icon>
+    <system>0</system>
+    <position>param</position>
+</module>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <id>com_menu</id>
+    <nom>Gestion des menus</nom>
+    <class>menu</class>
+    <table>menu</table>
+    <traduction>1</traduction>
+    <url>0</url>
+    <icon>bars</icon>
+    <system>0</system>
+    <position>side</position>
+</module>

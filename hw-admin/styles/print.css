@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+
+.table tr{
+	border-bottom:#999 solid 1px;
+	border-top:#999 solid 1px;
+}
