@@ -10,7 +10,12 @@ class mysql extends dbfactory {
     // connection a la base
     protected function connect () {
 		$this->_config['link'] = new mysqli($this->_config['host'], $this->_config['user'], $this->_config['passwd'], $this->_config['name']);
-		
+		if ($this->_config['link']) {
+			// Les colonnes texte sont en latin1 ; on force la session en utf8mb4 pour que
+			// MySQL convertisse correctement vers l'UTF-8 déclaré par les pages du site.
+			$this->_config['link']->set_charset('utf8mb4');
+		}
+
         /*$this->_config['link'] = @mysql_connect($this->_config['host'],
             $this->_config['user'],
             $this->_config['passwd']);*/
