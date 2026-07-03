@@ -1,10 +1,16 @@
 Options +FollowSymlinks
 RewriteEngine on
-RewriteBase /helloworld3/
+RewriteBase /new/
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
 # add a slashes at the end of the URL
 RewriteCond %{REQUEST_URI} /+[^\.]+$
 RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+# https redirection
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # https to http redirection
 # RewriteCond %{HTTPS} ^on$
@@ -32,6 +38,8 @@ ErrorDocument 404 /404.php
  ExpiresByType image/x-icon "access plus 1 year"
  ExpiresByType text/css "access plus 1 year"
  ExpiresByType text/javascript "access plus 1 year"
+ ExpiresByType text/html "access plus 1 year"
+ ExpiresByType application/xhtml+xml "access plus 1 year"
  ExpiresByType application/javascript "access plus 1 year"
  ExpiresByType application/x-javascript "access plus 1 year"
  ExpiresByType application/x-shockwave-flash "access plus 1 year"
@@ -50,21 +58,15 @@ BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
 SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip
 #les proxies doivent donner le bon contenu
 Header append Vary User-Agent env=!dont-vary
-# Règles locales pour URLs générées depuis les titres de pages
-RewriteRule ^nos-realisations/$ index.php?option=com_reference&id=2&l=fr [L]
-RewriteRule ^nos-realisations/([0-9]+)/$ index.php?option=com_reference&id=2&l=fr [L]
-RewriteRule ^animation-videos-et-motion-design/$ index.php?option=com_agence&task=mstoune&id=35&l=fr [L]
-RewriteRule ^formations-ia-pour-dirigeants-et-equipes/$ index.php?option=com_formation&id=42&l=fr [L]
-RewriteRule ^formations-ia-pour-dirigeants-et-equipes/([0-9]+)/$ index.php?option=com_formation&id=42&l=fr [L]
 RewriteRule ^service/seo-referencement-naturel/37/$ https://www.helloworld-agency.com/service/referencement-seo/ [R=301,L]
 RewriteRule ^service/developpement-web-et-mobile/$ https://www.helloworld-agency.com/service/creation-de-sites-web/ [R=301,L]
 RewriteRule ^service/marketing-d-influence/23/$ https://www.helloworld-agency.com/service/marketing-de-celebrites-et-d-influenceurs/ [R=301,L]
 RewriteRule ^service/marketing-d-influence/$ https://www.helloworld-agency.com/service/marketing-de-celebrites-et-d-influenceurs/ [R=301,L]
 RewriteRule ^service/developpement-web-et-mobile/25/$ https://www.helloworld-agency.com/service/creation-de-sites-web/ [R=301,L]
-RewriteRule ^politique-de-confidentialite/$ index.php?option=com_page&id=1&l=fr [L]
+RewriteRule ^politique-de-confidentialit/$ index.php?option=com_page&id=1&l=fr [L]
 RewriteRule ^en/privacy-policy/$ index.php?option=com_page&id=1&l=en [L]
-RewriteRule ^realisations-et-cas-clients/$ index.php?option=com_reference&id=2&l=fr [L]
-RewriteRule ^realisations-et-cas-clients/([0-9]+)/$ index.php?option=com_reference&id=2&l=fr [L]
+RewriteRule ^r-alisations-et-cas-clients/$ index.php?option=com_reference&id=2&l=fr [L]
+RewriteRule ^r-alisations-et-cas-clients/([0-9]+)/$ index.php?option=com_reference&id=2&l=fr [L]
 RewriteRule ^en/our-achievements/$ index.php?option=com_reference&id=2&l=en [L]
 RewriteRule ^en/our-achievements/([0-9]+)/$ index.php?option=com_reference&id=2&l=en [L]
 RewriteRule ^recrutement/$ index.php?option=com_job&id=3&l=fr [L]
@@ -85,9 +87,9 @@ RewriteRule ^devis-en-ligne/$ index.php?option=com_contact&task=quote&id=6&l=fr 
 RewriteRule ^devis-en-ligne/([0-9]+)/$ index.php?option=com_contact&task=quote&id=6&l=fr [L]
 RewriteRule ^en/online-quote/$ index.php?option=com_contact&task=quote&id=6&l=en [L]
 RewriteRule ^en/online-quote/([0-9]+)/$ index.php?option=com_contact&task=quote&id=6&l=en [L]
-RewriteRule ^mentions-legales/$ index.php?option=com_page&id=7&l=fr [L]
+RewriteRule ^mentions-l-gales/$ index.php?option=com_page&id=7&l=fr [L]
 RewriteRule ^en/legal-notice/$ index.php?option=com_page&id=7&l=en [L]
-RewriteRule ^conditions-generales-de-ventes/$ index.php?option=com_page&id=8&l=fr [L]
+RewriteRule ^conditions-g-n-rales-de-ventes/$ index.php?option=com_page&id=8&l=fr [L]
 RewriteRule ^en/terms-and-conditions/$ index.php?option=com_page&id=8&l=en [L]
 RewriteRule ^blog/$ index.php?option=com_blog&cat=1&id=9&l=fr [L]
 RewriteRule ^blog/([0-9]+)/$ index.php?option=com_blog&cat=1&id=9&l=fr [L]
@@ -105,17 +107,17 @@ RewriteRule ^notre-expertise/$ index.php?option=com_service&id=12&l=fr [L]
 RewriteRule ^notre-expertise/([0-9]+)/$ index.php?option=com_service&id=12&l=fr [L]
 RewriteRule ^en/our-expertise/$ index.php?option=com_service&id=12&l=en [L]
 RewriteRule ^en/our-expertise/([0-9]+)/$ index.php?option=com_service&id=12&l=en [L]
-RewriteRule ^videotheque/$ index.php?option=com_video&id=13&l=fr [L]
-RewriteRule ^videotheque/([0-9]+)/$ index.php?option=com_video&id=13&l=fr [L]
+RewriteRule ^vid-oth-que/$ index.php?option=com_video&id=13&l=fr [L]
+RewriteRule ^vid-oth-que/([0-9]+)/$ index.php?option=com_video&id=13&l=fr [L]
 RewriteRule ^en/video-library/$ index.php?option=com_video&id=13&l=en [L]
 RewriteRule ^en/video-library/([0-9]+)/$ index.php?option=com_video&id=13&l=en [L]
 RewriteRule ^intro/$ index.php?option=com_intro&id=14&l=fr [L]
 RewriteRule ^intro/([0-9]+)/$ index.php?option=com_intro&id=14&l=fr [L]
 RewriteRule ^en/intro/$ index.php?option=com_intro&id=14&l=en [L]
 RewriteRule ^en/intro/([0-9]+)/$ index.php?option=com_intro&id=14&l=en [L]
-RewriteRule ^telechargement/$ index.php?option=com_blog&cat=4&id=15&l=fr [L]
-RewriteRule ^telechargement/([0-9]+)/$ index.php?option=com_blog&cat=4&id=15&l=fr [L]
-RewriteRule ^donnees-personnelles/$ index.php?option=com_page&id=16&l=fr [L]
+RewriteRule ^t-l-chargement/$ index.php?option=com_blog&cat=4&id=15&l=fr [L]
+RewriteRule ^t-l-chargement/([0-9]+)/$ index.php?option=com_blog&cat=4&id=15&l=fr [L]
+RewriteRule ^donn-es-personnelles/$ index.php?option=com_page&id=16&l=fr [L]
 RewriteRule ^activation-compte/$ index.php?option=com_client&task=enableAccount&id=17&l=fr [L]
 RewriteRule ^activation-compte/([0-9]+)/$ index.php?option=com_client&task=enableAccount&id=17&l=fr [L]
 RewriteRule ^client-space/$ index.php?option=com_client&id=18&l=fr [L]
@@ -129,12 +131,12 @@ RewriteRule ^se-connecter/$ index.php?option=com_page&id=22&l=fr [L]
 RewriteRule ^panneaux-des-administrateurs/$ index.php?option=com_page&id=23&l=fr [L]
 RewriteRule ^marketplace/$ index.php?option=com_produit&id=24&l=fr [L]
 RewriteRule ^marketplace/([0-9]+)/$ index.php?option=com_produit&id=24&l=fr [L]
-RewriteRule ^formations-ia-pour-dirigeants-et-equipes/$ index.php?option=com_formation&id=41&l=fr [L]
-RewriteRule ^formations-ia-pour-dirigeants-et-equipes/([0-9]+)/$ index.php?option=com_formation&id=41&l=fr [L]
+RewriteRule ^formations-ia-pour-dirigeants-et-quipes/$ index.php?option=com_formation&id=41&l=fr [L]
+RewriteRule ^formations-ia-pour-dirigeants-et-quipes/([0-9]+)/$ index.php?option=com_formation&id=41&l=fr [L]
 RewriteRule ^nos-produits/$  index.php?option=com_produit&task=produits&id=25&l=fr [L]
 RewriteRule ^nos-produits/([0-9]+)/$  index.php?option=com_produit&task=produits&id=25&l=fr [L]
-RewriteRule ^actualites-du-marketing-numerique/$ index.php?option=com_blog&cat=6&id=26&l=fr [L]
-RewriteRule ^actualites-du-marketing-numerique/([0-9]+)/$ index.php?option=com_blog&cat=6&id=26&l=fr [L]
+RewriteRule ^actualit-s-du-marketing-num-rique/$ index.php?option=com_blog&cat=6&id=26&l=fr [L]
+RewriteRule ^actualit-s-du-marketing-num-rique/([0-9]+)/$ index.php?option=com_blog&cat=6&id=26&l=fr [L]
 RewriteRule ^client-space/$ index.php?option=com_page&id=27&l=fr [L]
 RewriteRule ^password-recovery/$ index.php?option=com_client&task=passwordRecovery&id=28&l=fr [L]
 RewriteRule ^password-recovery/([0-9]+)/$ index.php?option=com_client&task=passwordRecovery&id=28&l=fr [L]
@@ -142,25 +144,25 @@ RewriteRule ^create-a-new-password/$ index.php?option=com_client&task=createNewP
 RewriteRule ^create-a-new-password/([0-9]+)/$ index.php?option=com_client&task=createNewPassword&id=29&l=fr [L]
 RewriteRule ^digital-expert/$ index.php?option=com_video&task=categorie&id=14&id=30&l=fr [L]
 RewriteRule ^digital-expert/([0-9]+)/$ index.php?option=com_video&task=categorie&id=14&id=30&l=fr [L]
-RewriteRule ^felicitations/$ index.php?option=com_page&id=31&l=fr [L]
+RewriteRule ^f-licitations/$ index.php?option=com_page&id=31&l=fr [L]
 RewriteRule ^agence-marketing-digital-marrakech/$ index.php?option=com_agence&task=marrakech&id=33&l=fr [L]
 RewriteRule ^agence-marketing-digital-marrakech/([0-9]+)/$ index.php?option=com_agence&task=marrakech&id=33&l=fr [L]
-RewriteRule ^agence-marketing-digital-a-londres/$ index.php?option=com_agence&task=uk&id=34&l=fr [L]
-RewriteRule ^agence-marketing-digital-a-londres/([0-9]+)/$ index.php?option=com_agence&task=uk&id=34&l=fr [L]
-RewriteRule ^agence-marketing-digital-a-dubai/$ index.php?option=com_agence&task=dubai&id=36&l=fr [L]
-RewriteRule ^agence-marketing-digital-a-dubai/([0-9]+)/$ index.php?option=com_agence&task=dubai&id=36&l=fr [L]
+RewriteRule ^agence-marketing-digital-londres/$ index.php?option=com_agence&task=uk&id=34&l=fr [L]
+RewriteRule ^agence-marketing-digital-londres/([0-9]+)/$ index.php?option=com_agence&task=uk&id=34&l=fr [L]
+RewriteRule ^agents-ia/$ index.php?option=com_agents_ia&id=44&l=fr [L]
+RewriteRule ^agents-ia/([0-9]+)/$ index.php?option=com_agents_ia&id=44&l=fr [L]
+RewriteRule ^agence-marketing-digital-dubai/$ index.php?option=com_agence&task=dubai&id=36&l=fr [L]
+RewriteRule ^agence-marketing-digital-dubai/([0-9]+)/$ index.php?option=com_agence&task=dubai&id=36&l=fr [L]
 RewriteRule ^agence-marketing-digital-rabat/$ index.php?option=com_agence&task=rabat&id=37&l=fr [L]
 RewriteRule ^agence-marketing-digital-rabat/([0-9]+)/$ index.php?option=com_agence&task=rabat&id=37&l=fr [L]
 RewriteRule ^agence-marketing-digital-tanger/$ index.php?option=com_agence&task=tanger&id=38&l=fr [L]
 RewriteRule ^agence-marketing-digital-tanger/([0-9]+)/$ index.php?option=com_agence&task=tanger&id=38&l=fr [L]
 RewriteRule ^agence-marketing-digital-agadir/$ index.php?option=com_agence&task=agadir&id=39&l=fr [L]
 RewriteRule ^agence-marketing-digital-agadir/([0-9]+)/$ index.php?option=com_agence&task=agadir&id=39&l=fr [L]
-RewriteRule ^agence-marketing-digital-fes/$ index.php?option=com_agence&task=fes&id=40&l=fr [L]
-RewriteRule ^agence-marketing-digital-fes/([0-9]+)/$ index.php?option=com_agence&task=fes&id=40&l=fr [L]
+RewriteRule ^agence-marketing-digital-f-s/$ index.php?option=com_agence&task=fes&id=40&l=fr [L]
+RewriteRule ^agence-marketing-digital-f-s/([0-9]+)/$ index.php?option=com_agence&task=fes&id=40&l=fr [L]
 RewriteRule ^nos-agences/$ index.php?option=com_agence&id=43&l=fr [L]
 RewriteRule ^nos-agences/([0-9]+)/$ index.php?option=com_agence&id=43&l=fr [L]
-RewriteRule ^agents-ia/$ index.php?option=com_agents_ia&id=44&l=fr [L]
-RewriteRule ^agents-ia/([0-9]+)/$ index.php?option=com_agents_ia&id=44&l=fr [L]
 RewriteRule ^galerie/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_galerie&task=showDetails&id=$2 [NC,L]
         RewriteRule ^([a-z]+)/galerie/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_galerie&task=showDetails&l=$1&id=$3 [NC,L]
         RewriteRule ^service/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_service&task=showDetails&id=$2 [NC,L]
@@ -169,10 +171,6 @@ RewriteRule ^galerie/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_galerie&ta
         RewriteRule ^([a-z]+)/service/([^/]+)/$ index.php?option=com_service&task=showDetails&l=$1&slug=$2 [NC,L]
 		RewriteRule ^service/([a-zA-Z0-9_-]+)/confirm/([0-9]+)/$ index.php?option=com_service&task=thankYou&id=$2 [NC,L]
         RewriteRule ^([a-z]+)/service/([a-zA-Z0-9_-]+)/confirm/([0-9]+)/$ index.php?option=com_service&task=thankYou&l=$1&id=$3 [NC,L]
-        RewriteRule ^agent_ia/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_agents_ia&task=showDetails&id=$2 [NC,L]
-        RewriteRule ^([a-z]+)/agent_ia/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_agents_ia&task=showDetails&l=$1&id=$3 [NC,L]
-        RewriteRule ^agent_ia/([^/]+)/$ index.php?option=com_agents_ia&task=showDetails&slug=$1 [NC,L]
-        RewriteRule ^([a-z]+)/agent_ia/([^/]+)/$ index.php?option=com_agents_ia&task=showDetails&l=$1&slug=$2 [NC,L]
         RewriteRule ^categorie/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_categorie&task=showDetails&id=$2 [NC,L]
 RewriteRule ^([a-z]+)/categorie/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_categorie&task=showDetails&l=$1&id=$3 [NC,L]
 RewriteRule ^blog/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_blog&task=showDetails&id=$2 [NC,L]
@@ -195,7 +193,11 @@ RewriteRule ^secteur/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_secteur&ta
         RewriteRule ^([a-z]+)/secteur/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_secteur&task=showDetails&l=$1&id=$3 [NC,L]
         RewriteRule ^secteur/([^/]+)/$ index.php?option=com_secteur&task=showDetails&slug=$1 [NC,L]
         RewriteRule ^([a-z]+)/secteur/([^/]+)/$ index.php?option=com_secteur&task=showDetails&l=$1&slug=$2 [NC,L]
-        RewriteRule ^resetpassword/([a-zA-Z0-9_=-]+)/$ index.php?option=com_client&task=resetPassword&code=$1 [L]
+        RewriteRule ^agent_ia/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_agents_ia&task=showDetails&id=$2 [NC,L]
+        RewriteRule ^([a-z]+)/agent_ia/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_agents_ia&task=showDetails&l=$1&id=$3 [NC,L]
+        RewriteRule ^agent_ia/([^/]+)/$ index.php?option=com_agents_ia&task=showDetails&slug=$1 [NC,L]
+        RewriteRule ^([a-z]+)/agent_ia/([^/]+)/$ index.php?option=com_agents_ia&task=showDetails&l=$1&slug=$2 [NC,L]
+RewriteRule ^resetpassword/([a-zA-Z0-9_=-]+)/$ index.php?option=com_client&task=resetPassword&code=$1 [L]
 RewriteRule ^enableaccount/([a-zA-Z0-9_=-]+)/$ index.php?option=com_client&task=enableAccount&code=$1 [L]
 RewriteRule ^create-a-new-password/([^/]+)/([^/]+)/$ index.php?option=com_client&task=createNewPassword&email=$1&token=$2 [L]
 RewriteRule ^en/$ index.php?l=en [L]

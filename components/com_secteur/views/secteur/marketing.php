@@ -17,12 +17,6 @@
 .dash-alert{padding:.7rem .9rem;background:rgba(9,161,190,.08);border:1px solid rgba(9,161,190,.2);border-radius:8px;display:flex;align-items:center;gap:.6rem}
 .dash-alert-dot{width:7px;height:7px;border-radius:50%;background:var(--sc);animation:pulse-dot 1.5s ease-in-out infinite}  
 
-.sh-case{padding:8rem 0;background:var(--bg2);border-bottom:1px solid var(--border)}
-.case-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:24px;overflow:hidden;margin-top:4rem}
-.case-left{padding:4.5rem 4rem;background:var(--bg)}
-.case-right{padding:4.5rem 4rem;border-left:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;gap:2rem;position:relative;overflow:hidden}
-.case-right::before{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,rgba(255,252,246,.82),rgba(250,246,238,.75) 50%,rgba(247,244,236,.7) 100%)}
-.case-right::after{content:'';position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 80% 10%,rgba(255,255,255,.35),transparent 55%);animation:cr-pulse 5s ease-in-out infinite}
 @keyframes cr-pulse{0%,100%{opacity:1}50%{opacity:.7}}
 .case-right>*{position:relative;z-index:1}
 .case-tag{font-size:.52rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
@@ -56,7 +50,6 @@
 .sh-ctx-center{width:110px;height:110px;border-radius:50%;background:conic-gradient(from 0deg,var(--sc) 0deg,rgba(9,161,190,.1) 360deg);display:flex;align-items:center;justify-content:center;animation:ctx-spin 8s linear infinite}
 .sh-ctx-center i{font-size:2rem;color:var(--gold);animation:ctx-spin 8s linear infinite reverse}
 @media(max-width:991px){.sh-context-inner{grid-template-columns:1fr}.sh-ctx-visual{display:none}}
-.sh-solutions{padding:8rem 0;background:var(--bg2);border-bottom:1px solid var(--border)}
 
 .sh-int-visual{position:sticky;top:7rem}
 .sh-int-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.08);padding: 0;}

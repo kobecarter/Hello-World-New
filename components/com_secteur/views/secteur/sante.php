@@ -1,8 +1,5 @@
 <style>
 /* ══ WHATSAPP CSS PHONE MOCKUP 3D ══════════════════════════════ */
-.sol-fc-visual{background:transparent;display:flex;align-items:center;justify-content:center;padding:2rem 2rem 2rem 1rem;position:relative;overflow:visible;border-left:1px solid var(--border);min-height:420px}
-/* Scene: perspective container */
-.wa-scene{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:420px;perspective:1400px}
 /* Ambient glow */
 .wa-glow{position:absolute;inset:5%;background:radial-gradient(ellipse at 40% 60%,rgba(37,211,102,.1),rgba(139,106,34,.07) 50%,transparent 70%);filter:blur(28px);z-index:0;pointer-events:none;animation:wa-glow-pulse 4s ease-in-out infinite}
 @keyframes wa-glow-pulse{0%,100%{opacity:.7}50%{opacity:1}}

@@ -428,21 +428,21 @@ function monthFromNumberLang($n, $lang){
 function url_rewriting($str) {
     $str = str_replace('&', 'et', $str);
 
-    // On convertit la chaîne en UTF-8 si besoin est.
+    // On convertit la cha�ne en UTF-8 si besoin est.
     if($str !== mb_convert_encoding(mb_convert_encoding($str,'UTF-32','UTF-8'),'UTF-8','UTF-32')) {
         $str = mb_convert_encoding($str,'UTF-8');
     }
 
     $str = htmlentities($str, ENT_NOQUOTES ,'UTF-8');
 
-    // Quelques entités à remplacer par les lettres correspondantes.
+    // Quelques entit�s � remplacer par les lettres correspondantes.
     $str = preg_replace('`&([a-z]{1,2})(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i','$1',$str);
 
     $str = preg_replace(array('`[^a-z0-9]`i','`[-]+`'),'-',$str);
     return strtolower(trim($str,'-'));
 }
 
-// retourn un tableau avec les noms des images uploadées
+// retourn un tableau avec les noms des images upload�es
 
 function uploadFiles($nomChampTxt, $uploadTo, $extensions = NULL){
 
@@ -478,7 +478,7 @@ function uploadFiles($nomChampTxt, $uploadTo, $extensions = NULL){
 
 
 
-                // Pour éviter d'écraser l'ancien en cas de doublon
+                // Pour �viter d'�craser l'ancien en cas de doublon
 
                 $n="";
 
@@ -518,7 +518,7 @@ function uploadFiles($nomChampTxt, $uploadTo, $extensions = NULL){
 
 }
 
-//Générer une chaine de caractère unique et aléatoire
+//G�n�rer une chaine de caract�re unique et al�atoire
 
 function random($car) {
     $string = "";
@@ -547,11 +547,11 @@ function redimage($img_src,$img_dest,$dst_w,$dst_h) {
 
     $test_w = round(($dst_h / $krms_h) * $krms_w);
 
-    // Si Height final non précisé (0)
+    // Si Height final non pr�cis� (0)
 
     if(!$dst_h) $dst_h = $test_h;
 
-    // Sinon si Width final non précisé (0)
+    // Sinon si Width final non pr�cis� (0)
 
     elseif(!$dst_w) $dst_w = $test_w;
 
@@ -567,7 +567,7 @@ function redimage($img_src,$img_dest,$dst_w,$dst_h) {
 
     $test = (file_exists($img_dest));
 
-    // L'original a été modifié ?
+    // L'original a �t� modifi� ?
 
     if($test)
 
@@ -587,17 +587,17 @@ function redimage($img_src,$img_dest,$dst_w,$dst_h) {
 
 
 
-    // Créer la vignette ?
+    // Cr�er la vignette ?
 
     if(!$test) {
 
-        // Crée une image vierge aux bonnes dimensions
+        // Cr�e une image vierge aux bonnes dimensions
 
         // $dst_im = ImageCreate($dst_w,$dst_h);
 
         $dst_im = ImageCreateTrueColor($dst_w,$dst_h);
 
-        // Copie dedans l'image initiale redimensionnée
+        // Copie dedans l'image initiale redimensionn�e
 
         $krms_im = ImageCreateFromJpeg($img_src);
 
@@ -609,7 +609,7 @@ function redimage($img_src,$img_dest,$dst_w,$dst_h) {
 
         ImageJpeg($dst_im,$img_dest);
 
-        // Détruis les tampons
+        // D�truis les tampons
 
         ImageDestroy($dst_im);
 
@@ -649,11 +649,11 @@ function pagination($req,$nb_elemPage,$pageActu)
 
         if($pageActu > 1)
 
-            $val[3]=$pageActu-1; // bouton précédent
+            $val[3]=$pageActu-1; // bouton pr�c�dent
 
         $val[0]=$page; //nombre de page
 
-        $val[1]=$nbr_elem; // nombre d'element retourné par la requette
+        $val[1]=$nbr_elem; // nombre d'element retourn� par la requette
 
 
     }
@@ -661,7 +661,7 @@ function pagination($req,$nb_elemPage,$pageActu)
 
 }
 
-// teste d'unicité
+// teste d'unicit�
 function unique($table, $champ, $val, $claus = ''){
     global $db;
     $SQLselect = "SELECT * FROM ".$table." WHERE ".$champ."='".$val."' $claus";
@@ -712,7 +712,7 @@ function getNbrJour($date1, $date2, $h1 = 0, $h2 = 0){
     return array($fullDays,$fullHours);
 }
 
-// rajoute la fonction GetSQLValueString pour les requettes au cas ou elle n'est pas définie
+// rajoute la fonction GetSQLValueString pour les requettes au cas ou elle n'est pas d�finie
 
 if (!function_exists("GetSQLValueString")) {
 

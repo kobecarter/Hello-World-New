@@ -106,12 +106,6 @@
 @media(max-width:991px){.sh-int-inner{grid-template-columns:1fr}.sh-int-visual{position:static}}
 
 /* ── CASE STUDY ── */
-.sh-case{padding:8rem 0;background:var(--bg2);border-bottom:1px solid var(--border)}
-.case-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:24px;overflow:hidden;margin-top:4rem}
-.case-left{padding:4.5rem 4rem;background:var(--bg)}
-.case-right{padding:4.5rem 4rem;border-left:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;gap:2rem;position:relative;overflow:hidden}
-.case-right::before{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,rgba(255,252,246,.82),rgba(250,246,238,.75) 50%,rgba(247,244,236,.7) 100%)}
-.case-right::after{content:'';position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 80% 10%,rgba(255,255,255,.35),transparent 55%);animation:cr-pulse 5s ease-in-out infinite}
 @keyframes cr-pulse{0%,100%{opacity:1}50%{opacity:.7}}
 .case-right>*{position:relative;z-index:1}
 .case-tag{font-size:.52rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
