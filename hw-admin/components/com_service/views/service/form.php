@@ -243,14 +243,7 @@
                     CKEDITOR.replace('texte', {
                         allowedContent: true,
                         //allowedContent: 'p b i ul li tr th h2 h1 h3 h4 h5 h6 a; a[!href]; table[border,cellpadding,cellspacing]; td{height,width}; div(conditions,contentConditions,contentConditions2)',
-                        filebrowserBrowseUrl: '../ckeditor/plugins/ckfinder/ckfinder.html',
-                        // Empêche CKEditor de "nettoyer" (supprimer) les icônes vides (<i class="fa...">)
-                        // et les boutons stylés (class="sb ...") lors de l'édition — ils sont
-                        // protégés tels quels au lieu d'être passés dans son filtre HTML.
-                        protectedSource: [
-                            /<i\b[^>]*class="[^"]*\bfa[a-z]?\b[^"]*"[^>]*>\s*<\/i>/gi,
-                            /<a\b[^>]*class="[^"]*\bsb\b[^"]*"[\s\S]*?<\/a>/gi
-                        ]
+                        filebrowserBrowseUrl: '../ckeditor/plugins/ckfinder/ckfinder.html'
                     });
                 </script>
             </div>

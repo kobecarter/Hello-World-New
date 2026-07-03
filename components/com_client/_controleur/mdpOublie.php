@@ -22,7 +22,7 @@ $login=$data['login'];
 		
 		$lien="http://www.helloworld-agency.com/client/index.php?option=com_test&task=reinitialisation&id=$nvid" ;
 	    $contenu="Bonjour ".$nom." 
-	Nous avons reÃ§u une demande de rÃ©initialisation de votre mot de passe. Si vous n'avez pas fait cette demande, ignorez simplement cet e-mail. Sinon, vous pouvez le rÃ©initialiser en suivant ce lien : $lien ";
+	Nous avons reçu une demande de réinitialisation de votre mot de passe. Si vous n'avez pas fait cette demande, ignorez simplement cet e-mail. Sinon, vous pouvez le réinitialiser en suivant ce lien : $lien ";
 	mail($email, "email de reinitialisation", $contenu);
 	
 

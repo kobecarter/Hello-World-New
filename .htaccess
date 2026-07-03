@@ -1,10 +1,6 @@
 Options +FollowSymlinks
 RewriteEngine on
 RewriteBase /new/
-
-# Block access to git internals
-RedirectMatch 404 /\.git
-
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 

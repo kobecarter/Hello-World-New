@@ -20,13 +20,13 @@ class mysql extends dbfactory {
 
         /*$this->_config['base'] = @mysql_select_db($this->_config['name'], $this->_config['link']);
         if (!$this->_config['base'] ) {
-            throw new Exception('Erreur lors de l\'ouverture de la base de données : '.$this->_config['name'].'.');
+            throw new Exception('Erreur lors de l\'ouverture de la base de donn�e : '.$this->_config['name'].'.');
             unset($this->_config);
         }*/
-        //echo 'connection réussie avec '.__CLASS__;
+        //echo 'connection r�ussie avec '.__CLASS__;
     }
 
-    // Fermeture de la base de données au moment de la destruction de la classe.
+    // Fermeture de la base de donn�es au moment de la destruction de la classe.
     public function __destruct() {
         //mysql_close($this->_config['link']);
 		mysqli_close ($this->_config['link']);
@@ -37,7 +37,7 @@ class mysql extends dbfactory {
 		return $this->_config['link'];
     }
 
-    // création d'une requete et historisation
+    // cr�ation d'une requete et historisation
     public function query ($sql, $desc=NULL) {
 		$this->query = $this->_config['link']->query($sql);
         /*$this->query = @mysql_query ($sql, $this->_config['link'] );
@@ -66,7 +66,7 @@ class mysql extends dbfactory {
 
     }
 
-    // récupere les r�sultats dans un tableau associatif
+    // r�cupere les r�sultats dans un tableau associatif
     public function fetch_assoc ($query=NULL) {
         if (isset($query)) {
             $this->query = $query;
@@ -74,7 +74,7 @@ class mysql extends dbfactory {
         return  $this->query->fetch_assoc();
     }
 
-    // récupere les r�sultats dans un tableau normal
+    // r�cupere les r�sultats dans un tableau normal
     public function fetch_row($query=NULL) {
         if (isset ($query)) {
             $this->query = $query;
@@ -82,7 +82,7 @@ class mysql extends dbfactory {
         return mysqli_fetch_row ($this->query);
     }
 
-    // récupere les r�sultats dans un tableau associatif et/ou normal
+    // r�cupere les r�sultats dans un tableau associatif et/ou normal
     public function fetch_array($query=NULL) {
         if (isset ($query)) {
             $this->query = $query;
@@ -91,7 +91,7 @@ class mysql extends dbfactory {
         //return mysql_fetch_array ($this->query);
     }
 
-    // récupere le nombre d'enregistrement
+    // r�cupere le nombre d'enregistrement
     public function num_rows($query=NULL) {
         if (isset($query)){
             $this->query = $query;
@@ -99,14 +99,14 @@ class mysql extends dbfactory {
         return $this->query->num_rows;
     }
 
-    // retourne le dernier id insérer
+    // retourne le dernier id ins�rer
     public function last_id(){
         return mysqli_insert_id($this->_config['link']);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////:
 
-    // insertion dans la base de données Q = Quickly
+    // insertion dans la base de donn�es Q = Quickly
     public function insertIntoQ ($table=NULL, $values=NULL) {
         if (isset($table) && isset($values)){
             $sql = "INSERT INTO ". $table . " VALUES (".$values.")";
