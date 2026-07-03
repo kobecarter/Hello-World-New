@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<component>
+<id>com_formation</id>
+<nom>Gestion des formations</nom>
+<class>formation</class>
+<table>formation</table>
+<traduction>1</traduction>
+<url>1</url>
+<icon>fas fa-graduation-cap</icon>
+<system>0</system>
+<position>param</position>
+</component>

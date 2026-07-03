@@ -250,6 +250,7 @@ class menu
          $agenceAgadir = new page(39, $db, $_SESSION['lang']);
          $agenceFes = new page(40, $db, $_SESSION['lang']);
               $agentsIaPage = getComponent("com_agents_ia");
+               $menuHTML = '';
     $menuHTML .= '
 <div class="mega glass-mega glass-nav" data-panel="brand">
 
@@ -426,13 +427,13 @@ $menuHTML .= '
             foreach($webMobileChild as $k => $service){
                 $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
                 $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-                if($service == 39){
+                if($service->getId() == 39){
                    $dateDesc = '<li>iOS natives</li><li>Android natives</li><li>Hybrides RN / Flutter</li>'; 
                 }
-                elseif($service == 38){
+                elseif($service->getId() == 38){
                     $dateDesc = '<li>Sites vitrines & corporate</li> <li>Développement e-commerce</li> <li>Applications web sur mesure</li><li>Intégrations CRM/ERP/API</li>'; 
                 }
-                elseif($service == 40){
+                elseif($service->getId() == 40){
                     $dateDesc = '<li>Audit SEO technique complet</li> <li>Optimisation Core Web Vitals</li> <li>Stratégie de mots-clés ciblés</li><li>Optimisation SEO On-Page</li>'; 
                 }
                 else{
