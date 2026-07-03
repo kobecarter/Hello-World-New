@@ -133,7 +133,16 @@ else{
         <div class="service-content">
             <?php echo $service->getTexte(); ?>
         </div>
-        
+
+        <?php if ($service->getSlug() === 'personal-branding') : ?>
+        <div class="col-sm-12 text-center mt-4">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Contactez un expert" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Contactez un expert</span></div>
+              <div class="sb-knob"><i class="fal fa-phone"></i></div>
+            </a>
+        </div>
+        <?php endif; ?>
+
         <?php if (!empty($packs)) : ?>
         <section class="pack-section">
         <?php
@@ -510,7 +519,7 @@ else{
               <span class="faq-ico"><i class="fa fa-plus"></i></span>
             </button>
             <div class="faq-body">
-              <p class="faq-ans"><?php echo strip_tags($faq->getTexte()); ?></p>
+              <p class="faq-ans"><?php echo $faq->getTexte(); ?></p>
             </div>
           </div>
           <?php endforeach; ?>
@@ -525,7 +534,7 @@ else{
               <span class="faq-ico"><i class="fa fa-plus"></i></span>
             </button>
             <div class="faq-body">
-              <p class="faq-ans"><?php echo strip_tags($faq->getTexte()); ?></p>
+              <p class="faq-ans"><?php echo $faq->getTexte(); ?></p>
             </div>
           </div>
           <?php endforeach; ?>

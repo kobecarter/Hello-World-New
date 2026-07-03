@@ -1,0 +1,1312 @@
+<style>
+/* ══ WHATSAPP CSS PHONE MOCKUP 3D ══════════════════════════════ */
+.sol-fc-visual{background:transparent;display:flex;align-items:center;justify-content:center;padding:2rem 2rem 2rem 1rem;position:relative;overflow:visible;border-left:1px solid var(--border);min-height:420px}
+/* Scene: perspective container */
+.wa-scene{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:420px;perspective:1400px}
+/* Ambient glow */
+.wa-glow{position:absolute;inset:5%;background:radial-gradient(ellipse at 40% 60%,rgba(37,211,102,.1),rgba(139,106,34,.07) 50%,transparent 70%);filter:blur(28px);z-index:0;pointer-events:none;animation:wa-glow-pulse 4s ease-in-out infinite}
+@keyframes wa-glow-pulse{0%,100%{opacity:.7}50%{opacity:1}}
+/* 3D group */
+.wa-3d-group{position:relative;transform-style:preserve-3d;transform:rotateY(-13deg) rotateX(5deg);will-change:transform;/*opacity:0;*/transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.wa-3d-group.wa-revealed{opacity:1;animation:wa3d-in 1s cubic-bezier(.34,1.38,.64,1) forwards}
+@keyframes wa3d-in{
+  from{opacity:0;transform:rotateY(-22deg) rotateX(11deg) translateY(55px) scale(.88)}
+  to{opacity:1;transform:rotateY(-13deg) rotateX(5deg) translateY(0) scale(1)}
+}
+/* Phone outer bezel */
+.wa-phone{width:210px;border-radius:36px;background:linear-gradient(165deg,#2d2d2d 0%,#111 100%);padding:8px;position:relative;z-index:2;
+  box-shadow:-18px 26px 60px rgba(0,0,0,.42),-6px 8px 22px rgba(0,0,0,.24),0 2px 4px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(0,0,0,.55),inset -1px 0 0 rgba(255,255,255,.05)}
+/* Rim shimmer */
+.wa-phone::before{content:'';position:absolute;inset:0;border-radius:36px;background:linear-gradient(130deg,rgba(255,255,255,.09) 0%,transparent 40%);pointer-events:none;z-index:5}
+/* Screen */
+.wa-screen{border-radius:29px;overflow:hidden;font-family:var(--fm)}
+/* Status bar */
+.wa-sbar{background:#075E54;padding:.24rem .65rem .18rem;display:flex;justify-content:space-between;align-items:center}
+.wa-sbar-time{font-size:.47rem;font-weight:700;color:#fff}
+.wa-sbar-icons{display:flex;gap:4px;align-items:center;color:#fff;font-size:.42rem}
+/* Header */
+.wa-hdr{background:#075E54;padding:.38rem .55rem;display:flex;align-items:center;gap:.38rem;border-bottom:1px solid rgba(0,0,0,.08)}
+.wa-hdr-back{color:rgba(255,255,255,.72);font-size:.6rem}
+.wa-hdr-av{width:24px;height:24px;border-radius:50%;background:#128C7E;display:flex;align-items:center;justify-content:center;font-size:.48rem;font-weight:700;color:#fff;flex-shrink:0}
+.wa-hdr-info{flex:1}
+.wa-hdr-name{font-size:.52rem;font-weight:700;color:#fff;line-height:1.1}
+.wa-hdr-status{font-size:.4rem;color:rgba(255,255,255,.62);margin-top:.04rem}
+.wa-hdr-ico{display:flex;gap:6px;align-items:center;color:rgba(255,255,255,.72);font-size:.58rem}
+/* Chat area */
+.wa-chat-area{background:#ECE5DD;padding:.55rem .48rem;display:flex;flex-direction:column;gap:.32rem;min-height:245px;background-image:radial-gradient(circle,rgba(0,0,0,.018) 1px,transparent 1px);background-size:11px 11px}
+.wa-bubble{max-width:83%;padding:.34rem .48rem;border-radius:7px;font-size:.46rem;line-height:1.52;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.wa-bubble.ai{background:#fff;align-self:flex-start;border-bottom-left-radius:1px}
+.wa-bubble.pt{background:#DCF8C6;align-self:flex-end;border-bottom-right-radius:1px;text-align:right}
+.wa-bt{font-size:.36rem;color:rgba(0,0,0,.3);display:block;margin-top:.18rem}
+/* Typing dots */
+.wa-dots-wrap{background:#fff;border-radius:7px;border-bottom-left-radius:1px;padding:.3rem .48rem;align-self:flex-start;display:inline-flex;gap:3px;align-items:center;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.wa-dots-wrap span{width:4px;height:4px;border-radius:50%;background:#aaa;animation:wdot .8s ease-in-out infinite}
+.wa-dots-wrap span:nth-child(2){animation-delay:.15s}
+.wa-dots-wrap span:nth-child(3){animation-delay:.3s}
+@keyframes wdot{0%,80%,100%{transform:scale(1);opacity:.5}40%{transform:scale(1.3);opacity:1}}
+/* Input row */
+.wa-irow{background:#f0f0f0;padding:.35rem .48rem;display:flex;align-items:center;gap:.32rem;border-top:1px solid #e0e0e0}
+.wa-ifake{flex:1;background:#fff;border-radius:18px;padding:.3rem .52rem;font-size:.43rem;color:#aaa}
+.wa-isend{width:21px;height:21px;border-radius:50%;background:#075E54;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.44rem;flex-shrink:0}
+/* Android nav bar */
+.wa-navb{background:#111;padding:.28rem .5rem;display:flex;justify-content:space-around;align-items:center}
+.wa-navb span{font-size:.6rem;color:rgba(255,255,255,.45);display:block;line-height:1}
+
+/* ── Notification overlay card ── */
+.wa-notif{position:absolute;right:-100px;top:50%;transform:translate3d(0,-50%,28px);width:185px;border-radius:13px;overflow:hidden;background:#fff;
+  box-shadow:0 18px 44px rgba(0,0,0,.2),0 4px 12px rgba(0,0,0,.1),0 0 0 1px rgba(0,0,0,.06);
+  z-index:10;animation:notif-float 4.5s ease-in-out infinite .6s}
+@keyframes notif-float{0%,100%{transform:translate3d(0,-50%,28px) translateY(0)}50%{transform:translate3d(0,-50%,28px) translateY(-7px)}}
+.wa-notif-hdr{background:#075E54;padding:.46rem .65rem;display:flex;align-items:center;gap:.4rem}
+.wa-notif-av{width:21px;height:21px;border-radius:50%;background:#128C7E;display:flex;align-items:center;justify-content:center;font-size:.44rem;font-weight:700;color:#fff;flex-shrink:0}
+.wa-notif-name{font-size:.5rem;font-weight:700;color:#fff;line-height:1.1}
+.wa-notif-st{font-size:.38rem;color:rgba(255,255,255,.62);margin-top:.03rem}
+.wa-notif-msg{padding:.6rem .65rem .4rem;font-size:.6rem;font-weight:700;color:#111;line-height:1.35;border-bottom:1px solid #f0f0f0}
+.wa-notif-rep{padding:.38rem .65rem;display:flex;align-items:center;gap:.35rem;color:#bbb;font-size:.46rem;border-bottom:1px solid #f0f0f0}
+.wa-notif-acts{display:flex}
+.wa-notif-act{flex:1;padding:.38rem;text-align:center;font-family:var(--fm);font-size:.48rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#666;cursor:pointer;transition:background .2s,color .2s}
+.wa-notif-act:hover{background:#f5f5f5;color:#075E54}
+.wa-notif-act+.wa-notif-act{border-left:1px solid #f0f0f0}
+
+/* ── WhatsApp logo badge ── */
+.wa-logo{position:absolute;top:-14px;right:-28px;width:50px;height:50px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.38),0 4px 10px rgba(0,0,0,.14);z-index:15;
+  animation:logo-float 3.8s ease-in-out infinite 1.2s}
+@keyframes logo-float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-9px) rotate(6deg)}}
+.wa-logo svg{width:26px;height:26px;fill:#fff}    
+</style>
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+
+  <div class="sh-hero-body">
+    <div class="container">
+      <div class="sh-hero-inner">
+
+        <!-- LEFT -->
+        <div class="sh-hero-left">
+          <div class="sh-breadcrumb rv">Solutions IA — Secteur Restauration</div>
+          <h1 class="sh-h1 rv d1">
+            Solutions IA pour la <em>Restauration</em> &amp; la Livraison
+          </h1>
+          <p class="sh-sub rv d2">Automatisez vos prises de commandes et fidélisez votre clientèle avec un service irréprochable, même en plein coup de feu.</p>
+          <div class="sh-cta-row rv d3">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander une démo Restaurant" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Demander une démo Restaurant</span></div>
+              <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
+            </a>
+        
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Tester un menu IA en live" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Tester un menu IA en live</span></div>
+              <div class="sb-knob"><i class="fal fa-search"></i></div>
+            </a>
+          </div>
+          <div class="sh-badges rv d4">
+            <div class="sh-badge"><div class="sh-badge-val">+15<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Panier moyen</div></div>
+            <div class="sh-badge"><div class="sh-badge-val">100%</div><div class="sh-badge-lbl">Cmd. traitées</div></div>
+            <div class="sh-badge"><div class="sh-badge-val">+35<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Conversion</div></div>
+            <div class="sh-badge"><div class="sh-badge-val">2 mois</div><div class="sh-badge-lbl">ROI atteint</div></div>
+          </div>
+        </div>
+
+        <!-- RIGHT — 3D Medical Orbital -->
+        <div class="sh-hero-right">
+          <div class="sho-scene">
+            <div class="sho-ring r1"></div>
+            <div class="sho-ring r2"></div>
+            <div class="sho-ring r3"></div>
+            <div class="sho-core">
+              <div class="sho-plus">🍽</div>
+              <div class="sho-lbl">Resto IA</div>
+            </div>
+
+            <!-- Inner orbit (r=100px) -->
+            <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="POS Clyo"><i class="fal fa-cash-register"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="Google My Business"><i class="fab fa-google"></i></div></div>
+
+            <!-- Middle orbit (r=170px) -->
+            <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="Paiement CMI"><i class="fal fa-credit-card"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="Glovo"><i class="fal fa-motorcycle"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="Menu IA"><i class="fal fa-utensils"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="Uber Eats"><i class="fal fa-shopping-bag"></i></div></div>
+
+            <!-- Outer orbit (r=222px) -->
+            <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="Lightspeed"><i class="fal fa-bolt"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="QR Code Table"><i class="fal fa-qrcode"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="Programme Fidélité"><i class="fal fa-star"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="Analytics ventes"><i class="fal fa-chart-line"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="n8n / Make"><i class="fal fa-project-diagram"></i></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT STRIP ════════════════════════════════════════════════ -->
+<section class="sh-stats">
+  <div class="container">
+    <div class="sh-stats-grid">
+      <div class="sh-stat rv">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="15">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">Panier moyen augmenté</div>
+        <div class="sh-stat-sub">Upsell systématique boisson/dessert</div>
+      </div>
+      <div class="sh-stat rv d1">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="100">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">Commandes traitées</div>
+        <div class="sh-stat-sub">Sans standardiste humain</div>
+      </div>
+      <div class="sh-stat rv d2">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="35">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">Taux de conversion</div>
+        <div class="sh-stat-sub">Commandes converties vs perdues</div>
+      </div>
+      <div class="sh-stat rv d3">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="7">0</span><span class="suf"> sem</span></div>
+        <div class="sh-stat-lbl">ROI atteint</div>
+        <div class="sh-stat-sub">Par rapport à l'investissement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTE & ENJEUX ════════════════════════════════════════ -->
+<section class="sh-context">
+  <div class="container">
+    <div class="sh-context-inner">
+
+      <div>
+        <div class="sec-label">Contexte &amp; Enjeux</div>
+        <h2 class="sh-ctx-title rv"><strong>Secteur Restauration</strong>Défis des pics<br>d'activité au Maroc</h2>
+        <div class="sh-ctx-body rv d1">
+          <p>La restauration urbaine au Maroc fait face à d'importants défis lors des pics d'activité : <em>lignes téléphoniques occupées</em>, erreurs de commande et perte de chiffre d'affaires. Une IA transactionnelle permet d'absorber <em>100% des flux entrants</em> sans recruter de standardistes supplémentaires, tout en incitant à la vente additionnelle.</p>
+          <p>Les clients marocains commandent désormais majoritairement via WhatsApp et plateformes de livraison. Les enseignes qui ne proposent pas un service conversationnel fluide <em>perdent des parts de marché</em> au profit de concurrents mieux outillés. L'IA devient un standard pour absorber les volumes sans dégrader la qualité.</p>
+        </div>
+        <div class="sh-pills rv d2">
+          <span class="sh-pill"><i class="fa fa-exclamation-triangle"></i> Pics d'activité</span>
+          <span class="sh-pill"><i class="fa fa-phone-slash"></i> Appels perdus midi/soir</span>
+          <span class="sh-pill"><i class="fa fa-ban"></i> Erreurs de commande</span>
+          <span class="sh-pill"><i class="fa fa-motorcycle"></i> Livraison non gérée</span>
+          <span class="sh-pill"><i class="fa fa-chart-line"></i> CA en baisse heures de pointe</span>
+        </div>
+      </div>
+
+      <!-- CSS ART Visual -->
+      <div class="sh-ctx-visual rv d2">
+        <div class="sh-ctx-blob"></div>
+        <div class="sh-ctx-blob2"></div>
+        <div class="sh-ctx-center"><div class="sh-ctx-cross">🍽</div></div>
+        <div class="sh-fcard fc1">
+          <div class="sh-fcard-val">1200</div>
+          <div class="sh-fcard-lbl">Cmd/mois</div>
+        </div>
+        <div class="sh-fcard fc2">
+          <div class="sh-fcard-val">+18%</div>
+          <div class="sh-fcard-lbl">Panier moyen</div>
+        </div>
+        <div class="sh-fcard fc3">
+          <div class="sh-fcard-val">78%</div>
+          <div class="sh-fcard-lbl">Automatisé</div>
+        </div>
+        <div class="sh-fcard fc4">
+          <div class="sh-fcard-val">2 mois</div>
+          <div class="sh-fcard-lbl">ROI atteint</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTIONS IA ══════════════════════════════════════════════ -->
+<section class="sh-solutions" id="solutions">
+  <div class="container">
+    <div class="sec-label">Solutions IA — Cœur de page</div>
+    <h2 class="sec-title rv">Bot transactionnel<br><em>commandes &amp; livraison</em></h2>
+
+    <!-- KPI Grid -->
+    <div class="sol-kpi-grid rv d1">
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+15<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">Panier moyen</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+35<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">Taux de conversion</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">2 mois</div>
+        <div class="sol-kpi-lbl">ROI atteint</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">100<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">Commandes auto</div>
+      </div>
+    </div>
+
+    <!-- Feature Card -->
+    <div class="sol-feature rv">
+      <!-- Left: Content -->
+      <div class="sol-fc-text">
+        <div class="sol-fc-title"><strong>Agent Commande Restaurant</strong>Zéro perte d'appel, upsell systématique</div>
+        <p class="sol-fc-desc">Bot conversationnel transactionnel gérant les commandes à emporter, la livraison et les réservations de tables, avec menu dynamique IA et upsell intégré.</p>
+        <ul class="sol-benefits">
+          <li><i class="fa fa-check"></i><span><strong>Zéro perte d'appel en plein service</strong> — 100% des flux entrants absorbés</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Upselling systématique</strong> — Boisson/dessert proposés à chaque commande</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Fidélisation automatisée</strong> — Carnet d'adresses intelligent par client</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Gestion des réclamations</strong> — Première ligne sans intervention humaine</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Dispatch automatique</strong> — Vers livreurs partenaires (Glovo, Uber Eats)</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Menu dynamique IA</strong> — Avec photos, allergènes et suggestions contextuelles</span></li>
+        </ul>
+        <div class="sol-roi-box">
+          <div class="sol-roi-num">2 ETP</div>
+          <div class="sol-roi-text"><strong>économie dans une franchise à 5 points de vente.</strong><br>100% des commandes WhatsApp traitées sans intervention humaine.</div>
+        </div>
+      </div>
+
+      <!-- Right: WhatsApp CSS Mockup 3D -->
+      <div class="sol-fc-visual">
+        <div class="wa-scene" id="waScene">
+          <div class="wa-glow"></div>
+
+          <div class="wa-3d-group" id="wa3dGroup">
+            <!-- WhatsApp logo badge -->
+            <div class="wa-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+
+            <!-- Phone Frame -->
+            <div class="wa-phone">
+              <div class="wa-screen">
+                <!-- Status bar -->
+                <div class="wa-sbar">
+                  <span class="wa-sbar-time">12:45</span>
+                  <div class="wa-sbar-icons">
+                    <i class="fa fa-signal"></i>
+                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </div>
+                </div>
+                <!-- Header -->
+                <div class="wa-hdr">
+                  <span class="wa-hdr-back">&#8592;</span>
+                  <div class="wa-hdr-av">RM</div>
+                  <div class="wa-hdr-info">
+                    <div class="wa-hdr-name">Restaurant Le Medina</div>
+                    <div class="wa-hdr-status">Agent IA · En ligne</div>
+                  </div>
+                  <div class="wa-hdr-ico">
+                    <i class="fa fa-video"></i>
+                    <i class="fa fa-phone"></i>
+                    <i class="fa fa-ellipsis-vertical"></i>
+                  </div>
+                </div>
+                <!-- Chat -->
+                <div class="wa-chat-area">
+                  <div class="wa-bubble ai">Bonjour ! Bienvenue chez Le Medina 🍽️ Souhaitez-vous commander, réserver ou suivre votre livraison ?<span class="wa-bt">12:43</span></div>
+                  <div class="wa-bubble pt">Commander à emporter s'il vous plaît 🙏<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble ai">Super ! Voici notre menu du jour :<br>🥘 Tajine Agneau — 85 MAD<br>🍗 Poulet Chermoula — 75 MAD<br>🐟 Poisson Grillé — 95 MAD<br>Que désirez-vous ?<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble pt">Tajine Agneau ✅<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble ai">Excellent choix ! Puis-je vous suggérer un <strong>jus d'orange frais</strong> (25 MAD) ou une <strong>eau minérale</strong> (10 MAD) ?<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble pt">Jus d'orange merci 🍊<span class="wa-bt">12:45</span></div>
+                  <div class="wa-dots-wrap"><span></span><span></span><span></span></div>
+                </div>
+                <!-- Input -->
+                <div class="wa-irow">
+                  <div class="wa-ifake">Écrire un message...</div>
+                  <div class="wa-isend"><i class="fa fa-paper-plane"></i></div>
+                </div>
+                <!-- Android nav -->
+                <div class="wa-navb">
+                  <span>&#9664;</span><span>&#9711;</span><span>&#9632;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification overlay -->
+            <div class="wa-notif">
+              <div class="wa-notif-hdr">
+                <div class="wa-notif-av">Dr</div>
+                <div>
+                  <div class="wa-notif-name">Restaurant Le Medina</div>
+                  <div class="wa-notif-st">Agent IA · En ligne</div>
+                </div>
+              </div>
+              <div class="wa-notif-msg">Commande prête •<br>Tajine + Jus Orange</div>
+              <div class="wa-notif-rep"><i class="fa fa-face-smile"></i> Répondre</div>
+              <div class="wa-notif-acts">
+                <div class="wa-notif-act">CLOSE</div>
+                <div class="wa-notif-act">VIEW</div>
+              </div>
+            </div>
+
+          </div><!-- /wa-3d-group -->
+        </div><!-- /wa-scene -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PARCOURS CLIENT — IMAGE PARALLAX + BEAM PROGRESSIF ════════ -->
+<section class="sh-journey" id="parcours">
+
+  <div class="jp-bg">
+    <img id="jpImg" class="jp-img"
+         src="<?php echo $siteURL; ?>images/restaurant-parcours-bg.jpeg"
+         alt="Restaurant moderne Maroc"
+         loading="eager"
+         decoding="async"
+         width="1584" height="672">
+  </div>
+
+  <div class="jp-content">
+    <div class="container">
+      <div class="sec-label">Parcours client typique</div>
+      <h2 class="sec-title rv">Expérience client<br><em>de A à Z</em></h2>
+      <p style="font-size:.9rem;color:var(--bg);max-width:580px;line-height:1.9;font-weight:300;margin-bottom:0" class="rv d1">Trois canaux d'entrée, une expérience unifiée. Choisissez le parcours correspondant à votre enseigne.</p>
+
+      <div class="tab-nav rv d2">
+        <button class="tab-btn active" data-tab="wa">Via WhatsApp</button>
+        <button class="tab-btn" data-tab="qr">Via QR Code Table</button>
+        <button class="tab-btn" data-tab="web">Via Livraison</button>
+      </div>
+
+      <!-- Tab 1: WhatsApp -->
+      <div class="tab-pane active" id="tab-wa">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWa"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Message WhatsApp</div><p class="jf-desc">Client envoie un message au numéro WhatsApp de l'enseigne</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Menu Dynamique</div><p class="jf-desc">L'IA affiche le menu interactif avec photos, allergènes et suggestions du jour</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Upsell automatique</div><p class="jf-desc">Boissons et desserts suggérés selon la commande choisie par le client</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Paiement sécurisé</div><p class="jf-desc">Lien CMI/Stripe généré dans la conversation WhatsApp en 1 clic</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Bon cuisine</div><p class="jf-desc">Envoyé automatiquement au POS (Clyo/Micros) sans ressaisie manuelle</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Notification retrait</div><p class="jf-desc">Client notifié pour le retrait ou suivi GPS de livraison en temps réel</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: QR Code Table -->
+      <div class="tab-pane" id="tab-qr">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamQr"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">QR Code table</div><p class="jf-desc">Client scanne le QR code affiché sur sa table ou à l'entrée du restaurant</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Menu digital</div><p class="jf-desc">Carte interactive avec photos, prix et allergènes s'affiche instantanément</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Commande salle</div><p class="jf-desc">Sélection et personnalisation (sans gluten, sans lactose, épicé…)</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Upsell boissons</div><p class="jf-desc">Suggestions automatiques de boissons et desserts selon les plats commandés</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Validation cuisine</div><p class="jf-desc">Commande envoyée instantanément au POS en cuisine, sans ressaisie</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Avis Google</div><p class="jf-desc">Demande de note satisfaction automatique après le repas via SMS/WhatsApp</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Livraison -->
+      <div class="tab-pane" id="tab-web">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWeb"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Commande reçue</div><p class="jf-desc">Via Glovo, Uber Eats ou WhatsApp direct — centralisé dans un flux unique</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Confirmation IA</div><p class="jf-desc">Délai de préparation estimé communiqué automatiquement au client</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Préparation POS</div><p class="jf-desc">Bon de commande transmis en cuisine via POS en temps réel sans ressaisie</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Dispatch livreur</div><p class="jf-desc">Attribution automatique au livreur partenaire disponible le plus proche</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Suivi GPS</div><p class="jf-desc">Client notifié à chaque étape de la livraison avec position en temps réel</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Fidélité &amp; avis</div><p class="jf-desc">Note satisfaction demandée, offre de fidélité envoyée automatiquement</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTÉGRATIONS — ACCORDION ════════════════════════════════ -->
+<section class="sh-integrations" id="integrations">
+  <div class="container">
+    <div class="sec-label">Intégrations clés</div>
+    <h2 class="sec-title rv">Connecté à votre<br><em>écosystème restaurant</em></h2>
+
+    <div class="sh-int-inner">
+
+      <!-- Accordion -->
+      <div class="accordion rv d1">
+
+        <div class="acc-item open">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-cash-register"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Systèmes POS</span>
+              <span class="acc-sub">Clyo, Micros, Lightspeed</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Synchronisation des commandes en temps réel avec votre caisse. Les commandes reçues via l'agent IA sont transmises directement en cuisine sans ressaisie, éliminant les erreurs et les délais. Compatible avec les principaux POS utilisés au Maroc (Clyo, Micros, Lightspeed).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-credit-card"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Plateformes de paiement</span>
+              <span class="acc-sub">CMI, Stripe — liens sécurisés</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Génération de liens de paiement sécurisés directement dans la conversation WhatsApp. Acomptes de réservation, règlement à la commande, remboursements automatiques en cas d'annulation. Support des cartes marocaines (CMI) et internationales (Stripe).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-whatsapp"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">WhatsApp Business API</span>
+              <span class="acc-sub">Canal principal de commande</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>API officielle Meta pour conversations natives dans WhatsApp. Taux d'ouverture moyen 94% vs 21% pour l'email. Modèles de messages pré-approuvés, analytics de conversion, conformité RGPD totale. Vos clients commandent dans l'app qu'ils utilisent déjà chaque jour.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-motorcycle"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Plateformes livraison</span>
+              <span class="acc-sub">Glovo, Uber Eats via agrégateur</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Intégration via agrégateur pour centraliser toutes les commandes livraison dans un seul flux de travail. Dispatch automatique au livreur disponible, suivi GPS partagé avec le client, confirmation automatique à chaque étape.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-google"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Google My Business</span>
+              <span class="acc-sub">Avis &amp; visibilité locale</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Collecte automatique d'avis Google après chaque commande ou livraison réussie. Amélioration continue du score Google, réponses automatisées aux avis négatifs. Meilleure visibilité locale et référencement Google Maps pour attirer de nouveaux clients.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-project-diagram"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">n8n / Make</span>
+              <span class="acc-sub">Workflows automation</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Orchestration de tous les flux automatisés : relances paniers abandonnés, campagnes fidélité SMS, reporting hebdomadaire automatique pour le gérant, alertes stock faible. Console de monitoring centralisée pour les franchises multi-sites.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual Integration Hub -->
+      <div class="sh-int-visual rv d2">
+        <div class="sh-int-card">
+          <div class="sec-label" style="margin-bottom:.8rem">Connexions actives</div>
+          <div class="sh-int-orbit">
+            <div class="sio-ring r1">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-cash-register"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            <div class="sio-ring r2">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-utensils"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-motorcycle"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-credit-card"></i></div>
+            </div>
+            <div class="sio-ring r3">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-shield-alt"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-sms"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-qrcode"></i></div>
+              <div class="sio-dot" style="left:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-bell"></i></div>
+            </div>
+            <div class="sio-center"><span>IA</span></div>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+            <div style="font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)">Intégration en quelques heures</div>
+            <div style="font-family:var(--fm);font-size:.72rem;color:var(--txt);margin-top:.4rem;font-weight:300">Aucune refonte de votre système existant</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DÉPLOIEMENT ═══════════════════════════════════════════════ -->
+<!-- ══ DÉPLOIEMENT — TIMELINE LIGHT (style solutions-ia) ════════ -->
+<section class="sdtl-section" id="deploiement">
+
+  <!-- 3D Background orb subtil -->
+  <div class="sdtl-orb-wrap" aria-hidden="true">
+    <div class="sdtl-orb" id="sdtlOrb">
+      <div class="sdtl-orb-ring r1"></div>
+      <div class="sdtl-orb-ring r2"></div>
+      <div class="sdtl-orb-ring r3"></div>
+      <div class="sdtl-orb-ring r4"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">Déploiement adapté Restauration</div>
+      <h2 class="sec-title rv">Déploiement multi-sites<br><em>en 3 phases</em></h2>
+      <p class="sdtl-intro rv d1">Une méthodologie éprouvée pour déployer votre bot de commande sur un ou plusieurs points de vente, avec ROI atteint en 7 semaines.</p>
+    </div>
+
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <!-- Spine -->
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+
+      <!-- ── PHASE 0 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">Pilote 1 point de vente</div>
+            <p class="sdtl-desc">Cadrage du menu conversationnel, format de commande adapté, intégration POS et paiement, formation du manager de salle à la supervision.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>Workflow n8n configuré</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Menu conversationnel IA</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Intégration POS testée</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Formation équipe</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">SEMAINES 1 – 4</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-store"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">Test réel</div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 1 — RIGHT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-keyword">Pilote</div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-flask"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">Test en conditions réelles</div>
+            <p class="sdtl-desc">4 semaines en pic d'activité (vendredi soir, midi semaine) pour valider fiabilité, temps de réponse et taux de conversion réels.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Rapport de fiabilité</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Ajustements menu IA</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Taux conversion validé</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Optimisations upsell</span></div>
+            </div>
+            <span class="sdtl-tag">SEMAINES 5 – 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">Déploiement multi-sites</div>
+            <p class="sdtl-desc">Réplication sur l'ensemble du réseau, harmonisation des menus, monitoring centralisé, console de supervision pour les managers.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>Console monitoring</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Manuel hôte digital</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Tous sites déployés</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Dashboard temps réel</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">SEMAINES 7 – 10</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-rocket"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">Multi-sites</div>
+        </div>
+      </div>
+
+    </div><!-- /sdtl-timeline -->
+  </div>
+</section>
+
+<!-- ══ CAS CLIENT ════════════════════════════════════════════════ -->
+<section class="sh-case" id="cas-client">
+  <div class="container">
+    <div class="sec-label">Cas client — Étude de succès</div>
+    <h2 class="sec-title rv">Résultats concrets<br><em>en restauration</em></h2>
+
+    <div class="case-wrap rv d1">
+
+      <!-- Left: Context + Problem -->
+      <div class="case-left">
+        <div class="case-tag">Étude de cas · Franchise Restauration · Casablanca</div>
+        <h3 class="case-headline">Franchise restauration rapide<br>8 points de vente, 1 200 cmd/mois</h3>
+        <p class="case-ctx"><strong>Contexte :</strong> Franchise avec 8 points de vente traitant 1 200 commandes par mois. Files d'attente téléphoniques saturées à 13h, 3 standardistes débordés, commandes perdues aux heures de pointe.</p>
+        <div class="case-problem">
+          <div class="case-problem-label">Problème identifié</div>
+          <div class="case-problem-text">23% des appels non décrochés entre 12h–14h. Standardistes occupés à 100% pendant le service. Panier moyen stagnant sans upsell systématique. Perte estimée à 18 000 MAD/mois de CA non réalisé.</div>
+        </div>
+        <div>
+          <div class="case-solution-label" style="font-family:var(--fm);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt2);margin-bottom:.45rem">Solution déployée</div>
+          <div class="case-solution-text" style="font-size:.8rem;color:var(--txt2);line-height:1.8">HW WhatsApp Agent + menu dynamique conversationnel + intégration POS Clyo. Formation des managers à la supervision de l'agent IA sur 5 points de vente pilotes.</div>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="case-right">
+        <div>
+          <div class="results-title">Résultats observés après 7 semaines</div>
+          <div class="results-big-grid">
+            <div class="result-big">
+              <div class="result-big-val">+18<span style="font-size:.7em">%</span></div>
+              <div class="result-big-lbl">Panier moyen</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">78%</div>
+              <div class="result-big-lbl">Commandes auto</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">1.5 ETP</div>
+              <div class="result-big-lbl">Économisé / site</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">7<span style="font-size:.7em">sem</span></div>
+              <div class="result-big-lbl">ROI atteint</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-testimonial">
+          <p class="ct-text">Nos équipes ne perdent plus aucune commande en période de rush. Le bot propose automatiquement les desserts et boissons — notre panier moyen a bondi en quelques semaines.</p>
+          <div class="ct-author">— Direction, Franchise Restauration Casablanca</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
+ <section class="cta-band" style="background: url(<?php echo $siteURL; ?>images/restaurant.jpg);">
+  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">Santé</span>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-label">Vous êtes prêt à passer à l’action ?</div>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Restaurant : accélérez vos <br>commandes sans alourdir <br><em>vos équipes</em></h2>
+    <p class="cta-sub">Déployez un agent IA capable de gérer les prises de commande, les réservations et les demandes clients sur WhatsApp, même pendant les heures de pointe, tout en soutenant vos objectifs de vente et de fidélisation.</p>
+    <div class="cta-btns">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit Restauration" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
+            <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
+        </a>
+
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Tester un menu IA en live" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">Tester une démo restaurant</span></div>
+            <div class="sb-knob"><i class="fal fa-download"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ── CURSOR ── */
+const cur = document.getElementById('cur');
+const cur2 = document.getElementById('cur2');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px';
+  cur2.style.left = e.clientX+'px'; cur2.style.top = e.clientY+'px';
+});
+document.querySelectorAll('a,button,.sol-kpi-card,.deploy-card,.result-big,.acc-trigger').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.style.transform = 'translate(-50%,-50%) scale(2.5)');
+  el.addEventListener('mouseleave', () => cur.style.transform = 'translate(-50%,-50%) scale(1)');
+});
+
+/* ── HEADER SCROLL ── */
+const hdr = document.getElementById('hdr');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  hdr.classList.toggle('scrolled', s > 80);
+  backTop.classList.toggle('show', s > 600);
+}, {passive:true});
+
+/* ── MOBILE NAV ── */
+const mobileNav = document.getElementById('mobileNav');
+const burger = document.getElementById('burger');
+let navOpen = false;
+function closeMobileNav(){ navOpen=false; mobileNav.classList.remove('open'); }
+burger.addEventListener('click', () => { navOpen=!navOpen; mobileNav.classList.toggle('open',navOpen); });
+
+/* ── REVEAL ON SCROLL ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+}, {threshold:.1});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* ── FOOTER IN ── */
+const footEl = document.querySelector('footer');
+if(footEl){
+  const fio = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('foot-in'); fio.unobserve(e.target); } });
+  },{threshold:.05});
+  fio.observe(footEl);
+}
+
+/* ── SUBMENU ── */
+document.querySelectorAll('.has-sub').forEach(el => {
+  let t;
+  el.addEventListener('mouseenter', () => { clearTimeout(t); el.classList.add('open'); });
+  el.addEventListener('mouseleave', () => { t = setTimeout(() => el.classList.remove('open'), 180); });
+});
+document.addEventListener('click', e => {
+  if(!e.target.closest('.has-sub')) document.querySelectorAll('.has-sub.open').forEach(el => el.classList.remove('open'));
+});
+
+/* ── LANG SELECTOR ── */
+(function(){
+  const sel=document.getElementById('langSel'), btn=document.getElementById('langBtn'), curEl=document.getElementById('langCur');
+  if(!sel) return;
+  btn.addEventListener('click', e => { e.stopPropagation(); sel.classList.toggle('open'); });
+  document.addEventListener('click', () => sel.classList.remove('open'));
+  sel.querySelectorAll('.lang-opt').forEach(opt => {
+    opt.addEventListener('click', e => {
+      e.preventDefault();
+      sel.querySelectorAll('.lang-opt').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      curEl.textContent = opt.textContent.trim().split(' ')[1].slice(0,2).toUpperCase();
+      sel.classList.remove('open');
+    });
+  });
+})();
+
+/* ── FANCY TITLE ── */
+(function(){
+  function splitChars(el){
+    el.classList.add('fancy-title');
+    let ci=0;
+    function proc(node){
+      if(node.nodeType===3){
+        const frag=document.createDocumentFragment();
+        for(const c of node.textContent){
+          const s=document.createElement('span');
+          if(c===' '){s.className='ch sp';s.innerHTML='&nbsp;';}
+          else{s.className='ch';s.style.setProperty('--ci',ci++);s.textContent=c;}
+          frag.appendChild(s);
+        }
+        node.parentNode.replaceChild(frag,node);
+      } else if(node.nodeType===1 && node.tagName!=='BR'){
+        Array.from(node.childNodes).forEach(proc);
+      }
+    }
+    Array.from(el.childNodes).forEach(proc);
+  }
+  document.querySelectorAll('.sec-title').forEach(splitChars);
+})();
+
+/* ── HERO CANVAS (light ECG pulse) ── */
+(function(){
+  const canvas = document.getElementById('sh-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, t = 0;
+  const LINES = 28, SEGS = 200;
+  function resize(){ W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    t += 0.004;
+    for(let l = 0; l < LINES; l++){
+      const p = l / (LINES - 1);
+      const yBase = H * 0.06 + H * 0.88 * p;
+      const amp = H * 0.03 * (0.2 + p * 0.8);
+      const bright = 1 - Math.abs(p - 0.5) * 1.6;
+      const alpha = Math.max(0.008, Math.min(bright * 0.055, 0.055));
+      ctx.beginPath();
+      for(let i = 0; i <= SEGS; i++){
+        const x = (i / SEGS) * W;
+        const n = i / SEGS;
+        const y = yBase
+          + Math.sin(n * Math.PI * 4 + t * 1.4 + l * 0.3) * amp
+          + Math.sin(n * Math.PI * 8 - t * 0.9 + l * 0.18) * amp * 0.35
+          + Math.sin(n * Math.PI * 2 + t * 0.5 + l * 0.08) * amp * 0.18;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(139,106,34,${alpha})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  resize(); draw();
+  window.addEventListener('resize', resize);
+})();
+
+/* ── ANIMATED COUNTERS ── */
+(function(){
+  const counters = document.querySelectorAll('.sh-counter');
+  const cio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1600;
+      const start = performance.now();
+      function update(now){
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target);
+        if(p < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+      cio.unobserve(el);
+    });
+  }, {threshold:.5});
+  counters.forEach(c => cio.observe(c));
+})();
+
+/* ── TABS ── */
+(function(){
+  const btns = document.querySelectorAll('.tab-btn');
+  const panes = document.querySelectorAll('.tab-pane');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById('tab-' + btn.dataset.tab);
+      if(target){
+        target.classList.add('active');
+        // Re-trigger 3D reveal for new tab's steps
+        target.querySelectorAll('.jf-step').forEach((s,i) => {
+          s.classList.remove('jf-in');
+          setTimeout(() => s.classList.add('jf-in'), i * 80);
+        });
+        // Beam replay handled by journey IIFE
+      }
+    });
+  });
+})();
+
+
+/* ── SANTE DEPLOY TIMELINE — SCROLL-DRIVEN (light) ── */
+(function(){
+  const timeline  = document.getElementById('sdtlTimeline');
+  const spineFill = document.getElementById('sdtlSpineFill');
+  const orb       = document.getElementById('sdtlOrb');
+  const steps     = document.querySelectorAll('.sdtl-step');
+  if(!timeline || !spineFill) return;
+
+  let rafId = null;
+  function updateTimeline(){
+    const rect = timeline.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    /* Spine fill: progresse quand la section scroll dans le viewport */
+    const raw  = (vh * 0.65 - rect.top) / (rect.height + vh * 0.05);
+    const p    = Math.max(0, Math.min(1, raw));
+    spineFill.style.height = (p * 100) + '%';
+    /* Orb rotation liée au scroll global */
+    if(orb){
+      const sp = window.scrollY / Math.max(1, document.body.scrollHeight - vh);
+      orb.style.transform =
+        `rotateY(${(sp * 720).toFixed(2)}deg) rotateX(${(sp * 300).toFixed(2)}deg)`;
+    }
+    rafId = null;
+  }
+  function onScroll(){
+    if(!rafId) rafId = requestAnimationFrame(updateTimeline);
+  }
+
+  /* Steps: activés à l'entrée dans le viewport (22% visible) */
+  const stepIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('active');
+      } else {
+        /* si le step repasse en dessous (scroll up) → désactiver */
+        if(e.boundingClientRect.top > 0) e.target.classList.remove('active');
+      }
+    });
+  }, {threshold: 0.22});
+  steps.forEach(s => stepIO.observe(s));
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  updateTimeline();
+})();
+
+/* ══ JOURNEY — PARALLAX cabinet.jpeg + BEAM 1→6 + 3D GLASS HOVER ══ */
+(function(){
+  const section = document.getElementById('parcours');
+  if(!section) return;
+  const jpImg = document.getElementById('jpImg');
+
+  /* ── Parallax : image bouge en sens inverse du scroll ±100px ── */
+  function updateParallax(){
+    if(!jpImg) return;
+    const rect   = section.getBoundingClientRect();
+    const vh     = window.innerHeight;
+    const midSec = rect.top + rect.height * .5;
+    const span   = vh * .5 + rect.height * .5;
+    const delta  = (midSec - vh * .5) / span;       /* -1 → +1 */
+    jpImg.style.transform = `translateY(${(delta * 200).toFixed(2)}px)`;
+  }
+
+  /* ── Interpolation JAUNE → VERT WhatsApp selon index step ──
+     Yellow  #FFD700 = rgb(255,215,  0)
+     WA Green #25D366 = rgb( 37,211,102)
+     Passage par un intermédiaire sombre pour l'effet "go dark"
+     Point intermédiaire (t=.5) : #128C7E = rgb(18,140,126)            */
+  function stepColor(i, N){
+    const t = N <= 1 ? 0 : i / (N - 1);   /* 0 = step1, 1 = step6 */
+    let r, g, b;
+    if(t <= .5){
+      /* jaune → sombre (#128C7E) */
+      const u = t * 2;
+      r = Math.round(255 + (18  - 255) * u);
+      g = Math.round(215 + (140 - 215) * u);
+      b = Math.round(0   + (126 - 0)   * u);
+    } else {
+      /* sombre → WhatsApp vert */
+      const u = (t - .5) * 2;
+      r = Math.round(18  + (37  - 18)  * u);
+      g = Math.round(140 + (211 - 140) * u);
+      b = Math.round(126 + (102 - 126) * u);
+    }
+    return { solid:`rgb(${r},${g},${b})`, glow:`rgba(${r},${g},${b},.62)` };
+  }
+
+  /* ── Beam 1→6 — UNE SEULE FOIS, scroll-driven ── */
+  function updateSteps(){
+    const rect     = section.getBoundingClientRect();
+    const vh       = window.innerHeight;
+    const scrolled = vh - rect.top;
+    const dist     = rect.height * .55;
+    const pct      = Math.max(0, Math.min(1, scrolled / dist));
+
+    const activePane = section.querySelector('.tab-pane.active');
+    if(!activePane) return;
+    const beam  = activePane.querySelector('.jf-beam');
+    const steps = Array.from(activePane.querySelectorAll('.jf-step'));
+    const N     = steps.length;
+
+    /* Beam width + dot voyageur qui suit le même trajet jaune→sombre→vert */
+    if(beam){
+      beam.style.width = (pct * 100).toFixed(2) + '%';
+      beam.classList.toggle('done', pct >= 1);
+      /* Couleur dot = même interpolation 2 temps que stepColor */
+      let dr, dg, db;
+      if(pct <= .5){
+        const u = pct * 2;
+        dr = Math.round(255 + (18  - 255) * u);
+        dg = Math.round(215 + (140 - 215) * u);
+        db = Math.round(0   + (126 - 0)   * u);
+      } else {
+        const u = (pct - .5) * 2;
+        dr = Math.round(18  + (37  - 18)  * u);
+        dg = Math.round(140 + (211 - 140) * u);
+        db = Math.round(126 + (102 - 126) * u);
+      }
+      beam.style.setProperty('--dot-color', `rgb(${dr},${dg},${db})`);
+      beam.style.setProperty('--dot-glow',  `rgba(${dr},${dg},${db},.72)`);
+    }
+
+    steps.forEach((step, i) => {
+      const isLit  = pct >= i / N;
+      const isDone = pct >= (i + 1) / N;
+      if(pct > 0) step.classList.add('jf-in');
+      step.classList.toggle('jf-done',   isDone);
+      step.classList.toggle('jf-active', isLit && !isDone);
+
+      /* Injecte la couleur interpolée sur chaque step lit/done */
+      if(isLit){
+        const { solid, glow } = stepColor(i, N);
+        step.style.setProperty('--sc',  solid);
+        step.style.setProperty('--scg', glow);
+      } else {
+        step.style.removeProperty('--sc');
+        step.style.removeProperty('--scg');
+      }
+    });
+  }
+
+  /* ── Scroll listener ── */
+  let raf = null;
+  function tick(){ updateParallax(); updateSteps(); raf = null; }
+  window.addEventListener('scroll', () => { if(!raf) raf = requestAnimationFrame(tick); }, {passive:true});
+  window.addEventListener('resize', () => { if(!raf) raf = requestAnimationFrame(tick); }, {passive:true});
+
+  /* ── Reveal initial en cascade ── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      e.target.querySelectorAll('.jf-step').forEach((s, i) => setTimeout(() => s.classList.add('jf-in'), i * 110));
+      io.unobserve(e.target);
+    });
+  }, {threshold: .06});
+  const firstFlow = section.querySelector('.tab-pane.active .journey-flow');
+  if(firstFlow) io.observe(firstFlow);
+
+  /* ── 3D Glass Tilt au hover ── */
+  function attachTilt(flow){
+    flow.querySelectorAll('.jf-step').forEach(step => {
+      let on = false;
+      step.addEventListener('mouseenter', () => {
+        on = true;
+        step.style.transition = 'background .25s,border-color .25s,box-shadow .25s,transform .06s linear';
+      });
+      step.addEventListener('mousemove', e => {
+        if(!on) return;
+        const r  = step.getBoundingClientRect();
+        const dx = ((e.clientX - r.left) / r.width  - .5) * 2;
+        const dy = ((e.clientY - r.top)  / r.height - .5) * 2;
+        step.style.transform = `perspective(360px) rotateX(${(-dy*8).toFixed(1)}deg) rotateY(${(dx*10).toFixed(1)}deg) translateZ(18px) scale(1.05)`;
+      });
+      step.addEventListener('mouseleave', () => {
+        on = false;
+        step.style.transition = 'opacity .55s ease,transform .5s cubic-bezier(.34,1.46,.64,1),background .35s,border-color .35s,box-shadow .35s';
+        step.style.transform = 'perspective(600px) rotateX(0) translateY(0)';
+      });
+    });
+  }
+  section.querySelectorAll('.journey-flow').forEach(attachTilt);
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => requestAnimationFrame(() => {
+      const f = section.querySelector('.tab-pane.active .journey-flow');
+      if(f){ attachTilt(f); updateSteps(); }
+    }));
+  });
+
+  updateParallax();
+  updateSteps();
+})();
+
+/* ── ACCORDION ── */
+(function(){
+  const items = document.querySelectorAll('.acc-item');
+  items.forEach(item => {
+    const trigger = item.querySelector('.acc-trigger');
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      items.forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+})();
+
+/* ── MODAL ── */
+(function(){
+  const overlay = document.getElementById('auditModal');
+  const closeBtns = [document.getElementById('closeModal')];
+  const openBtns = [
+    document.getElementById('openModal'),
+    document.getElementById('openModal2'),
+    document.getElementById('openGuide'),
+    document.getElementById('openGuide2')
+  ];
+
+  function openModal(){ overlay.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+
+  openBtns.forEach(btn => { if(btn) btn.addEventListener('click', openModal); });
+  closeBtns.forEach(btn => { if(btn) btn.addEventListener('click', closeModal); });
+  overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+  const form = document.getElementById('auditForm');
+  if(form){
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = form.querySelector('.sh-submit span');
+      btn.textContent = 'Envoyé ! On vous contacte sous 24h ✓';
+      setTimeout(closeModal, 2200);
+    });
+  }
+})();
+
+/* ── WA CSS PHONE 3D : REVEAL + MOUSE TILT + SCROLL PARALLAX ── */
+(function(){
+  const scene = document.getElementById('waScene');
+  const group = document.getElementById('wa3dGroup');
+  if(!scene || !group) return;
+
+  /* SCROLL REVEAL — fade + 3D entry animation */
+  const revIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ group.classList.add('wa-revealed'); revIO.unobserve(group); }
+    });
+  }, {threshold:.15});
+  revIO.observe(group);
+
+  const BASE_Y = -13, BASE_X = 5;
+
+  /* Current scroll-based resting rotation */
+  function scrollProgress(){
+    const r   = scene.getBoundingClientRect();
+    const mid = r.top + r.height / 2;
+    return (window.innerHeight / 2 - mid) / (window.innerHeight / 2);
+  }
+  function restY(){ return BASE_Y + scrollProgress() * 6; }
+  function restX(){ return BASE_X - scrollProgress() * 3; }
+
+  /* MOUSE TILT — responsive real-time 3D */
+  let hovering = false;
+  scene.addEventListener('mouseenter', () => {
+    hovering = true;
+    group.style.transition = 'transform .1s ease';
+  });
+  scene.addEventListener('mouseleave', () => {
+    hovering = false;
+    group.style.transition = 'transform .65s cubic-bezier(.4,0,.2,1)';
+    group.style.transform  = `rotateY(${restY()}deg) rotateX(${restX()}deg)`;
+  });
+  scene.addEventListener('mousemove', e => {
+    if(!hovering) return;
+    const r  = scene.getBoundingClientRect();
+    const dx = ((e.clientX - r.left) / r.width  - .5) * 2; /* -1..+1 */
+    const dy = ((e.clientY - r.top)  / r.height - .5) * 2;
+    group.style.transform = `rotateY(${BASE_Y + dx * 16}deg) rotateX(${BASE_X - dy * 9}deg) scale(1.02)`;
+  });
+
+  /* SCROLL PARALLAX — continuous subtle rotation tied to scroll */
+  let raf = null;
+  window.addEventListener('scroll', () => {
+    if(hovering) return;
+    if(!raf) raf = requestAnimationFrame(() => {
+      group.style.transform = `rotateY(${restY()}deg) rotateX(${restX()}deg)`;
+      raf = null;
+    });
+  }, {passive:true});
+})();
+
+/* ── PARALLAX GHOST ── */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const isMobile = () => window.innerWidth < 900;
+  const items = Array.from(document.querySelectorAll('[data-px]')).map(el => ({el, f: parseFloat(el.dataset.px)}));
+  if(!items.length) return;
+  let ticking = false;
+  function update(){
+    if(isMobile()){ items.forEach(({el}) => { el.style.translate=''; }); ticking=false; return; }
+    const vh = window.innerHeight;
+    items.forEach(({el, f}) => {
+      const r = el.getBoundingClientRect();
+      el.style.translate = '0 ' + ((r.top + r.height/2 - vh/2) * f).toFixed(2) + 'px';
+    });
+    ticking=false;
+  }
+  window.addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(update); ticking=true; } }, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* ══ SMOKE CURSOR — première version ══════════════════════════ */
+(function(){
+  const canvas = document.getElementById('smoke-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  class Smoke {
+    constructor(x, y){
+      this.x  = x + (Math.random()-.5)*12;
+      this.y  = y + (Math.random()-.5)*12;
+      this.vx = (Math.random()-.5) * 1.2;
+      this.vy = -(Math.random() * 1.8 + 0.6);
+      this.radius = Math.random() * 18 + 8;
+      this.growth = Math.random() * 0.6 + 0.2;
+      this.life   = 1.0;
+      this.decay  = Math.random() * 0.018 + 0.012;
+      this.hue    = Math.random() < .5 ? '107,58,140' : '53,196,213';
+    }
+    update(){
+      this.x += this.vx; this.y += this.vy;
+      this.vx *= 0.97;   this.vy *= 0.97;
+      this.radius += this.growth;
+      this.life   -= this.decay;
+    }
+    draw(){
+      if(this.life <= 0) return;
+      const a = this.life * 0.13;
+      const g = ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.radius);
+      g.addColorStop(0,   `rgba(${this.hue},${(a*1.4).toFixed(3)})`);
+      g.addColorStop(0.4, `rgba(${this.hue},${(a*0.8).toFixed(3)})`);
+      g.addColorStop(1,   `rgba(${this.hue},0)`);
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+      ctx.fillStyle = g;
+      ctx.fill();
+    }
+    get dead(){ return this.life <= 0; }
+  }
+
+  let particles = [];
+  let mouse = {x:-999, y:-999, moving:false};
+  let lastSpawn = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouse.x = e.clientX; mouse.y = e.clientY; mouse.moving = true;
+  }, {passive:true});
+
+  (function loop(now){
+    requestAnimationFrame(loop);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if(mouse.moving && now - lastSpawn > 22){
+      const count = Math.floor(Math.random()*2)+1;
+      for(let i=0;i<count;i++) particles.push(new Smoke(mouse.x, mouse.y));
+      lastSpawn = now; mouse.moving = false;
+    }
+    particles = particles.filter(p => { p.update(); p.draw(); return !p.dead; });
+  })(0);
+})();
+</script>

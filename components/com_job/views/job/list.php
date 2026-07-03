@@ -170,9 +170,7 @@
           </a>
         </div>
       </div>
-        <div class="wm-hero-side rv d3 wm-hero-side-banner">
-        <img src="<?php echo $siteURL; ?>images/pages/<?php echo $page->getPhoto() ?>" alt="<?php echo $page->getTitre() ?>">
-      </div>
+     
     </div>
   </div>
 </section>

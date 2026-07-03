@@ -3,25 +3,25 @@ abstract class dbfactory {
 
     private static $instance;                   // Instance courante de la classe
 
-    protected $_config;                         // Parametres de configuration base de donn�e.
+    protected $_config;                         // Parametres de configuration base de données.
     protected $query;                           // Ressource de query
 
     public $history = array();                  // Historique des requetes
     public $query_id = 0;                       // Compteur de requetes.
 
 
-    // Initialise les variables de connections et active la connection a la base de donn�e.
-    // Constructeur prot�g� permettant de n'avoir qu'une unique instance de la classe gr�ce a la m�thode singleton
+    // Initialise les variables de connections et active la connection a la base de données.
+    // Constructeur protégé permettant de n'avoir qu'une unique instance de la classe grâce a la méthode singleton
     protected function __construct ($host=NULL, $user=NULL, $passwd=NULL, $name=NULL) {
         if ( !is_array($this->default_cfg) ) {
-            throw new Exception('Vous devez remplir les parametres de la configuration par defaut de votre base de donn�e');
+            throw new Exception('Vous devez remplir les parametres de la configuration par defaut de votre base de données');
         }
 
         foreach ($this->default_cfg as $key=>$val ) {
             $this->_config[$key] = (isset($$key) ) ? $$key : $val;
         }
 
-        unset($this->default_cfg); // Enleve les parametres par defaut pour �viter toute confusion possible.
+        unset($this->default_cfg); // Enleve les parametres par defaut pour éviter toute confusion possible.
         $this->connect();
     }
 
@@ -31,7 +31,7 @@ abstract class dbfactory {
             $className = $type;
             return new $className ($host, $user, $passwd, $name);
         } else {
-            throw new Exception ('Pas d\'impl�mentation disponible pour ' . $type);
+            throw new Exception ('Pas d\'implémentation disponible pour ' . $type);
         }
     }
 
@@ -44,12 +44,12 @@ abstract class dbfactory {
         return self::$instance;
     }
 
-    // on avertit le d�veloppeur qu'il n'a pas le droit de cloner l'objet instanci�
+    // on avertit le développeur qu'il n'a pas le droit de cloner l'objet instancié
     public function __clone() {
-        trigger_error('Le cl�nage n\'est pas autoris�.', E_USER_ERROR);
+        trigger_error('Le clônage n\'est pas autorisé.', E_USER_ERROR);
     }
 
-    // m�thodes abstraites
+    // méthodes abstraites
     abstract protected function connect();
     abstract public function __destruct();
     abstract public function query($sql, $desc=NULL);
