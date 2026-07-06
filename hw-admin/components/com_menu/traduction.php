@@ -207,4 +207,24 @@ $trad_com_menu = array(
         'en' => "Do you want to delete this item ?"
     ),
 
+    "REORGANISER" => array(
+        'fr' => "Réorganiser l'ordre",
+        'en' => "Reorder"
+    ),
+
+    "REORGANISER_AIDE" => array(
+        'fr' => "Faites glisser les éléments pour changer leur ordre. L'enregistrement se fait automatiquement.",
+        'en' => "Drag items to change their order. Changes save automatically."
+    ),
+
+    "SUCCES_ORDRE" => array(
+        'fr' => "Ordre mis à jour avec succès",
+        'en' => "Order updated successfuly"
+    ),
+
+    "ERREUR_ORDRE" => array(
+        'fr' => "Erreur lors de la mise à jour de l'ordre",
+        'en' => "Error updating order"
+    ),
+
 );

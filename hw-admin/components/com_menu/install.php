@@ -17,6 +17,18 @@ function install_com_menu(){
         "id_item INT NULL,".
         "blank INT NULL,".
         "ordre INT NULL,".
+        "panel_key VARCHAR(20) NULL,".
+        "icon VARCHAR(20) NULL,".
+        "gradient VARCHAR(10) NULL,".
+        "badge VARCHAR(60) NULL,".
+        "card_style VARCHAR(10) NULL,".
+        "auto_list VARCHAR(20) NULL,".
+        "auto_limit INT NULL,".
+        "show_packs TINYINT(1) NOT NULL DEFAULT 0,".
+        "testimonial_id INT NULL,".
+        "cta_label VARCHAR(80) NULL,".
+        "active TINYINT(1) NOT NULL DEFAULT 1,".
+        "image VARCHAR(255) NULL,".
         "PRIMARY KEY(id)".
         ")";
 
@@ -24,7 +36,9 @@ function install_com_menu(){
         "id_menu_item INT NOT NULL,".
         "titre VARCHAR(100) NOT NULL,".
         "lien VARCHAR(200) NULL,".
-        "langue VARCHAR(3) NULL".
+        "langue VARCHAR(3) NULL,".
+        "description TEXT NULL,".
+        "UNIQUE KEY uniq_item_lang (id_menu_item, langue)".
         ")";
 
     $droit1 = "INSERT INTO ".__prefixe_db__."droits (id_profil, module, action) VALUES (1, 'com_menu', 'view')";
