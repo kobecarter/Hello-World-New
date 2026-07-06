@@ -382,13 +382,17 @@ $cats = array_keys($catLabels);
 }
 .aia-empty i { font-size: 3rem; display: block; margin-bottom: 16px; opacity: .25; }
 
-/* CTA — one deliberate color exception (purple-to-teal) */
+/* CTA — one deliberate color exception (purple-to-teal), video background */
 .aia-cta {
+    position: relative;
     background: linear-gradient(135deg, #680262 0%, #09A1BE 100%);
     padding: 100px 0;
     text-align: center;
+    overflow: hidden;
 }
-.aia-cta-inner { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+.aia-cta-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.aia-cta-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(135deg, rgba(104,2,98,.72) 0%, rgba(9,161,190,.68) 100%); }
+.aia-cta-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 48px; }
 .aia-cta h2 {
     font-family: var(--fm, sans-serif);
     font-weight: 100;
@@ -581,6 +585,10 @@ $cats = array_keys($catLabels);
 
 <!-- ── CTA final ─────────────────────────────────────── -->
 <section class="aia-cta">
+    <video class="aia-cta-video" autoplay muted loop playsinline preload="auto" poster="<?= $siteURL; ?>assets/video/hw-academy-cta-poster.jpg">
+        <source src="<?= $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
+    </video>
+    <div class="aia-cta-scrim"></div>
     <div class="aia-cta-inner">
         <h2>Déployez votre premier<br><em>agent IA aujourd'hui</em></h2>
         <p>Notre équipe vous accompagne de la sélection au lancement en moins de 72h. Aucune compétence technique requise.</p>
@@ -590,6 +598,41 @@ $cats = array_keys($catLabels);
         </a>
     </div>
 </section>
+
+<!-- ── Partenaires — ils nous font confiance ────────────── -->
+<?php if (!empty($partners)): ?>
+<section class="trust" id="aia-trust-partners">
+  <div class="trust-head container">
+    <div class="sec-label rv">Partenaires</div>
+    <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+  </div>
+  <div class="trust-rows">
+
+    <div class="trust-row">
+      <div class="trust-inner go-l">
+        <?php foreach ($partners as $partner): ?>
+          <div class="trust-item">
+            <img class="img-partner" src="<?php echo $siteURL; ?>images/partners/<?php echo $partner->getPhoto(); ?>" alt="<?php echo $partner->getTitre(); ?>" />
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <?php if (!empty($partners2)): ?>
+    <div class="trust-row">
+      <div class="trust-inner go-r">
+        <?php foreach ($partners2 as $partner): ?>
+          <div class="trust-item">
+            <img class="img-partner" src="<?php echo $siteURL; ?>images/partners/<?php echo $partner->getPhoto(); ?>" alt="<?php echo $partner->getTitre(); ?>" />
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+    <?php endif; ?>
+
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- ── GSAP ──────────────────────────────────────────── -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

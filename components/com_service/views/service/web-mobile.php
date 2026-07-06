@@ -101,39 +101,123 @@
 </div></div>
 
 <!-- SERVICES -->
-<section class="wm-services" id="services">
+<section class="wm-services hw-f-list-catalogue" id="services">
   <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1rem;gap:2rem;flex-wrap:wrap">
-      <div>
-        <div class="sec-label">Nos Offres</div>
-        <h2 class="sec-title rv">Quatre expertises,<br>un seul <em>interlocuteur</em></h2>
-      </div>
-     
-      <!-- <p class="rv d1" style="font-size:.88rem;color:var(--txt2);max-width:380px;line-height:1.85;font-weight:300">De la page vitrine au portail métier complexe — nous architecturons, designons et développons des expériences digitales sur mesure.</p> -->
+    <div class="sec-label rv">Nos Offres</div>
+    <h2 class="sec-title rv d1">Quatre expertises,<br>un seul <em>interlocuteur</em></h2>
+    <div class="hw-f-list-track-hint rv d2"><i class="fal fa-arrows-left-right"></i> Faites défiler pour parcourir nos <?= count($childServices); ?> expertises</div>
+  </div>
+
+  <?php if (!empty($childServices)):
+    $wmIcons = ['fa-globe','fa-mobile-alt','fa-search','fa-user-shield'];
+  ?>
+  <div class="hw-f-list-pin" id="wmServicesPin">
+    <div class="hw-f-list-track" id="wmServicesTrack">
+      <div class="hw-f-list-track-spacer" id="wmServicesSpacerStart" aria-hidden="true"></div>
+      <?php foreach($childServices as $index => $childService):
+        $icon   = $wmIcons[$index % count($wmIcons)];
+        $isGold = $index % 2 === 0;
+      ?>
+      <a class="hw-f-list-card-3d" href="<?= $childService->getLink(); ?>">
+        <?php if ($childService->getPhoto()): ?>
+        <div class="hw-f-list-card-3d-photo">
+          <img src="<?= $siteURL; ?>images/services/<?= htmlspecialchars($childService->getPhoto(), ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($childService->getTitre(), ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
+          <span class="hw-f-list-card-badge <?= $isGold ? 'gold' : 'purple'; ?>">Offre</span>
+        </div>
+        <?php endif; ?>
+        <div class="hw-f-list-card-3d-body">
+          <div class="hw-f-list-card-icon" style="background:linear-gradient(135deg,<?= $isGold ? 'rgba(9,161,190,.1)' : 'rgba(104,2,98,.08)'; ?>,<?= $isGold ? 'rgba(9,161,190,.05)' : 'rgba(104,2,98,.04)'; ?>);border:1px solid <?= $isGold ? 'rgba(9,161,190,.2)' : 'rgba(104,2,98,.18)'; ?>">
+            <i class="fal <?= $icon; ?>" style="color:<?= $isGold ? '#09A1BE' : '#680262'; ?>;font-size:.95rem"></i>
+          </div>
+          <div class="hw-f-list-card-title"><?= htmlspecialchars($childService->getTitre(), ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="hw-f-list-card-sub"><?= htmlspecialchars(mb_strimwidth(html_entity_decode(strip_tags($childService->getExtrait() ?? ''), ENT_QUOTES, 'UTF-8'), 0, 120, '…', 'UTF-8'), ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="hw-f-list-card-cta">Découvrir <i class="fal fa-arrow-right"></i></div>
+        </div>
+      </a>
+      <?php endforeach; ?>
+      <div class="hw-f-list-track-spacer" id="wmServicesSpacerEnd" aria-hidden="true"></div>
     </div>
-    <div class="sp-offer-grid">
-        <?php foreach($childServices as $index => $childService): ?>
-        <a href="<?= $childService->getlink(); ?>">
-            <div class="sp-offer sp-offer-1 rv">
-    
-                <div class="sp-offer-visual">
-                    <img src="<?php echo $siteURL; ?>images/services/<?= $childService->getPhoto(); ?>" alt="<?= $childService->getTitre(); ?>">
-                    <div class="sp-offer-visual-num">
-                        <?= sprintf('%02d', $index + 1); ?>
-                    </div>
-                </div>
-    
-                <div class="sp-offer-body">
-                    <?= $childService->getExtrait(); ?>
-                </div>
-    
-            </div>
-        </a>
-            
-        <?php endforeach; ?>
-    </div>
-</div>
+  </div>
+  <?php endif; ?>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+    gsap.registerPlugin(ScrollTrigger);
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var pin   = document.getElementById('wmServicesPin');
+    var track = document.getElementById('wmServicesTrack');
+    var cards = track ? track.querySelectorAll('.hw-f-list-card-3d') : [];
+    var spacerStart = document.getElementById('wmServicesSpacerStart');
+    var spacerEnd   = document.getElementById('wmServicesSpacerEnd');
+    if (!pin || !track || !cards.length) return;
+
+    function sizeSpacers() {
+        if (!spacerStart || !spacerEnd || window.innerWidth <= 760) return;
+        var cardW = cards[0].getBoundingClientRect().width;
+        var w = Math.max(0, (pin.clientWidth - cardW) / 2);
+        spacerStart.style.width = w + 'px';
+        spacerEnd.style.width = w + 'px';
+    }
+    sizeSpacers();
+
+    function trackDistance() {
+        return Math.max(0, track.scrollWidth - pin.clientWidth);
+    }
+
+    function tiltCards() {
+        var pinRect = pin.getBoundingClientRect();
+        var center = pinRect.left + pinRect.width / 2;
+        cards.forEach(function (card) {
+            var r = card.getBoundingClientRect();
+            var cardCenter = r.left + r.width / 2;
+            var delta = (cardCenter - center) / (pinRect.width / 2);
+            delta = Math.max(-1, Math.min(1, delta));
+            if (rm) { card.style.transform = ''; return; }
+            var ry = delta * -30;
+            var scale = 1 - Math.abs(delta) * 0.14;
+            var z = -Math.abs(delta) * 130;
+            card.style.transform = 'perspective(1400px) rotateY(' + ry.toFixed(2) + 'deg) translateZ(' + z.toFixed(1) + 'px) scale(' + scale.toFixed(3) + ')';
+            card.style.opacity = String(1 - Math.abs(delta) * 0.35);
+        });
+    }
+
+    if (!rm && window.innerWidth > 760) {
+        gsap.to(track, {
+            x: function () { return -trackDistance(); },
+            ease: 'none',
+            scrollTrigger: {
+                trigger: pin,
+                start: 'top top+=70',
+                end: function () { return '+=' + (trackDistance() + window.innerHeight * .6); },
+                scrub: .6,
+                pin: true,
+                invalidateOnRefresh: true,
+                onRefresh: sizeSpacers,
+                onUpdate: tiltCards
+            }
+        });
+        ScrollTrigger.addEventListener('refresh', tiltCards);
+        window.addEventListener('load', function () { sizeSpacers(); ScrollTrigger.refresh(); tiltCards(); });
+        window.addEventListener('resize', sizeSpacers);
+    } else {
+        track.style.overflowX = 'auto';
+        track.style.scrollSnapType = 'x mandatory';
+        cards.forEach(function (c) { c.style.scrollSnapAlign = 'start'; });
+    }
+
+    cards.forEach(function (c) {
+        c.addEventListener('mousedown', function () { c.style.filter = 'brightness(.97)'; });
+        c.addEventListener('mouseup',   function () { c.style.filter = ''; });
+        c.addEventListener('mouseleave', function () { c.style.filter = ''; });
+    });
+
+    setTimeout(function () { ScrollTrigger.refresh(); }, 400);
+})();
+</script>
 <section class="portfolio" id="work">
   <div class="container">
     <div class="sec-label rv">Cas d'utilisation</div>
@@ -264,34 +348,123 @@
 </section>
 
 <!-- PROCESS -->
-<section class="process">
+<section class="sdtl-section" id="process">
+  <div class="sdtl-orb-wrap"><div class="sdtl-orb" id="wmOrb"><div class="sdtl-orb-ring r1"></div><div class="sdtl-orb-ring r2"></div><div class="sdtl-orb-ring r3"></div><div class="sdtl-orb-ring r4"></div></div></div>
   <div class="container">
-    <div class="sec-label">Notre processus</div>
-    <h2 class="sec-title rv">De la maquette au <em>go-live</em><br>en toute sérénité</h2>
-    <div class="process-steps">
-      <div class="step rv">
-        <span class="step-num">01</span>
-        <div class="step-title">Discovery & Architecture</div>
-        <p class="step-desc">Ateliers utilisateurs, analyse concurrentielle et définition de l'architecture de l'information. Zéro pixel avant d'avoir validé la stratégie.</p>
+    <div class="sdtl-header">
+      <div class="sec-label">Notre processus</div>
+      <h2 class="sec-title rv">De la maquette au <em>go-live</em><br>en toute sérénité</h2>
+      <p class="sdtl-intro rv d1">Une méthode éprouvée, pensée pour livrer vite sans jamais sacrifier la qualité. Chaque phase se termine par une validation concrète avant de passer à la suivante.</p>
+    </div>
+    <div class="sdtl-timeline" id="wmTimeline">
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="wmSpineFill"></div></div>
+
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">Discovery &amp; Architecture</div>
+            <p class="sdtl-desc">Ateliers utilisateurs, analyse concurrentielle et définition de l'architecture de l'information. Zéro pixel avant d'avoir validé la stratégie.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>Ateliers de cadrage utilisateurs</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Architecture de l'information validée</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Benchmark concurrentiel</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">SEMAINES 1 – 2</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-compass"></i></div><div class="sdtl-node-pulse"></div></div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">Discovery</div></div>
       </div>
-      <div class="step rv d1">
-        <span class="step-num">02</span>
-        <div class="step-title">Design System</div>
-        <p class="step-desc">Maquettes haute fidélité, design system documenté, animations et micro-interactions. Validation itérative avec vos équipes.</p>
+
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-keyword">Design</div></div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-swatchbook"></i></div><div class="sdtl-node-pulse"></div></div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">Design System</div>
+            <p class="sdtl-desc">Maquettes haute fidélité, design system documenté, animations et micro-interactions. Validation itérative avec vos équipes.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Maquettes haute fidélité</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Design system documenté</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Prototype interactif validé</span></div>
+            </div>
+            <span class="sdtl-tag">SEMAINES 3 – 4</span>
+          </div>
+        </div>
       </div>
-      <div class="step rv d2">
-        <span class="step-num">03</span>
-        <div class="step-title">Développement</div>
-        <p class="step-desc">Code propre, documenté et testé. Sprints de 2 semaines, démos régulières et intégration continue. Vous voyez tout en temps réel.</p>
+
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">Développement</div>
+            <p class="sdtl-desc">Code propre, documenté et testé. Sprints de 2 semaines, démos régulières et intégration continue. Vous voyez tout en temps réel.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>Sprints de 2 semaines</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Démos régulières</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Intégration continue &amp; tests</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">SEMAINES 5 – 8</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-code"></i></div><div class="sdtl-node-pulse"></div></div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">Développement</div></div>
       </div>
-      <div class="step rv d3">
-        <span class="step-num">04</span>
-        <div class="step-title">Launch & Optimisation</div>
-        <p class="step-desc">Déploiement zéro downtime, monitoring 24/7 et optimisation continue basée sur les données réelles d'utilisation.</p>
+
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-keyword">Launch</div></div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-rocket"></i></div><div class="sdtl-node-pulse"></div></div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">4</div>
+            <div class="sdtl-title">Launch &amp; Optimisation</div>
+            <p class="sdtl-desc">Déploiement zéro downtime, monitoring 24/7 et optimisation continue basée sur les données réelles d'utilisation.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Déploiement zéro downtime</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Monitoring 24/7</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Optimisation continue post-launch</span></div>
+            </div>
+            <span class="sdtl-tag">SEMAINE 9+</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  const timeline=document.getElementById('wmTimeline');
+  const spineFill=document.getElementById('wmSpineFill');
+  const orb=document.getElementById('wmOrb');
+  const steps=timeline ? timeline.querySelectorAll('.sdtl-step') : [];
+  if(!timeline||!spineFill) return;
+
+  function update(){
+    const rect=timeline.getBoundingClientRect(), vh=window.innerHeight;
+    const raw=(vh*.65-rect.top)/(rect.height+vh*.05);
+    spineFill.style.height=(Math.max(0,Math.min(1,raw))*100)+'%';
+    if(orb){ const sp=scrollY/Math.max(1,document.body.scrollHeight-vh); orb.style.transform=`rotateY(${(sp*720).toFixed(2)}deg) rotateX(${(sp*300).toFixed(2)}deg)`; }
+  }
+  let raf; window.addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{update();raf=null;})},{passive:true});
+  update();
+
+  const stepIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+  },{threshold:.3,rootMargin:'0px 0px -10% 0px'});
+  steps.forEach(s=>stepIO.observe(s));
+})();
+</script>
 
 <!-- CTA -->
 <section class="cta-band">

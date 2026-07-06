@@ -593,6 +593,167 @@ img,video{display:block;max-width:100%}
   </div>
 </section>
 
+<section class="srv-section" id="services-dev">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="sec-label rv">Développement</div>
+        <h2 class="sec-title rv d1">Nos services <em>core</em></h2>
+      </div>
+    </div>
+    <div class="srv-grid rv d2" id="srvGrid3d">
+
+      <div id="owl-core-services" class="owl-carousel owl-theme">
+
+      <!-- Web -->
+      <?php $serviceWeb = service::find(38,$_SESSION['lang']); ?>
+      <div class="srv-card">
+        <div class="srv-card-border"></div>
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+              <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceWeb->getPhotoBanniere(); ?>" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag">Web & Front-end</div>
+          <div class="srv-visual-num">01</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title">Développement <em>Web</em></h3>
+          <p class="srv-desc"><?php echo $serviceWeb->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Design UI/UX sur-mesure</li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>React / Next.js & TypeScript</li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>API REST / GraphQL & back-end</li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO technique & Core Web Vitals</li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Déploiement cloud & CI/CD</li>
+          </ul>
+            <a href="<?php echo $serviceWeb->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint">Démarrer un projet</span></div>
+              <div class="sb-knob"><i class="fal fa-laptop-code"></i></div>
+            </a>
+        </div>
+      </div>
+
+      <!-- Mobile -->
+      <?php $serviceMobile = service::find(39,$_SESSION['lang']); ?>
+      <div class="srv-card">
+        <div class="srv-card-border"></div>
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceMobile->getPhoto(); ?>" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag">iOS & Android</div>
+          <div class="srv-visual-num">02</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title">Applications <em>Mobile</em></h3>
+          <p class="srv-desc"><?php echo $serviceMobile->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iOS & Android natif / React Native</li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>UI/UX mobile-first & micro-animations</li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Push, mode offline & biométrie</li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Paiement in-app (Stripe / IAP)</li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Publication stores & mises à jour OTA</li>
+          </ul>
+            <a href="<?php echo $serviceMobile->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint">Voir les apps</span></div>
+              <div class="sb-knob"><i class="fal fa-mobile"></i></div>
+            </a>
+        </div>
+      </div>
+
+      <!-- SaaS -->
+      <?php $serviceSaaS = service::find(1,$_SESSION['lang']); ?>
+      <div class="srv-card">
+        <div class="srv-card-border"></div>
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceSaaS->getPhoto(); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag">SaaS & Plateformes</div>
+          <div class="srv-visual-num">03</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title">Plateformes <em>SaaS</em></h3>
+          <p class="srv-desc"><?php echo $serviceSaaS->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Architecture multi-tenant scalable</li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Auth, RBAC & onboarding guidé</li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Facturation & abonnements Stripe</li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
+          </ul>
+            <a href="<?php echo $serviceSaaS->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint">Construire mon SaaS</span></div>
+              <div class="sb-knob"><i class="fal fa-desktop"></i></div>
+            </a>
+        </div>
+      </div>
+
+      <!-- AI -->
+      <?php $serviceIA = service::find(17,$_SESSION['lang']); ?>
+      <div class="srv-card">
+        <div class="srv-card-border"></div>
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+             <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceIA->getPhoto(); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag">Agents IA</div>
+          <div class="srv-visual-num">04</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title">Agents <em>IA</em></h3>
+          <p class="srv-desc"><?php echo $serviceIA->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Architecture multi-tenant scalable</li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Auth, RBAC & onboarding guidé</li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Facturation & abonnements Stripe</li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
+          </ul>
+            <a href="<?php echo $serviceIA->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint">Construire mon agent</span></div>
+              <div class="sb-knob"><i class="fal fa-robot"></i></div>
+            </a>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cards = document.querySelectorAll('#srvGrid3d .srv-card');
+  if(rm || !cards.length) return;
+
+  cards.forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = e.clientX - r.left, y = e.clientY - r.top;
+      var px = x / r.width, py = y / r.height;
+      card.style.setProperty('--mx', (px * 100) + '%');
+      card.style.setProperty('--my', (py * 100) + '%');
+      var rx = (py - .5) * -10;
+      var ry = (px - .5) * 10;
+      card.style.transition = 'box-shadow .45s cubic-bezier(0.23,1,0.32,1),border-color .45s';
+      card.style.transform = 'perspective(1400px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px) scale(1.015)';
+    });
+
+    card.addEventListener('mouseleave', function(){
+      card.style.transition = 'transform .55s cubic-bezier(0.23,1,0.32,1),box-shadow .45s,border-color .45s';
+      card.style.transform = '';
+    });
+  });
+})();
+</script>
+
 <section class="services" id="services">
   <div class="container">
     <div class="services-header">
@@ -601,17 +762,18 @@ img,video{display:block;max-width:100%}
         <h2 class="sec-title rv d1">Ce que nous <em>construisons</em></h2>
       </div>
     </div>
-    <div class="svc-grid rv d1">
+    <div class="svc-grid rv d1" id="svcGrid3d">
       <?php $icones = array('fal fa-desktop','fal fa-robot','fal fa-wand-magic','fal fa-phone-laptop','fal fa-search','fal fa-pencil-paintbrush'); ?>
       <?php $cpt = 0; ?>
       <?php foreach($services as $service): ?>
       <div class="svc-card">
+        <div class="svc-card-border"></div>
         <a href="<?php echo $service->getLink(); ?>">
         <div class="svc-num">0<?php echo $cpt+1; ?></div>
         <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
         <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
         <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
-        <a href="<?php echo $service->getLink(); ?>" class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></a>
+        <span class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></span>
         </a>
       </div>
       <?php $cpt++; ?>
@@ -619,6 +781,33 @@ img,video{display:block;max-width:100%}
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cards = document.querySelectorAll('#svcGrid3d .svc-card');
+  if(rm || !cards.length) return;
+
+  cards.forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = e.clientX - r.left, y = e.clientY - r.top;
+      var px = x / r.width, py = y / r.height;
+      card.style.setProperty('--mx', (px * 100) + '%');
+      card.style.setProperty('--my', (py * 100) + '%');
+      var rx = (py - .5) * -10;
+      var ry = (px - .5) * 10;
+      card.style.transition = 'box-shadow .45s cubic-bezier(0.23,1,0.32,1),border-color .45s';
+      card.style.transform = 'perspective(1400px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px) scale(1.015)';
+    });
+
+    card.addEventListener('mouseleave', function(){
+      card.style.transition = 'transform .55s cubic-bezier(0.23,1,0.32,1),box-shadow .45s,border-color .45s';
+      card.style.transform = '';
+    });
+  });
+})();
+</script>
 
 <!-- ══ POURQUOI NOUS CHOISIR ════════════════════════════════════
      Desktop: title + bullets overlaid on left white zone of image.
@@ -786,134 +975,6 @@ img,video{display:block;max-width:100%}
       </div>
       <?php $cpt++; ?>
       <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-
-<section class="srv-section" id="services-dev">
-  <div class="container">
-    <div class="services-header">
-      <div>
-        <div class="sec-label rv">Développement</div>
-        <h2 class="sec-title rv d1">Nos services <em>core</em></h2>
-      </div>
-    </div>
-    <div class="srv-grid rv d2">
-
-      <div id="owl-core-services" class="owl-carousel owl-theme">
-        
-      <!-- Web -->
-      <?php $serviceWeb = service::find(38,$_SESSION['lang']); ?> 
-      <div class="srv-card">
-        <div class="srv-visual">
-          <div class="srv-visual-bg">
-              
-              
-              <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceWeb->getPhotoBanniere(); ?>" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
-          </div>
-          <div class="srv-visual-tag">Web & Front-end</div>
-          <div class="srv-visual-num">01</div>
-        </div>
-        <div class="srv-body">
-          <h3 class="srv-title">Développement <em>Web</em></h3>
-          <p class="srv-desc"><?php echo $serviceWeb->getTexteAccueil(); ?></p>
-          <ul class="srv-features">
-            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Design UI/UX sur-mesure</li>
-            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>React / Next.js & TypeScript</li>
-            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>API REST / GraphQL & back-end</li>
-            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO technique & Core Web Vitals</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Déploiement cloud & CI/CD</li>
-          </ul>
-            <a href="<?php echo $serviceWeb->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Démarrer un projet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Démarrer un projet</span></div>
-              <div class="sb-knob"><i class="fal fa-laptop-code"></i></div>
-            </a>
-        </div>
-      </div>
-
-      <!-- Mobile -->
-      <?php $serviceMobile = service::find(39,$_SESSION['lang']); ?> 
-      <div class="srv-card">
-        <div class="srv-visual">
-          <div class="srv-visual-bg">
-            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceMobile->getPhoto(); ?>" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
-          </div>
-          <div class="srv-visual-tag">iOS & Android</div>
-          <div class="srv-visual-num">02</div>
-        </div>
-        <div class="srv-body">
-          <h3 class="srv-title">Applications <em>Mobile</em></h3>
-          <p class="srv-desc"><?php echo $serviceMobile->getTexteAccueil(); ?></p>
-          <ul class="srv-features">
-            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iOS & Android natif / React Native</li>
-            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>UI/UX mobile-first & micro-animations</li>
-            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Push, mode offline & biométrie</li>
-            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Paiement in-app (Stripe / IAP)</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Publication stores & mises à jour OTA</li>
-          </ul>
-            <a href="<?php echo $serviceMobile->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les apps" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir les apps</span></div>
-              <div class="sb-knob"><i class="fal fa-mobile"></i></div>
-            </a>
-        </div>
-      </div>
-
-      <!-- SaaS -->
-      <?php $serviceSaaS = service::find(1,$_SESSION['lang']); ?> 
-      <div class="srv-card">
-        <div class="srv-visual">
-          <div class="srv-visual-bg">
-            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceSaaS->getPhoto(); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
-          </div>
-          <div class="srv-visual-tag">SaaS & Plateformes</div>
-          <div class="srv-visual-num">03</div>
-        </div>
-        <div class="srv-body">
-          <h3 class="srv-title">Plateformes <em>SaaS</em></h3>
-          <p class="srv-desc"><?php echo $serviceSaaS->getTexteAccueil(); ?></p>
-          <ul class="srv-features">
-            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Architecture multi-tenant scalable</li>
-            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Auth, RBAC & onboarding guidé</li>
-            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Facturation & abonnements Stripe</li>
-            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
-          </ul>
-            <a href="<?php echo $serviceSaaS->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Construire mon SaaS" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Construire mon SaaS</span></div>
-              <div class="sb-knob"><i class="fal fa-desktop"></i></div>
-            </a>
-        </div>
-      </div>
-
-      <!-- AI -->
-      <?php $serviceIA = service::find(17,$_SESSION['lang']); ?> 
-      <div class="srv-card">
-        <div class="srv-visual">
-          <div class="srv-visual-bg">
-             <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceIA->getPhoto(); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
-          </div>
-          <div class="srv-visual-tag">Agents IA</div>
-          <div class="srv-visual-num">04</div>
-        </div>
-        <div class="srv-body">
-          <h3 class="srv-title">Agents <em>IA</em></h3>
-          <p class="srv-desc"><?php echo $serviceIA->getTexteAccueil(); ?></p>
-          <ul class="srv-features">
-            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Architecture multi-tenant scalable</li>
-            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Auth, RBAC & onboarding guidé</li>
-            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Facturation & abonnements Stripe</li>
-            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
-          </ul>
-            <a href="<?php echo $serviceIA->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Construire mon agent" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Construire mon agent</span></div>
-              <div class="sb-knob"><i class="fal fa-robot"></i></div>
-            </a>
-        </div>
-      </div>
-
-      </div>
-
     </div>
   </div>
 </section>

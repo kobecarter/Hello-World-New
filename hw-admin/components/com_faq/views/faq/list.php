@@ -87,7 +87,7 @@
                                 <input type="checkbox" class="checkElement" value="<?php echo $faq->getId();?>">
                             </td>
                             <td><?= $faq->getId(); ?></td>
-                            <td><?= $faq->getService()->getTitre(); ?></td>
+                            <td><?= $faq->getService() ? $faq->getService()->getTitre() : ($faq->getAgentIa() ? '🤖 ' . $faq->getAgentIa()->getTitre() : '—'); ?></td>
                             <td><?= $faq->getTitre(); ?></td>
                             <td class="text-center">
                                 <?php if ($faq->isActive() && $_SESSION['user']->hasDroit('edit', 'com_faq')) { ?>

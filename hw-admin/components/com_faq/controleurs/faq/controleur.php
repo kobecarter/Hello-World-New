@@ -139,7 +139,11 @@ function buildBlog($data, $id = null)
     if($id){
         $faq->setId($id);
     }
-    $faq->setService(service::find($data['id_service'],$_SESSION['langue']));
+    if(isset($data['faq_type']) && $data['faq_type'] === 'agent_ia' && !empty($data['id_agent_ia'])){
+        $faq->setAgentIa(agent_ia::find($data['id_agent_ia'],$_SESSION['langue']));
+    } else {
+        $faq->setService(service::find($data['id_service'],$_SESSION['langue']));
+    }
     $faq->setActive(isset($data['active']) ? 1 : 0);
     $faq->setTitre($data['titre']);
     $faq->setTexte($data['texte']);

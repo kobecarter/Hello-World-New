@@ -7,6 +7,7 @@ class faq
 
     private $id;
     private $service;
+    private $agentIa;
     private $titre;
     private $texte;
     private $active;
@@ -27,6 +28,11 @@ class faq
     public function getService()
     {
         return $this->service;
+    }
+
+    public function getAgentIa()
+    {
+        return $this->agentIa;
     }
 
     public function isActive()
@@ -74,6 +80,11 @@ class faq
         $this->service = $service;
     }
 
+    public function setAgentIa($agentIa)
+    {
+        $this->agentIa = $agentIa;
+    }
+
     public function setTitre($titre)
     {
         $this->titre = $titre;
@@ -109,8 +120,9 @@ class faq
     {
         global $db;
 
-        $SQLinsert = sprintf("INSERT INTO " . static::$table . " (id_service, active, date_add, last_edit) VALUES (%s, %s, %s, %s)",
-            GetSQLValueString($this->service->getId(), "int"),
+        $SQLinsert = sprintf("INSERT INTO " . static::$table . " (id_service, id_agent_ia, active, date_add, last_edit) VALUES (%s, %s, %s, %s, %s)",
+            GetSQLValueString($this->service ? $this->service->getId() : null, "int"),
+            GetSQLValueString($this->agentIa ? $this->agentIa->getId() : null, "int"),
             GetSQLValueString($this->active, "int"),
             GetSQLValueString($this->date_add, "date"),
             GetSQLValueString($this->last_edit, "date")
@@ -137,10 +149,11 @@ class faq
     public function edit()
     {
         global $db;
-        $SQLupdate = sprintf("UPDATE " . static::$table . " SET id_service = %s, active = %s, last_edit = %s WHERE id = %s",
-            GetSQLValueString($this->service->getId(), "int"),
+        $SQLupdate = sprintf("UPDATE " . static::$table . " SET id_service = %s, id_agent_ia = %s, active = %s, last_edit = %s WHERE id = %s",
+            GetSQLValueString($this->service ? $this->service->getId() : null, "int"),
+            GetSQLValueString($this->agentIa ? $this->agentIa->getId() : null, "int"),
             GetSQLValueString($this->active, "int"),
-            GetSQLValueString($this->last_edit, "date"), 
+            GetSQLValueString($this->last_edit, "date"),
             GetSQLValueString($this->id, "int")
         );
         if (!$db->query($SQLupdate)) {
@@ -234,7 +247,7 @@ class faq
         return $faq;
     }
 
-    public static function findAll($langue, $active = false, $service = false, $limit = false)
+    public static function findAll($langue, $active = false, $service = false, $limit = false, $agentIa = false)
     {
         global $db;
         $items = array();
@@ -246,6 +259,9 @@ class faq
         }
         if($service){
             $SQLselect .= " AND id_service = $service";
+        }
+        if($agentIa){
+            $SQLselect .= " AND id_agent_ia = $agentIa";
         }
 				
 		$SQLselect .= " ORDER BY id_faq ASC";
@@ -294,7 +310,12 @@ class faq
         $faq = new faq();
         
         $faq->setId($data['ID']);
-        $faq->setService(service::find($data['id_service'],$data['langue']));
+        if (!empty($data['id_service'])) {
+            $faq->setService(service::find($data['id_service'],$data['langue']));
+        }
+        if (!empty($data['id_agent_ia'])) {
+            $faq->setAgentIa(agent_ia::find($data['id_agent_ia'],$data['langue']));
+        }
         $faq->setActive($data['active']);
         $faq->setTitre($data['titre']);
         $faq->setTexte($data['texte']);

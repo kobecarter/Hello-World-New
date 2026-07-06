@@ -259,7 +259,7 @@ class menu
         <div class="visual stag"
              style="--i:0"
              data-def-service="'.htmlspecialchars($brandExperience->getTitre(), ENT_QUOTES, 'UTF-8').'"
-             data-def-desc="'.htmlspecialchars(strip_tags($brandExperience->getExtrait()), ENT_QUOTES, 'UTF-8').'"
+             data-def-desc="'.htmlspecialchars(html_entity_decode(strip_tags($brandExperience->getExtrait()), ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8').'"
              data-def-ico="palette"
              data-def-grad="grad-brand"
              data-def-img="'.$siteURL.'images/pages/branding.webp"
@@ -315,7 +315,7 @@ class menu
                 $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
                 // $testimonial = $testimonials[array_rand($testimonials)];
                 $packsHtmlBank = '';
-                
+
                 foreach($packs as $pack){
                     $packsHtmlBank .= '
                     <a class="pack grad-web" href="'.$service->getLink().'">
@@ -326,55 +326,78 @@ class menu
                             <span class="pk-title">'.htmlspecialchars($pack->getTitre(), ENT_QUOTES, 'UTF-8').'</span>
                     </a>';
                 }
+                $brandDescFull = trim(strip_tags($service->getSousTitre() ? $service->getSousTitre() : ($service->getExtrait() ? $service->getExtrait() : $service->getTexteAccueil())));
+                $brandDesc = htmlspecialchars(mb_strimwidth($brandDescFull, 0, 90, '…', 'UTF-8'), ENT_QUOTES, 'UTF-8');
             $menuHTML .= '
-        
+
             <a class="custom-sublink sublink stag"
                style="--i:'.($k + 2).'"
                href="'.$service->getLink().'"
-        
+
                 data-service="'.htmlspecialchars($service->getTitre(), ENT_QUOTES, 'UTF-8').'"
-                data-desc=""
+                data-desc="'.$brandDesc.'"
                 data-img="'.$siteURL.'images/services/'.$service->getPhoto().'"
                 data-packs="'.htmlspecialchars(base64_encode($packsHtmlBank), ENT_QUOTES).'"
                 data-ico="palette"
-                data-grad="grad-brand" 
+                data-grad="grad-brand"
                 data-quote="'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'"
                 data-author="'.$testimonial->getNom().'"
                 data-role="'.htmlspecialchars($testimonial->getFonction(),ENT_QUOTES,'UTF-8').'">
-        
+
                 <span class="thumb grad-brand" data-thumb>
-        
+
                     <img
                         loading="lazy"
                         src="'.$siteURL.'images/services/'.$service->getPhoto().'"
                         alt="'.htmlspecialchars($service->getTitre(), ENT_QUOTES, 'UTF-8').'">
-        
+
                     <span class="thumb-ico"></span>
-        
+
                 </span>
-        
+
                 <span class="tx">
-        
+
                     <span class="ttl">
                         '.$service->getTitre().'
                     </span>
-        
+
                     <span class="desc">
-                  
+                        '.$brandDesc.'
                     </span>
-        
+
                 </span>
-        
+
             </a>';
         }
         $menuHTML .= '
-        
+
+            <a class="custom-sublink sublink sublink-all stag"
+               style="--i:'.(count($brandSeviceChild) + 2).'"
+               href="'.$brandExperience->getLink().'"
+                data-service="Toutes nos expertises Brand Experience"
+                data-desc="Découvrez l\'ensemble de nos expertises en création de marque."
+                data-img="'.$siteURL.'images/pages/branding.webp"
+                data-ico="palette"
+                data-grad="grad-brand">
+
+                <span class="thumb grad-brand" data-thumb>
+                    <img loading="lazy" src="'.$siteURL.'images/pages/branding.webp" alt="Toutes nos expertises Brand Experience" onerror="this.style.display=\'none\'">
+                    <span class="thumb-ico" style="font-size:1.4rem">&#8594;</span>
+                </span>
+
+                <span class="tx">
+                    <span class="ttl">Voir toute l\'offre Brand Experience</span>
+                    <span class="desc">'.count($brandSeviceChild).' expertises disponibles</span>
+                </span>
+
+            </a>
+
                     </div>
-        
+
                 </div>
-        
+
             </div>
-              
+
              <div class="packs stag" style="--i:10">
           <p class="packs-title">Découvrez nos packs</p>
           <div class="packs-grid" id="packsGrid1">
@@ -482,10 +505,36 @@ $menuHTML .= '
                     </ul>
             
                 </a>';
-            } 
+            }
             $menuHTML .= '
-          
-              
+                <a class="card sublink-all stag" style="--i:'.(count($webMobileChild) + 1).'"
+                   href="'.$webMobile->getLink().'"
+
+                   data-service="Toutes nos offres Web &amp; Mobile"
+                   data-img="'.$siteURL.'images/services/'.$webMobile->getPhoto().'"
+                   data-ico="globe"
+                   data-grad="grad-web">
+
+                    <div class="card-h">
+
+                        <span class="thumb grad-web">
+                            <img
+                                src="'.$siteURL.'images/services/'.$webMobile->getPhoto().'"
+                                alt="Toutes nos offres Web &amp; Mobile">
+                        </span>
+
+                    </div>
+
+                    <h3 class="card-title">
+                        Voir toute l\'offre Web &amp; Mobile
+                    </h3>
+                    <ul class="feat">
+                    <li>'.count($webMobileChild).' expertises disponibles</li>
+                    </ul>
+
+                </a>
+
+
           </div>
           
           </div>
@@ -606,15 +655,24 @@ $menuHTML .= '
               <div class="vactions"><a class="v-pill v-disc" href="' . $formationIa->getLink() . '">Voir le calendrier →</a><a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a></div></div>
           </div>
           <div class="mega-content">
-            <a class="sublink stag" style="--i:1" href="' . $formationIa->getLink() . '" data-service="Master Class Dirigeants IA" data-desc="Stratégie IA pour décideurs et C-level — 1 jour." data-ico="cap" data-grad="grad-form" data-img="https://loremflickr.com/600/700/conference,executive?lock=27" data-quote="Mon comité de direction a enfin une vision IA claire." data-author="Patrick D." data-role="CEO, Groupe Méridien"><span class="thumb grad-form" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/conference,executive?lock=27" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Master Class Dirigeants IA <em>(1 jour)</em></span><span class="desc">Stratégie pour décideurs et C-level</span></span></a>
-            <a class="sublink stag" style="--i:2" href="' . $formationIa->getLink() . '" data-service="Master Class Dirigeants" data-desc="CEO, DG, Directeurs & C-Level." data-ico="gear" data-grad="grad-form" data-img="https://loremflickr.com/600/700/coding,workshop?lock=28" data-quote="Mon équipe automatise déjà ses tâches répétitives."><span class="thumb grad-form" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/coding,workshop?lock=28" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Master Class Dirigeants <em>(1 journée)</em></span><span class="desc">CEO, DG, Directeurs & C-Level</span></span></a>
-            <a class="sublink stag" style="--i:3" href="' . $formationIa->getLink() . '" data-service="Bootcamp No-Code IA" data-desc="équipes opérationnelles, chefs de projet" data-ico="press" data-grad="grad-form" data-img="https://loremflickr.com/600/700/marketing,team?lock=29" data-quote="Nos campagnes sont passées à la vitesse supérieure." ><span class="thumb grad-form" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/marketing,team?lock=29" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Bootcamp No-Code IA <em>(3 jours)</em></span><span class="desc">Equipes opérationnelles, chefs de projet</span></span></a>
-            <a class="sublink stag" style="--i:4" href="' . $formationIa->getLink() . '" data-service="Formation IA Marketing" data-desc="équipes marketing, content, social media" data-ico="share" data-grad="grad-form" data-img="https://loremflickr.com/600/700/workshop,whiteboard?lock=30" data-quote="On a conçu notre premier agent en une seule journée."><span class="thumb grad-form" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/workshop,whiteboard?lock=30" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Formation IA Marketing <em>(2 jours)</em></span><span class="desc">Equipes marketing, content, social media</span></span></a>
-            <a class="sublink stag" style="--i:5" href="' . $formationIa->getLink() . '" data-service="Atelier Agents IA" data-desc="Développeurs, architectes, tech leads" data-ico="star" data-grad="grad-form" data-img="https://loremflickr.com/600/700/meeting,consulting?lock=31" data-quote="Un programme taillé pile pour nos enjeux internes."><span class="thumb grad-form" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/meeting,consulting?lock=31" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Atelier Agents IA <em>(2 jours)</em></span><span class="desc">Développeurs, architectes, tech leads</span></span></a>
-            <div class="tags stag" style="--i:6; padding-left:8px; margin-top:6px;"><span class="tag">n8n</span><span class="tag">Claude</span><span class="tag">ChatGPT</span><span class="tag">Make</span><span class="tag">Notion</span><span class="tag">Zapier</span></div>
+            ';
+            // Liste dynamique : chaque formation active pointe vers sa propre page de détail.
+            // Une future formation ajoutée depuis l'admin apparaît ici automatiquement, sans retouche du menu.
+            $formationsAll = formation::findAll($_SESSION['lang'], true);
+            foreach ($formationsAll as $fIndex => $frm) {
+                $fImg    = $frm->getPhoto() ? $siteURL.'images/formations/'.$frm->getPhoto() : $siteURL.'images/pages/formation.webp';
+                $fTitre  = htmlspecialchars($frm->getTitre(), ENT_QUOTES, 'UTF-8');
+                $fDescFull = trim(strip_tags($frm->getSousTitre() ? $frm->getSousTitre() : $frm->getExtrait()));
+                $fDesc   = htmlspecialchars(mb_strimwidth($fDescFull, 0, 70, '…'), ENT_QUOTES, 'UTF-8');
+                $menuHTML .= '
+            <a class="sublink stag" style="--i:'.($fIndex + 1).'" href="'.$frm->getLink().'" data-service="'.$fTitre.'" data-desc="'.$fDesc.'" data-ico="cap" data-grad="grad-form" data-img="'.$fImg.'" data-quote="" data-author="" data-role=""><span class="thumb grad-form" data-thumb><img loading="lazy" src="'.$fImg.'" alt="'.$fTitre.'" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$fTitre.'</span><span class="desc">'.$fDesc.'</span></span></a>';
+            }
+            $menuHTML .= '
+            <a class="sublink sublink-all stag" style="--i:'.(count($formationsAll) + 1).'" href="' . $formationIa->getLink() . '" data-service="Toutes nos formations" data-desc="D&eacute;couvrez l\'ensemble du catalogue Hello World Academy." data-ico="grid" data-grad="grad-form" data-img="'.$siteURL.'images/pages/formation.webp" data-quote="" data-author="" data-role=""><span class="thumb grad-form" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/formation.webp" alt="Toutes nos formations" onerror="this.style.display=\'none\'"><span class="thumb-ico" style="font-size:1.4rem">&#8594;</span></span><span class="tx"><span class="ttl">Voir toutes nos formations</span><span class="desc">'.count($formationsAll).' programmes disponibles</span></span></a>
+            <div class="tags stag" style="--i:'.(count($formationsAll) + 2).'; padding-left:8px; margin-top:6px;"><span class="tag">n8n</span><span class="tag">Claude</span><span class="tag">ChatGPT</span><span class="tag">Make</span><span class="tag">Notion</span><span class="tag">Zapier</span></div>
           </div>
         </div>
-      
+
         <div class="mega-foot stag" style="--i:7"><p class="foot-title" data-foottitle></p><div class="foot-row">
         <div class="rating">
         <span class="rating-num">Reviews Score 5,0</span>
