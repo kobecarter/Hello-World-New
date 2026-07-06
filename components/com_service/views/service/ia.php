@@ -792,22 +792,27 @@
         </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-band">
+
+
+<!-- ══ CTA FINAL ══════════════════════════════════════════════════════════ -->
+<section class="hw-f-list-cta-final cta-hw-final">
+  <video class="hw-f-list-cta-final-video" autoplay muted loop playsinline preload="auto" poster="<?= $siteURL; ?>assets/video/hw-academy-cta-poster.jpg">
+    <source src="<?= $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label">Commencer maintenant</div>
-    <h2 class="sec-title">Votre premier agent IA<br><em>opérationnel en 3 semaines</em></h2>
-    <p class="cta-sub">Un audit gratuit de 90 minutes avec nos experts pour identifier vos 3 meilleurs cas d'usage IA.</p>
-    <div class="cta-btns">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
-          <div class="sb-knob"><i class="fal fa-search"></i></div>
-        </a>
-    
-        <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir le catalogue" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Voir le catalogue</span></div>
-          <div class="sb-knob"><i class="fal fa-eye"></i></div>
-        </a>
+    <div class="sec-label rv">Commencer maintenant</div>
+    <h2 class="sec-title rv d1">Votre premier agent IA<br><em>opérationnel en 3 semaines</em></h2>
+    <p class="hw-f-list-cta-sub rv d2">Un audit gratuit de 90 minutes avec nos experts pour identifier vos 3 meilleurs cas d'usage IA.</p>
+    <div class="cta-btns rv d3" style="justify-content:center">
+      <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
+        <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
+        <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
+      </a>
+      <a href="<?= $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
+        <div class="sb-label"><span class="sb-hint">Voir le catalogue</span></div>
+        <div class="sb-knob"><i class="fal fa-comment-dots"></i></div>
+      </a>
     </div>
   </div>
 </section>

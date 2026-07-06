@@ -242,24 +242,25 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
     </div>
   </div>
 </section>
-
-<!-- CTA -->
-<section class="cta-band">
+<!-- ══ CTA FINAL ══════════════════════════════════════════════════════════ -->
+<section class="hw-f-list-cta-final cta-hw-final">
+  <video class="hw-f-list-cta-final-video" autoplay muted loop playsinline preload="auto" poster="<?= $siteURL; ?>assets/video/hw-academy-cta-poster.jpg">
+    <source src="<?= $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label">Lancer votre produit</div>
-    <h2 class="sec-title">Votre MVP prêt<br><em>en 6 semaines</em></h2>
-    <p class="cta-sub">Partagez votre idée. Nous vous livrons un prototype en 48h et un MVP fonctionnel en 6 semaines.</p>
-    <div class="cta-btns">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Démarrer votre MVP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Démarrer votre MVP</span></div>
-          <div class="sb-knob"><i class="fal fa-desktop"></i></div>
-        </a>
-    
+    <div class="sec-label rv">Lancer votre produit</div>
+    <h2 class="sec-title rv d1">Votre MVP prêt<br><em>en 6 semaines</em></h2>
+    <p class="hw-f-list-cta-sub rv d2">Partagez votre idée. Nous vous livrons un prototype en 48h et un MVP fonctionnel en 6 semaines.</p>
+    <div class="cta-btns rv d3" style="justify-content:center">
+      <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
+        <div class="sb-label"><span class="sb-hint">Démarrer votre MVP</span></div>
+        <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
+      </a>
         <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir le marketplace IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Voir le marketplace IA</span></div>
           <div class="sb-knob"><i class="fal fa-shopping-basket"></i></div>
         </a>
-            
     </div>
   </div>
 </section>
