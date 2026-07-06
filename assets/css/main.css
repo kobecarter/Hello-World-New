@@ -655,8 +655,8 @@ footer.foot-in::before{animation:foot-line 1.8s ease forwards}
 /* INTEGRATION GRID */
 .integrations{padding:7rem 0;background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .int-grid, .int-right{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:22px;overflow:hidden;margin-top:3.5rem}
-.int-item{background:var(--bg3);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;transition:background .25s;cursor:default}
-.int-item:hover{background:var(--bg2)}
+.int-item{background:var(--bg2);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;transition:background .25s;cursor:default}
+.int-item:hover{background:var(--bg)}
 .int-icon{font-size:1.6rem;color:var(--txt2);transition:color .25s}
 .int-item:hover .int-icon{color:var(--gold)}
 .int-name{font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);text-align:center;transition:color .25s}
@@ -1157,10 +1157,13 @@ footer .nav-tabs .nav-link{
   position: relative;
   font-weight: 100;
   transition: all 0.3s ease;
-text-align: center;
+  text-align: center;
 }
 .item-process .num img {
     height: 84px;
+}
+.item-process:hover .num img {
+    filter: brightness(100);
 }
 .item-process h4, .item-process h3{
   text-align: center;
@@ -1545,7 +1548,7 @@ font-family: var(--fm);
 @media screen and (max-width: 768px) {
   .item-step {
     padding: 10px 10px;
-    margin: 10px 20px;
+    margin: 15px 0;
   }
   .item-step .number-step {
     font-size: 100px;
@@ -1926,9 +1929,6 @@ font-family: var(--fm);
     font-size: 2.5rem;
     font-weight: 100;
 }
-.cs-portfolio_1_heading .cs-isotop_filter {
-    margin-bottom: 15px;
-}
 .cs-mp0 {
     list-style: none;
     margin: 0;
@@ -1946,7 +1946,7 @@ font-family: var(--fm);
     justify-content: center;
 }
 .cs-isotop_filter.cs-style1 ul {
-    border-bottom: 1px solid #999696;
+    border-bottom: 1px solid var(--bg3);
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     display: -webkit-inline-box;
@@ -1955,17 +1955,21 @@ font-family: var(--fm);
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
+    padding-bottom: 15px;
 }
 .cs-isotop_filter.cs-style1 li {
     margin-top: 10px;
 }
 .cs-isotop_filter.cs-style1 li:not(:last-child) {
-    margin-right: 28px;
+    margin-right: 15px;
 }
 .cs-isotop_filter.cs-style1 a {
     display: inline-block;
     position: relative;
-    padding-bottom: 10px;
+    background: var(--bg2);
+    border: var(--bg3) solid 1px;
+    padding: 5px 10px;
+    border-radius: 20px;
 }
 .cs-isotop_filter.cs-style1 .active a {
     color: #5bc5e0;
@@ -2047,6 +2051,7 @@ font-family: var(--fm);
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: 15px;
 }
 /*.div-gallery-photo::before {*/
 /*    content: "";*/
@@ -2107,9 +2112,9 @@ font-family: var(--fm);
   opacity: 1;
   height: 100%;
 }
-.div-gallery-photo:hover a{
+/* .div-gallery-photo:hover a{
     top: 80% !important;
-}
+} */
 .influencer-galerie .cs-isotop{
     display: flex !important;
     flex-wrap: wrap !important;
@@ -2273,6 +2278,9 @@ font-family: var(--fm);
 .videotheque{
     padding: 8rem 0;
 }
+.photo-shooting{
+  margin: 0 30px;
+}
 .photo-shooting .cs-isotop{
         display: flex;
     flex-wrap: wrap;
@@ -2280,7 +2288,15 @@ font-family: var(--fm);
 
 /* ---------------------------- Liste des packs ---------------------------- */
 /* PRICING & OFFERS */
-.pack-section{padding:8rem 0;background:var(--bg);margin-bottom: 0;}
+.pack-section{
+  padding:8rem 0;
+  background:var(--bg);
+  margin-bottom: 0;
+}
+
+.page-detail-service .pack-section{
+  padding:0;
+}
 
 @media (min-width: 1200px) {
     .pack-section .container{
@@ -4427,6 +4443,31 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
 .case-metric-label{font-size:.7rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.08em}
 @media(max-width:767px){.case-grid{grid-template-columns:1fr}}
 
+/* WEB MOBILE HERO */
+.wm-hero{position:relative;padding:10rem 0 9rem;background:var(--bg);overflow:hidden;height: 100vh;}
+.wm-hero-grid{position:absolute;inset:0;z-index:0;overflow:hidden}
+.wm-hero-grid svg{width:100%;height:100%;opacity:.045}
+.wm-hero .container{position:relative;z-index:2}
+.wm-hero-inner{display:grid;grid-template-columns:1fr 400px;gap:4rem}
+.wm-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
+.wm-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
+.wm-hero-title{font-family:var(--fm);font-weight:300;font-size:84px;line-height:1.1;letter-spacing:-.04em;color:var(--txt);margin-bottom:2.5rem}
+.wm-hero-title em{font-style:normal;color:var(--gold);font-weight:200}
+.wm-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:2rem}
+.wm-hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.wm-hero-side{position:relative}
+.wm-screen{background:var(--txt);border-radius:18px;overflow:hidden;aspect-ratio:9/16;max-width:200px;margin:0 auto;position:relative;box-shadow:0 40px 120px rgba(0,0,0,.18)}
+.wm-screen::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,106,34,.12) 0%,transparent 60%)}
+.wm-screen-gfx{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:24px 16px}
+.wm-bar{height:4px;border-radius:2px;background:rgba(247,245,242,.08)}
+.wm-bar.hi{background:rgba(139,106,34,.4);width:60%}
+.wm-bar.mid{width:80%}
+.wm-bar.sm{width:45%}
+.wm-screen-dot{width:32px;height:32px;border-radius:50%;background:rgba(139,106,34,.3);margin:8px 0}
+.wm-tablet{position:absolute;right:-40px;top:60px;background:#1a1815;border-radius:12px;width:260px;aspect-ratio:4/3;box-shadow:0 24px 80px rgba(0,0,0,.22);overflow:hidden}
+.wm-tablet::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(139,106,34,.04) 28px,rgba(139,106,34,.04) 29px)}
+@media(max-width:1024px){.wm-hero-inner{grid-template-columns:1fr}.wm-hero-side{display:none}}
+
 /* ── VERSION MOBILE ── */
 @media(max-width:767px){
     .cur, .cur2{
@@ -4759,6 +4800,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
     }
     .pack-box{
       display: block;
+      margin-top: 0;
     }
     .pack-box .item-pack{
       padding-top: 20px;
@@ -4774,6 +4816,65 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
     }
     .case-card{
       padding: 2rem;
+    }
+    .collaps .collaps-item h3{
+      font-size: 18px;
+    }
+    .service-content p{
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+    .service-banner-img{
+      display: none;
+    }
+    .page-detail-service .pack-section .container{
+      padding:0;
+    }
+    .service-details-h4-h4{
+      text-align: center;
+    }
+    .service-content .int-grid, .service-content .int-right{
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .item-discover-video, .item-discover-video.big-item{
+      height: 300px;
+    }
+    .div-gallery-photo{
+      height: 200px;
+    }
+    .cs-isotop_col_3 .cs-grid_sizer, .cs-isotop_col_3 .cs-isotop_item{
+      width: 50%;
+    }
+    .photo-shooting{
+      padding: 0 15px;
+      margin: 0;
+    }
+    .div-gallery-photo img{
+      border-radius: 10px;
+    }
+    .div-gallery-photo a{
+      height: 50px;
+      width: 50px;
+      font-size: 20px;
+    }
+    .div-gallery-photo a i{
+      margin-top: 15px;
+      line-height: normal;
+    }
+    .cs-isotop_filter.cs-style1 a{
+      
+    }
+    .cs-isotop_filter.cs-style1 li:not(:last-child){
+      margin-right: 10px;
+    }
+    .cs-isotop_filter.cs-style1 a{
+      font-size: 12px;
+    }
+    .cs-isotop_filter.cs-style1 ul{
+      padding-bottom: 15px;
+    }
+    .videotheque{
+      padding: 0rem 0 4rem;
     }
 }
 /* ── HW CONCIERGE AI · Charte HWA · v5 ────────────────────────
