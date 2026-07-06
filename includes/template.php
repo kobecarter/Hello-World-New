@@ -66,7 +66,7 @@
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=2.8">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=4.6">
 <style>
 
 .glass-mega{
@@ -796,18 +796,29 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
     function proc(node) {
       if (node.nodeType === 3) {
         const frag = document.createDocumentFragment();
+        let word = document.createElement('span');
+        word.className = 'chw';
+        function flushWord() {
+          if (word.childNodes.length) frag.appendChild(word);
+          word = document.createElement('span');
+          word.className = 'chw';
+        }
         for (const c of node.textContent) {
-          const s = document.createElement('span');
           if (c === ' ' || c === ' ') {
+            flushWord();
+            const s = document.createElement('span');
             s.className = 'ch sp';
             s.innerHTML = '&nbsp;';
+            frag.appendChild(s);
           } else {
+            const s = document.createElement('span');
             s.className = 'ch';
             s.style.setProperty('--ci', ci++);
             s.textContent = c;
+            word.appendChild(s);
           }
-          frag.appendChild(s);
         }
+        flushWord();
         node.parentNode.replaceChild(frag, node);
       } else if (node.nodeType === 1 && node.tagName !== 'BR') {
         Array.from(node.childNodes).forEach(proc);

@@ -9,6 +9,7 @@ switch ($task)
             $submitName = "add";
             $submitValue = "Ajouter faq";
             $services = service::findAll($_SESSION["langue"], true, false,true);
+            $agentsIa = agent_ia::findAll($_SESSION["langue"], true);
             include_once("components/com_faq/views/faq/add.php");
         }
         break;
@@ -21,6 +22,7 @@ switch ($task)
                 $submitName = "edit";
                 $submitValue = "Modifier faq";
                 $services = service::findAll($_SESSION["langue"], true, false,true);
+                $agentsIa = agent_ia::findAll($_SESSION["langue"], true);
                 include_once("components/com_faq/views/faq/edit.php");
             }
         }

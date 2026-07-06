@@ -5,6 +5,14 @@
             <legend>Détails</legend>
 
             <div class="col-md-3 form-group">
+                <label>Rattacher à</label>
+                <select name="faq_type" id="faqType" class="form-control">
+                    <option value="service" <?php if(!isset($faq) || !$faq->getAgentIa()) echo "selected"; ?>>Un service</option>
+                    <option value="agent_ia" <?php if(isset($faq) && $faq->getAgentIa()) echo "selected"; ?>>Un agent IA</option>
+                </select>
+            </div>
+
+            <div class="col-md-3 form-group" id="faqServiceWrap">
                 <label>
                     <?php
                         if(isset($trad_com_faq['SERVICE'][$_SESSION['user']->getLangue()]))
@@ -12,16 +20,43 @@
                         else
                             echo "Service";
                     ?>
-
-                    <span class="text-danger"> * </span>
                 </label>
-                <select name="id_service" class="form-control chosen-select" required>
+                <select name="id_service" class="form-control chosen-select">
                     <option value="0">Aucun(e)</option>
                     <?php foreach($services as $service):?>
-						<option value="<?php echo $service->getId(); ?>" <?php if(isset($faq) && $faq->getService()->getId() == $service->getId()) echo "selected"; ?>><?=$service->getTitre()." (".$service->getId().")"?></option>
+						<option value="<?php echo $service->getId(); ?>" <?php if(isset($faq) && $faq->getService() && $faq->getService()->getId() == $service->getId()) echo "selected"; ?>><?=$service->getTitre()." (".$service->getId().")"?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
+
+            <div class="col-md-3 form-group" id="faqAgentWrap" style="display:none;">
+                <label>Agent IA</label>
+                <select name="id_agent_ia" class="form-control chosen-select">
+                    <option value="0">Aucun</option>
+                    <?php foreach($agentsIa as $ag):?>
+						<option value="<?php echo $ag->getId(); ?>" <?php if(isset($faq) && $faq->getAgentIa() && $faq->getAgentIa()->getId() == $ag->getId()) echo "selected"; ?>><?=$ag->getTitre()." (".$ag->getId().")"?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <script>
+                (function(){
+                    var typeSel = document.getElementById('faqType');
+                    var svcWrap = document.getElementById('faqServiceWrap');
+                    var agWrap  = document.getElementById('faqAgentWrap');
+                    function sync(){
+                        if(typeSel.value === 'agent_ia'){
+                            svcWrap.style.display = 'none';
+                            agWrap.style.display = '';
+                        } else {
+                            svcWrap.style.display = '';
+                            agWrap.style.display = 'none';
+                        }
+                    }
+                    typeSel.addEventListener('change', sync);
+                    sync();
+                })();
+            </script>
 
             <div class="col-md-3 form-group">
                 <label>

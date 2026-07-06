@@ -139,8 +139,11 @@ function buildFormation($data, $id = null)
     $formation->setTypePublic(isset($data['type_public'])        ? $data['type_public']      : '');
     $formation->setDateDebut(isset($data['date_debut'])          ? $data['date_debut']       : null);
     $formation->setDateFin(isset($data['date_fin'])              ? $data['date_fin']         : null);
+    $formation->setDateOuvertureInscription(isset($data['date_ouverture_inscription']) && !empty($data['date_ouverture_inscription']) ? $data['date_ouverture_inscription'] : null);
+    $formation->setDateLimiteInscription(isset($data['date_limite_inscription']) && !empty($data['date_limite_inscription']) ? $data['date_limite_inscription'] : null);
     $formation->setLieu(isset($data['lieu'])                     ? $data['lieu']             : '');
     $formation->setNbParticipants(isset($data['nb_participants']) ? intval($data['nb_participants']) : 0);
+    $formation->setNbParticipantsMin(isset($data['nb_participants_min']) ? intval($data['nb_participants_min']) : 0);
     $formation->setStatus(isset($data['status'])                 ? $data['status']           : 'brouillon');
     $formation->setActive(isset($data['active'])                 ? 1 : 0);
     $formation->setTitre($data['titre']);

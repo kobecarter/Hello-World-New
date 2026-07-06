@@ -91,98 +91,261 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
   <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
 </div></div>
 
-<!-- SERVICES -->
-<section class="be-services" id="services">
+<!-- REFERENCES -->
+<section class="be-refs" id="chiffres">
   <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1rem;gap:2rem;flex-wrap:wrap">
-      <div>
-        <div class="sec-label">Nos Services</div>
-        <h2 class="sec-title rv">Des expertises ciblées pour<br><em> une marque inoubliable</em></h2>
+    <div class="sec-label rv">Nos Références</div>
+    <h2 class="sec-title rv d1">Des <em>résultats</em><br>qui parlent</h2>
+    <div class="be-refs-grid rv d2" id="beRefsGrid">
+      <div class="be-ref-card">
+        <div class="be-ref-icon"><i class="fal fa-swatchbook"></i></div>
+        <div class="be-ref-num"><span class="be-ref-count" data-count="80">0</span><span class="be-ref-suffix">+</span></div>
+        <div class="be-ref-lbl">Marques créées</div>
       </div>
-     
+      <div class="be-ref-card">
+        <div class="be-ref-icon"><i class="fal fa-boxes"></i></div>
+        <div class="be-ref-num"><span class="be-ref-count" data-count="350">0</span><span class="be-ref-suffix">+</span></div>
+        <div class="be-ref-lbl">Projets livrés</div>
+      </div>
+      <div class="be-ref-card">
+        <div class="be-ref-icon"><i class="fal fa-medal"></i></div>
+        <div class="be-ref-num"><span class="be-ref-count" data-count="12">0</span><span class="be-ref-suffix">ans</span></div>
+        <div class="be-ref-lbl">D'expertise créative</div>
+      </div>
+      <div class="be-ref-card">
+        <div class="be-ref-icon"><i class="fal fa-globe"></i></div>
+        <div class="be-ref-num"><span class="be-ref-count" data-count="3">0</span><span class="be-ref-suffix"> pays</span></div>
+        <div class="be-ref-lbl">Studios créatifs</div>
+      </div>
     </div>
-    <div class="ai-grid rv d2">
-         <?php foreach($childServices as $index => $childService): ?>
-         <a href="<?= $childService->getLink(); ?>">
-            <div class="ai-card">
-                <div class="ai-icon-wrap">
-                    <div class="ai-card-icon">
-                 
-                        <?php if($index == 0): ?>
-                            <i class="fal fa-palette"></i>
-                        <?php elseif($index == 1): ?>
-                            <i class="fal fa-user-tie"></i>
-                        <?php elseif($index == 2): ?>
-                            <i class="fal fa-trademark"></i>
-                        <?php elseif($index == 3): ?>
-                       <i class="fal fa-user-plus"></i>
-                        <?php elseif($index == 4): ?>
-                            <i class="fal fa-film"></i>
-                        <?php elseif($index == 5): ?>
-                            <i class="fal fa-camera"></i>
-                        <?php elseif($index == 6): ?>
-                           <i class="fal fa-bullhorn"></i>
-                        <?php elseif($index == 7): ?>
-                            <i class="fal fa-pen-fancy"></i>
-                        <?php elseif($index == 8): ?>
-                            <i class="fal fa-calendar-check"></i>
-                        <?php elseif($index == 9): ?>
-                            <i class="fal fa-chart-line"></i>
-                        <?php else: ?>
-                            <i class="fal fa-rocket"></i>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <h3 class="ai-card-title"><?= $childService->getTitre(); ?></h3>
-                <p class="ai-card-desc"><?= $childService->getTexteAccueil(); ?><p>
-             </div>
-         </a>
-       <?php endforeach; ?>
   </div>
+</section>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nums = document.querySelectorAll('#beRefsGrid .be-ref-count');
+  if(!nums.length) return;
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    if(rm){ el.textContent = target; return; }
+    var start = null, duration = 1400;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min(1, (ts - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        nums.forEach(animateCount);
+        io.disconnect();
+      }
+    });
+  }, {threshold:.35});
+  io.observe(document.getElementById('beRefsGrid'));
+})();
+</script>
+
+<!-- SERVICES -->
+<section class="be-services hw-f-list-catalogue" id="services">
+  <div class="container">
+    <div class="sec-label rv">Nos Services</div>
+    <h2 class="sec-title rv d1">Des expertises ciblées pour<br><em> une marque inoubliable</em></h2>
+    <div class="hw-f-list-track-hint rv d2"><i class="fal fa-arrows-left-right"></i> Faites défiler pour parcourir nos <?= count($childServices); ?> expertises</div>
+  </div>
+
+  <?php if (!empty($childServices)):
+    $beIcons = ['fa-palette','fa-user-tie','fa-trademark','fa-user-plus','fa-film','fa-camera','fa-bullhorn','fa-pen-fancy','fa-calendar-check','fa-chart-line','fa-rocket'];
+  ?>
+  <div class="hw-f-list-pin" id="beServicesPin">
+    <div class="hw-f-list-track" id="beServicesTrack">
+      <div class="hw-f-list-track-spacer" id="beServicesSpacerStart" aria-hidden="true"></div>
+      <?php foreach($childServices as $index => $childService):
+        $icon   = $beIcons[$index % count($beIcons)];
+        $isGold = $index % 2 === 0;
+      ?>
+      <a class="hw-f-list-card-3d" href="<?= $childService->getLink(); ?>">
+        <?php if ($childService->getPhoto()): ?>
+        <div class="hw-f-list-card-3d-photo">
+          <img src="<?= $siteURL; ?>images/services/<?= htmlspecialchars($childService->getPhoto(), ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($childService->getTitre(), ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
+          <span class="hw-f-list-card-badge <?= $isGold ? 'gold' : 'purple'; ?>">Expertise</span>
+        </div>
+        <?php endif; ?>
+        <div class="hw-f-list-card-3d-body">
+          <div class="hw-f-list-card-icon" style="background:linear-gradient(135deg,<?= $isGold ? 'rgba(9,161,190,.1)' : 'rgba(104,2,98,.08)'; ?>,<?= $isGold ? 'rgba(9,161,190,.05)' : 'rgba(104,2,98,.04)'; ?>);border:1px solid <?= $isGold ? 'rgba(9,161,190,.2)' : 'rgba(104,2,98,.18)'; ?>">
+            <i class="fal <?= $icon; ?>" style="color:<?= $isGold ? '#09A1BE' : '#680262'; ?>;font-size:.95rem"></i>
+          </div>
+          <div class="hw-f-list-card-title"><?= htmlspecialchars($childService->getTitre(), ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="hw-f-list-card-sub"><?= htmlspecialchars(mb_strimwidth(html_entity_decode(strip_tags($childService->getTexteAccueil() ?? ''), ENT_QUOTES, 'UTF-8'), 0, 120, '…', 'UTF-8'), ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="hw-f-list-card-cta">Découvrir <i class="fal fa-arrow-right"></i></div>
+        </div>
+      </a>
+      <?php endforeach; ?>
+      <div class="hw-f-list-track-spacer" id="beServicesSpacerEnd" aria-hidden="true"></div>
+    </div>
+  </div>
+  <?php endif; ?>
+
+  <div class="container">
     <div class="cta-btns mt-5">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Parler de votre projet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
           <div class="sb-label"><span class="sb-hint">Parler de votre projet</span></div>
           <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
         </a>
     </div>
+  </div>
 
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+    gsap.registerPlugin(ScrollTrigger);
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var pin   = document.getElementById('beServicesPin');
+    var track = document.getElementById('beServicesTrack');
+    var cards = track ? track.querySelectorAll('.hw-f-list-card-3d') : [];
+    var spacerStart = document.getElementById('beServicesSpacerStart');
+    var spacerEnd   = document.getElementById('beServicesSpacerEnd');
+    if (!pin || !track || !cards.length) return;
+
+    function sizeSpacers() {
+        if (!spacerStart || !spacerEnd || window.innerWidth <= 760) return;
+        var cardW = cards[0].getBoundingClientRect().width;
+        var w = Math.max(0, (pin.clientWidth - cardW) / 2);
+        spacerStart.style.width = w + 'px';
+        spacerEnd.style.width = w + 'px';
+    }
+    sizeSpacers();
+
+    function trackDistance() {
+        return Math.max(0, track.scrollWidth - pin.clientWidth);
+    }
+
+    function tiltCards() {
+        var pinRect = pin.getBoundingClientRect();
+        var center = pinRect.left + pinRect.width / 2;
+        cards.forEach(function (card) {
+            var r = card.getBoundingClientRect();
+            var cardCenter = r.left + r.width / 2;
+            var delta = (cardCenter - center) / (pinRect.width / 2);
+            delta = Math.max(-1, Math.min(1, delta));
+            if (rm) { card.style.transform = ''; return; }
+            var ry = delta * -30;
+            var scale = 1 - Math.abs(delta) * 0.14;
+            var z = -Math.abs(delta) * 130;
+            card.style.transform = 'perspective(1400px) rotateY(' + ry.toFixed(2) + 'deg) translateZ(' + z.toFixed(1) + 'px) scale(' + scale.toFixed(3) + ')';
+            card.style.opacity = String(1 - Math.abs(delta) * 0.35);
+        });
+    }
+
+    if (!rm && window.innerWidth > 760) {
+        gsap.to(track, {
+            x: function () { return -trackDistance(); },
+            ease: 'none',
+            scrollTrigger: {
+                trigger: pin,
+                start: 'top top+=70',
+                end: function () { return '+=' + (trackDistance() + window.innerHeight * .6); },
+                scrub: .6,
+                pin: true,
+                invalidateOnRefresh: true,
+                onRefresh: sizeSpacers,
+                onUpdate: tiltCards
+            }
+        });
+        ScrollTrigger.addEventListener('refresh', tiltCards);
+        window.addEventListener('load', function () { sizeSpacers(); ScrollTrigger.refresh(); tiltCards(); });
+        window.addEventListener('resize', sizeSpacers);
+    } else {
+        track.style.overflowX = 'auto';
+        track.style.scrollSnapType = 'x mandatory';
+        cards.forEach(function (c) { c.style.scrollSnapAlign = 'start'; });
+    }
+
+    cards.forEach(function (c) {
+        c.addEventListener('mousedown', function () { c.style.filter = 'brightness(.97)'; });
+        c.addEventListener('mouseup',   function () { c.style.filter = ''; });
+        c.addEventListener('mouseleave', function () { c.style.filter = ''; });
+    });
+
+    setTimeout(function () { ScrollTrigger.refresh(); }, 400);
+})();
+</script>
 
 <!-- PROCESS CRÉATIF -->
 <section class="be-process">
   <div class="container">
-    <div class="sec-label">Processus créatif</div>
-    <h2 class="sec-title rv">Du brief au <em>lancement</em><br>sans compromis</h2>
-    <div class="be-proc-grid">
-      <div class="be-proc-item rv">
-        <div class="be-proc-num">01</div>
-        <div class="be-proc-line"></div>
+    <div class="sec-label rv">Processus créatif</div>
+    <h2 class="sec-title rv d1">Du brief au <em>lancement</em><br>sans compromis</h2>
+    <div class="be-proc-grid-3d rv d2" id="beProcGrid">
+      <div class="be-proc-card" data-tilt>
+        <div class="be-proc-card-shine"></div>
+        <div class="be-proc-card-num">01</div>
+        <div class="be-proc-card-icon"><i class="fal fa-compass"></i></div>
         <div class="be-proc-title">Exploration et immersion</div>
         <p class="be-proc-desc">Ateliers de découverte, analyse de votre marché, de vos concurrents et de vos clients. Nous commençons par comprendre avant de créer. Brief créatif validé ensemble avant tout engagement.</p>
       </div>
-      <div class="be-proc-item rv d1">
-        <div class="be-proc-num">02</div>
-        <div class="be-proc-line"></div>
+      <div class="be-proc-card" data-tilt>
+        <div class="be-proc-card-shine"></div>
+        <div class="be-proc-card-num">02</div>
+        <div class="be-proc-card-icon"><i class="fal fa-palette"></i></div>
         <div class="be-proc-title">Création &amp; Conception</div>
         <p class="be-proc-desc">Notre équipe créative développe 3 directions créatives distinctes. Maquettes, moodboards, samples de contenu — vous choisissez et nous affinons jusqu'à la perfection.</p>
       </div>
-      <div class="be-proc-item rv">
-        <div class="be-proc-num">03</div>
-        <div class="be-proc-line"></div>
+      <div class="be-proc-card" data-tilt>
+        <div class="be-proc-card-shine"></div>
+        <div class="be-proc-card-num">03</div>
+        <div class="be-proc-card-icon"><i class="fal fa-video"></i></div>
         <div class="be-proc-title">Production &amp; Réalisation</div>
         <p class="be-proc-desc">Tournages, design final, production de contenus et déclinaisons sur tous les supports. Chaque livrable est soumis à 3 niveaux de validation interne avant de vous être présenté.</p>
       </div>
-      <div class="be-proc-item rv d1">
-        <div class="be-proc-num">04</div>
-        <div class="be-proc-line"></div>
+      <div class="be-proc-card" data-tilt>
+        <div class="be-proc-card-shine"></div>
+        <div class="be-proc-card-num">04</div>
+        <div class="be-proc-card-icon"><i class="fal fa-rocket"></i></div>
         <div class="be-proc-title">Déploiement &amp; Activation</div>
         <p class="be-proc-desc">Lancement de la marque, formation de vos équipes aux guidelines, mise en place des outils de content ops et suivi des performances sur 3 mois pour ajuster.</p>
       </div>
     </div>
-    
-    
   </div>
 </section>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cards = document.querySelectorAll('#beProcGrid .be-proc-card');
+  if(rm || !cards.length) return;
+
+  cards.forEach(function(card){
+    card.style.transition = 'box-shadow .45s cubic-bezier(0.23,1,0.32,1),border-color .45s';
+
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = e.clientX - r.left, y = e.clientY - r.top;
+      var px = x / r.width, py = y / r.height;
+      card.style.setProperty('--mx', (px * 100) + '%');
+      card.style.setProperty('--my', (py * 100) + '%');
+      var rx = (py - .5) * -14;
+      var ry = (px - .5) * 14;
+      card.style.transition = 'box-shadow .45s cubic-bezier(0.23,1,0.32,1),border-color .45s';
+      card.style.transform = 'perspective(1600px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px) scale(1.02)';
+    });
+
+    card.addEventListener('mouseleave', function(){
+      card.style.transition = 'transform .55s cubic-bezier(0.23,1,0.32,1),box-shadow .45s,border-color .45s';
+      card.style.transform = '';
+    });
+  });
+})();
+</script>
 
 <section class="portfolio" id="work">
   <div class="container">
@@ -239,32 +402,6 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
                 </a>
             </div>
         </div>
-</section>
-
-<!-- REFERENCES -->
-<section class="be-refs">
-  <div class="container">
-    <div class="sec-label">Nos Références</div>
-    <h2 class="sec-title rv">Des <em>résultats</em><br>qui parlent</h2>
-    <div class="be-refs-grid rv d1">
-      <div class="be-ref">
-        <div class="be-ref-num">80<span>+</span></div>
-        <div class="be-ref-lbl">Marques créées</div>
-      </div>
-      <div class="be-ref">
-        <div class="be-ref-num">350<span>+</span></div>
-        <div class="be-ref-lbl">Projets livrés</div>
-      </div>
-      <div class="be-ref">
-        <div class="be-ref-num">12<span>ans</span></div>
-        <div class="be-ref-lbl">D'expertise créative</div>
-      </div>
-      <div class="be-ref">
-        <div class="be-ref-num">3<span> Pays</span></div>
-        <div class="be-ref-lbl">Studios créatifs</div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- CTA -->

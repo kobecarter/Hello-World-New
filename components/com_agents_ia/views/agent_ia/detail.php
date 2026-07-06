@@ -78,6 +78,9 @@ $agentTexte = str_replace(
 
 <!-- ===== CTA STICKY (Action) ===== -->
 <div class="agent-ia-sticky-cta">
+    <video class="agent-ia-sticky-cta-video" autoplay muted loop playsinline preload="auto" poster="<?= $siteURL; ?>assets/video/hw-academy-cta-poster.jpg">
+        <source src="<?= $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
+    </video>
     <div class="container">
         <div class="sticky-cta-inner">
             <div class="sticky-cta-copy">
@@ -91,6 +94,48 @@ $agentTexte = str_replace(
         </div>
     </div>
 </div>
+
+<!-- ===== FAQ ===== -->
+<?php if (!empty($faqs) || !empty($faqs2)): ?>
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="sec-label rv">Questions fréquentes</div>
+    <h2 class="sec-title rv d1">Tout ce que <br>vous <em>devez savoir</em></h2>
+    <div class="faq-cols rv d2">
+      <div>
+        <div class="faq-list">
+          <?php foreach($faqs as $faq): ?>
+          <div class="faq-item">
+            <button class="faq-btn">
+              <span class="faq-q"><?php echo $faq->getTitre(); ?></span>
+              <span class="faq-ico"><i class="fa fa-plus"></i></span>
+            </button>
+            <div class="faq-body">
+              <p class="faq-ans"><?php echo strip_tags($faq->getTexte()); ?></p>
+            </div>
+          </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <div>
+        <div class="faq-list">
+          <?php foreach($faqs2 as $faq): ?>
+          <div class="faq-item">
+            <button class="faq-btn">
+              <span class="faq-q"><?php echo $faq->getTitre(); ?></span>
+              <span class="faq-ico"><i class="fa fa-plus"></i></span>
+            </button>
+            <div class="faq-body">
+              <p class="faq-ans"><?php echo strip_tags($faq->getTexte()); ?></p>
+            </div>
+          </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- ===== RÉALISATIONS ===== -->
 <?php if (!empty($references)): ?>
