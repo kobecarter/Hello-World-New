@@ -142,8 +142,27 @@ function getSeoMeta($data){
 						$canonical = $page->getLink();
 					}
 					break;
-				// Page Blog	
-				case 'com_blog' : 
+				// Page Formations (Hello World Academy)
+				case 'com_formation' :
+					if(isset($data['task']) && $data['task'] == 'showDetails' && isset($data['slug']) && !empty($data['slug'])){
+						$formation = formation::findBySlug($data['slug'], $_SESSION['lang']);
+						if($formation){
+							$seoTitle = $formation->getSeoTitre();
+							$seoDescription = $formation->getSeoDescription();
+							$canonical = $formation->getLink();
+							$ogTitle = $formation->getTitre();
+						}
+					}else{
+						$page = getComponent("com_formation");
+						if($page){
+							$seoTitle = $page->getSeoTitre();
+							$seoDescription = $page->getSeoDescription();
+							$canonical = $page->getLink();
+						}
+					}
+					break;
+				// Page Blog
+				case 'com_blog' :
 					if(isset($data['id']) && !empty($data['id']) && isset($data['task'])){
 						$id = intval($data['id']);
 						$blog = blog::find($id, $_SESSION["lang"]);

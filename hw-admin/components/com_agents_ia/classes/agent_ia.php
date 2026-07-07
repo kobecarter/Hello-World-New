@@ -52,6 +52,7 @@ class agent_ia
     public function getDateAdd()         { return $this->date_add; }
     public function getLastEdit()        { return $this->last_edit; }
     public function getLangue()          { return $this->langue; }
+    public function getOrdre()           { return $this->ordre; }
 
     public function setId($id)                    { $this->id = $id; }
     public function setPhoto($photo)              { $this->photo = $photo; }
@@ -72,6 +73,7 @@ class agent_ia
     public function setDateAdd($date_add)         { $this->date_add = $date_add; }
     public function setLastEdit($last_edit)       { $this->last_edit = $last_edit; }
     public function setLangue($langue)            { $this->langue = $langue; }
+    public function setOrdre($ordre)              { $this->ordre = $ordre; }
 
     public function getLink()
     {
@@ -271,7 +273,7 @@ class agent_ia
         if ($active) {
             $SQLselect .= " AND A.active = 1";
         }
-        $SQLselect .= " ORDER BY A.id ASC";
+        $SQLselect .= " ORDER BY A.ordre ASC, A.id ASC";
         if ($currentPage && $limit) {
             $page = ($currentPage - 1) * $limit;
             $SQLselect .= " LIMIT $page, $limit";
@@ -354,6 +356,7 @@ class agent_ia
         $agent->setDateAdd($data['date_add']);
         $agent->setLastEdit($data['last_edit']);
         $agent->setLangue($data['langue']);
+        $agent->setOrdre(isset($data['ordre']) ? $data['ordre'] : 0);
         return $agent;
     }
 

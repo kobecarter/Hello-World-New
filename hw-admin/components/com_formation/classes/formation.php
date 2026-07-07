@@ -10,11 +10,14 @@ class formation
     private $type_public;
     private $date_debut;
     private $date_fin;
+    private $date_ouverture_inscription;
+    private $date_limite_inscription;
     private $lieu;
     private $photo;
     private $photo_banniere;
     private $pdf;
     private $nb_participants;
+    private $nb_participants_min;
     private $status;
     private $active;
     private $date_add;
@@ -44,11 +47,14 @@ class formation
     public function getTypePublic()      { return $this->type_public; }
     public function getDateDebut()       { return $this->date_debut; }
     public function getDateFin()         { return $this->date_fin; }
+    public function getDateOuvertureInscription() { return $this->date_ouverture_inscription; }
+    public function getDateLimiteInscription()    { return $this->date_limite_inscription; }
     public function getLieu()            { return $this->lieu; }
     public function getPhoto()           { return $this->photo; }
     public function getPhotoBanniere()   { return $this->photo_banniere; }
     public function getPdf()             { return $this->pdf; }
     public function getNbParticipants()  { return $this->nb_participants; }
+    public function getNbParticipantsMin() { return $this->nb_participants_min; }
     public function getStatus()          { return $this->status; }
     public function getActive()          { return $this->active; }
     public function isActive()           { return $this->active ? 1 : 0; }
@@ -72,11 +78,14 @@ class formation
     public function setTypePublic($v)             { $this->type_public = $v; }
     public function setDateDebut($v)              { $this->date_debut = $v; }
     public function setDateFin($v)                { $this->date_fin = $v; }
+    public function setDateOuvertureInscription($v) { $this->date_ouverture_inscription = $v; }
+    public function setDateLimiteInscription($v)    { $this->date_limite_inscription = $v; }
     public function setLieu($v)                   { $this->lieu = $v; }
     public function setPhoto($v)                  { $this->photo = $v; }
     public function setPhotoBanniere($v)          { $this->photo_banniere = $v; }
     public function setPdf($v)                    { $this->pdf = $v; }
     public function setNbParticipants($v)         { $this->nb_participants = $v; }
+    public function setNbParticipantsMin($v)      { $this->nb_participants_min = $v; }
     public function setStatus($v)                 { $this->status = $v; }
     public function setActive($v)                 { $this->active = $v; }
     public function setDateAdd($v)                { $this->date_add = $v; }
@@ -119,16 +128,19 @@ class formation
     {
         global $db;
         $SQLinsert = sprintf(
-            "INSERT INTO " . static::$table . " (type_formation, type_public, date_debut, date_fin, lieu, photo, photo_banniere, pdf, nb_participants, status, active, date_add, last_edit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            "INSERT INTO " . static::$table . " (type_formation, type_public, date_debut, date_fin, date_ouverture_inscription, date_limite_inscription, lieu, photo, photo_banniere, pdf, nb_participants, nb_participants_min, status, active, date_add, last_edit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
             GetSQLValueString($this->type_formation,  "text"),
             GetSQLValueString($this->type_public,     "text"),
             GetSQLValueString($this->date_debut,      "date"),
             GetSQLValueString($this->date_fin,        "date"),
+            GetSQLValueString($this->date_ouverture_inscription, "date"),
+            GetSQLValueString($this->date_limite_inscription,    "date"),
             GetSQLValueString($this->lieu,            "text"),
             GetSQLValueString($this->photo,           "text"),
             GetSQLValueString($this->photo_banniere,  "text"),
             GetSQLValueString($this->pdf,             "text"),
             GetSQLValueString($this->nb_participants, "int"),
+            GetSQLValueString($this->nb_participants_min, "int"),
             GetSQLValueString($this->status,          "text"),
             GetSQLValueString($this->active,          "int"),
             GetSQLValueString($this->date_add,        "date"),
@@ -163,16 +175,19 @@ class formation
     {
         global $db;
         $SQLupdate = sprintf(
-            "UPDATE " . static::$table . " SET type_formation = %s, type_public = %s, date_debut = %s, date_fin = %s, lieu = %s, photo = %s, photo_banniere = %s, pdf = %s, nb_participants = %s, status = %s, active = %s, last_edit = %s WHERE id = %s",
+            "UPDATE " . static::$table . " SET type_formation = %s, type_public = %s, date_debut = %s, date_fin = %s, date_ouverture_inscription = %s, date_limite_inscription = %s, lieu = %s, photo = %s, photo_banniere = %s, pdf = %s, nb_participants = %s, nb_participants_min = %s, status = %s, active = %s, last_edit = %s WHERE id = %s",
             GetSQLValueString($this->type_formation,  "text"),
             GetSQLValueString($this->type_public,     "text"),
             GetSQLValueString($this->date_debut,      "date"),
             GetSQLValueString($this->date_fin,        "date"),
+            GetSQLValueString($this->date_ouverture_inscription, "date"),
+            GetSQLValueString($this->date_limite_inscription,    "date"),
             GetSQLValueString($this->lieu,            "text"),
             GetSQLValueString($this->photo,           "text"),
             GetSQLValueString($this->photo_banniere,  "text"),
             GetSQLValueString($this->pdf,             "text"),
             GetSQLValueString($this->nb_participants, "int"),
+            GetSQLValueString($this->nb_participants_min, "int"),
             GetSQLValueString($this->status,          "text"),
             GetSQLValueString($this->active,          "int"),
             GetSQLValueString($this->last_edit,       "date"),
@@ -391,11 +406,14 @@ class formation
         $f->setTypePublic($data['type_public']);
         $f->setDateDebut($data['date_debut']);
         $f->setDateFin($data['date_fin']);
+        $f->setDateOuvertureInscription(isset($data['date_ouverture_inscription']) ? $data['date_ouverture_inscription'] : null);
+        $f->setDateLimiteInscription(isset($data['date_limite_inscription']) ? $data['date_limite_inscription'] : null);
         $f->setLieu($data['lieu']);
         $f->setPhoto(isset($data['photo'])           ? $data['photo']           : null);
         $f->setPhotoBanniere(isset($data['photo_banniere']) ? $data['photo_banniere'] : null);
         $f->setPdf(isset($data['pdf'])               ? $data['pdf']             : null);
         $f->setNbParticipants($data['nb_participants']);
+        $f->setNbParticipantsMin(isset($data['nb_participants_min']) ? $data['nb_participants_min'] : 0);
         $f->setStatus($data['status']);
         $f->setActive($data['active']);
         $f->setDateAdd($data['date_add']);

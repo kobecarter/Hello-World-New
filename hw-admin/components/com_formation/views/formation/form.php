@@ -150,7 +150,8 @@
                 <label>Type de formation</label>
                 <select name="type_formation" class="form-control">
                     <option value="presentiel" <?= (isset($formation) && $formation->getTypeFormation() == 'presentiel') ? 'selected' : ''; ?>>En présentiel</option>
-                    <option value="distance"   <?= (isset($formation) && $formation->getTypeFormation() == 'distance')   ? 'selected' : ''; ?>>À distance</option>
+                    <option value="distance"   <?= (isset($formation) && $formation->getTypeFormation() == 'distance')   ? 'selected' : ''; ?>>À distance (en ligne)</option>
+                    <option value="hybride"    <?= (isset($formation) && $formation->getTypeFormation() == 'hybride')    ? 'selected' : ''; ?>>Hybride</option>
                 </select>
             </div>
 
@@ -160,8 +161,13 @@
             </div>
 
             <div class="col-md-4 form-group">
-                <label>Nombre de participants</label>
+                <label>Nombre de participants <small class="text-muted">(max)</small></label>
                 <input name="nb_participants" type="number" min="0" value="<?= isset($formation) ? intval($formation->getNbParticipants()) : 0; ?>" class="form-control" />
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label>Nombre de participants requis <small class="text-muted">(minimum pour maintenir la session)</small></label>
+                <input name="nb_participants_min" type="number" min="0" value="<?= isset($formation) ? intval($formation->getNbParticipantsMin()) : 0; ?>" class="form-control" />
             </div>
 
             <div class="clearfix"></div>
@@ -179,6 +185,18 @@
             <div class="col-md-4 form-group">
                 <label>Lieu <small class="text-muted">(adresse ou lien de réunion)</small></label>
                 <input name="lieu" type="text" value="<?= isset($formation) ? htmlspecialchars($formation->getLieu() ?? '', ENT_QUOTES, 'UTF-8') : ""; ?>" class="form-control" placeholder="Ex : Marrakech / https://meet.google.com/..." />
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-md-4 form-group">
+                <label>Ouverture des inscriptions</label>
+                <input name="date_ouverture_inscription" type="datetime-local" value="<?= isset($formation) && $formation->getDateOuvertureInscription() ? date('Y-m-d\TH:i', strtotime($formation->getDateOuvertureInscription())) : ""; ?>" class="form-control" />
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label>Date limite d'inscription</label>
+                <input name="date_limite_inscription" type="datetime-local" value="<?= isset($formation) && $formation->getDateLimiteInscription() ? date('Y-m-d\TH:i', strtotime($formation->getDateLimiteInscription())) : ""; ?>" class="form-control" />
             </div>
 
             <div class="clearfix"></div>

@@ -51,7 +51,8 @@ $(document).ready(function() {
 	  	navText : ['<i class="fa fa-arrow-left"></i>','<i class="fa fa-arrow-right"></i>'],
       	dots: true,
       	autoplay: true,
-	  	autoplayHoverPause: true,	
+	  	autoplayHoverPause: true,
+      	autoplayTimeout: 3200,
       	smartSpeed: 1000,
       	responsive: {
 			0: {
