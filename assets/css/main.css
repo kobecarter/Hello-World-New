@@ -6071,3 +6071,17 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 }
 
 .wm-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:3rem}
+
+
+/* Web & Mobile service page style */
+
+.wm-card a:hover {
+    /*color: none !important;*/
+    text-decoration: none !important;
+}
+
+.subservice .wm-visual img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
