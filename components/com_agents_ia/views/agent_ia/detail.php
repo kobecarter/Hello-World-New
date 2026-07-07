@@ -173,11 +173,6 @@ $agentTexte = str_replace(
 </section>
 <?php endif; ?>
 
-<!-- ===== TÉMOIGNAGES ===== -->
-<?php if (!empty($testimonials)): ?>
-<?php include('includes/testimonials.php'); ?>
-<?php endif; ?>
-
 <!-- ===== TECHNOLOGIES ===== -->
 <?php if (!empty($tools)): ?>
 <section class="trust" id="trust">
@@ -206,6 +201,12 @@ $agentTexte = str_replace(
         </div>
     </div>
 </section>
+<?php endif; ?>
+
+
+<!-- ===== TÉMOIGNAGES ===== -->
+<?php if (!empty($testimonials)): ?>
+<?php include('includes/testimonials.php'); ?>
 <?php endif; ?>
 
 <!-- ===== PARTENAIRES ===== -->
