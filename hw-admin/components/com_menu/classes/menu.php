@@ -124,50 +124,93 @@ class menu
     
     public function getMenuMobile($deep = 0, $mobile = false)
     {
-        global $db, $siteURL;
-        $SQLselect = "SELECT A.id FROM " . __prefixe_db__ . "menu_items A
-					  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
-					  WHERE id_menu = " . $this->id . " 
-					  AND parent_id = 0
-					  AND langue = '" . $_SESSION["lang"] . "' 
-					  ORDER BY ordre ASC";
-        $result = $db->query($SQLselect);
-        if ($db->num_rows($result) > 0) {
-            $result = $db->queryS($SQLselect);
-            foreach ($result as $data) {
-                $mi = new menu_item($data['id'], $db, $_SESSION["lang"]);
-                $blank = $mi->isBlank() ? 'target="_blank"' : '';
+        global $db;
+        $lang = $_SESSION['lang'];
+        $testimonials = array(); // not shown on mobile, kept for signature parity with getMegaMenu()
+        $panelIds = $this->findAllParentItem();
+        foreach ($panelIds as $pid) {
+            $mi = new menu_item($pid, $db, $lang);
+            $blank = $mi->isBlank() ? 'target="_blank"' : '';
+            $groupIds = $mi->getSousMenu();
+
+            if (empty($groupIds)) {
                 ?>
-
-                <?php if ($mi->hasSousMenu()): ?>
-                <button class="mm-acc-head" aria-expanded="false" data-acc="m-ai"><?php echo $mi->getTitre(); ?><span class="mm-acc-chev fal fa-chevron-down"></span></button>
-                <?php else: ?>    
-                <a href="<?= $mi->getLink(); ?>" class="mm-m-link" <?php echo $blank; ?>><?php echo $mi->getTitre(); ?></a>    
-                <?php endif; ?>
-
+                <a href="<?= $mi->getLink(); ?>" class="mm-m-link" <?php echo $blank; ?>><?php echo htmlspecialchars($mi->getTitre(), ENT_QUOTES, 'UTF-8'); ?></a>
                 <?php
-                if ($mi->hasSousMenu() && $deep == 0) {
-                    echo '<div class="mm-acc-body" id="m-ai"><div class="mm-acc-inner">';
-                    $SQLselect = "SELECT A.id FROM " . __prefixe_db__ . "menu_items A
-									  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
-									  WHERE id_menu = " . $this->id . "
-									  AND parent_id = " . $mi->getId() . "
-									  AND langue = '" . $_SESSION["lang"] . "' 
-									  ORDER BY ordre ASC";
-                    $result2 = $db->queryS($SQLselect);
-                    foreach ($result2 as $data2) {
-                        $classLi = "";
-                        $mi2 = new menu_item($data2['id'], $db, $_SESSION["lang"]);
-                        $blank = $mi2->isBlank() ? 'target="_blank"' : '';
-
-                        ?>
-                        <a href="<?php echo $mi2->getLink(); ?>" class="mm-acc-item" <?php echo $blank; ?>><b><?php echo $mi2->getTitre(); ?></b></a>
-                        <?php
-
-                    }
-                    echo '</div></div>';
-                }
+                continue;
             }
+
+            // Stable, unique id per panel (not a shared literal) so each
+            // accordion section opens/closes independently.
+            $accId = 'm-' . ($mi->getPanelKey() ? preg_replace('/[^a-z0-9\-]/', '', strtolower($mi->getPanelKey())) : $mi->getId());
+            ?>
+            <button class="mm-acc-head" aria-expanded="false" data-acc="<?php echo $accId; ?>"><?php echo htmlspecialchars($mi->getTitre(), ENT_QUOTES, 'UTF-8'); ?><span class="mm-acc-chev fal fa-chevron-down"></span></button>
+            <div class="mm-acc-body" id="<?php echo $accId; ?>">
+                <div class="mm-acc-inner">
+                    <?php
+                    $isMulti = count($groupIds) > 1;
+                    foreach ($groupIds as $gid) {
+                        $group = new menu_item($gid, $db, $lang);
+                        if ($isMulti) {
+                            echo '<p class="mm-acc-group-title">' . htmlspecialchars($group->getTitre(), ENT_QUOTES, 'UTF-8') . '</p>';
+                        }
+                        $this->renderMobileGroupItems($group, $lang);
+                    }
+                    ?>
+                </div>
+            </div>
+            <?php
+        }
+    }
+
+    /* Mobile equivalent of renderMenuGroupItems(): same auto_list expansion
+       (live agents/services/sectors/formations) plus manual items, but as
+       flat accordion links with a small thumbnail next to the title instead
+       of the desktop card/sublink markup. */
+    private function renderMobileGroupItems($group, $lang)
+    {
+        global $siteURL, $db;
+        $auto = $group->getAutoList();
+
+        if ($auto === 'service_children') {
+            $parentRecord = $this->resolveMenuRecord($group->getType(), $group->getIdItem(), $lang);
+            $children = $parentRecord ? $parentRecord->getChildren($lang, true, true) : array();
+            foreach ($children as $child) {
+                $img = $siteURL . 'images/services/' . $child->getPhoto();
+                echo '<a href="' . $child->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" loading="lazy" src="' . $img . '" alt=""><b>' . htmlspecialchars($child->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
+            }
+        } elseif (in_array($auto, array('formation', 'agent_ia', 'secteur'))) {
+            $records = array();
+            if ($auto === 'formation') {
+                $records = formation::findAll($lang, true);
+            } elseif ($auto === 'agent_ia') {
+                $records = agent_ia::findAll($lang, true);
+            } elseif ($auto === 'secteur') {
+                $records = secteur::findAll($lang, true);
+            }
+            $limit = $group->getAutoLimit();
+            if ($limit) {
+                $records = array_slice($records, 0, $limit);
+            }
+            foreach ($records as $rec) {
+                $photo = method_exists($rec, 'getPhotoProduit') && $rec->getPhotoProduit() ? $rec->getPhotoProduit() : $rec->getPhoto();
+                $img = $photo ? $siteURL . self::$menuImgDirByType[$auto] . $photo : $siteURL . 'images/pages/formation.webp';
+                echo '<a href="' . $rec->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" loading="lazy" src="' . $img . '" alt=""><b>' . htmlspecialchars($rec->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
+            }
+        }
+
+        $manualIds = $group->getSousMenu();
+        foreach ($manualIds as $mid) {
+            $item = new menu_item($mid, $db, $lang);
+            $type = $item->getType();
+            $record = $this->resolveMenuRecord($type, $item->getIdItem(), $lang);
+            $link = trim((string)$item->getLien());
+            if ($link === '' || $type !== 'ext') {
+                $link = $record ? $record->getLink() : '#';
+            }
+            $title = $item->getTitre() ?: ($record ? $record->getTitre() : '');
+            $img = $this->resolveMenuImage($item, $type, $record);
+            echo '<a href="' . $link . '" class="mm-acc-item"><img class="mm-acc-thumb" loading="lazy" src="' . $img . '" alt=""><b>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</b></a>';
         }
     }
 
@@ -184,11 +227,15 @@ class menu
     }
 
 
-    public function findAllParentItem()
+    public function findAllParentItem($activeOnly = true)
     {
         global $db;
         $ids = array();
-        $SQLselect = "SELECT id FROM " . __prefixe_db__ . "menu_items WHERE parent_id = 0 ORDER BY ordre ASC";
+        $SQLselect = "SELECT id FROM " . __prefixe_db__ . "menu_items WHERE id_menu = " . intval($this->id) . " AND parent_id = 0";
+        if ($activeOnly) {
+            $SQLselect .= " AND (active IS NULL OR active = 1)";
+        }
+        $SQLselect .= " ORDER BY ordre ASC";
         $result = $db->queryS($SQLselect);
         foreach ($result as $data) {
             array_push($ids, $data['id']);
@@ -210,776 +257,422 @@ class menu
 
     }
     
-  public function getMegaMenu($deep = 0, $mobile = false)
+    /* ══ Data-driven mega menu renderer ═══════════════════════════════════
+       Reads menu id=3 from hw_menu_items/hw_details_menu_item (managed via
+       the admin "Menu" module) instead of hardcoded HTML. Structure:
+       level 1 = panel (nav rubric + mega panel), level 2 = group (a column
+       inside a panel; single-group panels render one flat list/grid),
+       level 3 = item (a manual card/sublink, or expanded live records when
+       the group's auto_list is set). See plan doc for full field reference. */
+
+    private static $menuImgDirByType = array(
+        'service'   => 'images/services/',
+        'page'      => 'images/pages/',
+        'agent_ia'  => 'images/agents_ia/',
+        'formation' => 'images/formations/',
+        'secteur'   => 'images/secteur/',
+        'reference' => 'images/references/',
+        'produit'   => 'images/produits/',
+        'pack'      => 'images/packs/',
+    );
+
+    private function resolveMenuRecord($type, $idItem, $lang)
+    {
+        global $db;
+        if ($type === 'ext' || empty($idItem)) {
+            return null;
+        }
+        if (method_exists($type, 'find')) {
+            return $type::find($idItem, $lang);
+        }
+        return new $type($idItem, $db, $lang);
+    }
+
+    private function menuRecordImage($type, $record)
+    {
+        global $siteURL;
+        if (!$record || !method_exists($record, 'getPhoto') || !$record->getPhoto()) {
+            return null;
+        }
+        $dir = isset(self::$menuImgDirByType[$type]) ? self::$menuImgDirByType[$type] : 'images/pages/';
+        return $siteURL . $dir . $record->getPhoto();
+    }
+
+    private function resolveMenuImage($item, $type, $record)
+    {
+        global $siteURL;
+        $img = $item->getImage();
+        if ($img) {
+            return (strpos($img, 'http://') === 0 || strpos($img, 'https://') === 0) ? $img : $siteURL . $img;
+        }
+        $fromRecord = $this->menuRecordImage($type, $record);
+        return $fromRecord ? $fromRecord : $siteURL . 'images/pages/formation.webp';
+    }
+
+    private function pickMenuTestimonial($validTestimonials, $pinnedId = null)
+    {
+        if ($pinnedId) {
+            foreach ($validTestimonials as $t) {
+                if (method_exists($t, 'getId') && $t->getId() == $pinnedId) {
+                    return $t;
+                }
+            }
+        }
+        return !empty($validTestimonials) ? $validTestimonials[array_rand($validTestimonials)] : null;
+    }
+
+    private function renderMenuFoot($panelIndex, $testimonial)
+    {
+        $quote  = $testimonial ? htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8') : '';
+        $author = $testimonial ? htmlspecialchars($testimonial->getNom(), ENT_QUOTES, 'UTF-8') : '';
+        $role   = $testimonial ? htmlspecialchars($testimonial->getFonction(), ENT_QUOTES, 'UTF-8') : '';
+        return '
+            <div class="mega-foot stag" style="--i:' . $panelIndex . '">
+                <p class="foot-title" data-foottitle></p>
+                <div class="foot-row">
+                    <div class="rating">
+                        <span class="rating-num">Reviews Score 5,0</span>
+                        <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
+                    </div>
+                    <p class="quote" data-quote>' . $quote . '</p>
+                    <div class="who">
+                        <span class="ava" data-ava></span>
+                        <span class="who-txt">
+                            <b data-author>' . $author . '</b>
+                            <span class="role" data-role>' . $role . '</span>
+                        </span>
+                    </div>
+                </div>
+            </div>';
+    }
+
+    /* Renders the <a> markup for one concrete item (manual, or one expanded
+       row of an auto_list). $data carries: link, service (title), desc,
+       img, ico, grad, packsHtmlBank (base64, only for card_style=sublink
+       service items), featureLines (array, only for card_style=card). */
+    private function renderMenuCardMarkup($cardStyle, $data, $styleIndex, $extraClass = '')
+    {
+        $service = htmlspecialchars($data['service'], ENT_QUOTES, 'UTF-8');
+        $desc    = htmlspecialchars($data['desc'], ENT_QUOTES, 'UTF-8');
+        $grad    = htmlspecialchars($data['grad'], ENT_QUOTES, 'UTF-8');
+        $ico     = htmlspecialchars($data['ico'], ENT_QUOTES, 'UTF-8');
+        $img     = $data['img'];
+        $link    = $data['link'];
+        $packs   = isset($data['packsHtmlBank']) ? htmlspecialchars(base64_encode($data['packsHtmlBank']), ENT_QUOTES) : '';
+
+        if ($cardStyle === 'card') {
+            $feat = '';
+            foreach ((isset($data['featureLines']) ? $data['featureLines'] : array()) as $line) {
+                $feat .= '<li>' . htmlspecialchars($line, ENT_QUOTES, 'UTF-8') . '</li>';
+            }
+            return '
+                <a class="card stag' . $extraClass . '" style="--i:' . $styleIndex . '"
+                   href="' . $link . '"
+                   data-service="' . $service . '"
+                   data-img="' . $img . '"
+                   data-packs="' . $packs . '"
+                   data-ico="' . $ico . '"
+                   data-grad="' . $grad . '">
+                    <div class="card-h">
+                        <span class="thumb ' . $grad . '">
+                            <img src="' . $img . '" alt="' . $service . '">
+                        </span>
+                    </div>
+                    <h3 class="card-title">' . $service . '</h3>
+                    <ul class="feat">' . $feat . '</ul>
+                </a>';
+        }
+
+        // sublink style
+        $quote  = isset($data['quote']) ? htmlspecialchars($data['quote'], ENT_QUOTES, 'UTF-8') : '';
+        $author = isset($data['author']) ? htmlspecialchars($data['author'], ENT_QUOTES, 'UTF-8') : '';
+        $role   = isset($data['role']) ? htmlspecialchars($data['role'], ENT_QUOTES, 'UTF-8') : '';
+        return '
+            <a class="custom-sublink sublink stag' . $extraClass . '" style="--i:' . $styleIndex . '"
+               href="' . $link . '"
+                data-service="' . $service . '"
+                data-desc="' . $desc . '"
+                data-img="' . $img . '"
+                data-packs="' . $packs . '"
+                data-ico="' . $ico . '"
+                data-grad="' . $grad . '"
+                data-quote="' . $quote . '"
+                data-author="' . $author . '"
+                data-role="' . $role . '">
+                <span class="thumb ' . $grad . '" data-thumb>
+                    <img loading="lazy" src="' . $img . '" alt="' . $service . '">
+                    <span class="thumb-ico"></span>
+                </span>
+                <span class="tx">
+                    <span class="ttl">' . $service . '</span>
+                    <span class="desc">' . $desc . '</span>
+                </span>
+            </a>';
+    }
+
+    /* Expands one group's items: manual rows as-is, auto_list rows into N
+       live records. Returns [html, hasPacks] so the caller can decide
+       whether to render the packs-grid container. */
+    private function renderMenuGroupItems($group, $lang, $panelFallbackLink, $validTestimonials)
+    {
+        global $siteURL;
+        $cardStyle = $group->getCardStyle();
+        $auto = $group->getAutoList();
+        $html = '';
+        $hasPacks = false;
+        $i = 1;
+        $children = array();
+
+        if ($auto === 'service_children') {
+            $parentRecord = $this->resolveMenuRecord($group->getType(), $group->getIdItem(), $lang);
+            $children = $parentRecord ? $parentRecord->getChildren($lang, true, true) : array();
+            // Web & Mobile (service id 107) has always shown a fixed, hand-picked
+            // set of feature bullets per child service rather than an excerpt of
+            // its own content -- restored verbatim from the original markup.
+            $webMobileFeatures = array(
+                39 => array('iOS natives', 'Android natives', 'Hybrides RN / Flutter'),
+                38 => array('Sites vitrines & corporate', 'Développement e-commerce', 'Applications web sur mesure', 'Intégrations CRM/ERP/API'),
+                40 => array('Audit SEO technique complet', 'Optimisation Core Web Vitals', 'Stratégie de mots-clés ciblés', 'Optimisation SEO On-Page'),
+            );
+            $webMobileDefaultFeature = array('Espaces clients RGPD', 'Dashboards temps réel', 'Intégrations CRM/ERP/API');
+            $isWebMobileGroup = ((int)$group->getIdItem() === 107);
+            foreach ($children as $child) {
+                $packs = pack::findAll($lang, true, true, $child->getId());
+                $packsHtmlBank = '';
+                foreach ($packs as $pack) {
+                    $hasPacks = true;
+                    $packsHtmlBank .= '<a class="pack grad-web" href="' . $child->getLink() . '"><img loading="lazy" src="' . $siteURL . 'images/packs/' . $pack->getPhoto() . '" alt="' . htmlspecialchars($pack->getTitre()) . '"><span class="pk-tag">Pack</span><span class="pk-title">' . htmlspecialchars($pack->getTitre(), ENT_QUOTES, 'UTF-8') . '</span></a>';
+                }
+                $desc = menu_item::shortenDescription('', $child, 90);
+                if ($isWebMobileGroup) {
+                    $lines = isset($webMobileFeatures[$child->getId()]) ? $webMobileFeatures[$child->getId()] : $webMobileDefaultFeature;
+                } else {
+                    $feature = trim(html_entity_decode(strip_tags($child->getExtrait() ? $child->getExtrait() : $child->getTexteAccueil()), ENT_QUOTES, 'UTF-8'));
+                    $lines = $feature !== '' ? preg_split('/\r\n|\r|\n/', $feature) : array($desc);
+                }
+                $t = $this->pickMenuTestimonial($validTestimonials);
+                $html .= $this->renderMenuCardMarkup($cardStyle, array(
+                    'link' => $child->getLink(),
+                    'service' => $child->getTitre(),
+                    'desc' => $desc,
+                    'img' => $siteURL . 'images/services/' . $child->getPhoto(),
+                    'ico' => $group->getIcon() ? $group->getIcon() : 'palette',
+                    'grad' => $group->getGradient() ? $group->getGradient() : 'grad-brand',
+                    'packsHtmlBank' => $packsHtmlBank,
+                    'featureLines' => $lines,
+                    'quote' => $t ? strip_tags($t->getTemoignage()) : '',
+                    'author' => $t ? $t->getNom() : '',
+                    'role' => $t ? $t->getFonction() : '',
+                ), $i);
+                $i++;
+            }
+        } elseif (in_array($auto, array('formation', 'agent_ia', 'secteur'))) {
+            $records = array();
+            if ($auto === 'formation') {
+                $records = formation::findAll($lang, true);
+            } elseif ($auto === 'agent_ia') {
+                $records = agent_ia::findAll($lang, true);
+            } elseif ($auto === 'secteur') {
+                $records = secteur::findAll($lang, true);
+            }
+            $limit = $group->getAutoLimit();
+            if ($limit) {
+                $records = array_slice($records, 0, $limit);
+            }
+            foreach ($records as $rec) {
+                $photo = method_exists($rec, 'getPhotoProduit') && $rec->getPhotoProduit() ? $rec->getPhotoProduit() : $rec->getPhoto();
+                $img = $photo ? $siteURL . self::$menuImgDirByType[$auto] . $photo : $siteURL . 'images/pages/formation.webp';
+                $desc = menu_item::shortenDescription('', $rec, 70);
+                $html .= $this->renderMenuCardMarkup($cardStyle, array(
+                    'link' => $rec->getLink(),
+                    'service' => $rec->getTitre(),
+                    'desc' => $desc,
+                    'img' => $img,
+                    'ico' => $group->getIcon() ? $group->getIcon() : 'grid',
+                    'grad' => $group->getGradient() ? $group->getGradient() : 'grad-sol',
+                    'featureLines' => array($desc),
+                ), $i);
+                $i++;
+            }
+        }
+
+        // manual level-3 items (always rendered after any auto-expanded ones,
+        // e.g. the trailing "Voir tout..." link)
+        $manualIds = $group->getSousMenu();
+        foreach ($manualIds as $mid) {
+            $item = new menu_item($mid, $GLOBALS['db'], $lang);
+            $type = $item->getType();
+            $record = $this->resolveMenuRecord($type, $item->getIdItem(), $lang);
+            $link = trim((string)$item->getLien());
+            if ($link === '') {
+                $link = $record ? $record->getLink() : $panelFallbackLink;
+            } elseif ($type !== 'ext') {
+                $link = $record ? $record->getLink() : $panelFallbackLink;
+            }
+            $title = $item->getTitre() ?: ($record ? $record->getTitre() : '');
+            // The trailing "Voir tout..." link under a service_children group
+            // has always shown a live count ("N expertises disponibles")
+            // rather than a manually authored description.
+            if ($auto === 'service_children' && stripos($title, 'Voir tout') === 0) {
+                $desc = count($children) . ' expertises disponibles';
+            } else {
+                $desc = menu_item::shortenDescription($item->getDescription(), $record, $cardStyle === 'card' ? 200 : 90);
+            }
+            $img = $this->resolveMenuImage($item, $type, $record);
+            $ico = $item->getIcon();
+            $grad = $group->getGradient() ? $group->getGradient() : ($item->getGradient() ?: 'grad-sol');
+
+            if ($item->getShowPacks() && $type === 'service' && $item->getIdItem()) {
+                $packs = pack::findAll($lang, true, true, $item->getIdItem());
+                $packsHtmlBank = '';
+                foreach ($packs as $pack) {
+                    $hasPacks = true;
+                    $packsHtmlBank .= '<a class="pack grad-web" href="' . $link . '"><img loading="lazy" src="' . $siteURL . 'images/packs/' . $pack->getPhoto() . '" alt="' . htmlspecialchars($pack->getTitre()) . '"><span class="pk-tag">Pack</span><span class="pk-title">' . htmlspecialchars($pack->getTitre(), ENT_QUOTES, 'UTF-8') . '</span></a>';
+                }
+            } else {
+                $packsHtmlBank = '';
+            }
+
+            $lines = $cardStyle === 'card' ? preg_split('/\r\n|\r|\n/', $desc) : array($desc);
+            $html .= $this->renderMenuCardMarkup($cardStyle, array(
+                'link' => $link,
+                'service' => $title,
+                'desc' => $cardStyle === 'card' ? '' : $desc,
+                'img' => $img,
+                'ico' => $ico,
+                'grad' => $grad,
+                'packsHtmlBank' => $packsHtmlBank,
+                'featureLines' => $lines,
+            ), $i, strpos($title, 'Voir tout') === 0 || strpos($title, 'Voir tous') === 0 ? ' sublink-all' : '');
+            $i++;
+        }
+
+        return array($html, $hasPacks);
+    }
+
+    public function getMegaMenu($deep = 0, $mobile = false)
     {
         global $db, $siteURL;
-        $solutionIA = service::find(17, $_SESSION['lang']);
-        $webMobile = service::find(107, $_SESSION['lang']);
-        $saasProduit = service::find(1, $_SESSION['lang']);
-        $brandExperience = service::find(18, $_SESSION['lang']);
-        $brandSeviceChild = $brandExperience->getChildren($_SESSION["lang"],true,true);
-        $webMobileChild = $webMobile->getChildren($_SESSION["lang"],true,true);
-        $marketplace = getComponent("com_produit");
-        $formationIa = getComponent("com_formation");
+        $lang = $_SESSION['lang'];
+        $contactPage = getComponent("com_contact");
         $realisationPage = getComponent("com_reference");
-        $contactPage  = getComponent("com_contact");
-        $siteWebService = service::find(38, $_SESSION['lang']);
-        $mobileService = service::find(39, $_SESSION['lang']);
-        $secteurSante = secteur::find(1, $_SESSION['lang']);
-        $secteurHotel = secteur::find(3, $_SESSION['lang']);
-        $secteurImmo = secteur::find(4, $_SESSION['lang']);
-        $secteurMarketing = secteur::find(6, $_SESSION['lang']);
-        $secteurFinance = secteur::find(5, $_SESSION['lang']);
-        $secteurRestau = secteur::find(2, $_SESSION['lang']);
-        $secteurOperation = secteur::find(7, $_SESSION['lang']);
-        $testimonials = temoignage::findAllGlobal($_SESSION['lang'], true, true);
-        
-        $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-        $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-        // if (!empty($testimonials)) {
-        //     $testimonial = $testimonials[array_rand($testimonials)];
-        // }
-         $service = service::find(18, $_SESSION['lang']);
-              $nosAgence = getComponent("com_agence");
-         $agenceCasa = new page(32, $db, $_SESSION['lang']);
-         $agenceMarra = new page(33, $db, $_SESSION['lang']);
-         $agenceLondre = new page(34, $db, $_SESSION['lang']);
-        //  $agenceDubai = new page(36, $db, $_SESSION['lang']);
-         $agenceRabat = new page(37, $db, $_SESSION['lang']);
-         $agenceTanger = new page(38, $db, $_SESSION['lang']);
-         $agenceAgadir = new page(39, $db, $_SESSION['lang']);
-         $agenceFes = new page(40, $db, $_SESSION['lang']);
-              $agentsIaPage = getComponent("com_agents_ia");
-               $menuHTML = '';
-    $menuHTML .= '
-<div class="mega glass-mega glass-nav" data-panel="brand">
+        $testimonials = temoignage::findAllGlobal($lang, true, true);
+        $validTestimonials = array_values(array_filter($testimonials, function ($t) {
+            return trim(strip_tags($t->getTemoignage())) !== '';
+        }));
 
+        $panelIds = $this->findAllParentItem();
+        $menuHTML = '';
+        $panelIndex = 0;
+
+        foreach ($panelIds as $pid) {
+            $panelIndex++;
+            $panel = new menu_item($pid, $db, $lang);
+            $type = $panel->getType();
+            $record = $this->resolveMenuRecord($type, $panel->getIdItem(), $lang);
+
+            $panelKey = htmlspecialchars($panel->getPanelKey(), ENT_QUOTES, 'UTF-8');
+            $panelLink = $panel->getLink();
+            $panelTitle = $panel->getTitre() ?: ($record ? $record->getTitre() : '');
+            $panelDesc = menu_item::shortenDescription($panel->getDescription(), $record, 200);
+            $panelImg = $this->resolveMenuImage($panel, $type, $record);
+            $badge = htmlspecialchars($panel->getBadge(), ENT_QUOTES, 'UTF-8');
+            $grad = htmlspecialchars($panel->getGradient(), ENT_QUOTES, 'UTF-8');
+            $ico = htmlspecialchars($panel->getIcon(), ENT_QUOTES, 'UTF-8');
+
+            $testimonial = $this->pickMenuTestimonial($validTestimonials, $panel->getTestimonialId());
+            $tQuote = $testimonial ? htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8') : '';
+            $tAuthor = $testimonial ? htmlspecialchars($testimonial->getNom(), ENT_QUOTES, 'UTF-8') : '';
+            $tRole = $testimonial ? htmlspecialchars($testimonial->getFonction(), ENT_QUOTES, 'UTF-8') : '';
+
+            // The Web & Mobile panel's primary CTA has always pointed to the
+            // realisations page rather than its own service page.
+            $ctaLink = ($panel->getPanelKey() === 'web') ? $realisationPage->getLink() : $panelLink;
+            $ctaLabel = htmlspecialchars($panel->getCtaLabel() ? $panel->getCtaLabel() : 'Découvrir', ENT_QUOTES, 'UTF-8');
+
+            $menuHTML .= '
+<div class="mega glass-mega glass-nav" data-panel="' . $panelKey . '">
     <div class="mega-inner">
-
-        <div class="visual stag"
-             style="--i:0"
-             data-def-service="'.htmlspecialchars($brandExperience->getTitre(), ENT_QUOTES, 'UTF-8').'"
-             data-def-desc="'.htmlspecialchars(html_entity_decode(strip_tags($brandExperience->getExtrait()), ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8').'"
-             data-def-ico="palette"
-             data-def-grad="grad-brand"
-             data-def-img="'.$siteURL.'images/pages/branding.webp"
-             data-def-quote=""
-                data-def-author=""
-                data-def-role=""
-                data-def-cat="">
-            
-
-            <a class="vimg-link" href="'.$brandExperience->getLink().'">
-                <span class="vimg-wrap grad-brand" data-vgrad>
+        <div class="visual stag" style="--i:0"
+             data-def-service="' . htmlspecialchars($panelTitle, ENT_QUOTES, 'UTF-8') . '"
+             data-def-desc="' . htmlspecialchars($panelDesc, ENT_QUOTES, 'UTF-8') . '"
+             data-def-ico="' . $ico . '"
+             data-def-grad="' . $grad . '"
+             data-def-img="' . $panelImg . '"
+             data-def-quote="' . $tQuote . '"
+             data-def-author="' . $tAuthor . '"
+             data-def-role="' . $tRole . '"
+             data-def-cat="">
+            <a class="vimg-link" href="' . $panelLink . '">
+                <span class="vimg-wrap ' . $grad . '" data-vgrad>
                     <span class="vico" data-vico></span>
                     <img class="vimg" data-vimg alt="">
                 </span>
             </a>
-
             <div class="cap">
-
-                <span class="badge">360°</span>
-
+                <span class="badge">' . $badge . '</span>
                 <h4 data-vtitle></h4>
-
                 <p data-vdesc></p>
-
                 <div class="vactions">
-
-                    <a class="v-pill v-disc"
-                       href="'.$brandExperience->getLink().'">
-                        Découvrir →
-                    </a>
-
-                    <a class="v-pill v-expert"
-                       href="'.$contactPage->getLink().'">
-                        📞 Parler à un expert <b data-vservice></b>
-                    </a>
-
+                    <a class="v-pill v-disc" href="' . $ctaLink . '">' . $ctaLabel . ' →</a>
+                    <a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a>
                 </div>
-
             </div>
-
         </div>
+        <div class="mega-content">';
 
-        <div class="mega-content">
+            $groupIds = $panel->getSousMenu();
+            $isMulti = count($groupIds) > 1;
+            $anyPacks = false;
 
-            <p class="eyebrow dark stag" style="--i:1">
-                '.htmlspecialchars($brandExperience->getTitre(), ENT_QUOTES, 'UTF-8').'
-            </p>
+            // Agents IA and Sectoriel lists are dense (up to 23 rows), so their
+            // sublink rows use tighter vertical spacing than other groups.
+            $tightAutoLists = array('agent_ia', 'secteur');
 
-            <div class="cols-2">';
-            foreach($brandSeviceChild as $k => $service){
-                $packs = pack::findAll($_SESSION["lang"], true, true, $service->getId());
-                $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-                $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-                // $testimonial = $testimonials[array_rand($testimonials)];
-                $packsHtmlBank = '';
-
-                foreach($packs as $pack){
-                    $packsHtmlBank .= '
-                    <a class="pack grad-web" href="'.$service->getLink().'">
-                        <img loading="lazy"
-                             src="'.$siteURL.'images/packs/'.$pack->getPhoto().'"
-                             alt="'.htmlspecialchars($pack->getTitre()).'">
-                        <span class="pk-tag">Pack</span>
-                            <span class="pk-title">'.htmlspecialchars($pack->getTitre(), ENT_QUOTES, 'UTF-8').'</span>
-                    </a>';
+            if (count($groupIds) === 1) {
+                $group = new menu_item($groupIds[0], $db, $lang);
+                $colsClass = $group->getCardStyle() === 'card' ? 'cols-3' : 'cols-2';
+                if (in_array($group->getAutoList(), $tightAutoLists)) {
+                    $colsClass .= ' mm-tight-list';
                 }
-                $brandDescFull = trim(strip_tags($service->getSousTitre() ? $service->getSousTitre() : ($service->getExtrait() ? $service->getExtrait() : $service->getTexteAccueil())));
-                $brandDesc = htmlspecialchars(mb_strimwidth($brandDescFull, 0, 90, '…', 'UTF-8'), ENT_QUOTES, 'UTF-8');
-            $menuHTML .= '
+                $menuHTML .= '<p class="eyebrow dark stag" style="--i:1">' . htmlspecialchars($group->getTitre(), ENT_QUOTES, 'UTF-8') . '</p>';
+                $menuHTML .= '<div class="' . $colsClass . '">';
+                list($itemsHtml, $hasPacks) = $this->renderMenuGroupItems($group, $lang, $panelLink, $validTestimonials);
+                $menuHTML .= $itemsHtml . '</div>';
+                $anyPacks = $hasPacks;
+            } elseif ($isMulti) {
+                $menuHTML .= '<div class="cols-3">';
+                $gi = 1;
+                foreach ($groupIds as $gid) {
+                    $group = new menu_item($gid, $db, $lang);
+                    $divClass = $gi > 1 ? 'divider stag' : 'stag';
+                    if (in_array($group->getAutoList(), $tightAutoLists)) {
+                        $divClass .= ' mm-tight-list';
+                    }
+                    $menuHTML .= '<div class="' . $divClass . '" style="--i:' . $gi . '"><p class="eyebrow dark">' . htmlspecialchars($group->getTitre(), ENT_QUOTES, 'UTF-8') . '</p>';
+                    list($itemsHtml, $hasPacks) = $this->renderMenuGroupItems($group, $lang, $panelLink, $validTestimonials);
+                    $menuHTML .= $itemsHtml . '</div>';
+                    $anyPacks = $anyPacks || $hasPacks;
+                    $gi++;
+                }
+                $menuHTML .= '</div>';
+            }
 
-            <a class="custom-sublink sublink stag"
-               style="--i:'.($k + 2).'"
-               href="'.$service->getLink().'"
+            $menuHTML .= '</div>'; // mega-content
+            $menuHTML .= '</div>'; // mega-inner -- packs/mega-foot below are full-width siblings of mega-inner, not nested in its 2-col grid
 
-                data-service="'.htmlspecialchars($service->getTitre(), ENT_QUOTES, 'UTF-8').'"
-                data-desc="'.$brandDesc.'"
-                data-img="'.$siteURL.'images/services/'.$service->getPhoto().'"
-                data-packs="'.htmlspecialchars(base64_encode($packsHtmlBank), ENT_QUOTES).'"
-                data-ico="palette"
-                data-grad="grad-brand"
-                data-quote="'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'"
-                data-author="'.$testimonial->getNom().'"
-                data-role="'.htmlspecialchars($testimonial->getFonction(),ENT_QUOTES,'UTF-8').'">
-
-                <span class="thumb grad-brand" data-thumb>
-
-                    <img
-                        loading="lazy"
-                        src="'.$siteURL.'images/services/'.$service->getPhoto().'"
-                        alt="'.htmlspecialchars($service->getTitre(), ENT_QUOTES, 'UTF-8').'">
-
-                    <span class="thumb-ico"></span>
-
-                </span>
-
-                <span class="tx">
-
-                    <span class="ttl">
-                        '.$service->getTitre().'
-                    </span>
-
-                    <span class="desc">
-                        '.$brandDesc.'
-                    </span>
-
-                </span>
-
-            </a>';
-        }
-        $menuHTML .= '
-
-            <a class="custom-sublink sublink sublink-all stag"
-               style="--i:'.(count($brandSeviceChild) + 2).'"
-               href="'.$brandExperience->getLink().'"
-                data-service="Toutes nos expertises Brand Experience"
-                data-desc="Découvrez l\'ensemble de nos expertises en création de marque."
-                data-img="'.$siteURL.'images/pages/branding.webp"
-                data-ico="palette"
-                data-grad="grad-brand">
-
-                <span class="thumb grad-brand" data-thumb>
-                    <img loading="lazy" src="'.$siteURL.'images/pages/branding.webp" alt="Toutes nos expertises Brand Experience" onerror="this.style.display=\'none\'">
-                    <span class="thumb-ico" style="font-size:1.4rem">&#8594;</span>
-                </span>
-
-                <span class="tx">
-                    <span class="ttl">Voir toute l\'offre Brand Experience</span>
-                    <span class="desc">'.count($brandSeviceChild).' expertises disponibles</span>
-                </span>
-
-            </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+            if ($anyPacks) {
+                $menuHTML .= '
              <div class="packs stag" style="--i:10">
-          <p class="packs-title">Découvrez nos packs</p>
-          <div class="packs-grid" id="packsGrid1">
-          </div>
-        </div> 
-              
-            <div class="mega-foot stag" style="--i:11">
-        
-                <p class="foot-title" data-foottitle></p>
-        
-                <div class="foot-row">
-        
-                    <div class="rating">
-                        <span class="rating-num">Reviews Score 5,0</span>
-                    <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
-                    </div>
-        
-                    <p class="quote" data-quote>'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'</p>
-        
-                    <div class="who">
-        
-                        <span class="ava" data-ava></span>
-        
-                        <span class="who-txt">
-                             <b data-author>'.$testimonial->getNom().'</b>
-                            <span class="role" data-role>'.$testimonial->getFonction().'</span>
-                        </span>
-        
-                    </div>
-        
-                </div>
-        
-            </div>
-        
-        </div>
-    ';
-        
-        
-$menuHTML .= '
-    <div class="mega glass-mega glass-nav" data-panel="web">
-        <div class="mega-inner">
-          <div class="visual stag" style="--i:0" data-def-service="Web &amp; Mobile" data-def-desc="Des expériences digitales rapides, élégantes et évolutives." data-def-ico="globe" data-def-grad="grad-web" data-def-img="' . $siteURL . 'images/services/' . $webMobile->getPhoto() . '" data-def-quote="'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'" data-def-author="'.$testimonial->getNom().'" data-def-role="'.$testimonial->getFonction().'" data-def-cat="nos services Web &amp; Mobile">
-            <a class="vimg-link" href="#"><span class="vimg-wrap grad-web" data-vgrad><span class="vico" data-vico></span><img class="vimg" data-vimg alt=""></span></a>
-            <div class="cap"><span class="badge">Sur mesure</span><h4 data-vtitle></h4><p data-vdesc></p>
-              <div class="vactions"><a class="v-pill v-disc" href="' . $realisationPage->getLink() . '">Voir nos réalisations →</a><a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a></div></div>
-          </div>
-          <div class="mega-content">
-            <div class="cols-3">';
-          
-            foreach($webMobileChild as $k => $service){
-                $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-                $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-                if($service->getId() == 39){
-                   $dateDesc = '<li>iOS natives</li><li>Android natives</li><li>Hybrides RN / Flutter</li>'; 
-                }
-                elseif($service->getId() == 38){
-                    $dateDesc = '<li>Sites vitrines & corporate</li> <li>Développement e-commerce</li> <li>Applications web sur mesure</li><li>Intégrations CRM/ERP/API</li>'; 
-                }
-                elseif($service->getId() == 40){
-                    $dateDesc = '<li>Audit SEO technique complet</li> <li>Optimisation Core Web Vitals</li> <li>Stratégie de mots-clés ciblés</li><li>Optimisation SEO On-Page</li>'; 
-                }
-                else{
-                    $dateDesc = '<li>Espaces clients RGPD</li><li>Dashboards temps réel</li><li>Intégrations CRM/ERP/API</li>'; 
-                }
-                $packs = pack::findAll($_SESSION["lang"], true, true, $service->getId());
-
-                $packsHtmlBank = '';
-                
-                foreach($packs as $pack){
-                    $packsHtmlBank .= '
-                    <a class="pack grad-web" href="'.$service->getLink().'">
-                        <img loading="lazy"
-                             src="'.$siteURL.'images/packs/'.$pack->getPhoto().'"
-                             alt="'.htmlspecialchars($pack->getTitre()).'">
-                        <span class="pk-tag">Pack</span>
-                            <span class="pk-title">'.htmlspecialchars($pack->getTitre(), ENT_QUOTES, 'UTF-8').'</span>
-                    </a>';
-                }
-
-                $menuHTML .= '
-                <a class="card stag" style="--i:'.($k + 1).'"
-                   href="'.$service->getLink().'"
-            
-                   data-service="'.htmlspecialchars($service->getTitre()).'"
-                   data-img="'.$siteURL.'images/services/'.$service->getPhoto().'"
-                   data-packs="'.htmlspecialchars(base64_encode($packsHtmlBank), ENT_QUOTES).'"
-                   data-ico="globe"
-                   data-grad="grad-web">
-                    
-                    <div class="card-h">
-            
-                        <span class="thumb grad-web">
-                            <img
-                                src="'.$siteURL.'images/services/'.$service->getPhoto().'"
-                                alt="'.$service->getTitre().'">
-                        </span>
-            
-                    </div>
-            
-                    <h3 class="card-title">
-                        '.$service->getTitre().'
-                    </h3>
-                    <ul class="feat">
-                    '. $dateDesc .'
-                    </ul>
-            
-                </a>';
+                <p class="packs-title">Découvrez nos packs</p>
+                <div class="packs-grid" id="packsGrid-' . $panelKey . '"></div>
+            </div>';
             }
+
+            $menuHTML .= $this->renderMenuFoot($panelIndex + 10, $testimonial);
             $menuHTML .= '
-                <a class="card sublink-all stag" style="--i:'.(count($webMobileChild) + 1).'"
-                   href="'.$webMobile->getLink().'"
-
-                   data-service="Toutes nos offres Web &amp; Mobile"
-                   data-img="'.$siteURL.'images/services/'.$webMobile->getPhoto().'"
-                   data-ico="globe"
-                   data-grad="grad-web">
-
-                    <div class="card-h">
-
-                        <span class="thumb grad-web">
-                            <img
-                                src="'.$siteURL.'images/services/'.$webMobile->getPhoto().'"
-                                alt="Toutes nos offres Web &amp; Mobile">
-                        </span>
-
-                    </div>
-
-                    <h3 class="card-title">
-                        Voir toute l\'offre Web &amp; Mobile
-                    </h3>
-                    <ul class="feat">
-                    <li>'.count($webMobileChild).' expertises disponibles</li>
-                    </ul>
-
-                </a>
-
-
-          </div>
-          
-          </div>
-        </div>
-       <div class="packs stag" style="--i:4">
-          <p class="packs-title">Découvrez nos packs</p>
-          <div class="packs-grid" id="packsGrid">
-          </div>
-        </div>
-        <div class="mega-foot stag" style="--i:5"><p class="foot-title" data-foottitle></p><div class="foot-row">
-                <div class="rating">
-                    <span class="rating-num">Reviews Score 5,0</span>
-                    <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
-                </div>
-                <p class="quote">'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'</p>
-                <div class="who">
-                    <span class="ava" data-ava></span>
-                    <span class="who-txt"><b data-author>'.$testimonial->getNom().'</b>
-                    <span class="role" data-role>'.$testimonial->getFonction().'</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-      
-      </div>
-      
-      
-      
-      ';
-      $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-                $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-      $menuHTML .= '
-            <!-- ===== SAAS ===== -->
-      <div class="mega glass-mega glass-nav" data-panel="saas">
-        <div class="mega-inner">
-          <div class="visual stag" style="--i:0"
-               data-def-service="SaaS &amp; Produits" data-def-desc="Du MVP au dashboard décisionnel, livré vite et bien." data-def-ico="rocket" data-def-grad="grad-saas"
-               data-def-img="'.$siteURL.'images/pages/saas.webp" data-def-quote="On a lancé notre produit bien plus vite que prévu." data-def-author="" data-def-role="CEO, HelloWorld" data-def-cat="nos produits SaaS">
-            <a class="vimg-link" href="#"><span class="vimg-wrap grad-saas" data-vgrad><span class="vico" data-vico></span><img class="vimg" data-vimg alt=""></span></a>
-            <div class="cap"><span class="badge">Produits</span><h4 data-vtitle></h4><p data-vdesc></p>
-              <div class="vactions"><a class="v-pill v-disc" href="' . $saasProduit->getLink() . '">Lancer mon produit →</a><a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a></div></div>
-          </div>
-          <div class="mega-content"><div class="cols-3">
-            <a class="card stag d-none" style="--i:1" href="' . $saasProduit->getLink() . '" data-service="MVP SaaS" data-desc="Du concept au produit en ligne, vite et bien." data-ico="rocket" data-grad="grad-saas" data-img="https://loremflickr.com/600/700/startup,team?lock=17" data-quote="MVP en ligne en 6 semaines, pile pour notre levée." data-author="" data-role="">
-              <div class="card-h"><span class="thumb grad-saas" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/startup,team?lock=17" alt="" onerror="this.style.display=\'none\"><span class="thumb-ico"></span></span><span class="bignum">01</span></div>
-              <h3 class="card-title">MVP SaaS</h3><ul class="feat"><li>• Prototypage rapide</li><li>• Sprints agiles</li><li>• Itération continue</li></ul></a>
-            <a class="card stag" style="--i:2" href="' . $saasProduit->getLink() . '" data-service="MVP SaaS" data-desc="MVP SaaS" data-desc="Du concept au produit en ligne, vite et bien." data-ico="building" data-grad="grad-saas" data-img="https://loremflickr.com/600/700/software,office?lock=18" data-quote="MVP en ligne en 6 semaines, pile pour notre levée." data-author="" data-role="">
-              <div class="card-h"><span class="thumb grad-saas" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/software,office?lock=18" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="bignum">01</span></div>
-              <h3 class="card-title">MVP SaaS</h3><ul class="feat"><li>• Prototypage rapide</li><li>• Sprints agiles</li><li>• Itération continue</li></ul></a>
-            <a class="card stag" style="--i:3" href="' . $saasProduit->getLink() . '" data-service="Plateformes Métiers" data-desc="Des outils internes qui font gagner du temps." data-ico="building" data-grad="grad-saas" data-img="https://loremflickr.com/600/700/software,office?lock=18" data-quote="Nos process internes ont été divisés par deux." data-author="" data-role="">
-              <div class="card-h"><span class="thumb grad-saas" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/software,office?lock=18" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="bignum">02</span></div>
-              <h3 class="card-title">Plateformes Métiers</h3><ul class="feat"><li>• Outils PME / ETI</li><li>• Workflows automatisés</li><li>• ERP / CRM internes</li></ul></a>
-            <a class="card stag" style="--i:4" href="' . $saasProduit->getLink() . '" data-service="Dashboards &amp; Analytics" data-desc="Vos décisions enfin guidées par la donnée." data-ico="dash" data-grad="grad-saas" data-img="https://loremflickr.com/600/700/data,dashboard?lock=19" data-quote="Les décisions se prennent enfin sur de la data fiable." data-author="" data-role="">
-              <div class="card-h"><span class="thumb grad-saas" data-thumb><img loading="lazy" src="https://loremflickr.com/96/96/data,dashboard?lock=19" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="bignum">03</span></div>
-              <h3 class="card-title">Dashboards &amp; Analytics</h3><ul class="feat"><li>• BI &amp; KPI visuels</li><li>• Tableaux temps réel</li><li>• Reporting automatisé</li></ul></a>
-          </div></div>
-        </div>
-        <div class="mega-foot stag" style="--i:5"><p class="foot-title" data-foottitle></p><div class="foot-row">
-        <div class="rating">
-        <span class="rating-num">Reviews Score 5,0</span>
-        <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
-        </div>
-        <p class="quote" data-quote>'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'</p><div class="who"><span class="ava" data-ava></span><span class="who-txt"><b data-author>'.$testimonial->getNom().'</b><span class="role" data-role>'.$testimonial->getFonction().'</span></span></div></div></div>
-      
-      </div>';
-      $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-                $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-      $menuHTML .= '
-
-      <!-- ===== MARKETPLACE ===== -->
-      <div class="mega glass-mega glass-nav" data-panel="market">
-        <div class="mega-inner">
-          <div class="visual stag" style="--i:0"
-               data-def-service="Marketplace IA" data-def-desc="Activez un agent IA en quelques jours, pas en mois." data-def-ico="robot" data-def-grad="grad-mk"
-               data-def-img="'.$siteURL.'images/pages/market-place.webp" data-def-quote="Un agent déployé en quelques jours, adopté immédiatement." data-def-author="Lina O." data-def-role="" data-def-cat="nos agents de la Marketplace">
-            <a class="vimg-link" href="#"><span class="vimg-wrap grad-mk" data-vgrad><span class="vico" data-vico></span><img class="vimg" data-vimg alt=""></span></a>
-            <div class="cap"><span class="badge">6 agents</span><h4 data-vtitle></h4><p data-vdesc></p>
-              <div class="vactions"><a class="v-pill v-disc" href="' . $marketplace->getLink() . '">Parcourir →</a><a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a></div></div>
-          </div>
-          <div class="mega-content">
-            <p class="eyebrow dark stag" style="--i:1">Marketplace · Agents prêts à l\'emploi</p>
-            <div class="cols-2">
-              <a class="sublink stag d-none" style="--i:2" href="' . $marketplace->getLink() . '" data-service="HW Concierge AI" data-desc="Assistant conversationnel multicanal � site, chat, email � form� sur votre catalogue et vos processus. Disponible 24/7, multilingue." data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/BOARDY.webp" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/BOARDY.webp" alt="VERDE Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">HW Concierge AI</span><span class="desc">Multilingue (FR/AR/EN)</span></span></a>
-              <a class="sublink stag" style="--i:2" href="' . $marketplace->getLink() . '" data-service="HW Concierge AI" data-desc="Assistant conversationnel multicanal site, chat, email, formé sur votre catalogue et vos processus. Disponible 24/7, multilingue." data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/BOARDY.webp" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/BOARDY.webp" alt="VERDE Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">HW Concierge AI</span><span class="desc">Multilingue (FR/AR/EN)</span></span></a>
-              <a class="sublink stag" style="--i:3" href="' . $marketplace->getLink() . '" data-service="HW WhatsApp Agent" data-desc="WhatsApp Business automatisé et connecté au CRM." data-ico="whatsapp" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/ASTRO.webp" data-quote="Le SAV WhatsApp tourne en autonomie totale." data-author="" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/ASTRO.webp" alt="ASTRO Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">HW WhatsApp Agent</span><span class="desc">WhatsApp Business + CRM</span></span></a>
-              <a class="sublink stag" style="--i:4" href="' . $marketplace->getLink() . '" data-service="HW SDR Agent" data-desc="Prospection commerciale et qualification automatisées." data-ico="target" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/TITAN.webp" data-quote="Notre pipeline n\'a jamais été aussi rempli." data-author="" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/TITAN.webp" alt="TITAN Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">HW SDR Agent</span><span class="desc">Prospection + qualification</span></span></a>
-              <a class="sublink stag" style="--i:5" href="' . $marketplace->getLink() . '" data-service="HW Support 24/7" data-desc="Support multicanal intelligent avec escalade humaine." data-ico="headset" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/SOLA.webp" data-quote="Réponses instantanées, clients vraiment ravis." data-author="" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/SOLA.webp" alt="SOLA Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">HW Support 24/7</span><span class="desc">Multicanal avec escalade</span></span></a>
-              <a class="sublink stag" style="--i:6" href="' . $marketplace->getLink() . '" data-service="HW Content Studio AI" data-desc="Génération de contenu SEO et publication automatique." data-ico="pen" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/PULSE.webp" data-quote="20 articles SEO par mois, sans même y penser." data-author="" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/PULSE.webp" alt="Pulse Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">HW Content Studio AI</span><span class="desc">SEO + publication auto</span></span></a>
-              <a class="sublink stag" style="--i:7" href="' . $marketplace->getLink() . '" data-service="HW Voice Caller" data-desc="Agent vocal pour vos appels sortants automatisés." data-ico="phone" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/VOX.webp" data-quote="Les relances téléphoniques sont totalement automatisées." data-author="" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/VOX.webp" alt="VOX Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">HW Voice Caller</span><span class="desc">Appels sortants</span></span></a>
-              <a class="sublink stag" style="--i:8" href="' . $marketplace->getLink() . '" data-service="Conversationnel IA" data-desc="Assistants intelligents pour vos sites web et applications." data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/agent-ia/VERDE2.webp" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/VERDE2.webp" alt="VERDE Agent IA" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Conversationnel IA</span><span class="desc">Sites web et apps</span></span></a>
-              
-              
-            </div>
-          </div>
-        </div>
-         <div class="mega-foot stag" style="--i:8"><p class="foot-title" data-foottitle></p><div class="foot-row">
-         <div class="rating">
-         <span class="rating-num">Reviews Score 5,0</span>
-                    <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
-         </div>
-         <p class="quote" data-quote>'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'</p><div class="who"><span class="ava" data-ava></span><span class="who-txt"><b data-author>'.$testimonial->getNom().'</b><span class="role" data-role>'.$testimonial->getFonction().'</span></span></div></div></div>
-      
-      </div>';
-      $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-      $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-      $menuHTML .= '
-
-
-      <!-- ===== FORMATIONS ===== -->
-      
-      <div class="mega glass-mega glass-nav" data-panel="form">
-        <div class="mega-inner">
-          <div class="visual stag" style="--i:0"
-               data-def-service="Formations IA" data-def-desc="Montez en compétence, vous et vos équipes." data-def-ico="cap" data-def-grad="grad-form"
-               data-def-img="'.$siteURL.'images/pages/formation.webp" data-def-quote="Une montée en compétence IA visible dès la première semaine." data-def-author="Patrick D." data-def-cat="nos Formations IA">
-            <a class="vimg-link" href="#"><span class="vimg-wrap grad-form" data-vgrad><span class="vico" data-vico></span><img class="vimg" data-vimg alt=""></span></a>
-            <div class="cap"><span class="badge">Académie</span><h4 data-vtitle></h4><p data-vdesc></p>
-              <div class="vactions"><a class="v-pill v-disc" href="' . $formationIa->getLink() . '">Voir le calendrier →</a><a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a></div></div>
-          </div>
-          <div class="mega-content">
-            ';
-            // Liste dynamique : chaque formation active pointe vers sa propre page de détail.
-            // Une future formation ajoutée depuis l'admin apparaît ici automatiquement, sans retouche du menu.
-            $formationsAll = formation::findAll($_SESSION['lang'], true);
-            foreach ($formationsAll as $fIndex => $frm) {
-                $fImg    = $frm->getPhoto() ? $siteURL.'images/formations/'.$frm->getPhoto() : $siteURL.'images/pages/formation.webp';
-                $fTitre  = htmlspecialchars($frm->getTitre(), ENT_QUOTES, 'UTF-8');
-                $fDescFull = trim(strip_tags($frm->getSousTitre() ? $frm->getSousTitre() : $frm->getExtrait()));
-                $fDesc   = htmlspecialchars(mb_strimwidth($fDescFull, 0, 70, '…'), ENT_QUOTES, 'UTF-8');
-                $menuHTML .= '
-            <a class="sublink stag" style="--i:'.($fIndex + 1).'" href="'.$frm->getLink().'" data-service="'.$fTitre.'" data-desc="'.$fDesc.'" data-ico="cap" data-grad="grad-form" data-img="'.$fImg.'" data-quote="" data-author="" data-role=""><span class="thumb grad-form" data-thumb><img loading="lazy" src="'.$fImg.'" alt="'.$fTitre.'" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$fTitre.'</span><span class="desc">'.$fDesc.'</span></span></a>';
-            }
-            $menuHTML .= '
-            <a class="sublink sublink-all stag" style="--i:'.(count($formationsAll) + 1).'" href="' . $formationIa->getLink() . '" data-service="Toutes nos formations" data-desc="D&eacute;couvrez l\'ensemble du catalogue Hello World Academy." data-ico="grid" data-grad="grad-form" data-img="'.$siteURL.'images/pages/formation.webp" data-quote="" data-author="" data-role=""><span class="thumb grad-form" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/formation.webp" alt="Toutes nos formations" onerror="this.style.display=\'none\'"><span class="thumb-ico" style="font-size:1.4rem">&#8594;</span></span><span class="tx"><span class="ttl">Voir toutes nos formations</span><span class="desc">'.count($formationsAll).' programmes disponibles</span></span></a>
-            <div class="tags stag" style="--i:'.(count($formationsAll) + 2).'; padding-left:8px; margin-top:6px;"><span class="tag">n8n</span><span class="tag">Claude</span><span class="tag">ChatGPT</span><span class="tag">Make</span><span class="tag">Notion</span><span class="tag">Zapier</span></div>
-          </div>
-        </div>
-
-        <div class="mega-foot stag" style="--i:7"><p class="foot-title" data-foottitle></p><div class="foot-row">
-        <div class="rating">
-        <span class="rating-num">Reviews Score 5,0</span>
-        <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
-        </div>
-        <p class="quote" data-quote>'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'</p><div class="who"><span class="ava" data-ava></span><span class="who-txt"><b data-author>'.$testimonial->getNom().'</b><span class="role" data-role>'.$testimonial->getFonction().'</span></span></div></div></div>
-      
-      
-      </div>';
-      $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-                $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-      $menuHTML .= '
-          <!-- ===== SOLUTIONS ===== -->
-      <div class="mega glass-mega glass-nav" data-panel="solutions">
-        <div class="mega-inner">
-          <div class="visual stag" style="--i:0"
-               data-def-service="Solutions IA" data-def-desc="Agents IA &amp; automatisations pour toute votre relation client." data-def-ico="robot" data-def-grad="grad-sol"
-               data-def-img="'.$siteURL.'images/services/'.$solutionIA->getPhoto().'"
-               data-def-quote="Hello World a transformé notre relation client en quelques semaines." data-def-author="" data-def-role="" data-def-cat="nos Solutions IA">
-            <a class="vimg-link" href="#"><span class="vimg-wrap grad-sol" data-vgrad><span class="vico" data-vico></span><img class="vimg" data-vimg alt=""></span></a>
-            <div class="cap"><span class="badge">Service IA</span><h4 data-vtitle>Solutions IA</h4><p data-vdesc></p>
-              <div class="vactions"><a class="v-pill v-disc" href="' . $solutionIA->getLink() .'">Découvrir →</a><a class="v-pill v-expert" href="' . $contactPage->getLink() .'">📞 Parler à un expert <b data-vservice></b></a></div></div>
-          </div>
-          <div class="mega-content">
-            <div class="cols-3">
-              <div class="stag" style="--i:1"><p class="eyebrow dark">Agents IA</p>
-                ';
-                // Liste dynamique : chaque agent IA actif pointe vers sa propre page de détail.
-                // Un futur agent ajouté depuis l'admin apparaît ici automatiquement, sans retouche du menu.
-                $agentsIaAll = agent_ia::findAll($_SESSION['lang'], true);
-                $agentsIaList = array_slice($agentsIaAll, 0, 6);
-                foreach ($agentsIaList as $agIndex => $ag) {
-                    $agPhotoFile = $ag->getPhotoProduit() ? $ag->getPhotoProduit() : $ag->getPhoto();
-                    $agImg   = $agPhotoFile ? $siteURL.'images/agents_ia/'.$agPhotoFile : $siteURL.'images/services/'.$solutionIA->getPhoto();
-                    $agTitre = htmlspecialchars($ag->getTitre(), ENT_QUOTES, 'UTF-8');
-                    $agDescFull = trim(strip_tags($ag->getSousTitre() ? $ag->getSousTitre() : $ag->getExtrait()));
-                    $agDesc  = htmlspecialchars(mb_strimwidth($agDescFull, 0, 70, '…'), ENT_QUOTES, 'UTF-8');
-                    $menuHTML .= '
-                <a class="sublink" style="--i:'.($agIndex + 2).'" href="'.$ag->getLink().'" data-service="'.$agTitre.'" data-desc="'.$agDesc.'" data-ico="robot" data-grad="grad-sol" data-img="'.$agImg.'" data-quote="" data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$agImg.'" alt="'.$agTitre.'" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agTitre.'</span><span class="desc">'.$agDesc.'</span></span></a>';
-                }
-                $menuHTML .= '
-                <a class="sublink sublink-all" href="' . $agentsIaPage->getLink() . '"'. ' data-service="Tous nos Agents IA" data-desc="D&eacute;couvrez l\'ensemble de nos agents IA."'. ' data-ico="grid" data-grad="grad-sol" data-img="'.$siteURL.'images/services/'.$solutionIA->getPhoto().'" data-quote="" data-author="" data-role="">'. '<span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/services/'.$solutionIA->getPhoto().'" alt="Tous les agents IA" onerror="this.style.display=\'none\'"><span class="thumb-ico" style="font-size:1.4rem">&#8594;</span></span>'. '<span class="tx"><span class="ttl">Voir tous les agents IA</span><span class="desc">'.count($agentsIaAll).' agents disponibles</span></span></a>
-              </div>
-              <div class="divider stag" style="--i:2"><p class="eyebrow dark">Automatisations</p>
-                <a class="sublink" href="' . $solutionIA->getLink() .'" data-service="CRM" data-desc="Vos leads synchronisés et vos clients suivis, sans friction." data-ico="users" data-grad="grad-sol" data-img="'.$siteURL.'images/agent-ia/CRM.webp" data-quote="Nos leads sont enfin synchronisés partout." data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/CRM.webp" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">CRM</span><span class="desc">Leads &amp; clients</span></span></a>
-                <a class="sublink" href="' . $solutionIA->getLink() .'" data-service="Email" data-desc="Des campagnes ciblées et des relances automatiques." data-ico="mail" data-grad="grad-sol" data-img="'.$siteURL.'images/agent-ia/Email.webp" data-quote="Nos campagnes tournent toutes seules désormais." data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/Email.webp" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Email</span><span class="desc">Campagnes &amp; suivis</span></span></a>
-                <a class="sublink" href="' . $solutionIA->getLink() .'" data-service="Prospection" data-desc="Des prospects qualifiés engagés automatiquement." data-ico="target" data-grad="grad-sol" data-img="'.$siteURL.'images/agent-ia/Prospection.webp" data-quote="On signe deux fois plus de RDV qualifiés." data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/Prospection.webp" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Prospection</span><span class="desc">Leads qualifiés</span></span></a>
-                <a class="sublink" href="' . $solutionIA->getLink() .'" data-service="Reporting" data-desc="Vos performances visibles en un coup d\'œil." data-ico="chart" data-grad="grad-sol" data-img="'.$siteURL.'images/agent-ia/Reporting.webp" data-quote="Je vois mes KPIs en un coup d\'œil chaque matin." data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/agent-ia/Reporting.webp" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Reporting</span><span class="desc">Tableaux de bord</span></span></a>
-              </div>
-              <div class="divider stag" style="--i:3"><p class="eyebrow dark">Sectoriel</p>
-                <a class="sublink" href="' . $secteurImmo->getLink() .'" data-service="Immobilier" data-desc="Des solutions pensées pour agences et promoteurs." data-ico="home" data-grad="grad-sol" data-img="'.$siteURL.'images/secteur/'.$secteurImmo->getPhoto().'" data-quote="Nos agences ont gagn� un temps fou sur les visites." data-author="Nadia F." data-role="Dir., HomeKey"><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/secteur/'.$secteurImmo->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Immobilier</span><span class="desc">Agences &amp; promoteurs</span></span></a>
-                <a class="sublink" href="' . $secteurHotel->getLink() .'" data-service="H�tellerie" data-desc="Réservations et services clients pour l\'hôtellerie." data-ico="hotel" data-grad="grad-sol" data-img="'.$siteURL.'images/secteur/'.$secteurHotel->getPhoto().'" data-quote="Les réservations se gèrent sans effort, même la nuit." data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/secteur/'.$secteurHotel->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Hôtellerie</span><span class="desc">Hôtellerie</span></span></a>
-                <a class="sublink" href="' . $secteurMarketing->getLink() .'" data-service="Marketing" data-desc="Rapports & distribution de contenus" data-ico="bag" data-grad="grad-sol" data-img="'.$siteURL.'images/secteur/'.$secteurMarketing->getPhoto().'" data-quote="Notre panier moyen a grimpé de 18%." data-author="Clara V." data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/secteur/'.$secteurMarketing->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Marketing</span><span class="desc">Rapports &amp; distribution de contenus</span></span></a>
-                <a class="sublink" href="' . $secteurSante->getLink() .'" data-service="Santé" data-desc="Des solutions fiables pour établissements médicaux." data-ico="heart" data-grad="grad-sol" data-img="'.$siteURL.'images/secteur/'.$secteurSante->getPhoto().'" data-quote="Les prises de rendez-vous patients sont enfin fluides." data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/secteur/'.$secteurSante->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Santé</span><span class="desc">optimisez le temps médical</span></span></a>
-               <a class="sublink" href="' . $secteurFinance->getLink() .'" data-service="Finance" data-desc="Automatisez vos services financiers" data-ico="heart" data-grad="grad-sol" data-img="'.$siteURL.'images/secteur/'.$secteurFinance->getPhoto().'" data-quote="Assistant IA pour la finance" data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/secteur/'.$secteurFinance->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Finance</span><span class="desc">Automatisez vos services financiers</span></span></a>
-               <a class="sublink" href="' . $secteurRestau->getLink() .'" data-service="Restauration" data-desc="Optimisez votre service client" data-ico="heart" data-grad="grad-sol" data-img="'.$siteURL.'images/secteur/'.$secteurSante->getPhoto().'" data-quote="Optimisez votre service client" data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/secteur/'.$secteurRestau->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Restauration</span><span class="desc">Optimisez votre service client</span></span></a>
-               <a class="sublink" href="' . $secteurOperation->getLink() .'" data-service="Opérations" data-desc="Assistez vos équipes au quotidien" data-ico="heart" data-grad="grad-sol" data-img="'.$siteURL.'images/secteur/'.$secteurOperation->getPhoto().'" data-quote="Assistez vos équipes au quotidien" data-author="" data-role=""><span class="thumb grad-sol" data-thumb><img loading="lazy" src="'.$siteURL.'images/secteur/'.$secteurOperation->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">Opération</span><span class="desc">Assistez vos équipes au quotidien</span></span></a>
-              
-              </div>
-            </div>
-          </div>
-        </div>
-       
-        
-           <div class="mega-foot stag" style="--i:4"><p class="foot-title" data-foottitle></p><div class="foot-row">
-           <div class="rating">
-           <span class="rating-num">Reviews Score 5,0</span>
-            <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
-           </div>
-           <p class="quote" data-quote>'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'</p><div class="who"><span class="ava" data-ava></span><span class="who-txt"><b data-author>'.$testimonial->getNom().'</b><span class="role" data-role>'.$testimonial->getFonction().'</span></span></div></div></div>
-      
-      
-      </div>';
-      $validTestimonials = array_filter($testimonials, function($t){return trim(strip_tags($t->getTemoignage())) !== '';});
-      $testimonial = $validTestimonials ? $validTestimonials[array_rand($validTestimonials)] : null;
-      $menuHTML .= '
-
-      <!-- ===== MARKETPLACE ===== -->
-      <div class="mega glass-mega glass-nav" data-panel="agencies">
-        <div class="mega-inner">
-          <div class="visual stag" style="--i:0"
-               data-def-service="Nos Agences" data-def-desc="Une présence mondiale, un accompagnement de proximité et des solutions pensées pour vos ambitions internationales." data-def-ico="robot" data-def-grad="grad-mk"
-               data-def-img="'.$siteURL.'images/pages/'.$agenceMarra->getPhoto().'" data-def-quote="Un agent déployé en quelques jours, adopté immédiatement." data-def-author="Lina O." data-def-role="" data-def-cat="Notre présence internationale">
-            <a class="vimg-link" href="#"><span class="vimg-wrap grad-mk" data-vgrad><span class="vico" data-vico></span><img class="vimg" data-vimg alt=""></span></a>
-            <div class="cap"><span class="badge">6 agents</span><h4 data-vtitle></h4><p data-vdesc></p>
-              <div class="vactions"><a class="v-pill v-disc" href="' . $nosAgence->getLink() . '">Parcourir →</a><a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a></div></div>
-          </div>
-          <div class="mega-content">
-            <p class="eyebrow dark stag" style="--i:1">Nos Agences</p>
-            <div class="cols-2">
-            
-            <a class="sublink stag" style="--i:2" href="' . $agenceCasa->getLink() . '" data-service="' . $agenceCasa->getTitre() . '" data-desc="'.htmlspecialchars(strip_tags($agenceMarra->getExtrait()), ENT_QUOTES, 'UTF-8').'" data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/pages/'.$agenceCasa->getPhoto().'" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/'.$agenceCasa->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agenceCasa->getTitre().'</span></span></a>
-            <a class="sublink stag" style="--i:3" href="' . $agenceMarra->getLink() . '" data-service="' . $agenceMarra->getTitre() . '" data-desc="'.htmlspecialchars(strip_tags($agenceMarra->getExtrait()), ENT_QUOTES, 'UTF-8').'" data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/pages/'.$agenceMarra->getPhoto().'" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/'.$agenceMarra->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agenceMarra->getTitre().'</span></span></a>
-            <a class="sublink stag" style="--i:4" href="' . $agenceLondre->getLink() . '" data-service="' . $agenceLondre->getTitre() . '" data-desc="'.htmlspecialchars(strip_tags($agenceLondre->getExtrait()), ENT_QUOTES, 'UTF-8').'" data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/pages/'.$agenceLondre->getPhoto().'" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/'.$agenceLondre->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agenceLondre->getTitre().'</span></span></a>
-            
-          
-            <a class="sublink stag" style="--i:5" href="' . $agenceTanger->getLink() . '" data-service="' . $agenceTanger->getTitre() . '" data-desc="'.htmlspecialchars(strip_tags($agenceTanger->getExtrait()), ENT_QUOTES, 'UTF-8').'" data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/pages/'.$agenceTanger->getPhoto().'" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/'.$agenceTanger->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agenceTanger->getTitre().'</span></span></a>
-            <a class="sublink stag" style="--i:5" href="' . $agenceRabat->getLink() . '" data-service="' . $agenceRabat->getTitre() . '" data-desc="'.htmlspecialchars(strip_tags($agenceRabat->getExtrait()), ENT_QUOTES, 'UTF-8').'" data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/pages/'.$agenceRabat->getPhoto().'" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/'.$agenceRabat->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agenceRabat->getTitre().'</span></span></a>
-            <a class="sublink stag" style="--i:5" href="' . $agenceFes->getLink() . '" data-service="' . $agenceFes->getTitre() . '" data-desc="'.htmlspecialchars(strip_tags($agenceFes->getExtrait()), ENT_QUOTES, 'UTF-8').'" data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/pages/'.$agenceFes->getPhoto().'" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/'.$agenceFes->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agenceFes->getTitre().'</span></span></a>
-            <a class="sublink stag" style="--i:5" href="' . $agenceAgadir->getLink() . '" data-service="' . $agenceAgadir->getTitre() . '" data-desc="'.htmlspecialchars(strip_tags($agenceAgadir->getExtrait()), ENT_QUOTES, 'UTF-8').'" data-ico="chat" data-grad="grad-mk" data-img="'.$siteURL.'images/pages/'.$agenceAgadir->getPhoto().'" data-quote="Déployé en 4 jours, adopté immédiatement par l\'équipe." data-author="H. Kennou" data-role=""><span class="thumb grad-mk" data-thumb><img loading="lazy" src="'.$siteURL.'images/pages/'.$agenceAgadir->getPhoto().'" alt="" onerror="this.style.display=\'none\'"><span class="thumb-ico"></span></span><span class="tx"><span class="ttl">'.$agenceAgadir->getTitre().'</span></span></a>
-            
-            </div>
-          </div>
-        </div>
-         <div class="mega-foot stag" style="--i:8"><p class="foot-title" data-foottitle></p><div class="foot-row">
-         <div class="rating">
-         <span class="rating-num">Reviews Score 5,0</span>
-                    <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
-         </div>
-         <p class="quote" data-quote>'.htmlspecialchars(strip_tags($testimonial->getTemoignage()), ENT_QUOTES, 'UTF-8').'</p><div class="who"><span class="ava" data-ava></span><span class="who-txt"><b data-author>'.$testimonial->getNom().'</b><span class="role" data-role>'.$testimonial->getFonction().'</span></span></div></div></div>
-      
-      </div>';
-
-        echo $menuHTML;
-    }
-    public function getMegaMenuold($deep = 0, $mobile = false)
-    {
-        global $db, $siteURL;
-        $menuHTML =  '<nav class="header__navigation">
-            <ul class="header__list">';
-
-                $SQLselect = "SELECT A.id FROM " . __prefixe_db__ . "menu_items A
-					  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
-					  WHERE id_menu = " . $this->id . " 
-					  AND parent_id = 0
-					  AND langue = '" . $_SESSION["lang"] . "' 
-					  ORDER BY ordre ASC";
-                $result = $db->query($SQLselect);
-                if ($db->num_rows($result) > 0) {
-                    $result = $db->queryS($SQLselect);
-                    foreach ($result as $data) {
-                        $mi = new menu_item($data['id'], $db, $_SESSION["lang"]);
-                        $blank = $mi->isBlank() ? 'target="_blank"' : '';
-                        $classLi = ($mi->hasSousMenu()) ? 'header__list-item has-submenu' : 'header__list-item ';
-                        $hrefTiret = ($mi->hasSousMenu()) ? '<svg class="menu-svg" xmlns="http://www.w3.org/2000/svg" width="9" height="5" viewBox="0 0 9 5" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.612712 0.200408C0.916245 -0.081444 1.39079 -0.0638681 1.67265 0.239665L4.37305 3.14779L7.07345 0.239665C7.35531 -0.0638681 7.82986 -0.081444 8.13339 0.200408C8.43692 0.48226 8.4545 0.956809 8.17265 1.26034L4.92265 4.76034C4.78074 4.91317 4.5816 5 4.37305 5C4.1645 5 3.96536 4.91317 3.82345 4.76034L0.573455 1.26034C0.291603 0.956809 0.309179 0.48226 0.612712 0.200408Z" fill="black" />
-                        </svg>' : '';
-                        $link = $hrefTiret && $mobile ? "#" : $mi->getLink();
-
-                        if ($mi->getType() == 'page') {
-                            $classLi .= (!isset($_GET['task']) && isset($_GET['id']) && $_GET['id'] == $mi->getIdItem()) ? 'active' : '';
-                        }
-                        if($mi->getType() == 'ext' && isHome() && $mi->getLink() == $siteURL){
-                            $classLi .=  'active';
-                        }
-                        $menuHTML .= '<li class="' . $classLi . '"><a href="' . $link . '"><span>' . $mi->getTitre() .'</span></a>  '. $hrefTiret . '';
-
-                        if($mi->hasSousMenu() && $deep == 0) {
-                            $menuHTML .= '<div class="submenu-wrapper">
-                        <div class="submenu-list__wrapper">
-                            <div class="submenu-list__title"></div>
-                            <ul class="submenu-list">';
-
-                            $SQLselect = "SELECT A.id FROM " . __prefixe_db__ . "menu_items A
-                                                JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
-                                                WHERE id_menu = " . $this->id . "
-                                                AND parent_id = " . $mi->getId() . "
-                                                AND langue = '" . $_SESSION["lang"] . "' 
-                                                ORDER BY ordre ASC";
-                            $result3 = $db->queryS($SQLselect);
-                            
-                            $cpt = 0;
-                    foreach ($result3 as $data3) {
-                        $mi = new menu_item($data3['id'], $db, $_SESSION["lang"]);
-                        $blank = $mi->isBlank() ? 'target="_blank"' : '';
-                        $cpt++;
-                        $atcive = $cpt == 1 ? 'active' : '';
-                        $menuHTML .= '<li class="submenu-list__item has-submenu '.$atcive.'">
-                               <div class="submenu-list__item-wrapper">
-                                        <div class="submenu-list__item-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
-                                                <rect width="44" height="44" rx="10" fill="#09A1BE" fill-opacity="0.1" />
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M22 25.2969C25.866 25.2969 29 22.1629 29 18.2969C29 14.4309 25.866 11.2969 22 11.2969C18.134 11.2969 15 14.4309 15 18.2969C15 22.1629 18.134 25.2969 22 25.2969ZM17.9789 26.398C18.1885 26.1242 18.5747 26.0599 18.8621 26.2496L18.8772 26.259C18.8923 26.2683 18.9181 26.2837 18.9541 26.3039C19.0262 26.3443 19.1391 26.4035 19.29 26.4709C19.592 26.6057 20.0444 26.7721 20.6255 26.8852C21.0249 26.963 21.4852 27.0157 22 27.0157C22.7233 27.0157 23.3394 26.9117 23.8299 26.78C24.267 26.6628 24.6041 26.5235 24.8273 26.4167C24.9388 26.3633 25.0215 26.3182 25.0736 26.2882C25.0997 26.2732 25.1181 26.262 25.1286 26.2555L25.1377 26.2498C25.1373 26.25 25.1368 26.2503 25.1364 26.2506L25.1377 26.2497L25.1377 26.2498C25.4252 26.0593 25.8113 26.124 26.0211 26.398C26.2312 26.6725 26.1922 27.0631 25.9322 27.2908L25.931 27.2918L25.9249 27.2972L25.8986 27.3206C25.875 27.3418 25.8395 27.3739 25.7939 27.4158C25.7025 27.4998 25.5708 27.6232 25.4123 27.7785C25.0943 28.0898 24.6722 28.5253 24.252 29.0243C23.8298 29.5256 23.4214 30.0772 23.1214 30.6208C22.8157 31.1749 22.6561 31.6612 22.6561 32.0469C22.6561 32.4094 22.3623 32.7032 21.9998 32.7032C21.6374 32.7031 21.3436 32.4093 21.3436 32.0469C21.3436 31.6612 21.1841 31.1748 20.8785 30.6208C20.5786 30.0772 20.1701 29.5256 19.748 29.0243C19.3278 28.5253 18.9057 28.0898 18.5878 27.7785C18.4292 27.6232 18.2975 27.4998 18.2062 27.4158C18.1606 27.3739 18.1251 27.3418 18.1014 27.3206L18.0751 27.2972L18.069 27.2918L18.0677 27.2907C17.8076 27.063 17.7688 26.6725 17.9789 26.398Z" fill="#09A1BE" />
-                                            </svg>
-                                        </div>
-                                        <a href="'.$mi->getLink().'" class="submenu-list__item-link">
-                                            <span class="submenu-list__item-title">'.$mi->getTitre().'</span>
-                                        </a>
-                                        <svg class="second-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="#09A1BE">
-                                            <path d="M0.5 6.99996H15.5M15.5 6.99996L9.66667 1.16663M15.5 6.99996L9.66667 12.8333" stroke="#09A1BE" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>';
-                            // test service
-                            $classe = $mi->getType();
-                            if($classe == 'service'){
-                                if(method_exists($classe, "find")){
-                                    $s = $classe::find($mi->getIdItem(), $_SESSION["lang"]);
-                                  $packs = pack::findAll($_SESSION["lang"], true, true, $s->getId());
-                                } else {
-                                    $s = new $classe($mi->getIdItem(),$db,$_SESSION['lang']);
-                                     $packs = pack::findAll($_SESSION["lang"], true, true, $s->getId());
-                                }
-            
-                                $menuHTML .= '<div class="submenu-content">
-                                <ul class="submenu-content__list">';
-                                
-                                    $menuHTML .= '
-                                    <li class="submenu-content__list-item">
-                                        <a href="'.$s->getLink().'" class="submenu-content__link">
-                                            <div class="submenu-content__link-img">
-                                               <img src="' . $siteURL . 'images/services/' . $s->getPhoto() . '" alt="' . htmlspecialchars($s->getTitre()) . '">
-                                            </div>
-                                            <div class="submenu-content__link-title">
-                                                '.$s->getTitre().'
-                                            </div>
-                                            <p>'.strip_tags($s->getExtrait()).'</p>
-                                            <button class="new-service-readmore" href="'.$s->getLink().'">Découvrez notre expertise</button>
-                                        </a>
-                                    </li>';
-                                    $menuHTML .= '</ul>';
-                                    
-                                    if (!empty($packs)) {
-                                    
-                                        $menuHTML .= '
-                                            <h3 class="pack-titre">Découvrez nos packs</h3>
-                                            <div class="mega-menu-pack">
-                                        ';
-                                    
-                                        foreach ($packs as $pack) {
-                                    
-                                            $menuHTML .= '
-                                                <div class="pack">
-                                                <a href="'.$s->getLink().'"><img src="' . $siteURL . 'images/packs/' . $pack->getPhoto() . '" alt="' . htmlspecialchars($pack->getTitre()) . '"></a>
-                                                    
-                                                    <h4>' . htmlspecialchars($pack->getTitre()) . '</h4>
-                                                </div>
-                                            ';
-                                        }
-                                    
-                                        $menuHTML .= '
-                                            </div>
-                                        ';
-                                    }
-                                    
-                                    $menuHTML .= '
-                                    </div>';
-
-
-                            }elseif($classe == 'page'){
-                                if(method_exists($classe, "find")){
-                                    $p = $classe::find($mi->getIdItem(), $_SESSION["lang"]);
-                                } else {
-                                    $p = new $classe($mi->getIdItem(),$db,$_SESSION['lang']);
-                                }
-                                $pageAgences = array(32,33,34,37,38,39,40);
-                                if(in_array($p->getId(),$pageAgences)){
-                                    $menuHTML .= '<div class="submenu-content">
-                                <ul class="submenu-content__list">';
-                                
-                                    $menuHTML .= '
-                                    <li class="submenu-content__list-item">
-                                        <a href="'.$p->getLink().'" class="submenu-content__link">
-                                            <div class="submenu-content__link-img">
-                                               <img src="' . $siteURL . 'images/pages/' . $p->getPhoto() . '" alt="' . htmlspecialchars($p->getTitre()) . '">
-                                            </div>
-                                            <div class="submenu-content__link-title">
-                                                '.$p->getTitre().'
-                                            </div>
-                                            <p>'.$p->getExtrait().'</p>
-                                           
-                                            
-                                        </a>
-                                    </li>';
-                                
-                                $menuHTML .= '</ul>
-                                    </div>';
-                                }
-                       
-                            }
-                            else{
-                                    $menuHTML .= '<div class="submenu-content">
-                                    <ul class="submenu-content__list">';
-                                    
-                                        $menuHTML .= '
-                                        <li class="submenu-content__list-item">
-                                            <a href="https://www.helloworldlabel.ae/" class="submenu-content__link">
-                                                <div class="submenu-content__link-img">
-                                                   <img src="' . $siteURL . 'images/pages/dubai_adresse.webp" alt="dubai">
-                                                </div>
-                                                <div class="submenu-content__link-title">
-                                                    Agence Marketing Digital à Dubai
-                                                </div>
-                                                <p>
-                                                Hello World Label est une agence de marketing digital à Dubai qui accompagne les PME, startups et grandes entreprises dans le développement de leur visibilité en ligne. Nous proposons des stratégies digitales adaptées au marché local afin d’assurer une croissance durable et mesurable.
-                                                </p>
-                                            </a>
-                                        </li>';
-                                    
-                                    $menuHTML .= '</ul>
-                                    </div>';
-                                }
-                            // test service
-                            
-                        $menuHTML .= '</li>';
-                    }
- 
-                            $menuHTML .= '</ul>
-                        </div>
-                    </div>';
-                        }
-
-                        $menuHTML .= '</li>';
-                    }
-                }
-   
-        $menuHTML .= '</ul>
-                    </nav>';
+    </div>';
+        }
 
         echo $menuHTML;
     }

@@ -66,7 +66,7 @@
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=4.6">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.3">
 <style>
 
 .glass-mega{
@@ -338,23 +338,18 @@ if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['
       <a href="<?php echo $siteURL; ?>" class="logo-hw logo"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="<?php echo $config->getNom(); ?>"></a>
       <ul class="nav-links" role="menubar">
                 <?php
-      $solutionIA = service::find(17, $_SESSION['lang']);
-      $webMobile = service::find(107, $_SESSION['lang']);
-      $saasProduit = service::find(1, $_SESSION['lang']);
-      $marketplace = getComponent("com_produit");
-      $formationIa = getComponent("com_formation");
-      $brandExperience = service::find(18, $_SESSION['lang']);
-      $agence = getComponent("com_agence");
+      // Single shared instance: the same 7 top-level rows drive both this
+      // nav bar and the mega panels below, and the mobile drawer further
+      // down -- managed entirely from the admin "Menu" module (menu id=3).
+      $topMenu = new menu(3, $db);
+      $megaPanelIds = $topMenu->findAllParentItem();
+      foreach ($megaPanelIds as $panelItemId) {
+          $panelItem = new menu_item($panelItemId, $db, $_SESSION['lang']);
+          ?>
+        <li><a href="<?php echo $panelItem->getLink(); ?>" class="navlink" data-menu="<?php echo htmlspecialchars($panelItem->getPanelKey(), ENT_QUOTES, 'UTF-8'); ?>" aria-haspopup="true" aria-expanded="false"><?php echo htmlspecialchars($panelItem->getTitre(), ENT_QUOTES, 'UTF-8'); ?><span class="caret">▼</span></a></li>
+          <?php
+      }
       ?>
-       
-        <li><a href="<?php echo $solutionIA->getLink() ?>" class="navlink" data-menu="solutions" aria-haspopup="true" aria-expanded="false">Solutions IA<span class="caret">▼</span></a></li>
-        <li><a href="<?php echo $webMobile->getLink() ?>" class="navlink" data-menu="web" aria-haspopup="true" aria-expanded="false">Web &amp; Mobile<span class="caret">▼</span></a></li>
-        <li><a href="<?php echo $saasProduit->getLink() ?>" class="navlink" data-menu="saas" aria-haspopup="true" aria-expanded="false">SaaS & Produits<span class="caret">▼</span></a></li>
-        <li><a href="<?php echo $marketplace->getLink() ?>" class="navlink" data-menu="market" aria-haspopup="true" aria-expanded="false">Marketplace<span class="caret">▼</span></a></li>
-        <li><a href="<?php echo $formationIa->getLink() ?>" class="navlink" data-menu="form" aria-haspopup="true" aria-expanded="false">Formations IA<span class="caret">▼</span></a></li>
-        <li><a href="<?php echo $brandExperience->getLink()?>" class="navlink" data-menu="brand" aria-haspopup="true" aria-expanded="false">Brand Experience<span class="caret">▼</span></a></li>
-        <li><a href="<?php echo $agence->getLink() ?>" class="navlink" data-menu="agencies" aria-haspopup="true" aria-expanded="false">Nos agences<span class="caret">▼</span></a></li>
-        
       </ul>
        <div class="lang-sel" id="langSel">
         <button class="lang-btn" id="langBtn" aria-label="Select language">
@@ -379,12 +374,10 @@ if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['
   </nav>
     <div class="mega-wrap">
     <?php
-    // top menu
-    $topMenu = new menu(3, $db);
     $topMenu->getMegaMenu();
     ?>
     </div>
-    
+
     <!-- MOBILE DRAWER -->
   <div class="mm-drawer" id="mmDrawer" role="dialog" aria-modal="true" aria-label="<?php echo $config->getNom(); ?>">
     <div class="mm-drawer-inner">
@@ -393,8 +386,6 @@ if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['
         <button class="mm-close" id="mmClose" aria-label="Fermer le menu"></button>
       </div>
       <?php
-      // top menu
-      $topMenu = new menu(3, $db);
       $topMenu->getMenuMobile();
       ?>
     </div>
@@ -694,7 +685,14 @@ window.addEventListener('scroll', () => {
   closeBtn && closeBtn.addEventListener('click', closeDrawer);
   drawer && drawer.addEventListener('click', e => { if (e.target === drawer) closeDrawer(); });
 
-  // Mobile accordion
+  // Mobile accordion. Each section has its own unique id (data-acc), so
+  // opening one only ever closes the others -- not a shared/duplicated id.
+  // max-height toggles between 0 and "none" (not a computed scrollHeight
+  // pixel value): some content lists here can run to 1000+ px, and a few
+  // browsers fail to settle a max-height transition at very large computed
+  // values, leaving the panel stuck collapsed. "none" always renders the
+  // full content immediately and reliably; the trade-off is no slide
+  // animation, which is an acceptable trade for a menu that must always open.
   document.querySelectorAll('.mm-acc-head').forEach(head => {
     head.addEventListener('click', () => {
       const id = head.dataset.acc;
@@ -702,7 +700,7 @@ window.addEventListener('scroll', () => {
       const isOpen = head.getAttribute('aria-expanded') === 'true';
       document.querySelectorAll('.mm-acc-head').forEach(h => h.setAttribute('aria-expanded', 'false'));
       document.querySelectorAll('.mm-acc-body').forEach(b => { b.classList.remove('mm-open'); b.style.maxHeight = ''; });
-      if (!isOpen) { head.setAttribute('aria-expanded', 'true'); body.classList.add('mm-open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+      if (!isOpen) { head.setAttribute('aria-expanded', 'true'); body.classList.add('mm-open'); body.style.maxHeight = 'none'; }
     });
   });
 })();

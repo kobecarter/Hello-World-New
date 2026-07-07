@@ -656,9 +656,11 @@ Header append Vary User-Agent env=!dont-vary
         $cf = "../.htaccess";
     }
 
-    $fp = fopen($cf, "w");
-    @fputs($fp, $details . $urls);
-    @fclose($fp);
+    $fp = @fopen($cf, "w");
+    if ($fp) {
+        fputs($fp, $details . $urls);
+        fclose($fp);
+    }
 
 }
 
