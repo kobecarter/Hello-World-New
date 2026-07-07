@@ -1,5 +1,63 @@
 Options +FollowSymlinks
 RewriteEngine on
+RewriteBase /new/
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# add a slashes at the end of the URL
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+# https redirection
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# https to http redirection
+# RewriteCond %{HTTPS} ^on$
+# RewriteRule ^(.*)$ http://imzi-tours-travel.com/$1 [NC,L,R]
+
+# remove double slashes from URL
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/{2,} [NC]
+RewriteRule ^(.*) $1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
+RewriteRule . %1/%2 [R=301,L]
+
+ErrorDocument 404 /404.php
+
+# BEGIN Expire headers
+<IfModule mod_expires.c>
+ ExpiresActive On
+ ExpiresDefault "access plus 1 month"
+ ExpiresByType image/jpg "access plus 1 year"
+ ExpiresByType image/jpeg "access plus 1 year"
+ ExpiresByType image/png "access plus 1 year"
+ AddType image/x-icon .ico
+ ExpiresByType image/ico "access plus 1 year"
+ ExpiresByType image/icon "access plus 1 year"
+ ExpiresByType image/x-icon "access plus 1 year"
+ ExpiresByType text/css "access plus 1 year"
+ ExpiresByType text/javascript "access plus 1 year"
+ ExpiresByType text/html "access plus 1 year"
+ ExpiresByType application/xhtml+xml "access plus 1 year"
+ ExpiresByType application/javascript "access plus 1 year"
+ ExpiresByType application/x-javascript "access plus 1 year"
+ ExpiresByType application/x-shockwave-flash "access plus 1 year"
+</IfModule>
+# END Expire headers
+
+# MOD_DEFLATE COMPRESSION
+SetOutputFilter DEFLATE
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript application/x-httpd-php
+#Pour les navigateurs incompatibles
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+#ne pas mettre en cache si ces fichiers le sont déjà
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip
+#les proxies doivent donner le bon contenu
+Header append Vary User-Agent env=!dont-vary
 RewriteRule ^service/seo-referencement-naturel/37/$ https://www.helloworld-agency.com/service/referencement-seo/ [R=301,L]
 RewriteRule ^service/developpement-web-et-mobile/$ https://www.helloworld-agency.com/service/creation-de-sites-web/ [R=301,L]
 RewriteRule ^service/marketing-d-influence/23/$ https://www.helloworld-agency.com/service/marketing-de-celebrites-et-d-influenceurs/ [R=301,L]
@@ -66,7 +124,8 @@ RewriteRule ^client-space/$ index.php?option=com_client&id=18&l=fr [L]
 RewriteRule ^client-space/([0-9]+)/$ index.php?option=com_client&id=18&l=fr [L]
 RewriteRule ^confirmation/$ index.php?option=com_contact&task=confirmation&id=19&l=fr [L]
 RewriteRule ^confirmation/([0-9]+)/$ index.php?option=com_contact&task=confirmation&id=19&l=fr [L]
-RewriteRule ^confirmation-devis/$ index.php?option=com_page&id=20&l=fr [L]
+RewriteRule ^confirmation-devis/$ index.php?option=com_contact&task=confirmation&id=20&l=fr [L]
+RewriteRule ^confirmation-devis/([0-9]+)/$ index.php?option=com_contact&task=confirmation&id=20&l=fr [L]
 RewriteRule ^offre-rise-up/$ index.php?option=com_offre&id=21&l=fr [L]
 RewriteRule ^offre-rise-up/([0-9]+)/$ index.php?option=com_offre&id=21&l=fr [L]
 RewriteRule ^se-connecter/$ index.php?option=com_page&id=22&l=fr [L]
@@ -91,6 +150,8 @@ RewriteRule ^agence-marketing-digital-marrakech/$ index.php?option=com_agence&ta
 RewriteRule ^agence-marketing-digital-marrakech/([0-9]+)/$ index.php?option=com_agence&task=marrakech&id=33&l=fr [L]
 RewriteRule ^agence-marketing-digital-a-londres/$ index.php?option=com_agence&task=uk&id=34&l=fr [L]
 RewriteRule ^agence-marketing-digital-a-londres/([0-9]+)/$ index.php?option=com_agence&task=uk&id=34&l=fr [L]
+RewriteRule ^agents-ia/$ index.php?option=com_agents_ia&id=44&l=fr [L]
+RewriteRule ^agents-ia/([0-9]+)/$ index.php?option=com_agents_ia&id=44&l=fr [L]
 RewriteRule ^agence-marketing-digital-a-dubai/$ index.php?option=com_agence&task=dubai&id=36&l=fr [L]
 RewriteRule ^agence-marketing-digital-a-dubai/([0-9]+)/$ index.php?option=com_agence&task=dubai&id=36&l=fr [L]
 RewriteRule ^agence-marketing-digital-rabat/$ index.php?option=com_agence&task=rabat&id=37&l=fr [L]
@@ -103,10 +164,6 @@ RewriteRule ^agence-marketing-digital-fes/$ index.php?option=com_agence&task=fes
 RewriteRule ^agence-marketing-digital-fes/([0-9]+)/$ index.php?option=com_agence&task=fes&id=40&l=fr [L]
 RewriteRule ^nos-agences/$ index.php?option=com_agence&id=43&l=fr [L]
 RewriteRule ^nos-agences/([0-9]+)/$ index.php?option=com_agence&id=43&l=fr [L]
-RewriteRule ^nos-agents-ia/$ index.php?option=com_agents_ia&id=44&l=fr [L]
-RewriteRule ^nos-agents-ia/([0-9]+)/$ index.php?option=com_agents_ia&id=44&l=fr [L]
-RewriteRule ^en/our-ai-agents/$ index.php?option=com_agents_ia&id=44&l=en [L]
-RewriteRule ^en/our-ai-agents/([0-9]+)/$ index.php?option=com_agents_ia&id=44&l=en [L]
 RewriteRule ^galerie/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_galerie&task=showDetails&id=$2 [NC,L]
         RewriteRule ^([a-z]+)/galerie/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_galerie&task=showDetails&l=$1&id=$3 [NC,L]
         RewriteRule ^service/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_service&task=showDetails&id=$2 [NC,L]
