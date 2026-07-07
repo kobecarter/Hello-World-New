@@ -11,8 +11,8 @@
 .ct-hero-inner{display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:4rem}
 .ct-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:1.5rem}
 .ct-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
-.ct-hero-title{font-family:var(--fm);font-weight:300;font-size:clamp(4rem,9vw,13rem);line-height:.88;letter-spacing:-.04em;color:var(--txt)}
-.ct-hero-title em{font-style:normal;color:var(--gold);font-weight:200}
+.ct-hero-title{font-family:var(--fm);font-weight:200;font-size:clamp(4rem,9vw,13rem);line-height:.88;letter-spacing:-.04em;color:var(--gold2)}
+.ct-hero-title em{font-style:normal;color:var(--gold);font-weight:100}
 .ct-hero-right{flex-shrink:0;max-width:380px}
 .ct-hero-sub{font-family:var(--fm);font-size:.88rem;font-weight:300;color:var(--txt2);line-height:1.9;margin-bottom:2rem}
 .ct-hero-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.2rem;border:1px solid rgba(139,106,34,.25);font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
@@ -98,20 +98,43 @@
 .ct-ceo-name{font-family:var(--fd);font-weight:200;font-size:2.2rem;color:var(--txt);letter-spacing:-.02em;line-height:1;margin-bottom:.3rem}
 .ct-ceo-role{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
 .ct-ceo-bio{font-family:var(--fm);font-size:.78rem;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:1.8rem}
-.ct-ceo-contacts{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.8rem;padding:1.5rem;background:var(--bg2);border-left:4px solid rgba(139,106,34,.3);border-radius: 20px;}
+.ct-ceo-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    margin-bottom: 1.8rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(9, 161, 190, .08), rgba(9, 161, 190, .03));
+    border-left: 4px solid var(--gold);
+    border-radius: 20px;
+}
 .ct-ceo-contact{display:flex;align-items:center;gap:.7rem;font-family:var(--fm);font-size:.72rem;color:var(--txt2);text-decoration:none;transition:color .2s}
 .ct-ceo-contact i{color:var(--gold);font-size:.7rem;width:14px;text-align:center;flex-shrink:0}
 .ct-ceo-contact:hover{color:var(--gold)}
 .ct-ceo-socials{display:flex;gap:.6rem}
 .ct-ceo-social{width:38px;height:38px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--txt2);font-size:.85rem;text-decoration:none;transition:all .25s;border-radius: 5px;}
 .ct-ceo-social:hover{border-color:var(--gold);color:var(--gold)}
-.ct-ceo-guarantee{display:flex;align-items:center;gap:.8rem;margin-top:1.5rem;padding:1rem 1.2rem;border:1px solid rgba(139,106,34,.18);background:rgba(139,106,34,.04);border-radius: 20px;}
+.ct-ceo-guarantee {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(9, 161, 190, .18);
+    background: linear-gradient(135deg, rgba(9, 161, 190, .08), rgba(9, 161, 190, .03));
+    border-radius: 20px;
+}
 .ct-ceo-guarantee i{color:var(--gold);font-size:1rem;flex-shrink:0}
 .ct-ceo-guarantee-text{font-family:var(--fm);font-size:.7rem;font-weight:300;color:var(--txt2);line-height:1.55}
 .ct-ceo-guarantee-text strong{font-weight:700;color:var(--txt);display:block;font-size:.72rem}
 
 /* ─── OFFICES ──────────────────────────── */
-.ct-offices{padding:8rem 0;background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ct-offices {
+    padding: 8rem 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
 .ct-offices-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:22px;overflow:hidden;margin-top:4rem}
 .ct-office-card{padding:3.5rem 3rem;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background .3s}
 .ct-office-card:last-child{border-right:none}
@@ -138,6 +161,7 @@
 .ct-social-link:hover{border-color:var(--gold2);color:var(--gold2)}
 </style>
 <!-- ═══ HERO ════════════════════════════════════════ -->
+
 <section class="ct-hero">
 	<canvas id="hero-canvas"></canvas>
   <span class="ct-hero-ghost" aria-hidden="true">CONTACT</span>
@@ -145,12 +169,12 @@
     <div class="ct-hero-bread rv">
       <a href="<?php echo $siteURL; ?>">Accueil</a>
       <i class="fa fa-chevron-right"></i>
-      <span>devis</span>
+      <span>Devis</span>
     </div>
     <div class="ct-hero-inner">
       <div>
         <div class="ct-hero-label rv">Hello World Agency</div>
-        <h1 class="ct-hero-title rv d1">Demandez <br><em>votre</em> devis</h1>
+        <h1 class="ct-hero-title rv d1">Demandez<br><em> votre</em> devis</h1>
       </div>
       <!-- <div class="ct-hero-right rv d2">
         <p class="ct-hero-sub">Première prise de contact sans engagement. Notre équipe analyse votre situation et revient vers vous sous 24 heures avec des recommandations concrètes.</p>
@@ -253,42 +277,7 @@
   </div>
 </section>
 
-<section class="testimonials" id="testimonials">
-  <div class="container">
-    <div class="sec-label rv">Témoignages</div>
-    <h2 class="sec-title rv d1"><em>Ce qu'ils disent</em> de nous</h2>
-    <div class="testi-carousel rv d2">
-      <div class="testi-viewport">
-        <div class="testi-track">
-          <?php foreach($testimonials as $testimonial): ?>
-          <div class="testi-item">
-            <div class="testi-card">
-              <span class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
-              <span class="testi-quote">"</span>
-              <p class="testi-text"><?php echo $testimonial->getTemoignage(); ?></p>
-              <div class="testi-author">
-                <?php
-                $t = explode(" ",$testimonial->getNom());
-                ?>
-                <div class="testi-avatar"><?php echo substr($t[0],0,1).substr($t[1],0,1); ?></div>
-                <div>
-                  <div class="testi-name"><?php echo $testimonial->getNom(); ?></div>
-                  <div class="testi-co"><?php echo $testimonial->getFonction(); ?></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
-      </div>
-      <div class="testi-controls">
-        <button class="testi-nav testi-prev" aria-label="Previous"><i class="fa fa-arrow-left"></i></button>
-        <div class="testi-dots"></div>
-        <button class="testi-nav testi-next" aria-label="Next"><i class="fa fa-arrow-right"></i></button>
-      </div>
-    </div>
-  </div>
-</section>
+<?php include('includes/testimonials.php'); ?>
 
 
 

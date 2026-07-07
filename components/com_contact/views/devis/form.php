@@ -156,12 +156,10 @@
         <div class="g-recaptcha" data-sitekey="6LeNLyITAAAAAM2DmrW17Hlr59rQukXhWB0p2_hM"></div>
     </div>
 
-    <div class="ct-submit-wrap">
-    <button class="ct-submit" id="ctSubmit" type="submit">
-        <span id="ctBtnText">Envoyer ma demande</span>
-        <i class="fa fa-arrow-right fa-xs" id="ctBtnIcon"></i>
-    </button>
-    <p class="ct-privacy"><i class="fa fa-lock"></i> Données confidentielles · Réponse garantie sous 24h</p>
+       <div class="sb submit-form" role="slider" tabindex="0" aria-label="Envoyer ma demande" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="sb-fill"></div>
+      <div class="sb-label"><span class="sb-hint">Envoyer ma demande</span></div>
+      <div class="sb-knob"><i class="fa fa-paper-plane"></i></div>
     </div>
 
 </form>
