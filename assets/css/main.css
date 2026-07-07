@@ -5401,3 +5401,18 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
   .hw-f-list-card,.hw-f-list-gain-item,.hw-f-list-format-card,.hw-f-list-why-item{transition:none!important}
   .hw-f-list-tech-track,.hw-f-list-partner-track{animation:none!important}
 }
+.cta-hw-final .sec-label{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.cta-hw-final .sec-title em {
+    font-style: normal;
+    color: #fff;
+}
+.cta-hw-final .sec-title:hover .ch {
+    color: #fff;
+}
+.cta-hw-final .sec-title{
+   color: #fff;
+}

@@ -515,7 +515,7 @@ $hwflMeta = [
 <?php endif; ?>
 
 <!-- ══ CTA FINAL ══════════════════════════════════════════════════════════ -->
-<section class="hw-f-list-cta-final">
+<section class="hw-f-list-cta-final cta-hw-final">
   <video class="hw-f-list-cta-final-video" autoplay muted loop playsinline preload="auto" poster="<?= $siteURL; ?>assets/video/hw-academy-cta-poster.jpg">
     <source src="<?= $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
   </video>

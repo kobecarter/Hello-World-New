@@ -192,7 +192,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
   <?php endif; ?>
 
   <div class="container">
-    <div class="cta-btns mt-5">
+    <div class="cta-btns mt-5 mb-5">
         <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
           <div class="sb-label"><span class="sb-hint">Parler de votre projet</span></div>
           <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
@@ -403,19 +403,21 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
             </div>
         </div>
 </section>
-
-<!-- CTA -->
-<section class="cta-band">
+<!-- ══ CTA FINAL ══════════════════════════════════════════════════════════ -->
+<section class="hw-f-list-cta-final cta-hw-final">
+  <video class="hw-f-list-cta-final-video" autoplay muted loop playsinline preload="auto" poster="<?= $siteURL; ?>assets/video/hw-academy-cta-poster.jpg">
+    <source src="<?= $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label">Construire votre marque</div>
-    <h2 class="sec-title">Votre marque mérite<br><em>d'être remarquée</em></h2>
-    <p class="cta-sub">Brief gratuit et diagnostic de marque offert. Nos studios sont à San Francisco, Londres et Dubaï.</p>
-    <div class="cta-btns">
+    <div class="sec-label rv">Construire votre marque</div>
+    <h2 class="sec-title rv d1">Votre marque mérite<br><em>d'être remarquée</em></h2>
+    <p class="hw-f-list-cta-sub rv d2">Brief gratuit et diagnostic de marque offert. Nos studios sont à San Francisco, Londres et Dubaï.</p>
+    <div class="cta-btns rv d3" style="justify-content:center">
         <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Parler de votre projet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Parler de votre projet</span></div>
           <div class="sb-knob"><i class="fal fa-phone"></i></div>
         </a>
-    
         <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir les nos services" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Voir les nos services</span></div>
           <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
