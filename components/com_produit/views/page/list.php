@@ -214,26 +214,29 @@
     </div>
   </div>
 </section>
-
-<!-- CTA -->
-<section class="cta-band">
+<!-- ══ CTA FINAL ══════════════════════════════════════════════════════════ -->
+<section class="hw-f-list-cta-final cta-hw-final">
+  <video class="hw-f-list-cta-final-video" autoplay muted loop playsinline preload="auto" poster="<?= $siteURL; ?>assets/video/hw-academy-cta-poster.jpg">
+    <source src="<?= $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label">Commencer maintenant</div>
-    <h2 class="sec-title">Votre agent IA en <em>production</em><br>cette semaine</h2>
-    <p class="cta-sub">Audit gratuit de 30 minutes, configuration en 48h, résultats mesurables dès la première semaine.</p>
-    <div class="cta-btns">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
-          <div class="sb-knob"><i class="fal fa-calculator"></i></div>
-        </a>
-    
-        <a href="#catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir toutes les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="sec-label rv">Commencer maintenant</div>
+    <h2 class="sec-title rv d1">Votre agent IA en <em>production</em><br>cette semaine</h2>
+    <p class="hw-f-list-cta-sub rv d2">Audit gratuit de 30 minutes, configuration en 48h, résultats mesurables dès la première semaine.</p>
+    <div class="cta-btns rv d3" style="justify-content:center">
+      <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
+        <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
+        <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
+      </a>
+        <a href="#catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir le marketplace IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Voir toutes les solutions</span></div>
-          <div class="sb-knob"><i class="fal fa-robot"></i></div>
+          <div class="sb-knob"><i class="fal fa-shopping-basket"></i></div>
         </a>
     </div>
   </div>
 </section>
+
 
 <section class="faq" id="faq">
   <div class="container">

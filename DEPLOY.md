@@ -22,3 +22,8 @@ ssh hw-cpanel-deploy "cd ~/public_html/helloworld-agency.com/new/ && git pull or
   locaux — jamais dans Git. Voir `.env.example` pour le modèle.
 - `hw-admin/api/` est un dépôt séparé (`yossefEl/helloworld-app-api`), exclu de ce repo.
 - Le dossier `.git` est bloqué publiquement via une règle dans `.htaccess`.
+- L'IP de la machine hébergeant le runner (ce Mac) doit rester whitelistée dans cPanel
+  → "Autorisation SSH". Si cette IP n'est pas fixe, le déploiement automatique cassera
+  silencieusement au prochain changement d'IP (le job GitHub Actions échouera en timeout
+  SSH) ; il faudra alors ré-autoriser la nouvelle IP et rattraper le serveur manuellement
+  avec la commande de déploiement manuel ci-dessus.
