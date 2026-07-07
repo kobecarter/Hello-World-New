@@ -15,3 +15,7 @@ error_log
 
 # Separate nested repo (own history / remote)
 hw-admin/api/
+
+# Environment-specific, edited directly on each host — not synced via git
+/.htaccess
+/hw-admin/config.php
