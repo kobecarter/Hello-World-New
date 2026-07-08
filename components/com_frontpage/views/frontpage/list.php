@@ -1,3 +1,204 @@
+<style>
+h2{margin-top:0;margin-bottom:.5rem}
+html{scroll-behavior:auto;overflow-x:hidden}
+body{background:var(--w);color:var(--t);font-family:var(--sans);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img,video{display:block;max-width:100%}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--g);z-index:9000;transform-origin:left;transform:scaleX(0)}
+
+
+
+@media(max-width:900px){.nav-main{display:none}}
+.ni{position:relative}
+.nl{display:flex;align-items:center;gap:5px;font-size:.66rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);padding:8px 14px;border-radius:8px;cursor:pointer;transition:color .2s,background .2s;white-space:nowrap;user-select:none}
+.nl:hover,.ni.open .nl{color:var(--mg);background:rgba(139,37,104,.05)}
+.nc-arr{font-size:.45rem;transition:transform .25s var(--expo)}
+.ni.open .nc-arr{transform:rotate(180deg)}
+.hcta{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:11px 24px;border-radius:100px;background:var(--g);margin-left:12px;white-space:nowrap;transition:transform .15s,box-shadow .25s,opacity .2s}
+.hcta:hover{box-shadow:0 10px 32px rgba(139,37,104,.38);opacity:.92}
+.hcta:active{transform:scale(.97)}
+.burger{display:none;width:36px;height:36px;border:1.5px solid rgba(0,0,0,.12);border-radius:8px;background:none;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.burger span{display:block;width:16px;height:1.5px;background:var(--t)}
+@media(max-width:900px){.burger{display:flex}}
+
+.mp{position:absolute;top:calc(100%+12px);left:50%;transform:translateX(-50%);min-width:680px;padding:28px;border-radius:22px;display:none;opacity:0;pointer-events:none;background:rgba(15,14,26,.96);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(255,255,255,.07)}
+.mp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mc{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;transition:background .18s;cursor:pointer}
+.mc:hover{background:rgba(255,255,255,.04)}
+.mc-ico{width:36px;height:36px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;background:linear-gradient(135deg,var(--mg3),var(--cy3))}
+.mc-t{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:3px}
+.mc-d{font-size:.6rem;color:rgba(255,255,255,.32);line-height:1.5}
+.mp-ft{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
+.mp-ft-l{font-size:.6rem;color:rgba(255,255,255,.22)}
+.mp-ft-r{font-size:.62rem;font-weight:700;background:var(--g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:5px}
+
+/* ══ HERO ════════════════════════════════════════════════════
+   White background.
+   Layout: [text 28vw] | [avatar 36vw centered] | [text 28vw]
+   Left zone:   0  → 32vw  →  text at left:3vw
+   Avatar zone: 32vw → 68vw
+   Right zone:  68vw → 100vw → text at left:calc(50%+19vw)
+══════════════════════════════════════════════════════════════ */
+.main-container{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--w)}
+
+.main-container::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 38% 70% at 12% 50%,rgba(139,37,104,.05),transparent),
+    radial-gradient(ellipse 38% 70% at 88% 50%,rgba(76,195,208,.04),transparent);
+  z-index:1;pointer-events:none;
+}
+
+/* Avatar column — always centered, video scrubbed */
+.hero-avatar-panel{
+  position:absolute;top:0;left:50%;
+  transform:translateX(-50%);
+  width:36vw;height:100%;overflow:hidden;z-index:2;
+}
+.hero-avatar-panel video{width:100%;height:100%;object-fit:cover;object-position:center center}
+
+/* Fade avatar edges into white */
+.hero-avatar-panel::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(to right,var(--w) 0%,transparent 16%,transparent 84%,var(--w) 100%),
+    linear-gradient(to bottom,rgba(255,255,255,.5) 0%,transparent 10%,transparent 90%,rgba(255,255,255,.55) 100%);
+  z-index:3;pointer-events:none;
+}
+/* Thin brand-colour accent lines at avatar edges */
+.hero-avatar-panel::before{
+  content:'';position:absolute;top:12%;bottom:12%;left:0;
+  width:1px;background:linear-gradient(to bottom,transparent,rgba(139,37,104,.3),transparent);
+  z-index:4;pointer-events:none;
+}
+.avatar-right-line{
+  position:absolute;top:12%;bottom:12%;right:0;
+  width:1px;background:linear-gradient(to bottom,transparent,rgba(76,195,208,.25),transparent);
+  z-index:4;pointer-events:none;
+}
+
+/* Dots */
+.svc-dots{position:absolute;right:28px;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:8px}
+.svc-dot{width:4px;height:4px;border-radius:2px;background:rgba(0,0,0,.13);transition:background .35s,height .35s var(--expo)}
+.svc-dot.active{background:var(--mg);height:22px}
+
+/* Side label */
+.svc-side-deco{position:absolute;left:22px;top:50%;transform:translateY(-50%) rotate(-90deg);font-family:var(--mono);font-size:.42rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(0,0,0,.18);white-space:nowrap;z-index:5;pointer-events:none}
+
+/* Slide block */
+.slide-block{
+  position:absolute;top:50%;left:3vw;
+  transform:translateY(-50%);
+  z-index:10;width:28vw;max-width:420px;
+  display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+}
+/* Right-side block stays left-aligned — text always reads left-to-right */
+.slide-block[data-side="right"]{align-items:flex-start;text-align:left}
+@media(max-width:900px){
+  /* Avatar fills the full mobile screen */
+  .hero-avatar-panel{width:100%;left:0;transform:none}
+
+  /* Text block becomes a frosted-glass card at the bottom of the hero */
+  .slide-block{
+    width:auto;
+    left:5vw!important;
+    right:5vw;
+    bottom:100px;
+    top:auto;
+    transform:none;
+    align-items:flex-start;
+    text-align:left;
+    /* Glass card */
+    background:rgba(255,255,255,.68);
+    backdrop-filter:blur(22px) saturate(1.7);
+    -webkit-backdrop-filter:blur(22px) saturate(1.7);
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:22px;
+    padding:22px 20px 18px;
+    box-shadow:0 8px 40px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  /* Inside the glass card, right-side layout flips back to left */
+  .slide-block[data-side="right"]{align-items:flex-start;text-align:left}
+  .slide-block[data-side="right"] .slide-title{flex-direction:row}
+  .slide-block[data-side="right"] .slide-service::after{transform-origin:left}
+  /* Tighten spacing inside card */
+  .slide-title{margin-bottom:10px}
+  .slide-sub{margin-bottom:9px}
+  .slide-index{margin-bottom:10px}
+}
+
+/* Tagline — char animated via CSS only */
+.slide-title{font-family:var(--mono);font-size:clamp(.54rem,.78vw,.7rem);font-weight:400;letter-spacing:0;text-transform:uppercase;color:rgba(0,0,0,.38);margin-bottom:14px;display:flex;align-items:center;gap:10px;line-height:1.4}
+.slide-title::before{content:'';width:18px;height:1px;background:rgba(0,0,0,.18);flex-shrink:0}
+.slide-title .sc{display:inline-block;opacity:0;transform:translateY(5px);animation:char-in .45s var(--expo) forwards;animation-delay:calc(var(--ci)*28ms)}
+@keyframes char-in{to{opacity:1;transform:none}}
+
+/* Service name — large gradient */
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.slide-service{
+  font-weight:200;
+  font-size:clamp(2.6rem,5vw,6.5rem);
+  line-height:.9;letter-spacing:-.04em;
+  background:linear-gradient(135deg,var(--mg) 0%,var(--cy) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:16px;position:relative;display:block;
+}
+.slide-service::before{content:attr(data-text);position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.2) 40%,transparent 60%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite;pointer-events:none}
+.slide-service::after{content:'';position:absolute;bottom:-5px;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--mg),var(--cy));border-radius:1px;transform:scaleX(0);transform-origin:left;opacity:0}
+.slide-block[data-side="right"] .slide-service::after{transform-origin:left}
+.slide-service.hl-active::after{animation:hl-line .75s var(--expo) .04s forwards}
+@keyframes hl-line{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:.55}}
+
+/* Subtitle */
+.slide-sub{font-size:clamp(1.4rem,1.4vw,1.4rem);font-weight:300;color:var(--t2);line-height:1.7;max-width:28ch;margin-bottom:26px}
+
+/* Counter */
+.slide-index{font-size:1rem;color:rgba(0,0,0,.25);display:flex;align-items:center;gap:8px;margin-bottom:22px}
+.slide-index-cur{font-size:2rem;font-weight:200;letter-spacing:-.02em;color:var(--mg);line-height:1}
+.slide-index-sep{color:rgba(0,0,0,.12);font-size:.55rem}
+
+/* CTA */
+.slide-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t);padding:10px 22px;border-radius:100px;border:1.5px solid rgba(0,0,0,.12);background:rgba(0,0,0,.03);transition:border-color .25s,transform .2s var(--expo),box-shadow .25s,color .2s;position:relative;overflow:hidden}
+.slide-link::before{content:'';position:absolute;inset:0;background:var(--g);opacity:0;transition:opacity .3s}
+.slide-link:hover{border-color:transparent;box-shadow:0 8px 32px rgba(139,37,104,.28);transform:translateY(-2px);color:#fff}
+.slide-link:hover::before{opacity:1}
+.slide-link:active{transform:scale(.97)}
+.slide-link>*{position:relative;z-index:1}
+.sl-arr{transition:transform .2s var(--expo)}
+.slide-link:hover .sl-arr{transform:translateX(4px)}
+
+/* Scroll hint */
+/* Glass-pill scroll indicator — centred over the avatar column (dark video)
+   so frosted-white glass reads clearly against the footage              */
+.scroll-down-btn{
+  position:absolute;bottom:32px;left:50%;
+  transform:translateX(-50%);
+  z-index:20;cursor:pointer;border:none;
+  background:rgb(0 0 0 / 60%);
+  backdrop-filter:blur(18px) saturate(1.7);
+  -webkit-backdrop-filter:blur(18px) saturate(1.7);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:100px;
+  padding:14px 20px 2px 16px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  box-shadow:0 4px 24px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.3);
+  transition:background .25s,border-color .25s,box-shadow .25s;
+}
+.scroll-down-btn:hover{
+  background:rgba(255,255,255,.28);
+  border-color:rgba(255,255,255,.5);
+  box-shadow:0 6px 32px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.4);
+}
+.sd-label{font-family:var(--sans);font-size:.5rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgb(255 255 255)}
+.sd-chevron{position:relative;width:44px;height:22px}
+.sd-chevron::before,.sd-chevron::after{content:'';position:absolute;top:0;margin-top:11px;width:50%;height:1.5px;background:rgb(255 255 255);border-radius:1px}
+.sd-chevron::before{left:0;transform-origin:right center;transform:rotate(38deg)}
+.sd-chevron::after{right:0;transform-origin:left center;transform:rotate(-38deg)}
+@keyframes sd-hint{0%,30%{transform:translateX(-50%) translateY(0);opacity:.5}65%{transform:translateX(-50%) translateY(6px);opacity:.9}100%{transform:translateX(-50%) translateY(0);opacity:.5}}
+.scroll-down-btn{animation:sd-hint 2.4s cubic-bezier(.37,0,.63,1) infinite}
+</style>
 
 <!-- ══ HERO ════════════════════════════════════════════════════ -->
 <div class="main-container" id="main-container">
@@ -60,10 +261,59 @@
   <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
 </div></div>
 
+
+<!--
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <span class="px-ghost" data-px="0.26" style="font-size:clamp(22rem,44vw,62rem);bottom:-6rem;right:-3rem;color:rgba(247,245,242,.016)" aria-hidden="true">01</span>
+  <div class="hero-body" data-px="-0.16">
+    <h1 class="hero-title">
+      <span class="ht-1">L'intelligence qui</span>
+      <span class="ht-2"><span class="ht-accent">propulse votre </span>croissance</span>
+    </h1>
+    <button class="explore-btn" onclick="document.querySelector('.marquee').scrollIntoView({behavior:'smooth'})">EXPLORE</button>
+  </div>
+  <div class="hero-foot">
+    <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="sb-label"><span class="sb-hint">Voir les solutions</span></div>
+      <div class="sb-knob">
+        <i class="fal fa-robot"></i>
+      </div>
+    </a>
+
+    <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
+      <div class="sb-knob">
+        <i class="fal fa-search"></i>
+      </div>
+    </a>
+  </div>
+</section>
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="mq-item">iOS &amp; ANDROID APPS<span class="mq-dot"></span></span>
+    <span class="mq-item">CUSTOM AI MODELS<span class="mq-dot"></span></span>
+    <span class="mq-item">SAAS PLATFORMS<span class="mq-dot"></span></span>
+    <span class="mq-item">AI AUTOMATION<span class="mq-dot"></span></span>
+    <span class="mq-item">WEB APPLICATIONS<span class="mq-dot"></span></span>
+    <span class="mq-item">DATA INTELLIGENCE<span class="mq-dot"></span></span>
+    <span class="mq-item">AI AGENTS<span class="mq-dot"></span></span>
+    <span class="mq-item">LLM FINE-TUNING<span class="mq-dot"></span></span>
+    <span class="mq-item">iOS &amp; ANDROID APPS<span class="mq-dot"></span></span>
+    <span class="mq-item">CUSTOM AI MODELS<span class="mq-dot"></span></span>
+    <span class="mq-item">SAAS PLATFORMS<span class="mq-dot"></span></span>
+    <span class="mq-item">AI AUTOMATION<span class="mq-dot"></span></span>
+    <span class="mq-item">WEB APPLICATIONS<span class="mq-dot"></span></span>
+    <span class="mq-item">DATA INTELLIGENCE<span class="mq-dot"></span></span>
+    <span class="mq-item">AI AGENTS<span class="mq-dot"></span></span>
+    <span class="mq-item">LLM FINE-TUNING<span class="mq-dot"></span></span>
+  </div>
+</div>
+-->
+
 <section class="statement">
   <span class="px-ghost" data-px="0.22" style="font-size:clamp(12rem,28vw,40rem);bottom:-1.5rem;right:-1rem;color:rgba(0,0,0,.022)" aria-hidden="true">HW</span>
   <div class="container">
-    <h1 class="sec-title rv d1">Agence IA, <em>SaaS & Agents</em> au Maroc</h1>
     <p class="rv">
       <span class="s-muted">Au-delà du simple code, </span>nous concevons l'intelligence
       <span class="s-muted"> qui animera les produits </span><span class="s-gold">les plus importants de demain.</span>
