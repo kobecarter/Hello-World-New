@@ -10,9 +10,7 @@
         <div class="sh-hero-left">
           <div class="sh-breadcrumb rv">Solutions IA — Secteur Santé</div>
           <h1 class="sh-h1 rv d1">
-            Solutions IA<br>
-            pour <em>la Santé</em><br>
-            &amp; les Médecins
+             <?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?>
           </h1>
           <p class="sh-sub rv d2">Modernisez l'accueil patient et supprimez l'absentéisme grâce à l'automatisation intelligente de vos prises de rendez-vous au Maroc.</p>
           <div class="sh-cta-row rv d3">

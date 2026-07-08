@@ -18,7 +18,7 @@
       <div class="sh-hero-inner">
         <div>
           <div class="sh-breadcrumb">Solutions IA · Finance &amp; Trading</div>
-          <h1 class="sh-h1">Solutions IA<br>pour <em>la Finance</em><br>et le Trading</h1>
+          <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
           <p class="sh-sub">Exécutez vos stratégies financières avec une précision algorithmique. Automatisez le traitement de vos flux de données complexes et réduisez votre latence d'exécution à moins de 100ms.</p>
           <div class="sh-cta-row">
                 <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Configurer votre agent" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">

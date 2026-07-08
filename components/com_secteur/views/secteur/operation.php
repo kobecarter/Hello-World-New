@@ -14,7 +14,7 @@
   <div class="sh-hero-body"><div class="container"><div class="sh-hero-inner">
     <div>
       <div class="sh-breadcrumb">Solutions IA · Organisation &amp; Opérations</div>
-      <h1 class="sh-h1">Solutions IA<br>pour <em>l'Organisation</em><br>et les Opérations</h1>
+      <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">Connectez vos outils, fluidifiez l'information et dotez vos collaborateurs d'assistants virtuels performants. Supprimez les tâches redondantes et pacifiez votre gestion interne.</p>
       <div class="sh-cta-row">
         <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Optimiser vos opérations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">

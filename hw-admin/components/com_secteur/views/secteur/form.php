@@ -69,7 +69,19 @@
                 </label>
                 <input name="titre" type="text" value="<?= isset($secteur) ? $secteur->getTitre() : "" ;?>" class="form-control" />
             </div>
-            
+
+            <div class="col-md-3 form-group">
+                <label>
+                    <?php
+                        if(isset($trad_com_secteur['H1'][$_SESSION['user']->getLangue()]))
+                            echo $trad_com_secteur['H1'][$_SESSION['user']->getLangue()];
+                        else
+                            echo "H1";
+                    ?>
+                </label>
+                <input name="h1" type="text" value="<?= isset($secteur) ? $secteur->getH1() : "" ;?>" class="form-control" />
+            </div>
+
             <div class="col-md-3 form-group">
                 <label>
                     <?php

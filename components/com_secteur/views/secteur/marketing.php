@@ -15,7 +15,7 @@
   <div class="sh-hero-body"><div class="container"><div class="sh-hero-inner">
     <div>
       <div class="sh-breadcrumb">Solutions IA · Marketing &amp; Social Media</div>
-      <h1 class="sh-h1">Solutions IA<br>pour <em>le Marketing</em><br>et les Réseaux Sociaux</h1>
+        <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">Industrialisez la production de vos contenus, sécurisez vos positions SEO et automatisez vos reportings de performance. Récupérez 10h par semaine sur des tâches à faible valeur ajoutée.</p>
       <div class="sh-cta-row">
           <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Automatiser votre marketing" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">

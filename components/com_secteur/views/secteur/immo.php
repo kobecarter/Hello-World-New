@@ -10,7 +10,7 @@
         <div class="sh-hero-left">
           <div class="sh-breadcrumb rv">Solutions IA — Secteur Immobilier</div>
           <h1 class="sh-h1 rv d1">
-            Solutions IA pour <em>l'Immobilier</em> &amp; le Real Estate
+            <?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?>
           </h1>
           <p class="sh-sub rv d2">Automatisez la qualification de vos leads et dominez le marché immobilier marocain avec des agents de vente virtuels infatigables.</p>
           <div class="sh-cta-row rv d3">

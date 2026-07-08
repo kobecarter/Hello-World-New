@@ -9,9 +9,8 @@
         <!-- LEFT -->
         <div class="sh-hero-left">
           <div class="sh-breadcrumb rv">Solutions IA — Secteur Hôtellerie</div>
-          <h1 class="sh-h1 rv d1">
-            Solutions IA pour <em>l'Hôtellerie</em> &amp; les Riads
-          </h1>
+            <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
+        
           <p class="sh-sub rv d2">Offrez une expérience 5 étoiles grâce à un réceptionniste virtuel multilingue disponible 24h/24 pour vos futurs clients et résidents.</p>
           <div class="sh-cta-row rv d3">
               <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Découvrir l'IA Hôtellerie" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">

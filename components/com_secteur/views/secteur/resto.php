@@ -10,7 +10,7 @@
         <div class="sh-hero-left">
           <div class="sh-breadcrumb rv">Solutions IA — Secteur Restauration</div>
           <h1 class="sh-h1 rv d1">
-            Solutions IA pour la <em>Restauration</em> &amp; la Livraison
+           <?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?>
           </h1>
           <p class="sh-sub rv d2">Automatisez vos prises de commandes et fidélisez votre clientèle avec un service irréprochable, même en plein coup de feu.</p>
           <div class="sh-cta-row rv d3">
