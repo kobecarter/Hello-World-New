@@ -1,13 +1,3 @@
-<style>
-/* Header */
-.wa-hdr{background:#075E54;padding:.38rem .55rem;display:flex;align-items:center;gap:.38rem;border-bottom:1px solid rgba(0,0,0,.08)}
-.wa-hdr-back{color:rgba(255,255,255,.72);font-size:.6rem}
-.wa-hdr-av{width:24px;height:24px;border-radius:50%;background:#128C7E;display:flex;align-items:center;justify-content:center;font-size:.48rem;font-weight:700;color:#fff;flex-shrink:0}
-.wa-hdr-info{flex:1}
-.wa-hdr-name{font-size:.52rem;font-weight:700;color:#fff;line-height:1.1}
-.wa-hdr-status{font-size:.4rem;color:rgba(255,255,255,.62);margin-top:.04rem}
-.wa-hdr-ico{display:flex;gap:6px;align-items:center;color:rgba(255,255,255,.72);font-size:.58rem}    
-</style>
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
 <section class="sh-hero">
   <canvas id="sh-canvas"></canvas>
