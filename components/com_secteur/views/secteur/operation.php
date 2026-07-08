@@ -1,57 +1,13 @@
 <style>
-.sh-int-card{padding: 0;}
-.sh-int-card-body{padding:2rem}
-.sh-int-card-title{font-weight:600;font-size:1rem;color:var(--txt);margin-bottom:.6rem}
-.sh-int-card-desc{font-size:.8rem;color:var(--txt2);line-height:1.8}
-
-@keyframes cr-pulse{0%,100%{opacity:1}50%{opacity:.7}}
-.case-right>*{position:relative;z-index:1}
-.case-tag{font-size:.52rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
-.case-headline{font-weight:300;font-size:2.1rem;color:var(--txt);margin-bottom:1.5rem;letter-spacing:-.02em;line-height:1.1}
-.case-ctx{font-size:.85rem;color:var(--txt2);line-height:1.9;margin-bottom:2rem}.case-ctx strong{color:var(--txt);font-weight:600}
+/* Styles spécifiques à cette page : mêmes noms de classes que d'autres pages secteur mais couleurs propres à Operation, donc gardés locaux plutôt que dans main.css */
+.sh-int-card{padding: 3em;}
 .case-problem{border:1px solid rgba(9,161,190,.2);border-top:2px solid var(--gold);}
-.case-problem-label{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem}
-.case-problem-text{font-size:.8rem;color:var(--txt2);line-height:1.8}
-.case-results{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-.result-big{padding:1.4rem;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid rgba(139,106,34,.12);border-radius:12px;transition:all .3s}
-.result-big:hover{border-color:rgba(9,161,190,.3);transform:translateY(-2px)}
 .result-num{font-weight:200;font-size:2.2rem;color:var(--gold);line-height:1;letter-spacing:-.04em}
-.result-lbl{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin-top:.25rem}
-.case-quote{font-size:.82rem;font-style:italic;color:var(--txt2);line-height:1.85;padding:1.5rem 1.8rem;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border-radius:12px;position:relative}
-.case-quote::before{content:'\201C';position:absolute;top:.2rem;left:.8rem;font-family:var(--fd);font-size:3.5rem;line-height:1;color:var(--gold2);opacity:.4;font-style:normal}
-.case-quote-author{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:.6rem;display:block}
-@media(max-width:991px){.case-wrap{grid-template-columns:1fr}.case-right{border-left:none;border-top:1px solid var(--border)}}
-
-/* Slack mockup */
-.slk{width:360px;background:#1a1d21;border-radius:14px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4);font-family:'Cabinet Grotesk',sans-serif}
-.slk-head{padding:.8rem 1.2rem;background:#111317;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid rgba(255,255,255,.06)}
-.slk-ico{width:28px;height:28px;background:#4a154b;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem}
-.slk-channel{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.05em}
-.slk-body{padding:1rem}
-.slk-msg{display:flex;gap:.7rem;margin-bottom:.9rem}
-.slk-avatar{width:30px;height:30px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff}
-.slk-avatar.bot{background:var(--gold)}
-.slk-avatar.dg{background:#680262}
-.slk-msg-content{flex:1}
-.slk-msg-author{font-size:.62rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.2rem}
-.slk-msg-author span{font-size:.52rem;color:rgba(255,255,255,.3);font-weight:300;margin-left:.4rem}
-.slk-msg-text{font-size:.68rem;color:rgba(255,255,255,.65);line-height:1.55}
-.slk-msg-text strong{color:var(--gold)}
-.slk-alert{padding:.6rem .8rem;background:rgba(9,161,190,.12);border:1px solid rgba(9,161,190,.25);border-radius:8px;margin-top:.3rem}
-.slk-alert-txt{font-size:.6rem;color:var(--gold);line-height:1.5}
-.slk-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse-dot 1.5s ease-in-out infinite;vertical-align:middle;margin-right:.3rem}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
-
 .sh-ctx-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px}
 .sh-ctx-blob{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(ellipse at 40% 40%,rgba(9,161,190,.07),transparent 70%);border:1px solid rgba(9,161,190,.12);animation:ctx-spin 25s linear infinite}
 .sh-ctx-blob2{position:absolute;width:240px;height:240px;border-radius:50%;border:1px dashed rgba(9,161,190,.07);animation:ctx-spin 40s linear infinite reverse}
-@keyframes ctx-spin{to{transform:rotate(360deg)}}
-
-.sh-ctx-center-wrap{position:absolute;width:110px;height:110px}
 .sh-ctx-center{width:110px;height:110px;border-radius:50%;background:conic-gradient(from 0deg,var(--gold) 0deg,rgba(9,161,190,.1) 360deg);display:flex;align-items:center;justify-content:center;animation:ctx-spin 8s linear infinite}
 .sh-ctx-center i{font-size:2rem;color:#fff;animation:ctx-spin 8s linear infinite reverse}
-@media(max-width:991px){.sh-context-inner{grid-template-columns:1fr}.sh-ctx-visual{display:none}}
-
 </style>
 <section class="sh-hero">
   <canvas id="sh-canvas"></canvas>

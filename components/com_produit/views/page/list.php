@@ -1,27 +1,3 @@
-<style>
-/* MARKETPLACE HERO */
-.mkt-hero{position:relative;padding:14rem 0 8rem;background:var(--bg2);overflow:hidden;border-bottom:1px solid var(--border)}
-.mkt-hero-pattern{position:absolute;inset:0;z-index:0;overflow:hidden}
-.mkt-hero-pattern::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.07) 1.5px,transparent 1.5px);background-size:28px 28px}
-.mkt-hero-pattern::after{content:'';position:absolute;top:-400px;right:-200px;width:800px;height:800px;background:radial-gradient(circle,rgba(139,106,34,.05) 0%,transparent 60%)}
-.mkt-hero .container{position:relative;z-index:2}
-.mkt-hero-inner{display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:center}
-.mkt-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
-.mkt-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
-.mkt-hero-title{font-family:var(--fm);font-weight:300;font-size:clamp(3rem,6.5vw,8rem);line-height:.92;letter-spacing:-.04em;color:var(--txt);margin-bottom:2.5rem}
-.mkt-hero-title em{font-style:italic;color:var(--gold);font-family:var(--fd);font-weight:200}
-.mkt-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:3rem}
-.mkt-hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-.mkt-count-box{background:var(--bg);border:1px solid var(--border);border-radius:18px;overflow:hidden}
-.mkt-count-item{padding:2rem 2.4rem;border-bottom:1px solid var(--border)}
-.mkt-count-item:last-child{border-bottom:none}
-.mkt-count-val{font-family:var(--fd);font-weight:200;font-size:3.5rem;line-height:1;color:var(--txt);letter-spacing:-.04em}
-.mkt-count-val span{color:var(--gold);font-size:.55em}
-.mkt-count-lbl{font-family:var(--fm);font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--txt2);margin-top:.3rem}
-@media(max-width:1024px){.mkt-hero-inner{grid-template-columns:1fr}.mkt-count-box{display:flex;gap:0}.mkt-count-item{flex:1;border-bottom:none;border-right:1px solid var(--border)}.mkt-count-item:last-child{border-right:none}}
-@media(max-width:575px){.mkt-count-box{display:none}}
-
-</style>
 
 <!-- HERO -->
 <section class="wm-hero">
@@ -38,7 +14,7 @@
     <div class="wm-hero-inner">
       <div>
             <div class="sh-breadcrumb"><?php echo $page->getTitre() ?></div>
-            <h1 class="sh-h1"><em>Solutions IA</em> prêtes à l'emploi</h1>
+            <h1 class="sh-h1"><em>Marketplace de </em> solutions IA</h1>
             <p class="sh-sub"><?php echo strip_tags($page->getExtrait()); ?></p>
       
         <div class="wm-hero-ctas rv d2">
