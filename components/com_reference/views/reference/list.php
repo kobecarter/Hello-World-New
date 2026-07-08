@@ -1,32 +1,3 @@
-<style>
-
-/* GRID — 3-col masonry inspiré DUOMO */
-.rl-section{padding:4rem 0 0;background:var(--bg)}
-.rl-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:300px;gap:10px;margin-top:0}
-@media(min-width:1024px){
-  /* Col 1: Orbital (tall) + Nomad (tall) */
-  .rl-card:nth-child(1){grid-column:1;grid-row:1/3}
-  /* Col 2: Maison (short) + Pulse (short) + EduStream (short) + Studio (short) */
-  .rl-card:nth-child(2){grid-column:2;grid-row:1}
-  /* Col 3: GreenPath (tall) + CargoBrain (tall) */
-  .rl-card:nth-child(3){grid-column:3;grid-row:1/3}
-  .rl-card:nth-child(4){grid-column:2;grid-row:2}
-
-  .rl-card:nth-child(5){grid-column:1;grid-row:3/5}
-  .rl-card:nth-child(6){grid-column:2;grid-row:3}
-  .rl-card:nth-child(7){grid-column:3;grid-row:3/5}
-  .rl-card:nth-child(8){grid-column:2;grid-row:4}
-
-  .rl-card:nth-child(9){grid-column:1;grid-row:5/7}
-  .rl-card:nth-child(10){grid-column:2;grid-row:5}
-  .rl-card:nth-child(11){grid-column:3;grid-row:5/7}
-  .rl-card:nth-child(12){grid-column:2;grid-row:6}
-
-}
-@media(min-width:640px) and (max-width:1023px){.rl-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:280px}}
-@media(max-width:639px){.rl-grid{grid-template-columns:1fr;grid-auto-rows:260px}}
-
-</style>
 
 <!-- HERO -->
 <section class="wm-hero">
