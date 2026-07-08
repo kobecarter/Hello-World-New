@@ -10,16 +10,7 @@
 .ty-hero-inner{display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:center}
 .ty-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
 .ty-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
-.ty-hero-title{    
-    font-family: var(--fm);
-    font-weight: 200;
-    font-size: clamp(4rem, 9vw, 13rem);
-    line-height: .88;
-    letter-spacing: -.04em;
-    color: var(--gold2);
-    margin-bottom:2.5rem
-    
-}
+.ty-hero-title{font-family:var(--fm);font-weight:300;font-size:clamp(3.2rem,7vw,9rem);line-height:.9;letter-spacing:-.04em;color:var(--txt);margin-bottom:2.5rem}
 .ty-hero-title em{font-style:normal;color:var(--gold);font-weight:200}
 .ty-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:2.5rem}
 .ty-hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
@@ -40,7 +31,7 @@
 @media(max-width:1024px){.ty-hero-inner{grid-template-columns:1fr}}
 
 /* ── EXPLORE STRIP ─────────────────────── */
-.ty-explore{padding:7rem 0;background:var(--bg);border-bottom:1px solid var(--border)}
+.ty-explore{padding:7rem 0;background:var(--bg3);border-bottom:1px solid var(--border)}
 .ty-explore-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:22px;overflow:hidden;margin-top:4rem}
 .ty-exp-card{padding:2.5rem 2rem;border-right:1px solid var(--border);text-decoration:none;display:block;transition:background .25s;position:relative;overflow:hidden}
 .ty-exp-card:last-child{border-right:none}
@@ -81,16 +72,9 @@
         <div class="ty-hero-label rv">Confirmation</div>
         <h1 class="ty-hero-title rv d1">Message <em>bien reçu</em>, merci.</h1>
         <p class="ty-hero-sub rv d2">Notre équipe a été notifiée et analyse votre demande. Vous recevrez une réponse personnalisée de notre part dans les plus brefs délais.</p>
-        <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $siteURL; ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Retour à l'accueil</span></div>
-              <div class="sb-knob"><i class="fal fa-calculator"></i></div>
-            </a>
-        
-            <a href="<?php echo $pageRealisation->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir les réalisations</span></div>
-              <div class="sb-knob"><i class="fal fa-eye"></i></div> 
-            </a>
+        <div class="ty-hero-ctas rv d3">
+          <a href="<?php echo $siteURL; ?>" class="btn-hw"><span>Retour à l'accueil</span> <i class="fa fa-arrow-right fa-xs"></i></a>
+          <a href="<?php echo $pageRealisation->getLink(); ?>" class="btn-hw"><span>Voir nos réalisations</span></a>
         </div>
       </div>
       <div class="rv d2">

@@ -59,7 +59,7 @@ $agentTexte = str_replace(
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>"><i class="fa fa-home"></i> Accueil</a></li>
+                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>"><i class="fal fa-home"></i> Accueil</a></li>
                 <li class="breadcrumb-item"><a href="<?= $siteURL; ?>index.php?option=com_agents_ia">Solutions IA</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?= $agent_ia->getTitre(); ?></li>
             </ol>
@@ -173,11 +173,6 @@ $agentTexte = str_replace(
 </section>
 <?php endif; ?>
 
-<!-- ===== TÉMOIGNAGES ===== -->
-<?php if (!empty($testimonials)): ?>
-<?php include('includes/testimonials.php'); ?>
-<?php endif; ?>
-
 <!-- ===== TECHNOLOGIES ===== -->
 <?php if (!empty($tools)): ?>
 <section class="trust" id="trust">
@@ -206,6 +201,12 @@ $agentTexte = str_replace(
         </div>
     </div>
 </section>
+<?php endif; ?>
+
+
+<!-- ===== TÉMOIGNAGES ===== -->
+<?php if (!empty($testimonials)): ?>
+<?php include('includes/testimonials.php'); ?>
 <?php endif; ?>
 
 <!-- ===== PARTENAIRES ===== -->

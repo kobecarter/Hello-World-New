@@ -9,7 +9,6 @@ switch ($task)
             $id = intval($_GET["id"]);
             $page = new page($id, $db, $_SESSION["lang"]);
             $testimonials = temoignage::findAll($_SESSION['lang'], true);
-		
             include_once("components/com_contact/views/devis/detail.php");
         }
         break;
