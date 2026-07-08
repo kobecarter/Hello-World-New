@@ -227,30 +227,6 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 @media(max-width:767px){.gouv-grid{grid-template-columns:1fr}.gouv-card{border-right:none!important;border-bottom:1px solid var(--border)}.gouv-card:last-child{border-bottom:none}}
 */
 
-/* WEB MOBILE HERO */
-.wm-hero{position:relative;padding:10rem 0 9rem;background:var(--bg);overflow:hidden;height: 100vh;}
-.wm-hero-grid{position:absolute;inset:0;z-index:0;overflow:hidden}
-.wm-hero-grid svg{width:100%;height:100%;opacity:.045}
-.wm-hero .container{position:relative;z-index:2}
-.wm-hero-inner{display:grid;grid-template-columns:1fr 400px;gap:4rem}
-.wm-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
-.wm-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
-.wm-hero-title{font-family:var(--fm);font-weight:300;font-size:84px;line-height:1.1;letter-spacing:-.04em;color:var(--txt);margin-bottom:2.5rem}
-.wm-hero-title em{font-style:normal;color:var(--gold);font-weight:200}
-.wm-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:3rem}
-.wm-hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-.wm-hero-side{position:relative}
-.wm-screen{background:var(--txt);border-radius:18px;overflow:hidden;aspect-ratio:9/16;max-width:200px;margin:0 auto;position:relative;box-shadow:0 40px 120px rgba(0,0,0,.18)}
-.wm-screen::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,106,34,.12) 0%,transparent 60%)}
-.wm-screen-gfx{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:24px 16px}
-.wm-bar{height:4px;border-radius:2px;background:rgba(247,245,242,.08)}
-.wm-bar.hi{background:rgba(139,106,34,.4);width:60%}
-.wm-bar.mid{width:80%}
-.wm-bar.sm{width:45%}
-.wm-screen-dot{width:32px;height:32px;border-radius:50%;background:rgba(139,106,34,.3);margin:8px 0}
-.wm-tablet{position:absolute;right:-40px;top:60px;background:#1a1815;border-radius:12px;width:260px;aspect-ratio:4/3;box-shadow:0 24px 80px rgba(0,0,0,.22);overflow:hidden}
-.wm-tablet::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(139,106,34,.04) 28px,rgba(139,106,34,.04) 29px)}
-@media(max-width:1024px){.wm-hero-inner{grid-template-columns:1fr}.wm-hero-side{display:none}}
 </style>
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
