@@ -1,64 +1,14 @@
 <style>
-/* Dashboard mockup */
-.dash{width:360px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.06)}
-.dash-bar{padding:.8rem 1.2rem;background:#f8f9fa;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid rgba(0,0,0,.06)}
-.dash-logo{font-size:.7rem;font-weight:700;color:#680262;letter-spacing:.1em}
-.dash-body{padding:1.4rem}
-.dash-kpi-row{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-bottom:1.2rem}
-.dash-kpi{padding:1rem;background:#f8f9fa;border-radius:10px;text-align:center}
-.dash-kpi-val{font-size:1.4rem;font-weight:700;color:var(--sc)}
-.dash-kpi-lbl{font-size:.52rem;color:#888;text-transform:uppercase;letter-spacing:.1em}
-.dash-chart-wrap{background:#f8f9fa;border-radius:10px;padding:1rem;margin-bottom:1rem}
-.dash-chart-title{font-size:.55rem;font-weight:700;color:#333;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
-.dash-bars{display:flex;align-items:flex-end;gap:.3rem;height:60px}
-.dash-bar-item{flex:1;border-radius:3px 3px 0 0;position:relative}
-.dash-bar-item.c1{background:var(--sc);opacity:.7}
-.dash-bar-item.c2{background:#680262;opacity:.5}
-.dash-alert{padding:.7rem .9rem;background:rgba(9,161,190,.08);border:1px solid rgba(9,161,190,.2);border-radius:8px;display:flex;align-items:center;gap:.6rem}
-.dash-alert-dot{width:7px;height:7px;border-radius:50%;background:var(--sc);animation:pulse-dot 1.5s ease-in-out infinite}  
-
-@keyframes cr-pulse{0%,100%{opacity:1}50%{opacity:.7}}
-.case-right>*{position:relative;z-index:1}
-.case-tag{font-size:.52rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
-.case-headline{font-weight:300;font-size:2.1rem;color:var(--txt);margin-bottom:1.5rem;letter-spacing:-.02em;line-height:1.1}
-.case-ctx{font-size:.85rem;color:var(--txt2);line-height:1.9;margin-bottom:2rem}
-.case-ctx strong{color:var(--txt);font-weight:600}
-.case-problem{background:rgba(139,106,34,.05);border:1px solid rgba(139,106,34,.18);border-top:2px solid var(--gold);border-radius:8px;padding:1.4rem 1.6rem;margin-bottom:1.5rem}
-.case-problem-label{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem}
-.case-problem-text{font-size:.8rem;color:var(--txt2);line-height:1.8}
-.case-results{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-.result-big{padding:1.4rem;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid rgba(139,106,34,.12);border-radius:12px;transition:all .3s}
-.result-big:hover{border-color:rgba(9,161,190,.3);transform:translateY(-2px)}
-.result-num{font-weight:200;font-size:2.2rem;color:var(--sc);line-height:1;letter-spacing:-.04em}
-.result-lbl{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin-top:.25rem}
-.case-quote{font-size:.82rem;font-style:italic;color:var(--txt2);line-height:1.85;padding:1.5rem 1.8rem;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border-radius:12px;position:relative}
-.case-quote::before{content:'\201C';position:absolute;top:.2rem;left:.8rem;font-family:var(--fd);font-size:3.5rem;line-height:1;color:var(--gold2);opacity:.4;font-style:normal}
-.case-quote-author{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:.6rem;display:block}
-@media(max-width:991px){.case-wrap{grid-template-columns:1fr}.case-right{border-left:none;border-top:1px solid var(--border)}}
-
-@keyframes ctx-spin{to{transform:rotate(360deg)}}
+/* Styles spécifiques à cette page : mêmes noms de classes que d'autres pages secteur mais couleurs propres à Marketing, donc gardés locaux plutôt que dans main.css */
 .sh-fcard{position:absolute;background:rgba(255,255,255,.88);backdrop-filter:blur(18px);border:1px solid rgba(139,106,34,.18);border-radius:16px;padding:1.2rem 1.6rem;box-shadow:0 8px 32px rgba(0,0,0,.07);text-align:center}
 .sh-fcard.fc1{top:2%;left:50%;transform:translateX(-50%);min-width:130px;animation:fc1 4s ease-in-out infinite}
 .sh-fcard.fc2{left:-2%;top:45%;transform:translateY(-50%);animation:fc2 5s ease-in-out infinite .6s}
 .sh-fcard.fc3{right:-2%;top:45%;transform:translateY(-50%);animation:fc3 4.5s ease-in-out infinite .3s}
 .sh-fcard.fc4{bottom:2%;left:50%;transform:translateX(-50%);min-width:130px;animation:fc1 5s ease-in-out infinite 1s}
-@keyframes fc1{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
-@keyframes fc2{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(-8px)}}
-@keyframes fc3{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(8px)}}
 .sh-fcard-lbl{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--txt2);margin-top:.2rem}
-.sh-ctx-center-wrap{position:absolute;width:110px;height:110px}
 .sh-ctx-center{width:110px;height:110px;border-radius:50%;background:conic-gradient(from 0deg,var(--sc) 0deg,rgba(9,161,190,.1) 360deg);display:flex;align-items:center;justify-content:center;animation:ctx-spin 8s linear infinite}
 .sh-ctx-center i{font-size:2rem;color:var(--gold);animation:ctx-spin 8s linear infinite reverse}
-@media(max-width:991px){.sh-context-inner{grid-template-columns:1fr}.sh-ctx-visual{display:none}}
-
-.sh-int-visual{position:sticky;top:7rem}
-.sh-int-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.08);padding: 0;}
-.sh-int-card-img{width:100%;height:220px;object-fit:cover}
-.sh-int-card-body{padding:2rem}
-.sh-int-card-title{font-weight:600;font-size:1rem;color:var(--txt);margin-bottom:.6rem}
-.sh-int-card-desc{font-size:.8rem;color:var(--txt2);line-height:1.8}
-@media(max-width:991px){.sh-int-inner{grid-template-columns:1fr}.sh-int-visual{position:static}}
-
+.sh-int-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.08);}
 </style>
 <section class="sh-hero">
   <canvas id="sh-canvas"></canvas>
