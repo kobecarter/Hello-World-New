@@ -296,8 +296,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
-//const hdr=document.getElementById('hdr'),backTop=document.getElementById('backTop');
-//window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>80);backTop.classList.toggle('show',scrollY>600)},{passive:true});
+// const hdr=document.getElementById('hdr'),backTop=document.getElementById('backTop');
+// window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>80);backTop.classList.toggle('show',scrollY>600)},{passive:true});
 // const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.1});
 // document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // (function(){const canvas=document.getElementById('sh-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');let W,H,t=0;const LINES=28,SEGS=200;function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;}function draw(){ctx.clearRect(0,0,W,H);t+=.004;for(let l=0;l<LINES;l++){const p=l/(LINES-1),yBase=H*.06+H*.88*p,amp=H*.03*(.2+p*.8),bright=1-Math.abs(p-.5)*1.6,alpha=Math.max(.008,Math.min(bright*.055,.055));ctx.beginPath();for(let i=0;i<=SEGS;i++){const x=(i/SEGS)*W,n=i/SEGS,y=yBase+Math.sin(n*Math.PI*4+t*1.4+l*.3)*amp+Math.sin(n*Math.PI*8-t*.9+l*.18)*amp*.35+Math.sin(n*Math.PI*2+t*.5+l*.08)*amp*.18;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.strokeStyle=`rgba(139,106,34,${alpha})`;ctx.lineWidth=.8;ctx.stroke();}requestAnimationFrame(draw);}resize();draw();window.addEventListener('resize',resize);})();

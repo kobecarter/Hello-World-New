@@ -87,7 +87,7 @@ header .lang-btn{font-size:.72rem;padding:0}
 /*.burger{display:none;cursor:pointer;flex-direction:column;gap:5px;background:none;border:none;padding:.4rem}
 .burger i{display:block;width:22px;height:2px;background:var(--txt);transition:all .3s}*/
 .mm-burger{display:none;width:44px;height:44px;border-radius:12px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;background:rgba(255,255,255,.55);border:rgba(0,0,0,.1) solid 1px;box-shadow:inset 0 1px 0 rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);margin-right: 10px;}
-.mm-bar-b{display:block;width:29px;height:2px;background:#999;border-radius:2px;transition:.28s;margin: 6px 7px;}
+.mm-bar-b{display:block;width:26px;height:2px;background:#999;border-radius:2px;transition:.28s;margin: 6px 8px;}
 .mm-bar-b+.mm-bar-b{margin-top:5px}
 @media(max-width:991px){.hdr-nav,header .lang-sel{display:none}.burger{display:flex}header{padding:1.2rem 1.5rem}header.scrolled{padding:1rem 1.5rem}}
 
@@ -3534,7 +3534,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
 .sol-kpi-val{font-family:var(--fm);font-weight:200;font-size:3rem;color:var(--gold);line-height:1;letter-spacing:-.04em;margin-bottom:.5rem}
 .sol-kpi-lbl{font-family:var(--fm);font-size:.55rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--txt2)}
 @media(max-width:1199px){.sol-kpi-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:767px){.sol-feature{grid-template-columns:1fr;margin-bottom:0}.sol-fc-visual{transform: scale(.8);}}
+@media(max-width:767px){.sol-feature{grid-template-columns:1fr;margin-bottom:0;display: block;}.sol-fc-visual{transform: scale(.8);}}
 @media(max-width:991px){.sol-fc-visual{border-left:none;border-top:1px solid var(--border)}}
 
 /* ══ CONTEXT ════════════════════════════════════════════════════ */
@@ -4015,7 +4015,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
   .sect-exp-card.active{flex:0 0 420px}
   .sect-exp-ico{bottom:auto;top:50%;left:1.6rem;transform:translateY(-50%);width:38px;height:38px;font-size:.72rem}
   .sect-exp-card.active .sect-exp-ico{opacity:0;transform:translateY(-50%) scale(.4);pointer-events:none}
-  .sect-exp-namev{writing-mode:horizontal-tb;transform:translateY(-50%) rotate(0);top:50%;left:4.6rem;bottom:auto;right:auto;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.38)}
+  .sect-exp-namev{writing-mode:horizontal-tb;transform:translateY(-50%) rotate(0);top:50%;left:4.6rem;bottom:auto;right:auto;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.8)}
   .sect-exp-card.active .sect-exp-namev{opacity:0}
   .sect-exp-body{padding:2rem 1.8rem}
   .sect-exp-pitch{font-size:1.25rem}
@@ -4478,7 +4478,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
 .wm-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
 .wm-hero-title{font-family:var(--fm);font-weight:300;font-size:84px;line-height:1.1;letter-spacing:-.04em;color:var(--txt);margin-bottom:2.5rem}
 .wm-hero-title em{font-style:normal;color:var(--gold);font-weight:200}
-.wm-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:2rem}
+.wm-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:3rem}
 .wm-hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
 .wm-hero-side{position:relative}
 .wm-screen{background:var(--txt);border-radius:18px;overflow:hidden;aspect-ratio:9/16;max-width:200px;margin:0 auto;position:relative;box-shadow:0 40px 120px rgba(0,0,0,.18)}
@@ -4493,411 +4493,272 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
 .wm-tablet::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(139,106,34,.04) 28px,rgba(139,106,34,.04) 29px)}
 @media(max-width:1024px){.wm-hero-inner{grid-template-columns:1fr}.wm-hero-side{display:none}}
 
-/* ── VERSION MOBILE ── */
-@media(max-width:767px){
-    .cur, .cur2{
-        display:none;
-    }
-    .statement{
-        padding: 4rem 0;
-    }
-    .services{
-        padding: 4rem 0;
-    }
-    .services-header{
-        margin-bottom:0;
-    }
-    .svc-card:nth-child(n+4){
-        border-bottom:1px solid var(--border);
-    }
-    .ai-card{
-        padding: 1rem 2.6rem;
-    }
-    .ai-card:nth-child(n+4),
-    .ai-card:nth-child(5){
-        border-bottom:1px solid var(--border);
-    }
-    .ai-sol{
-        padding: 4rem 0;
-    }
-    .srv-section{
-        padding:4rem 0;
-    }
-    .why-bg-img{
-        height: 550px;
-    }
-    .trust-head{
-        padding-top: 4rem;
-        padding-bottom: 0rem;
-    }
-    .trust-item{
-        padding: 1rem 1rem;
-    }
-    .trust-item img{
-        height: 90px;
-        width: 90px;
-    }
-    .testimonials{
-        padding:4rem 0;
-    }
-    .item-testimonial{
-        margin: 0 15px 30px;
-    }
-    #expert{
-        padding:4rem 0;
-    }
-    .item-video{
-        margin: 0 3px;
-    }
-    .insights{
-        padding: 4rem 0;
-    }
-    .insights-header{
-        margin-bottom:0;
-    }
-    .agencies{
-        padding: 4rem 0 0;
-    }
-    .team{
-        padding: 4rem 0;
-    }
-    .portfolio{
-        padding: 4rem 0;
-    }
-    .brochure{
-        padding: 3rem 0 4rem;
-    }
-    .brochure .div-brochure-pdf{
-        border-radius: 20px;
-        border-top: #FFF solid 10px;
-        top:0;
-        height: 260px;
-    }
-    .faq{
-        padding: 4rem 0;
-    }
-    .faq-btn{
-        padding: 1rem 0;
-    }
-    .contact{
-        padding: 4rem 0;
-    }
-    .c-val{
-        font-size: 1rem;
-    }
-    .form-row {
-        margin-bottom: .5rem;
-    }
-    .service-by-cities{
-        padding: 4rem 0;
-    }
-    footer{
-        padding-bottom:0;
-    }
-    footer .big-title{
-        font-size: 30px;
-    }
-    footer .item-agency h1, footer .item-agency h4, footer .item-agency h4 a{
-        font-size: 26px;
-    }
-    footer .apps .item img{
-        height: 42px;
-    }
-    .bottom .footer-bottom-menu{
-        text-align: center;
-    }
-    .bottom .footer-bottom-menu li{
-        float:none;
-        display: inline-block;
-        border-bottom: rgba(255,255,255,0.1) solid 1px;
-        border-right: rgba(255,255,255,0.1) solid 1px;
-        margin-left: -5px;
-    }
-    .bottom .footer-bottom-menu li a{
-        padding: 0 10px;
-        font-size: 12px;
-    }
-    .back-top{
-        color: var(--gold);
-        border-radius: 50%;
-        font-size: 1rem;
-    }
-    .agency-band{
-        display:block;
-    }
-    .agency-band > .container{
-        width:100%;
-        transform:none;
-    }
-    .agency-band img{
-        position:relative;
-        height: 280px;
-        object-fit: cover;
-    }
-    .agency-band::before{
-        background: linear-gradient(to top,rgb(247, 245, 242) 0%,rgba(247,245,242,.9) 38%,rgba(247,245,242,.1) 56%,rgba(247,245,242,0) 100%);
-    }
-    .agency-content {
-        padding: 2rem 0 6rem;
-    }
-    .wm-services{
-        padding: 4rem 0;
-    }
-    .sp-offer-grid{
-        display: block;
-        margin-top:0;
-    }
-    .sp-offer{
-        margin-bottom: 30px;
-    }
-    .wm-approach{
-        padding: 4rem 0;
-    }
-    .wm-stats{
-        padding: 4rem 0;
-    }
-    .process{
-        padding: 4rem 0;
-    }
-    .step{
-        padding: 1rem 2.4rem;
-    }
-    .cta-band{
-        padding: 6rem 0;
-    }
-    .sp-offers{
-        padding: 4rem 0;
-    }
-    .sp-method{
-        padding: 4rem 0;
-    }
-    .sp-tech:nth-child(n+7){
-        border-bottom: 1px solid var(--border);
-    }
-    .mkt-catalog{
-        padding: 4rem 0;
-    }
-    .mkt-card:nth-child(n+4){
-        border-bottom: 1px solid var(--border);
-    }
-    .mkt-deploy{
-        padding: 4rem 0;
-    }
-    .mkt-timeline{
-        margin-top: -3rem;
-    }
-    .fm-formations{
-        padding: 4rem 0;
-    }
-    .fm-card-head{
-        padding: 2rem 2rem 2.4rem;
-    }
-    .fm-card-body{
-        padding: 2.4rem 2rem 1rem;
-    }
-    .fm-formats{
-        padding:4rem 0;
-    }
-    .fm-fmt{
-        padding: 1.5rem 2rem;
-    }
-    .fm-audience{
-        padding:4rem 0;
-    }
-    .fm-aud-card{
-        padding: 1rem 1.8rem;
-    }
-    .fm-aud-desc{
-        margin: 0;
-    }
-    .integrations{
-        padding:4rem 0;
-    }
-    .be-services{
-        padding:4rem 0;
-    }
-    .be-process{
-        padding: 4rem 0;
-    }
-    .be-proc-card{
-        padding: 2rem;
-    }
-    .be-proc-desc{
-        margin: 0;
-    }
-    .be-refs{
-        padding: 4rem 0;
-    }
-    .be-ref-card{
-        padding: 1.5rem 1.2rem;
-    }
-    .rl-filter-inner{
-        padding: 1rem;
-    }
-    .rl-filter-wrap{
-        position:static;
-    }
-    .rl-strip-item{
-        padding: 1.5rem 1rem;
-    }
-    .sh-context, .sh-solutions, .jp-content, .sh-integrations, .sdtl-section, .sh-case, .sh-stats{
-      padding: 4rem 0;
-    }
-    .sol-fc-text{
-      padding: 2rem;
-    }
-    .sol-roi-box{
-      padding: 0.8rem 1rem;
-      gap: 0.8rem;
-      flex-direction: column;
-    }
-    .sh-journey .tab-btn{
-      width: 100%;
-      margin: 1px 0;
-    }
-    .case-left, .case-right{
-      padding: 2rem;
-    }
-    .sh-stat{
-      padding: 2rem 1rem;
-    }
-    .sdtl-header{
-      margin-bottom: 2rem;
-    }
-    .sdtl-node{
-      width: 60px;
-      height: 60px;
-    }
-    .sdtl-node-core{
-      width: 60px;
-      height: 60px;
-      font-size: 1.4rem;
-    }
-    .sh-hero-body{
-      padding-bottom: 4rem;
-    }
-    .secteurs{
-      padding: 4rem 0 2rem;
-    }
-    .hw-cat{
-      padding: 4rem 0 0;
-    }
-    .bv-section{
-      padding: 4rem 0;
-    }
-    .intro-ctx{
-      padding: 4rem 0 2rem;
-    }
-    .intro-ctx-img{
-      margin-bottom: 30px;
-    }
-    .bv-heading{
-      font-size: clamp(2.4rem,6vw,7.5rem);
-      line-height: 1.1;
-      margin-bottom: 2.5rem;
-    }
-    .bv-stat{
-      text-align: center;
-      border-top: 1px solid rgba(247,245,242,.07);
-      margin-bottom: 20px;
-    }
-    .bv-stat-val{
-      justify-content: center;
-    }
-    .bv-quote-inner{
-      gap: 0;
-    }
-    .bv-quote{
-      padding-top: 2rem;
-    }
-    .integrations-hub{
-      padding: 4rem 0;
-    }
-    .gouv{
-      padding-top: 4rem;
-    }
-    .pack-box .item-pack{
-      margin-bottom: 60px;
-    }
-    .pack-box{
-      display: block;
-      margin-top: 0;
-    }
-    .pack-box .item-pack{
-      padding-top: 20px;
-    }
-    .pack-box .item-pack .textbox{
-      padding: 0 15px;
-    }
-    .pack-section{
-      padding: 4rem 0 0;
-    }
-    .case-studies{
-      padding: 4rem 0;
-    }
-    .case-card{
-      padding: 2rem;
-    }
-    .collaps .collaps-item h3{
-      font-size: 18px;
-    }
-    .service-content p{
-      font-size: .85rem;
-      line-height: 1.6;
-    }
-    .service-banner-img{
-      display: none;
-    }
-    .page-detail-service .pack-section .container{
-      padding:0;
-    }
-    .service-details-h4-h4{
-      text-align: center;
-    }
-    .service-content .int-grid, .service-content .int-right{
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-    .item-discover-video, .item-discover-video.big-item{
-      height: 300px;
-    }
-    .div-gallery-photo{
-      height: 200px;
-    }
-    .cs-isotop_col_3 .cs-grid_sizer, .cs-isotop_col_3 .cs-isotop_item{
-      width: 50%;
-    }
-    .photo-shooting{
-      padding: 0 15px;
-      margin: 0;
-    }
-    .div-gallery-photo img{
-      border-radius: 10px;
-    }
-    .div-gallery-photo a{
-      height: 50px;
-      width: 50px;
-      font-size: 20px;
-    }
-    .div-gallery-photo a i{
-      margin-top: 15px;
-      line-height: normal;
-    }
-    .cs-isotop_filter.cs-style1 a{
-      
-    }
-    .cs-isotop_filter.cs-style1 li:not(:last-child){
-      margin-right: 10px;
-    }
-    .cs-isotop_filter.cs-style1 a{
-      font-size: 12px;
-    }
-    .cs-isotop_filter.cs-style1 ul{
-      padding-bottom: 15px;
-    }
-    .videotheque{
-      padding: 0rem 0 4rem;
-    }
+/* ══ POURQUOI — Original hi-res image, GSAP hit zones ══════════
+   Image: background-why-v2-web.jpg  2400 × 1593 px
+   (downscaled from original 6967 × 4625)
+
+   Card positions measured from 2400 × 1593 image.
+   All values are top-left corner of each card as % of image.
+
+     pays       left 20.5%  top 30.3%
+     ia         left 27.5%  top 29.3%
+     retention  left 34.5%  top 30.3%
+     projets    left 27.5%  top 47.0%
+   Card size: ~151×110 px  →  6.3% × 6.9%
+
+   Hover animation: 100% GSAP — no CSS transition on the tile.
+══════════════════════════════════════════════════════════════ */
+#why-us {
+  background: #fff;
+  padding: 0;
 }
+
+.why-img-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Original quality photo — 2400:1593 natural ratio */
+.why-bg-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Fade — white table 0-40%, feathers before cards start at 45% */
+.why-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,.99) 0%,
+    rgba(255,255,255,.97) 38%,
+    rgba(255,255,255,.50) 43%,
+    rgba(255,255,255,.06) 47%,
+    transparent 52%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Copy — left 41%, well before cards at 45% */
+.why-copy {
+  position: absolute;
+  inset: 0 59% 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4% 2% 4% 5%;
+  z-index: 2;
+}
+
+/* Mobile header above image — hidden on desktop */
+.why-mobile-hd { display: none; }
+
+/* ── Mobile layout ────────────────────────────────────────────
+   Stack: [white header: title + description]
+          [full image at natural ratio — no crop]
+          [bullets overlaid on image left white zone]
+   ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+
+  /* 1. White header above image */
+  .why-mobile-hd {
+    display: block;
+    background: #fff;
+    text-align: center;
+    padding: 36px 28px 20px;
+  }
+  .why-mobile-hd .why-h {
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .why-mobile-hd .why-p {
+    font-size: .82rem;
+    line-height: 1.7;
+    text-align: center;
+    max-width: 34ch;
+    margin: 0 auto;
+    margin-bottom: 0;
+  }
+
+  /* 2. Image: full natural ratio, never cropped */
+  .why-img-wrap {
+    aspect-ratio: auto;
+    overflow: hidden;
+  }
+
+  /* 3. Fade: strong white on left for bullet readability */
+  .why-fade {
+    background: linear-gradient(
+      to right,
+      rgba(255,255,255,.99) 0%,
+      rgba(255,255,255,.97) 34%,
+      rgba(255,255,255,.52) 49%,
+      transparent 63%
+    );
+  }
+
+  /* 4. Copy overlay: shifted 10% right, only bullets visible, vertically centred */
+  .why-copy {
+    inset: 0 38% 0 10%;
+    padding: 3% 1% 3% 2%;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Hide the desktop heading + paragraph from view
+     (they render in .why-mobile-hd above, aria-hidden here) */
+  .why-copy > .why-h,
+  .why-copy > .why-p { display: none; }
+
+  /* 5. Accordion — 4 titles stacked, expand on tap */
+  .why-pts { border-top: none; }
+  .why-pt  {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  /* Trigger row — 20% less vertical padding, dark gray title */
+  .why-pt-k {
+    font-size: .62rem;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5.5px 0;
+    color: #555;
+  }
+  /* +/× indicator */
+  .why-pt-k::after {
+    content: '+';
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 200;
+    color: var(--mg);
+    flex-shrink: 0;
+    margin-left: 6px;
+    line-height: 1;
+    transition: transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .why-pt.is-open .why-pt-k::after {
+    transform: rotate(45deg);
+  }
+
+  /* Description — height/opacity controlled entirely by GSAP */
+  .why-pt-v {
+    font-size: .56rem;
+    line-height: 1.45;
+    overflow: hidden;
+    padding-bottom: 6px;
+  }
+}
+
+/* ── Copy typography ── */
+.why-h {
+  font-weight: 100;
+  font-size: clamp(2.2rem, 5vw, 5.5rem);
+  color: #680262;
+  margin-top: 0;
+}
+.why-h em { display:block; font-style:normal; color:#09A1BE; }
+.why-p {
+  font-size: .85rem;
+  font-weight: 300;
+  color: var(--t2);
+  line-height: 1.85;
+  max-width: 44ch;
+  margin-bottom: 34px;
+}
+.why-pts { border-top: 1px solid rgba(0,0,0,.08); }
+.why-pt {
+  display: grid;
+  grid-template-columns: 136px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  align-items: baseline;
+}
+@media (max-width: 480px) { .why-pt { grid-template-columns: 1fr; gap: 4px; } }
+.why-pt-k { font-size:.73rem; font-weight:700; color:#424243; }
+.why-pt-v { font-size:.71rem; font-weight:300; color:var(--t2); line-height:1.62; }
+
+/* ── Stat hit zones ─────────────────────────────────────────────
+   Positions measured by pixel-level shadow detection on the
+   actual 2400×1593 image (background-why-v2-web.jpg).
+
+   Column centers (x): col1=49%  col2=58%  col3=67%
+   Card half-width: 4%  → left = center - 4%
+   Row 1 (stat cards): top=24%  height=13%  (y 24→37%)
+   Projets (row 3):    top=51%  height=8%   (y 51→59%)
+
+   Permanent #a100f2 glow marks zones as interactive.
+   GSAP owns all hover animation — no CSS transitions on tile.
+   ─────────────────────────────────────────────────────────── */
+.why-stat-hit {
+  position: absolute;
+  z-index: 6;
+  width: 9%;      /* verified from image crop: card ≈ 9% wide */
+  height: 9%;     /* card ≈ 9% tall */
+  min-width: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+/* Positions verified by cropping the actual image pixels.
+   Pays: x=44-55% y=28-43% → card at y≈35%
+   IA:   x=55-66% y=27-42% → card at y≈34%
+   Ret:  x=66-77% y=28-43% → card at y≈35%
+   Proj: x=55-66% y=47-61% → card at y≈53%        */
+.why-stat-hit[data-stat="pays"]      { left: 45%;   top: 34.5%; }
+.why-stat-hit[data-stat="ia"]        { left: 55.5%; top: 33.5%; }
+.why-stat-hit[data-stat="retention"] { left: 66%;   top: 34.5%; }
+.why-stat-hit[data-stat="projets"]   { left: 55.5%; top: 53%;   height: 9%; }
+
+/* Black content card — shown by GSAP on hover ──────────────── */
+.wsh-card {
+  position: absolute;
+  top: calc(100% + 10px);   /* appears below the hit zone */
+  left: 50%;
+  /* translate is set via GSAP so no CSS transform here */
+  background: #000;
+  border-radius: 10px;
+  padding: 16px 22px 18px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  /* Initial hidden state set by GSAP in JS */
+}
+.wsh-num {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 200;
+  font-size: 2rem;
+  letter-spacing: -.04em;
+  line-height: 1;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+.wsh-lbl {
+  display: block;
+  font-family: var(--mono);
+  font-size: .38rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.52);
+}
+
+@media (max-width: 860px) { .why-stat-hit { display: none; } }
+
 /* ── HW CONCIERGE AI · Charte HWA · v5 ────────────────────────
    Fond : #fff / #fbfbfb  Accents : #09A1BE · #680262 · gradient
    ─────────────────────────────────────────────────────────────── */
@@ -4968,7 +4829,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
 .aic-pain:hover { background:linear-gradient(155deg,rgba(255,255,255,.86),rgba(255,255,255,.48));
   box-shadow:0 30px 60px -22px rgba(9,161,190,.3),inset 0 1px 0 rgba(255,255,255,.7); }
 .aic-pain:hover::after { opacity:1; }
-.aic-pain-num { position:relative;font-family:'Cormorant Garamond',Georgia,serif;font-weight:200;font-size:3rem;line-height:1;color:#09A1BE;opacity:.4;flex-shrink:0;min-width:2.2rem;text-shadow:0 0 22px rgba(9,161,190,.25); }
+.aic-pain-num { position:relative;font-weight:200;font-size:3rem;line-height:1;color:#09A1BE;opacity:.4;flex-shrink:0;min-width:2.2rem;text-shadow:0 0 22px rgba(9,161,190,.25); }
 .aic-pain-title { position:relative;font-size:.9rem;font-weight:700;color:#0d0b09;margin-bottom:.4rem; }
 .aic-pain-body  { position:relative;font-size:.82rem;font-weight:300;color:#6b6460;line-height:1.8;margin:0; }
 @media(prefers-reduced-motion:reduce) { .aic-pain { transition:none; } }
@@ -5062,7 +4923,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
   .aic-split-bg-blur { clip-path:none;-webkit-clip-path:none;filter:blur(10px) saturate(65%) brightness(1.08); }
   .aic-split-bg::after { background:linear-gradient(180deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.4) 45%,rgba(255,255,255,.78) 100%); }
   .aic-split-inner { grid-template-columns:1fr;gap:2.5rem;min-height:0;padding:4rem 0; }
-  .aic-split-col:first-child { min-height:560px;padding-top:0;display:flex;flex-direction:column;justify-content:center; }
+  .aic-split-col:first-child { min-height:0;padding-top:40px;display:flex;flex-direction:column;justify-content:center; }
   .aic-split-col:first-child .aic-split-list-text,
   .aic-split-col:first-child .aic-split-eyebrow { text-shadow:0 1px 0 rgba(255,255,255,.6),0 2px 14px rgba(255,255,255,.9); }
   .aic-split-col-right { padding:2rem; }
@@ -5086,7 +4947,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
 .aic-kpi-item:hover { background:linear-gradient(160deg,rgba(255,255,255,.88),rgba(255,255,255,.48));
   box-shadow:0 34px 70px -26px rgba(9,161,190,.32),inset 0 1px 0 rgba(255,255,255,.75); }
 .aic-kpi-item:hover::after { opacity:1; }
-.aic-kpi-val { position:relative;font-family:'Cormorant Garamond',Georgia,serif;font-weight:200;font-size:clamp(3.4rem,5vw,5.5rem);line-height:1;letter-spacing:-.03em;color:#0d0b09;margin-bottom:.6rem; }
+.aic-kpi-val { position:relative;font-weight:200;font-size:clamp(3.4rem,5vw,5.5rem);line-height:1;letter-spacing:-.03em;color:#0d0b09;margin-bottom:.6rem; }
 .aic-kpi-val span { color:#09A1BE; }
 .aic-kpi-ico { position:relative;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin:0 auto 1.3rem;
   border-radius:50%;background:#fff;border:1px solid rgba(9,161,190,.32);box-shadow:0 12px 26px -12px rgba(9,161,190,.4);
@@ -5151,10 +5012,10 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
   .aic-orbit-inner { grid-template-columns:1fr;gap:2.5rem; }
 }
 @media(max-width:767px) {
-  .aic-orbit-wrap { aspect-ratio:auto;max-width:100%;display:flex;flex-direction:column;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px; }
+  .aic-orbit-wrap { aspect-ratio:auto;max-width:calc(100% - 60px);display:flex;flex-direction:column;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;margin-top: 20px; }
   .aic-orbit-ring-wrap,.aic-orbit-center-halo { display:none; }
   .aic-orbit-center { position:static;transform:none;width:190px;height:190px;margin-bottom:.5rem;animation:none; }
-  .aic-orbit-item { position:static;animation:none;margin:0; }
+  .aic-orbit-item { margin:0; }
 }
 
 /* ━━ CTA STICKY (déploiement) — fond vidéo, sans voile (couleurs réelles) ━━ */
@@ -5179,7 +5040,7 @@ header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padd
   .aic-kpi-grid { grid-template-columns:1fr; }
 }
 @media(max-width:576px) {
-  .aic-section { padding:4rem 0; }
+  .aic-section { padding:4rem 0;overflow: visible; }
   .aic-container,.aic-dc,.aic-accroche-inner { padding-left:1.5rem;padding-right:1.5rem; }
   .aic-cap-grid { grid-template-columns:1fr;gap:1px; }
   .aic-stats { grid-template-columns:1fr; }
