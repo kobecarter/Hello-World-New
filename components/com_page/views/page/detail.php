@@ -12,7 +12,7 @@
     <div class="wm-hero-inner">
       <div>
         <div class="wm-hero-label"><?php echo $page->getTitre() ?></div>
-        <h1 class="sh-h1 rv on"><?php echo $page->getTitre() ?> </h1>
+        <h1 class="sh-h1 rv on"><?php echo !empty($page->getH1()) ? $page->getH1() : $page->getTitre(); ?></h1>
         <p class="wm-hero-sub rv d1"><?php echo strip_tags($page->getExtrait()); ?></p>
             <div class="wm-hero-ctas rv d2">
             <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">

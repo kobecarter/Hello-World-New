@@ -7,6 +7,7 @@ class page{
     private $description_seo;
     private $texte;
     private $titre;
+    private $h1;
     private $url;
     private $id_slider;
     private $photo;
@@ -31,6 +32,7 @@ class page{
             $this->description_seo = $data['seo_description'];
             $this->texte = $data['texte'];
             $this->titre = $data['titre'];
+            $this->h1 = $data['h1'];
             $this->url = $data['url'];
             $this->type = $data['type'];
             $this->id_slider = $data['id_slider'];
@@ -71,6 +73,10 @@ class page{
 
     public function getTitre(){
         return $this->titre;
+    }
+
+    public function getH1(){
+        return $this->h1;
     }
 
     public function getURL(){

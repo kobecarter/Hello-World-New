@@ -11,6 +11,7 @@ class secteur
     private $photo_banniere;
     private $active;
     private $titre;
+    private $h1;
     private $stug;
     private $slug;
     private $sous_titre;
@@ -61,7 +62,12 @@ class secteur
     {
         return $this->titre;
     }
-    
+
+    public function getH1()
+    {
+        return $this->h1;
+    }
+
     public function getSlug()
     {
         return $this->slug;
@@ -136,7 +142,12 @@ class secteur
     {
         $this->titre = $titre;
     }
-    
+
+    public function setH1($h1)
+    {
+        $this->h1 = $h1;
+    }
+
     public function setSlug($slug)
     {
         $this->slug = $slug;
@@ -198,9 +209,10 @@ class secteur
         if (!$db->query($SQLinsert)) 
         {
             $id_secteur = $db->last_id();
-            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 GetSQLValueString($id_secteur, "int"),
                 GetSQLValueString($this->titre, "text"),
+                GetSQLValueString($this->h1, "text"),
                 GetSQLValueString($this->slug, "text"),
                 GetSQLValueString($this->sous_titre, "text"),
                 GetSQLValueString($this->extrait, "text"),
@@ -237,9 +249,10 @@ class secteur
             
             $result = $db->query($SQLselect);
             if ($db->num_rows($result) == 0) {
-                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     GetSQLValueString($this->id, "int"),
                     GetSQLValueString($this->titre, "text"),
+                    GetSQLValueString($this->h1, "text"),
                     GetSQLValueString($this->slug, "text"),
                     GetSQLValueString($this->sous_titre, "text"),
                     GetSQLValueString($this->extrait, "text"),
@@ -249,8 +262,9 @@ class secteur
                     GetSQLValueString($this->langue, "text")
                 );
             } else {
-                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, slug = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s WHERE id_secteur = %s AND langue = %s",
+                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, h1 = %s, slug = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s WHERE id_secteur = %s AND langue = %s",
                     GetSQLValueString($this->titre, "text"),
+                    GetSQLValueString($this->h1, "text"),
                     GetSQLValueString($this->slug, "text"),
                     GetSQLValueString($this->sous_titre, "text"),
                     GetSQLValueString($this->extrait, "text"),
@@ -485,6 +499,7 @@ public static function findAll($langue, $active = false, $services = false, $cur
         $secteur->setPhotoBanniere($data['photo_banniere']);
         $secteur->setActive($data['active']);
         $secteur->setTitre($data['titre']);
+        $secteur->setH1($data['h1']);
         $secteur->setSlug($data['slug']);
         $secteur->setSousTitre($data['sous_titre']);
         $secteur->setExtrait($data['extrait']);
