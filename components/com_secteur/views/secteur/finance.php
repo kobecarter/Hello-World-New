@@ -1,4 +1,15 @@
-
+<style>
+/* Styles spécifiques à cette page : mêmes noms de classes que d'autres pages secteur mais couleurs propres à Finance, donc gardés locaux plutôt que dans main.css */
+.sh-int-card{box-shadow:0 20px 60px rgba(0,0,0,.08);padding: 0;}
+.sh-int-card-img{width:100%;height:220px;object-fit:cover;filter:grayscale(20%) brightness(.95)}
+.case-tag{font-size:.52rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
+.case-headline{font-weight:300;font-size:2.1rem;color:var(--txt);margin-bottom:1.5rem;letter-spacing:-.02em;line-height:1.1}
+.case-problem{background:rgba(139,106,34,.05);border:1px solid rgba(139,106,34,.18);border-top:2px solid var(--gold);border-radius:8px;padding:1.4rem 1.6rem;margin-bottom:1.5rem}
+.case-problem-label{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem}
+.result-big{padding:1.4rem;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid rgba(139,106,34,.12);border-radius:12px;transition:all .3s}
+.result-big:hover{border-color:rgba(9,161,190,.3);transform:translateY(-2px)}
+.result-num{font-weight:200;font-size:2.2rem;color:var(--sc);line-height:1;letter-spacing:-.04em}
+</style>
 <!-- ═══════ HERO CLAIR ═══════ -->
 <section class="sh-hero">
   <canvas id="sh-canvas"></canvas>
@@ -468,4 +479,99 @@
   </div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="<?php echo $siteURL; ?>assets/js/secteur.js"></script>
+<script>
+/* ── Animated Counters ── */
+(function(){
+  const cio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const el = e.target, target = parseInt(el.dataset.target), start = performance.now();
+      function update(now){
+        const p = Math.min((now-start)/1600,1), eased = 1-Math.pow(1-p,3);
+        el.textContent = Math.round(eased*target);
+        if(p<1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update); cio.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('.sh-counter').forEach(c => cio.observe(c));
+})();
+
+/* ── Accordion ── */
+document.querySelectorAll('.acc-trigger').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.acc-item');
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+
+/* ── Tabs + Journey Beam ── */
+(function(){
+  function activateTab(btn){
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const pane = document.getElementById('tab-'+btn.dataset.tab);
+    if(!pane) return;
+    pane.classList.add('active');
+    pane.querySelectorAll('.jf-step').forEach((s,i) => {
+      s.classList.remove('jf-in');
+      setTimeout(() => s.classList.add('jf-in'), i*80);
+    });
+    const beam = pane.querySelector('.jf-beam');
+    if(beam){ beam.style.width='0%'; setTimeout(()=>{beam.style.transition='width 1.6s ease';beam.style.width='100%';},200); setTimeout(()=>{beam.style.transition='none';},2000); }
+  }
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click',()=>activateTab(btn)));
+  /* initial */
+  const firstPane = document.querySelector('.tab-pane.active');
+  if(firstPane){
+    firstPane.querySelectorAll('.jf-step').forEach((s,i)=>setTimeout(()=>s.classList.add('jf-in'),600+i*80));
+    const b=firstPane.querySelector('.jf-beam');
+    if(b){setTimeout(()=>{b.style.transition='width 1.6s ease';b.style.width='100%';},800);}
+  }
+  /* Journey IO */
+  const jio = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const pane=document.querySelector('.tab-pane.active');
+        if(pane){ pane.querySelectorAll('.jf-step').forEach((s,i)=>setTimeout(()=>s.classList.add('jf-in'),i*80)); const b=pane.querySelector('.jf-beam'); if(b){b.style.transition='width 1.6s ease';b.style.width='100%';} }
+        jio.unobserve(e.target);
+      }
+    });
+  },{threshold:.2});
+  const jSection=document.querySelector('.sh-journey');
+  if(jSection) jio.observe(jSection);
+})();
+
+/* ── SDTL Scroll-Driven Spine + Steps ── */
+(function(){
+  const timeline=document.getElementById('sdtlTimeline');
+  const spineFill=document.getElementById('sdtlSpineFill');
+  const orb=document.getElementById('sdtlOrb');
+  const steps=document.querySelectorAll('.sdtl-step');
+  if(!timeline||!spineFill) return;
+
+  function update(){
+    const rect=timeline.getBoundingClientRect(), vh=window.innerHeight;
+    const raw=(vh*.65-rect.top)/(rect.height+vh*.05);
+    spineFill.style.height=(Math.max(0,Math.min(1,raw))*100)+'%';
+    if(orb){ const sp=scrollY/Math.max(1,document.body.scrollHeight-vh); orb.style.transform=`rotateY(${(sp*720).toFixed(2)}deg) rotateX(${(sp*300).toFixed(2)}deg)`; }
+  }
+  let raf; window.addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{update();raf=null;})},{passive:true});
+
+  const stepIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+  },{threshold:.3,rootMargin:'0px 0px -10% 0px'});
+  steps.forEach(s=>stepIO.observe(s));
+})();
+
+
+
+  /* ── GSAP Parallax Journey BG ── */
+//gsap.to('.jp-img',{yPercent:15,ease:'none',scrollTrigger:{trigger:'.sh-journey',start:'top bottom',end:'bottom top',scrub:1}});
+</script>
