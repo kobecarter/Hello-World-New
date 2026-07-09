@@ -1643,6 +1643,7 @@ font-family: var(--fm);
   }
   .page-detail-service .icons-container{
       margin: 0 !important;
+      padding: 0;
   }
   .page-detail-service .big-title{
       margin-top: 27px;
@@ -6588,7 +6589,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 .hwfd-audience-name{font-size:.84rem;color:#222;font-weight:500}
 
 @media(max-width:900px){
-.hw-f-det-audience-grid{grid-template-columns:1fr}
+.hw-f-det-audience-grid{grid-template-columns:1fr;gap: 0;}
 }
 
 .hw-f-det-programme{padding:7rem 0;background:#f8f8f8;border-top:1px solid var(--hwfd-border)}
@@ -6797,9 +6798,9 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 }
 
 @media(max-width:640px){
-.hwfd-cd-unit{width:130px;height:130px}
-.hwfd-cd-value{font-size:1.9rem}
-.hwfd-countdown-timer{justify-content:flex-start;overflow-x:auto;padding:0 .2rem .5rem}
+.hwfd-cd-unit{width:60px;height:60px}
+.hwfd-cd-value{font-size:1.6rem}
+.hwfd-countdown-timer{padding:0 .2rem .5rem}
 }
 
 .hw-f-det-plus{position:relative;padding:8rem 0;text-align:center;overflow:hidden}
@@ -7354,8 +7355,6 @@ object-fit: cover;
 
 .ct-audit-stat:last-child{border-bottom:none}
 
-.ct-audit-stat:hover{background:rgba(247,245,242,.02)}
-
 .ct-audit-stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold2),transparent);transform:scaleY(0);transform-origin:top;transition:transform .4s ease}
 
 .ct-audit-stat:hover::before{transform:scaleY(1)}
@@ -7467,7 +7466,7 @@ object-fit: cover;
 
 .ct-ceo-role{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
 
-.ct-ceo-bio{font-family:var(--fm);font-size:.78rem;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:1.8rem}
+.ct-ceo-bio{font-family:var(--fm);font-size:.7rem;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:1.8rem}
 
 .ct-ceo-contacts {
     display: flex;
@@ -7675,8 +7674,6 @@ object-fit: cover;
 .ct-audit-stats{display:flex;flex-direction:column;gap:0;border:1px solid rgba(247,245,242,.07);border-radius: 20px;overflow: hidden;}
 
 .ct-audit-stat{padding:1.5rem 3rem;border-bottom:1px solid rgba(247,245,242,.07);position:relative;overflow:hidden;transition:background .3s;background: linear-gradient(to right, #753a88, #cc2b5e);}
-
-.ct-audit-stat:hover{background:#08768b;}
 
 .ct-stat-lbl{font-family:var(--fm);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,245,242,.6);margin-top:.4rem}
 
@@ -8068,6 +8065,7 @@ object-fit: cover;
         font-size: 1rem;
         width: 42px;
         height: 42px;
+        bottom: 1rem;
     }
     .agency-band{
         display:block;
@@ -8301,7 +8299,10 @@ object-fit: cover;
       text-align: center;
     }
     .service-content .int-grid, .service-content .int-right{
-      grid-template-columns: repeat(2, 1fr) !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .int-right .int-item img{
+      width: 60px;
     }
     .item-discover-video, .item-discover-video.big-item{
       height: 300px;
@@ -8363,6 +8364,7 @@ object-fit: cover;
     .whatsapp-buttons{
       gap: 15px;
       right: 19px;
+      bottom: 56px;
     }
     #chat-bubble span{
       left: 30px;
@@ -8401,7 +8403,7 @@ object-fit: cover;
       margin-bottom: 60px;
     }
     .int-item{
-      padding: 1rem;
+      padding: .4rem;
     }
     .int-grid .int-item img{
       width: 64px;
@@ -8415,5 +8417,51 @@ object-fit: cover;
     .ct-social-links{
       display: grid;
       grid-template-columns:repeat(2,1fr);
+    }
+    .wm-hero-ctas{
+      gap: 5px;
+      flex-wrap: nowrap;
+    }
+    .wm-hero .sb-compact .sb-label{
+      font-size: .5rem;
+      letter-spacing: .1em;
+      padding-right: 5px;
+      padding-left: 40px;
+    }
+    .hw-f-det-cd-section, .hw-f-det-audience, .hw-f-det-programme, .hw-f-det-livrables, .hw-f-det-form-section{
+      padding: 4rem 0;
+    }
+    .hw-f-det-prereqs{
+      padding: 3rem 0 2rem;
+    }
+    .hwfd-countdown-chips{
+      display:block;
+    }
+    .hwfd-cd-chip{
+      display: inline-block;
+      margin: 5px;
+      text-align: center;
+    }
+    .hwfd-cd-chip-icon{
+      margin: 0 auto 5px;
+    }
+    .hwfd-audience-card{
+      padding: 0.5rem .5rem;
+    }
+    .hwfd-audience-list{
+      gap: .4rem;
+    }
+    .ct-form{
+      gap: 5px;
+    }
+    .ct-form-head{
+      margin-bottom: 1.5rem;
+    }
+    .ct-textarea{
+      height: 100px;
+      min-height: 0;
+    }
+    .ct-form .g-recaptcha{
+      margin: 15px 0;
     }
 }
