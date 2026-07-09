@@ -70,8 +70,17 @@ else{
         </div>
       </div>
       <div class="service-banner-img">
-        <img src="<?php echo $siteURL . $serviceBanner; ?>" alt="<?php echo $service->getTitre(); ?>" alt="<?php echo $service->getTitre() ?>">
-      </div>
+    <?php
+    // 1. On récupère la photo du service actuel
+    $photo = $service->getPhotoHero();
+    if (empty($photo) && $service->getParent() && $service->getParent()->getId() != 0) {
+        $photo = $service->getParent()->getPhotoHero();
+    }
+    ?>
+    
+    <img src="<?php echo $siteURL; ?>/images/services/<?php echo $photo; ?>" 
+         alt="<?php echo htmlspecialchars($service->getTitre()); ?>">
+</div>
     </div>
   </div>
 </section>
