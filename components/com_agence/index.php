@@ -312,13 +312,14 @@ switch ($task)
           $pageContact = getComponent('com_contact');
             include_once("components/com_agence/views/page/mstoune.php");
             break;
-            // Lien des agences par ville
+         
 		$marrakech = new page(33, $db, $_SESSION['lang']);
 		$casa = new page(32, $db, $_SESSION['lang']);
 		$rabat = new page(37, $db, $_SESSION['lang']);
 		$tanger = new page(38, $db, $_SESSION['lang']);
 		$agadir = new page(39, $db, $_SESSION['lang']);
 		$fes = new page(40, $db, $_SESSION['lang']);
+        	$services = service::findAll($_SESSION['lang'], true, false, true);
     default :
      
             $page = getComponent('com_agence');
