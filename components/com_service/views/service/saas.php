@@ -29,8 +29,8 @@
             </a>
         </div>
       </div>
-      <div class="wm-hero-side rv d3">
-        <img src="<?php echo $siteURL; ?>images/services/<?php echo $service->getPhotoBanniere() ?>" alt="">
+      <div class="wm-hero-side rv d3 wm-hero-side-banner">
+        <img src="<?php echo $siteURL; ?>images/services/<?php echo $service->getPhotoHero() ?>" alt="<?php echo $service->getTitre() ?>">
       </div>
     </div>
   </div>
