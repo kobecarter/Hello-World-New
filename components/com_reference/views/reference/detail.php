@@ -97,7 +97,7 @@
       <div class="rd-gal-inner" style="background:linear-gradient(135deg,#081428 0%,#0d2545 100%)">
 		<img src="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" alt="<?php echo $photo->getTitre(); ?>"/>
 	  </div>
-      <span class="rd-gal-num">01 / Dashboard</span>
+      <!-- <span class="rd-gal-num">01 / Dashboard</span> -->
     </div>
 	<?php
 	}

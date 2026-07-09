@@ -203,7 +203,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
       <span class="hw-f-det-bc-sep">/</span>
       <a href="<?= $page->getLink(); ?>">Formations IA</a>
       <span class="hw-f-det-bc-sep">/</span>
-      <span><?= htmlspecialchars($formation->getTitre() ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
+      <span><?= $formation->getTitre() ?? ''?></span>
     </div>
   </div>
 </div>
@@ -224,18 +224,9 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
       <div>
         <div class="wm-hero-label" id="hwfd-label"><?php echo $page->getTitre(); ?></div>
         <h1 class="sh-h1" id="hwfd-h1">
-          <?php
-            $h1raw = $formation->getH1() ?? $formation->getTitre() ?? '';
-            $h1parts = explode(' : ', $h1raw, 2);
-            if (count($h1parts) === 2) {
-                echo htmlspecialchars($h1parts[0], ENT_QUOTES, 'UTF-8')
-                   . ' : <em>' . htmlspecialchars($h1parts[1], ENT_QUOTES, 'UTF-8') . '</em>';
-            } else {
-                echo htmlspecialchars($h1raw, ENT_QUOTES, 'UTF-8');
-            }
-          ?>
+         <?php echo !empty($formation->getH1()) ? $formation->getH1() : $formation->getTitre(); ?>
         </h1>
-        <p class="wm-hero-sub" id="hwfd-sub"><?= htmlspecialchars($formation->getSousTitre() ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+        <p class="wm-hero-sub" id="hwfd-sub"><?= $formation->getSousTitre() ?></p>
         <div class="wm-hero-ctas" id="hwfd-ctas">
           <a href="#hwfd-form" class="sb sb-compact" role="button">
             <div class="sb-label"><span class="sb-hint"><?= htmlspecialchars($meta['hero_cta'], ENT_QUOTES, 'UTF-8'); ?></span></div>
