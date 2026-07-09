@@ -142,6 +142,37 @@ function getSeoMeta($data){
 						$canonical = $page->getLink();
 					}
 					break;
+				// Page Agents IA
+				case 'com_agents_ia' :
+					if(isset($data['task']) && $data['task'] == 'showDetails' && isset($data['slug']) && !empty($data['slug'])){
+						$agent_ia = agent_ia::findBySlug($data['slug'], $_SESSION['lang']);
+						if($agent_ia){
+							$seoTitle = $agent_ia->getSeoTitre();
+							$seoDescription = $agent_ia->getSeoDescription();
+							$canonical = $agent_ia->getLink();
+							$ogTitle = $agent_ia->getTitre();
+						}
+					}else{
+						$page = getComponent("com_agents_ia");
+						if($page){
+							$seoTitle = $page->getSeoTitre();
+							$seoDescription = $page->getSeoDescription();
+							$canonical = $page->getLink();
+						}
+					}
+					break;
+				// Page Secteurs
+				case 'com_secteur' :
+					if(isset($data['task']) && $data['task'] == 'showDetails' && isset($data['slug']) && !empty($data['slug'])){
+						$secteur = secteur::findBySlug($data['slug'], $_SESSION['lang']);
+						if($secteur){
+							$seoTitle = $secteur->getSeoTitre();
+							$seoDescription = $secteur->getSeoDescription();
+							$canonical = $secteur->getLink();
+							$ogTitle = $secteur->getTitre();
+						}
+					}
+					break;
 				// Page Formations (Hello World Academy)
 				case 'com_formation' :
 					if(isset($data['task']) && $data['task'] == 'showDetails' && isset($data['slug']) && !empty($data['slug'])){
