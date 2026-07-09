@@ -1,3 +1,4 @@
+
 <section class="sh-hero">
   <canvas id="sh-canvas"></canvas>
   <div class="sh-hero-body"><div class="container"><div class="sh-hero-inner">

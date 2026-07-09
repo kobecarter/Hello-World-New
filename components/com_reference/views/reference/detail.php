@@ -137,7 +137,7 @@
   </div> -->
 
   <!-- METRICS -->
-  <div class="rd-metrics">
+  <!-- <div class="rd-metrics">
     <div class="container">
       <div class="sec-label">Résultats</div>
       <h2 class="sec-title rv">Des métriques qui <em>parlent</em></h2>
@@ -164,7 +164,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </section>
 
 <!-- NEXT PROJECT -->
@@ -183,39 +183,39 @@
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa fa-arrow-up"></i></button>
 
 <script>
-const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
-document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';cur2.style.left=e.clientX+'px';cur2.style.top=e.clientY+'px';});
-document.querySelectorAll('a,button,.rd-gal-item,.rd-next').forEach(el=>{el.addEventListener('mouseenter',()=>cur.style.transform='translate(-50%,-50%) scale(2.5)');el.addEventListener('mouseleave',()=>cur.style.transform='translate(-50%,-50%) scale(1)');});
-const hdr=document.getElementById('hdr'),backTop=document.getElementById('backTop');
-window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',window.scrollY>80);backTop.classList.toggle('show',window.scrollY>600);},{passive:true});
-const mobileNav=document.getElementById('mobileNav'),burger=document.getElementById('burger');let navOpen=false;
-function closeMobileNav(){navOpen=false;mobileNav.classList.remove('open');}
-burger.addEventListener('click',()=>{navOpen=!navOpen;mobileNav.classList.toggle('open',navOpen);});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-(function(){document.querySelectorAll('.has-sub').forEach(el=>{let timer;el.addEventListener('mouseenter',()=>{clearTimeout(timer);el.classList.add('open');});el.addEventListener('mouseleave',()=>{timer=setTimeout(()=>el.classList.remove('open'),180);});});document.addEventListener('click',e=>{if(!e.target.closest('.has-sub'))document.querySelectorAll('.has-sub.open').forEach(el=>el.classList.remove('open'));});})();
-(function(){const sel=document.getElementById('langSel'),btn=document.getElementById('langBtn'),cur=document.getElementById('langCur');if(!sel)return;btn.addEventListener('click',e=>{e.stopPropagation();sel.classList.toggle('open');});document.addEventListener('click',()=>sel.classList.remove('open'));sel.querySelectorAll('.lang-opt').forEach(opt=>{opt.addEventListener('click',e=>{e.preventDefault();sel.querySelectorAll('.lang-opt').forEach(o=>o.classList.remove('active'));opt.classList.add('active');cur.textContent=opt.textContent.trim().split(' ')[1].slice(0,2).toUpperCase();sel.classList.remove('open');});});})();
-(function(){function splitChars(el){el.classList.add('fancy-title');let ci=0;function proc(node){if(node.nodeType===3){const frag=document.createDocumentFragment();for(const c of node.textContent){const s=document.createElement('span');if(c===' '){s.className='ch sp';s.innerHTML='&nbsp;';}else{s.className='ch';s.style.setProperty('--ci',ci++);s.textContent=c;}frag.appendChild(s);}node.parentNode.replaceChild(frag,node);}else if(node.nodeType===1&&node.tagName!=='BR')Array.from(node.childNodes).forEach(proc);}Array.from(el.childNodes).forEach(proc);}document.querySelectorAll('.sec-title').forEach(splitChars);})();
-/* Count-up animation */
-(function(){
-  const targets=[{el:'m1',end:68,suffix:'%'},{el:'m2',end:74,suffix:'%'},{el:'m3',end:43,suffix:'%'},{el:'m4',end:4,suffix:'j.'}];
-  const metricEls=targets.map(t=>({...t,el:document.getElementById(t.el)}));
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const t=metricEls.find(m=>m.el===e.target);
-        if(!t)return;
-        let start=0;const dur=1600;const step=16;const steps=dur/step;
-        const timer=setInterval(()=>{
-          start+=t.end/steps;
-          const v=Math.min(Math.round(start),t.end);
-          e.target.innerHTML=v+'<span>'+t.suffix+'</span>';
-          if(v>=t.end)clearInterval(timer);
-        },step);
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:0.5});
-  metricEls.forEach(m=>io.observe(m.el));
-})();
+// const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+// document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';cur2.style.left=e.clientX+'px';cur2.style.top=e.clientY+'px';});
+// document.querySelectorAll('a,button,.rd-gal-item,.rd-next').forEach(el=>{el.addEventListener('mouseenter',()=>cur.style.transform='translate(-50%,-50%) scale(2.5)');el.addEventListener('mouseleave',()=>cur.style.transform='translate(-50%,-50%) scale(1)');});
+// const hdr=document.getElementById('hdr'),backTop=document.getElementById('backTop');
+// window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',window.scrollY>80);backTop.classList.toggle('show',window.scrollY>600);},{passive:true});
+// const mobileNav=document.getElementById('mobileNav'),burger=document.getElementById('burger');let navOpen=false;
+// function closeMobileNav(){navOpen=false;mobileNav.classList.remove('open');}
+// burger.addEventListener('click',()=>{navOpen=!navOpen;mobileNav.classList.toggle('open',navOpen);});
+// const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.1});
+// document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// (function(){document.querySelectorAll('.has-sub').forEach(el=>{let timer;el.addEventListener('mouseenter',()=>{clearTimeout(timer);el.classList.add('open');});el.addEventListener('mouseleave',()=>{timer=setTimeout(()=>el.classList.remove('open'),180);});});document.addEventListener('click',e=>{if(!e.target.closest('.has-sub'))document.querySelectorAll('.has-sub.open').forEach(el=>el.classList.remove('open'));});})();
+// (function(){const sel=document.getElementById('langSel'),btn=document.getElementById('langBtn'),cur=document.getElementById('langCur');if(!sel)return;btn.addEventListener('click',e=>{e.stopPropagation();sel.classList.toggle('open');});document.addEventListener('click',()=>sel.classList.remove('open'));sel.querySelectorAll('.lang-opt').forEach(opt=>{opt.addEventListener('click',e=>{e.preventDefault();sel.querySelectorAll('.lang-opt').forEach(o=>o.classList.remove('active'));opt.classList.add('active');cur.textContent=opt.textContent.trim().split(' ')[1].slice(0,2).toUpperCase();sel.classList.remove('open');});});})();
+// (function(){function splitChars(el){el.classList.add('fancy-title');let ci=0;function proc(node){if(node.nodeType===3){const frag=document.createDocumentFragment();for(const c of node.textContent){const s=document.createElement('span');if(c===' '){s.className='ch sp';s.innerHTML='&nbsp;';}else{s.className='ch';s.style.setProperty('--ci',ci++);s.textContent=c;}frag.appendChild(s);}node.parentNode.replaceChild(frag,node);}else if(node.nodeType===1&&node.tagName!=='BR')Array.from(node.childNodes).forEach(proc);}Array.from(el.childNodes).forEach(proc);}document.querySelectorAll('.sec-title').forEach(splitChars);})();
+// /* Count-up animation */
+// (function(){
+//   const targets=[{el:'m1',end:68,suffix:'%'},{el:'m2',end:74,suffix:'%'},{el:'m3',end:43,suffix:'%'},{el:'m4',end:4,suffix:'j.'}];
+//   const metricEls=targets.map(t=>({...t,el:document.getElementById(t.el)}));
+//   const io=new IntersectionObserver(entries=>{
+//     entries.forEach(e=>{
+//       if(e.isIntersecting){
+//         const t=metricEls.find(m=>m.el===e.target);
+//         if(!t)return;
+//         let start=0;const dur=1600;const step=16;const steps=dur/step;
+//         const timer=setInterval(()=>{
+//           start+=t.end/steps;
+//           const v=Math.min(Math.round(start),t.end);
+//           e.target.innerHTML=v+'<span>'+t.suffix+'</span>';
+//           if(v>=t.end)clearInterval(timer);
+//         },step);
+//         io.unobserve(e.target);
+//       }
+//     });
+//   },{threshold:0.5});
+//   metricEls.forEach(m=>io.observe(m.el));
+// })();
 </script>
