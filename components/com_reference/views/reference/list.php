@@ -79,15 +79,15 @@
     <!-- STATS STRIP -->
     <div class="rl-strip rv">
       <div class="rl-strip-item">
-        <div class="rl-strip-val">120<span>+</span></div>
+        <div class="rl-strip-val">900<span>+</span></div>
         <div class="rl-strip-lbl">Projets livrés</div>
       </div>
       <div class="rl-strip-item">
-        <div class="rl-strip-val">12<span>ans</span></div>
+        <div class="rl-strip-val">16<span>ans</span></div>
         <div class="rl-strip-lbl">D'expertise</div>
       </div>
       <div class="rl-strip-item">
-        <div class="rl-strip-val">3<span> villes</span></div>
+        <div class="rl-strip-val">10<span> villes</span></div>
         <div class="rl-strip-lbl">Studios actifs</div>
       </div>
       <div class="rl-strip-item">
@@ -110,15 +110,10 @@
           <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
         </a>
     
-        <a href="#" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Lire nos insights" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageBlog->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Lire nos insights" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Lire nos insights</span></div>
           <div class="sb-knob"><i class="fal fa-eye"></i></div> 
         </a>
-        
-        
-        
-      <!-- <a href="<?php echo $pageContact->getLink(); ?>" class="btn-hw"><span>Démarrer un projet</span> <i class="fa fa-arrow-right fa-xs"></i></a>
-      <a href="#" class="btn-hw btn-ghost"><span>Lire nos insights</span></a> -->
     </div>
   </div>
 </section>
