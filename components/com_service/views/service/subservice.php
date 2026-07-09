@@ -63,8 +63,8 @@ else{
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
         
-            <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir nos offres</span></div>
+            <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Voir les réalisations</span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div> 
             </a>
         </div>
