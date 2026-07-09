@@ -10,6 +10,7 @@ class service
     private $slider;
     private $photo;
     private $photo_banniere;
+    private $photo_hero;
     private $ordre;
 	private $active;
     private $home;
@@ -74,6 +75,11 @@ class service
     public function getPhotoBanniere()
     {
         return $this->photo_banniere;
+    }
+
+    public function getPhotoHero()
+    {
+        return $this->photo_hero;
     }
 	
 	public function getOrdre()
@@ -180,6 +186,11 @@ class service
     {
         $this->photo_banniere = $photo_banniere;
     }
+
+    public function setPhotoHero($photo_hero)
+    {
+        $this->photo_hero = $photo_hero;
+    }
 	
 	public function setOrdre($ordre)
     {
@@ -255,11 +266,12 @@ class service
     {
         global $db;
 
-        $SQLinsert = sprintf("INSERT INTO " . static::$table . " (id_parent, id_slider, photo, photo_banniere, ordre, active, home, date_add, last_edit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        $SQLinsert = sprintf("INSERT INTO " . static::$table . " (id_parent, id_slider, photo, photo_banniere, photo_hero, ordre, active, home, date_add, last_edit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 			GetSQLValueString($this->parent->getId(), "int"),
             GetSQLValueString($this->slider->getId(), "int"),
             GetSQLValueString($this->photo, "text"),
             GetSQLValueString($this->photo_banniere, "text"),
+            GetSQLValueString($this->photo_hero, "text"),
             GetSQLValueString($this->ordre, "int"),
 			GetSQLValueString($this->active, "int"),
             GetSQLValueString($this->home, "int"),				 
@@ -296,11 +308,12 @@ class service
     public function edit()
     {
         global $db;
-        $SQLupdate = sprintf("UPDATE " . static::$table . " SET id_parent = %s, id_slider = %s, photo = %s, photo_banniere = %s, ordre = %s, active = %s, home = %s, last_edit = %s WHERE id = %s",
+        $SQLupdate = sprintf("UPDATE " . static::$table . " SET id_parent = %s, id_slider = %s, photo = %s, photo_banniere = %s, photo_hero = %s, ordre = %s, active = %s, home = %s, last_edit = %s WHERE id = %s",
 			GetSQLValueString($this->parent->getId(), "int"),
             GetSQLValueString($this->slider->getId(), "int"),
             GetSQLValueString($this->photo, "text"),
             GetSQLValueString($this->photo_banniere, "text"),
+            GetSQLValueString($this->photo_hero, "text"),
             GetSQLValueString($this->ordre, "int"),
 			GetSQLValueString($this->active, "int"),
             GetSQLValueString($this->home, "int"),				 
@@ -624,6 +637,7 @@ class service
         $service->setSlider($sl);
         $service->setPhoto($data['photo']);
         $service->setPhotoBanniere($data['photo_banniere']);
+        $service->setPhotoHero($data['photo_hero']);
 		$service->setOrdre($data['ordre']);
         $service->setActive($data['active']);
         $service->setHome($data['home']);

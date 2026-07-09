@@ -73,6 +73,10 @@ function deleteService($data)
             if(file_exists("../../../../images/services/" . $service->getPhotoBanniere())){
                 @unlink("../../../../images/services/" . $service->getPhotoBanniere());
             }
+
+            if(file_exists("../../../../images/services/" . $service->getPhotoHero())){
+                @unlink("../../../../images/services/" . $service->getPhotoHero());
+            }
             echo "1";
         } else {
             echo "2";
@@ -156,6 +160,7 @@ function buildService($data, $id = null)
 
     $photo = array();
     $photo_banniere = array();
+    $photo_hero = array();
 
     if(isset($_FILES['photo']) && $_FILES['photo']['name'][0]!=''){
         $photo = uploadFiles('photo','../../../../images/services/',  array('svg','jpg','jpeg','gif','png','webp','JPG','JPEG','GIF','PNG','SVG','WEBP'));
@@ -163,6 +168,10 @@ function buildService($data, $id = null)
 
     if(isset($_FILES['photo_banniere']) && $_FILES['photo_banniere']['name'][0]!=''){
         $photo_banniere = uploadFiles('photo_banniere','../../../../images/services/',  array('svg','jpg','jpeg','gif','png','webp','JPG','JPEG','GIF','PNG','SVG','WEBP'));
+    }
+
+    if(isset($_FILES['photo_hero']) && $_FILES['photo_hero']['name'][0]!=''){
+        $photo_hero = uploadFiles('photo_hero','../../../../images/services/',  array('svg','jpg','jpeg','gif','png','webp','JPG','JPEG','GIF','PNG','SVG','WEBP'));
     }
 
     if($id){
@@ -184,6 +193,15 @@ function buildService($data, $id = null)
         } else {
             $service->setPhotoBanniere(service::find($id, $_SESSION['langue'])->getPhotoBanniere());
         }
+
+        if(isset($photo_hero[0]) ) {
+            $service->setPhotoHero($photo_hero[0]);
+            if(file_exists("../../../../images/services/" . service::find($id, $_SESSION['langue'])->getPhotoHero())){
+                @unlink("../../../../images/services/" . service::find($id, $_SESSION['langue'])->getPhotoHero());
+            }
+        } else {
+            $service->setPhotoHero(service::find($id, $_SESSION['langue'])->getPhotoHero());
+        }
         $slug = service::generateSlug((isset($data['slug']) && !empty($data['slug']) ? $data['slug'] : $data['titre']),$_SESSION['langue'],$id);
         $data['slug'] = $slug;
     } else {
@@ -197,6 +215,12 @@ function buildService($data, $id = null)
             $service->setPhotoBanniere($photo_banniere[0]);
         } else {
             $service->setPhotoBanniere(null);
+        }
+
+        if(isset($photo_hero[0]) ) {
+            $service->setPhotoHero($photo_hero[0]);
+        } else {
+            $service->setPhotoHero(null);
         }
          $slug = service::generateSlug((isset($data['slug']) && !empty($data['slug']) ? $data['slug'] : $data['titre']),$_SESSION['langue']);
         $data['slug'] = $slug;
