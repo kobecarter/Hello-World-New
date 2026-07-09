@@ -39,6 +39,12 @@ if (isset($p)) {
                                                  required class="form-control"/></div>
             </div>
             <div class="col-md-3 form-group">
+                <label>H1</label>
+                <div class="iconed-input"><input type="text" name="h1"
+                                                 value="<?php if (isset($p)) echo stripslashes($p->getH1()); ?>"
+                                                 class="form-control"/></div>
+            </div>
+            <div class="col-md-3 form-group">
                 <label><?= $trad_com_page['URL'][$_SESSION['user']->getLangue()];?></label>
                 <input type="text" name="url" value="<?php if (isset($p)) echo stripslashes($p->getURL()); ?>"
                        class="form-control"/>

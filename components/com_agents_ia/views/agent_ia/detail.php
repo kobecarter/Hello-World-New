@@ -32,7 +32,7 @@ $agentTexte = str_replace(
         <div class="wm-hero-inner">
             <div>
                 <div class="wm-hero-label"><?= $agent_ia->getTitre(); ?></div>
-                <h1 class="sh-h1"><?= $agent_ia->getSousTitre() ? $agent_ia->getSousTitre() : $agent_ia->getTitre(); ?></h1>
+                <h1 class="sh-h1"><?php echo !empty($agent_ia->getH1()) ? $agent_ia->getH1() : $agent_ia->getTitre(); ?></h1>
                 <p class="wm-hero-sub rv d1"><?= strip_tags($agent_ia->getExtrait()); ?></p>
                 <div class="wm-hero-ctas rv d2">
                     <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
