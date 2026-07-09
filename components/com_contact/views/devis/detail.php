@@ -47,7 +47,7 @@
 /* ─── FORM + CEO SPLIT ──────────────────── */
 .ct-main{padding:8rem 0;background:var(--bg);border-bottom:1px solid var(--border)}
 .ct-main-inner{display:grid;grid-template-columns:1fr 380px;gap:6rem;align-items:start}
-@media(max-width:991px){.ct-main-inner{grid-template-columns:1fr}}
+@media(max-width:991px){.ct-main-inner{grid-template-columns:1fr}.ct-main{padding:4rem 0;}}
 
 /* FORM */
 .ct-form-block{}
@@ -95,7 +95,7 @@
 .ct-ceo-initials{font-family:var(--fd);font-weight:200;font-size:8rem;color:rgba(139,106,34,.25);line-height:1;letter-spacing:-.04em;position: absolute;}
 .ct-ceo-photo-ghost{position:absolute;bottom:-0.15em;right:-.05em;font-family:var(--fm);font-weight:900;font-size:8rem;line-height:1;letter-spacing:-.06em;color:rgba(255,255,255,.03);user-select:none}
 .ct-ceo-badge{position:absolute;bottom:1.2rem;left:1.2rem;background:var(--gold);padding:.35rem .9rem;font-family:var(--fm);font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--bg)}
-.ct-ceo-name{font-family:var(--fd);font-weight:200;font-size:2.2rem;color:var(--txt);letter-spacing:-.02em;line-height:1;margin-bottom:.3rem}
+.ct-ceo-name{font-weight:200;font-size:2.2rem;color:var(--txt);letter-spacing:-.02em;line-height:1;margin-bottom:.3rem}
 .ct-ceo-role{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
 .ct-ceo-bio{font-family:var(--fm);font-size:.78rem;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:1.8rem}
 .ct-ceo-contacts {
@@ -148,17 +148,18 @@
 .ct-office-detail{display:flex;align-items:center;gap:.65rem;font-family:var(--fm);font-size:.7rem;color:var(--txt2);text-decoration:none;transition:color .2s}
 .ct-office-detail i{color:var(--gold);font-size:.65rem;width:14px;text-align:center;flex-shrink:0}
 .ct-office-detail:hover{color:var(--gold)}
-@media(max-width:767px){.ct-offices-grid{grid-template-columns:1fr;border-radius:0}.ct-office-card{border-right:none!important;border-bottom:1px solid var(--border)}.ct-office-card:last-child{border-bottom:none}}
+@media(max-width:767px){.ct-office-card{padding: 2.5rem 2rem;}.ct-offices-grid{margin-top: 0rem;}.ct-offices {padding: 4rem 0;}.ct-offices-grid{grid-template-columns:1fr;border-radius:0}.ct-office-card{border-right:none!important;border-bottom:1px solid var(--border)}.ct-office-card:last-child{border-bottom:none}}
 
 /* ─── SOCIAL STRIP ─────────────────────── */
-.ct-social-strip{padding:3rem 0 5rem;background:var(--txt);border-bottom:1px solid rgba(247,245,242,.06)}
+.ct-social-strip{padding:3rem 0 5rem;background:var(--gold);border-bottom:1px solid rgba(247,245,242,.06)}
 .ct-social-inner{display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
 .ct-social-left{font-weight:200;font-size:42px;line-height:1;color:rgba(247,245,242,.75);letter-spacing:-.02em}
 .ct-social-left em{font-style:italic;color:var(--gold2)}
 .ct-social-links{display:flex;gap:1rem}
-.ct-social-link{display:flex;align-items:center;gap:.7rem;padding:.8rem 1.6rem;border:1px solid rgba(247,245,242,.1);color:rgba(247,245,242,.4);font-family:var(--fm);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:all .3s;border-radius: 25px;}
+.ct-social-link{display:flex;align-items:center;gap:.7rem;padding:.8rem 1.6rem;border:1px solid rgba(247,245,242,.6);color:rgba(247,245,242,.6);font-family:var(--fm);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:all .3s;border-radius: 25px;}
 .ct-social-link i{font-size:.9rem}
 .ct-social-link:hover{border-color:var(--gold2);color:var(--gold2)}
+@media(max-width:767px){.ct-social-links{display: grid;grid-template-columns: repeat(2,1fr);}}
 </style>
 <!-- ═══ HERO ════════════════════════════════════════ -->
 

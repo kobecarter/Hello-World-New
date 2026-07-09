@@ -17,7 +17,7 @@
 .ct-hero-sub{font-family:var(--fm);font-size:.88rem;font-weight:300;color:var(--txt2);line-height:1.9;margin-bottom:2rem}
 .ct-hero-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.2rem;border:1px solid rgba(139,106,34,.25);font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 .ct-hero-badge i{font-size:.6rem}
-@media(max-width:767px){.ct-hero-inner{grid-template-columns:1fr}.ct-hero-right{max-width:100%}}
+@media(max-width:767px){.ct-hero{padding: 13rem 0 4rem;}.ct-hero-inner{grid-template-columns:1fr}.ct-hero-right{max-width:100%}}
 
 /* ─── AUDIT SECTION ────────────────────── */
 .ct-audit{background:var(--bg2);padding:8rem 0;position:relative;overflow:hidden;border-bottom:1px solid rgba(247,245,242,.06)}
@@ -42,12 +42,12 @@
 .ct-stat-val{font-weight:200;font-size:clamp(3.5rem,6vw,7rem);line-height:1;color:rgba(247,245,242,.85);letter-spacing:-.04em}
 .ct-stat-val span{color:var(--gold2);font-size:.55em}
 .ct-stat-lbl{font-family:var(--fm);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,245,242,.6);margin-top:.4rem}
-@media(max-width:767px){.ct-audit-inner{grid-template-columns:1fr}.ct-audit-stats{border:none}.ct-audit-stat{padding:2rem 0;border-bottom:1px solid rgba(247,245,242,.07)}}
+@media(max-width:767px){.ct-audit{padding: 4rem 0;}.ct-audit-inner{grid-template-columns:1fr}.ct-audit-stats{border:none}.ct-audit-stat{text-align: center;padding:2rem 0;border-bottom:1px solid rgba(247,245,242,.07)}}
 
 /* ─── FORM + CEO SPLIT ──────────────────── */
 .ct-main{padding:8rem 0;background:var(--bg);border-bottom:1px solid var(--border)}
 .ct-main-inner{display:grid;grid-template-columns:1fr 380px;gap:6rem;align-items:start}
-@media(max-width:991px){.ct-main-inner{grid-template-columns:1fr}}
+@media(max-width:991px){.ct-main{padding: 4rem 0;}.ct-main-inner{grid-template-columns:1fr}}
 
 /* FORM */
 .ct-form-block{}
@@ -125,17 +125,18 @@
 .ct-office-detail{display:flex;align-items:center;gap:.65rem;font-family:var(--fm);font-size:.7rem;color:var(--txt2);text-decoration:none;transition:color .2s}
 .ct-office-detail i{color:var(--gold);font-size:.65rem;width:14px;text-align:center;flex-shrink:0}
 .ct-office-detail:hover{color:var(--gold)}
-@media(max-width:767px){.ct-offices-grid{grid-template-columns:1fr;border-radius:0}.ct-office-card{border-right:none!important;border-bottom:1px solid var(--border)}.ct-office-card:last-child{border-bottom:none}}
+@media(max-width:767px){.ct-office-card{padding: 2.5rem 2rem;}.ct-offices{padding: 4rem 0;}.ct-offices-grid{grid-template-columns:1fr;border-radius:0}.ct-office-card{border-right:none!important;border-bottom:1px solid var(--border)}.ct-office-card:last-child{border-bottom:none}}
 
 /* ─── SOCIAL STRIP ─────────────────────── */
-.ct-social-strip{padding:3rem 0 5rem;background:var(--txt);border-bottom:1px solid rgba(247,245,242,.06)}
+.ct-social-strip{padding:3rem 0 5rem;background:var(--gold);border-bottom:1px solid rgba(247,245,242,.06)}
 .ct-social-inner{display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
 .ct-social-left{font-weight:200;font-size:42px;line-height:1;color:rgba(247,245,242,.75);letter-spacing:-.02em}
 .ct-social-left em{font-style:italic;color:var(--gold2)}
 .ct-social-links{display:flex;gap:1rem}
-.ct-social-link{display:flex;align-items:center;gap:.7rem;padding:.8rem 1.6rem;border:1px solid rgba(247,245,242,.1);color:rgba(247,245,242,.4);font-family:var(--fm);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:all .3s;border-radius: 25px;}
+.ct-social-link{display:flex;align-items:center;gap:.7rem;padding:.8rem 1.6rem;border:1px solid rgba(247,245,242,.6);color:rgba(247,245,242,.6);font-family:var(--fm);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:all .3s;border-radius: 25px;}
 .ct-social-link i{font-size:.9rem}
 .ct-social-link:hover{border-color:var(--gold2);color:var(--gold2)}
+@media(max-width:767px){.ct-social-links{display: grid;grid-template-columns: repeat(2,1fr);}}
 </style>
 <!-- ═══ HERO ════════════════════════════════════════ -->
 <section class="ct-hero">
