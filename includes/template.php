@@ -66,7 +66,7 @@
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
 
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.4">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.5">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -503,11 +503,31 @@ window.addEventListener('scroll', () => {
   });
 })();
 
-/* SCROLL REVEAL */
+/* SCROLL REVEAL — threshold:0 + a generous bottom rootMargin so a fast
+   flick/fling on mobile can't skip a thin element (.sec-label etc.)
+   between two frames without it ever registering as intersecting.   */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0, rootMargin: '0px 0px 200px 0px' });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* Safety net: a very fast fling can in theory move the page more than
+   one viewport + rootMargin between two compositor frames, so an
+   element's intersecting state is never sampled. Catch anything left
+   behind (already above the viewport, i.e. scrolled past) and reveal
+   it immediately — content must never stay stuck blank.             */
+let rvSafetyTimer;
+window.addEventListener('scroll', () => {
+  clearTimeout(rvSafetyTimer);
+  rvSafetyTimer = setTimeout(() => {
+    document.querySelectorAll('.rv:not(.on)').forEach(el => {
+      if (el.getBoundingClientRect().bottom < 0) {
+        el.classList.add('on');
+        io.unobserve(el);
+      }
+    });
+  }, 200);
+}, { passive: true });
 
 /* FOOTER TOP BORDER LINE */
 const footEl = document.querySelector('footer');
