@@ -17,12 +17,6 @@
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
       </div>
-      <div class="sh-badges">
-        <div class="sh-badge"><div class="sh-badge-val">50<span style="font-size:.6em">%</span></div><div class="sh-badge-lbl">Réunions</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">+35<span style="font-size:.6em">%</span></div><div class="sh-badge-lbl">Deadlines</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">4<span style="font-size:.6em">h</span></div><div class="sh-badge-lbl">Gagnées/mgr</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">5<span style="font-size:.6em">m</span></div><div class="sh-badge-lbl">ROI</div></div>
-      </div>
     </div>
     <!-- ORBITAL OPS IA -->
     <div class="sh-hero-right">

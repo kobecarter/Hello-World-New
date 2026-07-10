@@ -24,12 +24,6 @@
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
           </div>
-          <div class="sh-badges rv d4">
-            <div class="sh-badge"><div class="sh-badge-val">-40<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">No-shows</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">24/7</div><div class="sh-badge-lbl">Disponibilité</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">+25<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Remplissage</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">92<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Automatisé</div></div>
-          </div>
         </div>
 
         <!-- RIGHT — 3D Medical Orbital -->

@@ -23,12 +23,6 @@
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
           </div>
-          <div class="sh-badges rv d4">
-            <div class="sh-badge"><div class="sh-badge-val">+20<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Résa. directes</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">24/7</div><div class="sh-badge-lbl">Multilingue</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">-30<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Commissions OTA</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">5 mois</div><div class="sh-badge-lbl">ROI atteint</div></div>
-          </div>
         </div>
 
         <!-- RIGHT — 3D Medical Orbital -->

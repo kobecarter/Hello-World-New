@@ -24,12 +24,6 @@
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
           </div>
-          <div class="sh-badges rv d4">
-            <div class="sh-badge"><div class="sh-badge-val">+30<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Visites terrain</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">&lt;1 min</div><div class="sh-badge-lbl">Traitement lead</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">+22<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Conversion</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">4 mois</div><div class="sh-badge-lbl">ROI atteint</div></div>
-          </div>
         </div>
 
         <!-- RIGHT — 3D Medical Orbital -->

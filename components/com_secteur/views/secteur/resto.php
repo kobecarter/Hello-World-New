@@ -24,12 +24,6 @@
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
           </div>
-          <div class="sh-badges rv d4">
-            <div class="sh-badge"><div class="sh-badge-val">+15<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Panier moyen</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">100%</div><div class="sh-badge-lbl">Cmd. traitées</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">+35<span style="font-size:.9em">%</span></div><div class="sh-badge-lbl">Conversion</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">2 mois</div><div class="sh-badge-lbl">ROI atteint</div></div>
-          </div>
         </div>
 
         <!-- RIGHT — 3D Medical Orbital -->
