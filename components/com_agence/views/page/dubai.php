@@ -79,15 +79,42 @@
           <div class="sh-fcard-lbl">Projets livrés</div>
         </div>
         <div class="sh-fcard fc3">
-          <div class="sh-fcard-val">+12ans</div>
+          <div class="sh-fcard-val">+16ans</div>
           <div class="sh-fcard-lbl">D'expertise créative</div>
         </div>
         <div class="sh-fcard fc4">
-          <div class="sh-fcard-val">3 Pays</div>
+          <div class="sh-fcard-val">10 Pays</div>
           <div class="sh-fcard-lbl">Studios créatifs</div>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="sec-label rv">Notre expertise</div>
+        <h2 class="sec-title rv d1">Ce que nous <em>construisons</em></h2>
+      </div>
+    </div>
+    <div class="svc-grid rv d1" id="svcGrid3d">
+      <?php $icones = array('fal fa-desktop','fal fa-robot','fal fa-wand-magic','fal fa-phone-laptop','fal fa-search','fal fa-pencil-paintbrush'); ?>
+      <?php $cpt = 0; ?>
+      <?php foreach($services as $service): ?>
+      <div class="svc-card">
+        <div class="svc-card-border"></div>
+        <a href="<?php echo $service->getLink(); ?>">
+        <div class="svc-num">0<?php echo $cpt+1; ?></div>
+        <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
+        <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
+        <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
+        <span class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></span>
+        </a>
+      </div>
+      <?php $cpt++; ?>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
