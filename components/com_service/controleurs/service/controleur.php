@@ -30,40 +30,48 @@ function getForm($data)
 			default : $btnText = "J'envoie ma demande maintenant !";
 		}	
 		?>
-		<form action="<?= $siteURL; ?>components/com_service/controleurs/router.php?task=contact" method="post" id="serviceForm" class="needs-validation" novalidate>
+		<form action="<?= $siteURL; ?>components/com_service/controleurs/router.php?task=contact" method="post" id="serviceForm" class="ct-form">
 			<h4 class="job-title">Vous y êtes presque, il vous suffit de laisser vos coordonnées pour être contacté par nos EXPERTS</h4>
-			<div class="msgbox"></div>
+			<div class="row">
+				<div class="msgbox col-12"></div>
+			</div>
 			<input type="hidden" name="service" value="<?php echo $service->getTitre(); ?>">
-			<div class="form-group">
-				<input name="nom" type="text" class="form-control" placeholder="Nom complet" required>
-			</div>
-			
-			<div class="form-group">
-				<input name="tel" type="text" class="form-control" placeholder="Téléphone" required>
-			</div>
-			
-			<div class="form-group">
-				<input name="email" type="email" class="form-control" placeholder="E-mail" required>
-			</div>
-			
-			<div class="form-group datepicker-field">
-				<label>Date et heure dans lesquelles vous voulez être contacté</label>
-				
-				<div id="picker"> </div>
-				<input type="hidden" id="result" name="datetime" value="" required>
+
+			<div class="ct-row">
+				<div class="ct-group">
+					<input class="ct-input" type="text" name="nom" id="ct-service-nom" placeholder=" " autocomplete="name" required>
+					<label class="ct-float-label" for="ct-service-nom">Nom complet *</label>
+					<span class="ct-line"></span>
+				</div>
+				<div class="ct-group">
+					<input class="ct-input" type="text" name="tel" id="ct-service-tel" placeholder=" " autocomplete="tel" required>
+					<label class="ct-float-label" for="ct-service-tel">Téléphone *</label>
+					<span class="ct-line"></span>
+				</div>
 			</div>
 
-			<div class="form-group">
-				<textarea name="message" id="message" placeholder="Détail à rajouter" cols="30" rows="5" class="form-control"></textarea>
+			<div class="ct-group">
+				<input class="ct-input" type="email" name="email" id="ct-service-email" placeholder=" " autocomplete="email" required>
+				<label class="ct-float-label" for="ct-service-email">Email *</label>
+				<span class="ct-line"></span>
 			</div>
-			<div class="form-group">
+
+			<div class="ct-group">
+				<textarea class="ct-textarea" name="message" id="ct-service-message" placeholder=" " rows="5"></textarea>
+				<label class="ct-float-label" for="ct-service-message" style="top:.6rem">Détail à rajouter</label>
+				<span class="ct-line"></span>
+			</div>
+
+			<div class="ct-group">
             	<div class="g-recaptcha" data-sitekey="6LeNLyITAAAAAM2DmrW17Hlr59rQukXhWB0p2_hM"></div>
         	</div>
-			<div class="form-group form-submit">
-				<button type="submit" class="btn-custom"><span><?php echo $btnText; ?></span></button>
-				
-				<a href="javascript:void(0)" class="vie-privee page-popup" data-id="<?php echo $pageConfid->getId(); ?>"><?php echo $pageConfid->getTitre(); ?></a>
+
+			<div class="sb submit-form" role="slider" tabindex="0" aria-label="<?php echo $btnText; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+				<div class="sb-fill"></div>
+				<div class="sb-label"><span class="sb-hint"><?php echo $btnText; ?></span></div>
+				<div class="sb-knob"><i class="fa fa-paper-plane"></i></div>
 			</div>
+			<p class="ct-privacy"><i class="fa fa-lock"></i> Données confidentielles · <a href="javascript:void(0)" class="page-popup" data-id="<?php echo $pageConfid->getId(); ?>"><?php echo $pageConfid->getTitre(); ?></a></p>
 			<div class="loading"></div>
 		</form>
 		<div class="or">Ou prenez contact avec nous directement</div>
@@ -75,77 +83,47 @@ function getForm($data)
 		</div>
 		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		<script>
-		$(document).ready(function (){   
-			    $(".page-popup").click(function(){
-				$("#serviceModal .modal-footer").hide();
-				$("#serviceModal .modal-title").html(`<?php echo $pageConfid->getTitre(); ?>`);
-				$("#serviceModal .modal-body").html(`<?php echo $pageConfid->getTexte(); ?>`);
-				$("#serviceModal").modal("show");
-				/*var order = 'id='+$(this).attr("data-id");
-				$.post(siteURL+"components/com_service/controleurs/router.php?task=getPage", order, function (theResponse) {
-					$("#serviceModal .modal-body").html(theResponse)
-					$("#serviceModal").modal("show");
-				})*/
-			})
-			
-			$('#picker').dateTimePicker({
-				dateFormat: "DD/MM/YYYY HH:mm",
-				locale: 'fr'
+		(function(){
+			jQuery(".page-popup").click(function(){
+				jQuery("#serviceModal .modal-footer").hide();
+				jQuery("#serviceModal .modal-title").html(`<?php echo $pageConfid->getTitre(); ?>`);
+				jQuery("#serviceModal .modal-body").html(`<?php echo $pageConfid->getTexte(); ?>`);
+				jQuery("#serviceModal").modal("show");
 			});
-			
-			// Get the forms to apply validation
-        	  var forms = document.getElementsByClassName('needs-validation');
-        	  // Loop over them and prevent submission
-        	  var validation = Array.prototype.filter.call(forms, function(form) {
-        		form.addEventListener('submit', function(event) {
-        			 event.preventDefault();
-        		  if (form.checkValidity() === false) {
-        			event.stopPropagation();
-        		  }else{
-        						  var id = form.getAttribute('id')    /*-------------------------------------------------------------------------------
-        					  	/* -----------------------------------
-        								07. Service form
-        								-------------------------------------*/
-        							
-        							
-        							$('form#serviceForm').ajaxForm({
-                        				beforeSubmit: function() {
-                        					// chargement
-                        					$("form#serviceForm .loading").show();
-                        				},
-                        				success: function(theResponse) {
-                        					$("form#serviceForm .loading").hide();
-                        					if (parseInt(theResponse) === 1) {
-                        						$('#formserviceForm .msgbox').html(
-                        							"<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button><?= $lang['DEMANDE_ENVOI_SUCCES'][$_SESSION['lang']]; ?></div>"
-                        						);
-                        						$('form#serviceForm').resetForm();
-                        						document.location = "<?php echo $service->getThankYouPageLink(); ?>";
-                        					} else if (parseInt(theResponse) === 0) {
-                        						$('form#serviceForm .msgbox').html(
-                        							"<div class='alert alert-warning alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button><?= $lang['REMPLIR_CHAMP_OBLIG'][$_SESSION['lang']]; ?></div>"
-                        						);
-                        					} else if (parseInt(theResponse) === 2) {
-                        						$('form#serviceForm .msgbox').html(
-                        							"<div class='alert alert-warning alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button> Veuillez cocher (Je ne suis pas un robot)</div>"
-                        						);
-                        					} else {
-                        						$('form#serviceForm .msgbox').html(
-                        							"<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button><?= $lang['ERREUR_EXEC'][$_SESSION['lang']]; ?></div>"
-                        						);
-                        						$('form#serviceForm .msgbox').slideDown();
-                        					}
-                        				}
-                        			});
-        							
-        						  if(id =="serviceForm"){
-        							$("form#serviceForm").submit()
-        						  }
-        		  }
-        		  form.classList.add('was-validated');
-        		}, false);
-        	  });
-		});
+
+			jQuery('form#serviceForm').ajaxForm({
+				beforeSubmit: function() {
+					jQuery("form#serviceForm .loading").show();
+				},
+				success: function(theResponse) {
+					jQuery("form#serviceForm .loading").hide();
+					if (parseInt(theResponse) === 1) {
+						jQuery('form#serviceForm .msgbox').html(
+							"<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button><?= $lang['DEMANDE_ENVOI_SUCCES'][$_SESSION['lang']]; ?></div>"
+						);
+						jQuery('form#serviceForm').resetForm();
+						document.location = "<?php echo $service->getThankYouPageLink(); ?>";
+					} else if (parseInt(theResponse) === 0) {
+						jQuery('form#serviceForm .msgbox').html(
+							"<div class='alert alert-warning alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button><?= $lang['REMPLIR_CHAMP_OBLIG'][$_SESSION['lang']]; ?></div>"
+						);
+					} else if (parseInt(theResponse) === 2) {
+						jQuery('form#serviceForm .msgbox').html(
+							"<div class='alert alert-warning alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button> Veuillez cocher (Je ne suis pas un robot)</div>"
+						);
+					} else {
+						jQuery('form#serviceForm .msgbox').html(
+							"<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button><?= $lang['ERREUR_EXEC'][$_SESSION['lang']]; ?></div>"
+						);
+						jQuery('form#serviceForm .msgbox').slideDown();
+					}
+				}
+			});
+
+			jQuery("#serviceForm .submit-form").click(function(){
+				jQuery(this).closest('form').submit();
+			});
+		})();
 		</script>
 		<?php
 	}

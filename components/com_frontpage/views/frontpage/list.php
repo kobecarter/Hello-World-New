@@ -1252,9 +1252,15 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 /* Prevent iOS address-bar resize from breaking pin geometry */
 ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
 
-/* Normalise scroll across browsers/iOS — prevents the momentum-scroll
-   address-bar collapse from breaking pin geometry on mobile             */
-ScrollTrigger.normalizeScroll(true);
+/* Normalise scroll — only needed to stabilise the pinned hero scrub,
+   which itself only runs on desktop (see isMobile check below). On
+   touch devices this replaces native scrolling with a transform-based
+   proxy that breaks position:fixed elements (burger menu, header) and
+   can leave the page stuck once you scroll past the hero, so it must
+   stay desktop-only.                                                  */
+if (!window.matchMedia('(pointer:coarse)').matches) {
+  ScrollTrigger.normalizeScroll(true);
+}
 
 const clamp = gsap.utils.clamp;
 const toArr = gsap.utils.toArray;

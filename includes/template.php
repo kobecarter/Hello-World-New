@@ -551,6 +551,7 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
 /* HERO CANVAS — flowing wave terrain */
 (function() {
   const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return; /* not every page template has this canvas — must not block the rest of the script (fancy-title split, etc.) */
   const ctx = canvas.getContext('2d');
   let W, H, t = 0;
   const LINES = 40, SEGS = 240;
