@@ -79,15 +79,87 @@
           <div class="sh-fcard-lbl">Projets livrés</div>
         </div>
         <div class="sh-fcard fc3">
-          <div class="sh-fcard-val">+12ans</div>
+          <div class="sh-fcard-val">+16ans</div>
           <div class="sh-fcard-lbl">D'expertise créative</div>
         </div>
         <div class="sh-fcard fc4">
-          <div class="sh-fcard-val">3 Pays</div>
+          <div class="sh-fcard-val">10 Pays</div>
           <div class="sh-fcard-lbl">Studios créatifs</div>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+<section class="why-agence page-template">
+        <div class="container my-4 why-choose-section">
+        <div class="row">
+            <div class="col-sm-12">
+              <h2 class="sec-title rv d1">Pourquoi choisir Hello World <br><em>Agency à Casablanca ?</em></h2>
+              <p class="why-agence-p mb-4">Choisir la bonne <b>agence de communication digitale à Casablanca</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous offrons une expertise locale, une approche sur-mesure et des résultats concrets. Voici trois raisons de nous faire confiance :</p>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-4 p-0">
+          <div class="item-process">
+          <div class="imgbox"><img alt="" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="" src="<?php echo $siteURL; ?>images/inspiration2.png" /></span>
+          
+          <h3>Expertise locale</h3>
+          
+          <p>Notre <b>agence marketing digital à Casablanca</b> connaît parfaitement le marché local, ce qui nous permet d’optimiser vos campagnes de SEO et de <b>publicité digitale</b> pour atteindre les bons clients.</p>
+          </div>
+          </div>
+          
+          <div class="col-sm-4 p-0">
+          <div class="item-process active">
+          <div class="imgbox"><img alt="" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="" src="<?php echo $siteURL; ?>images/expertise1.png" /></span>
+          
+          <h3>Stratégies personnalisées</h3>
+          
+          <p>Nous créons des plans sur mesure, combinant <b>gestion des réseaux sociaux à Casablanca</b>, <b>SEO</b> et <b>publicité en ligne</b>, pour booster votre visibilité et générer des résultats concrets.</p>
+          </div>
+          </div>
+          
+          <div class="col-sm-4 p-0">
+          <div class="item-process">
+          <div class="imgbox"><img alt="" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="" src="<?php echo $siteURL; ?>images/support3.png" /></span>
+          
+          <h3>Accompagnement orienté résultats</h3>
+          
+          <p> Avec Hello World Agency, bénéficiez d’un suivi clair et transparent, axé sur le <b>référencement naturel</b>, la <b>communication digitale</b> et l’augmentation de votre chiffre d’affaires.</p>
+          </div>
+          </div>
+          </div>
+      </div>
+
+    </section>
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="sec-label rv">Notre expertise</div>
+        <h2 class="sec-title rv d1">Ce que nous <em>construisons</em></h2>
+      </div>
+    </div>
+    <div class="svc-grid rv d1" id="svcGrid3d">
+      <?php $icones = array('fal fa-desktop','fal fa-robot','fal fa-wand-magic','fal fa-phone-laptop','fal fa-search','fal fa-pencil-paintbrush'); ?>
+      <?php $cpt = 0; ?>
+      <?php foreach($services as $service): ?>
+      <div class="svc-card">
+        <div class="svc-card-border"></div>
+        <a href="<?php echo $service->getLink(); ?>">
+        <div class="svc-num">0<?php echo $cpt+1; ?></div>
+        <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
+        <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
+        <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
+        <span class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></span>
+        </a>
+      </div>
+      <?php $cpt++; ?>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>

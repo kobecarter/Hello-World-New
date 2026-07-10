@@ -82,15 +82,85 @@
           <div class="sh-fcard-lbl">Projets livrés</div>
         </div>
         <div class="sh-fcard fc3">
-          <div class="sh-fcard-val">+12ans</div>
+          <div class="sh-fcard-val">+16ans</div>
           <div class="sh-fcard-lbl">D'expertise créative</div>
         </div>
         <div class="sh-fcard fc4">
-          <div class="sh-fcard-val">3 Pays</div>
+          <div class="sh-fcard-val">10 Pays</div>
           <div class="sh-fcard-lbl">Studios créatifs</div>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+ <section class="why-agence page-template">
+        <div class="container my-4 why-choose-section">
+        <div class="row">
+            <div class="col-sm-12">
+              <h2 class="sec-title rv d1">Pourquoi choisir Hello World <br><em>Agency à Marrakech ?</em></h2>
+              <p class="why-agence-p mb-4">Choisir la bonne <b>agence de communication digitale à Marrakech</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous offrons une expertise locale, une approche sur-mesure et des résultats concrets. Voici trois raisons de nous faire confiance :</p>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-4 p-0">
+          <div class="item-process">
+          <div class="imgbox"><img alt="" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="" src="<?php echo $siteURL; ?>images/inspiration2.png" /></span>
+          
+          <h3>Expertise locale</h3>
+          
+          <p>Notre <b>agence marketing digital à Marrakech</b> connaît le marché marrakchi et accompagne les entreprises locales, de la <b>PME en quête de visibilité en ligne</b> à la grande société.</p>
+          </div>
+          </div>
+          
+          <div class="col-sm-4 p-0">
+          <div class="item-process active">
+          <div class="imgbox"><img alt="" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="" src="<?php echo $siteURL; ?>images/expertise1.png" /></span>
+          
+          <h3>Stratégies personnalisées</h3>
+          
+          <p>Nous créons des <b>stratégies marketing digital sur mesure à Marrakech</b> : <b>SEO pour entreprises</b>, Google Ads, gestion des réseaux sociaux et <b>création de site internet professionnel.</b></p>
+          </div>
+          </div>
+          
+          <div class="col-sm-4 p-0">
+          <div class="item-process">
+          <div class="imgbox"><img alt="" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="" src="<?php echo $siteURL; ?>images/support3.png" /></span>
+          
+          <h3>Résultats mesurables</h3>
+          
+          <p>Avec un <b>consultant marketing digital à Marrakech</b>, vous bénéficiez d’un suivi clair et de résultats concrets : plus de leads, trafic qualifié et meilleure performance.</p>
+          </div>
+          </div>
+          </div>
+      </div>
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="sec-label rv">Notre expertise</div>
+        <h2 class="sec-title rv d1">Ce que nous <em>construisons</em></h2>
+      </div>
+    </div>
+    <div class="svc-grid rv d1" id="svcGrid3d">
+      <?php $icones = array('fal fa-desktop','fal fa-robot','fal fa-wand-magic','fal fa-phone-laptop','fal fa-search','fal fa-pencil-paintbrush'); ?>
+      <?php $cpt = 0; ?>
+      <?php foreach($services as $service): ?>
+      <div class="svc-card">
+        <div class="svc-card-border"></div>
+        <a href="<?php echo $service->getLink(); ?>">
+        <div class="svc-num">0<?php echo $cpt+1; ?></div>
+        <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
+        <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
+        <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
+        <span class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></span>
+        </a>
+      </div>
+      <?php $cpt++; ?>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
