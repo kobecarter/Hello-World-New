@@ -17,6 +17,7 @@ switch ($task)
     default :
 
         $page = getComponent("com_reference");
+        $pageBlog = getComponent("com_blog&cat=1");
 		$limit = "0,16";
         $references = reference::findAll($_SESSION["lang"],true,$limit,true);
         $pageContact = getComponent("com_contact");
