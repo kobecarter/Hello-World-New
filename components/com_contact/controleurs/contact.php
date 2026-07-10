@@ -279,7 +279,7 @@ function quote($data)
                                         	<td><strong>E-mail : </strong></td><td>' . $data['email'] . '</td>
                                         </tr>
                                         <tr>
-                                        	<td><strong>Services demandés : </strong></td><td>' . $data['service'] . '</td> 
+                                        	<td><strong>Services demandés : </strong></td><td>' . $services . '</td>
                                         </tr>
                                         <tr>
                                         	<td><strong>Message : </strong></td><td>' . nl2br($data['message']) . '</td>

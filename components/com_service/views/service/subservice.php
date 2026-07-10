@@ -135,14 +135,20 @@ else{
                     </ul>
                 </div>
             </div>
-
-
         </div>
 
         <div class="service-content">
             <?php echo $service->getTexte(); ?>
         </div>
-        
+
+        <div class="container text-center service-cta-box">
+            <a href="javascript:void(0)" class="sb sb-compact open-form-service" data-slug="<?php echo $service->getSlug(); ?>" role="slider" tabindex="0" aria-label="Contactez nous maintenant" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Contactez nous maintenant</span></div>
+              <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
+            </a>
+            <div class="service-form-box col-sm-8 offset-sm-2"></div>
+        </div>
+
         <?php if (!empty($packs)) : ?>
         <section class="pack-section">
         <?php
@@ -257,9 +263,14 @@ else{
           </div>
            <div class="container">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir plus de réalisations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                   <div class="sb-label"><span class="sb-hint">Voir plus de réalisations</span></div>
                   <div class="sb-knob"><i class="fal fa-trophy"></i></div>
+                </a>
+
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint">Parlons de votre projet</span></div>
+                  <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
                 </a>
             </div>
         </div>
@@ -607,12 +618,25 @@ else{
 
 <script>
 
-// 		$(document).ready(function (){   
+// 		$(document).ready(function (){
 // 			$('#picker2').dateTimePicker({
 // 				dateFormat: "DD/MM/YYYY HH:mm",
 // 				locale: 'fr'
 // 			});
 //         });
-      
-   
+
+
+</script>
+
+<script>
+document.addEventListener('click', function(e){
+	var btn = e.target.closest('.open-form-service');
+	if(!btn) return;
+	var order = 'slug=' + btn.getAttribute('data-slug');
+	jQuery.post("<?php echo $siteURL; ?>components/com_service/controleurs/router.php?task=getForm", order, function (theResponse) {
+		jQuery(".service-form-box").html(theResponse);
+		jQuery(".service-form-box").slideDown();
+		jQuery("html, body").animate({scrollTop: jQuery(".service-form-box").offset().top - 100}, 1000);
+	})
+})
 </script>

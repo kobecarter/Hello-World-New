@@ -71,6 +71,7 @@
     </div>
     <!-- Civilité + Prénom + Nom -->
         <div class="ct-row-3">
+            
             <div class="ct-group">
                 <div class="ct-select-label">Vous êtes ? *</div>
                 <select class="ct-select" id="ct-civ" name="type_client">
@@ -81,9 +82,26 @@
                 <i class="fa fa-chevron-down ct-select-arr"></i>
                 <span class="ct-line"></span>
             </div>
+
             <div class="ct-group">
                 <input class="ct-input" type="text" name="fullname" id="ct-prenom" placeholder="" autocomplete="given-name" required>
                 <label class="ct-float-label" for="ct-prenom">Nom complet *</label>
+                <span class="ct-line"></span>
+            </div>
+
+            <div class="ct-group">
+                <div class="ct-select-label">Comment nous avez-vous connu ?</div>
+                <select name="source" class="ct-select" id="ct-source">
+                    <option value="">Sélectionner…</option>
+                    <option>Moteur de recherche (Google, Bing…)</option>
+                    <option>Recommandation d'un proche</option>
+                    <option>Réseaux sociaux (LinkedIn, Instagram…)</option>
+                    <option>Presse ou médias</option>
+                    <option>Conférence ou événement</option>
+                    <option>Podcast</option>
+                    <option>Autre</option>
+                </select>
+                <i class="fa fa-chevron-down ct-select-arr"></i>
                 <span class="ct-line"></span>
             </div>
         </div>
@@ -112,37 +130,33 @@
     <!-- Comment nous avez-vous connu? -->
     
     <div class="ct-row">
-            <div class="ct-group">
-                <div class="ct-select-label">Comment nous avez-vous connu ?</div>
-                <select name="source" class="ct-select" id="ct-source">
-                    <option value="">Sélectionner…</option>
-                    <option>Moteur de recherche (Google, Bing…)</option>
-                    <option>Recommandation d'un proche</option>
-                    <option>Réseaux sociaux (LinkedIn, Instagram…)</option>
-                    <option>Presse ou médias</option>
-                    <option>Conférence ou événement</option>
-                    <option>Podcast</option>
-                    <option>Autre</option>
-                </select>
-                <i class="fa fa-chevron-down ct-select-arr"></i>
-                <span class="ct-line"></span>
-            </div>
-            <div class="ct-group">
-                <div class="ct-select-label">Service souhaité</div>
-                <select name="service" class="ct-select" id="ct-service">
-                <option value="">Choisir un service…</option>
-                <option>Solutions IA — Agents &amp; Automatisation</option>
-                <option>Web &amp; Mobile — Site ou App</option>
-                <option>SaaS &amp; Produits — MVP ou Plateforme</option>
-                <option>Marketplace IA</option>
-                <option>Formation IA — Équipes ou Dirigeants</option>
-                <option>Brand Experience — Identité &amp; Contenu</option>
-                <option>Audit stratégique</option>
-                <option>Accompagnement global</option>
-                </select>
-                <i class="fa fa-chevron-down ct-select-arr"></i>
-                <span class="ct-line"></span>
-            </div>
+            
+    </div>
+
+    <!-- Service souhaité -->
+    <div class="ct-group ct-group-full">
+        <div class="ct-select-label">Service souhaité</div>
+        <div class="ct-checkbox-list">
+            <?php
+            $devisServiceOptions = array(
+                'Solutions IA — Agents & Automatisation',
+                'Web & Mobile — Site ou App',
+                'SaaS & Produits — MVP ou Plateforme',
+                'Marketplace IA',
+                'Formation IA — Équipes ou Dirigeants',
+                'Brand Experience — Identité & Contenu',
+                'Audit stratégique',
+                'Accompagnement global',
+            );
+            foreach ($devisServiceOptions as $i => $label) :
+            ?>
+            <label class="ct-checkbox">
+                <input type="checkbox" name="service[]" value="<?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>">
+                <span class="ct-checkbox-box"><i class="fa fa-check"></i></span>
+                <span class="ct-checkbox-label"><?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?></span>
+            </label>
+            <?php endforeach; ?>
+        </div>
     </div>
 
     <!-- Message -->
