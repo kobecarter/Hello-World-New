@@ -123,7 +123,7 @@ else{
   =========================================================-->
 <section class="page-template page-detail-service">
     <div class="">
-        <div class="container">
+        <div class="container p-0">
             <div class="row">
                 <div class="col-12">
                     <ul class="ul-tags">
@@ -574,6 +574,8 @@ else{
 	</div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
 <script>
     var acc = document.getElementsByClassName("accordion-faq");
     var i;
@@ -634,8 +636,13 @@ document.addEventListener('click', function(e){
 	if(!btn) return;
 	var order = 'slug=' + btn.getAttribute('data-slug');
 	jQuery.post("<?php echo $siteURL; ?>components/com_service/controleurs/router.php?task=getForm", order, function (theResponse) {
-		jQuery(".service-form-box").html(theResponse);
-		jQuery(".service-form-box").slideDown();
+		var box = document.querySelector(".service-form-box");
+		box.innerHTML = theResponse;
+		if (window.gsap) {
+			gsap.fromTo(box, {autoAlpha: 0, y: 30}, {autoAlpha: 1, y: 0, duration: .7, ease: 'power2.out'});
+		} else {
+			jQuery(box).slideDown();
+		}
 		jQuery("html, body").animate({scrollTop: jQuery(".service-form-box").offset().top - 100}, 1000);
 	})
 })
