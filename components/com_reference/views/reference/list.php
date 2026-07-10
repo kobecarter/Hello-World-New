@@ -14,7 +14,7 @@
     <div class="wm-hero-inner">
       <div>
         <div class="sh-breadcrumb rv"><?php echo $page->getTitre() ?></div>
-        <h1 class="sh-h1 rv d1">Des projets <em>concrets</em>, visibles, performants</h1>
+        <h1 class="sh-h1 rv d1"><?php echo !empty($page->getH1()) ? $page->getH1() : $page->getTitre(); ?></h1>
         <p class="sh-sub rv d2"><?php echo strip_tags($page->getExtrait()); ?></p>
 
         <div class="wm-hero-ctas rv d2">
