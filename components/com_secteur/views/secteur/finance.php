@@ -20,12 +20,7 @@
                   <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
                 </a> 
           </div>
-          <div class="sh-badges">
-            <div class="sh-badge"><div class="sh-badge-val">&lt;100<span style="font-size:.6em">ms</span></div><div class="sh-badge-lbl">Latence exec.</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">100<span style="font-size:.6em">%</span></div><div class="sh-badge-lbl">Fiabilité ordres</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">98<span style="font-size:.6em">%</span></div><div class="sh-badge-lbl">Précision OCR</div></div>
-            <div class="sh-badge"><div class="sh-badge-val">2<span style="font-size:.6em">ETP</span></div><div class="sh-badge-lbl">Économisés</div></div>
-          </div>
+          
         </div>
         <!-- ORBITAL FINANCE IA -->
         <div class="sh-hero-right">

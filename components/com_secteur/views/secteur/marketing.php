@@ -17,12 +17,6 @@
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
         </a>
       </div>
-      <div class="sh-badges">
-        <div class="sh-badge"><div class="sh-badge-val">10<span style="font-size:.6em">h</span></div><div class="sh-badge-lbl">Gagnées/sem</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">×3</div><div class="sh-badge-lbl">Publication</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">+40<span style="font-size:.6em">%</span></div><div class="sh-badge-lbl">Engagement</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">&lt;24<span style="font-size:.6em">h</span></div><div class="sh-badge-lbl">Alerte SEO</div></div>
-      </div>
     </div>
     <!-- ORBITAL MARKETING IA -->
     <div class="sh-hero-right">
