@@ -40,7 +40,7 @@ switch ($task)
     		    $parentIds = ['18', '17', '1', '107'];
                 $services_tags = [];
                 
-                /*foreach ($parentIds as $parentId) {
+                foreach ($parentIds as $parentId) {
                     $service = service::find($parentId, $_SESSION["lang"]);
                 
                     if ($service) {
@@ -50,8 +50,9 @@ switch ($task)
                             $services_tags = array_merge($services_tags, $childServices);
                         }
                     }
-                }*/
-                $services_tags = service::findAll($_SESSION["lang"],true,true,true);
+                }
+				
+                //$services_tags = service::findAll($_SESSION["lang"],true,true,true);
 
                 $service = service::findBySlug($slug, $_SESSION["lang"]);
                 
