@@ -1,45 +1,4 @@
 
-<style>
-/* WEB MOBILE HERO */
-.wm-hero{position:relative;padding:10rem 0 9rem;background:var(--bg);overflow:hidden;height: 100vh;}
-.wm-hero-grid{position:absolute;inset:0;z-index:0;overflow:hidden}
-.wm-hero-grid svg{width:100%;height:100%;opacity:.045}
-.wm-hero .container{position:relative;z-index:2}
-.wm-hero-inner{display:grid;grid-template-columns:1fr 400px;gap:4rem}
-.wm-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
-.wm-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
-.wm-hero-title{font-family:var(--fm);font-weight:300;font-size:84px;line-height:1.1;letter-spacing:-.04em;color:var(--txt);margin-bottom:2.5rem}
-.wm-hero-title em{font-style:normal;color:var(--gold);font-weight:200}
-.wm-hero-sub{font-size:.92rem;font-weight:300;color:var(--txt2);max-width:480px;line-height:1.9;margin-bottom:3rem}
-.wm-hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-.wm-hero-side{position:relative}
-.wm-screen{background:var(--txt);border-radius:18px;overflow:hidden;aspect-ratio:9/16;max-width:200px;margin:0 auto;position:relative;box-shadow:0 40px 120px rgba(0,0,0,.18)}
-.wm-screen::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,106,34,.12) 0%,transparent 60%)}
-.wm-screen-gfx{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:24px 16px}
-.wm-bar{height:4px;border-radius:2px;background:rgba(247,245,242,.08)}
-.wm-bar.hi{background:rgba(139,106,34,.4);width:60%}
-.wm-bar.mid{width:80%}
-.wm-bar.sm{width:45%}
-.wm-screen-dot{width:32px;height:32px;border-radius:50%;background:rgba(139,106,34,.3);margin:8px 0}
-.wm-tablet{position:absolute;right:-40px;top:60px;background:#1a1815;border-radius:12px;width:260px;aspect-ratio:4/3;box-shadow:0 24px 80px rgba(0,0,0,.22);overflow:hidden}
-.wm-tablet::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(139,106,34,.04) 28px,rgba(139,106,34,.04) 29px)}
-@media(max-width:1024px){.wm-hero-inner{grid-template-columns:1fr}.wm-hero-side{display:none}}
-
-
-
-
-
-/*Custom*/
-.wm-card a:hover {
-    /*color: none !important;*/
-    text-decoration: none !important;
-}
-.subservice .wm-visual img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-</style>
 
 
 
@@ -72,8 +31,8 @@
             </a>
         </div>
       </div>
-      <div class="wm-hero-side rv d3">
-        <img src="<?php echo $siteURL; ?>images/services/<?php echo $service->getPhotoBanniere() ?>" alt="">
+      <div class="wm-hero-side rv d3 wm-hero-side-banner">
+        <img src="<?php echo $siteURL; ?>images/services/<?php echo $service->getPhotoHero() ?>" alt="<?php echo $service->getTitre() ?>">
       </div>
     </div>
   </div>
@@ -143,81 +102,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>
-(function () {
-    gsap.registerPlugin(ScrollTrigger);
-    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    var pin   = document.getElementById('wmServicesPin');
-    var track = document.getElementById('wmServicesTrack');
-    var cards = track ? track.querySelectorAll('.hw-f-list-card-3d') : [];
-    var spacerStart = document.getElementById('wmServicesSpacerStart');
-    var spacerEnd   = document.getElementById('wmServicesSpacerEnd');
-    if (!pin || !track || !cards.length) return;
-
-    function sizeSpacers() {
-        if (!spacerStart || !spacerEnd || window.innerWidth <= 760) return;
-        var cardW = cards[0].getBoundingClientRect().width;
-        var w = Math.max(0, (pin.clientWidth - cardW) / 2);
-        spacerStart.style.width = w + 'px';
-        spacerEnd.style.width = w + 'px';
-    }
-    sizeSpacers();
-
-    function trackDistance() {
-        return Math.max(0, track.scrollWidth - pin.clientWidth);
-    }
-
-    function tiltCards() {
-        var pinRect = pin.getBoundingClientRect();
-        var center = pinRect.left + pinRect.width / 2;
-        cards.forEach(function (card) {
-            var r = card.getBoundingClientRect();
-            var cardCenter = r.left + r.width / 2;
-            var delta = (cardCenter - center) / (pinRect.width / 2);
-            delta = Math.max(-1, Math.min(1, delta));
-            if (rm) { card.style.transform = ''; return; }
-            var ry = delta * -30;
-            var scale = 1 - Math.abs(delta) * 0.14;
-            var z = -Math.abs(delta) * 130;
-            card.style.transform = 'perspective(1400px) rotateY(' + ry.toFixed(2) + 'deg) translateZ(' + z.toFixed(1) + 'px) scale(' + scale.toFixed(3) + ')';
-            card.style.opacity = String(1 - Math.abs(delta) * 0.35);
-        });
-    }
-
-    if (!rm && window.innerWidth > 760) {
-        gsap.to(track, {
-            x: function () { return -trackDistance(); },
-            ease: 'none',
-            scrollTrigger: {
-                trigger: pin,
-                start: 'top top+=70',
-                end: function () { return '+=' + (trackDistance() + window.innerHeight * .6); },
-                scrub: .6,
-                pin: true,
-                invalidateOnRefresh: true,
-                onRefresh: sizeSpacers,
-                onUpdate: tiltCards
-            }
-        });
-        ScrollTrigger.addEventListener('refresh', tiltCards);
-        window.addEventListener('load', function () { sizeSpacers(); ScrollTrigger.refresh(); tiltCards(); });
-        window.addEventListener('resize', sizeSpacers);
-    } else {
-        track.style.overflowX = 'auto';
-        track.style.scrollSnapType = 'x mandatory';
-        cards.forEach(function (c) { c.style.scrollSnapAlign = 'start'; });
-    }
-
-    cards.forEach(function (c) {
-        c.addEventListener('mousedown', function () { c.style.filter = 'brightness(.97)'; });
-        c.addEventListener('mouseup',   function () { c.style.filter = ''; });
-        c.addEventListener('mouseleave', function () { c.style.filter = ''; });
-    });
-
-    setTimeout(function () { ScrollTrigger.refresh(); }, 400);
-})();
-</script>
+<script src="<?php echo $siteURL; ?>assets/js/service.js"></script>
 <section class="portfolio" id="work">
   <div class="container">
     <div class="sec-label rv">Cas d'utilisation</div>
@@ -272,7 +157,7 @@
   <div class="container">
     <div>  
         <div class="sec-label">Notre approche</div>
-        <h2 class="sec-title rv">Design <em>intentionnel</em>,<br>code performant</h2>
+        <h2 class="sec-title rv">Sites et plateformes <br><em>performants</em></h2>
     </div>
     <div class="wm-approach-grid">
       <div class="wm-approach-visual rv">
@@ -442,29 +327,6 @@
   </div>
 </section>
 
-<script>
-(function(){
-  const timeline=document.getElementById('wmTimeline');
-  const spineFill=document.getElementById('wmSpineFill');
-  const orb=document.getElementById('wmOrb');
-  const steps=timeline ? timeline.querySelectorAll('.sdtl-step') : [];
-  if(!timeline||!spineFill) return;
-
-  function update(){
-    const rect=timeline.getBoundingClientRect(), vh=window.innerHeight;
-    const raw=(vh*.65-rect.top)/(rect.height+vh*.05);
-    spineFill.style.height=(Math.max(0,Math.min(1,raw))*100)+'%';
-    if(orb){ const sp=scrollY/Math.max(1,document.body.scrollHeight-vh); orb.style.transform=`rotateY(${(sp*720).toFixed(2)}deg) rotateX(${(sp*300).toFixed(2)}deg)`; }
-  }
-  let raf; window.addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{update();raf=null;})},{passive:true});
-  update();
-
-  const stepIO=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
-  },{threshold:.3,rootMargin:'0px 0px -10% 0px'});
-  steps.forEach(s=>stepIO.observe(s));
-})();
-</script>
 
 <!-- ══ CTA FINAL ══════════════════════════════════════════════════════════ -->
 <section class="hw-f-list-cta-final cta-hw-final">

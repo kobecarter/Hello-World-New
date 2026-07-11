@@ -1,64 +1,10 @@
-<style>
-.sh-int-card{padding: 0;}
-.sh-int-card-body{padding:2rem}
-.sh-int-card-title{font-weight:600;font-size:1rem;color:var(--txt);margin-bottom:.6rem}
-.sh-int-card-desc{font-size:.8rem;color:var(--txt2);line-height:1.8}
 
-@keyframes cr-pulse{0%,100%{opacity:1}50%{opacity:.7}}
-.case-right>*{position:relative;z-index:1}
-.case-tag{font-size:.52rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
-.case-headline{font-weight:300;font-size:2.1rem;color:var(--txt);margin-bottom:1.5rem;letter-spacing:-.02em;line-height:1.1}
-.case-ctx{font-size:.85rem;color:var(--txt2);line-height:1.9;margin-bottom:2rem}.case-ctx strong{color:var(--txt);font-weight:600}
-.case-problem{border:1px solid rgba(9,161,190,.2);border-top:2px solid var(--gold);}
-.case-problem-label{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem}
-.case-problem-text{font-size:.8rem;color:var(--txt2);line-height:1.8}
-.case-results{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-.result-big{padding:1.4rem;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid rgba(139,106,34,.12);border-radius:12px;transition:all .3s}
-.result-big:hover{border-color:rgba(9,161,190,.3);transform:translateY(-2px)}
-.result-num{font-weight:200;font-size:2.2rem;color:var(--gold);line-height:1;letter-spacing:-.04em}
-.result-lbl{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin-top:.25rem}
-.case-quote{font-size:.82rem;font-style:italic;color:var(--txt2);line-height:1.85;padding:1.5rem 1.8rem;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border-radius:12px;position:relative}
-.case-quote::before{content:'\201C';position:absolute;top:.2rem;left:.8rem;font-family:var(--fd);font-size:3.5rem;line-height:1;color:var(--gold2);opacity:.4;font-style:normal}
-.case-quote-author{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:.6rem;display:block}
-@media(max-width:991px){.case-wrap{grid-template-columns:1fr}.case-right{border-left:none;border-top:1px solid var(--border)}}
-
-/* Slack mockup */
-.slk{width:360px;background:#1a1d21;border-radius:14px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4);font-family:'Cabinet Grotesk',sans-serif}
-.slk-head{padding:.8rem 1.2rem;background:#111317;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid rgba(255,255,255,.06)}
-.slk-ico{width:28px;height:28px;background:#4a154b;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem}
-.slk-channel{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.05em}
-.slk-body{padding:1rem}
-.slk-msg{display:flex;gap:.7rem;margin-bottom:.9rem}
-.slk-avatar{width:30px;height:30px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff}
-.slk-avatar.bot{background:var(--gold)}
-.slk-avatar.dg{background:#680262}
-.slk-msg-content{flex:1}
-.slk-msg-author{font-size:.62rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.2rem}
-.slk-msg-author span{font-size:.52rem;color:rgba(255,255,255,.3);font-weight:300;margin-left:.4rem}
-.slk-msg-text{font-size:.68rem;color:rgba(255,255,255,.65);line-height:1.55}
-.slk-msg-text strong{color:var(--gold)}
-.slk-alert{padding:.6rem .8rem;background:rgba(9,161,190,.12);border:1px solid rgba(9,161,190,.25);border-radius:8px;margin-top:.3rem}
-.slk-alert-txt{font-size:.6rem;color:var(--gold);line-height:1.5}
-.slk-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse-dot 1.5s ease-in-out infinite;vertical-align:middle;margin-right:.3rem}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
-
-.sh-ctx-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px}
-.sh-ctx-blob{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(ellipse at 40% 40%,rgba(9,161,190,.07),transparent 70%);border:1px solid rgba(9,161,190,.12);animation:ctx-spin 25s linear infinite}
-.sh-ctx-blob2{position:absolute;width:240px;height:240px;border-radius:50%;border:1px dashed rgba(9,161,190,.07);animation:ctx-spin 40s linear infinite reverse}
-@keyframes ctx-spin{to{transform:rotate(360deg)}}
-
-.sh-ctx-center-wrap{position:absolute;width:110px;height:110px}
-.sh-ctx-center{width:110px;height:110px;border-radius:50%;background:conic-gradient(from 0deg,var(--gold) 0deg,rgba(9,161,190,.1) 360deg);display:flex;align-items:center;justify-content:center;animation:ctx-spin 8s linear infinite}
-.sh-ctx-center i{font-size:2rem;color:#fff;animation:ctx-spin 8s linear infinite reverse}
-@media(max-width:991px){.sh-context-inner{grid-template-columns:1fr}.sh-ctx-visual{display:none}}
-
-</style>
 <section class="sh-hero">
   <canvas id="sh-canvas"></canvas>
   <div class="sh-hero-body"><div class="container"><div class="sh-hero-inner">
     <div>
       <div class="sh-breadcrumb">Solutions IA · Organisation &amp; Opérations</div>
-      <h1 class="sh-h1">Solutions IA<br>pour <em>l'Organisation</em><br>et les Opérations</h1>
+      <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">Connectez vos outils, fluidifiez l'information et dotez vos collaborateurs d'assistants virtuels performants. Supprimez les tâches redondantes et pacifiez votre gestion interne.</p>
       <div class="sh-cta-row">
         <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Optimiser vos opérations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
@@ -70,12 +16,6 @@
           <div class="sb-label"><span class="sb-hint">Recevoir la charte IA</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
-      </div>
-      <div class="sh-badges">
-        <div class="sh-badge"><div class="sh-badge-val">50<span style="font-size:.6em">%</span></div><div class="sh-badge-lbl">Réunions</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">+35<span style="font-size:.6em">%</span></div><div class="sh-badge-lbl">Deadlines</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">4<span style="font-size:.6em">h</span></div><div class="sh-badge-lbl">Gagnées/mgr</div></div>
-        <div class="sh-badge"><div class="sh-badge-val">5<span style="font-size:.6em">m</span></div><div class="sh-badge-lbl">ROI</div></div>
       </div>
     </div>
     <!-- ORBITAL OPS IA -->
@@ -301,7 +241,7 @@
       <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-whatsapp"></i></div><div class="acc-lbl-wrap"><span class="acc-title">WhatsApp Business / Notion / SIRH</span><span class="acc-sub">Support interne et base de connaissances</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>Agent de support conversationnel connecté à la base de connaissances Notion et au SIRH pour répondre aux questions RH et IT. Charte d'usage définie avec la DRH et la DSI.</p></div></div></div>
     </div>
     <div class="sh-int-visual rv d2"><div class="sh-int-card">
-      <img class="sh-int-card-img" src="<?php echo $siteURL; ?>images/operations-journey-bg.jpg" alt="Bureau Casablanca">
+      <img class="sh-int-card-img" src="<?php echo $siteURL; ?>images/secteur/<?= $secteur->getPhoto() ?>" alt="Bureau Casablanca">
       <div class="sh-int-card-body">
         <div class="sh-int-card-title">Architecture validée DRH et DSI</div>
         <p class="sh-int-card-desc">Chaque déploiement commence par un audit organisationnel complet avec la DRH et la DSI. Contraintes de gouvernance identifiées, accès API validés et charte d'usage IA définie avant tout démarrage technique.</p>
@@ -394,170 +334,4 @@
   </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>
-gsap.registerPlugin(ScrollTrigger);
-const hdr=document.getElementById('hdr'),backTop=document.getElementById('backTop');
-window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>80);backTop.classList.toggle('show',scrollY>600)},{passive:true});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-(function(){const canvas=document.getElementById('sh-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');let W,H,t=0;const LINES=28,SEGS=200;function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;}function draw(){ctx.clearRect(0,0,W,H);t+=.004;for(let l=0;l<LINES;l++){const p=l/(LINES-1),yBase=H*.06+H*.88*p,amp=H*.03*(.2+p*.8),bright=1-Math.abs(p-.5)*1.6,alpha=Math.max(.008,Math.min(bright*.055,.055));ctx.beginPath();for(let i=0;i<=SEGS;i++){const x=(i/SEGS)*W,n=i/SEGS,y=yBase+Math.sin(n*Math.PI*4+t*1.4+l*.3)*amp+Math.sin(n*Math.PI*8-t*.9+l*.18)*amp*.35+Math.sin(n*Math.PI*2+t*.5+l*.08)*amp*.18;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.strokeStyle=`rgba(139,106,34,${alpha})`;ctx.lineWidth=.8;ctx.stroke();}requestAnimationFrame(draw);}resize();draw();window.addEventListener('resize',resize);})();
-(function(){const cio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=parseInt(el.dataset.target),start=performance.now();function update(now){const p=Math.min((now-start)/1600,1),eased=1-Math.pow(1-p,3);el.textContent=Math.round(eased*target);if(p<1)requestAnimationFrame(update);}requestAnimationFrame(update);cio.unobserve(el);});},{threshold:.5});document.querySelectorAll('.sh-counter').forEach(c=>cio.observe(c));})();
-(function(){function activateTab(btn){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));btn.classList.add('active');const pane=document.getElementById('tab-'+btn.dataset.tab);if(!pane)return;pane.classList.add('active');pane.querySelectorAll('.jf-step').forEach((s,i)=>{s.classList.remove('jf-in');setTimeout(()=>s.classList.add('jf-in'),i*80);});const beam=pane.querySelector('.jf-beam');if(beam){beam.style.width='0%';setTimeout(()=>{beam.style.transition='width 1.6s ease';beam.style.width='100%';},200);setTimeout(()=>{beam.style.transition='none';},2000);}}
-document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn)));
-const fp=document.querySelector('.tab-pane.active');if(fp){fp.querySelectorAll('.jf-step').forEach((s,i)=>setTimeout(()=>s.classList.add('jf-in'),600+i*80));const b=fp.querySelector('.jf-beam');if(b){setTimeout(()=>{b.style.transition='width 1.6s ease';b.style.width='100%';},800);}}
-const jio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const p=document.querySelector('.tab-pane.active');if(p){p.querySelectorAll('.jf-step').forEach((s,i)=>setTimeout(()=>s.classList.add('jf-in'),i*80));const b=p.querySelector('.jf-beam');if(b){b.style.transition='width 1.6s ease';b.style.width='100%';}}jio.unobserve(e.target);}});},{threshold:.2});
-const js=document.querySelector('.sh-journey');if(js)jio.observe(js);})();
-document.querySelectorAll('.acc-trigger').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.acc-item'),isOpen=item.classList.contains('open');document.querySelectorAll('.acc-item.open').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');});});
-(function(){const timeline=document.getElementById('sdtlTimeline'),spineFill=document.getElementById('sdtlSpineFill'),orb=document.getElementById('sdtlOrb'),steps=document.querySelectorAll('.sdtl-step');if(!timeline||!spineFill)return;function update(){const rect=timeline.getBoundingClientRect(),vh=window.innerHeight,raw=(vh*.65-rect.top)/(rect.height+vh*.05);spineFill.style.height=(Math.max(0,Math.min(1,raw))*100)+'%';if(orb){const sp=scrollY/Math.max(1,document.body.scrollHeight-vh);orb.style.transform=`rotateY(${(sp*720).toFixed(2)}deg) rotateX(${(sp*300).toFixed(2)}deg)`;}}let raf;window.addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{update();raf=null;})},{passive:true});const stepIO=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active');});},{threshold:.3,rootMargin:'0px 0px -10% 0px'});steps.forEach(s=>stepIO.observe(s));})();
-gsap.to('.jp-img',{yPercent:15,ease:'none',scrollTrigger:{trigger:'.sh-journey',start:'top bottom',end:'bottom top',scrub:1}});
-(function(){function splitChars(el){el.classList.add('fancy-title');let ci=0;function proc(node){if(node.nodeType===3){const frag=document.createDocumentFragment();for(const c of node.textContent){const s=document.createElement('span');if(c===' '){s.className='ch sp';s.innerHTML='&nbsp;';}else{s.className='ch';s.style.setProperty('--ci',ci++);s.textContent=c;}frag.appendChild(s);}node.parentNode.replaceChild(frag,node);}else if(node.nodeType===1&&node.tagName!=='BR')Array.from(node.childNodes).forEach(proc);}Array.from(el.childNodes).forEach(proc);}document.querySelectorAll('.sec-title').forEach(splitChars);})();
-
-
-/* ══ JOURNEY — PARALLAX cabinet.jpeg + BEAM 1→6 + 3D GLASS HOVER ══ */
-(function(){
-  const section = document.getElementById('parcours');
-  if(!section) return;
-  const jpImg = document.getElementById('jpImg');
-
-  /* ── Parallax : image bouge en sens inverse du scroll ±100px ── */
-  function updateParallax(){
-    if(!jpImg) return;
-    const rect   = section.getBoundingClientRect();
-    const vh     = window.innerHeight;
-    const midSec = rect.top + rect.height * .5;
-    const span   = vh * .5 + rect.height * .5;
-    const delta  = (midSec - vh * .5) / span;       /* -1 → +1 */
-    jpImg.style.transform = `translateY(${(delta * 200).toFixed(2)}px)`;
-  }
-
-  /* ── Interpolation JAUNE → VERT WhatsApp selon index step ──
-     Yellow  #FFD700 = rgb(255,215,  0)
-     WA Green #25D366 = rgb( 37,211,102)
-     Passage par un intermédiaire sombre pour l'effet "go dark"
-     Point intermédiaire (t=.5) : #128C7E = rgb(18,140,126)            */
-  function stepColor(i, N){
-    const t = N <= 1 ? 0 : i / (N - 1);   /* 0 = step1, 1 = step6 */
-    let r, g, b;
-    if(t <= .5){
-      /* jaune → sombre (#128C7E) */
-      const u = t * 2;
-      r = Math.round(255 + (18  - 255) * u);
-      g = Math.round(215 + (140 - 215) * u);
-      b = Math.round(0   + (126 - 0)   * u);
-    } else {
-      /* sombre → WhatsApp vert */
-      const u = (t - .5) * 2;
-      r = Math.round(18  + (37  - 18)  * u);
-      g = Math.round(140 + (211 - 140) * u);
-      b = Math.round(126 + (102 - 126) * u);
-    }
-    return { solid:`rgb(${r},${g},${b})`, glow:`rgba(${r},${g},${b},.62)` };
-  }
-
-  /* ── Beam 1→6 — UNE SEULE FOIS, scroll-driven ── */
-  function updateSteps(){
-    const rect     = section.getBoundingClientRect();
-    const vh       = window.innerHeight;
-    const scrolled = vh - rect.top;
-    const dist     = rect.height * .55;
-    const pct      = Math.max(0, Math.min(1, scrolled / dist));
-
-    const activePane = section.querySelector('.tab-pane.active');
-    if(!activePane) return;
-    const beam  = activePane.querySelector('.jf-beam');
-    const steps = Array.from(activePane.querySelectorAll('.jf-step'));
-    const N     = steps.length;
-
-    /* Beam width + dot voyageur qui suit le même trajet jaune→sombre→vert */
-    if(beam){
-      beam.style.width = (pct * 100).toFixed(2) + '%';
-      beam.classList.toggle('done', pct >= 1);
-      /* Couleur dot = même interpolation 2 temps que stepColor */
-      let dr, dg, db;
-      if(pct <= .5){
-        const u = pct * 2;
-        dr = Math.round(255 + (18  - 255) * u);
-        dg = Math.round(215 + (140 - 215) * u);
-        db = Math.round(0   + (126 - 0)   * u);
-      } else {
-        const u = (pct - .5) * 2;
-        dr = Math.round(18  + (37  - 18)  * u);
-        dg = Math.round(140 + (211 - 140) * u);
-        db = Math.round(126 + (102 - 126) * u);
-      }
-      beam.style.setProperty('--dot-color', `rgb(${dr},${dg},${db})`);
-      beam.style.setProperty('--dot-glow',  `rgba(${dr},${dg},${db},.72)`);
-    }
-
-    steps.forEach((step, i) => {
-      const isLit  = pct >= i / N;
-      const isDone = pct >= (i + 1) / N;
-      if(pct > 0) step.classList.add('jf-in');
-      step.classList.toggle('jf-done',   isDone);
-      step.classList.toggle('jf-active', isLit && !isDone);
-
-      /* Injecte la couleur interpolée sur chaque step lit/done */
-      if(isLit){
-        const { solid, glow } = stepColor(i, N);
-        step.style.setProperty('--sc',  solid);
-        step.style.setProperty('--scg', glow);
-      } else {
-        step.style.removeProperty('--sc');
-        step.style.removeProperty('--scg');
-      }
-    });
-  }
-
-  /* ── Scroll listener ── */
-  let raf = null;
-  function tick(){ updateParallax(); updateSteps(); raf = null; }
-  window.addEventListener('scroll', () => { if(!raf) raf = requestAnimationFrame(tick); }, {passive:true});
-  window.addEventListener('resize', () => { if(!raf) raf = requestAnimationFrame(tick); }, {passive:true});
-
-  /* ── Reveal initial en cascade ── */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(!e.isIntersecting) return;
-      e.target.querySelectorAll('.jf-step').forEach((s, i) => setTimeout(() => s.classList.add('jf-in'), i * 110));
-      io.unobserve(e.target);
-    });
-  }, {threshold: .06});
-  const firstFlow = section.querySelector('.tab-pane.active .journey-flow');
-  if(firstFlow) io.observe(firstFlow);
-
-  /* ── 3D Glass Tilt au hover ── */
-  function attachTilt(flow){
-    flow.querySelectorAll('.jf-step').forEach(step => {
-      let on = false;
-      step.addEventListener('mouseenter', () => {
-        on = true;
-        step.style.transition = 'background .25s,border-color .25s,box-shadow .25s,transform .06s linear';
-      });
-      step.addEventListener('mousemove', e => {
-        if(!on) return;
-        const r  = step.getBoundingClientRect();
-        const dx = ((e.clientX - r.left) / r.width  - .5) * 2;
-        const dy = ((e.clientY - r.top)  / r.height - .5) * 2;
-        step.style.transform = `perspective(360px) rotateX(${(-dy*8).toFixed(1)}deg) rotateY(${(dx*10).toFixed(1)}deg) translateZ(18px) scale(1.05)`;
-      });
-      step.addEventListener('mouseleave', () => {
-        on = false;
-        step.style.transition = 'opacity .55s ease,transform .5s cubic-bezier(.34,1.46,.64,1),background .35s,border-color .35s,box-shadow .35s';
-        step.style.transform = 'perspective(600px) rotateX(0) translateY(0)';
-      });
-    });
-  }
-  section.querySelectorAll('.journey-flow').forEach(attachTilt);
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => requestAnimationFrame(() => {
-      const f = section.querySelector('.tab-pane.active .journey-flow');
-      if(f){ attachTilt(f); updateSteps(); }
-    }));
-  });
-
-  updateParallax();
-  updateSteps();
-})();
-</script>
+<script src="<?php echo $siteURL; ?>assets/js/secteur.js"></script>

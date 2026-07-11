@@ -49,12 +49,13 @@ function addPage($data)
 
         if (!$db->query($insertSQL)) {
             $id_page = $db->last_id();
-            $insertSQL = sprintf("INSERT INTO " . __prefixe_db__ . "details_page (id_page, seo_titre, seo_description, titre, url, texte, externe, langue, extrait) VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s)",
+            $insertSQL = sprintf("INSERT INTO " . __prefixe_db__ . "details_page (id_page, seo_titre, seo_description, titre, h1, url, texte, externe, langue, extrait) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s)",
 
                 GetSQLValueString($id_page, "int"),
                 GetSQLValueString($data['seo_titre'], "text"),
                 GetSQLValueString($data['seo_description'], "text"),
                 GetSQLValueString($data['titre'], "text"),
+                GetSQLValueString(isset($data['h1']) ? $data['h1'] : '', "text"),
                 GetSQLValueString($data['url'], "text"),
                 GetSQLValueString($data['texte'], "text"),
                 GetSQLValueString($data['externe'], "text"),
@@ -160,6 +161,12 @@ function getPageTranslation($data)
                             <div class="iconed-input"><input type="text" name="titre"
                                                              value="<?php if (isset($p)) echo stripslashes($p->getTitre()); ?>"
                                                              required class="form-control"/></div>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label>H1</label>
+                            <div class="iconed-input"><input type="text" name="h1"
+                                                             value="<?php if (isset($p)) echo stripslashes($p->getH1()); ?>"
+                                                             class="form-control"/></div>
                         </div>
                         <div class="col-md-3 form-group">
                             <label>URL</label>
@@ -329,12 +336,13 @@ function editPage($data)
             $result = $db->query($SQLselect);
             // ajout d'une nouvelle traduction
             if ($db->num_rows($result) == 0) {
-                $SQLupdate = sprintf("INSERT INTO " . __prefixe_db__ . "details_page (id_page, seo_titre, seo_description, titre, url,  texte, externe, langue, extrait) VALUES (%s, %s, %s, %s,%s, %s, %s, %s, %s)",
+                $SQLupdate = sprintf("INSERT INTO " . __prefixe_db__ . "details_page (id_page, seo_titre, seo_description, titre, h1, url,  texte, externe, langue, extrait) VALUES (%s, %s, %s, %s, %s,%s, %s, %s, %s, %s)",
 
                     GetSQLValueString($data['id'], "int"),
                     GetSQLValueString($data['seo_titre'], "text"),
                     GetSQLValueString($data['seo_description'], "text"),
                     GetSQLValueString($data['titre'], "text"),
+                    GetSQLValueString(isset($data['h1']) ? $data['h1'] : '', "text"),
                     GetSQLValueString($data['url'], "text"),
                     GetSQLValueString($data['texte'], "text"),
                     GetSQLValueString($data['externe'], "text"),
@@ -342,11 +350,12 @@ function editPage($data)
                     GetSQLValuestring($data['extrait'], "text"));
             } // modification de la table détails
             else {
-                $SQLupdate = sprintf("UPDATE " . __prefixe_db__ . "details_page SET seo_titre=%s, seo_description=%s, titre=%s, url=%s, texte=%s, externe=%s , extrait=%s WHERE id_page=%s AND langue=%s ",
+                $SQLupdate = sprintf("UPDATE " . __prefixe_db__ . "details_page SET seo_titre=%s, seo_description=%s, titre=%s, h1=%s, url=%s, texte=%s, externe=%s , extrait=%s WHERE id_page=%s AND langue=%s ",
 
                     GetSQLValueString($data['seo_titre'], "text"),
                     GetSQLValueString($data['seo_description'], "text"),
                     GetSQLValueString($data['titre'], "text"),
+                    GetSQLValueString(isset($data['h1']) ? $data['h1'] : '', "text"),
                     GetSQLValueString($data['url'], "text"),
                     GetSQLValueString($data['texte'], "text"),
                     GetSQLValueString($data['externe'], "text"),

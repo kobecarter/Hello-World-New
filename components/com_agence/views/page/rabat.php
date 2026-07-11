@@ -79,15 +79,91 @@
           <div class="sh-fcard-lbl">Projets livrés</div>
         </div>
         <div class="sh-fcard fc3">
-          <div class="sh-fcard-val">+12ans</div>
+          <div class="sh-fcard-val">+16ans</div>
           <div class="sh-fcard-lbl">D'expertise créative</div>
         </div>
         <div class="sh-fcard fc4">
-          <div class="sh-fcard-val">3 Pays</div>
+          <div class="sh-fcard-val">10 Pays</div>
           <div class="sh-fcard-lbl">Studios créatifs</div>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+<section class="why-agence page-template">
+        <div class="container my-4 why-choose-section">
+        <div class="row">
+            <div class="col-sm-12">
+              <h2 class="sec-label rv">Pourquoi choisir <br><em>Hello World Agency à Rabat ?</em></h2>
+              <p class="why-agence-p mb-4">Choisir la bonne <b>agence de communication digitale à Rabat</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous combinons expertise locale, approche sur-mesure et résultats concrets pour accompagner votre croissance digitale. Voici trois raisons de nous faire confiance :</p>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-4 p-0">
+          <div class="item-process">
+          <div class="imgbox"><img alt="Agence Marketing Digital Rabat" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="Agence communication Rabat" src="<?php echo $siteURL; ?>images/inspiration2.png" /></span>
+          
+          <h3>Expertise locale</h3>
+          
+          <p>
+              Nous connaissons parfaitement le marché, les comportements des consommateurs et les spécificités digitales de la région. Nos stratégies prennent en compte les tendances locales et les particularités du marché rabati, garantissant des campagnes pertinentes et efficaces.
+          </p>
+          </div>
+          </div>
+          
+          <div class="col-sm-4 p-0">
+          <div class="item-process active">
+          <div class="imgbox"><img alt="Agence communication Rabat" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="Agence communication Rabat" src="<?php echo $siteURL; ?>images/expertise1.png" /></span>
+          
+          <h3>Stratégies personnalisées</h3>
+          
+          <p>
+              Chaque entreprise est unique. Nous créons des <b>stratégies personnalisées en SEO</b>, <b>gestion des réseaux sociaux, publicité digitale et marketing de contenu</b>, adaptées à vos objectifs et à votre audience locale. Notre approche permet de renforcer votre visibilité et votre notoriété à Rabat et au-delà.
+          </p>
+          </div>
+          </div>
+          
+          <div class="col-sm-4 p-0">
+          <div class="item-process">
+          <div class="imgbox"><img alt="Agence marketing Rabat" src="<?php echo $siteURL; ?>images/main.webp" /></div>
+          <span class="num"><img alt="Agence marketing Rabat" src="<?php echo $siteURL; ?>images/support3.png" /></span>
+          
+          <h3>Accompagnement orienté résultats</h3>
+          
+          <p>Notre priorité est de transformer vos investissements digitaux en visibilité, engagement et conversions. Nous suivons vos performances en temps réel et ajustons nos actions pour maximiser votre retour sur investissement et atteindre vos objectifs commerciaux.</p>
+          </div>
+          </div>
+          </div>
+      </div>
+
+    </section>
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="sec-label rv">Notre expertise</div>
+        <h2 class="sec-title rv d1">Ce que nous <em>construisons</em></h2>
+      </div>
+    </div>
+    <div class="svc-grid rv d1" id="svcGrid3d">
+      <?php $icones = array('fal fa-desktop','fal fa-robot','fal fa-wand-magic','fal fa-phone-laptop','fal fa-search','fal fa-pencil-paintbrush'); ?>
+      <?php $cpt = 0; ?>
+      <?php foreach($services as $service): ?>
+      <div class="svc-card">
+        <div class="svc-card-border"></div>
+        <a href="<?php echo $service->getLink(); ?>">
+        <div class="svc-num">0<?php echo $cpt+1; ?></div>
+        <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
+        <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
+        <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
+        <span class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></span>
+        </a>
+      </div>
+      <?php $cpt++; ?>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>

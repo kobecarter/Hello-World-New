@@ -39,6 +39,11 @@ class reference
         return $this->nom_client;
     }
 
+    public function getTitre()
+    {
+        return $this->nom_client;
+    }
+
     public function getSecteur()
     {
         return $this->secteur;

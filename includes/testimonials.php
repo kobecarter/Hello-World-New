@@ -33,6 +33,15 @@
             </div>
           <?php endforeach; ?>
           </div>
+          
+          <?php if(isset($_GET['option']) && $_GET['option'] == 'com_service'): ?>
+          <div class="text-center mt-5">  
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Rejoignez plus de 1000 clients satisfaits</span></div>
+              <div class="sb-knob"><i class="fal fa-trophy"></i></div> 
+            </a>
+          </div>
+          <?php endif; ?>  
     </div>
   </div>
 </section>

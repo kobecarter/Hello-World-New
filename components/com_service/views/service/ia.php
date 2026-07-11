@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="wm-hero-side rv d3 wm-hero-side-banner">
-        <img src="<?php echo $siteURL; ?>images/services/<?php echo $service->getPhotoBanniere() ?>" alt="">
+        <img src="<?php echo $siteURL; ?>images/services/<?php echo $service->getPhotoHero() ?>" alt="<?php echo $service->getTitre() ?>">
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@
   <div class="container">
     <div class="sect-exp-hdr">
       <div class="sec-label">Solutions par secteur</div>
-      <h2 class="sec-title rv">7 secteurs,<br>des agents <em>sur mesure</em></h2>
+      <h2 class="sec-title rv">Agents IA par <em>usage</em></h2>
       <p class="sect-exp-sub rv d1">Chaque agent est entraîné sur les données et contraintes spécifiques de votre secteur. Cliquez pour explorer.</p>
     </div>
   </div>

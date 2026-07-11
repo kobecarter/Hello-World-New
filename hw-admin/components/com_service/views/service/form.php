@@ -174,6 +174,24 @@
                 </div>
             <?php } ?>
 
+            <div class="col-md-3 form-group">
+                <label>
+                    <?php
+                        if(isset($trad_com_service['PHOTO_HERO'][$_SESSION['user']->getLangue()]))
+                            echo $trad_com_service['PHOTO_HERO'][$_SESSION['user']->getLangue()];
+                        else
+                            echo "Photo hero";
+                    ?>
+                </label>
+                <input type="file" name="photo_hero[]" class="form-control" />
+            </div>
+
+            <?php if(isset($service) && $service->getPhotoHero()) { ?>
+                <div class="col-md-3 form-group">
+                    <img src="../images/services/<?= $service->getPhotoHero(); ?>" height="60" />
+                </div>
+            <?php } ?>
+
             <div class="col-md-6 form-group">
                 <label>
                     <?php

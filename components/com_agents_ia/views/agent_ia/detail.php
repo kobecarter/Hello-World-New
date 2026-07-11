@@ -32,7 +32,7 @@ $agentTexte = str_replace(
         <div class="wm-hero-inner">
             <div>
                 <div class="wm-hero-label"><?= $agent_ia->getTitre(); ?></div>
-                <h1 class="sh-h1"><?= $agent_ia->getSousTitre() ? $agent_ia->getSousTitre() : $agent_ia->getTitre(); ?></h1>
+                <h1 class="sh-h1"><?php echo !empty($agent_ia->getH1()) ? $agent_ia->getH1() : $agent_ia->getTitre(); ?></h1>
                 <p class="wm-hero-sub rv d1"><?= strip_tags($agent_ia->getExtrait()); ?></p>
                 <div class="wm-hero-ctas rv d2">
                     <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
@@ -59,7 +59,7 @@ $agentTexte = str_replace(
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>"><i class="fa fa-home"></i> Accueil</a></li>
+                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>"><i class="fal fa-home"></i> Accueil</a></li>
                 <li class="breadcrumb-item"><a href="<?= $siteURL; ?>index.php?option=com_agents_ia">Solutions IA</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?= $agent_ia->getTitre(); ?></li>
             </ol>
@@ -173,11 +173,6 @@ $agentTexte = str_replace(
 </section>
 <?php endif; ?>
 
-<!-- ===== TÉMOIGNAGES ===== -->
-<?php if (!empty($testimonials)): ?>
-<?php include('includes/testimonials.php'); ?>
-<?php endif; ?>
-
 <!-- ===== TECHNOLOGIES ===== -->
 <?php if (!empty($tools)): ?>
 <section class="trust" id="trust">
@@ -206,6 +201,12 @@ $agentTexte = str_replace(
         </div>
     </div>
 </section>
+<?php endif; ?>
+
+
+<!-- ===== TÉMOIGNAGES ===== -->
+<?php if (!empty($testimonials)): ?>
+<?php include('includes/testimonials.php'); ?>
 <?php endif; ?>
 
 <!-- ===== PARTENAIRES ===== -->

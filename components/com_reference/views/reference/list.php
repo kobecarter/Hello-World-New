@@ -1,32 +1,3 @@
-<style>
-
-/* GRID — 3-col masonry inspiré DUOMO */
-.rl-section{padding:4rem 0 0;background:var(--bg)}
-.rl-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:300px;gap:10px;margin-top:0}
-@media(min-width:1024px){
-  /* Col 1: Orbital (tall) + Nomad (tall) */
-  .rl-card:nth-child(1){grid-column:1;grid-row:1/3}
-  /* Col 2: Maison (short) + Pulse (short) + EduStream (short) + Studio (short) */
-  .rl-card:nth-child(2){grid-column:2;grid-row:1}
-  /* Col 3: GreenPath (tall) + CargoBrain (tall) */
-  .rl-card:nth-child(3){grid-column:3;grid-row:1/3}
-  .rl-card:nth-child(4){grid-column:2;grid-row:2}
-
-  .rl-card:nth-child(5){grid-column:1;grid-row:3/5}
-  .rl-card:nth-child(6){grid-column:2;grid-row:3}
-  .rl-card:nth-child(7){grid-column:3;grid-row:3/5}
-  .rl-card:nth-child(8){grid-column:2;grid-row:4}
-
-  .rl-card:nth-child(9){grid-column:1;grid-row:5/7}
-  .rl-card:nth-child(10){grid-column:2;grid-row:5}
-  .rl-card:nth-child(11){grid-column:3;grid-row:5/7}
-  .rl-card:nth-child(12){grid-column:2;grid-row:6}
-
-}
-@media(min-width:640px) and (max-width:1023px){.rl-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:280px}}
-@media(max-width:639px){.rl-grid{grid-template-columns:1fr;grid-auto-rows:260px}}
-
-</style>
 
 <!-- HERO -->
 <section class="wm-hero">
@@ -43,7 +14,7 @@
     <div class="wm-hero-inner">
       <div>
         <div class="sh-breadcrumb rv"><?php echo $page->getTitre() ?></div>
-        <h1 class="sh-h1 rv d1">Des projets <em>concrets</em>, visibles, performants</h1>
+        <h1 class="sh-h1 rv d1"><?php echo !empty($page->getH1()) ? $page->getH1() : $page->getTitre(); ?></h1>
         <p class="sh-sub rv d2"><?php echo strip_tags($page->getExtrait()); ?></p>
 
         <div class="wm-hero-ctas rv d2">
@@ -108,15 +79,15 @@
     <!-- STATS STRIP -->
     <div class="rl-strip rv">
       <div class="rl-strip-item">
-        <div class="rl-strip-val">120<span>+</span></div>
+        <div class="rl-strip-val">900<span>+</span></div>
         <div class="rl-strip-lbl">Projets livrés</div>
       </div>
       <div class="rl-strip-item">
-        <div class="rl-strip-val">12<span>ans</span></div>
+        <div class="rl-strip-val">16<span>ans</span></div>
         <div class="rl-strip-lbl">D'expertise</div>
       </div>
       <div class="rl-strip-item">
-        <div class="rl-strip-val">3<span> villes</span></div>
+        <div class="rl-strip-val">10<span> villes</span></div>
         <div class="rl-strip-lbl">Studios actifs</div>
       </div>
       <div class="rl-strip-item">
@@ -139,15 +110,10 @@
           <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
         </a>
     
-        <a href="#" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Lire nos insights" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageBlog->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Lire nos insights" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Lire nos insights</span></div>
           <div class="sb-knob"><i class="fal fa-eye"></i></div> 
         </a>
-        
-        
-        
-      <!-- <a href="<?php echo $pageContact->getLink(); ?>" class="btn-hw"><span>Démarrer un projet</span> <i class="fa fa-arrow-right fa-xs"></i></a>
-      <a href="#" class="btn-hw btn-ghost"><span>Lire nos insights</span></a> -->
     </div>
   </div>
 </section>

@@ -200,6 +200,7 @@ function buildSecteur($data, $id = null)
     $secteur->setService(service::find($data['id_service'],$_SESSION['langue']));
     $secteur->setActive(isset($data['active']) ? 1 : 0);
     $secteur->setTitre($data['titre']);
+    $secteur->setH1(isset($data['h1']) ? $data['h1'] : '');
     $secteur->setSlug($data['slug']);
     $secteur->setSousTitre($data['sous_titre']);
     $secteur->setExtrait($data['extrait']);
