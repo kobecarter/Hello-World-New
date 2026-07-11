@@ -482,11 +482,11 @@ img,video{display:block;max-width:100%}
   <div class="container">
     <div class="services-header">
       <div>
-        <div class="sec-label rv">Notre expertise</div>
-        <h2 class="sec-title rv d1">Ce que nous <em>construisons</em></h2>
+        <div class="sec-label">Notre expertise</div>
+        <h2 class="sec-title">Ce que nous <em>construisons</em></h2>
       </div>
     </div>
-    <div class="svc-grid rv d1" id="svcGrid3d">
+    <div class="svc-grid" id="svcGrid3d">
       <?php $icones = array('fal fa-desktop','fal fa-robot','fal fa-wand-magic','fal fa-phone-laptop','fal fa-search','fal fa-pencil-paintbrush'); ?>
       <?php $cpt = 0; ?>
       <?php foreach($services as $service): ?>
@@ -504,33 +504,6 @@ img,video{display:block;max-width:100%}
     </div>
   </div>
 </section>
-
-<script>
-(function(){
-  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var cards = document.querySelectorAll('#svcGrid3d .svc-card');
-  if(rm || !cards.length) return;
-
-  cards.forEach(function(card){
-    card.addEventListener('mousemove', function(e){
-      var r = card.getBoundingClientRect();
-      var x = e.clientX - r.left, y = e.clientY - r.top;
-      var px = x / r.width, py = y / r.height;
-      card.style.setProperty('--mx', (px * 100) + '%');
-      card.style.setProperty('--my', (py * 100) + '%');
-      var rx = (py - .5) * -10;
-      var ry = (px - .5) * 10;
-      card.style.transition = 'box-shadow .45s cubic-bezier(0.23,1,0.32,1),border-color .45s';
-      card.style.transform = 'perspective(1400px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px) scale(1.015)';
-    });
-
-    card.addEventListener('mouseleave', function(){
-      card.style.transition = 'transform .55s cubic-bezier(0.23,1,0.32,1),box-shadow .45s,border-color .45s';
-      card.style.transform = '';
-    });
-  });
-})();
-</script>
 
 <!-- ══ POURQUOI NOUS CHOISIR ════════════════════════════════════
      Desktop: title + bullets overlaid on left white zone of image.
@@ -1256,8 +1229,11 @@ ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
    touch devices this replaces native scrolling with a transform-based
    proxy that breaks position:fixed elements (burger menu, header) and
    can leave the page stuck once you scroll past the hero, so it must
-   stay desktop-only.                                                  */
-if (!window.matchMedia('(pointer:coarse)').matches) {
+   stay desktop-only. pointer:coarse alone has been unreliable across
+   some phone/browser combinations, so this also requires a desktop-
+   width viewport before enabling it -- belt and suspenders, since a
+   false positive here means the whole page can freeze on scroll. */
+if (!window.matchMedia('(pointer:coarse)').matches && window.innerWidth > 900) {
   ScrollTrigger.normalizeScroll(true);
 }
 
@@ -1358,7 +1334,12 @@ const toArr = gsap.utils.toArray;
   setContent(services[0]);
   gsap.set(textEls, { opacity:1, y:0 });
 
-  const isMobile = window.matchMedia('(pointer:coarse)').matches;
+  // pointer:coarse alone has been unreliable across some phone/browser
+  // combinations; a false negative here means the full desktop pin+scrub
+  // (a ~3800px scroll-jacked range) runs on a phone instead of being
+  // skipped, which can make scrolling feel completely frozen. A narrow
+  // viewport is treated as mobile too, independently of pointer type.
+  const isMobile = window.matchMedia('(pointer:coarse)').matches || window.innerWidth <= 900;
 
   if (isMobile) {
     /* ── Mobile / iOS Safari fix ───────────────────────────────────
