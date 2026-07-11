@@ -65,16 +65,7 @@
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" defer></script>
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.3">
-<style>
-
-.glass-mega{
-  -webkit-backdrop-filter: blur(26px) saturate(155%);
-  backdrop-filter: blur(26px) saturate(155%);
-}
-
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.5">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.6">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -579,7 +570,6 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
 /* HERO CANVAS — flowing wave terrain */
 (function() {
   const canvas = document.getElementById('hero-canvas');
-  if (!canvas) return;
   if (!canvas) return; /* not every page template has this canvas — must not block the rest of the script (fancy-title split, etc.) */
   const ctx = canvas.getContext('2d');
   let W, H, t = 0;
