@@ -58,13 +58,13 @@ background:transparent;
 gap:2rem;
 transition:background .4s,padding .4s,border-color .4s;
 border-bottom:1px solid transparent}
-/* No background/backdrop-filter here by design: the mobile drawer
+/* No background/border/backdrop-filter here by design: the mobile drawer
    (.mm-drawer, z-index 910) sits fixed and full-viewport directly above this
    fixed header (z-index 800) with its own backdrop-filter blur(30px), and
    stacking a second backdrop-filter/opaque layer under it caused rendering
    bugs on iOS Safari. Header stays fully transparent at all scroll
-   positions; only padding/border change on scroll. */
-header.scrolled{padding:1rem 3.5rem;border-bottom:1px solid var(--border)}
+   positions; only padding changes on scroll. */
+header.scrolled{padding:1rem 3.5rem}
 .logo-hw{display:flex;align-items:center}
 .logo-hw img{height:62px;width:auto;display:block}
 .hdr-nav{display:flex;align-items:center;gap:1.4rem}
