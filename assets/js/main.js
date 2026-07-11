@@ -56,7 +56,8 @@ $(document).ready(function() {
       	smartSpeed: 1000,
       	responsive: {
 			0: {
-			items: 1
+			items: 1,
+			autoplay: false
 			},
 			600: {
 			items: 2
