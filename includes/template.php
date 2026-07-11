@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.7">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=6.2">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
