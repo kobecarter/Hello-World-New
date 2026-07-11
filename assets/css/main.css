@@ -58,6 +58,7 @@ background:transparent;
 gap:2rem;
 transition:background .4s,padding .4s,border-color .4s;
 border-bottom:1px solid transparent}
+header.scrolled{background:rgba(247,245,242,.94);backdrop-filter:blur(12px);padding:1rem 3.5rem;border-bottom:1px solid var(--border)}
 .logo-hw{display:flex;align-items:center}
 .logo-hw img{height:62px;width:auto;display:block}
 .hdr-nav{display:flex;align-items:center;gap:1.4rem}
