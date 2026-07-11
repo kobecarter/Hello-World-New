@@ -476,8 +476,11 @@ window.addEventListener('scroll', () => {
   const burger = document.getElementById('mmBurger');
   const drawer = document.getElementById('mmDrawer');
   const closeBtn = document.getElementById('mmClose');
-  function openDrawer() { drawer.classList.add('mm-open'); burger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; }
-  function closeDrawer() { drawer.classList.remove('mm-open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+  // Locking overflow on body alone does nothing here: neither html nor body
+  // sets overflow-y, so <html> is the actual scrolling element by default.
+  // Both must be locked or the page keeps scrolling behind the "open" drawer.
+  function openDrawer() { drawer.classList.add('mm-open'); burger.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { drawer.classList.remove('mm-open'); burger.setAttribute('aria-expanded', 'false'); document.documentElement.style.overflow = ''; document.body.style.overflow = ''; }
   burger && burger.addEventListener('click', openDrawer);
   closeBtn && closeBtn.addEventListener('click', closeDrawer);
   drawer && drawer.addEventListener('click', e => { if (e.target === drawer) closeDrawer(); });
