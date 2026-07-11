@@ -1441,16 +1441,19 @@ const toArr = gsap.utils.toArray;
 
 })();
 
-/* ══ PROGRESS BAR ════════════════════════════════════════════ */
+/* ══ PROGRESS BAR ════════════════════════════════════════════
+   #prog has no markup in the current template (left over from an
+   earlier header design) -- guard so scroll doesn't throw on every
+   tick until/unless the bar element is reintroduced.              */
 const prog = document.getElementById('prog');
-window.addEventListener('scroll', () => {
+if (prog) window.addEventListener('scroll', () => {
   prog.style.transform = `scaleX(${scrollY / (document.body.scrollHeight - innerHeight)})`;
 }, { passive:true });
 
 /* ══ HEADER SCROLLED STATE ══════════════════════════════════ */
 ScrollTrigger.create({
   start:'top -60', end:99999,
-  toggleClass:{ targets:'#hdr', className:'scrolled' }
+  toggleClass:{ targets:'#navshell', className:'scrolled' }
 });
 
 /* ══ POURQUOI — Scroll entrance ══════════════════════════════ */
