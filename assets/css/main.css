@@ -58,14 +58,13 @@ background:transparent;
 gap:2rem;
 transition:background .4s,padding .4s,border-color .4s;
 border-bottom:1px solid transparent}
-/* No backdrop-filter here: the mobile drawer (.mm-drawer, z-index 910) sits
-   fixed and full-viewport directly above this fixed header (z-index 800) with
-   its own backdrop-filter blur(30px). Stacked/nested backdrop-filter is a
-   known source of severe rendering bugs on iOS Safari (content going
-   transparent, GPU compositing glitches) that don't reproduce in desktop
-   browsers or emulators. The background is already opaque enough (94%) to
-   read fine without blur. */
-header.scrolled{background:rgba(247,245,242,.94);padding:1rem 3.5rem;border-bottom:1px solid var(--border)}
+/* No background/backdrop-filter here by design: the mobile drawer
+   (.mm-drawer, z-index 910) sits fixed and full-viewport directly above this
+   fixed header (z-index 800) with its own backdrop-filter blur(30px), and
+   stacking a second backdrop-filter/opaque layer under it caused rendering
+   bugs on iOS Safari. Header stays fully transparent at all scroll
+   positions; only padding/border change on scroll. */
+header.scrolled{padding:1rem 3.5rem;border-bottom:1px solid var(--border)}
 .logo-hw{display:flex;align-items:center}
 .logo-hw img{height:62px;width:auto;display:block}
 .hdr-nav{display:flex;align-items:center;gap:1.4rem}
