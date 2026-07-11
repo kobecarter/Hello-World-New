@@ -45,7 +45,7 @@ $(document).ready(function() {
     });
     
     $("#owl-core-services").owlCarousel({
-	    lazyLoad: true,
+	    lazyLoad: false,
       	loop: true,
       	nav: true,
 	  	navText : ['<i class="fa fa-arrow-left"></i>','<i class="fa fa-arrow-right"></i>'],

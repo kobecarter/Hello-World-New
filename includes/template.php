@@ -476,10 +476,21 @@ window.addEventListener('scroll', () => {
   const burger = document.getElementById('mmBurger');
   const drawer = document.getElementById('mmDrawer');
   const closeBtn = document.getElementById('mmClose');
+  // The drawer's ~50 thumbnails use data-src instead of src: the drawer is
+  // position:fixed;inset:0 even while closed (just opacity:0/visibility:hidden),
+  // so native loading="lazy" doesn't defer them -- the browser still counts
+  // them as in-viewport and fetches all of them on page load. Only swap in
+  // the real src once the drawer is actually opened.
+  function loadDrawerImages() {
+    drawer.querySelectorAll('.mm-acc-thumb[data-src]').forEach(img => {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    });
+  }
   // Locking overflow on body alone does nothing here: neither html nor body
   // sets overflow-y, so <html> is the actual scrolling element by default.
   // Both must be locked or the page keeps scrolling behind the "open" drawer.
-  function openDrawer() { drawer.classList.add('mm-open'); burger.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden'; }
+  function openDrawer() { drawer.classList.add('mm-open'); burger.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden'; loadDrawerImages(); }
   function closeDrawer() { drawer.classList.remove('mm-open'); burger.setAttribute('aria-expanded', 'false'); document.documentElement.style.overflow = ''; document.body.style.overflow = ''; }
   burger && burger.addEventListener('click', openDrawer);
   closeBtn && closeBtn.addEventListener('click', closeDrawer);
@@ -515,20 +526,23 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
 /* Safety net: a very fast fling can in theory move the page more than
    one viewport + rootMargin between two compositor frames, so an
-   element's intersecting state is never sampled. Catch anything left
-   behind (already above the viewport, i.e. scrolled past) and reveal
-   it immediately — content must never stay stuck blank.             */
+   element's intersecting state is never sampled. This must catch BOTH
+   an element already scrolled past (bottom < 0) AND one the user landed
+   on/inside without the observer ever having sampled it mid-flight
+   (top < innerHeight) -- the second case is what leaves a section
+   sitting fully in view but still stuck at opacity:0, which reads as a
+   blank/stuck section even though scrolling itself still works.      */
 let rvSafetyTimer;
 window.addEventListener('scroll', () => {
   clearTimeout(rvSafetyTimer);
   rvSafetyTimer = setTimeout(() => {
     document.querySelectorAll('.rv:not(.on)').forEach(el => {
-      if (el.getBoundingClientRect().bottom < 0) {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
         el.classList.add('on');
         io.unobserve(el);
       }
     });
-  }, 200);
+  }, 150);
 }, { passive: true });
 
 /* FOOTER TOP BORDER LINE */
@@ -645,7 +659,10 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
     }
     Array.from(el.childNodes).forEach(proc);
   }
-  document.querySelectorAll('.hero-title, .sec-title, .port-title').forEach(splitChars);
+  document.querySelectorAll('.hero-title, .sec-title, .port-title').forEach(function(el){
+    if (el.closest('#services')) return; /* no hover-wave animation in this section */
+    splitChars(el);
+  });
 })();
 
 /* FAQ ACCORDION */
