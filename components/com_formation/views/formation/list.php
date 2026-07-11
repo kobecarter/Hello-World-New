@@ -775,6 +775,23 @@ $hwflMeta = [
             }
             document.getElementById('hwflCarPrev').addEventListener('click', function () { goTo(current - 1); });
             document.getElementById('hwflCarNext').addEventListener('click', function () { goTo(current + 1); });
+
+            /* swipe gauche/droite au doigt, en plus des boutons */
+            var stage = pinEl.querySelector('.hw-f-carousel-stage') || pinEl;
+            var touchStartX = 0, touchStartY = 0, touching = false;
+            stage.addEventListener('touchstart', function (e) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                touching = true;
+            }, { passive: true });
+            stage.addEventListener('touchend', function (e) {
+                if (!touching) return;
+                touching = false;
+                var dx = e.changedTouches[0].clientX - touchStartX;
+                var dy = e.changedTouches[0].clientY - touchStartY;
+                if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return; /* ignore taps and vertical scroll */
+                goTo(dx < 0 ? current + 1 : current - 1);
+            }, { passive: true });
         }
     })();
 

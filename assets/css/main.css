@@ -4876,7 +4876,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:800;padding:0;display:flex;al
 .hw-f-list-empty p{color:var(--hwfl-txt2);font-size:.88rem;margin:0}
 @media(max-width:760px){
   .hw-f-list-pin{padding:3rem 0 2rem}
-  .hw-f-list-track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem}
+  .hw-f-list-track{width:auto;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;padding-bottom:1rem}
   .hw-f-list-card-3d{width:82vw}
 }
 
