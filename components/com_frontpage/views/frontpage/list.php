@@ -1243,10 +1243,14 @@ img,video{display:block;max-width:100%}
 </section>
 <?php endif; ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
 <script>
+/* deferred: HTML parsing (and image/video downloads) no longer stall on
+   the cdnjs round-trip -- this whole block now runs once all deferred
+   scripts above have loaded, right before DOMContentLoaded fires. */
+document.addEventListener('DOMContentLoaded', function() {
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 /* Prevent iOS address-bar resize from breaking pin geometry */
@@ -1574,4 +1578,5 @@ ScrollTrigger.create({
     });
   });
 })();
+});
 </script>
