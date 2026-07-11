@@ -50,14 +50,13 @@ $(document).ready(function() {
       	nav: true,
 	  	navText : ['<i class="fa fa-arrow-left"></i>','<i class="fa fa-arrow-right"></i>'],
       	dots: true,
-      	autoplay: true,
+      	autoplay: false,
 	  	autoplayHoverPause: true,
       	autoplayTimeout: 3200,
       	smartSpeed: 1000,
       	responsive: {
 			0: {
-			items: 1,
-			autoplay: false
+			items: 1
 			},
 			600: {
 			items: 2

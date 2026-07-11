@@ -336,7 +336,6 @@ img,video{display:block;max-width:100%}
       <!-- Web -->
       <?php $serviceWeb = service::find(38,$_SESSION['lang']); ?>
       <div class="srv-card">
-        <div class="srv-card-border"></div>
         <div class="srv-visual">
           <div class="srv-visual-bg">
               <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceWeb->getPhotoBanniere(); ?>" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
@@ -365,7 +364,6 @@ img,video{display:block;max-width:100%}
       <!-- Mobile -->
       <?php $serviceMobile = service::find(39,$_SESSION['lang']); ?>
       <div class="srv-card">
-        <div class="srv-card-border"></div>
         <div class="srv-visual">
           <div class="srv-visual-bg">
             <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceMobile->getPhoto(); ?>" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
@@ -394,7 +392,6 @@ img,video{display:block;max-width:100%}
       <!-- SaaS -->
       <?php $serviceSaaS = service::find(1,$_SESSION['lang']); ?>
       <div class="srv-card">
-        <div class="srv-card-border"></div>
         <div class="srv-visual">
           <div class="srv-visual-bg">
             <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceSaaS->getPhoto(); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
@@ -423,7 +420,6 @@ img,video{display:block;max-width:100%}
       <!-- AI -->
       <?php $serviceIA = service::find(17,$_SESSION['lang']); ?>
       <div class="srv-card">
-        <div class="srv-card-border"></div>
         <div class="srv-visual">
           <div class="srv-visual-bg">
              <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceIA->getPhoto(); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
@@ -495,7 +491,6 @@ img,video{display:block;max-width:100%}
       <?php $cpt = 0; ?>
       <?php foreach($services as $service): ?>
       <div class="svc-card">
-        <div class="svc-card-border"></div>
         <a href="<?php echo $service->getLink(); ?>">
         <div class="svc-num">0<?php echo $cpt+1; ?></div>
         <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
