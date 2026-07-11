@@ -177,7 +177,7 @@ class menu
             $children = $parentRecord ? $parentRecord->getChildren($lang, true, true) : array();
             foreach ($children as $child) {
                 $img = $siteURL . 'images/services/' . $child->getPhoto();
-                echo '<a href="' . $child->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" loading="lazy" src="' . $img . '" alt=""><b>' . htmlspecialchars($child->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
+                echo '<a href="' . $child->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" data-src="' . $img . '" alt=""><b>' . htmlspecialchars($child->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
             }
         } elseif (in_array($auto, array('formation', 'agent_ia', 'secteur'))) {
             $records = array();
@@ -195,7 +195,7 @@ class menu
             foreach ($records as $rec) {
                 $photo = method_exists($rec, 'getPhotoProduit') && $rec->getPhotoProduit() ? $rec->getPhotoProduit() : $rec->getPhoto();
                 $img = $photo ? $siteURL . self::$menuImgDirByType[$auto] . $photo : $siteURL . 'images/pages/formation.webp';
-                echo '<a href="' . $rec->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" loading="lazy" src="' . $img . '" alt=""><b>' . htmlspecialchars($rec->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
+                echo '<a href="' . $rec->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" data-src="' . $img . '" alt=""><b>' . htmlspecialchars($rec->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
             }
         }
 
@@ -210,7 +210,7 @@ class menu
             }
             $title = $item->getTitre() ?: ($record ? $record->getTitre() : '');
             $img = $this->resolveMenuImage($item, $type, $record);
-            echo '<a href="' . $link . '" class="mm-acc-item"><img class="mm-acc-thumb" loading="lazy" src="' . $img . '" alt=""><b>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</b></a>';
+            echo '<a href="' . $link . '" class="mm-acc-item"><img class="mm-acc-thumb" data-src="' . $img . '" alt=""><b>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</b></a>';
         }
     }
 

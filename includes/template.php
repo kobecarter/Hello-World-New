@@ -476,10 +476,21 @@ window.addEventListener('scroll', () => {
   const burger = document.getElementById('mmBurger');
   const drawer = document.getElementById('mmDrawer');
   const closeBtn = document.getElementById('mmClose');
+  // The drawer's ~50 thumbnails use data-src instead of src: the drawer is
+  // position:fixed;inset:0 even while closed (just opacity:0/visibility:hidden),
+  // so native loading="lazy" doesn't defer them -- the browser still counts
+  // them as in-viewport and fetches all of them on page load. Only swap in
+  // the real src once the drawer is actually opened.
+  function loadDrawerImages() {
+    drawer.querySelectorAll('.mm-acc-thumb[data-src]').forEach(img => {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    });
+  }
   // Locking overflow on body alone does nothing here: neither html nor body
   // sets overflow-y, so <html> is the actual scrolling element by default.
   // Both must be locked or the page keeps scrolling behind the "open" drawer.
-  function openDrawer() { drawer.classList.add('mm-open'); burger.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden'; }
+  function openDrawer() { drawer.classList.add('mm-open'); burger.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden'; loadDrawerImages(); }
   function closeDrawer() { drawer.classList.remove('mm-open'); burger.setAttribute('aria-expanded', 'false'); document.documentElement.style.overflow = ''; document.body.style.overflow = ''; }
   burger && burger.addEventListener('click', openDrawer);
   closeBtn && closeBtn.addEventListener('click', closeDrawer);
