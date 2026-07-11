@@ -200,7 +200,6 @@ header .lang-btn{font-size:.72rem;padding:0}
 /* SERVICES */
 .services{padding:8rem 0;background:#fff;position:relative;overflow:hidden}
 .services::before,.services::after{content:'';position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(120px);z-index:0;pointer-events:none;opacity:.32}
-.services::before{background:#680262;top:-140px;right:-120px}
 .services::after{background:#09A1BE;bottom:-160px;left:-100px}
 .services .container{position:relative;z-index:1}
 .services-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;gap:2rem;flex-wrap:wrap}
