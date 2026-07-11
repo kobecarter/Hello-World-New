@@ -429,8 +429,11 @@ else{
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-12 mt-5 d-flex justify-content-center">
-                                        <a href="<?php echo $pageVideo->getLink(); ?>" class="btn-hw"><span>Discover more videos</span></a>
+                                    <div class="col-sm-12 mt-5 d-flex justify-content-center">                                        
+                                        <a href="<?php echo $pageVideo->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                          <div class="sb-label"><span class="sb-hint">Discover more videos</span></div>
+                                          <div class="sb-knob"><i class="fal fa-play"></i></div> 
+                                        </a>
                                     </div>
                                 </div>
                             </div>

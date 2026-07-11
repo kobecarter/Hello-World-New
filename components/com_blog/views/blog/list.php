@@ -67,13 +67,13 @@
         <a href="<?= $featuredPost->getLink(); ?>" class="in-featured rv">
             <div class="in-feat-visual">
                 <div class="in-feat-img-wrap"><img src="<?= $siteURL; ?>images/blog/<?= $featuredPost->getPhoto(); ?>"  class="lazy" alt="<?= $featuredPost->getTitre(); ?>"/></div>
-                <span class="in-feat-badge">À la une</span>
+                <!-- <span class="in-feat-badge">À la une</span> -->
             </div>
 
             <div class="in-feat-body">
                 <div>
                     <div class="in-feat-meta">
-                        <span class="in-feat-cat">Article</span>
+                        <span class="in-feat-cat"><?= $featuredPost->getCategorie()->getTitre(); ?></span>
                         <span class="in-feat-date">
                             <?= normaldate2($featuredPost->getDateAdd()); ?>
                         </span>
@@ -119,11 +119,10 @@
 
                 <div class="in-card-body">
                     <div class="in-card-meta">
-                        <span class="in-card-cat">Étude de cas</span>
+                        <span class="in-card-cat"><?= $post->getCategorie()->getTitre(); ?></span>
                         <span class="in-card-date">
                             <?= normaldate2($post->getDateAdd()); ?>
                         </span>
-                        <span class="in-card-time">8 min</span>
                     </div>
 
                     <h3 class="in-card-title">
@@ -135,7 +134,7 @@
                     </p>
 
                     <span class="in-card-cta">
-                        Lire <i class="fa fa-arrow-right fa-xs"></i>
+                        Lire l'article <i class="fa fa-arrow-right fa-xs"></i>
                     </span>
                 </div>
             </a>
@@ -164,7 +163,7 @@
     </div>
 
   <!-- NEWSLETTER -->
-  <div class="in-newsletter" style="margin-top:5rem">
+  <!-- <div class="in-newsletter" style="margin-top:5rem">
     <div class="container">
       <div class="in-nl-inner">
         <div class="rv">
@@ -179,5 +178,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </section>
