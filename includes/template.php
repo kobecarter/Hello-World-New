@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
+	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" defer></script>
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=5.3">
 <style>
 
@@ -257,14 +257,14 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 
       <!-- Event snippet for Contact (hello world) conversion page -->
 	    <script>
-	    gtag('event', 'conversion', {
+	    if (typeof gtag === 'function') gtag('event', 'conversion', {
 	        'send_to': 'AW-988470532/wIfpCLro748DEIS6q9cD'
 	    });
 	    </script>
 
 	    <!-- Event snippet for Envoi de formulaire pour prospects conversion page -->
 	    <script>
-	    gtag('event', 'conversion', {
+	    if (typeof gtag === 'function') gtag('event', 'conversion', {
 	        'send_to': 'AW-988470532/gtHMCIHqpZADEIS6q9cD'
 	    });
 	    </script>
@@ -753,6 +753,7 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
 /* HERO CANVAS — flowing wave terrain */
 (function() {
   const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, t = 0;
   const LINES = 40, SEGS = 240;
