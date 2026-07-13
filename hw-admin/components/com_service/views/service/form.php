@@ -72,7 +72,17 @@
                     <?php foreach ($parents as $parent): ?>
                         <?php if(isset($service) && $parent->getId() == $service->getId()) continue; ?>
                         <?php $sl = isset($service) && $service->getParent()->getId() == $parent->getId() ? "selected" : ""; ?>
-                        <option value="<?= $parent->getId(); ?>" <?= $sl; ?> ><?= $parent->getTitre(); ?></option>
+                        <?php
+                            // Indentation visuelle selon la profondeur (service racine, enfant, petit-enfant...)
+                            $depth = 0;
+                            $ancestor = $parent->getParent();
+                            while ($ancestor->getId()) {
+                                $depth++;
+                                $ancestor = $ancestor->getParent();
+                            }
+                            $indent = str_repeat('— ', $depth);
+                        ?>
+                        <option value="<?= $parent->getId(); ?>" <?= $sl; ?> ><?= $indent . $parent->getTitre(); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

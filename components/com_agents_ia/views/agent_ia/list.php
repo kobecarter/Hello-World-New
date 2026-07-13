@@ -1,15 +1,16 @@
 <?php
 $agentCategories = [
-    'whatsapp-agent'          => 'Messagerie',
-    'whatsapp-concierge'      => 'Messagerie',
+    'hw-whatsapp-agent'       => 'Messagerie',
+    'hw-concierge-ai'         => 'Messagerie',
     'whatsapp-campaign-agent' => 'Messagerie',
     'conversationnel'         => 'Messagerie',
+    'conversational'          => 'Messagerie',
     'booking-assistant'       => 'Service Client',
     'resto-assistant'         => 'Service Client',
-    'voice-caller'            => 'Service Client',
-    'sdr-agent'               => 'Service Client',
-    'support-247'             => 'Service Client',
-    'content-studio'          => 'Marketing',
+    'hw-voice-caller'         => 'Service Client',
+    'hw-sdr-agent'            => 'Service Client',
+    'hw-support-24-7'         => 'Service Client',
+    'hw-content-studio'       => 'Marketing',
     'content-broadcaster'     => 'Marketing',
     'marketing-reporter'      => 'Marketing',
     'seo-tracker'             => 'Marketing',
@@ -36,13 +37,13 @@ $agentIcons = [
 ];
 
 $catLabels = [
-    'Messagerie'    => 'Messagerie',
-    'Service Client'=> 'Service Client',
-    'Marketing'     => 'Marketing',
-    'Finance'       => 'Finance',
-    'Productivite'  => 'Productivité',
-    'Immobilier'    => 'Immobilier',
-    'Donnees'       => 'Données',
+    'Messagerie'    => $lang['AGENT_CAT_MESSAGERIE'][$_SESSION['lang']],
+    'Service Client'=> $lang['AGENT_CAT_SERVICE_CLIENT'][$_SESSION['lang']],
+    'Marketing'     => $lang['AGENT_CAT_MARKETING'][$_SESSION['lang']],
+    'Finance'       => $lang['AGENT_CAT_FINANCE'][$_SESSION['lang']],
+    'Productivite'  => $lang['AGENT_CAT_PRODUCTIVITE'][$_SESSION['lang']],
+    'Immobilier'    => $lang['AGENT_CAT_IMMOBILIER'][$_SESSION['lang']],
+    'Donnees'       => $lang['AGENT_CAT_DONNEES'][$_SESSION['lang']],
 ];
 
 $cats = array_keys($catLabels);
@@ -64,16 +65,16 @@ $cats = array_keys($catLabels);
     <div class="wm-hero-inner">
       <div>
         <div class="wm-hero-label"><?php echo $page->getTitre() ?></div>
-        <h1 class="sh-h1 rv on">Nos <em>Agents IA</em></h1>
+        <h1 class="sh-h1 rv on"><?= $lang['AGENT_LIST_H1'][$_SESSION['lang']]; ?></h1>
         <p class="wm-hero-sub rv d1"><?php echo strip_tags($page->getExtrait()); ?></p>
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Demander un audit technique</span></div>
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?= $lang['SVC_LIST_CTA_AUDIT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?= $lang['SVC_LIST_CTA_AUDIT'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
-        
-            <a href="<?php echo $pageReference->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir les réalisations</span></div>
+
+            <a href="<?php echo $pageReference->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?= $lang['SVC_CTA_VOIR_REALISATIONS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?= $lang['SVC_CTA_VOIR_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div> 
             </a>
         </div>
@@ -87,21 +88,21 @@ $cats = array_keys($catLabels);
 <!-- ══ MARQUEE — visible after hero unpins ═════════════════════ -->
 <div class="mq" id="mq"><div class="mq-t">
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-  <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-  <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-  <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?= $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?= $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?= $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-  <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-  <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-  <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?= $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?= $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?= $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?= $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
 </div></div>
 
 <!-- ── About / descriptif — sépare le marquee du filtre ─ -->
@@ -109,29 +110,26 @@ $cats = array_keys($catLabels);
     <div class="aia-about-orb" aria-hidden="true"></div>
     <div class="aia-grid-wrap">
         <div class="aia-section-head aia-about-panel">
-            <div class="aia-section-eyebrow rv">Comment ça marche</div>
-            <h2 class="aia-section-title rv d1">Des collègues digitaux, <em>prêts à l'emploi</em></h2>
+            <div class="aia-section-eyebrow rv"><?= $lang['AGENT_LIST_ABOUT_EYEBROW'][$_SESSION['lang']]; ?></div>
+            <h2 class="aia-section-title rv d1"><?= $lang['AGENT_LIST_ABOUT_TITLE'][$_SESSION['lang']]; ?></h2>
             <p class="aia-about-text rv d2">
-                Chaque agent est une brique métier autonome — messagerie, service client, marketing, finance,
-                productivité ou données — entraînée sur vos process et déployée en moins de 72h. Pas de code à
-                écrire, pas d'équipe technique à recruter&nbsp;: vous choisissez l'agent ci-dessous, on le
-                connecte à vos outils, il travaille pour vous 24/7.
+                <?= $lang['AGENT_LIST_ABOUT_TEXT'][$_SESSION['lang']]; ?>
             </p>
             <div class="aia-about-tags rv d3">
-                <span class="aia-about-tag"><i class="fal fa-bolt"></i> Déploiement en 72h</span>
-                <span class="aia-about-tag"><i class="fal fa-plug"></i> Connecté à vos outils</span>
-                <span class="aia-about-tag"><i class="fal fa-language"></i> Multilingue 24/7</span>
-                <span class="aia-about-tag"><i class="fal fa-code"></i> Sans code</span>
+                <span class="aia-about-tag"><i class="fal fa-bolt"></i> <?= $lang['AGENT_LIST_TAG_72H'][$_SESSION['lang']]; ?></span>
+                <span class="aia-about-tag"><i class="fal fa-code"></i> <?= $lang['AGENT_LIST_TAG_NO_CODE'][$_SESSION['lang']]; ?></span>
+                <span class="aia-about-tag"><i class="fal fa-plug"></i> <?= $lang['AGENT_LIST_TAG_CONNECTED'][$_SESSION['lang']]; ?></span>
+                <span class="aia-about-tag"><i class="fal fa-language"></i> <?= $lang['AGENT_LIST_TAG_MULTILINGUAL'][$_SESSION['lang']]; ?></span>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ── Filter bar ────────────────────────────────────── -->
-<nav class="aia-filter-bar" id="aia-listing" aria-label="Filtrer les agents">
+<nav class="aia-filter-bar" id="aia-listing" aria-label="<?= $lang['AGENT_LIST_FILTER_ARIA'][$_SESSION['lang']]; ?>">
     <div class="aia-filter-inner">
         <button class="aia-filter-btn active" data-filter="all">
-            Tous <span style="font-weight:400;opacity:.5;">(<?= count($agents_ia); ?>)</span>
+            <?= $lang['SVC_FILTER_ALL'][$_SESSION['lang']]; ?> <span style="font-weight:400;opacity:.5;">(<?= count($agents_ia); ?>)</span>
         </button>
         <?php foreach ($cats as $cat): ?>
         <button class="aia-filter-btn" data-filter="<?= $cat; ?>">
@@ -148,9 +146,9 @@ $cats = array_keys($catLabels);
     <div class="aia-section-orb o2" aria-hidden="true"></div>
     <div class="aia-grid-wrap">
         <div class="aia-section-head">
-            <div class="aia-section-eyebrow">Nos solutions</div>
+            <div class="aia-section-eyebrow"><?= $lang['AGENT_LIST_SOLUTIONS_EYEBROW'][$_SESSION['lang']]; ?></div>
             <h2 class="aia-section-title">
-                Choisissez votre <em>agent IA</em>
+                <?= $lang['AGENT_LIST_CHOOSE_TITLE'][$_SESSION['lang']]; ?>
                 <span class="aia-count-badge" id="aia-count"><?= count($agents_ia); ?></span>
             </h2>
         </div>
@@ -188,7 +186,7 @@ $cats = array_keys($catLabels);
                         <p class="aia-card-desc"><?= mb_substr(strip_tags($agent->getExtrait()), 0, 105, 'UTF-8'); ?>...</p>
                         <?php endif; ?>
                         <div class="aia-card-footer">
-                            <span class="aia-card-lbl">Découvrir</span>
+                            <span class="aia-card-lbl"><?= $lang['SVC_CTA_DECOUVRIR'][$_SESSION['lang']]; ?></span>
                             <span class="aia-card-arrow"><i class="fal fa-arrow-right"></i></span>
                         </div>
                     </div>
@@ -198,7 +196,7 @@ $cats = array_keys($catLabels);
             <?php else: ?>
             <div class="aia-empty">
                 <i class="fal fa-robot"></i>
-                Aucun agent disponible pour le moment.
+                <?= $lang['AGENT_LIST_EMPTY'][$_SESSION['lang']]; ?>
             </div>
             <?php endif; ?>
         </div>
@@ -212,10 +210,10 @@ $cats = array_keys($catLabels);
     </video>
     <div class="aia-cta-scrim"></div>
     <div class="aia-cta-inner">
-        <h2>Déployez votre premier<br><em>agent IA aujourd'hui</em></h2>
-        <p>Notre équipe vous accompagne de la sélection au lancement en moins de 72h. Aucune compétence technique requise.</p>
+        <h2><?= $lang['AGENT_LIST_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
+        <p><?= $lang['AGENT_LIST_CTA_TEXT'][$_SESSION['lang']]; ?></p>
         <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
-            <div class="sb-label"><span class="sb-hint">Parler à un expert</span></div>
+            <div class="sb-label"><span class="sb-hint"><?= $lang['IA_PACK3_BTN'][$_SESSION['lang']]; ?></span></div>
             <div class="sb-knob"><i class="fal fa-rocket"></i></div>
         </a>
     </div>
@@ -225,8 +223,8 @@ $cats = array_keys($catLabels);
 <?php if (!empty($partners)): ?>
 <section class="trust" id="aia-trust-partners">
   <div class="trust-head container">
-    <div class="sec-label rv">Partenaires</div>
-    <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+    <div class="sec-label rv"><?= $lang['SVC_SECTION_PARTENAIRES_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?= $lang['SVC_SECTION_PARTENAIRES_TITLE'][$_SESSION['lang']]; ?></h2>
   </div>
   <div class="trust-rows">
 

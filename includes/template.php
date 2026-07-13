@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=6.5">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=6.7">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -110,20 +110,20 @@
 	        <?php $clientPage = getComponent("com_client"); ?>
 	         <li class="devis-link">
 	            <a href="<?php echo $quotePage->getLink(); ?>" class="devis-clignote click custom-tooltip"
-	                title="Obtenez un devis gratuit" aria-label="Obtenez un devis gratuit" data-id="4">
+	                title="<?php echo $lang['TPL_QUOTE_BTN'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_QUOTE_BTN'][$_SESSION['lang']]; ?>" data-id="4">
 	                <i class="fa fa-calculator"></i>
 	            </a>
 	        </li>
 	         <li class="whatsapp-link">
-	             <a title="Hamid notre digital expert" aria-label="Hamid notre digital expert" data-id="5" data-toggle="tooltip"  href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20"
+	             <a href="https://wa.me/212664606612?text=Bonjour" title="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip"  
 	                class="click" target="_blank" title="Whatsapp chat"><i class="fab fa-whatsapp"></i></a>
 	         </li>
 	         <li class="whatsapp-link">
-	             <a class="click custom-tooltip" title="Manar votre assistante rapide WhatsApp" aria-label="Manar votre assistante rapide WhatsApp" data-id="5" data-toggle="tooltip" id="chat-bubble" href="https://wa.me/212664606612?text=Bonjour" target="_blank" title="Whatsapp chat">
+	             <a href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20" class="click custom-tooltip" title="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip" id="chat-bubble" target="_blank" title="Whatsapp chat">
                    <i class="fab fa-whatsapp"></i>
                    <span>1</span></a>
 	         </li>
-	         <li class="apple-app"><a href="https://apps.apple.com/ma/app/hello-world-agency/id1566017621?l=fr-FR" target="_blank" title="Application HelloWorld Agency Maroc sur l'App Store"><i class="fab fa-apple"></i></a></li>
+	         <li class="apple-app"><a href="https://apps.apple.com/ma/app/hello-world-agency/id1566017621?l=fr-FR" target="_blank" title="<?php echo $lang['TPL_APPSTORE_TITLE'][$_SESSION['lang']]; ?>"><i class="fab fa-apple"></i></a></li>
 	        <li class="espace-client"><a href="<?php echo $clientPage->getLink(); ?>" title="Login Client"><i class="fa fa-user-circle"></i></a></li>
 	     </ul>
 <!-- End whatsapp btns -->
@@ -133,13 +133,51 @@
 <?php
 $headerColor = '';
 if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['task']) && $_GET['task'] == 'showDetails') $headerColor = 'hdr-light';
+// Lien du logo vers l'accueil, adapté à la langue active (/, /en/, /ar/ le cas échéant).
+// Le français est la langue par défaut et n'a pas de préfixe dans les routes (voir .htaccess).
+$homeURL = ($_SESSION['lang'] == langue::getDefaultLanguage()) ? $siteURL : $siteURL . $_SESSION['lang'] . '/';
+
+// Sélecteur de langue : reconstruit le lien de la page courante pour chaque langue active.
+$langFlags = array('fr' => '🇫🇷', 'en' => '🇬🇧', 'ar' => '🇲🇦', 'es' => '🇪🇸');
+$currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$siteBasePath = parse_url($siteURL, PHP_URL_PATH);
+if ($siteBasePath && $siteBasePath !== '/' && strpos($currentPath, $siteBasePath) === 0) {
+    $currentPath = substr($currentPath, strlen($siteBasePath));
+} else {
+    $currentPath = ltrim($currentPath, '/');
+}
+$currentPath = preg_replace('#^(fr|en|ar|es)/#', '', $currentPath);
+$langOptions = array();
+foreach (langue::findAll() as $idLangOpt) {
+    $lOpt = new langue($idLangOpt, $db);
+    $langOptions[] = array(
+        'code' => $lOpt->getCode(),
+        'nom' => $lOpt->getNom(),
+        'flag' => isset($langFlags[$lOpt->getCode()]) ? $langFlags[$lOpt->getCode()] : '🌐',
+        'link' => $lOpt->isDefault() ? $siteURL . $currentPath : $siteURL . $lOpt->getCode() . '/' . $currentPath,
+        'active' => ($lOpt->getCode() == $_SESSION['lang']),
+        'disabled' => false,
+    );
+}
+// Variante pour le drawer mobile uniquement : ajoute l'arabe en placeholder
+// (pas encore de ligne active en base / pas de routes ni de traductions),
+// sans toucher au sélecteur desktop qui doit rester limité aux langues réelles.
+$mobileLangOptions = $langOptions;
+$mobileLangOptions[] = array(
+    'code' => 'ar',
+    'nom' => 'العربية',
+    'flag' => $langFlags['ar'],
+    'link' => null,
+    'active' => false,
+    'disabled' => true,
+);
 ?>
 
 
 <header class="navshell <?php echo $headerColor; ?>" id="navshell">
   <nav class="navbar glass-nav">
     <div class="nav-row">
-      <a href="<?php echo $siteURL; ?>" class="logo-hw logo"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="<?php echo $config->getNom(); ?>"></a>
+      <a href="<?php echo $homeURL; ?>" class="logo-hw logo"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="<?php echo $config->getNom(); ?>"></a>
       <ul class="nav-links" role="menubar">
                 <?php
       // Single shared instance: the same 7 top-level rows drive both this
@@ -158,17 +196,16 @@ if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['
        <div class="lang-sel" id="langSel">
         <button class="lang-btn" id="langBtn" aria-label="Select language">
           <i class="fa fa-globe lang-ico"></i>
-          <span id="langCur">FR</span>
+          <span id="langCur"><?php echo strtoupper($_SESSION['lang']); ?></span>
           <i class="fa fa-chevron-down lang-arr"></i>
         </button>
         <div class="lang-drop" id="langDrop">
-            <a href="#" class="lang-opt active"><span class="flag">🇫🇷</span> Français</a>
-          <a href="#" class="lang-opt"><span class="flag">🇬🇧</span> English</a>
-          
-        
+          <?php foreach ($langOptions as $langOpt): ?>
+          <a href="<?php echo $langOpt['link']; ?>" class="lang-opt<?php echo $langOpt['active'] ? ' active' : ''; ?>"><span class="flag"><?php echo $langOpt['flag']; ?></span> <?php echo htmlspecialchars($langOpt['nom'], ENT_QUOTES, 'UTF-8'); ?></a>
+          <?php endforeach; ?>
         </div>
       </div>
-      <button class="mm-burger" id="mmBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mmDrawer">
+      <button class="mm-burger" id="mmBurger" aria-label="<?php echo $lang['TPL_MENU_OUVRIR'][$_SESSION['lang']]; ?>" aria-expanded="false" aria-controls="mmDrawer">
         <span class="mm-bar-b"></span><span class="mm-bar-b"></span><span class="mm-bar-b"></span>
       </button>
       <!-- <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></button> -->
@@ -186,12 +223,31 @@ if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['
   <div class="mm-drawer" id="mmDrawer" role="dialog" aria-modal="true" aria-label="<?php echo $config->getNom(); ?>">
     <div class="mm-drawer-inner">
       <div class="mm-drawer-top">
-        <a href="<?php echo $siteURL; ?>"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="Hello World Agency" style="height:64px"></a>
-        <button class="mm-close" id="mmClose" aria-label="Fermer le menu"></button>
+        <a href="<?php echo $homeURL; ?>"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="Hello World Agency" style="height:64px"></a>
+        <button class="mm-close" id="mmClose" aria-label="<?php echo $lang['TPL_MENU_FERMER'][$_SESSION['lang']]; ?>"></button>
       </div>
       <?php
       $topMenu->getMenuMobile();
+      $pageContact = getComponent("com_contact");
       ?>
+      <div class="mm-drawer-cta">
+        <a href="<?php echo $pageContact->getLink(); ?>" class="mm-contact-link"><?php echo $lang['TPL_MOBILE_MENU_CONTACT'][$_SESSION['lang']]; ?></a>
+        <div class="mm-social">
+          <?php if ($config->getFacebook()): ?><a href="<?php echo $config->getFacebook(); ?>" class="mm-social-link mm-social-fb" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a><?php endif; ?>
+          <?php if ($config->getInstagram()): ?><a href="<?php echo $config->getInstagram(); ?>" class="mm-social-link mm-social-ig" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><?php endif; ?>
+          <?php if ($config->getLinkedin()): ?><a href="<?php echo $config->getLinkedin(); ?>" class="mm-social-link mm-social-li" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><?php endif; ?>
+          <?php if ($config->getYoutube()): ?><a href="<?php echo $config->getYoutube(); ?>" class="mm-social-link mm-social-yt" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a><?php endif; ?>
+        </div>
+        <div class="mm-lang-switch">
+          <?php foreach ($mobileLangOptions as $langOpt): ?>
+            <?php if (!empty($langOpt['disabled'])): ?>
+            <span class="mm-lang-opt mm-lang-disabled" title="<?php echo $lang['TPL_MOBILE_LANG_SOON'][$_SESSION['lang']]; ?>"><?php echo strtoupper($langOpt['code']); ?></span>
+            <?php else: ?>
+            <a href="<?php echo $langOpt['link']; ?>" class="mm-lang-opt<?php echo $langOpt['active'] ? ' mm-lang-active' : ''; ?>"><?php echo strtoupper($langOpt['code']); ?></a>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -203,7 +259,7 @@ if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12">
-	                    <h3 class="big-title">Rencontrez-nous...</h3>
+	                    <h3 class="big-title"><?php echo $lang['TPL_FOOTER_RENCONTREZ_NOUS'][$_SESSION['lang']]; ?>...</h3>
 	                    <div class="apps text-center">
 	                        <a href="#" class="item my-2"><img width="100" height="100"
 	                                src="<?php echo $siteURL; ?>images/playstore.webp" alt="Play store"></a>
@@ -803,23 +859,15 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
   startAuto();
 })();
 
-/* LANG SELECTOR */
+/* LANG SELECTOR — real links (href points to the equivalent page in that
+   language, built server-side), JS here only drives the dropdown open/close;
+   clicking an option navigates normally, no preventDefault. */
 (function() {
   const sel = document.getElementById('langSel');
   const btn = document.getElementById('langBtn');
-  const cur = document.getElementById('langCur');
   if (!sel) return;
   btn.addEventListener('click', e => { e.stopPropagation(); sel.classList.toggle('open'); });
   document.addEventListener('click', () => sel.classList.remove('open'));
-  sel.querySelectorAll('.lang-opt').forEach(opt => {
-    opt.addEventListener('click', e => {
-      e.preventDefault();
-      sel.querySelectorAll('.lang-opt').forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-      cur.textContent = opt.textContent.trim().split(' ')[1].slice(0,2).toUpperCase();
-      sel.classList.remove('open');
-    });
-  });
 })();
 
 /* PARALLAX ENGINE */
@@ -1004,7 +1052,7 @@ document.querySelectorAll('.card, .custom-sublink').forEach(item => {
       vTitle.innerHTML = clean(d.service);
       vDesc.textContent = d.desc;
       vServ.textContent = clean(d.service);
-      fTitle.textContent = 'Ce qu\u2019ils ont pensé de ' + (d.cat ? d.cat : clean(d.service));
+      fTitle.textContent = <?php echo json_encode($lang['MEGA_FOOT_TITLE_PREFIX'][$_SESSION['lang']]); ?> + (d.cat ? d.cat : clean(d.service));
     //   fQuote.textContent = '\u00AB ' + d.quote + ' \u00BB';
     //   fAuthor.textContent = d.author; fRole.textContent = d.role; fAva.textContent = initials(d.author);
     //   if (animate){ pop(vlink); pop(fQuote); }
