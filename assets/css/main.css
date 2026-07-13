@@ -522,8 +522,28 @@ header .lang-btn{font-size:.72rem;padding:0}
 .team-info{padding:1rem 0}
 .team-name{font-weight:200;font-size:1.3rem;color:var(--txt)}
 .team-role{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:.15rem}
+.team-nav{display:none}
+.team-nav .owl-prev, .team-nav .owl-next{
+	width: 50px;
+	height: 50px;
+	border: 1px solid var(--border);
+	background: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--txt2);
+	font-size: .78rem;
+	transition: all .3s;
+	border-radius: 50%;
+}
 @media(max-width:991px){.team-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.team-grid{gap:.8rem}}
+@media(max-width:480px){
+  .team-grid{display:flex;grid-template-columns:none;gap:.8rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:.5rem}
+  .team-grid::-webkit-scrollbar{display:none}
+  .team-card{flex:0 0 100%;scroll-snap-align:center}
+  .team-nav{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:1.5rem}
+}
 
 /* INSIGHTS / DIGITAL EXPERT */
 .insights{padding:8rem 0;border-top:1px solid var(--border)}
@@ -8642,5 +8662,11 @@ object-fit: cover;
     }
     .rd-next-bg{
       height: 260px;
+    }
+    .aia-about-tag{
+      padding: 9px 10px;
+    }
+    .aia-about{
+      padding: 60px 0 0;
     }
 }

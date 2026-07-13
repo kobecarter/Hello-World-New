@@ -961,7 +961,7 @@ img,video{display:block;max-width:100%}
         <div class="agency-content" data-px="0.13">
           
           <h3 class="agency-city"><?php echo $lang['HOME_AGENCY_MOYEN_ORIENT'][$_SESSION['lang']]; ?></h3>
-          <div class="agency-tag">Dubai</div>
+          <div class="agency-tag"><a href="https://www.helloworldlabel.ae">Dubai</a></div>
           <ul class="agency-details">
             <li><i class="fas fa-phone"></i><a href="tel:+971543399752">+971 (0)54 393 9752</a></li>
             <li><i class="fas fa-envelope"></i><a href="mailto:contact@helloworldlabel.ae">contact@helloworldlabel.ae</a></li>
@@ -978,7 +978,7 @@ img,video{display:block;max-width:100%}
   <div class="container">
     <div class="sec-label rv"><?php echo $lang['HOME_TEAM_LABEL'][$_SESSION['lang']]; ?></div>
     <h2 class="sec-title rv d1"><?php echo $lang['HOME_TEAM_TITLE'][$_SESSION['lang']]; ?></h2>
-    <div class="team-grid">
+    <div class="team-grid" id="teamGrid">
 
       <div class="team-card rv">
         <div class="team-thumb">
@@ -1031,8 +1031,29 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
     </div>
+
+    <div class="team-nav">
+      <button type="button" class="owl-prev" id="teamPrev" aria-label="<?php echo $lang['HOME_TEAM_PREV'][$_SESSION['lang']]; ?>"><i class="fa fa-arrow-left"></i></button>
+      <button type="button" class="owl-next" id="teamNext" aria-label="<?php echo $lang['HOME_TEAM_NEXT'][$_SESSION['lang']]; ?>"><i class="fa fa-arrow-right"></i></button>
+    </div>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var teamGrid = document.getElementById('teamGrid');
+  var teamPrev = document.getElementById('teamPrev');
+  var teamNext = document.getElementById('teamNext');
+  if (!teamGrid || !teamPrev || !teamNext) return;
+  function scrollTeamBy(dir) {
+    var card = teamGrid.querySelector('.team-card');
+    if (!card) return;
+    teamGrid.scrollBy({ left: dir * card.getBoundingClientRect().width, behavior: 'smooth' });
+  }
+  teamPrev.addEventListener('click', function() { scrollTeamBy(-1); });
+  teamNext.addEventListener('click', function() { scrollTeamBy(1); });
+});
+</script>
 
 <section class="brochure">
   <div class="container">
@@ -1131,7 +1152,7 @@ img,video{display:block;max-width:100%}
           <div class="c-ico"><i class="fa fa-phone"></i></div>
           <div>
             <div class="c-lbl">Phone</div>
-            <div class="c-val"><?php echo $config->getTel(); ?></div>
+            <div class="c-val"><?php echo $config->getTel2(); ?></div>
           </div>
         </div>
         <div class="c-detail">

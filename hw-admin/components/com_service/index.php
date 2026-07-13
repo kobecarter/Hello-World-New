@@ -8,7 +8,7 @@ switch ($task)
             $action = "components/com_service/controleurs/router.php?task=addService";
             $submitName = "add";
             $submitValue = "Ajouter service";
-            $parents = service::findAll($_SESSION["langue"], false, true);
+            $parents = service::findAll($_SESSION["langue"]);
             include_once("components/com_service/views/service/add.php");
         }
         break;
@@ -20,7 +20,7 @@ switch ($task)
                 $action = "components/com_service/controleurs/router.php?task=editService";
                 $submitName = "edit";
                 $submitValue = "Modifier service";
-                $parents = service::findAll($_SESSION["langue"], false, false, true);
+                $parents = service::findAll($_SESSION["langue"]);
                 include_once("components/com_service/views/service/edit.php");
             }
         }

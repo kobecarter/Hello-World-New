@@ -38,7 +38,7 @@
           <li class="ct-audit-item"><span class="ct-audit-check"><i class="fa fa-check"></i></span><?php echo $lang['CT_AUDIT_ITEM_4'][$_SESSION['lang']]; ?></li>
           <li class="ct-audit-item"><span class="ct-audit-check"><i class="fa fa-check"></i></span><?php echo $lang['CT_AUDIT_ITEM_5'][$_SESSION['lang']]; ?></li>
         </ul>
-        <span class="ct-audit-tag rv d3"><i class="fa fa-gift"></i> <?php echo $lang['CT_AUDIT_VALUE'][$_SESSION['lang']]; ?></span>
+        <!-- <span class="ct-audit-tag rv d3"><i class="fa fa-gift"></i> <?php echo $lang['CT_AUDIT_VALUE'][$_SESSION['lang']]; ?></span> -->
       </div>
       <div class="rv d2">
         <div class="ct-audit-stats">
