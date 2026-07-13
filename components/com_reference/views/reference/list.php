@@ -18,13 +18,13 @@
         <p class="sh-sub rv d2"><?php echo strip_tags($page->getExtrait()); ?></p>
 
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
-        
-            <a href="#rlGrid" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir un cas similaire au vôtre" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir un cas similaire au vôtre</span></div>
+
+            <a href="#rlGrid" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_VOIR_CAS_SIMILAIRE'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_VOIR_CAS_SIMILAIRE'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-suitcase"></i></div> 
             </a>
         </div>
@@ -40,10 +40,10 @@
 <div class="rl-filter-wrap">
   <div class="container" style="padding:0">
     <div class="rl-filter-inner">
-      <button class="rl-filter-btn active" data-filter="all">Tous</button>
+      <button class="rl-filter-btn active" data-filter="all"><?php echo $lang['REF_FILTER_TOUS'][$_SESSION['lang']]; ?></button>
       <button class="rl-filter-btn" data-filter="web">Web &amp; Mobile</button>
-      <button class="rl-filter-btn" data-filter="ia">Intelligence Artificielle</button>
-      <button class="rl-filter-btn" data-filter="saas">SaaS &amp; Produits</button>
+      <button class="rl-filter-btn" data-filter="ia"><?php echo $lang['REF_FILTER_IA'][$_SESSION['lang']]; ?></button>
+      <button class="rl-filter-btn" data-filter="saas"><?php echo $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></button>
       <button class="rl-filter-btn" data-filter="brand">Brand Experience</button>
       <button class="rl-filter-btn" data-filter="marketplace">Marketplace</button>
     </div>
@@ -69,7 +69,7 @@
           <div class="rl-ov-tag"><?php echo $reference->getSiteWeb(); ?></div>
           <div class="rl-ov-title"><?php echo $reference->getNomClient(); ?></div>
           <p class="rl-ov-desc"><?php echo $reference->getExtrait(); ?></p>
-          <span class="rl-ov-cta">Voir le projet <i class="fa fa-arrow-right fa-xs"></i></span>
+          <span class="rl-ov-cta"><?php echo $lang['REF_CARD_VOIR_PROJET'][$_SESSION['lang']]; ?> <i class="fa fa-arrow-right fa-xs"></i></span>
         </div>
       </a>
 	<?php endforeach; ?>
@@ -80,19 +80,19 @@
     <div class="rl-strip rv">
       <div class="rl-strip-item">
         <div class="rl-strip-val">900<span>+</span></div>
-        <div class="rl-strip-lbl">Projets livrés</div>
+        <div class="rl-strip-lbl"><?php echo $lang['REF_STRIP_PROJETS'][$_SESSION['lang']]; ?></div>
       </div>
       <div class="rl-strip-item">
         <div class="rl-strip-val">16<span>ans</span></div>
-        <div class="rl-strip-lbl">D'expertise</div>
+        <div class="rl-strip-lbl"><?php echo $lang['REF_STRIP_EXPERTISE'][$_SESSION['lang']]; ?></div>
       </div>
       <div class="rl-strip-item">
-        <div class="rl-strip-val">10<span> villes</span></div>
-        <div class="rl-strip-lbl">Studios actifs</div>
+        <div class="rl-strip-val">10<span><?php echo $lang['REF_STRIP_VILLES'][$_SESSION['lang']]; ?></span></div>
+        <div class="rl-strip-lbl"><?php echo $lang['REF_STRIP_STUDIOS'][$_SESSION['lang']]; ?></div>
       </div>
       <div class="rl-strip-item">
         <div class="rl-strip-val">98<span>%</span></div>
-        <div class="rl-strip-lbl">Clients satisfaits</div>
+        <div class="rl-strip-lbl"><?php echo $lang['REF_STRIP_CLIENTS'][$_SESSION['lang']]; ?></div>
       </div>
     </div>
   </div>
@@ -101,17 +101,17 @@
 <!-- CTA -->
 <section class="cta-band">
   <div class="container">
-    <div class="sec-label">Votre projet</div>
-    <h2 class="sec-title">Construisons<br><em>ensemble</em></h2>
-    <p class="cta-sub">Brief gratuit · Audit offert · Première réunion sous 48h.</p>
+    <div class="sec-label"><?php echo $lang['REF_CTA_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title"><?php echo $lang['REF_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="cta-sub"><?php echo $lang['REF_CTA_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Démarrer un projet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Démarrer un projet</span></div>
+        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_DEMARRER_PROJET'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_DEMARRER_PROJET'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
         </a>
-    
-        <a href="<?php echo $pageBlog->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Lire nos insights" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Lire nos insights</span></div>
+
+        <a href="<?php echo $pageBlog->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_LIRE_INSIGHTS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_LIRE_INSIGHTS'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-eye"></i></div> 
         </a>
     </div>

@@ -331,8 +331,8 @@ class menu
                 <p class="foot-title" data-foottitle></p>
                 <div class="foot-row">
                     <div class="rating">
-                        <span class="rating-num">Reviews Score 5,0</span>
-                        <div class="stars" aria-label="Note 5 sur 5">★★★★★</div>
+                        <span class="rating-num">' . $GLOBALS['lang']['MEGA_REVIEWS_SCORE'][$_SESSION['lang']] . '</span>
+                        <div class="stars" aria-label="' . $GLOBALS['lang']['MEGA_REVIEWS_ARIA'][$_SESSION['lang']] . '">★★★★★</div>
                     </div>
                     <p class="quote" data-quote>' . $quote . '</p>
                     <div class="who">
@@ -430,11 +430,11 @@ class menu
             // set of feature bullets per child service rather than an excerpt of
             // its own content -- restored verbatim from the original markup.
             $webMobileFeatures = array(
-                39 => array('iOS natives', 'Android natives', 'Hybrides RN / Flutter'),
-                38 => array('Sites vitrines & corporate', 'Développement e-commerce', 'Applications web sur mesure', 'Intégrations CRM/ERP/API'),
-                40 => array('Audit SEO technique complet', 'Optimisation Core Web Vitals', 'Stratégie de mots-clés ciblés', 'Optimisation SEO On-Page'),
+                39 => array($GLOBALS['lang']['MEGA_WM_IOS'][$lang], $GLOBALS['lang']['MEGA_WM_ANDROID'][$lang], $GLOBALS['lang']['MEGA_WM_HYBRIDE'][$lang]),
+                38 => array($GLOBALS['lang']['MEGA_WM_VITRINES'][$lang], $GLOBALS['lang']['MEGA_WM_ECOMMERCE'][$lang], $GLOBALS['lang']['MEGA_WM_APPS_SUR_MESURE'][$lang], $GLOBALS['lang']['MEGA_WM_INTEGRATIONS'][$lang]),
+                40 => array($GLOBALS['lang']['MEGA_WM_AUDIT_SEO'][$lang], $GLOBALS['lang']['MEGA_WM_CWV'][$lang], $GLOBALS['lang']['MEGA_WM_KEYWORDS'][$lang], $GLOBALS['lang']['MEGA_WM_SEO_ONPAGE'][$lang]),
             );
-            $webMobileDefaultFeature = array('Espaces clients RGPD', 'Dashboards temps réel', 'Intégrations CRM/ERP/API');
+            $webMobileDefaultFeature = array($GLOBALS['lang']['MEGA_WM_ESPACES_RGPD'][$lang], $GLOBALS['lang']['MEGA_WM_DASHBOARDS'][$lang], $GLOBALS['lang']['MEGA_WM_INTEGRATIONS'][$lang]);
             $isWebMobileGroup = ((int)$group->getIdItem() === 107);
             foreach ($children as $child) {
                 $packs = pack::findAll($lang, true, true, $child->getId());
@@ -513,8 +513,8 @@ class menu
             // The trailing "Voir tout..." link under a service_children group
             // has always shown a live count ("N expertises disponibles")
             // rather than a manually authored description.
-            if ($auto === 'service_children' && stripos($title, 'Voir tout') === 0) {
-                $desc = count($children) . ' expertises disponibles';
+            if ($auto === 'service_children' && (stripos($title, 'Voir tout') === 0 || stripos($title, 'See all') === 0)) {
+                $desc = count($children) . ' ' . $GLOBALS['lang']['MEGA_EXPERTISES_SUFFIX'][$lang];
             } else {
                 $desc = menu_item::shortenDescription($item->getDescription(), $record, $cardStyle === 'card' ? 200 : 90);
             }
@@ -543,7 +543,7 @@ class menu
                 'grad' => $grad,
                 'packsHtmlBank' => $packsHtmlBank,
                 'featureLines' => $lines,
-            ), $i, strpos($title, 'Voir tout') === 0 || strpos($title, 'Voir tous') === 0 ? ' sublink-all' : '');
+            ), $i, stripos($title, 'Voir tout') === 0 || stripos($title, 'Voir tous') === 0 || stripos($title, 'See all') === 0 ? ' sublink-all' : '');
             $i++;
         }
 
@@ -588,7 +588,22 @@ class menu
             // The Web & Mobile panel's primary CTA has always pointed to the
             // realisations page rather than its own service page.
             $ctaLink = ($panel->getPanelKey() === 'web') ? $realisationPage->getLink() : $panelLink;
-            $ctaLabel = htmlspecialchars($panel->getCtaLabel() ? $panel->getCtaLabel() : 'Découvrir', ENT_QUOTES, 'UTF-8');
+            $ctaLabelRaw = $panel->getCtaLabel();
+            if (!$ctaLabelRaw) {
+                $ctaLabelRaw = $GLOBALS['lang']['MEGA_CTA_DECOUVRIR'][$_SESSION['lang']];
+            } elseif ($_SESSION['lang'] === 'en') {
+                $ctaLabelMap = array(
+                    'Découvrir' => $GLOBALS['lang']['MEGA_CTA_DECOUVRIR']['en'],
+                    'Voir nos réalisations' => $GLOBALS['lang']['MEGA_CTA_VOIR_REALISATIONS']['en'],
+                    'Lancer mon produit' => $GLOBALS['lang']['MEGA_CTA_LANCER_PRODUIT']['en'],
+                    'Voir le calendrier' => $GLOBALS['lang']['MEGA_CTA_VOIR_CALENDRIER']['en'],
+                    'Parcourir' => $GLOBALS['lang']['MEGA_CTA_PARCOURIR']['en'],
+                );
+                if (isset($ctaLabelMap[$ctaLabelRaw])) {
+                    $ctaLabelRaw = $ctaLabelMap[$ctaLabelRaw];
+                }
+            }
+            $ctaLabel = htmlspecialchars($ctaLabelRaw, ENT_QUOTES, 'UTF-8');
 
             $menuHTML .= '
 <div class="mega glass-mega glass-nav" data-panel="' . $panelKey . '">
@@ -615,7 +630,7 @@ class menu
                 <p data-vdesc></p>
                 <div class="vactions">
                     <a class="v-pill v-disc" href="' . $ctaLink . '">' . $ctaLabel . ' →</a>
-                    <a class="v-pill v-expert" href="' . $contactPage->getLink() . '">📞 Parler à un expert <b data-vservice></b></a>
+                    <a class="v-pill v-expert" href="' . $contactPage->getLink() . '">' . $GLOBALS['lang']['MEGA_CTA_PARLER_EXPERT'][$_SESSION['lang']] . ' <b data-vservice></b></a>
                 </div>
             </div>
         </div>
@@ -664,7 +679,7 @@ class menu
             if ($anyPacks) {
                 $menuHTML .= '
              <div class="packs stag" style="--i:10">
-                <p class="packs-title">Découvrez nos packs</p>
+                <p class="packs-title">' . $GLOBALS['lang']['MEGA_PACKS_TITLE'][$lang] . '</p>
                 <div class="packs-grid" id="packsGrid-' . $panelKey . '"></div>
             </div>';
             }

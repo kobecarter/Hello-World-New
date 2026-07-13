@@ -144,7 +144,7 @@
         </div>
         <?php if(sizeof($posts) <= 0) :?>
 			    <div class="col-12">
-			         <p class="text-center">Il n'y a aucun résultat</p>
+			         <p class="text-center"><?= $lang['BLOG_LIST_NO_RESULTS'][$_SESSION['lang']]; ?></p>
 			    </div>
 			<?php endif;?>
 			<div class="clearfix"></div>

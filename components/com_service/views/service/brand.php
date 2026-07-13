@@ -52,13 +52,13 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
         <p class="sh-sub"><?php echo strip_tags($service->getExtrait()); ?></p>
             
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
-        
-            <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir nos offres</span></div>
+
+            <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div>
             </a>
         </div>
@@ -74,48 +74,48 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 <!-- ══ MARQUEE — visible after hero unpins ═════════════════════ -->
 <div class="mq" id="mq"><div class="mq-t">
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-  <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-  <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-  <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-  <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-  <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-  <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
 </div></div>
 
 <!-- REFERENCES -->
 <section class="be-refs" id="chiffres">
   <div class="container">
-    <div class="sec-label rv">Nos Références</div>
-    <h2 class="sec-title rv d1">Des <em>résultats</em><br>qui parlent</h2>
+    <div class="sec-label rv"><?php echo $lang['BRAND_REFS_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['BRAND_REFS_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="be-refs-grid rv d2" id="beRefsGrid">
       <div class="be-ref-card">
         <div class="be-ref-icon"><i class="fal fa-swatchbook"></i></div>
         <div class="be-ref-num"><span class="be-ref-count" data-count="80">0</span><span class="be-ref-suffix">+</span></div>
-        <div class="be-ref-lbl">Marques créées</div>
+        <div class="be-ref-lbl"><?php echo $lang['BRAND_REF1_LBL'][$_SESSION['lang']]; ?></div>
       </div>
       <div class="be-ref-card">
         <div class="be-ref-icon"><i class="fal fa-boxes"></i></div>
         <div class="be-ref-num"><span class="be-ref-count" data-count="350">0</span><span class="be-ref-suffix">+</span></div>
-        <div class="be-ref-lbl">Projets livrés</div>
+        <div class="be-ref-lbl"><?php echo $lang['BRAND_REF2_LBL'][$_SESSION['lang']]; ?></div>
       </div>
       <div class="be-ref-card">
         <div class="be-ref-icon"><i class="fal fa-medal"></i></div>
         <div class="be-ref-num"><span class="be-ref-count" data-count="12">0</span><span class="be-ref-suffix">ans</span></div>
-        <div class="be-ref-lbl">D'expertise créative</div>
+        <div class="be-ref-lbl"><?php echo $lang['BRAND_REF3_LBL'][$_SESSION['lang']]; ?></div>
       </div>
       <div class="be-ref-card">
         <div class="be-ref-icon"><i class="fal fa-globe"></i></div>
         <div class="be-ref-num"><span class="be-ref-count" data-count="3">0</span><span class="be-ref-suffix"> pays</span></div>
-        <div class="be-ref-lbl">Studios créatifs</div>
+        <div class="be-ref-lbl"><?php echo $lang['BRAND_REF4_LBL'][$_SESSION['lang']]; ?></div>
       </div>
     </div>
   </div>
@@ -154,9 +154,9 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 <!-- SERVICES -->
 <section class="be-services hw-f-list-catalogue" id="services">
   <div class="container">
-    <div class="sec-label rv">Nos Services</div>
-    <h2 class="sec-title rv d1">Des expertises ciblées pour<br><em> une marque inoubliable</em></h2>
-    <div class="hw-f-list-track-hint rv d2"><i class="fal fa-arrows-left-right"></i> Faites défiler pour parcourir nos <?= count($childServices); ?> expertises</div>
+    <div class="sec-label rv"><?php echo $lang['BRAND_SERVICES_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['BRAND_SERVICES_TITLE'][$_SESSION['lang']]; ?></h2>
+    <div class="hw-f-list-track-hint rv d2"><i class="fal fa-arrows-left-right"></i> <?php echo $lang['BRAND_SERVICES_HINT_PREFIX'][$_SESSION['lang']]; ?> <?= count($childServices); ?> <?php echo $lang['BRAND_SERVICES_HINT_SUFFIX'][$_SESSION['lang']]; ?></div>
   </div>
 
   <?php if (!empty($childServices)):
@@ -173,7 +173,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
         <?php if ($childService->getPhoto()): ?>
         <div class="hw-f-list-card-3d-photo">
           <img src="<?= $siteURL; ?>images/services/<?= htmlspecialchars($childService->getPhoto(), ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($childService->getTitre(), ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
-          <span class="hw-f-list-card-badge <?= $isGold ? 'gold' : 'purple'; ?>">Expertise</span>
+          <span class="hw-f-list-card-badge <?= $isGold ? 'gold' : 'purple'; ?>"><?php echo $lang['BRAND_CARD_BADGE'][$_SESSION['lang']]; ?></span>
         </div>
         <?php endif; ?>
         <div class="hw-f-list-card-3d-body">
@@ -182,7 +182,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
           </div>
           <div class="hw-f-list-card-title"><?= htmlspecialchars($childService->getTitre(), ENT_QUOTES, 'UTF-8'); ?></div>
           <div class="hw-f-list-card-sub"><?= htmlspecialchars(mb_strimwidth(html_entity_decode(strip_tags($childService->getTexteAccueil() ?? ''), ENT_QUOTES, 'UTF-8'), 0, 120, '…', 'UTF-8'), ENT_QUOTES, 'UTF-8'); ?></div>
-          <div class="hw-f-list-card-cta">Découvrir <i class="fal fa-arrow-right"></i></div>
+          <div class="hw-f-list-card-cta"><?php echo $lang['SVC_CTA_DECOUVRIR'][$_SESSION['lang']]; ?> <i class="fal fa-arrow-right"></i></div>
         </div>
       </a>
       <?php endforeach; ?>
@@ -194,7 +194,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
   <div class="container">
     <div class="cta-btns mt-5 mb-5">
         <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
-          <div class="sb-label"><span class="sb-hint">Parler de votre projet</span></div>
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_PARLER_PROJET'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
         </a>
     </div>
@@ -283,36 +283,36 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 <!-- PROCESS CRÉATIF -->
 <section class="be-process">
   <div class="container">
-    <div class="sec-label rv">Processus créatif</div>
-    <h2 class="sec-title rv d1">Du brief au <em>lancement</em><br>sans compromis</h2>
+    <div class="sec-label rv"><?php echo $lang['BRAND_PROCESS_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['BRAND_PROCESS_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="be-proc-grid-3d rv d2" id="beProcGrid">
       <div class="be-proc-card" data-tilt>
         <div class="be-proc-card-shine"></div>
         <div class="be-proc-card-num">01</div>
         <div class="be-proc-card-icon"><i class="fal fa-compass"></i></div>
-        <div class="be-proc-title">Exploration et immersion</div>
-        <p class="be-proc-desc">Ateliers de découverte, analyse de votre marché, de vos concurrents et de vos clients. Nous commençons par comprendre avant de créer. Brief créatif validé ensemble avant tout engagement.</p>
+        <div class="be-proc-title"><?php echo $lang['BRAND_PROC1_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="be-proc-desc"><?php echo $lang['BRAND_PROC1_DESC'][$_SESSION['lang']]; ?></p>
       </div>
       <div class="be-proc-card" data-tilt>
         <div class="be-proc-card-shine"></div>
         <div class="be-proc-card-num">02</div>
         <div class="be-proc-card-icon"><i class="fal fa-palette"></i></div>
-        <div class="be-proc-title">Création &amp; Conception</div>
-        <p class="be-proc-desc">Notre équipe créative développe 3 directions créatives distinctes. Maquettes, moodboards, samples de contenu — vous choisissez et nous affinons jusqu'à la perfection.</p>
+        <div class="be-proc-title"><?php echo $lang['BRAND_PROC2_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="be-proc-desc"><?php echo $lang['BRAND_PROC2_DESC'][$_SESSION['lang']]; ?></p>
       </div>
       <div class="be-proc-card" data-tilt>
         <div class="be-proc-card-shine"></div>
         <div class="be-proc-card-num">03</div>
         <div class="be-proc-card-icon"><i class="fal fa-video"></i></div>
-        <div class="be-proc-title">Production &amp; Réalisation</div>
-        <p class="be-proc-desc">Tournages, design final, production de contenus et déclinaisons sur tous les supports. Chaque livrable est soumis à 3 niveaux de validation interne avant de vous être présenté.</p>
+        <div class="be-proc-title"><?php echo $lang['BRAND_PROC3_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="be-proc-desc"><?php echo $lang['BRAND_PROC3_DESC'][$_SESSION['lang']]; ?></p>
       </div>
       <div class="be-proc-card" data-tilt>
         <div class="be-proc-card-shine"></div>
         <div class="be-proc-card-num">04</div>
         <div class="be-proc-card-icon"><i class="fal fa-rocket"></i></div>
-        <div class="be-proc-title">Déploiement &amp; Activation</div>
-        <p class="be-proc-desc">Lancement de la marque, formation de vos équipes aux guidelines, mise en place des outils de content ops et suivi des performances sur 3 mois pour ajuster.</p>
+        <div class="be-proc-title"><?php echo $lang['BRAND_PROC4_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="be-proc-desc"><?php echo $lang['BRAND_PROC4_DESC'][$_SESSION['lang']]; ?></p>
       </div>
     </div>
   </div>
@@ -349,8 +349,8 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 
 <section class="portfolio" id="work">
   <div class="container">
-    <div class="sec-label rv">Cas d'utilisation</div>
-    <h2 class="sec-title rv d1">Nos dernières <em>réalisations</em></h2>
+    <div class="sec-label rv"><?php echo $lang['SVC_SECTION_CAS_UTILISATION'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_REALISATIONS'][$_SESSION['lang']]; ?></h2>
     <div class="port-grid rv d2">
       <div class="port-item p-meridian tall">
         <a href="<?php echo $references[0]->getLink(); ?>" class="port-bg">
@@ -396,8 +396,8 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
   </div>
    <div class="container">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir plus de réalisations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Voir plus de réalisations</span></div>
+                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-trophy"></i></div>
                 </a>
             </div>
@@ -410,16 +410,16 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
   </video>
   <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label rv">Construire votre marque</div>
-    <h2 class="sec-title rv d1">Votre marque mérite<br><em>d'être remarquée</em></h2>
-    <p class="hw-f-list-cta-sub rv d2">Brief gratuit et diagnostic de marque offert. Nos studios sont à San Francisco, Londres et Dubaï.</p>
+    <div class="sec-label rv"><?php echo $lang['BRAND_FINAL_CTA_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['BRAND_FINAL_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="hw-f-list-cta-sub rv d2"><?php echo $lang['BRAND_FINAL_CTA_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns rv d3" style="justify-content:center">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Parler de votre projet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Parler de votre projet</span></div>
+        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_PARLER_PROJET'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_PARLER_PROJET'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-phone"></i></div>
         </a>
-        <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir les nos services" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Voir les nos services</span></div>
+        <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['BRAND_FINAL_CTA_BTN2'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['BRAND_FINAL_CTA_BTN2'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
         </a>
     </div>

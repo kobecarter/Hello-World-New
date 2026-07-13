@@ -357,6 +357,8 @@ class temoignage
 
         if($ordre){
             $SQLselect .= " ORDER BY ordre ASC";
+        } else {
+            $SQLselect .= " ORDER BY RAND()";
         }
 
         $result = $db->queryS($SQLselect);
@@ -383,6 +385,8 @@ class temoignage
 
         if($ordre){
             $SQLselect .= " ORDER BY ordre ASC";
+        } else {
+            $SQLselect .= " ORDER BY RAND()";
         }
 
         $result = $db->queryS($SQLselect);

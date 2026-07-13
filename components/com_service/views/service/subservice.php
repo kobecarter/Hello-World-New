@@ -58,14 +58,14 @@ else{
         <h1 class="sh-h1"><?php echo $service->getH1() ?> <span class="agency-tag">Marrakech - Casablanca - Rabat - Tanger</span></h1>
         <p class="wm-hero-sub rv d1"><?php echo strip_tags($service->getExtrait()); ?></p>
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
-        
-            <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir les réalisations</span></div>
-              <div class="sb-knob"><i class="fal fa-eye"></i></div> 
+
+            <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
+              <div class="sb-knob"><i class="fal fa-eye"></i></div>
             </a>
         </div>
       </div>
@@ -108,7 +108,7 @@ else{
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> Accueil</a></li>
+				<li class="breadcrumb-item"><a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> <?php echo $lang['BREADCRUMB_HOME'][$_SESSION['lang']]; ?></a></li>
 				<li class="breadcrumb-item"><a href="<?php echo $page->getLink(); ?>"><?php echo $page->getTitre(); ?></a></li>
 				<?php if ($service->getParent()->getId() != 0) : ?>
 					<li class="breadcrumb-item"><a href="<?php echo $service->getParent()->getLink(); ?>"><?php echo $service->getParent()->getTitre(); ?></a></li>
@@ -142,8 +142,8 @@ else{
         </div>
 
         <div class="container text-center service-cta-box">
-            <a href="javascript:void(0)" class="sb sb-compact open-form-service" data-slug="<?php echo $service->getSlug(); ?>" role="slider" tabindex="0" aria-label="Contactez nous maintenant" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Contactez nous maintenant</span></div>
+            <a href="javascript:void(0)" class="sb sb-compact open-form-service" data-slug="<?php echo $service->getSlug(); ?>" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_CONTACTEZ_NOUS_MAINTENANT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_CONTACTEZ_NOUS_MAINTENANT'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
             </a>
             <div class="service-form-box col-sm-8 offset-sm-2"></div>
@@ -153,24 +153,23 @@ else{
         <section class="pack-section">
         <?php
         switch($service->getId()){
-            case 38 : $parag = '<p>Des sites web haute performance et "mobile-first", conçus sur-mesure pour répondre aux besoins de votre entreprise. Tous les tarifs sont indiqués à titre indicatif (à partir de) et peuvent varier en fonction de vos demandes spécifiques.</p>'; break;
-            case 40 : $parag = '<p>Gravissez les échelons des résultats Google et captez un trafic organique qualifié. Tous nos tarifs sont des prix de départ, basés sur des forfaits mensuels.</p>'; break;
-            case 46 : $parag = '<p>Développez votre communauté et boostez la notoriété de votre marque là où se trouvent vos clients. Les tarifs indiqués sont des prix de base. Tous nos packs nécessitent un budget publicitaire minimum.</p>
-            <p><i class="fas fa-exclamation-triangle"></i> <strong>Note</strong> : Si les packs de gestion des réseaux sociaux nécessitent des services de design additionnels (branding, graphismes complexes, etc.), des frais supplémentaires pourront être appliqués.</p>'; break;
+            case 38 : $parag = $lang['SVC_PACK_PARAG_38'][$_SESSION['lang']]; break;
+            case 40 : $parag = $lang['SVC_PACK_PARAG_40'][$_SESSION['lang']]; break;
+            case 46 : $parag = $lang['SVC_PACK_PARAG_46'][$_SESSION['lang']]; break;
             default : $parag = '';
         }
         ?>
         <?php
         switch($service->getId()){
-            case 38 : $note = "<b>Les Packs 1 & 2</b> bénéficient d'une tarification préférentielle spécifiquement conçue pour soutenir l'écosystème entrepreneurial marocain. Ils sont donc strictement réservés aux entreprises au cours de leurs 24 premiers mois d'activité. Tous les prix indiqués sont des tarifs de base. Le prix final peut varier en fonction des demandes spécifiques, des intégrations personnalisées, des besoins de conception supplémentaires (graphisme, identité visuelle, etc.) ou de l'élargissement de la portée du projet."; break;
-            case 40 : $note = "Pour<b> « Le Pilote SEO »</b> bénéficie d'une tarification préférentielle spécifiquement conçue pour soutenir l'écosystème entrepreneurial marocain et est donc strictement réservé aux entreprises au cours de leurs 24 premiers mois d'activité. Tous les prix indiqués sont des tarifs de base. Le prix final peut varier en fonction des demandes spécifiques, des intégrations personnalisées, des besoins de conception supplémentaires (graphisme, identité visuelle, etc.) ou de l'élargissement de la portée du projet."; break; 
-            default : $note = "<b>Les Packs 1</b> bénéficie d'une tarification préférentielle spécifiquement conçue pour soutenir l'écosystème entrepreneurial marocain. Ils sont donc strictement réservés aux entreprises au cours de leurs 24 premiers mois d'activité. Tous les prix indiqués sont des tarifs de base. Le prix final peut varier en fonction des demandes spécifiques, des intégrations personnalisées, des besoins de conception supplémentaires (graphisme, identité visuelle, etc.) ou de l'élargissement de la portée du projet.";
+            case 38 : $note = $lang['SVC_PACK_NOTE_38'][$_SESSION['lang']]; break;
+            case 40 : $note = $lang['SVC_PACK_NOTE_40'][$_SESSION['lang']]; break;
+            default : $note = $lang['SVC_PACK_NOTE_DEFAULT'][$_SESSION['lang']];
         }
         ?>
         <div class="container">
             <div class="row mt-5">
                 <div class="col-sm-12">
-                    <h2 class="big-title">Découvrir nos packs</h2>
+                    <h2 class="big-title"><?php echo $lang['SVC_SECTION_DECOUVRIR_PACKS'][$_SESSION['lang']]; ?></h2>
                     <?php echo $parag; ?>
                 </div>
             </div>
@@ -179,7 +178,7 @@ else{
             <div class="pack-box">
                 <?php foreach ($packs as $pack) : ?>
                 <div class="item-pack <?php if($pack->isPopulaire()) echo 'active'; ?>">
-                    <?php if($pack->isPopulaire()) echo '<span class="popular"><i class="fa fa-trophy"></i> Le plus populaire</span>'; ?>
+                    <?php if($pack->isPopulaire()) echo '<span class="popular"><i class="fa fa-trophy"></i> '.$lang['SVC_PACK_POPULAR'][$_SESSION['lang']].'</span>'; ?>
                     <div class="imgbox"><img src="<?php echo $siteURL; ?>images/packs/<?php echo $pack->getPhoto(); ?>" alt="<?php echo $pack->getTitre(); ?>"></div>
                     <h4><?php echo $pack->getTitre(); ?></h4>
     
@@ -189,13 +188,13 @@ else{
                     
                     <?php if ($pack->getPrix() != '') : ?>
                     <div class="price">
-                        <span>A partir de </span><br>
+                        <span><?php echo $lang['SVC_PACK_A_PARTIR_DE'][$_SESSION['lang']]; ?></span><br>
                         <?php echo number_format($pack->getPrix(), 2, ',', ' '); ?> <sup>Dhs</sup>
-                        <?php if($service->getId() == 40 || $service->getId() == 46) echo ' / Mois'; ?>
+                        <?php if($service->getId() == 40 || $service->getId() == 46) echo $lang['SVC_PACK_PAR_MOIS'][$_SESSION['lang']]; ?>
                     </div>
                     <?php endif; ?>
-                    
-                    <a href="#0" class="btn-pack open-form-service"><span>Demander mon Devis Gratuit</span></a>
+
+                    <a href="#0" class="btn-pack open-form-service"><span><?php echo $lang['SVC_CTA_DEMANDER_DEVIS_GRATUIT'][$_SESSION['lang']]; ?></span></a>
                 </div>
                 <?php endforeach; ?>
             </div>
@@ -204,7 +203,7 @@ else{
         <div class="container">
             <?php if($service->getId())
             ?>
-            <div class="note"><strong>Note</strong> : <?php echo $note; ?> <div>
+            <div class="note"><strong><?php echo $lang['SVC_PACK_NOTE_LABEL'][$_SESSION['lang']]; ?></strong> : <?php echo $note; ?> <div>
             
         </div>
         </section>
@@ -217,7 +216,7 @@ else{
 <section class="portfolio" id="work">
           <div class="container">
             <div class="sec-label rv">Selected Work</div>
-            <h2 class="sec-title rv d1">Nos dernières <em>réalisations</em></h2>
+            <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_REALISATIONS'][$_SESSION['lang']]; ?></h2>
             <div class="port-grid rv d2">
               <div class="port-item p-meridian tall">
                 <a href="<?php echo $references[0]->getLink(); ?>" class="port-bg">
@@ -264,12 +263,12 @@ else{
            <div class="container">
             <div class="col-sm-12 mt-5 text-center">
                 <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Voir plus de réalisations</span></div>
+                  <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-trophy"></i></div>
                 </a>
 
                 <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Parlons de votre projet</span></div>
+                  <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_PARLONS_PROJET'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
                 </a>
             </div>
@@ -282,8 +281,8 @@ else{
 
 <section class="trust" id="trust">
   <div class="trust-head container text-center">
-    <h2 class="sec-title rv d1">Les <em>technologies</em> et <em>plateformes</em><br> au service de vos projets</h2>
-    <p>Nous utilisons les meilleurs outils du marché pour garantir la performance, la sécurité et la croissance de votre business.</p>
+    <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_TECH_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p><?php echo $lang['SVC_SECTION_TECH_SUBTITLE'][$_SESSION['lang']]; ?></p>
   </div>
   <div class="trust-rows">
 
@@ -314,12 +313,12 @@ else{
 <?php if(isset($childServices)): ?>
 <section class="service-by-cities">
                 <div class="container">
-                <h3 class="sec-title rv d1 fancy-title on"><em>Proches de vous,<br></em> où que vous soyez au Maroc</h3>
+                <h3 class="sec-title rv d1 fancy-title on"><?php echo $lang['SVC_SECTION_PROCHES_DE_VOUS'][$_SESSION['lang']]; ?></h3>
                 <div id="owl-services-cities" class="owl-carousel owl-theme">
                 <?php foreach($childServices as $subService): ?>
                 <div class="item-service-city">
                     <h3><a href="<?php echo $subService->getLink(); ?>"><?php echo $subService->getTitre(); ?></a></h3>
-                    <a href="<?php echo $subService->getLink(); ?>">En savoir plus <i class="ti-arrow-right"></i></a>
+                    <a href="<?php echo $subService->getLink(); ?>"><?php echo $lang['SVC_CTA_EN_SAVOIR_PLUS'][$_SESSION['lang']]; ?> <i class="ti-arrow-right"></i></a>
                 </div>
                 <?php endforeach; ?>
                 </div>
@@ -356,7 +355,7 @@ else{
                                 <div class="hover-box">
                                     <?php if ($photo->getDesc1()) : ?>
                                     <h4>
-                                        <?= $photo->getDesc1() ?> Abonnés
+                                        <?= $photo->getDesc1() ?><?php echo $lang['SVC_SUFFIX_ABONNES'][$_SESSION['lang']]; ?>
                                     </h4>
                                     <?php endif; ?>
 
@@ -388,7 +387,7 @@ else{
                 <div class="container">
                     <div class="row">
                     <div class="col-sm-12">
-                        <h2 class="sec-title rv d1 fancy-title on mb-5"><em>Explorez</em> notre vidéothèque</h2>
+                        <h2 class="sec-title rv d1 fancy-title on mb-5"><?php echo $lang['SVC_SECTION_VIDEOTHEQUE'][$_SESSION['lang']]; ?></h2>
                     </div>
                 </div>
                             </div>
@@ -431,7 +430,7 @@ else{
                                 <div class="row">
                                     <div class="col-sm-12 mt-5 d-flex justify-content-center">                                        
                                         <a href="<?php echo $pageVideo->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                                          <div class="sb-label"><span class="sb-hint">Discover more videos</span></div>
+                                          <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DISCOVER_MORE_VIDEOS'][$_SESSION['lang']]; ?></span></div>
                                           <div class="sb-knob"><i class="fal fa-play"></i></div> 
                                         </a>
                                     </div>
@@ -445,13 +444,13 @@ else{
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h2 class="sec-title rv d1 fancy-title on mb-5">Plongez dans <br><em>nos séances photo</em></h2>
+                                    <h2 class="sec-title rv d1 fancy-title on mb-5"><?php echo $lang['SVC_SECTION_PHOTOTHEQUE'][$_SESSION['lang']]; ?></h2>
                                 </div>
                             </div>
                         </div>
                         <div class="cs-isotop_filter cs-style1">
                             <ul class="cs-mp0 cs-center">
-                                <li class="active"><a href="#" data-filter="*">All</a></li>
+                                <li class="active"><a href="#" data-filter="*"><?php echo $lang['SVC_FILTER_ALL'][$_SESSION['lang']]; ?></a></li>
                                 <?php $galleries = [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53]; ?>
                                 <?php foreach ($galleries as $value) :
                                         $gallery = galerie::find($value, $_SESSION["lang"]) ?>
@@ -489,8 +488,8 @@ else{
 <!---->
 <section class="trust" id="trust">
       <div class="trust-head container">
-        <div class="sec-label rv">Partenaires</div>
-        <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+        <div class="sec-label rv"><?php echo $lang['SVC_SECTION_PARTENAIRES_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_PARTENAIRES_TITLE'][$_SESSION['lang']]; ?></h2>
       </div>
       <div class="trust-rows">
     
@@ -521,8 +520,8 @@ else{
 
 <section class="faq" id="faq">
   <div class="container">
-    <div class="sec-label rv">Questions fréquentes</div>
-    <h2 class="sec-title rv d1">Tout ce que <br>vous <em>devez savoir</em></h2>
+    <div class="sec-label rv"><?php echo $lang['SVC_SECTION_FAQ_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_FAQ_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="faq-cols rv d2">
       <div>
         <div class="faq-list">
@@ -570,8 +569,8 @@ else{
 				...
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-custom purple" data-dismiss="modal"><span>Fermer</span></button>
-				<button type="button" class="btn btn-custom send-form"><span>Envoyer</span></button>
+				<button type="button" class="btn btn-custom purple" data-dismiss="modal"><span><?php echo $lang['SVC_MODAL_FERMER'][$_SESSION['lang']]; ?></span></button>
+				<button type="button" class="btn btn-custom send-form"><span><?php echo $lang['SVC_MODAL_ENVOYER'][$_SESSION['lang']]; ?></span></button>
 			</div>
 		</div>
 	</div>

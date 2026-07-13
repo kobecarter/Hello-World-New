@@ -220,16 +220,16 @@ img,video{display:block;max-width:100%}
   <div class="svc-side-deco">Hello World Agency · Digital Intelligence</div>
 
   <div class="slide-block" id="slide-block" data-side="left">
-    <div  class="slide-title"   id="td-title">Développement digital</div>
+    <div  class="slide-title"   id="td-title"><?php echo $lang['HOME_SLIDE_TITLE_1'][$_SESSION['lang']]; ?></div>
     <div  class="slide-service" id="td-service" data-text="Web &amp; Mobile">Web &amp; Mobile</div>
-    <div  class="slide-sub"     id="td-sub">Développement Site Web &amp; Mobile</div>
+    <div  class="slide-sub"     id="td-sub"><?php echo $lang['HOME_SLIDE_SUB_1'][$_SESSION['lang']]; ?></div>
     <div  class="slide-index">
       <span class="slide-index-cur" id="td-index">01</span>
       <span class="slide-index-sep">—</span>
       <span>04</span>
     </div>
     <a href="<?php echo $serviceWebMobile->getLink(); ?>" id="td-link" class="sb sb-compact" data-auto-reset="true" role="slider" tabindex="0" aria-label="Découvrir" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="sb-label"><span class="sb-hint">Découvrir</span></div>
+      <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_DISCOVER'][$_SESSION['lang']]; ?></span></div>
       <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
     </a>
   </div>
@@ -245,19 +245,19 @@ img,video{display:block;max-width:100%}
 <div class="mq" id="mq"><div class="mq-t">
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
   <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['HOME_MQ_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['HOME_MQ_SAAS'][$_SESSION['lang']]; ?></span>
   <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['HOME_MQ_DEPLOY'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['HOME_MQ_ROI'][$_SESSION['lang']]; ?></span></span>
   <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
   <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['HOME_MQ_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['HOME_MQ_SAAS'][$_SESSION['lang']]; ?></span>
   <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['HOME_MQ_DEPLOY'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['HOME_MQ_ROI'][$_SESSION['lang']]; ?></span></span>
   <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
 </div></div>
 
@@ -275,14 +275,14 @@ img,video{display:block;max-width:100%}
   </div>
   <div class="hero-foot">
     <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="sb-label"><span class="sb-hint">Voir les solutions</span></div>
+      <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_VOIR_SOLUTIONS'][$_SESSION['lang']]; ?></span></div>
       <div class="sb-knob">
         <i class="fal fa-robot"></i>
       </div>
     </a>
 
     <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
+      <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_AUDIT_IA'][$_SESSION['lang']]; ?></span></div>
       <div class="sb-knob">
         <i class="fal fa-search"></i>
       </div>
@@ -315,8 +315,8 @@ img,video{display:block;max-width:100%}
   <span class="px-ghost" data-px="0.22" style="font-size:clamp(12rem,28vw,40rem);bottom:-1.5rem;right:-1rem;color:rgba(0,0,0,.022)" aria-hidden="true">HW</span>
   <div class="container">
     <p class="rv">
-      <span class="s-muted">Au-delà du simple code, </span>nous concevons l'intelligence
-      <span class="s-muted"> qui animera les produits </span><span class="s-gold">les plus importants de demain.</span>
+      <span class="s-muted"><?php echo $lang['HOME_STATEMENT_PART1'][$_SESSION['lang']]; ?></span><?php echo $lang['HOME_STATEMENT_PART2'][$_SESSION['lang']]; ?>
+      <span class="s-muted"><?php echo $lang['HOME_STATEMENT_PART3'][$_SESSION['lang']]; ?></span><span class="s-gold"><?php echo $lang['HOME_STATEMENT_PART4'][$_SESSION['lang']]; ?></span>
     </p>
   </div>
 </section>
@@ -325,8 +325,8 @@ img,video{display:block;max-width:100%}
   <div class="container">
     <div class="services-header">
       <div>
-        <div class="sec-label rv">Développement</div>
-        <h2 class="sec-title rv d1">Nos services <em>core</em></h2>
+        <div class="sec-label rv"><?php echo $lang['HOME_SRV_DEV_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv d1"><?php echo $lang['HOME_SRV_CORE_TITLE'][$_SESSION['lang']]; ?></h2>
       </div>
     </div>
     <div class="srv-grid rv d2" id="srvGrid3d">
@@ -345,17 +345,17 @@ img,video{display:block;max-width:100%}
           <div class="srv-visual-num">01</div>
         </div>
         <div class="srv-body">
-          <h3 class="srv-title">Développement <em>Web</em></h3>
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_WEB_TITLE'][$_SESSION['lang']]; ?></h3>
           <p class="srv-desc"><?php echo $serviceWeb->getTexteAccueil(); ?></p>
           <ul class="srv-features">
-            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Design UI/UX sur-mesure</li>
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_WEB_FEAT1'][$_SESSION['lang']]; ?></li>
             <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>React / Next.js & TypeScript</li>
             <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>API REST / GraphQL & back-end</li>
             <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO technique & Core Web Vitals</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Déploiement cloud & CI/CD</li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_WEB_FEAT5'][$_SESSION['lang']]; ?></li>
           </ul>
             <a href="<?php echo $serviceWeb->getLink(); ?>" class="sb sb-compact" role="button">
-              <div class="sb-label"><span class="sb-hint">Démarrer un projet</span></div>
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_WEB_CTA'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-laptop-code"></i></div>
             </a>
         </div>
@@ -373,73 +373,73 @@ img,video{display:block;max-width:100%}
           <div class="srv-visual-num">02</div>
         </div>
         <div class="srv-body">
-          <h3 class="srv-title">Applications <em>Mobile</em></h3>
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_MOBILE_TITLE'][$_SESSION['lang']]; ?></h3>
           <p class="srv-desc"><?php echo $serviceMobile->getTexteAccueil(); ?></p>
           <ul class="srv-features">
             <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iOS & Android natif / React Native</li>
             <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>UI/UX mobile-first & micro-animations</li>
-            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Push, mode offline & biométrie</li>
-            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Paiement in-app (Stripe / IAP)</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Publication stores & mises à jour OTA</li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_MOBILE_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_MOBILE_FEAT4'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_MOBILE_FEAT5'][$_SESSION['lang']]; ?></li>
           </ul>
             <a href="<?php echo $serviceMobile->getLink(); ?>" class="sb sb-compact" role="button">
-              <div class="sb-label"><span class="sb-hint">Voir les apps</span></div>
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_MOBILE_CTA'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-mobile"></i></div>
             </a>
         </div>
       </div>
 
       <!-- SaaS -->
-      <?php $serviceSaaS = service::find(1,$_SESSION['lang']); ?>
+      <?php $serviceSaaS = service::find(1,$_SESSION['lang']); if(!$serviceSaaS->getSlug()) $serviceSaaS = service::find(1, langue::getDefaultLanguage()); ?>
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
             <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceSaaS->getPhoto(); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
-          <div class="srv-visual-tag">SaaS & Plateformes</div>
+          <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_SAAS_TAG'][$_SESSION['lang']]; ?></div>
           <div class="srv-visual-num">03</div>
         </div>
         <div class="srv-body">
-          <h3 class="srv-title">Plateformes <em>SaaS</em></h3>
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_SAAS_TITLE'][$_SESSION['lang']]; ?></h3>
           <p class="srv-desc"><?php echo $serviceSaaS->getTexteAccueil(); ?></p>
           <ul class="srv-features">
-            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Architecture multi-tenant scalable</li>
-            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Auth, RBAC & onboarding guidé</li>
-            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Facturation & abonnements Stripe</li>
-            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT2'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT4'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT5'][$_SESSION['lang']]; ?></li>
           </ul>
             <a href="<?php echo $serviceSaaS->getLink(); ?>" class="sb sb-compact" role="button">
-              <div class="sb-label"><span class="sb-hint">Construire mon SaaS</span></div>
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_SAAS_CTA'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-desktop"></i></div>
             </a>
         </div>
       </div>
 
       <!-- AI -->
-      <?php $serviceIA = service::find(17,$_SESSION['lang']); ?>
+      <?php $serviceIA = service::find(17,$_SESSION['lang']); if(!$serviceIA->getSlug()) $serviceIA = service::find(17, langue::getDefaultLanguage()); ?>
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
              <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceIA->getPhoto(); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
-          <div class="srv-visual-tag">Agents IA</div>
+          <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_IA_TAG'][$_SESSION['lang']]; ?></div>
           <div class="srv-visual-num">04</div>
         </div>
         <div class="srv-body">
-          <h3 class="srv-title">Agents <em>IA</em></h3>
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_IA_TITLE'][$_SESSION['lang']]; ?></h3>
           <p class="srv-desc"><?php echo $serviceIA->getTexteAccueil(); ?></p>
           <ul class="srv-features">
-            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Architecture multi-tenant scalable</li>
-            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Auth, RBAC & onboarding guidé</li>
-            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Facturation & abonnements Stripe</li>
-            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
-            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT2'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT4'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT5'][$_SESSION['lang']]; ?></li>
           </ul>
             <a href="<?php echo $serviceIA->getLink(); ?>" class="sb sb-compact" role="button">
-              <div class="sb-label"><span class="sb-hint">Construire mon agent</span></div>
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_IA_CTA'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-robot"></i></div>
             </a>
         </div>
@@ -482,8 +482,8 @@ img,video{display:block;max-width:100%}
   <div class="container">
     <div class="services-header">
       <div>
-        <div class="sec-label">Notre expertise</div>
-        <h2 class="sec-title">Ce que nous <em>construisons</em></h2>
+        <div class="sec-label"><?php echo $lang['HOME_EXPERTISE_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title"><?php echo $lang['HOME_CONSTRUISONS_TITLE'][$_SESSION['lang']]; ?></h2>
       </div>
     </div>
     <div class="svc-grid" id="svcGrid3d">
@@ -496,7 +496,7 @@ img,video{display:block;max-width:100%}
         <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
         <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
         <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
-        <span class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></span>
+        <span class="svc-more"><?php echo $lang['HOME_SAVOIR_PLUS'][$_SESSION['lang']]; ?> <i class="fa fa-arrow-right fa-xs"></i></span>
         </a>
       </div>
       <?php $cpt++; ?>
@@ -515,8 +515,8 @@ img,video{display:block;max-width:100%}
   <!-- Mobile-only: centred header above the image.
        Hidden on desktop — desktop uses .why-copy overlay instead. -->
   <div class="why-mobile-hd">
-    <h2 class="why-h">Pourquoi<em>Hello World</em></h2>
-    <p class="why-p">Nous sommes le seul partenaire qui combine expertise IA de pointe et développement produit full-stack — du prototype à la mise en production, dans les délais.</p>
+    <h2 class="why-h"><?php echo $lang['HOME_WHY_H'][$_SESSION['lang']]; ?></h2>
+    <p class="why-p"><?php echo $lang['HOME_WHY_P'][$_SESSION['lang']]; ?></p>
   </div>
 
   <div class="why-img-wrap">
@@ -524,7 +524,7 @@ img,video{display:block;max-width:100%}
     <!-- Image sets container height; hit zones % of this element -->
     <img src="<?php echo $siteURL; ?>images/background-why-v2-web.jpg"
          class="why-bg-img"
-         alt="Hello World Agency — équipe humaine et robots IA en collaboration"
+         alt="<?php echo $lang['HOME_WHY_BG_ALT'][$_SESSION['lang']]; ?>"
          loading="lazy"
          width="2400" height="1593">
 
@@ -535,25 +535,25 @@ img,video{display:block;max-width:100%}
          (they live in .why-mobile-hd for mobile readers) -->
     <div class="why-copy">
       <div class="sec-label rv">Hello World</div>
-      <h2 class="sec-title rv d1">Pourquoi<br><em>Hello World</em></h2>
+      <h2 class="sec-title rv d1"><?php echo $lang['HOME_WHY_TITLE'][$_SESSION['lang']]; ?></h2>
 
-      <p class="why-p" aria-hidden="true">Nous sommes le seul partenaire qui combine expertise IA de pointe et développement produit full-stack — du prototype à la mise en production, dans les délais.</p>
+      <p class="why-p" aria-hidden="true"><?php echo $lang['HOME_WHY_P'][$_SESSION['lang']]; ?></p>
       <div class="why-pts">
         <div class="why-pt">
-          <span class="why-pt-k">16 ans d'expérience &amp; ~900 clients</span>
-          <span class="why-pt-v">Une solidité et un savoir-faire éprouvés à travers près de 900 projets livrés avec succès pour propulser votre croissance.</span>
+          <span class="why-pt-k"><?php echo $lang['HOME_WHY_PT1_K'][$_SESSION['lang']]; ?></span>
+          <span class="why-pt-v"><?php echo $lang['HOME_WHY_PT1_V'][$_SESSION['lang']]; ?></span>
         </div>
         <div class="why-pt">
-          <span class="why-pt-k">Expertise 360° unique</span>
-          <span class="why-pt-v">Une maîtrise totale de l'ensemble de vos besoins : IA, SaaS, Brand Experience, Création Digitale et Sites Web réunis chez un seul partenaire.</span>
+          <span class="why-pt-k"><?php echo $lang['HOME_WHY_PT2_K'][$_SESSION['lang']]; ?></span>
+          <span class="why-pt-v"><?php echo $lang['HOME_WHY_PT2_V'][$_SESSION['lang']]; ?></span>
         </div>
         <div class="why-pt">
-          <span class="why-pt-k">Agilité &amp; ROI mesurable</span>
-          <span class="why-pt-v">Un déploiement en production en quelques semaines seulement et des résultats concrets visibles dès les 8 premières semaines.</span>
+          <span class="why-pt-k"><?php echo $lang['HOME_WHY_PT3_K'][$_SESSION['lang']]; ?></span>
+          <span class="why-pt-v"><?php echo $lang['HOME_WHY_PT3_V'][$_SESSION['lang']]; ?></span>
         </div>
         <div class="why-pt">
-          <span class="why-pt-k">Équipe dédiée en direct</span>
-          <span class="why-pt-v">Une communication transparente et sans intermédiaires avec des experts qui connaissent parfaitement votre domaine.</span>
+          <span class="why-pt-k"><?php echo $lang['HOME_WHY_PT4_K'][$_SESSION['lang']]; ?></span>
+          <span class="why-pt-v"><?php echo $lang['HOME_WHY_PT4_V'][$_SESSION['lang']]; ?></span>
         </div>
       </div>
     </div>
@@ -563,25 +563,25 @@ img,video{display:block;max-width:100%}
     <div class="why-stat-hit" data-stat="pays" aria-label="12 Pays couverts">
       <div class="wsh-card">
         <span class="wsh-num">12</span>
-        <span class="wsh-lbl">Pays couverts</span>
+        <span class="wsh-lbl"><?php echo $lang['HOME_STAT_PAYS'][$_SESSION['lang']]; ?></span>
       </div>
     </div>
     <div class="why-stat-hit" data-stat="ia" aria-label="24+ IA en production">
       <div class="wsh-card">
         <span class="wsh-num">24+</span>
-        <span class="wsh-lbl">IA en production</span>
+        <span class="wsh-lbl"><?php echo $lang['HOME_STAT_IA'][$_SESSION['lang']]; ?></span>
       </div>
     </div>
     <div class="why-stat-hit" data-stat="retention" aria-label="98% Rétention clients">
       <div class="wsh-card">
         <span class="wsh-num">98%</span>
-        <span class="wsh-lbl">Rétention clients</span>
+        <span class="wsh-lbl"><?php echo $lang['HOME_STAT_RETENTION'][$_SESSION['lang']]; ?></span>
       </div>
     </div>
     <div class="why-stat-hit" data-stat="projets" aria-label="900+ Projets livrés">
       <div class="wsh-card">
         <span class="wsh-num">900+</span>
-        <span class="wsh-lbl">Projets livrés</span>
+        <span class="wsh-lbl"><?php echo $lang['HOME_STAT_PROJETS'][$_SESSION['lang']]; ?></span>
       </div>
     </div>
 
@@ -650,8 +650,8 @@ img,video{display:block;max-width:100%}
   <div class="container">
     <div class="services-header">
       <div>
-        <div class="sec-label rv">Notre Offre IA</div>
-        <h2 class="sec-title rv d1">Nos solutions <em>IA</em></h2>
+        <div class="sec-label rv"><?php echo $lang['HOME_AI_OFFER_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv d1"><?php echo $lang['HOME_AI_SOL_TITLE'][$_SESSION['lang']]; ?></h2>
       </div>
     </div>
     <div class="ai-grid rv d2">
@@ -677,8 +677,8 @@ img,video{display:block;max-width:100%}
 
 <section class="portfolio" id="work">
   <div class="container">
-    <div class="sec-label rv">Cas d'utilisation</div>
-    <h2 class="sec-title rv d1">Nos dernières <em>réalisations</em></h2>
+    <div class="sec-label rv"><?php echo $lang['HOME_PORTFOLIO_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_PORTFOLIO_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="port-grid rv d2">
       <div class="port-item p-meridian tall">
         <a href="<?php echo $references[0]->getLink(); ?>" class="port-bg">
@@ -723,7 +723,7 @@ img,video{display:block;max-width:100%}
     </div>
     <div class="mt-5 text-center">
         <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir plus de réalisations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Voir plus de réalisations</span></div>
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_VOIR_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-trophy"></i></div>
         </a>
     </div>
@@ -732,8 +732,8 @@ img,video{display:block;max-width:100%}
 
 <section class="trust" id="trust">
   <div class="trust-head container">
-    <div class="sec-label rv">Partenaires</div>
-    <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+    <div class="sec-label rv"><?php echo $lang['HOME_PARTNERS_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_TRUST_TITLE'][$_SESSION['lang']]; ?></h2>
   </div>
   <div class="trust-rows">
 
@@ -796,7 +796,7 @@ img,video{display:block;max-width:100%}
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
                 <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Contactez un expert" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Contactez un expert</span></div>
+                  <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_CONTACT_EXPERT'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>
             </div>
@@ -810,7 +810,7 @@ img,video{display:block;max-width:100%}
     <div class="insights-header rv">
       <div>
         <div class="sec-label">Insights &amp; Digital Expert</div>
-        <h2 class="sec-title">Actualité <em>digitale</em></h2>
+        <h2 class="sec-title"><?php echo $lang['HOME_INSIGHTS_TITLE'][$_SESSION['lang']]; ?></h2>
       </div>
     </div>
 
@@ -829,7 +829,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="ep-foot">
           <span class="ep-meta-d"><?php echo normaldate2($blogs[0]->getDateAdd()); ?></span>
-          <a href="<?php echo $blogs[0]->getLink(); ?>" class="ep-play"><i class="fa fa-arrow-right fa-xs"></i><span>lire plus</span></a>
+          <a href="<?php echo $blogs[0]->getLink(); ?>" class="ep-play"><i class="fa fa-arrow-right fa-xs"></i><span><?php echo $lang['HOME_LIRE_PLUS'][$_SESSION['lang']]; ?></span></a>
         </div>
       </div>
 
@@ -876,8 +876,8 @@ img,video{display:block;max-width:100%}
 
 <section class="trust" id="trust">
   <div class="trust-head container text-center">
-    <h2 class="sec-title rv d1">Les <em>technologies</em> et <em>plateformes</em><br>au service de vos projets</h2>
-    <p>Nous utilisons les meilleurs outils du marché pour garantir la performance, la sécurité et la croissance de votre business.</p>
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_TECH_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p><?php echo $lang['HOME_TECH_SUB'][$_SESSION['lang']]; ?></p>
   </div>
   <div class="trust-rows">
 
@@ -909,7 +909,7 @@ img,video{display:block;max-width:100%}
 <section class="agencies" id="agencies">
   <div class="container">
     <div class="sec-label rv">International</div>
-    <h2 class="sec-title rv d1">Nos <em>agences</em></h2>
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_AGENCIES_TITLE'][$_SESSION['lang']]; ?></h2>
   </div>
   <div class="agencies-list">
 
@@ -918,7 +918,7 @@ img,video{display:block;max-width:100%}
       <span class="agency-num">01</span>
       <div class="container">
         <div class="agency-content" data-px="0.13">
-          <h3 class="agency-city">Maroc</h3>
+          <h3 class="agency-city"><?php echo $lang['HOME_AGENCY_MAROC'][$_SESSION['lang']]; ?></h3>
           <div class="agency-tag">
             <a href="<?php echo $marrakech->getLink(); ?>">Marrakech</a> - 
             <a href="<?php echo $casa->getLink(); ?>">Casablanca</a> - 
@@ -932,7 +932,7 @@ img,video{display:block;max-width:100%}
             <li><i class="fas fa-envelope"></i><a href="mailto:<?php echo $config->getEmail(); ?>"><?php echo $config->getEmail(); ?></a></li>
             <li><i class="fas fa-map-marker"></i><p><?php echo $config->getAdresse(); ?></p></li>
           </ul>
-          <a href="<?php echo $pageContact->getLink(); ?>" class="agency-link">Prendre contact <i class="fas fa-arrow-right fa-xs"></i></a>
+          <a href="<?php echo $pageContact->getLink(); ?>" class="agency-link"><?php echo $lang['HOME_PRENDRE_CONTACT'][$_SESSION['lang']]; ?> <i class="fas fa-arrow-right fa-xs"></i></a>
         </div>
       </div>
     </div>
@@ -943,13 +943,13 @@ img,video{display:block;max-width:100%}
       <div class="container">
         <div class="agency-content" data-px="0.13">
           <h3 class="agency-city">Europe</h3>
-          <div class="agency-tag">Londre</div>
+          <div class="agency-tag"><?php echo $lang['HOME_AGENCY_LONDRE'][$_SESSION['lang']]; ?></div>
           <ul class="agency-details">
             <li><i class="fas fa-phone"></i><a href="tel:+44524423156">+44 5 24 42 31 56</a></li>
             <li><i class="fas fa-envelope"></i><a href="mailto:contact@helloworldlabel.uk">contact@helloworldlabel.uk</a></li>
             <li><i class="fas fa-map-marker"></i><p>Hello World (London) Ltd, 3rd Floor, 86-90 Paul Street, London EC2A 4NE</p></li>
           </ul>
-          <a href="<?php echo $pageContact->getLink(); ?>" class="agency-link">Prendre contact <i class="fas fa-arrow-right fa-xs"></i></a>
+          <a href="<?php echo $pageContact->getLink(); ?>" class="agency-link"><?php echo $lang['HOME_PRENDRE_CONTACT'][$_SESSION['lang']]; ?> <i class="fas fa-arrow-right fa-xs"></i></a>
         </div>
       </div>
     </div>
@@ -960,14 +960,14 @@ img,video{display:block;max-width:100%}
       <div class="container">
         <div class="agency-content" data-px="0.13">
           
-          <h3 class="agency-city">Moyen-Orient</h3>
+          <h3 class="agency-city"><?php echo $lang['HOME_AGENCY_MOYEN_ORIENT'][$_SESSION['lang']]; ?></h3>
           <div class="agency-tag">Dubai</div>
           <ul class="agency-details">
             <li><i class="fas fa-phone"></i><a href="tel:+971543399752">+971 (0)54 393 9752</a></li>
             <li><i class="fas fa-envelope"></i><a href="mailto:contact@helloworldlabel.ae">contact@helloworldlabel.ae</a></li>
             <li><i class="fas fa-map-marker"></i><p>Dubai Silicon Oasis, DDP, Building A, Dubai, United Arab Emirates</p></li>
           </ul>
-          <a href="<?php echo $pageContact->getLink(); ?>" class="agency-link">Prendre contact <i class="fas fa-arrow-right fa-xs"></i></a>
+          <a href="<?php echo $pageContact->getLink(); ?>" class="agency-link"><?php echo $lang['HOME_PRENDRE_CONTACT'][$_SESSION['lang']]; ?> <i class="fas fa-arrow-right fa-xs"></i></a>
         </div>
       </div>
     </div>
@@ -976,8 +976,8 @@ img,video{display:block;max-width:100%}
 
 <section class="team" id="team">
   <div class="container">
-    <div class="sec-label rv">Équipe fondatrice</div>
-    <h2 class="sec-title rv d1">Équipe <em>fondatrice</em></h2>
+    <div class="sec-label rv"><?php echo $lang['HOME_TEAM_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_TEAM_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="team-grid">
 
       <div class="team-card rv">
@@ -1015,7 +1015,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="team-info">
           <div class="team-name">Youssef F</div>
-          <div class="team-role">Directeur artistique</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_ART'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
       <div class="team-card rv d3">
@@ -1027,7 +1027,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="team-info">
           <div class="team-name">Khadija T</div>
-          <div class="team-role">Developpeuse Web</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_DEV'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
     </div>
@@ -1040,8 +1040,8 @@ img,video{display:block;max-width:100%}
       <div class="col-sm-8">
           <div class="textbox">
             <div class="sec-label rv">Brochure</div>
-            <h2 class="sec-title rv d1">Découvrez Notre <br><em>Brochure</em></h2>
-            <p>Découvrez Hello World Agency, votre partenaire en marketing digital au Maroc. À travers notre brochure, explorez nos services, notre expertise et notre approche innovante. Conçue pour être claire et captivante, elle vous guidera facilement vers les solutions qui feront décoller votre projet.</p>
+            <h2 class="sec-title rv d1"><?php echo $lang['HOME_BROCHURE_TITLE'][$_SESSION['lang']]; ?></h2>
+            <p><?php echo $lang['HOME_BROCHURE_TEXT'][$_SESSION['lang']]; ?></p>
           </div>
       </div>
       <div class="col-sm-4">
@@ -1055,8 +1055,8 @@ img,video{display:block;max-width:100%}
 
 <section class="faq" id="faq">
   <div class="container">
-    <div class="sec-label rv">Questions fréquentes</div>
-    <h2 class="sec-title rv d1">Tout ce que vous <em>devez savoir</em></h2>
+    <div class="sec-label rv"><?php echo $lang['HOME_FAQ_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_FAQ_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="faq-cols rv d2">
       <div>
         <div class="faq-list">
@@ -1095,18 +1095,18 @@ img,video{display:block;max-width:100%}
 <section class="cta-band">
   <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">AI</span>
   <div class="container" style="position:relative;z-index:2">
-    <div class="sec-label">Prêt à vous lancer ?</div>
-    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Créons quelque chose<br><em> de remarquable</em></h2>
-    <p class="cta-sub">Que vous soyez une startup en phase d'amorçage ou une entreprise du Fortune 500, si vous bâtissez un projet ambitieux, nous voulons en faire partie.</p>
+    <div class="sec-label"><?php echo $lang['HOME_CTA_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem"><?php echo $lang['HOME_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="cta-sub"><?php echo $lang['HOME_CTA_SUB'][$_SESSION['lang']]; ?></p>
     
     <div class="cta-btns">
         <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Voir les solutions</span></div>
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_VOIR_SOLUTIONS'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-robot"></i></div>
         </a>
 
         <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_AUDIT_IA'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-search"></i></div>
         </a>    
     </div>
@@ -1115,11 +1115,11 @@ img,video{display:block;max-width:100%}
 
 <section class="contact" id="contact">
   <div class="container">
-    <div class="sec-label rv">Contactez-nous</div>
-    <h2 class="sec-title rv d1">Discutons de votre <em>projet</em></h2>
+    <div class="sec-label rv"><?php echo $lang['HOME_CONTACTEZ_NOUS'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_DISCUTONS'][$_SESSION['lang']]; ?></h2>
     <div class="contact-grid rv d2">
       <div>
-        <p class="contact-lead">Nous collaborons avec des équipes à travers le monde. Présentez-nous votre projet et nous reviendrons vers vous dans les 24 heures pour définir ensemble la première étape de notre collaboration.</p>
+        <p class="contact-lead"><?php echo $lang['HOME_CONTACT_LEAD'][$_SESSION['lang']]; ?></p>
         <div class="c-detail">
           <div class="c-ico"><i class="fa fa-envelope"></i></div>
           <div>
@@ -1137,7 +1137,7 @@ img,video{display:block;max-width:100%}
         <div class="c-detail">
           <div class="c-ico"><i class="fa fa-map-marker"></i></div>
           <div>
-            <div class="c-lbl">Adresse</div>
+            <div class="c-lbl"><?php echo $lang['HOME_ADRESSE_LBL'][$_SESSION['lang']]; ?></div>
             <div class="c-val"><?php echo $config->getAdresse(); ?></div>
           </div>
         </div>
@@ -1146,8 +1146,8 @@ img,video{display:block;max-width:100%}
         <div class="msgbox"></div>
         <div class="form-2col">
           <div class="form-row">
-            <label for="fn">Nom complet</label>
-            <input type="text" name="nom" id="fn" placeholder="Nom complet">
+            <label for="fn"><?php echo $lang['HOME_NOM_COMPLET'][$_SESSION['lang']]; ?></label>
+            <input type="text" name="nom" id="fn" placeholder="<?php echo $lang['HOME_NOM_COMPLET'][$_SESSION['lang']]; ?>">
           </div>
           <div class="form-row">
             <label for="fe">Email</label>
@@ -1156,25 +1156,25 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="form-2col">
           <div class="form-row">
-            <label for="fc">Téléphone</label>
-            <input type="text" name="phone" id="tel" placeholder="Téléphone">
+            <label for="fc"><?php echo $lang['HOME_TELEPHONE'][$_SESSION['lang']]; ?></label>
+            <input type="text" name="phone" id="tel" placeholder="<?php echo $lang['HOME_TELEPHONE'][$_SESSION['lang']]; ?>">
           </div>
           <div class="form-row">
             <label for="fbg">Budget</label>
             <select id="fbg" name="budget">
-              <option value="" disabled selected>Sélectionner…</option>
-                <option>Moins de 10 000 DHs</option>
-                <option>10 000 DHs – 30 000 DHs</option>
-                <option>30 000 DHs – 80 000 DHs</option>
-                <option>80 000 DHs – 200 000 DHs</option>
-                <option>200 000 DHs et plus</option>
-                <option>À définir ensemble</option>
+              <option value="" disabled selected><?php echo $lang['HOME_SELECTIONNER'][$_SESSION['lang']]; ?></option>
+                <option><?php echo $lang['HOME_BUDGET_OPT1'][$_SESSION['lang']]; ?></option>
+                <option><?php echo $lang['HOME_BUDGET_OPT2'][$_SESSION['lang']]; ?></option>
+                <option><?php echo $lang['HOME_BUDGET_OPT3'][$_SESSION['lang']]; ?></option>
+                <option><?php echo $lang['HOME_BUDGET_OPT4'][$_SESSION['lang']]; ?></option>
+                <option><?php echo $lang['HOME_BUDGET_OPT5'][$_SESSION['lang']]; ?></option>
+                <option><?php echo $lang['HOME_BUDGET_OPT6'][$_SESSION['lang']]; ?></option>
             </select>
           </div>
         </div>
         <div class="form-row">
           <label for="fm">Project Brief</label>
-          <textarea name="message" id="fm" placeholder="Présentez-nous votre projet — les solutions à développer, votre calendrier de déploiement et vos objectifs de succès."></textarea>
+          <textarea name="message" id="fm" placeholder="<?php echo $lang['HOME_BRIEF_PH'][$_SESSION['lang']]; ?>"></textarea>
         </div>
         <!--
         <button type="submit" class="btn-hw" style="width:100%;justify-content:center">
@@ -1185,7 +1185,7 @@ img,video{display:block;max-width:100%}
         
         <div class="sb submit-form" role="slider" tabindex="0" aria-label="Envoyer ma demande" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-fill"></div>
-          <div class="sb-label"><span class="sb-hint">Envoyer ma demande</span></div>
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_ENVOYER_DEMANDE'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fa fa-paper-plane"></i></div>
         </div>
         
@@ -1197,13 +1197,13 @@ img,video{display:block;max-width:100%}
 <?php if(isset($sousServices)): ?>
 <section class="service-by-cities">
     <div class="container">
-      <h2 class="sec-title rv d1 text-center"><em>Proches</em> de vous, où que vous soyez au Maroc</h2>
+      <h2 class="sec-title rv d1 text-center"><?php echo $lang['HOME_PROCHES_TITLE'][$_SESSION['lang']]; ?></h2>
 
     <div id="owl-services-cities" class="owl-carousel owl-theme">
     <?php foreach($sousServices as $subService): ?>
     <div class="item-service-city">
         <h3><a href="<?php echo $subService->getLink(); ?>"><?php echo $subService->getTitre(); ?></a></h3>
-        <a href="<?php echo $subService->getLink(); ?>">En savoir plus <i class="ti-arrow-right"></i></a>
+        <a href="<?php echo $subService->getLink(); ?>"><?php echo $lang['HOME_SAVOIR_PLUS'][$_SESSION['lang']]; ?> <i class="ti-arrow-right"></i></a>
     </div>
     <?php endforeach; ?>
     </div>
@@ -1263,10 +1263,10 @@ const toArr = gsap.utils.toArray;
 (function(){
 
   const services = [
-    { idx:'01', service:'Web & Mobile',     tagline:'Développement digital',    sub:'Développement Site Web & Mobile',             side:'left',  href:'<?php echo $serviceWebMobile->getLink(); ?>' },
-    { idx:'02', service:'Solutions IA',     tagline:'Intelligence artificielle', sub:'Solutions IA & Agents par métier et secteur', side:'right', href:'<?php echo $serviceIA->getLink(); ?>' },
-    { idx:'03', service:'SaaS & Produits',  tagline:'Plateformes robustes',     sub:'Des plateformes SaaS robustes',               side:'left',  href:'<?php echo $serviceSaaS->getLink(); ?>' },
-    { idx:'04', service:'Brand Experience', tagline:'Marketing digital',        sub:'Digital Marketing Agency',                    side:'right', href:'<?php echo $serviceBrandMarketing->getLink(); ?>' },
+    { idx:'01', service:'Web & Mobile',     tagline:<?php echo json_encode(html_entity_decode($lang['HOME_SLIDE_TITLE_1'][$_SESSION['lang']])); ?>,    sub:<?php echo json_encode(html_entity_decode($lang['HOME_SLIDE_SUB_1'][$_SESSION['lang']])); ?>,             side:'left',  href:'<?php echo $serviceWebMobile->getLink(); ?>' },
+    { idx:'02', service:<?php echo json_encode($lang['HOME_JS_SVC2_SERVICE'][$_SESSION['lang']]); ?>,     tagline:<?php echo json_encode($lang['HOME_JS_SVC2_TAGLINE'][$_SESSION['lang']]); ?>, sub:<?php echo json_encode(html_entity_decode($lang['HOME_JS_SVC2_SUB'][$_SESSION['lang']])); ?>, side:'right', href:'<?php echo $serviceIA->getLink(); ?>' },
+    { idx:'03', service:<?php echo json_encode(html_entity_decode($lang['HOME_JS_SVC3_SERVICE'][$_SESSION['lang']])); ?>,  tagline:<?php echo json_encode($lang['HOME_JS_SVC3_TAGLINE'][$_SESSION['lang']]); ?>,     sub:<?php echo json_encode($lang['HOME_JS_SVC3_SUB'][$_SESSION['lang']]); ?>,               side:'left',  href:'<?php echo $serviceSaaS->getLink(); ?>' },
+    { idx:'04', service:'Brand Experience', tagline:<?php echo json_encode($lang['HOME_JS_SVC4_TAGLINE'][$_SESSION['lang']]); ?>,        sub:'Digital Marketing Agency',                    side:'right', href:'<?php echo $serviceBrandMarketing->getLink(); ?>' },
   ];
 
   /* Text-block left positions — never overlap the 36vw avatar */

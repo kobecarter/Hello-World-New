@@ -267,7 +267,7 @@ class agent_ia
         global $db;
         $items = array();
         $SQLselect = sprintf(
-            "SELECT A.id as ID, A.*, B.* FROM " . static::$table . " A INNER JOIN " . static::$table2 . " B ON A.id = B.id_agent_ia WHERE B.langue = %s",
+            "SELECT A.id as ID, A.*, B.* FROM " . static::$table . " A LEFT JOIN " . static::$table2 . " B ON A.id = B.id_agent_ia AND B.langue = %s WHERE 1=1",
             GetSQLValueString($langue, "text")
         );
         if ($active) {

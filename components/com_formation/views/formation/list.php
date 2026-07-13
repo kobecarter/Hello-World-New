@@ -1,10 +1,10 @@
 <?php
-/* ── meta par slug : icon FA, label, couleur badge ──────────────────── */
+/* ── meta par id de formation (stable entre langues, contrairement au slug) : icon FA, label, couleur badge ──────────────────── */
 $hwflMeta = [
-    'formation-strategie-marketing-digital-ia-maroc'  => ['icon' => 'fa-chess',           'label' => 'Stratégie',    'color' => '#09A1BE'],
-    'formation-claude-code-developpement-web-maroc'   => ['icon' => 'fa-code',            'label' => 'Tech & Build', 'color' => '#680262'],
-    'formation-n8n-automatisation-ia-maroc'            => ['icon' => 'fa-diagram-project', 'label' => 'Ops & Growth', 'color' => '#09A1BE'],
-    'formation-podcast-ia-maroc'                        => ['icon' => 'fa-microphone',      'label' => 'Créateurs',    'color' => '#680262'],
+    1 => ['icon' => 'fa-chess',           'label' => $lang['FORML_BADGE_STRATEGIE'][$_SESSION['lang']], 'color' => '#09A1BE'],
+    2 => ['icon' => 'fa-code',            'label' => 'Tech & Build', 'color' => '#680262'],
+    3 => ['icon' => 'fa-diagram-project', 'label' => 'Ops & Growth', 'color' => '#09A1BE'],
+    4 => ['icon' => 'fa-microphone',      'label' => $lang['FORML_BADGE_CREATEURS'][$_SESSION['lang']], 'color' => '#680262'],
 ];
 ?>
 
@@ -24,17 +24,17 @@ $hwflMeta = [
   <div class="container">
     <div class="wm-hero-inner">
       <div>
-        <div class="wm-hero-label" id="hwfl-label">Hello World Academy</div>
-        <h1 class="sh-h1" id="hwfl-h1">Formations en <em>Marketing Digital</em><br>IA &amp; Médias au Maroc</h1>
+        <div class="wm-hero-label" id="hwfl-label"><?php echo $lang['FORML_HERO_LABEL'][$_SESSION['lang']]; ?></div>
+        <h1 class="sh-h1" id="hwfl-h1"><?php echo $lang['FORML_HERO_H1'][$_SESSION['lang']]; ?></h1>
         <p class="wm-hero-sub" id="hwfl-sub"><?php echo strip_tags($page->getExtrait()); ?></p>
         <div class="wm-hero-ctas" id="hwfl-ctas">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Réserver un audit de maturité gratuit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Réserver un audit de maturité gratuit</span></div>
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['FORML_HERO_CTA_AUDIT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_HERO_CTA_AUDIT'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
 
-            <a href="#hwfl-catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Découvrir nos programmes" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Découvrir nos programmes</span></div>
+            <a href="#hwfl-catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['FORML_HERO_CTA_DISCOVER'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_HERO_CTA_DISCOVER'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-layer-group"></i></div>
             </a>
         </div>
@@ -50,9 +50,9 @@ $hwflMeta = [
 <section class="hw-f-list-why">
   <div class="container">
     <div class="hw-f-list-why-head">
-      <div class="sec-label rv">Pourquoi Hello World ?</div>
-      <h2 class="sec-title rv d1">Plus qu'un catalogue,<br>un véritable <em>accélérateur de compétences</em></h2>
-      <p class="rv d2">Hello World ne propose pas un simple catalogue de formations IA. Nous construisons une académie tournée vers trois grands leviers complémentaires : la croissance digitale, les systèmes intelligents et les médias de marque. Cette approche permet de relier acquisition, automatisation, développement et production de contenus dans une logique de performance réelle.</p>
+      <div class="sec-label rv"><?php echo $lang['FORML_WHY_LABEL'][$_SESSION['lang']]; ?></div>
+      <h2 class="sec-title rv d1"><?php echo $lang['FORML_WHY_TITLE'][$_SESSION['lang']]; ?></h2>
+      <p class="rv d2"><?php echo $lang['FORML_WHY_DESC'][$_SESSION['lang']]; ?></p>
     </div>
     <div class="hw-f-list-why-path" id="hwflWhyPath">
       <svg class="hw-f-list-why-svg" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
@@ -69,32 +69,32 @@ $hwflMeta = [
       <div class="hw-f-list-why-node" style="left:8%;top:62%" id="hwfl-wc1">
         <div class="hw-f-list-why-node-dot" style="background:linear-gradient(135deg,#680262,#09A1BE)"><i class="fal fa-chart-line-up"></i><em>ROI</em></div>
         <div class="hw-f-list-why-node-card above">
-          <div class="hw-f-list-why-node-title">Approche orientée ROI</div>
-          <p>Chaque module est calibré pour produire un résultat mesurable dans votre contexte métier réel.</p>
+          <div class="hw-f-list-why-node-title"><?php echo $lang['FORML_WHY_ROI_TITLE'][$_SESSION['lang']]; ?></div>
+          <p><?php echo $lang['FORML_WHY_ROI_TEXT'][$_SESSION['lang']]; ?></p>
         </div>
       </div>
 
       <div class="hw-f-list-why-node" style="left:34%;top:18%" id="hwfl-wc2">
         <div class="hw-f-list-why-node-dot" style="background:linear-gradient(135deg,#09A1BE,#0d7a92)"><i class="fal fa-bolt"></i><em>100%</em></div>
         <div class="hw-f-list-why-node-card below">
-          <div class="hw-f-list-why-node-title">Programmes intensifs et applicatifs</div>
-          <p>Nous apprenons en faisant. Chaque heure de théorie est compensée par une heure de pratique sur votre projet réel.</p>
+          <div class="hw-f-list-why-node-title"><?php echo $lang['FORML_WHY_INTENSIVE_TITLE'][$_SESSION['lang']]; ?></div>
+          <p><?php echo $lang['FORML_WHY_INTENSIVE_TEXT'][$_SESSION['lang']]; ?></p>
         </div>
       </div>
 
       <div class="hw-f-list-why-node" style="left:62%;top:62%" id="hwfl-wc3">
         <div class="hw-f-list-why-node-dot" style="background:linear-gradient(135deg,#8B2568,#680262)"><i class="fal fa-route"></i><em>≤ 15</em></div>
         <div class="hw-f-list-why-node-card above">
-          <div class="hw-f-list-why-node-title">Parcours adaptés à votre maturité</div>
-          <p>TPE, PME, grande entreprise ou indépendant : le contenu et le rythme s'adaptent à votre niveau et à votre contexte.</p>
+          <div class="hw-f-list-why-node-title"><?php echo $lang['FORML_WHY_MATURITY_TITLE'][$_SESSION['lang']]; ?></div>
+          <p><?php echo $lang['FORML_WHY_MATURITY_TEXT'][$_SESSION['lang']]; ?></p>
         </div>
       </div>
 
       <div class="hw-f-list-why-node" style="left:88%;top:18%" id="hwfl-wc4">
         <div class="hw-f-list-why-node-dot" style="background:linear-gradient(135deg,#09A1BE,#680262)"><i class="fal fa-box-open"></i><em>J+1</em></div>
         <div class="hw-f-list-why-node-card below">
-          <div class="hw-f-list-why-node-title">Livrables concrets en sortie de formation</div>
-          <p>Frameworks, automatisations, show bibles, roadmaps : vous repartez avec quelque chose à déployer dès lundi.</p>
+          <div class="hw-f-list-why-node-title"><?php echo $lang['FORML_WHY_DELIVERABLES_TITLE'][$_SESSION['lang']]; ?></div>
+          <p><?php echo $lang['FORML_WHY_DELIVERABLES_TEXT'][$_SESSION['lang']]; ?></p>
         </div>
       </div>
 
@@ -105,10 +105,10 @@ $hwflMeta = [
 <!-- ══ CATALOGUE — scroll horizontal GSAP + coverflow 3D ═══════════════════ -->
 <section class="hw-f-list-catalogue" id="hwfl-catalogue">
   <div class="container">
-    <div class="sec-label rv">Les premiers programmes du catalogue</div>
-    <h2 class="sec-title rv d1">Choisissez le programme<br>aligné avec <em>vos objectifs</em></h2>
-    <p class="hw-f-list-intro-text rv d2">Ces 4 premiers programmes lancent un catalogue amené à s'élargir. Ils couvrent aujourd'hui la stratégie digitale, le développement assisté par IA, l'automatisation des opérations et la création de podcasts. D'autres parcours pourront ensuite enrichir l'offre sur des verticales marketing, tech, contenu, data ou média.</p>
-    <div class="hw-f-list-track-hint rv d3"><i class="fal fa-arrows-left-right"></i> Faites défiler pour parcourir les 4 programmes</div>
+    <div class="sec-label rv"><?php echo $lang['FORML_CATALOGUE_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['FORML_CATALOGUE_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="hw-f-list-intro-text rv d2"><?php echo $lang['FORML_CATALOGUE_INTRO'][$_SESSION['lang']]; ?></p>
+    <div class="hw-f-list-track-hint rv d3"><i class="fal fa-arrows-left-right"></i> <?php echo $lang['FORML_CATALOGUE_HINT'][$_SESSION['lang']]; ?></div>
   </div>
 
   <?php if (!empty($formations)): ?>
@@ -116,16 +116,16 @@ $hwflMeta = [
     <div class="hw-f-list-track" id="hwflTrack">
       <div class="hw-f-list-track-spacer" id="hwflSpacerStart" aria-hidden="true"></div>
       <?php foreach ($formations as $idx => $f):
-        $sl   = $f->getSlug() ?? '';
-        $meta = isset($hwflMeta[$sl]) ? $hwflMeta[$sl] : ['icon' => 'fa-graduation-cap', 'label' => 'Formation', 'color' => '#09A1BE'];
+        $fid  = $f->getId();
+        $meta = isset($hwflMeta[$fid]) ? $hwflMeta[$fid] : ['icon' => 'fa-graduation-cap', 'label' => $lang['FORML_BADGE_DEFAULT'][$_SESSION['lang']], 'color' => '#09A1BE'];
         $isGold = $meta['color'] === '#09A1BE';
-        $fduree = 'Sur demande';
+        $fduree = $lang['FORML_CARD_SUR_DEMANDE'][$_SESSION['lang']];
         if ($f->getDateDebut() && $f->getDateFin()) {
             try {
                 $d1 = new DateTime($f->getDateDebut());
                 $d2 = new DateTime($f->getDateFin());
                 $days = (int)$d1->diff($d2)->days + 1;
-                $fduree = $days . ' ' . ($days > 1 ? 'jours' : 'jour');
+                $fduree = $days . ' ' . ($days > 1 ? $lang['FORML_CARD_JOURS'][$_SESSION['lang']] : $lang['FORML_CARD_JOUR'][$_SESSION['lang']]);
             } catch (Exception $e) {}
         }
         $dateStr = $f->getDateDebut() ? date('d M Y', strtotime($f->getDateDebut())) : '';
@@ -147,18 +147,18 @@ $hwflMeta = [
             <span class="hw-f-list-card-meta-item"><i class="fal fa-clock"></i> <?= htmlspecialchars($fduree, ENT_QUOTES, 'UTF-8'); ?></span>
             <?php if ($dateStr): ?><span class="hw-f-list-card-meta-item"><i class="fal fa-calendar"></i> <?= htmlspecialchars($dateStr, ENT_QUOTES, 'UTF-8'); ?></span><?php endif; ?>
             <?php if ($f->getLieu()): ?><span class="hw-f-list-card-meta-item"><i class="fal fa-location-dot"></i> <?= htmlspecialchars(explode(' —', $f->getLieu())[0], ENT_QUOTES, 'UTF-8'); ?></span><?php endif; ?>
-            <span class="hw-f-list-card-meta-item"><i class="fal fa-users"></i> Max. <?= intval($f->getNbParticipants()); ?></span>
+            <span class="hw-f-list-card-meta-item"><i class="fal fa-users"></i> <?= $lang['FORML_CARD_MAX'][$_SESSION['lang']]; ?> <?= intval($f->getNbParticipants()); ?></span>
           </div>
-          <div class="hw-f-list-card-cta">Voir le programme <i class="fal fa-arrow-right"></i></div>
+          <div class="hw-f-list-card-cta"><?= $lang['FORML_CARD_CTA'][$_SESSION['lang']]; ?> <i class="fal fa-arrow-right"></i></div>
         </div>
       </a>
       <?php endforeach; ?>
       <div class="hw-f-list-card-3d hw-f-list-card-3d-cta">
         <div class="hw-f-list-card-3d-body" style="justify-content:center;text-align:center">
           <div class="hw-f-list-card-icon" style="background:linear-gradient(135deg,#680262,#09A1BE);margin:0 auto 1.4rem"><i class="fal fa-comments" style="color:#fff"></i></div>
-          <div class="hw-f-list-card-title">D'autres besoins ?</div>
-          <div class="hw-f-list-card-sub">Parlons de votre contexte, nous vous orientons vers le bon format.</div>
-          <div class="hw-f-list-card-cta" style="justify-content:center">Nous contacter <i class="fal fa-arrow-right"></i></div>
+          <div class="hw-f-list-card-title"><?= $lang['FORM_OTHER_NEEDS_TITLE'][$_SESSION['lang']]; ?></div>
+          <div class="hw-f-list-card-sub"><?= $lang['FORM_OTHER_NEEDS_SUB'][$_SESSION['lang']]; ?></div>
+          <div class="hw-f-list-card-cta" style="justify-content:center"><?= $lang['FORM_OTHER_NEEDS_CTA'][$_SESSION['lang']]; ?> <i class="fal fa-arrow-right"></i></div>
         </div>
       </div>
       <div class="hw-f-list-track-spacer" id="hwflSpacerEnd" aria-hidden="true"></div>
@@ -167,7 +167,7 @@ $hwflMeta = [
   <?php else: ?>
   <div class="container">
     <div class="hw-f-list-empty rv">
-      <p>Les formations arrivent bientôt. <strong>Exécutez le script SQL de seed</strong> (<code>seed_formations_v2.sql</code>) dans phpMyAdmin pour peupler le catalogue.</p>
+      <p><?php echo $lang['FORML_EMPTY_STATE'][$_SESSION['lang']]; ?></p>
     </div>
   </div>
   <?php endif; ?>
@@ -176,9 +176,9 @@ $hwflMeta = [
 <!-- ══ CE QUE VOS ÉQUIPES GAGNENT — flip cards 3D avant / après ═══════════ -->
 <section class="hw-f-list-gains">
   <div class="container">
-    <div class="sec-label rv">Des formations conçues pour produire</div>
-    <h2 class="sec-title rv d1">Un avant / après<br><em>mesurable</em></h2>
-    <p class="hw-f-list-intro-text rv d2">Chaque formation Hello World vise un double objectif : montée en compétence rapide et production immédiate d'un actif utile pour votre activité. Survolez — ou touchez sur mobile — chaque carte pour révéler la transformation.</p>
+    <div class="sec-label rv"><?php echo $lang['FORML_GAINS_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['FORML_GAINS_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="hw-f-list-intro-text rv d2"><?php echo $lang['FORML_GAINS_INTRO'][$_SESSION['lang']]; ?></p>
 
     <div class="hw-f-gains-3d rv d3">
 
@@ -187,17 +187,17 @@ $hwflMeta = [
           <div class="hw-f-gain-face hw-f-gain-front">
             <span class="hw-f-gain-front-num">01</span>
             <div class="hw-f-gain-front-ico"><i class="fal fa-question-circle"></i></div>
-            <div class="hw-f-gain-front-lbl">Avant</div>
-            <p>Des intuitions IA, jamais de preuves.</p>
+            <div class="hw-f-gain-front-lbl"><?php echo $lang['FORML_GAIN_AVANT'][$_SESSION['lang']]; ?></div>
+            <p><?php echo $lang['FORML_GAIN1_FRONT'][$_SESSION['lang']]; ?></p>
           </div>
           <div class="hw-f-gain-face hw-f-gain-back">
             <img src="<?= $siteURL; ?>images/clarte.jpg" alt="">
             <div class="hw-f-gain-back-scrim"></div>
-            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> Voir le point de départ</span>
+            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> <?php echo $lang['FORML_GAIN_HINT'][$_SESSION['lang']]; ?></span>
             <div class="hw-f-gain-back-body">
               <div class="hw-f-list-gain-card-icon"><i class="fal fa-bullseye"></i></div>
-              <div class="hw-f-gain-back-title">Clarté <em>stratégique</em></div>
-              <p>Vous identifiez où l'IA crée réellement de la valeur dans votre organisation.</p>
+              <div class="hw-f-gain-back-title"><?php echo $lang['FORML_GAIN1_TITLE'][$_SESSION['lang']]; ?></div>
+              <p><?php echo $lang['FORML_GAIN1_TEXT'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -208,17 +208,17 @@ $hwflMeta = [
           <div class="hw-f-gain-face hw-f-gain-front">
             <span class="hw-f-gain-front-num">02</span>
             <div class="hw-f-gain-front-ico"><i class="fal fa-hourglass-half"></i></div>
-            <div class="hw-f-gain-front-lbl">Avant</div>
-            <p>Des heures perdues en tâches répétitives.</p>
+            <div class="hw-f-gain-front-lbl"><?php echo $lang['FORML_GAIN_AVANT'][$_SESSION['lang']]; ?></div>
+            <p><?php echo $lang['FORML_GAIN2_FRONT'][$_SESSION['lang']]; ?></p>
           </div>
           <div class="hw-f-gain-face hw-f-gain-back">
             <img src="<?= $siteURL; ?>images/temps.jpg" alt="">
             <div class="hw-f-gain-back-scrim"></div>
-            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> Voir le point de départ</span>
+            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> <?php echo $lang['FORML_GAIN_HINT'][$_SESSION['lang']]; ?></span>
             <div class="hw-f-gain-back-body">
               <div class="hw-f-list-gain-card-icon"><i class="fal fa-timer"></i></div>
-              <div class="hw-f-gain-back-title">Gain de <em>temps</em></div>
-              <p>Vous remplacez des heures de travail répétitif par des systèmes plus intelligents.</p>
+              <div class="hw-f-gain-back-title"><?php echo $lang['FORML_GAIN2_TITLE'][$_SESSION['lang']]; ?></div>
+              <p><?php echo $lang['FORML_GAIN2_TEXT'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -229,17 +229,17 @@ $hwflMeta = [
           <div class="hw-f-gain-face hw-f-gain-front">
             <span class="hw-f-gain-front-num">03</span>
             <div class="hw-f-gain-front-ico"><i class="fal fa-link-slash"></i></div>
-            <div class="hw-f-gain-front-lbl">Avant</div>
-            <p>La dépendance à un prestataire externe.</p>
+            <div class="hw-f-gain-front-lbl"><?php echo $lang['FORML_GAIN_AVANT'][$_SESSION['lang']]; ?></div>
+            <p><?php echo $lang['FORML_GAIN3_FRONT'][$_SESSION['lang']]; ?></p>
           </div>
           <div class="hw-f-gain-face hw-f-gain-back">
             <img src="<?= $siteURL; ?>images/monte.jpg" alt="">
             <div class="hw-f-gain-back-scrim"></div>
-            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> Voir le point de départ</span>
+            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> <?php echo $lang['FORML_GAIN_HINT'][$_SESSION['lang']]; ?></span>
             <div class="hw-f-gain-back-body">
               <div class="hw-f-list-gain-card-icon"><i class="fal fa-graduation-cap"></i></div>
-              <div class="hw-f-gain-back-title">Montée en <em>autonomie</em></div>
-              <p>Vos équipes apprennent à utiliser les outils avec méthode, et non à dépendre d'une mode passagère.</p>
+              <div class="hw-f-gain-back-title"><?php echo $lang['FORML_GAIN3_TITLE'][$_SESSION['lang']]; ?></div>
+              <p><?php echo $lang['FORML_GAIN3_TEXT'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -250,17 +250,17 @@ $hwflMeta = [
           <div class="hw-f-gain-face hw-f-gain-front">
             <span class="hw-f-gain-front-num">04</span>
             <div class="hw-f-gain-front-ico"><i class="fal fa-file-slash"></i></div>
-            <div class="hw-f-gain-front-lbl">Avant</div>
-            <p>Des slides qu'on n'ouvre plus après coup.</p>
+            <div class="hw-f-gain-front-lbl"><?php echo $lang['FORML_GAIN_AVANT'][$_SESSION['lang']]; ?></div>
+            <p><?php echo $lang['FORML_GAIN4_FRONT'][$_SESSION['lang']]; ?></p>
           </div>
           <div class="hw-f-gain-face hw-f-gain-back">
             <img src="<?= $siteURL; ?>images/livrables.jpg" alt="">
             <div class="hw-f-gain-back-scrim"></div>
-            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> Voir le point de départ</span>
+            <span class="hw-f-gain-hint-badge"><i class="fal fa-arrows-rotate"></i> <?php echo $lang['FORML_GAIN_HINT'][$_SESSION['lang']]; ?></span>
             <div class="hw-f-gain-back-body">
               <div class="hw-f-list-gain-card-icon"><i class="fal fa-box-check"></i></div>
-              <div class="hw-f-gain-back-title">Livrables <em>activables</em></div>
-              <p>Vous repartez avec des frameworks, systèmes, automatisations ou assets directement exploitables.</p>
+              <div class="hw-f-gain-back-title"><?php echo $lang['FORML_GAIN4_TITLE'][$_SESSION['lang']]; ?></div>
+              <p><?php echo $lang['FORML_GAIN4_TEXT'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -275,9 +275,9 @@ $hwflMeta = [
   <div class="container">
    <div class="hw-f-list-methode-inner">
     <div class="hw-f-list-methode-text">
-    <div class="sec-label rv">Notre méthode</div>
-    <h2 class="sec-title rv d1">Pragmatique, premium,<br><em>orientée résultat</em></h2>
-    <p style="font-size:.88rem;color:var(--hwfl-txt2);max-width:620px;margin:1.2rem 0 0;line-height:1.9;font-weight:300" class="rv d2">Nous ne formons pas à "l'IA en général". Nous partons de votre contexte, de vos objectifs et de vos contraintes métier. Notre pédagogie combine cadre stratégique, démonstrations concrètes, ateliers guidés et production de livrables utiles dès la formation.</p>
+    <div class="sec-label rv"><?php echo $lang['FORML_METHODE_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['FORML_METHODE_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p style="font-size:.88rem;color:var(--hwfl-txt2);max-width:620px;margin:1.2rem 0 0;line-height:1.9;font-weight:300" class="rv d2"><?php echo $lang['FORML_METHODE_DESC'][$_SESSION['lang']]; ?></p>
     </div>
 
     <div class="hw-f-list-methode-grid" id="hwflmGrid">
@@ -285,29 +285,29 @@ $hwflMeta = [
       <div class="hw-f-list-methode-gcard gc-cyan" id="hwflm-c1">
         <span class="hw-f-list-methode-gnum" id="hwflm-l1">D</span>
         <div class="hw-f-list-methode-gicon"><i class="fal fa-search"></i></div>
-        <div class="hw-f-list-methode-gtitle">Diagnostic</div>
-        <p class="hw-f-list-methode-gtext">Comprendre votre niveau de maturité, vos priorités et vos contraintes réelles avant de choisir un seul outil.</p>
+        <div class="hw-f-list-methode-gtitle"><?php echo $lang['FORML_METHODE_DIAG_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="hw-f-list-methode-gtext"><?php echo $lang['FORML_METHODE_DIAG_TEXT'][$_SESSION['lang']]; ?></p>
       </div>
 
       <div class="hw-f-list-methode-gcard gc-purple" id="hwflm-c2">
         <span class="hw-f-list-methode-gnum" id="hwflm-l2">C</span>
         <div class="hw-f-list-methode-gicon"><i class="fal fa-compass"></i></div>
-        <div class="hw-f-list-methode-gtitle">Cadrage</div>
-        <p class="hw-f-list-methode-gtext">Sélectionner les bons cas d'usage IA selon leur impact business réel et leur faisabilité dans votre contexte.</p>
+        <div class="hw-f-list-methode-gtitle"><?php echo $lang['FORML_METHODE_CADRAGE_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="hw-f-list-methode-gtext"><?php echo $lang['FORML_METHODE_CADRAGE_TEXT'][$_SESSION['lang']]; ?></p>
       </div>
 
       <div class="hw-f-list-methode-gcard gc-purple" id="hwflm-c3">
         <span class="hw-f-list-methode-gnum" id="hwflm-l3">A</span>
         <div class="hw-f-list-methode-gicon"><i class="fal fa-rocket"></i></div>
-        <div class="hw-f-list-methode-gtitle">Activation</div>
-        <p class="hw-f-list-methode-gtext">Pratiquer sur des cas réels, avec vos données, vos outils, vos objectifs. L'apprentissage par le faire.</p>
+        <div class="hw-f-list-methode-gtitle"><?php echo $lang['FORML_METHODE_ACTIVATION_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="hw-f-list-methode-gtext"><?php echo $lang['FORML_METHODE_ACTIVATION_TEXT'][$_SESSION['lang']]; ?></p>
       </div>
 
       <div class="hw-f-list-methode-gcard gc-cyan" id="hwflm-c4">
         <span class="hw-f-list-methode-gnum" id="hwflm-l4">L</span>
         <div class="hw-f-list-methode-gicon"><i class="fal fa-box-open"></i></div>
-        <div class="hw-f-list-methode-gtitle">Livrables</div>
-        <p class="hw-f-list-methode-gtext">Repartir avec quelque chose d'utilisable immédiatement : pas de slides oubliées, mais des actifs actionnables.</p>
+        <div class="hw-f-list-methode-gtitle"><?php echo $lang['FORML_METHODE_LIVRABLES_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="hw-f-list-methode-gtext"><?php echo $lang['FORML_METHODE_LIVRABLES_TEXT'][$_SESSION['lang']]; ?></p>
       </div>
 
     </div>
@@ -318,43 +318,43 @@ $hwflMeta = [
 <!-- ══ FORMATS & MODALITÉS — carousel 3D ═══════════════════════════════════ -->
 <section class="hw-f-list-formats">
   <div class="container">
-    <div class="sec-label rv">Formats & Modalités</div>
-    <h2 class="sec-title rv d1">Une formation<br>adaptée à <em>votre contexte</em></h2>
+    <div class="sec-label rv"><?php echo $lang['FORML_FORMATS_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['FORML_FORMATS_TITLE'][$_SESSION['lang']]; ?></h2>
 
     <div class="hw-f-carousel" id="hwflCarousel">
       <div class="hw-f-carousel-stage">
         <div class="hw-f-carousel-ring" id="hwflRing" style="--n:5">
           <div class="hw-f-carousel-item" style="--i:0">
             <div class="hw-f-list-format-icon"><i class="fal fa-building"></i></div>
-            <div class="hw-f-list-format-title">En présentiel</div>
-            <div class="hw-f-list-format-text">Sessions intensives et collaboratives. L'énergie de groupe démultiplie les apprentissages.</div>
+            <div class="hw-f-list-format-title"><?php echo $lang['FORML_FORMAT_PRESENTIEL_TITLE'][$_SESSION['lang']]; ?></div>
+            <div class="hw-f-list-format-text"><?php echo $lang['FORML_FORMAT_PRESENTIEL_TEXT'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="hw-f-carousel-item" style="--i:1">
             <div class="hw-f-list-format-icon"><i class="fal fa-laptop"></i></div>
-            <div class="hw-f-list-format-title">À distance</div>
-            <div class="hw-f-list-format-text">Former rapidement des équipes réparties, sans contrainte géographique.</div>
+            <div class="hw-f-list-format-title"><?php echo $lang['FORML_FORMAT_DISTANCE_TITLE'][$_SESSION['lang']]; ?></div>
+            <div class="hw-f-list-format-text"><?php echo $lang['FORML_FORMAT_DISTANCE_TEXT'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="hw-f-carousel-item" style="--i:2">
             <div class="hw-f-list-format-icon"><i class="fal fa-users-gear"></i></div>
-            <div class="hw-f-list-format-title">En intra-entreprise</div>
-            <div class="hw-f-list-format-text">Sur-mesure, aligné à vos outils, vos process et votre culture interne.</div>
+            <div class="hw-f-list-format-title"><?php echo $lang['FORML_FORMAT_INTRA_TITLE'][$_SESSION['lang']]; ?></div>
+            <div class="hw-f-list-format-text"><?php echo $lang['FORML_FORMAT_INTRA_TEXT'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="hw-f-carousel-item" style="--i:3">
             <div class="hw-f-list-format-icon"><i class="fal fa-network-wired"></i></div>
-            <div class="hw-f-list-format-title">En inter-entreprises</div>
-            <div class="hw-f-list-format-text">L'expertise Hello World accessible aux indépendants et petites structures.</div>
+            <div class="hw-f-list-format-title"><?php echo $lang['FORML_FORMAT_INTER_TITLE'][$_SESSION['lang']]; ?></div>
+            <div class="hw-f-list-format-text"><?php echo $lang['FORML_FORMAT_INTER_TEXT'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="hw-f-carousel-item" style="--i:4">
             <div class="hw-f-list-format-icon"><i class="fal fa-graduation-cap"></i></div>
-            <div class="hw-f-list-format-title">Campus & grandes écoles</div>
-            <div class="hw-f-list-format-text">Ateliers, bootcamps et masterclasses pour universités et écoles d'ingénieurs.</div>
+            <div class="hw-f-list-format-title"><?php echo $lang['FORML_FORMAT_CAMPUS_TITLE'][$_SESSION['lang']]; ?></div>
+            <div class="hw-f-list-format-text"><?php echo $lang['FORML_FORMAT_CAMPUS_TEXT'][$_SESSION['lang']]; ?></div>
           </div>
         </div>
       </div>
       <div class="hw-f-carousel-nav">
-        <button type="button" class="hw-f-carousel-btn" id="hwflCarPrev" aria-label="Format précédent"><i class="fal fa-arrow-left"></i></button>
+        <button type="button" class="hw-f-carousel-btn" id="hwflCarPrev" aria-label="<?php echo $lang['FORML_FORMAT_PREV'][$_SESSION['lang']]; ?>"><i class="fal fa-arrow-left"></i></button>
         <div class="hw-f-carousel-dots" id="hwflCarDots"></div>
-        <button type="button" class="hw-f-carousel-btn" id="hwflCarNext" aria-label="Format suivant"><i class="fal fa-arrow-right"></i></button>
+        <button type="button" class="hw-f-carousel-btn" id="hwflCarNext" aria-label="<?php echo $lang['FORML_FORMAT_NEXT'][$_SESSION['lang']]; ?>"><i class="fal fa-arrow-right"></i></button>
       </div>
     </div>
   </div>
@@ -365,40 +365,40 @@ $hwflMeta = [
 <!-- ══ FAQ ════════════════════════════════════════════════════════════════ -->
 <section class="hw-f-list-faq">
   <div class="container">
-    <div class="sec-label rv">Questions fréquentes</div>
-    <h2 class="hw-f-list-faq-display rv d1"><span class="col-purple">Tout ce que vous<br>devez</span> <span class="col-cyan">savoir</span></h2>
+    <div class="sec-label rv"><?php echo $lang['FORML_FAQ_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="hw-f-list-faq-display rv d1"><span class="col-purple"><?php echo $lang['FORML_FAQ_TITLE_1'][$_SESSION['lang']]; ?></span> <span class="col-cyan"><?php echo $lang['FORML_FAQ_TITLE_2'][$_SESSION['lang']]; ?></span></h2>
     <div class="hw-f-list-faq-grid">
 
       <div class="hw-f-list-faq-item">
         <div class="hw-f-list-faq-q" role="button" aria-expanded="false">
-          <span>Ces formations sont-elles adaptées aux débutants ?</span>
+          <span><?php echo $lang['FORML_FAQ_Q1'][$_SESSION['lang']]; ?></span>
           <span class="hw-f-list-faq-q-btn">+</span>
         </div>
-        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner">Oui. Certaines formations accueillent des profils débutants ou intermédiaires, à condition que les objectifs soient clairs. Nous adaptons la profondeur selon le public. L'audit de maturité préalable nous permet de valider l'adéquation entre votre profil et le programme choisi.</div></div>
+        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner"><?php echo $lang['FORML_FAQ_A1'][$_SESSION['lang']]; ?></div></div>
       </div>
 
       <div class="hw-f-list-faq-item">
         <div class="hw-f-list-faq-q" role="button" aria-expanded="false">
-          <span>Proposez-vous des formations sur-mesure pour les entreprises ?</span>
+          <span><?php echo $lang['FORML_FAQ_Q2'][$_SESSION['lang']]; ?></span>
           <span class="hw-f-list-faq-q-btn">+</span>
         </div>
-        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner">Oui. Nous adaptons le contenu à votre secteur, vos équipes, vos outils existants et vos enjeux métiers. Les formats intra-entreprise permettent de travailler sur vos données, vos processus et vos cas d'usage réels. Contactez-nous pour un devis personnalisé.</div></div>
+        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner"><?php echo $lang['FORML_FAQ_A2'][$_SESSION['lang']]; ?></div></div>
       </div>
 
       <div class="hw-f-list-faq-item">
         <div class="hw-f-list-faq-q" role="button" aria-expanded="false">
-          <span>Les participants repartent-ils avec des livrables concrets ?</span>
+          <span><?php echo $lang['FORML_FAQ_Q3'][$_SESSION['lang']]; ?></span>
           <span class="hw-f-list-faq-q-btn">+</span>
         </div>
-        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner">Oui. C'est un point central de notre méthode. Chaque formation inclut des livrables actionnables immédiatement : feuilles de route, workflows n8n prêts à déployer, show bibles, matrices de priorisation. Vous ne repartez pas avec des slides — vous repartez avec des outils.</div></div>
+        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner"><?php echo $lang['FORML_FAQ_A3'][$_SESSION['lang']]; ?></div></div>
       </div>
 
       <div class="hw-f-list-faq-item">
         <div class="hw-f-list-faq-q" role="button" aria-expanded="false">
-          <span>Peut-on privatiser une session pour une équipe ?</span>
+          <span><?php echo $lang['FORML_FAQ_Q4'][$_SESSION['lang']]; ?></span>
           <span class="hw-f-list-faq-q-btn">+</span>
         </div>
-        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner">Oui. Nous proposons des formats intra-entreprise en présentiel ou à distance. La session est alors dédiée à votre équipe avec un contenu adapté à vos outils, vos cas d'usage et votre niveau de maturité collective. Les tarifs intra sont disponibles sur devis.</div></div>
+        <div class="hw-f-list-faq-a"><div class="hw-f-list-faq-a-inner"><?php echo $lang['FORML_FAQ_A4'][$_SESSION['lang']]; ?></div></div>
       </div>
 
     </div>
@@ -409,8 +409,8 @@ $hwflMeta = [
 <?php if (!empty($partners)): ?>
 <section class="trust" id="hwfl-trust-partners">
   <div class="trust-head container">
-    <div class="sec-label rv">Partenaires</div>
-    <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+    <div class="sec-label rv"><?php echo $lang['FORML_PARTNERS_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['FORML_PARTNERS_TITLE'][$_SESSION['lang']]; ?></h2>
   </div>
   <div class="trust-rows">
 
@@ -473,8 +473,8 @@ $hwflMeta = [
         </div>
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Contactez un expert" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Contactez un expert</span></div>
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['FORML_CONTACT_EXPERT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_CONTACT_EXPERT'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>
             </div>
@@ -487,8 +487,8 @@ $hwflMeta = [
 <?php if (!empty($tools)): ?>
 <section class="trust" id="hwfl-trust-tools">
   <div class="trust-head container text-center">
-    <h2 class="sec-title rv d1">Les <em>technologies</em> et <em>plateformes</em><br>au service de vos projets</h2>
-    <p>Nous utilisons les meilleurs outils du marché pour garantir la performance, la sécurité et la croissance de votre business.</p>
+    <h2 class="sec-title rv d1"><?php echo $lang['FORML_TOOLS_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p><?php echo $lang['FORML_TOOLS_TEXT'][$_SESSION['lang']]; ?></p>
   </div>
   <div class="trust-rows">
 
@@ -523,16 +523,16 @@ $hwflMeta = [
   </video>
   <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label rv">Passez à l'action</div>
-    <h2 class="sec-title rv d1">Passez de la curiosité<br>à l'<em>avantage concurrentiel</em></h2>
-    <p class="hw-f-list-cta-sub rv d2">Les organisations et talents qui gagnent demain sont ceux qui relient stratégie digitale, automatisation intelligente et contenus de marque. Hello World vous aide à franchir ce cap avec une académie de programmes premium, concrète, évolutive et activable.</p>
+    <div class="sec-label rv"><?php echo $lang['FORML_CTA_FINAL_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['FORML_CTA_FINAL_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="hw-f-list-cta-sub rv d2"><?php echo $lang['FORML_CTA_FINAL_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns rv d3" style="justify-content:center">
       <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
-        <div class="sb-label"><span class="sb-hint">Réserver un audit de maturité gratuit</span></div>
+        <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_CTA_FINAL_BTN_AUDIT'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
       </a>
       <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
-        <div class="sb-label"><span class="sb-hint">Parler à un expert Hello World</span></div>
+        <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_CTA_FINAL_BTN_EXPERT'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-comment-dots"></i></div>
       </a>
     </div>
