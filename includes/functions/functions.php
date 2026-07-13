@@ -128,6 +128,9 @@ function getSeoMeta($data){
 					    
 						$slug = $data['slug'];
 						$service = service::findBySlug($slug, $_SESSION["lang"]);
+						if(!$service->getId()){
+							$service = service::findBySlug($slug, langue::getDefaultLanguage());
+						}
 						$seoTitle = $service->getSeoTitre();
 						$seoDescription = $service->getSeoDescription();
 						$seoKeywords = $service->getSeoKeyword();
@@ -725,11 +728,18 @@ function unique($table, $champ, $val, $claus = ''){
 // lien des composants
 function getComponentLink($component){
     global $db;
-    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$_SESSION['lang']."' LIMIT 0,1";
+    $langue = $_SESSION['lang'];
+    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
     $result = $db->query($SQLselect);
+    if($db->num_rows($result) != 1 && $langue != langue::getDefaultLanguage()){
+        // Pas encore de traduction de cette page pour cette langue : on retombe sur la langue par défaut.
+        $langue = langue::getDefaultLanguage();
+        $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
+        $result = $db->query($SQLselect);
+    }
     if($db->num_rows($result) == 1){
         $data = $db->fetch_array($result);
-        $p = new page($data['id_page'],$db,$_SESSION['lang']);
+        $p = new page($data['id_page'],$db,$langue);
         return $p->getLink();
     }
     else
@@ -739,11 +749,18 @@ function getComponentLink($component){
 // page des composants
 function getComponent($component){
     global $db;
-    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$_SESSION['lang']."' LIMIT 0,1";
+    $langue = $_SESSION['lang'];
+    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
     $result = $db->query($SQLselect);
+    if($db->num_rows($result) != 1 && $langue != langue::getDefaultLanguage()){
+        // Pas encore de traduction de cette page pour cette langue : on retombe sur la langue par défaut.
+        $langue = langue::getDefaultLanguage();
+        $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
+        $result = $db->query($SQLselect);
+    }
     if($db->num_rows($result) == 1){
         $data = $db->fetch_array($result);
-        $p = new page($data['id_page'],$db,$_SESSION['lang']);
+        $p = new page($data['id_page'],$db,$langue);
         return $p;
     }
     else

@@ -1,3 +1,682 @@
+<?php if ($_SESSION['lang'] === 'en'): ?>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+
+  <div class="sh-hero-body">
+    <div class="container">
+      <div class="sh-hero-inner">
+
+        <!-- LEFT -->
+        <div class="sh-hero-left">
+          <div class="sh-breadcrumb rv">AI Solutions — Restaurant Sector</div>
+          <h1 class="sh-h1 rv d1">
+           <?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?>
+          </h1>
+          <p class="sh-sub rv d2">Automate your order-taking and build customer loyalty with flawless service, even during the busiest rush hours.</p>
+          <div class="sh-cta-row rv d3">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a Restaurant demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Request a Restaurant demo</span></div>
+              <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
+            </a>
+
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Try a live AI menu" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">Try a live AI menu</span></div>
+              <div class="sb-knob"><i class="fal fa-search"></i></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT — 3D Medical Orbital -->
+        <div class="sh-hero-right">
+          <div class="sho-scene">
+            <div class="sho-ring r1"></div>
+            <div class="sho-ring r2"></div>
+            <div class="sho-ring r3"></div>
+            <div class="sho-core">
+              <div class="sho-plus">🍽</div>
+              <div class="sho-lbl">Resto AI</div>
+            </div>
+
+            <!-- Inner orbit (r=100px) -->
+            <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="POS Clyo"><i class="fal fa-cash-register"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="Google My Business"><i class="fab fa-google"></i></div></div>
+
+            <!-- Middle orbit (r=170px) -->
+            <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="CMI Payment"><i class="fal fa-credit-card"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="Glovo"><i class="fal fa-motorcycle"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="AI Menu"><i class="fal fa-utensils"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="Uber Eats"><i class="fal fa-shopping-bag"></i></div></div>
+
+            <!-- Outer orbit (r=222px) -->
+            <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="Lightspeed"><i class="fal fa-bolt"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="Table QR Code"><i class="fal fa-qrcode"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="Loyalty Program"><i class="fal fa-star"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="Sales Analytics"><i class="fal fa-chart-line"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="n8n / Make"><i class="fal fa-project-diagram"></i></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT STRIP ════════════════════════════════════════════════ -->
+<section class="sh-stats">
+  <div class="container">
+    <div class="sh-stats-grid">
+      <div class="sh-stat rv">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="15">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">Higher average order value</div>
+        <div class="sh-stat-sub">Systematic drink/dessert upsell</div>
+      </div>
+      <div class="sh-stat rv d1">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="100">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">Orders processed</div>
+        <div class="sh-stat-sub">Without a human operator</div>
+      </div>
+      <div class="sh-stat rv d2">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="35">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">Conversion rate</div>
+        <div class="sh-stat-sub">Converted vs. lost orders</div>
+      </div>
+      <div class="sh-stat rv d3">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="7">0</span><span class="suf"> wks</span></div>
+        <div class="sh-stat-lbl">ROI achieved</div>
+        <div class="sh-stat-sub">Relative to the investment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTE & ENJEUX ════════════════════════════════════════ -->
+<section class="sh-context">
+  <div class="container">
+    <div class="sh-context-inner">
+
+      <div>
+        <div class="sec-label">Context &amp; Challenges</div>
+        <h2 class="sh-ctx-title rv"><strong>Restaurant Sector</strong>Peak-Hour Challenges<br>in Morocco</h2>
+        <div class="sh-ctx-body rv d1">
+          <p>Urban restaurants in Morocco face major challenges during peak hours: <em>busy phone lines</em>, order errors and lost revenue. A transactional AI can absorb <em>100% of incoming demand</em> without hiring additional operators, while also driving additional sales.</p>
+          <p>Moroccan customers now order mostly via WhatsApp and delivery platforms. Restaurants that don't offer a smooth conversational service <em>lose market share</em> to better-equipped competitors. AI is becoming the standard for absorbing volume without compromising quality.</p>
+        </div>
+        <div class="sh-pills rv d2">
+          <span class="sh-pill"><i class="fa fa-exclamation-triangle"></i> Peak-hour rushes</span>
+          <span class="sh-pill"><i class="fa fa-phone-slash"></i> Lost calls at lunch/dinner</span>
+          <span class="sh-pill"><i class="fa fa-ban"></i> Order errors</span>
+          <span class="sh-pill"><i class="fa fa-motorcycle"></i> Unmanaged delivery</span>
+          <span class="sh-pill"><i class="fa fa-chart-line"></i> Revenue drop at peak hours</span>
+        </div>
+      </div>
+
+      <!-- CSS ART Visual -->
+      <div class="sh-ctx-visual rv d2">
+        <div class="sh-ctx-blob"></div>
+        <div class="sh-ctx-blob2"></div>
+        <div class="sh-ctx-center"><div class="sh-ctx-cross">🍽</div></div>
+        <div class="sh-fcard fc1">
+          <div class="sh-fcard-val">1200</div>
+          <div class="sh-fcard-lbl">Orders/mo</div>
+        </div>
+        <div class="sh-fcard fc2">
+          <div class="sh-fcard-val">+18%</div>
+          <div class="sh-fcard-lbl">Avg order value</div>
+        </div>
+        <div class="sh-fcard fc3">
+          <div class="sh-fcard-val">78%</div>
+          <div class="sh-fcard-lbl">Automated</div>
+        </div>
+        <div class="sh-fcard fc4">
+          <div class="sh-fcard-val">2 months</div>
+          <div class="sh-fcard-lbl">ROI achieved</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTIONS IA ══════════════════════════════════════════════ -->
+<section class="sh-solutions" id="solutions">
+  <div class="container">
+    <div class="sec-label">AI Solutions — Core of the Page</div>
+    <h2 class="sec-title rv">Transactional Bot<br><em>orders &amp; delivery</em></h2>
+
+    <!-- KPI Grid -->
+    <div class="sol-kpi-grid rv d1">
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+15<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">Avg order value</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+35<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">Conversion rate</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">2 months</div>
+        <div class="sol-kpi-lbl">ROI achieved</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">100<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">Automated orders</div>
+      </div>
+    </div>
+
+    <!-- Feature Card -->
+    <div class="sol-feature rv">
+      <!-- Left: Content -->
+      <div class="sol-fc-text">
+        <div class="sol-fc-title"><strong>Restaurant Order Agent</strong>Zero lost calls, systematic upsell</div>
+        <p class="sol-fc-desc">Transactional conversational bot handling takeout orders, delivery and table reservations, with a dynamic AI menu and built-in upsell.</p>
+        <ul class="sol-benefits">
+          <li><i class="fa fa-check"></i><span><strong>Zero lost calls during full service</strong> — 100% of incoming demand absorbed</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Systematic upselling</strong> — Drink/dessert offered with every order</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Automated loyalty</strong> — Smart customer address book per client</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Complaint handling</strong> — First line of response with no human intervention</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Automatic dispatch</strong> — To partner delivery drivers (Glovo, Uber Eats)</span></li>
+          <li><i class="fa fa-check"></i><span><strong>Dynamic AI menu</strong> — With photos, allergens and contextual suggestions</span></li>
+        </ul>
+        <div class="sol-roi-box">
+          <div class="sol-roi-num">2 FTEs</div>
+          <div class="sol-roi-text"><strong>saved in a 5-outlet franchise.</strong><br>100% of WhatsApp orders processed with no human intervention.</div>
+        </div>
+      </div>
+
+      <!-- Right: WhatsApp CSS Mockup 3D -->
+      <div class="sol-fc-visual">
+        <div class="wa-scene" id="waScene">
+          <div class="wa-glow"></div>
+
+          <div class="wa-3d-group" id="wa3dGroup">
+            <!-- WhatsApp logo badge -->
+            <div class="wa-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+
+            <!-- Phone Frame -->
+            <div class="wa-phone">
+              <div class="wa-screen">
+                <!-- Status bar -->
+                <div class="wa-sbar">
+                  <span class="wa-sbar-time">12:45</span>
+                  <div class="wa-sbar-icons">
+                    <i class="fa fa-signal"></i>
+                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </div>
+                </div>
+                <!-- Header -->
+                <div class="wa-hdr">
+                  <span class="wa-hdr-back">&#8592;</span>
+                  <div class="wa-hdr-av">RM</div>
+                  <div class="wa-hdr-info">
+                    <div class="wa-hdr-name">Restaurant Le Medina</div>
+                    <div class="wa-hdr-status">AI Agent · Online</div>
+                  </div>
+                  <div class="wa-hdr-ico">
+                    <i class="fa fa-video"></i>
+                    <i class="fa fa-phone"></i>
+                    <i class="fa fa-ellipsis-vertical"></i>
+                  </div>
+                </div>
+                <!-- Chat -->
+                <div class="wa-chat-area">
+                  <div class="wa-bubble ai">Hello! Welcome to Le Medina 🍽️ Would you like to order, book a table or track your delivery?<span class="wa-bt">12:43</span></div>
+                  <div class="wa-bubble pt">Takeout order please 🙏<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble ai">Great! Here's today's menu:<br>🥘 Lamb Tagine — 85 MAD<br>🍗 Chermoula Chicken — 75 MAD<br>🐟 Grilled Fish — 95 MAD<br>What would you like?<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble pt">Lamb Tagine ✅<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble ai">Excellent choice! May I suggest a <strong>fresh orange juice</strong> (25 MAD) or a <strong>mineral water</strong> (10 MAD)?<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble pt">Orange juice please, thanks 🍊<span class="wa-bt">12:45</span></div>
+                  <div class="wa-dots-wrap"><span></span><span></span><span></span></div>
+                </div>
+                <!-- Input -->
+                <div class="wa-irow">
+                  <div class="wa-ifake">Type a message...</div>
+                  <div class="wa-isend"><i class="fa fa-paper-plane"></i></div>
+                </div>
+                <!-- Android nav -->
+                <div class="wa-navb">
+                  <span>&#9664;</span><span>&#9711;</span><span>&#9632;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification overlay -->
+            <div class="wa-notif">
+              <div class="wa-notif-hdr">
+                <div class="wa-notif-av">Dr</div>
+                <div>
+                  <div class="wa-notif-name">Restaurant Le Medina</div>
+                  <div class="wa-notif-st">AI Agent · Online</div>
+                </div>
+              </div>
+              <div class="wa-notif-msg">Order ready •<br>Tagine + Orange Juice</div>
+              <div class="wa-notif-rep"><i class="fa fa-face-smile"></i> Reply</div>
+              <div class="wa-notif-acts">
+                <div class="wa-notif-act">CLOSE</div>
+                <div class="wa-notif-act">VIEW</div>
+              </div>
+            </div>
+
+          </div><!-- /wa-3d-group -->
+        </div><!-- /wa-scene -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PARCOURS CLIENT — IMAGE PARALLAX + BEAM PROGRESSIF ════════ -->
+<section class="sh-journey" id="parcours">
+
+  <div class="jp-bg">
+    <img id="jpImg" class="jp-img"
+         src="<?php echo $siteURL; ?>images/restaurant-parcours-bg.jpeg"
+         alt="Modern restaurant Morocco"
+         loading="eager"
+         decoding="async"
+         width="1584" height="672">
+  </div>
+
+  <div class="jp-content">
+    <div class="container">
+      <div class="sec-label">Typical customer journey</div>
+      <h2 class="sec-title rv">Customer experience<br><em>from A to Z</em></h2>
+      <p style="font-size:.9rem;color:var(--bg);max-width:580px;line-height:1.9;font-weight:300;margin-bottom:0" class="rv d1">Three entry channels, one unified experience. Choose the journey that matches your restaurant.</p>
+
+      <div class="tab-nav rv d2">
+        <button class="tab-btn active" data-tab="wa">Via WhatsApp</button>
+        <button class="tab-btn" data-tab="qr">Via Table QR Code</button>
+        <button class="tab-btn" data-tab="web">Via Delivery</button>
+      </div>
+
+      <!-- Tab 1: WhatsApp -->
+      <div class="tab-pane active" id="tab-wa">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWa"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">WhatsApp message</div><p class="jf-desc">Customer sends a message to the restaurant's WhatsApp number</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Dynamic menu</div><p class="jf-desc">The AI displays the interactive menu with photos, allergens and daily suggestions</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Automatic upsell</div><p class="jf-desc">Drinks and desserts suggested based on the customer's order</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Secure payment</div><p class="jf-desc">CMI/Stripe link generated within the WhatsApp conversation in 1 click</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Kitchen ticket</div><p class="jf-desc">Automatically sent to the POS (Clyo/Micros) with no manual re-entry</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Pickup notification</div><p class="jf-desc">Customer notified for pickup or real-time GPS delivery tracking</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: QR Code Table -->
+      <div class="tab-pane" id="tab-qr">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamQr"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Table QR code</div><p class="jf-desc">Customer scans the QR code displayed on their table or at the restaurant entrance</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Digital menu</div><p class="jf-desc">Interactive menu with photos, prices and allergens appears instantly</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">In-store order</div><p class="jf-desc">Selection and customization (gluten-free, dairy-free, spicy…)</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Drink upsell</div><p class="jf-desc">Automatic drink and dessert suggestions based on the dishes ordered</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Kitchen validation</div><p class="jf-desc">Order sent instantly to the kitchen POS, with no manual re-entry</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Google review</div><p class="jf-desc">Automatic satisfaction rating request after the meal via SMS/WhatsApp</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Livraison -->
+      <div class="tab-pane" id="tab-web">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWeb"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Order received</div><p class="jf-desc">Via Glovo, Uber Eats or direct WhatsApp — centralized in a single flow</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">AI confirmation</div><p class="jf-desc">Estimated preparation time automatically communicated to the customer</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">POS preparation</div><p class="jf-desc">Order slip sent to the kitchen via POS in real time with no manual re-entry</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Driver dispatch</div><p class="jf-desc">Automatic assignment to the nearest available partner driver</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">GPS tracking</div><p class="jf-desc">Customer notified at every delivery stage with real-time position</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">Loyalty &amp; reviews</div><p class="jf-desc">Satisfaction rating requested, loyalty offer sent automatically</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTÉGRATIONS — ACCORDION ════════════════════════════════ -->
+<section class="sh-integrations" id="integrations">
+  <div class="container">
+    <div class="sec-label">Key integrations</div>
+    <h2 class="sec-title rv">Connected to your<br><em>restaurant ecosystem</em></h2>
+
+    <div class="sh-int-inner">
+
+      <!-- Accordion -->
+      <div class="accordion rv d1">
+
+        <div class="acc-item open">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-cash-register"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">POS Systems</span>
+              <span class="acc-sub">Clyo, Micros, Lightspeed</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Real-time order synchronization with your till. Orders received via the AI agent are sent directly to the kitchen with no manual re-entry, eliminating errors and delays. Compatible with the leading POS systems used in Morocco (Clyo, Micros, Lightspeed).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-credit-card"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Payment platforms</span>
+              <span class="acc-sub">CMI, Stripe — secure links</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Generation of secure payment links directly within the WhatsApp conversation. Reservation deposits, payment on order, automatic refunds in case of cancellation. Support for Moroccan (CMI) and international (Stripe) cards.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-whatsapp"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">WhatsApp Business API</span>
+              <span class="acc-sub">Primary ordering channel</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Official Meta API for native conversations within WhatsApp. Average open rate of 94% vs. 21% for email. Pre-approved message templates, conversion analytics, full GDPR compliance. Your customers order in the app they already use every day.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-motorcycle"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Delivery platforms</span>
+              <span class="acc-sub">Glovo, Uber Eats via aggregator</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Aggregator integration to centralize all delivery orders in a single workflow. Automatic dispatch to the available driver, GPS tracking shared with the customer, automatic confirmation at every step.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-google"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Google My Business</span>
+              <span class="acc-sub">Reviews &amp; local visibility</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Automatic collection of Google reviews after every successful order or delivery. Continuous improvement of your Google score, automated responses to negative reviews. Better local visibility and Google Maps ranking to attract new customers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-project-diagram"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">n8n / Make</span>
+              <span class="acc-sub">Workflows automation</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>Orchestration of all automated workflows: abandoned cart follow-ups, SMS loyalty campaigns, automatic weekly reporting for the manager, low-stock alerts. Centralized monitoring console for multi-site franchises.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual Integration Hub -->
+      <div class="sh-int-visual rv d2">
+        <div class="sh-int-card">
+          <div class="sec-label" style="margin-bottom:.8rem">Active connections</div>
+          <div class="sh-int-orbit">
+            <div class="sio-ring r1">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-cash-register"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            <div class="sio-ring r2">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-utensils"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-motorcycle"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-credit-card"></i></div>
+            </div>
+            <div class="sio-ring r3">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-shield-alt"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-sms"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-qrcode"></i></div>
+              <div class="sio-dot" style="left:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-bell"></i></div>
+            </div>
+            <div class="sio-center"><span>IA</span></div>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+            <div style="font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)">Integration within hours</div>
+            <div style="font-family:var(--fm);font-size:.72rem;color:var(--txt);margin-top:.4rem;font-weight:300">No overhaul of your existing system</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DÉPLOIEMENT ═══════════════════════════════════════════════ -->
+<!-- ══ DÉPLOIEMENT — TIMELINE LIGHT (style solutions-ia) ════════ -->
+<section class="sdtl-section" id="deploiement">
+
+  <!-- 3D Background orb subtil -->
+  <div class="sdtl-orb-wrap" aria-hidden="true">
+    <div class="sdtl-orb" id="sdtlOrb">
+      <div class="sdtl-orb-ring r1"></div>
+      <div class="sdtl-orb-ring r2"></div>
+      <div class="sdtl-orb-ring r3"></div>
+      <div class="sdtl-orb-ring r4"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">Deployment tailored to Restaurants</div>
+      <h2 class="sec-title rv">Multi-site deployment<br><em>in 3 phases</em></h2>
+      <p class="sdtl-intro rv d1">A proven methodology to deploy your order bot across one or several outlets, with ROI achieved in 7 weeks.</p>
+    </div>
+
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <!-- Spine -->
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+
+      <!-- ── PHASE 0 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">Single-outlet pilot</div>
+            <p class="sdtl-desc">Scoping of the conversational menu, adapted order format, POS and payment integration, training of the floor manager for oversight.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>n8n workflow configured</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Conversational AI menu</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>POS integration tested</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Team training</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">WEEKS 1 – 4</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-store"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">Real-world test</div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 1 — RIGHT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-keyword">Pilot</div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-flask"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">Real-condition testing</div>
+            <p class="sdtl-desc">4 weeks during peak activity (Friday evenings, weekday lunches) to validate real-world reliability, response time and conversion rate.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Reliability report</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>AI menu adjustments</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Conversion rate validated</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>Upsell optimizations</span></div>
+            </div>
+            <span class="sdtl-tag">WEEKS 5 – 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">Multi-site deployment</div>
+            <p class="sdtl-desc">Rollout across the entire network, menu harmonization, centralized monitoring, oversight console for managers.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>Monitoring console</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Digital host manual</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>All outlets deployed</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>Real-time dashboard</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">WEEKS 7 – 10</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-rocket"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">Multi-site</div>
+        </div>
+      </div>
+
+    </div><!-- /sdtl-timeline -->
+  </div>
+</section>
+
+<!-- ══ CAS CLIENT ════════════════════════════════════════════════ -->
+<section class="sh-case" id="cas-client">
+  <div class="container">
+    <div class="sec-label">Client case — Success story</div>
+    <h2 class="sec-title rv">Concrete results<br><em>in the restaurant industry</em></h2>
+
+    <div class="case-wrap rv d1">
+
+      <!-- Left: Context + Problem -->
+      <div class="case-left">
+        <div class="case-tag">Case study · Restaurant Franchise · Casablanca</div>
+        <h3 class="case-headline">Fast-food restaurant franchise<br>8 outlets, 1,200 orders/month</h3>
+        <p class="case-ctx"><strong>Context:</strong> Franchise with 8 outlets processing 1,200 orders per month. Phone lines saturated at 1pm, 3 overwhelmed operators, orders lost during peak hours.</p>
+        <div class="case-problem">
+          <div class="case-problem-label">Problem identified</div>
+          <div class="case-problem-text">23% of calls unanswered between 12pm–2pm. Operators at 100% capacity during service. Average order value stagnant without systematic upsell. Estimated loss of 18,000 MAD/month in missed revenue.</div>
+        </div>
+        <div>
+          <div class="case-solution-label" style="font-family:var(--fm);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt2);margin-bottom:.45rem">Solution deployed</div>
+          <div class="case-solution-text" style="font-size:.8rem;color:var(--txt2);line-height:1.8">HW WhatsApp Agent + dynamic conversational menu + Clyo POS integration. Manager training on AI agent oversight across 5 pilot outlets.</div>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="case-right">
+        <div>
+          <div class="results-title">Results observed after 7 weeks</div>
+          <div class="results-big-grid">
+            <div class="result-big">
+              <div class="result-big-val">+18<span style="font-size:.7em">%</span></div>
+              <div class="result-big-lbl">Avg order value</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">78%</div>
+              <div class="result-big-lbl">Automated orders</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">1.5 FTE</div>
+              <div class="result-big-lbl">Saved / outlet</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">7<span style="font-size:.7em">wks</span></div>
+              <div class="result-big-lbl">ROI achieved</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-testimonial">
+          <p class="ct-text">Our teams no longer lose a single order during rush periods. The bot automatically suggests desserts and drinks — our average order value jumped within a few weeks.</p>
+          <div class="ct-author">— Management, Casablanca Restaurant Franchise</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
+ <section class="cta-band" style="background: url(<?php echo $siteURL; ?>images/restaurant.jpg);">
+  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">Cheers</span>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-label">Ready to take action?</div>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Restaurant: speed up your <br>orders without overloading <br><em>your teams</em></h2>
+    <p class="cta-sub">Deploy an AI agent capable of handling order-taking, reservations and customer requests on WhatsApp, even during peak hours, while supporting your sales and loyalty goals.</p>
+    <div class="cta-btns">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a Restaurant audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
+            <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
+        </a>
+
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Try a live AI menu" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">Try a restaurant demo</span></div>
+            <div class="sb-knob"><i class="fal fa-download"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
+<?php else: ?>
+
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
 <section class="sh-hero">
   <canvas id="sh-canvas"></canvas>
@@ -18,7 +697,7 @@
               <div class="sb-label"><span class="sb-hint">Demander une démo Restaurant</span></div>
               <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
             </a>
-        
+
             <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Tester un menu IA en live" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="sb-label"><span class="sb-hint">Tester un menu IA en live</span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
@@ -672,5 +1351,7 @@
     </div>
   </div>
 </section>
+
+<?php endif; ?>
 
 <script src="<?php echo $siteURL; ?>assets/js/secteur.js"></script>

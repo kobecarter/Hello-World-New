@@ -5,10 +5,10 @@ switch ($task)
 {
     case "dubai":
         global $db;
-        $page = new page(40, $db, $_SESSION["lang"]);
+        $page = new page(36, $db, $_SESSION["lang"]);
         $page_services = getComponent('com_service');
      
-        $services = service::findAll($_SESSION["lang"],true,true,true);
+        $services = service::findAll($_SESSION["lang"],true,false,true);
     
         $testimonials = temoignage::findAll($_SESSION["lang"],true);
         // Liste des partenaires
@@ -43,7 +43,7 @@ switch ($task)
         $page = new page(40, $db, $_SESSION["lang"]);
         $page_services = getComponent('com_service');
      
-        $services = service::findAll($_SESSION["lang"],true,true,true);
+        $services = service::findAll($_SESSION["lang"],true,false,true);
     
         $testimonials = temoignage::findAll($_SESSION["lang"],true);
         // Liste des partenaires
@@ -78,7 +78,7 @@ switch ($task)
         $page = new page(39, $db, $_SESSION["lang"]);
         $page_services = getComponent('com_service');
      
-        $services = service::findAll($_SESSION["lang"],true,true,true);
+        $services = service::findAll($_SESSION["lang"],true,false,true);
     
         $testimonials = temoignage::findAll($_SESSION["lang"],true);
         // Liste des partenaires
@@ -113,7 +113,7 @@ switch ($task)
         $page = new page(32, $db, $_SESSION["lang"]);
         $page_services = getComponent('com_service');
      
-        $services = service::findAll($_SESSION["lang"],true,true,true);
+        $services = service::findAll($_SESSION["lang"],true,false,true);
     
         $testimonials = temoignage::findAll($_SESSION["lang"],true);
         // Liste des partenaires
@@ -147,7 +147,7 @@ switch ($task)
         $page = new page(37, $db, $_SESSION["lang"]);
         $page_services = getComponent('com_service');
      
-        $services = service::findAll($_SESSION["lang"],true,true,true);
+        $services = service::findAll($_SESSION["lang"],true,false,true);
     
         $testimonials = temoignage::findAll($_SESSION["lang"],true);
         // Liste des partenaires
@@ -182,7 +182,7 @@ switch ($task)
         $page = new page(38, $db, $_SESSION["lang"]);
         $page_services = getComponent('com_service');
      
-        $services = service::findAll($_SESSION["lang"],true,true,true);
+        $services = service::findAll($_SESSION["lang"],true,false,true);
     
         $testimonials = temoignage::findAll($_SESSION["lang"],true);
         // Liste des partenaires
@@ -218,7 +218,7 @@ switch ($task)
         $page = new page(33, $db, $_SESSION["lang"]);
         $page_services = getComponent('com_service');
      
-        $services = service::findAll($_SESSION["lang"],true,true,true);
+        $services = service::findAll($_SESSION["lang"],true,false,true);
     
         $testimonials = temoignage::findAll($_SESSION["lang"],true);
         // Liste des partenaires
@@ -256,7 +256,7 @@ switch ($task)
             $page = new page(34, $db, $_SESSION["lang"]);
             $page_services = getComponent('com_service');
          
-            $services = service::findAll($_SESSION["lang"],true,true,true);
+            $services = service::findAll($_SESSION["lang"],true,false,true);
         
             $testimonials = temoignage::findAll($_SESSION["lang"],true);
             // Liste des partenaires
@@ -290,7 +290,7 @@ switch ($task)
             $page = new page(35, $db, $_SESSION["lang"]);
             $page_services = getComponent('com_service');
          
-            $services = service::findAll($_SESSION["lang"],true,true,true);
+            $services = service::findAll($_SESSION["lang"],true,false,true);
         
             $testimonials = temoignage::findAll($_SESSION["lang"],true);
             // Liste des partenaires

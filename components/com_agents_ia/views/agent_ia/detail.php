@@ -36,11 +36,11 @@ $agentTexte = str_replace(
                 <p class="wm-hero-sub rv d1"><?= strip_tags($agent_ia->getExtrait()); ?></p>
                 <div class="wm-hero-ctas rv d2">
                     <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
-                        <div class="sb-label"><span class="sb-hint">Demander une démo</span></div>
+                        <div class="sb-label"><span class="sb-hint"><?= $lang['IA_PACK2_BTN'][$_SESSION['lang']]; ?></span></div>
                         <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
                     </a>
                     <a href="#agent-content" class="sb sb-compact sb-invert" role="button">
-                        <div class="sb-label"><span class="sb-hint">En savoir plus</span></div>
+                        <div class="sb-label"><span class="sb-hint"><?= $lang['SVC_CTA_EN_SAVOIR_PLUS'][$_SESSION['lang']]; ?></span></div>
                         <div class="sb-knob"><i class="fal fa-arrow-down"></i></div>
                     </a>
                 </div>
@@ -59,8 +59,8 @@ $agentTexte = str_replace(
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>"><i class="fal fa-home"></i> Accueil</a></li>
-                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>index.php?option=com_agents_ia">Solutions IA</a></li>
+                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>"><i class="fal fa-home"></i> <?= $lang['BREADCRUMB_HOME'][$_SESSION['lang']]; ?></a></li>
+                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>index.php?option=com_agents_ia"><?= $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?= $agent_ia->getTitre(); ?></li>
             </ol>
         </nav>
@@ -84,11 +84,11 @@ $agentTexte = str_replace(
     <div class="container">
         <div class="sticky-cta-inner">
             <div class="sticky-cta-copy">
-                <h2 class="sec-title">Déployez <em><?= $agent_ia->getTitre(); ?></em> dans votre entreprise</h2>
-                <p class="sticky-cta-text">Notre équipe vous accompagne de la configuration au lancement en moins de 72h.</p>
+                <h2 class="sec-title"><?= $lang['AGENT_STICKY_CTA_PREFIX'][$_SESSION['lang']]; ?> <em><?= $agent_ia->getTitre(); ?></em> <?= $lang['AGENT_STICKY_CTA_SUFFIX'][$_SESSION['lang']]; ?></h2>
+                <p class="sticky-cta-text"><?= $lang['AGENT_STICKY_CTA_TEXT'][$_SESSION['lang']]; ?></p>
             </div>
             <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
-                <div class="sb-label"><span class="sb-hint">Démarrer maintenant</span></div>
+                <div class="sb-label"><span class="sb-hint"><?= $lang['AGENT_CTA_DEMARRER'][$_SESSION['lang']]; ?></span></div>
                 <div class="sb-knob"><i class="fal fa-rocket"></i></div>
             </a>
         </div>
@@ -99,8 +99,8 @@ $agentTexte = str_replace(
 <?php if (!empty($faqs) || !empty($faqs2)): ?>
 <section class="faq" id="faq">
   <div class="container">
-    <div class="sec-label rv">Questions fréquentes</div>
-    <h2 class="sec-title rv d1">Tout ce que <br>vous <em>devez savoir</em></h2>
+    <div class="sec-label rv"><?= $lang['SVC_SECTION_FAQ_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?= $lang['SVC_SECTION_FAQ_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="faq-cols rv d2">
       <div>
         <div class="faq-list">
@@ -142,7 +142,7 @@ $agentTexte = str_replace(
 <section class="portfolio" id="work">
     <div class="container">
         <div class="sec-label rv">Selected Work</div>
-        <h2 class="sec-title rv d1">Nos dernières <em>réalisations</em></h2>
+        <h2 class="sec-title rv d1"><?= $lang['SVC_SECTION_REALISATIONS'][$_SESSION['lang']]; ?></h2>
         <div class="port-grid rv d2">
             <?php foreach (array_slice($references, 0, 3) as $index => $ref): ?>
             <?php $classes = ['p-meridian tall', 'p-luminis', 'p-corvus']; ?>
@@ -165,7 +165,7 @@ $agentTexte = str_replace(
     <div class="container">
         <div class="col-sm-12 mt-5 text-center">
             <a href="<?= $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
-                <div class="sb-label"><span class="sb-hint">Voir plus de réalisations</span></div>
+                <div class="sb-label"><span class="sb-hint"><?= $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
                 <div class="sb-knob"><i class="fal fa-trophy"></i></div>
             </a>
         </div>
@@ -177,8 +177,8 @@ $agentTexte = str_replace(
 <?php if (!empty($tools)): ?>
 <section class="trust" id="trust">
     <div class="trust-head container text-center">
-        <h2 class="sec-title rv d1">Les <em>technologies</em> et <em>plateformes</em><br> au service de vos projets</h2>
-        <p>Nous utilisons les meilleurs outils du marché pour garantir la performance, la sécurité et la croissance de votre business.</p>
+        <h2 class="sec-title rv d1"><?= $lang['SVC_SECTION_TECH_TITLE'][$_SESSION['lang']]; ?></h2>
+        <p><?= $lang['SVC_SECTION_TECH_SUBTITLE'][$_SESSION['lang']]; ?></p>
     </div>
     <div class="trust-rows">
         <div class="trust-row">
@@ -213,8 +213,8 @@ $agentTexte = str_replace(
 <?php if (!empty($partners)): ?>
 <section class="trust" id="trust-partners">
     <div class="trust-head container">
-        <div class="sec-label rv">Partenaires</div>
-        <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+        <div class="sec-label rv"><?= $lang['SVC_SECTION_PARTENAIRES_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv d1"><?= $lang['SVC_SECTION_PARTENAIRES_TITLE'][$_SESSION['lang']]; ?></h2>
     </div>
     <div class="trust-rows">
         <div class="trust-row">

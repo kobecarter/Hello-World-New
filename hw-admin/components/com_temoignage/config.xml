@@ -2,9 +2,9 @@
 <component>
    <id>com_temoignage</id>
    <nom>Gestion des témoignages</nom>
-   <class>temoignages</class>
-   <table>temoignages</table>
-   <traduction>0</traduction>
+   <class>temoignage</class>
+   <table>temoignage</table>
+   <traduction>1</traduction>
    <url>0</url>
    <icon>comment-o</icon>
    <system>0</system>
