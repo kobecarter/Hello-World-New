@@ -16,13 +16,13 @@
           <h1 class="sh-h1 rv d1"><?php echo $service->getH1() ?></h1>
           <p class="sh-sub rv d2"><?php echo strip_tags($service->getExtrait()); ?></p>
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['IA_HERO_CTA1'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['IA_HERO_CTA1'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
-        
-            <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir les cas d'usage par secteur" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir les cas d'usage par secteur</span></div>
+
+            <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['IA_HERO_CTA2'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['IA_HERO_CTA2'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
             </a>
         </div>
@@ -37,21 +37,21 @@
 <div class="mq" id="mq">
     <div class="mq-t">
       <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-      <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-      <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-      <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-      <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-      <span class="mi"><span class="d"></span>140+ Déploiements</span>
-      <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-      <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+      <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+      <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+      <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
       <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-      <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-      <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-      <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-      <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-      <span class="mi"><span class="d"></span>140+ Déploiements</span>
-      <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-      <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+      <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+      <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+      <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+      <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
     </div>
 </div>
 
@@ -67,11 +67,11 @@
       </div>
       <div class="col-sm-6">
         <div class="intro-ctx-txt">
-          <div class="sec-label">Contexte marché</div>
-          <h2 class="sec-title">Introduction<br><em>Contextuelle</em></h2>
-          <p>La digitalisation des entreprises au Maroc a franchi un cap décisif depuis 2020. Face à une pression croissante sur les coûts opérationnels et à l'exigence d'une réactivité continue (24/7), les approches traditionnelles montrent leurs limites. Les agents IA se positionnent aujourd'hui comme le levier de compétitivité incontournable pour les directions générales et directions des systèmes d'information cherchant à optimiser leur rentabilité.</p>
-          <p>Sur un marché marocain où des canaux comme WhatsApp et Telegram ont atteint une maturité exceptionnelle dans les échanges B2B et B2C, l'intégration de solutions conversationnelles intelligentes n'est plus une option. Hello World conçoit et déploie dessystèmes autonomes capables de traiter vos flux documentaires, d'engager vos prospects et de fiabiliser votre service client en temps réel.</p>
-          <p>Nos offres sont taillées pour répondre aux exigences de conformité et de performance des grands comptes, des institutions semi-publiques et des appels d'offres stratégiques. Le retour sur investissement (ROI) de nos solutions s'observe dès les premiers mois de déploiement grâce à une automatisation maîtrisée et parfaitement intégrée à votre écosystème existant.</p>
+          <div class="sec-label"><?php echo $lang['IA_INTRO_LABEL'][$_SESSION['lang']]; ?></div>
+          <h2 class="sec-title"><?php echo $lang['IA_INTRO_TITLE'][$_SESSION['lang']]; ?></h2>
+          <p><?php echo $lang['IA_INTRO_P1'][$_SESSION['lang']]; ?></p>
+          <p><?php echo $lang['IA_INTRO_P2'][$_SESSION['lang']]; ?></p>
+          <p><?php echo $lang['IA_INTRO_P3'][$_SESSION['lang']]; ?></p>
         </div>
       </div>
     </div>
@@ -82,9 +82,9 @@
 <section class="secteurs" id="secteurs">
   <div class="container">
     <div class="sect-exp-hdr">
-      <div class="sec-label">Solutions par secteur</div>
-      <h2 class="sec-title rv">Agents IA par <em>usage</em></h2>
-      <p class="sect-exp-sub rv d1">Chaque agent est entraîné sur les données et contraintes spécifiques de votre secteur. Cliquez pour explorer.</p>
+      <div class="sec-label"><?php echo $lang['IA_SECTEURS_LABEL'][$_SESSION['lang']]; ?></div>
+      <h2 class="sec-title rv"><?php echo $lang['IA_SECTEURS_TITLE'][$_SESSION['lang']]; ?></h2>
+      <p class="sect-exp-sub rv d1"><?php echo $lang['IA_SECTEURS_SUB'][$_SESSION['lang']]; ?></p>
     </div>
   </div>
 
@@ -102,7 +102,7 @@
         <div class="sect-exp-tag"><?php echo $secteur->getTitre(); ?></div>
         <h3 class="sect-exp-pitch"><?php echo $secteur->getSousTitre(); ?></h3>
         <?php echo $secteur->getExtrait(); ?>
-        <a href="<?php echo $secteur->getLink(); ?>" class="sect-exp-link" style="display:block;margin-top:.9rem">Déployer pour ma structure <i class="fa fa-arrow-right fa-xs"></i></a>
+        <a href="<?php echo $secteur->getLink(); ?>" class="sect-exp-link" style="display:block;margin-top:.9rem"><?php echo $lang['IA_SECTEUR_CTA'][$_SESSION['lang']]; ?> <i class="fa fa-arrow-right fa-xs"></i></a>
       </div>
     </div>
     <?php $cpt++; ?>  
@@ -117,15 +117,15 @@
 <section class="hw-cat" id="catalogue">
   <div class="container">
     <div class="hw-cat-top">
-      <div class="sec-label">Catalogue Hello World</div>
-      <h2 class="sec-title rv">Nos 6 produits IA<br><em>phares</em></h2>
-      <p class="hw-cat-sub rv d1">Chaque produit HW est configuré sur vos données, intégré à vos outils et opérationnel sous 3 semaines.</p>
+      <div class="sec-label"><?php echo $lang['IA_CATALOGUE_LABEL'][$_SESSION['lang']]; ?></div>
+      <h2 class="sec-title rv"><?php echo $lang['IA_CATALOGUE_TITLE'][$_SESSION['lang']]; ?></h2>
+      <p class="hw-cat-sub rv d1"><?php echo $lang['IA_CATALOGUE_SUB'][$_SESSION['lang']]; ?></p>
     </div>
   </div>
 
   <div class="hw-scroll-outer">
-    <button class="hw-scroll-btn hw-prev" id="hwPrev" aria-label="Précédent"><i class="fa fa-chevron-left fa-xs"></i></button>
-    <button class="hw-scroll-btn hw-next" id="hwNext" aria-label="Suivant"><i class="fa fa-chevron-right fa-xs"></i></button>
+    <button class="hw-scroll-btn hw-prev" id="hwPrev" aria-label="<?php echo $lang['IA_CAT_PREV'][$_SESSION['lang']]; ?>"><i class="fa fa-chevron-left fa-xs"></i></button>
+    <button class="hw-scroll-btn hw-next" id="hwNext" aria-label="<?php echo $lang['IA_CAT_NEXT'][$_SESSION['lang']]; ?>"><i class="fa fa-chevron-right fa-xs"></i></button>
     <div class="hw-scroll-track" id="hwTrack">
 
       <div class="hw-card rv"  id="hw-concierge">
@@ -134,13 +134,13 @@
         </div>
         <div class="hw-card-num">01</div>
         <div class="hw-card-body">
-          <div class="hw-card-tag">HW Product</div>
-          <div class="hw-card-name">Concierge AI</div>
-          <div class="hw-card-pitch">Assistance virtuelle sur-mesure — guide vos clients 24/7</div>
+          <div class="hw-card-tag"><?php echo $lang['IA_CARD_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-name"><?php echo $lang['IA_CARD1_NAME'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-pitch"><?php echo $lang['IA_CARD1_PITCH'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="hw-card-foot">
           <div class="hw-card-ico"><i class="fal fa-robot"></i></div>
-          <div class="hw-card-kpi">Taux résolution<br>&gt;80% au 1er contact</div>
+          <div class="hw-card-kpi"><?php echo $lang['IA_CARD1_KPI'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -150,13 +150,13 @@
         </div>
         <div class="hw-card-num">02</div>
         <div class="hw-card-body">
-          <div class="hw-card-tag">HW Product</div>
-          <div class="hw-card-name">WhatsApp Agent</div>
-          <div class="hw-card-pitch">Conversationnel spécialisé canal WhatsApp Business</div>
+          <div class="hw-card-tag"><?php echo $lang['IA_CARD_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-name"><?php echo $lang['IA_CARD2_NAME'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-pitch"><?php echo $lang['IA_CARD2_PITCH'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="hw-card-foot">
           <div class="hw-card-ico"><i class="fab fa-whatsapp"></i></div>
-          <div class="hw-card-kpi">Ouverture &gt;90%<br>Conversion ×2</div>
+          <div class="hw-card-kpi"><?php echo $lang['IA_CARD2_KPI'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -166,13 +166,13 @@
         </div>
         <div class="hw-card-num">03</div>
         <div class="hw-card-body">
-          <div class="hw-card-tag">HW Product</div>
-          <div class="hw-card-name">SDR Agent</div>
-          <div class="hw-card-pitch">Commercial virtuel infatigable pour qualifier vos leads</div>
+          <div class="hw-card-tag"><?php echo $lang['IA_CARD_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-name"><?php echo $lang['IA_CARD3_NAME'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-pitch"><?php echo $lang['IA_CARD3_PITCH'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="hw-card-foot">
           <div class="hw-card-ico"><i class="fal fa-bullseye"></i></div>
-          <div class="hw-card-kpi">+40% leads<br>qualifiés</div>
+          <div class="hw-card-kpi"><?php echo $lang['IA_CARD3_KPI'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -182,13 +182,13 @@
         </div>
         <div class="hw-card-num">04</div>
         <div class="hw-card-body">
-          <div class="hw-card-tag">HW Product</div>
-          <div class="hw-card-name">Support 24/7</div>
-          <div class="hw-card-pitch">Automatisation tickets niv. 1 &amp; 2 pour vos centres de contact</div>
+          <div class="hw-card-tag"><?php echo $lang['IA_CARD_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-name"><?php echo $lang['IA_CARD4_NAME'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-pitch"><?php echo $lang['IA_CARD4_PITCH'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="hw-card-foot">
           <div class="hw-card-ico"><i class="fal fa-headset"></i></div>
-          <div class="hw-card-kpi">Temps traitement<br>réduit de 60%</div>
+          <div class="hw-card-kpi"><?php echo $lang['IA_CARD4_KPI'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -198,13 +198,13 @@
         </div>
         <div class="hw-card-num">05</div>
         <div class="hw-card-body">
-          <div class="hw-card-tag">HW Product</div>
-          <div class="hw-card-name">Content Studio</div>
-          <div class="hw-card-pitch">Usine à contenu intelligente pour tous vos canaux</div>
+          <div class="hw-card-tag"><?php echo $lang['IA_CARD_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-name"><?php echo $lang['IA_CARD5_NAME'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-pitch"><?php echo $lang['IA_CARD5_PITCH'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="hw-card-foot">
           <div class="hw-card-ico"><i class="fal fa-pen-nib"></i></div>
-          <div class="hw-card-kpi">Production<br>de contenu ×5</div>
+          <div class="hw-card-kpi"><?php echo $lang['IA_CARD5_KPI'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -214,13 +214,13 @@
         </div>
         <div class="hw-card-num">06</div>
         <div class="hw-card-body">
-          <div class="hw-card-tag">HW Product</div>
-          <div class="hw-card-name">Voice Caller</div>
-          <div class="hw-card-pitch">Appels entrants/sortants avec synthèse vocale réaliste</div>
+          <div class="hw-card-tag"><?php echo $lang['IA_CARD_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-name"><?php echo $lang['IA_CARD6_NAME'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-pitch"><?php echo $lang['IA_CARD6_PITCH'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="hw-card-foot">
           <div class="hw-card-ico"><i class="fal fa-phone-volume"></i></div>
-          <div class="hw-card-kpi">Appels simultanés<br>illimités</div>
+          <div class="hw-card-kpi"><?php echo $lang['IA_CARD6_KPI'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
     <div class="hw-card rv d1" id="hw-voice">
@@ -229,13 +229,13 @@
         </div>
         <div class="hw-card-num">07</div>
         <div class="hw-card-body">
-          <div class="hw-card-tag">HW Product</div>
-          <div class="hw-card-name">Conversationnel</div>
-          <div class="hw-card-pitch">Assistants intelligents pour vos sites web et applications</div>
+          <div class="hw-card-tag"><?php echo $lang['IA_CARD_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-name"><?php echo $lang['IA_CARD7_NAME'][$_SESSION['lang']]; ?></div>
+          <div class="hw-card-pitch"><?php echo $lang['IA_CARD7_PITCH'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="hw-card-foot">
           <div class="hw-card-ico"><i class="fal fa-phone-volume"></i></div>
-          <div class="hw-card-kpi">Temps traitement<br>réduit de 60%</div>
+          <div class="hw-card-kpi"><?php echo $lang['IA_CARD7_KPI'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -248,43 +248,43 @@
 <section class="bv-section">
   <div class="container bv-inner">
 
-    <div class="bv-eyebrow rv">ROI mesurable</div>
-    <h2 class="bv-heading rv">La performance<br><em>en données réelles</em></h2>
+    <div class="bv-eyebrow rv"><?php echo $lang['IA_BV_EYEBROW'][$_SESSION['lang']]; ?></div>
+    <h2 class="bv-heading rv"><?php echo $lang['IA_BV_HEADING'][$_SESSION['lang']]; ?></h2>
 
     <div class="bv-stats rv d1">
 
       <div class="bv-stat">
-        <div class="bv-stat-val"><span class="bv-stat-big" data-to="2" data-prefix="">2</span><span class="bv-stat-unit">j/sem</span></div>
-        <div class="bv-stat-label">Temps libéré</div>
-        <div class="bv-stat-desc">Automatisez les processus chronophages pour réallouer vos équipes à des tâches à haute valeur.</div>
+        <div class="bv-stat-val"><span class="bv-stat-big" data-to="2" data-prefix="">2</span><span class="bv-stat-unit"><?php echo $lang['IA_BV_STAT1_UNIT'][$_SESSION['lang']]; ?></span></div>
+        <div class="bv-stat-label"><?php echo $lang['IA_BV_STAT1_LBL'][$_SESSION['lang']]; ?></div>
+        <div class="bv-stat-desc"><?php echo $lang['IA_BV_STAT1_DESC'][$_SESSION['lang']]; ?></div>
         <div class="bv-stat-bar"></div>
       </div>
 
       <div class="bv-stat">
         <div class="bv-stat-val"><span class="bv-stat-big" data-to="99.9" data-prefix="" data-dec="1">99,9</span><span class="bv-stat-unit">%</span></div>
-        <div class="bv-stat-label">Fiabilité</div>
-        <div class="bv-stat-desc">Supprimez les erreurs humaines en automatisant vos flux de données et vos doubles saisies.</div>
+        <div class="bv-stat-label"><?php echo $lang['IA_BV_STAT2_LBL'][$_SESSION['lang']]; ?></div>
+        <div class="bv-stat-desc"><?php echo $lang['IA_BV_STAT2_DESC'][$_SESSION['lang']]; ?></div>
         <div class="bv-stat-bar"></div>
       </div>
 
       <div class="bv-stat">
-        <div class="bv-stat-val"><span class="bv-stat-big" data-to="2" data-prefix="&lt;">&lt;2</span><span class="bv-stat-unit">sec</span></div>
-        <div class="bv-stat-label">Temps de réponse</div>
-        <div class="bv-stat-desc">Offrez une disponibilité 24/7 avec des réponses instantanées sur tous vos canaux.</div>
+        <div class="bv-stat-val"><span class="bv-stat-big" data-to="2" data-prefix="&lt;">&lt;2</span><span class="bv-stat-unit"><?php echo $lang['IA_BV_STAT3_UNIT'][$_SESSION['lang']]; ?></span></div>
+        <div class="bv-stat-label"><?php echo $lang['IA_BV_STAT3_LBL'][$_SESSION['lang']]; ?></div>
+        <div class="bv-stat-desc"><?php echo $lang['IA_BV_STAT3_DESC'][$_SESSION['lang']]; ?></div>
         <div class="bv-stat-bar"></div>
       </div>
 
       <div class="bv-stat">
         <div class="bv-stat-val"><span class="bv-stat-big" data-to="35" data-prefix="+">+35</span><span class="bv-stat-unit">%</span></div>
-        <div class="bv-stat-label">Ventes accélérées</div>
-        <div class="bv-stat-desc">Qualifiez les leads dès leur arrivée et assurez un follow-up systématique pour raccourcir votre cycle.</div>
+        <div class="bv-stat-label"><?php echo $lang['IA_BV_STAT4_LBL'][$_SESSION['lang']]; ?></div>
+        <div class="bv-stat-desc"><?php echo $lang['IA_BV_STAT4_DESC'][$_SESSION['lang']]; ?></div>
         <div class="bv-stat-bar"></div>
       </div>
 
       <div class="bv-stat">
         <div class="bv-stat-val"><span class="bv-stat-big" data-to="100" data-prefix="">100</span><span class="bv-stat-unit">%</span></div>
-        <div class="bv-stat-label">Reporting fiabilisé</div>
-        <div class="bv-stat-desc">Alertes ciblées, digests automatiques et circulation fluide de l'information entre vos équipes.</div>
+        <div class="bv-stat-label"><?php echo $lang['IA_BV_STAT5_LBL'][$_SESSION['lang']]; ?></div>
+        <div class="bv-stat-desc"><?php echo $lang['IA_BV_STAT5_DESC'][$_SESSION['lang']]; ?></div>
         <div class="bv-stat-bar"></div>
       </div>
 
@@ -294,11 +294,11 @@
     <div class="bv-quote rv d2">
       <div class="bv-quote-inner">
         <i class="fa fa-quote-left bv-qm bv-qm-o"></i>
-        <p class="bv-quote-text">Nos clients ne viennent pas chercher une solution IA. Ils viennent chercher <strong>la certitude que ça va se passer.</strong></p>
+        <p class="bv-quote-text"><?php echo $lang['IA_BV_QUOTE'][$_SESSION['lang']]; ?></p>
         <i class="fa fa-quote-right bv-qm bv-qm-c"></i>
       </div>
       <div class="bv-quote-source">Hello World Agency</div>
-      <div class="bv-quote-sub">Digital &amp; Intelligence Artificielle — Casablanca · San Francisco · London</div>
+      <div class="bv-quote-sub"><?php echo $lang['IA_BV_QUOTE_SUB'][$_SESSION['lang']]; ?></div>
     </div>
 
   </div>
@@ -311,9 +311,9 @@
 
       <!-- LEFT — text + badge pills -->
       <div class="hub-text">
-        <div class="sec-label">Écosystème connecté</div>
-        <h2 class="sec-title rv">Connecté à<br><em>vos outils</em></h2>
-        <p class="hub-desc rv d1">Nos agents s'intègrent nativement à votre stack existante.<br>Aucune refonte requise — connexion en quelques heures.</p>
+        <div class="sec-label"><?php echo $lang['IA_HUB_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv"><?php echo $lang['IA_HUB_TITLE'][$_SESSION['lang']]; ?></h2>
+        <p class="hub-desc rv d1"><?php echo $lang['IA_HUB_DESC'][$_SESSION['lang']]; ?></p>
         <div class="hub-badges rv d2">
           <span class="hub-badge"><i class="fab fa-slack"></i> Slack</span>
           <span class="hub-badge"><i class="fab fa-salesforce"></i> Salesforce</span>
@@ -409,9 +409,9 @@
 
   <div class="container">
     <div class="sdtl-header">
-      <div class="sec-label">Notre méthodologie</div>
-      <h2 class="sec-title rv">De l'audit au go-live<br><em>en 6 étapes maîtrisées</em></h2>
-      <p class="sdtl-intro rv d1">Une approche structurée et éprouvée, conçue pour minimiser les risques et maximiser le ROI de votre transformation IA.</p>
+      <div class="sec-label"><?php echo $lang['IA_DEPLOY_LABEL'][$_SESSION['lang']]; ?></div>
+      <h2 class="sec-title rv"><?php echo $lang['IA_DEPLOY_TITLE'][$_SESSION['lang']]; ?></h2>
+      <p class="sdtl-intro rv d1"><?php echo $lang['IA_DEPLOY_INTRO'][$_SESSION['lang']]; ?></p>
     </div>
 
     <div class="sdtl-timeline" id="sdtlTimeline">
@@ -423,9 +423,9 @@
         <div class="sdtl-panel sdtl-panel--left">
           <div class="sdtl-glass">
             <div class="sdtl-num">1</div>
-            <div class="sdtl-title">Audit du besoin</div>
-            <p class="sdtl-desc">Cartographie des processus métier, identification des cas d'usage à ROI maximal, définition des KPIs cibles.</p>
-            <span class="sdtl-tag">SEMAINE 1</span>
+            <div class="sdtl-title"><?php echo $lang['IA_PHASE1_TITLE'][$_SESSION['lang']]; ?></div>
+            <p class="sdtl-desc"><?php echo $lang['IA_PHASE1_DESC'][$_SESSION['lang']]; ?></p>
+            <span class="sdtl-tag"><?php echo $lang['IA_PHASE1_TAG'][$_SESSION['lang']]; ?></span>
           </div>
         </div>
         <div class="sdtl-node-wrap">
@@ -438,14 +438,14 @@
           </div>
         </div>
         <div class="sdtl-panel sdtl-panel--right">
-          <div class="sdtl-keyword">Analyse</div>
+          <div class="sdtl-keyword"><?php echo $lang['IA_PHASE1_KEYWORD'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
       <!-- ── PHASE 1 — RIGHT ── -->
       <div class="sdtl-step">
         <div class="sdtl-panel sdtl-panel--left">
-          <div class="sdtl-keyword">Stratégie</div>
+          <div class="sdtl-keyword"><?php echo $lang['IA_PHASE2_KEYWORD'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="sdtl-node-wrap">
           <div class="sdtl-node">
@@ -459,9 +459,9 @@
         <div class="sdtl-panel sdtl-panel--right">
           <div class="sdtl-glass">
             <div class="sdtl-num">2</div>
-            <div class="sdtl-title">Priorisation</div>
-            <p class="sdtl-desc">Classement par impact business et effort d'intégration. Plan d'exécution sur 4–12 semaines.</p>
-            <span class="sdtl-tag">SEMAINE 2</span>
+            <div class="sdtl-title"><?php echo $lang['IA_PHASE2_TITLE'][$_SESSION['lang']]; ?></div>
+            <p class="sdtl-desc"><?php echo $lang['IA_PHASE2_DESC'][$_SESSION['lang']]; ?></p>
+            <span class="sdtl-tag"><?php echo $lang['IA_PHASE2_TAG'][$_SESSION['lang']]; ?></span>
           </div>
         </div>
       </div>
@@ -471,9 +471,9 @@
         <div class="sdtl-panel sdtl-panel--left">
           <div class="sdtl-glass">
             <div class="sdtl-num">3</div>
-            <div class="sdtl-title">Prototype</div>
-            <p class="sdtl-desc">Déploiement pilote en 2–3 semaines. Tests en environnement contrôlé. Feedback équipe intégré.</p>
-            <span class="sdtl-tag">SEMAINES 3–5</span>
+            <div class="sdtl-title"><?php echo $lang['IA_PHASE3_TITLE'][$_SESSION['lang']]; ?></div>
+            <p class="sdtl-desc"><?php echo $lang['IA_PHASE3_DESC'][$_SESSION['lang']]; ?></p>
+            <span class="sdtl-tag"><?php echo $lang['IA_PHASE3_TAG'][$_SESSION['lang']]; ?></span>
           </div>
         </div>
         <div class="sdtl-node-wrap">
@@ -486,14 +486,14 @@
           </div>
         </div>
         <div class="sdtl-panel sdtl-panel--right">
-          <div class="sdtl-keyword">Test</div>
+          <div class="sdtl-keyword"><?php echo $lang['IA_PHASE3_KEYWORD'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
-      
+
       <!-- ── PHASE 3 — RIGHT ── -->
       <div class="sdtl-step">
         <div class="sdtl-panel sdtl-panel--left">
-          <div class="sdtl-keyword">Connexion</div>
+          <div class="sdtl-keyword"><?php echo $lang['IA_PHASE4_KEYWORD'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="sdtl-node-wrap">
           <div class="sdtl-node">
@@ -507,9 +507,9 @@
         <div class="sdtl-panel sdtl-panel--right">
           <div class="sdtl-glass">
             <div class="sdtl-num">4</div>
-            <div class="sdtl-title">Intégration</div>
-            <p class="sdtl-desc">Connexion API à votre stack technique. Synchronisation bidirectionnelle. Tests exhaustifs en conditions réelles.</p>
-            <span class="sdtl-tag">SEMAINES 6–8</span>
+            <div class="sdtl-title"><?php echo $lang['IA_PHASE4_TITLE'][$_SESSION['lang']]; ?></div>
+            <p class="sdtl-desc"><?php echo $lang['IA_PHASE4_DESC'][$_SESSION['lang']]; ?></p>
+            <span class="sdtl-tag"><?php echo $lang['IA_PHASE4_TAG'][$_SESSION['lang']]; ?></span>
           </div>
         </div>
       </div>
@@ -519,9 +519,9 @@
         <div class="sdtl-panel sdtl-panel--left">
           <div class="sdtl-glass">
             <div class="sdtl-num">5</div>
-            <div class="sdtl-title">Formation</div>
-            <p class="sdtl-desc">Sessions équipe, documentation complète, support 1-on-1. Adoption progressive et accompagnée jusqu'à l'autonomie.</p>
-            <span class="sdtl-tag">SEMAINE 9</span>
+            <div class="sdtl-title"><?php echo $lang['IA_PHASE5_TITLE'][$_SESSION['lang']]; ?></div>
+            <p class="sdtl-desc"><?php echo $lang['IA_PHASE5_DESC'][$_SESSION['lang']]; ?></p>
+            <span class="sdtl-tag"><?php echo $lang['IA_PHASE5_TAG'][$_SESSION['lang']]; ?></span>
           </div>
         </div>
         <div class="sdtl-node-wrap">
@@ -534,14 +534,14 @@
           </div>
         </div>
         <div class="sdtl-panel sdtl-panel--right">
-          <div class="sdtl-keyword">Adoption</div>
+          <div class="sdtl-keyword"><?php echo $lang['IA_PHASE5_KEYWORD'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
-      
+
       <!-- ── PHASE 5 — RIGHT ── -->
       <div class="sdtl-step">
         <div class="sdtl-panel sdtl-panel--left">
-          <div class="sdtl-keyword">Go-Live</div>
+          <div class="sdtl-keyword"><?php echo $lang['IA_PHASE6_KEYWORD'][$_SESSION['lang']]; ?></div>
         </div>
         <div class="sdtl-node-wrap">
           <div class="sdtl-node">
@@ -555,9 +555,9 @@
         <div class="sdtl-panel sdtl-panel--right">
           <div class="sdtl-glass">
             <div class="sdtl-num">6</div>
-            <div class="sdtl-title">Optimisation continue</div>
-            <p class="sdtl-desc">Monitoring mensuel, ajustements IA, rapports KPI. Amélioration continue pour un ROI croissant dans le temps.</p>
-            <span class="sdtl-tag">MOIS 3+</span>
+            <div class="sdtl-title"><?php echo $lang['IA_PHASE6_TITLE'][$_SESSION['lang']]; ?></div>
+            <p class="sdtl-desc"><?php echo $lang['IA_PHASE6_DESC'][$_SESSION['lang']]; ?></p>
+            <span class="sdtl-tag"><?php echo $lang['IA_PHASE6_TAG'][$_SESSION['lang']]; ?></span>
           </div>
         </div>
       </div>
@@ -573,8 +573,8 @@
 
     <!-- TITLE ABOVE THE RECTANGLE -->
     <div class="gouv-header">
-      <div class="sec-label">Sécurité & conformité</div>
-      <h2 class="sec-title rv">Gouvernance IA<br><em>enterprise-grade</em></h2>
+      <div class="sec-label"><?php echo $lang['IA_GOUV_LABEL'][$_SESSION['lang']]; ?></div>
+      <h2 class="sec-title rv"><?php echo $lang['IA_GOUV_TITLE'][$_SESSION['lang']]; ?></h2>
     </div>
 
   </div>
@@ -593,7 +593,7 @@
 
     <!-- TOP BAND — only the title -->
     <div class="gouv-left">
-      <span class="gouv-hint" id="gouvHint">Survolez un bloc</span>
+      <span class="gouv-hint" id="gouvHint"><?php echo $lang['IA_GOUV_HINT'][$_SESSION['lang']]; ?></span>
       <div class="gouv-active" id="gouvActive">
         <div class="gouv-at" id="gouvAT"></div>
       </div>
@@ -606,20 +606,20 @@
         <!-- 01 -->
         <div class="gouv-item"
              data-num="01"
-             data-title="Conformité RGPD & CNDP"
-             data-desc="Hébergement et traitement des données alignés sur la loi 09-08 et le RGPD européen. Audits réguliers, chiffrement AES-256 au repos et en transit.">
-            
+             data-title="<?php echo $lang['IA_GOUV1_TITLE'][$_SESSION['lang']]; ?>"
+             data-desc="<?php echo $lang['IA_GOUV1_DATADESC'][$_SESSION['lang']]; ?>">
+
           <div class="gi-inner">
-              <img src="<?php echo $siteURL; ?>images/RGPD.webp" alt="Conformité RGPD & CNDP">
+              <img src="<?php echo $siteURL; ?>images/RGPD.webp" alt="<?php echo $lang['IA_GOUV1_TITLE'][$_SESSION['lang']]; ?>">
             <div class="gi-front">
               <span class="gi-num">01</span>
               <div class="gi-ico"><i class="fal fa-shield-alt"></i></div>
-              <div class="gi-title">Conformité RGPD & CNDP</div>
+              <div class="gi-title"><?php echo $lang['IA_GOUV1_TITLE'][$_SESSION['lang']]; ?></div>
             </div>
             <div class="gi-back">
-              <div class="gi-blabel">Protection légale</div>
-              <div class="gi-btitle">Conformité RGPD & CNDP</div>
-              <p class="gi-bdesc">Hébergement et traitement alignés sur la loi 09-08 et le RGPD. Audits réguliers, chiffrement AES-256.</p>
+              <div class="gi-blabel"><?php echo $lang['IA_GOUV1_BLABEL'][$_SESSION['lang']]; ?></div>
+              <div class="gi-btitle"><?php echo $lang['IA_GOUV1_TITLE'][$_SESSION['lang']]; ?></div>
+              <p class="gi-bdesc"><?php echo $lang['IA_GOUV1_BDESC'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -627,19 +627,19 @@
         <!-- 02 -->
         <div class="gouv-item"
              data-num="02"
-             data-title="Protection des données sensibles"
-             data-desc="Chiffrement bout en bout et anonymisation avant traitement par les LLM. Vos données ne servent jamais à entraîner des modèles tiers.">
+             data-title="<?php echo $lang['IA_GOUV2_TITLE'][$_SESSION['lang']]; ?>"
+             data-desc="<?php echo $lang['IA_GOUV2_DATADESC'][$_SESSION['lang']]; ?>">
           <div class="gi-inner">
-                <img src="<?php echo $siteURL; ?>images/Protection_des_donnees.webp" alt="Protection des données sensibles">
+                <img src="<?php echo $siteURL; ?>images/Protection_des_donnees.webp" alt="<?php echo $lang['IA_GOUV2_TITLE'][$_SESSION['lang']]; ?>">
             <div class="gi-front">
               <span class="gi-num">02</span>
               <div class="gi-ico"><i class="fal fa-lock"></i></div>
-              <div class="gi-title">Protection des données sensibles</div>
+              <div class="gi-title"><?php echo $lang['IA_GOUV2_TITLE'][$_SESSION['lang']]; ?></div>
             </div>
             <div class="gi-back">
-              <div class="gi-blabel">Chiffrement bout en bout</div>
-              <div class="gi-btitle">Protection des données sensibles</div>
-              <p class="gi-bdesc">Anonymisation avant traitement LLM. Zéro donnée utilisée pour l'entraînement de modèles tiers.</p>
+              <div class="gi-blabel"><?php echo $lang['IA_GOUV2_BLABEL'][$_SESSION['lang']]; ?></div>
+              <div class="gi-btitle"><?php echo $lang['IA_GOUV2_TITLE'][$_SESSION['lang']]; ?></div>
+              <p class="gi-bdesc"><?php echo $lang['IA_GOUV2_BDESC'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -647,19 +647,19 @@
         <!-- 03 -->
         <div class="gouv-item"
              data-num="03"
-             data-title="Auditabilité & Logs"
-             data-desc="Traçabilité absolue de chaque décision IA, conservée dans des journaux sécurisés consultables à tout moment.">
+             data-title="<?php echo $lang['IA_GOUV3_TITLE'][$_SESSION['lang']]; ?>"
+             data-desc="<?php echo $lang['IA_GOUV3_DATADESC'][$_SESSION['lang']]; ?>">
           <div class="gi-inner">
-              <img src="<?php echo $siteURL; ?>images/Auditabilie.webp" alt="Auditabilité">
+              <img src="<?php echo $siteURL; ?>images/Auditabilie.webp" alt="<?php echo $lang['IA_GOUV3_ALT'][$_SESSION['lang']]; ?>">
             <div class="gi-front">
               <span class="gi-num">03</span>
               <div class="gi-ico"><i class="fal fa-file-alt"></i></div>
-              <div class="gi-title">Auditabilité & Logs</div>
+              <div class="gi-title"><?php echo $lang['IA_GOUV3_TITLE'][$_SESSION['lang']]; ?></div>
             </div>
             <div class="gi-back">
-              <div class="gi-blabel">Traçabilité absolue</div>
-              <div class="gi-btitle">Auditabilité & Logs</div>
-              <p class="gi-bdesc">Chaque décision IA tracée et conservée dans des journaux sécurisés, consultables à tout moment.</p>
+              <div class="gi-blabel"><?php echo $lang['IA_GOUV3_BLABEL'][$_SESSION['lang']]; ?></div>
+              <div class="gi-btitle"><?php echo $lang['IA_GOUV3_TITLE'][$_SESSION['lang']]; ?></div>
+              <p class="gi-bdesc"><?php echo $lang['IA_GOUV3_BDESC'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -667,19 +667,19 @@
         <!-- 04 — large (span 2) -->
         <div class="gouv-item r2 gouv-item-lg"
              data-num="04"
-             data-title="Escalade & Human-in-the-loop"
-             data-desc="Protocole de transfert instantané vers un opérateur humain dès qu'un niveau de certitude est jugé insuffisant. Zéro décision critique prise de façon autonome.">
+             data-title="<?php echo $lang['IA_GOUV4_TITLE'][$_SESSION['lang']]; ?>"
+             data-desc="<?php echo $lang['IA_GOUV4_DATADESC'][$_SESSION['lang']]; ?>">
           <div class="gi-inner">
-              <img src="<?php echo $siteURL; ?>images/controle_humain.webp" alt="Contrôle humain">
+              <img src="<?php echo $siteURL; ?>images/controle_humain.webp" alt="<?php echo $lang['IA_GOUV4_BLABEL'][$_SESSION['lang']]; ?>">
             <div class="gi-front">
               <span class="gi-num">04</span>
               <div class="gi-ico"><i class="fal fa-users"></i></div>
-              <div class="gi-title">Escalade & Human-in-the-loop</div>
+              <div class="gi-title"><?php echo $lang['IA_GOUV4_TITLE'][$_SESSION['lang']]; ?></div>
             </div>
             <div class="gi-back">
-              <div class="gi-blabel">Contrôle humain</div>
-              <div class="gi-btitle">Escalade & Human-in-the-loop</div>
-              <p class="gi-bdesc">Transfert instantané vers un opérateur humain dès qu'un niveau de certitude est insuffisant. L'IA assiste — l'humain décide.</p>
+              <div class="gi-blabel"><?php echo $lang['IA_GOUV4_BLABEL'][$_SESSION['lang']]; ?></div>
+              <div class="gi-btitle"><?php echo $lang['IA_GOUV4_TITLE'][$_SESSION['lang']]; ?></div>
+              <p class="gi-bdesc"><?php echo $lang['IA_GOUV4_BDESC'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -687,19 +687,19 @@
         <!-- 05 -->
         <div class="gouv-item r2"
              data-num="05"
-             data-title="Hébergement souverain"
-             data-desc="On-premise ou cloud privé selon vos exigences de sécurité. SLA haute disponibilité pour les grands comptes et appels d'offres stratégiques.">
+             data-title="<?php echo $lang['IA_GOUV5_TITLE'][$_SESSION['lang']]; ?>"
+             data-desc="<?php echo $lang['IA_GOUV5_DATADESC'][$_SESSION['lang']]; ?>">
           <div class="gi-inner">
-              <img src="<?php echo $siteURL; ?>images/cloud.webp" alt="Hébergement souverain">
+              <img src="<?php echo $siteURL; ?>images/cloud.webp" alt="<?php echo $lang['IA_GOUV5_TITLE'][$_SESSION['lang']]; ?>">
             <div class="gi-front">
               <span class="gi-num">05</span>
               <div class="gi-ico"><i class="fal fa-server"></i></div>
-              <div class="gi-title">Hébergement souverain</div>
+              <div class="gi-title"><?php echo $lang['IA_GOUV5_TITLE'][$_SESSION['lang']]; ?></div>
             </div>
             <div class="gi-back">
-              <div class="gi-blabel">Déploiement souverain</div>
-              <div class="gi-btitle">Hébergement souverain</div>
-              <p class="gi-bdesc">On-premise ou cloud privé. SLA haute disponibilité garanti pour les grands comptes.</p>
+              <div class="gi-blabel"><?php echo $lang['IA_GOUV5_BLABEL'][$_SESSION['lang']]; ?></div>
+              <div class="gi-btitle"><?php echo $lang['IA_GOUV5_TITLE'][$_SESSION['lang']]; ?></div>
+              <p class="gi-bdesc"><?php echo $lang['IA_GOUV5_BDESC'][$_SESSION['lang']]; ?></p>
             </div>
           </div>
         </div>
@@ -714,79 +714,79 @@
 <section class="pack-section">
         <div class="container">
             <div class="pricing-header">
-              <div class="sec-label">Offres et tarification</div>
-              <h2 class="sec-title">Trois modèles<br>d'engagement <em>flexible</em></h2>
-              <p class="pricing-intro rv">Du pilote au déploiement d'entreprise, nous adaptons notre offre à votre croissance et votre budget. Transparence complète, pas de frais cachés.</p>
+              <div class="sec-label"><?php echo $lang['IA_PRICING_LABEL'][$_SESSION['lang']]; ?></div>
+              <h2 class="sec-title"><?php echo $lang['IA_PRICING_TITLE'][$_SESSION['lang']]; ?></h2>
+              <p class="pricing-intro rv"><?php echo $lang['IA_PRICING_INTRO'][$_SESSION['lang']]; ?></p>
             </div>
         </div>
         <div class="container">
             <div class="pack-box">
                 <div class="item-pack">
-                    <span class="popular">Démarrage</span>
-                    <div class="imgbox"><img src="<?php echo $siteURL; ?>images/packs/pilot.webp" alt="Offre Pilote"></div>
-                    <h4>Offre Pilote</h4>
+                    <span class="popular"><?php echo $lang['IA_PACK1_TAG'][$_SESSION['lang']]; ?></span>
+                    <div class="imgbox"><img src="<?php echo $siteURL; ?>images/packs/pilot.webp" alt="<?php echo $lang['IA_PACK1_TITLE'][$_SESSION['lang']]; ?>"></div>
+                    <h4><?php echo $lang['IA_PACK1_TITLE'][$_SESSION['lang']]; ?></h4>
                     <div class="textbox">
-                        <p>Idéal pour tester l'IA sur un cas d'usage précis avant engagement long terme.</p>
+                        <p><?php echo $lang['IA_PACK1_DESC'][$_SESSION['lang']]; ?></p>
                         <ul>
-                          <li>1 solution IA (4 semaines)</li>
-                          <li>Configuration de base</li>
-                          <li>1 intégration simple</li>
-                          <li>Formation équipe</li>
-                          <li>Support 30 jours</li>
+                          <li><?php echo $lang['IA_PACK1_LI1'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK1_LI2'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK1_LI3'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK1_LI4'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK1_LI5'][$_SESSION['lang']]; ?></li>
                           <li></li>
                         </ul>
                     </div>
                     <div class="price">
-                        <span>A partir de </span><br>
+                        <span><?php echo $lang['SVC_PACK_A_PARTIR_DE'][$_SESSION['lang']]; ?></span><br>
                         15 000 <sup>MAD</sup>
                     </div>
-                    <a href="#0" class="btn-pack open-form-service"><span>Demander un audit</span></a>
+                    <a href="#0" class="btn-pack open-form-service"><span><?php echo $lang['IA_PACK1_BTN'][$_SESSION['lang']]; ?></span></a>
                 </div>
 
                 <div class="item-pack active">
-                    <span class="popular"><i class="fa fa-trophy"></i> Recommandé</span>
-                    <div class="imgbox"><img src="<?php echo $siteURL; ?>images/packs/pilot.webp" alt="Offre Pilote"></div>
-                    <h4>Bundle Métier</h4>
+                    <span class="popular"><i class="fa fa-trophy"></i> <?php echo $lang['IA_PACK2_TAG'][$_SESSION['lang']]; ?></span>
+                    <div class="imgbox"><img src="<?php echo $siteURL; ?>images/packs/pilot.webp" alt="<?php echo $lang['IA_PACK2_TITLE'][$_SESSION['lang']]; ?>"></div>
+                    <h4><?php echo $lang['IA_PACK2_TITLE'][$_SESSION['lang']]; ?></h4>
                     <div class="textbox">
-                        <p>Solution complète : 2-3 agents IA, écosystème connecté, support continu.</p>
+                        <p><?php echo $lang['IA_PACK2_DESC'][$_SESSION['lang']]; ?></p>
                         <ul>
-                          <li>2-3 solutions IA intégrées</li>
-                          <li>Configuration avancée</li>
-                          <li>3-4 intégrations CRM</li>
-                          <li>Reporting automatisé</li>
-                          <li>Support 6 mois inclus</li>
-                          <li>Optimisations trimestrielles</li>
+                          <li><?php echo $lang['IA_PACK2_LI1'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK2_LI2'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK2_LI3'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK2_LI4'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK2_LI5'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK2_LI6'][$_SESSION['lang']]; ?></li>
                           <li></li>
                         </ul>
                     </div>
                     <div class="price">
-                        <span>A partir de </span><br>
+                        <span><?php echo $lang['SVC_PACK_A_PARTIR_DE'][$_SESSION['lang']]; ?></span><br>
                         45 000 - 100 000 <sup>MAD</sup>
                     </div>
-                    <a href="#0" class="btn-pack open-form-service"><span>Demander une démo</span></a>
+                    <a href="#0" class="btn-pack open-form-service"><span><?php echo $lang['IA_PACK2_BTN'][$_SESSION['lang']]; ?></span></a>
                 </div>
 
                 <div class="item-pack">
-                    <span class="popular">Grands comptes</span>
-                    <div class="imgbox"><img src="<?php echo $siteURL; ?>images/packs/pilot.webp" alt="Offre Pilote"></div>
-                    <h4>Transformation IA</h4>
+                    <span class="popular"><?php echo $lang['IA_PACK3_TAG'][$_SESSION['lang']]; ?></span>
+                    <div class="imgbox"><img src="<?php echo $siteURL; ?>images/packs/pilot.webp" alt="<?php echo $lang['IA_PACK3_TITLE'][$_SESSION['lang']]; ?>"></div>
+                    <h4><?php echo $lang['IA_PACK3_TITLE'][$_SESSION['lang']]; ?></h4>
                     <div class="textbox">
-                        <p>Déploiement enterprise sur plusieurs départements, API custom, SLA garanti.</p>
+                        <p><?php echo $lang['IA_PACK3_DESC'][$_SESSION['lang']]; ?></p>
                         <ul>
-                          <li>Programme complet multi-agents</li>
-                          <li>Architecture personnalisée</li>
-                          <li>5+ intégrations complexes</li>
-                          <li>Reporting executive</li>
-                          <li>Support dédié 12+ mois</li>
-                          <li>Optimisations mensuelles</li>
+                          <li><?php echo $lang['IA_PACK3_LI1'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK3_LI2'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK3_LI3'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK3_LI4'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK3_LI5'][$_SESSION['lang']]; ?></li>
+                          <li><?php echo $lang['IA_PACK3_LI6'][$_SESSION['lang']]; ?></li>
                           <li></li>
                         </ul>
                     </div>
                     <div class="price">
-                        <span>A partir de </span><br>
+                        <span><?php echo $lang['SVC_PACK_A_PARTIR_DE'][$_SESSION['lang']]; ?></span><br>
                         100 000 <sup>MAD+</sup>
                     </div>
-                    <a href="#0" class="btn-pack open-form-service"><span>Parler à un expert</span></a>
+                    <a href="#0" class="btn-pack open-form-service"><span><?php echo $lang['IA_PACK3_BTN'][$_SESSION['lang']]; ?></span></a>
                 </div>
             </div>
         </div>
@@ -801,16 +801,16 @@
   </video>
   <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label rv">Commencer maintenant</div>
-    <h2 class="sec-title rv d1">Votre premier agent IA<br><em>opérationnel en 3 semaines</em></h2>
-    <p class="hw-f-list-cta-sub rv d2">Un audit gratuit de 90 minutes avec nos experts pour identifier vos 3 meilleurs cas d'usage IA.</p>
+    <div class="sec-label rv"><?php echo $lang['IA_FINAL_CTA_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['IA_FINAL_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="hw-f-list-cta-sub rv d2"><?php echo $lang['IA_FINAL_CTA_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns rv d3" style="justify-content:center">
       <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
-        <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
+        <div class="sb-label"><span class="sb-hint"><?php echo $lang['IA_HERO_CTA1'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
       </a>
       <a href="<?= $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
-        <div class="sb-label"><span class="sb-hint">Voir le catalogue</span></div>
+        <div class="sb-label"><span class="sb-hint"><?php echo $lang['IA_FINAL_CTA_BTN2'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-comment-dots"></i></div>
       </a>
     </div>
@@ -820,70 +820,70 @@
 <!-- CASE STUDIES -->
 <section class="case-studies">
   <div class="container">
-    <div class="sec-label">Cas clients</div>
-    <h2 class="sec-title rv">Nos clients<br>font la <em>différence</em></h2>
-    
+    <div class="sec-label"><?php echo $lang['IA_CASE_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv"><?php echo $lang['IA_CASE_TITLE'][$_SESSION['lang']]; ?></h2>
+
     <div class="case-grid">
       <div class="case-card rv">
-        <div class="case-sector">HÔTELLERIE</div>
-        <div class="case-title">Hôtel 5 étoiles — Casablanca</div>
-        <p class="case-desc">Déploiement d'un réceptionniste IA WhatsApp pour check-in/out et concierge digital. Intégration PMS, disponibilité chambre temps réel.</p>
+        <div class="case-sector"><?php echo $lang['IA_CASE1_SECTOR'][$_SESSION['lang']]; ?></div>
+        <div class="case-title"><?php echo $lang['IA_CASE1_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="case-desc"><?php echo $lang['IA_CASE1_DESC'][$_SESSION['lang']]; ?></p>
         <div class="case-metrics">
           <div class="case-metric">
             <div class="case-metric-value">+45%</div>
-            <div class="case-metric-label">Satisfaction clients</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE1_METRIC1_LBL'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="case-metric">
             <div class="case-metric-value">-35%</div>
-            <div class="case-metric-label">Charge réception</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE1_METRIC2_LBL'][$_SESSION['lang']]; ?></div>
           </div>
         </div>
       </div>
 
       <div class="case-card rv d1">
-        <div class="case-sector">IMMOBILIER</div>
-        <div class="case-title">Promotion immobilière — Rabat</div>
-        <p class="case-desc">Agent IA de qualification téléphonique + prospection LinkedIn. Mises à jour chantier automatisées. Campagnes WhatsApp sortantes.</p>
+        <div class="case-sector"><?php echo $lang['IA_CASE2_SECTOR'][$_SESSION['lang']]; ?></div>
+        <div class="case-title"><?php echo $lang['IA_CASE2_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="case-desc"><?php echo $lang['IA_CASE2_DESC'][$_SESSION['lang']]; ?></p>
         <div class="case-metrics">
           <div class="case-metric">
             <div class="case-metric-value">+120%</div>
-            <div class="case-metric-label">Leads qualifiés/mois</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE2_METRIC1_LBL'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="case-metric">
             <div class="case-metric-value">-60%</div>
-            <div class="case-metric-label">Temps prospection</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE2_METRIC2_LBL'][$_SESSION['lang']]; ?></div>
           </div>
         </div>
       </div>
 
       <div class="case-card rv d2">
-        <div class="case-sector">SANTÉ</div>
-        <div class="case-title">Clinique privée — Fès</div>
-        <p class="case-desc">Système de gestion RDV + relances SMS/WhatsApp. Intégration logiciel médical existant. Support patient 24/7 (FAQ, urgences).</p>
+        <div class="case-sector"><?php echo $lang['IA_CASE3_SECTOR'][$_SESSION['lang']]; ?></div>
+        <div class="case-title"><?php echo $lang['IA_CASE3_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="case-desc"><?php echo $lang['IA_CASE3_DESC'][$_SESSION['lang']]; ?></p>
         <div class="case-metrics">
           <div class="case-metric">
             <div class="case-metric-value">-42%</div>
-            <div class="case-metric-label">No-shows RDV</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE3_METRIC1_LBL'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="case-metric">
             <div class="case-metric-value">+88%</div>
-            <div class="case-metric-label">Utilisation slots</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE3_METRIC2_LBL'][$_SESSION['lang']]; ?></div>
           </div>
         </div>
       </div>
 
       <div class="case-card rv">
-        <div class="case-sector">RESTAURATION</div>
-        <div class="case-title">Chaîne de restaurants — Marrakech</div>
-        <p class="case-desc">Concierge IA multicanal (chat, WhatsApp, SMS). Réservations, commandes, feedback automatisé. Intégration caisse + table management.</p>
+        <div class="case-sector"><?php echo $lang['IA_CASE4_SECTOR'][$_SESSION['lang']]; ?></div>
+        <div class="case-title"><?php echo $lang['IA_CASE4_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="case-desc"><?php echo $lang['IA_CASE4_DESC'][$_SESSION['lang']]; ?></p>
         <div class="case-metrics">
           <div class="case-metric">
             <div class="case-metric-value">+65%</div>
-            <div class="case-metric-label">Réservations en ligne</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE4_METRIC1_LBL'][$_SESSION['lang']]; ?></div>
           </div>
           <div class="case-metric">
             <div class="case-metric-value">+3.2pts</div>
-            <div class="case-metric-label">Score satisfaction</div>
+            <div class="case-metric-label"><?php echo $lang['IA_CASE4_METRIC2_LBL'][$_SESSION['lang']]; ?></div>
           </div>
         </div>
       </div>

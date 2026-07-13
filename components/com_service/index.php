@@ -55,7 +55,11 @@ switch ($task)
                 //$services_tags = service::findAll($_SESSION["lang"],true,true,true);
 
                 $service = service::findBySlug($slug, $_SESSION["lang"]);
-                
+                if(!$service->getId()){
+                    // Pas encore de traduction pour cette langue : on retombe sur la langue par défaut plutôt que planter.
+                    $service = service::findBySlug($slug, langue::getDefaultLanguage());
+                }
+
                 // $faqs = faq::findAll($_SESSION["lang"], true, $service->getId(), false);
                 $faqs = faq::findAll($_SESSION["lang"], true, $service->getId(), '0,3');
 		        $faqs2 = faq::findAll($_SESSION["lang"], true, $service->getId(), '3,6');

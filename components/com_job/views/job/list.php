@@ -156,16 +156,16 @@
   <div class="container">
     <div class="wm-hero-inner">
       <div>
-        <div class="sh-breadcrumb rv">Carrières &amp; Recrutement</div>
-        <h1 class="sh-h1 rv d1">Rejoignez l'équipe qui <em>réinvente</em> l'IA</h1>
-        <p class="sh-sub rv d2">Nous construisons des agents intelligents qui transforment les entreprises. Si vous voulez avoir un impact réel dans un monde en mutation, votre place est ici.</p>
+        <div class="sh-breadcrumb rv"><?= $lang['REC_BREADCRUMB'][$_SESSION['lang']]; ?></div>
+        <h1 class="sh-h1 rv d1"><?= $lang['REC_HERO_TITLE'][$_SESSION['lang']]; ?></h1>
+        <p class="sh-sub rv d2"><?= $lang['REC_HERO_SUB'][$_SESSION['lang']]; ?></p>
         <div class="wm-hero-ctas rv d2">
           <a href="#offres" class="sb sb-compact" data-auto-reset="true">
-            <div class="sb-label"><span class="sb-hint">Voir les offres</span></div>
+            <div class="sb-label"><span class="sb-hint"><?= $lang['REC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?></span></div>
             <div class="sb-knob"><i class="fal fa-arrow-down"></i></div>
           </a>
           <a href="mailto:recrute@helloworld-agency.com" class="sb sb-compact sb-invert">
-            <div class="sb-label"><span class="sb-hint">Candidature spontanée</span></div>
+            <div class="sb-label"><span class="sb-hint"><?= $lang['REC_CTA_CANDIDATURE_SPONTANEE'][$_SESSION['lang']]; ?></span></div>
             <div class="sb-knob"><i class="fal fa-paper-plane"></i></div>
           </a>
         </div>
@@ -183,22 +183,22 @@
 <div class="rec-mq">
   <div class="mq-t">
     <?php $mqItems = [
-      ['ico'=>'fa-star','lbl'=>'Impact réel'],
-      ['ico'=>'fa-rocket','lbl'=>'Environnement innovant'],
-      ['ico'=>'fa-users','lbl'=>'Équipe soudée'],
-      ['ico'=>'fa-brain','lbl'=>'Apprentissage continu'],
-      ['ico'=>'fa-globe','lbl'=>'Remote-friendly'],
-      ['ico'=>'fa-chart-line','lbl'=>'Croissance rapide'],
-      ['ico'=>'fa-hands-helping','lbl'=>'Culture bienveillante'],
-      ['ico'=>'fa-lightbulb','lbl'=>'Autonomie &amp; Initiative'],
-      ['ico'=>'fa-star','lbl'=>'Impact réel'],
-      ['ico'=>'fa-rocket','lbl'=>'Environnement innovant'],
-      ['ico'=>'fa-users','lbl'=>'Équipe soudée'],
-      ['ico'=>'fa-brain','lbl'=>'Apprentissage continu'],
-      ['ico'=>'fa-globe','lbl'=>'Remote-friendly'],
-      ['ico'=>'fa-chart-line','lbl'=>'Croissance rapide'],
-      ['ico'=>'fa-hands-helping','lbl'=>'Culture bienveillante'],
-      ['ico'=>'fa-lightbulb','lbl'=>'Autonomie &amp; Initiative'],
+      ['ico'=>'fa-star','lbl'=>$lang['REC_MQ_IMPACT_REEL'][$_SESSION['lang']]],
+      ['ico'=>'fa-rocket','lbl'=>$lang['REC_MQ_ENVIRONNEMENT_INNOVANT'][$_SESSION['lang']]],
+      ['ico'=>'fa-users','lbl'=>$lang['REC_MQ_EQUIPE_SOUDEE'][$_SESSION['lang']]],
+      ['ico'=>'fa-brain','lbl'=>$lang['REC_MQ_APPRENTISSAGE_CONTINU'][$_SESSION['lang']]],
+      ['ico'=>'fa-globe','lbl'=>$lang['REC_MQ_REMOTE_FRIENDLY'][$_SESSION['lang']]],
+      ['ico'=>'fa-chart-line','lbl'=>$lang['REC_MQ_CROISSANCE_RAPIDE'][$_SESSION['lang']]],
+      ['ico'=>'fa-hands-helping','lbl'=>$lang['REC_MQ_CULTURE_BIENVEILLANTE'][$_SESSION['lang']]],
+      ['ico'=>'fa-lightbulb','lbl'=>$lang['REC_MQ_AUTONOMIE_INITIATIVE'][$_SESSION['lang']]],
+      ['ico'=>'fa-star','lbl'=>$lang['REC_MQ_IMPACT_REEL'][$_SESSION['lang']]],
+      ['ico'=>'fa-rocket','lbl'=>$lang['REC_MQ_ENVIRONNEMENT_INNOVANT'][$_SESSION['lang']]],
+      ['ico'=>'fa-users','lbl'=>$lang['REC_MQ_EQUIPE_SOUDEE'][$_SESSION['lang']]],
+      ['ico'=>'fa-brain','lbl'=>$lang['REC_MQ_APPRENTISSAGE_CONTINU'][$_SESSION['lang']]],
+      ['ico'=>'fa-globe','lbl'=>$lang['REC_MQ_REMOTE_FRIENDLY'][$_SESSION['lang']]],
+      ['ico'=>'fa-chart-line','lbl'=>$lang['REC_MQ_CROISSANCE_RAPIDE'][$_SESSION['lang']]],
+      ['ico'=>'fa-hands-helping','lbl'=>$lang['REC_MQ_CULTURE_BIENVEILLANTE'][$_SESSION['lang']]],
+      ['ico'=>'fa-lightbulb','lbl'=>$lang['REC_MQ_AUTONOMIE_INITIATIVE'][$_SESSION['lang']]],
     ];
     foreach($mqItems as $mi): ?>
     <span class="rec-mq-item"><i class="fal <?= $mi['ico'] ?>"></i><?= $mi['lbl'] ?></span>
@@ -262,11 +262,11 @@
   <div class="container">
     <div class="rec-jobs-hdr rv">
       <div class="rec-jobs-hdr-left">
-        <p class="sec-label">Offres actuelles</p>
-        <h2 class="sh-h2">Nos <em>postes ouverts</em></h2>
+        <p class="sec-label"><?= $lang['REC_JOBS_EYEBROW'][$_SESSION['lang']]; ?></p>
+        <h2 class="sh-h2"><?= $lang['REC_JOBS_TITLE'][$_SESSION['lang']]; ?></h2>
       </div>
       <?php if(!empty($jobs)): ?>
-      <span class="rec-jobs-count"><?= count($jobs) ?> offre<?= count($jobs) > 1 ? 's' : '' ?> disponible<?= count($jobs) > 1 ? 's' : '' ?></span>
+      <span class="rec-jobs-count"><?= count($jobs) ?> <?= count($jobs) > 1 ? $lang['REC_JOBS_COUNT_PLURAL'][$_SESSION['lang']] : $lang['REC_JOBS_COUNT_SINGULAR'][$_SESSION['lang']]; ?></span>
       <?php endif; ?>
     </div>
 
@@ -283,7 +283,7 @@
           <?php else: ?>
             <div class="rec-job-img-placeholder"><i class="fal fa-briefcase"></i></div>
           <?php endif; ?>
-          <span class="rec-job-tag"><i class="fal fa-circle-dot" style="margin-right:.35rem;font-size:.55rem;color:var(--gold2)"></i>Emploi</span>
+          <span class="rec-job-tag"><i class="fal fa-circle-dot" style="margin-right:.35rem;font-size:.55rem;color:var(--gold2)"></i><?= $lang['REC_JOB_TAG'][$_SESSION['lang']]; ?></span>
         </div>
         <div class="rec-job-body">
           <div class="rec-job-date"><i class="fal fa-calendar-alt" style="margin-right:.4rem"></i><?= normaldate($job->getDateAdd()) ?></div>
@@ -291,7 +291,7 @@
           <div class="rec-job-desc"><?= $job->getDescription() ?></div>
           <div class="rec-job-footer">
             <button class="rec-job-apply apply-job" data-id="<?= $job->getId() ?>">
-              Postuler <i class="fal fa-arrow-right"></i>
+              <?= $lang['REC_JOB_APPLY'][$_SESSION['lang']]; ?> <i class="fal fa-arrow-right"></i>
             </button>
           </div>
         </div>
@@ -301,7 +301,7 @@
     <?php else: ?>
     <div class="rec-no-jobs rv">
       <i class="fal fa-search"></i>
-      <p>Aucune offre en ce moment — revenez prochainement ou envoyez une candidature spontanée.</p>
+      <p><?= $lang['REC_NO_JOBS'][$_SESSION['lang']]; ?></p>
     </div>
     <?php endif; ?>
   </div>
@@ -352,7 +352,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content recrutement-form" style="border-radius:20px;border:1px solid var(--border);overflow:hidden">
       <div class="modal-header" style="background:var(--bg2);border-bottom:1px solid var(--border);padding:1.5rem 2rem">
-        <h4 class="modal-title" style="font-family:var(--fm);font-weight:300;font-size:1.2rem;color:var(--txt)">Postuler pour cette offre</h4>
+        <h4 class="modal-title" style="font-family:var(--fm);font-weight:300;font-size:1.2rem;color:var(--txt)"><?= $lang['REC_MODAL_TITLE'][$_SESSION['lang']]; ?></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:var(--txt2)"><i class="ti-close"></i></button>
       </div>
       <div class="modal-body recrutement-form" style="padding:2rem">
@@ -360,11 +360,11 @@
       </div>
       <div class="modal-footer" style="background:var(--bg2);border-top:1px solid var(--border);padding:1rem 2rem;gap:.7rem">
         <button type="button" class="sb sb-compact sb-invert" data-dismiss="modal" style="font-size:.75rem">
-          <div class="sb-label"><span class="sb-hint">Fermer</span></div>
+          <div class="sb-label"><span class="sb-hint"><?= $lang['REC_MODAL_FERMER'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-times"></i></div>
         </button>
         <button type="button" class="sb sb-compact send-form">
-          <div class="sb-label"><span class="sb-hint">Envoyer ma candidature</span></div>
+          <div class="sb-label"><span class="sb-hint"><?= $lang['REC_MODAL_ENVOYER'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-paper-plane"></i></div>
         </button>
       </div>

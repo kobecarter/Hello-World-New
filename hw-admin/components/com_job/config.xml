@@ -4,7 +4,7 @@
    <nom>Gestion des offres de travail</nom>
    <class>job</class>
    <table>job</table>
-   <traduction>0</traduction>
+   <traduction>1</traduction>
    <url>0</url>
    <icon>suitcase</icon>
    <system>0</system>

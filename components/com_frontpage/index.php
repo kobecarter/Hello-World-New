@@ -11,9 +11,13 @@ switch ($task)
 		
 		// Services hero
 		$serviceWebMobile = service::find(107, $_SESSION["lang"]);
+		if(!$serviceWebMobile->getSlug()) $serviceWebMobile = service::find(107, langue::getDefaultLanguage());
 		$serviceIA = service::find(17, $_SESSION["lang"]);
+		if(!$serviceIA->getSlug()) $serviceIA = service::find(17, langue::getDefaultLanguage());
 		$serviceSaaS = service::find(1, $_SESSION["lang"]);
+		if(!$serviceSaaS->getSlug()) $serviceSaaS = service::find(1, langue::getDefaultLanguage());
 		$serviceBrandMarketing = service::find(18, $_SESSION["lang"]);
+		if(!$serviceBrandMarketing->getSlug()) $serviceBrandMarketing = service::find(18, langue::getDefaultLanguage());
 		
 		// vidéo digital expert
 		$videos = video::findAllByCategorie($_SESSION['lang'],14,true,false);
@@ -70,6 +74,10 @@ switch ($task)
 		
 		// blog
 		$blogs = blog::findAll($_SESSION['lang'], true, 1, false, "0,7");
+		if(empty($blogs)){
+			// Pas encore d'articles traduits dans cette langue : on retombe sur la langue par défaut.
+			$blogs = blog::findAll(langue::getDefaultLanguage(), true, 1, false, "0,7");
+		}
 
 		// sous service
 		$sousServices = array();

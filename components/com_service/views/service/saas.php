@@ -18,13 +18,13 @@
         <p class="sh-sub"><?php echo strip_tags($service->getExtrait()); ?></p>
       
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
-        
-            <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="sb-label"><span class="sb-hint">Voir nos offres</span></div>
+
+            <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div>
             </a>
         </div>
@@ -39,42 +39,42 @@
 <!-- ══ MARQUEE — visible after hero unpins ═════════════════════ -->
 <div class="mq" id="mq"><div class="mq-t">
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-  <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-  <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-  <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
   <span class="mi"><span class="d"></span><span class="h">Hello World Agency</span></span>
-  <span class="mi"><span class="d"></span>Web &amp; Mobile</span>
-  <span class="mi"><span class="d"></span><span class="h">Solutions IA</span></span>
-  <span class="mi"><span class="d"></span>SaaS &amp; Produits</span>
-  <span class="mi"><span class="d"></span><span class="h">Brand Experience</span></span>
-  <span class="mi"><span class="d"></span>140+ Déploiements</span>
-  <span class="mi"><span class="d"></span><span class="h">ROI dès 7 semaines</span></span>
-  <span class="mi"><span class="d"></span>Digital Marketing Agency</span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_WEB_MOBILE'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_SAAS_PRODUITS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_BRAND_EXPERIENCE'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DEPLOIEMENTS'][$_SESSION['lang']]; ?></span>
+  <span class="mi"><span class="d"></span><span class="h"><?php echo $lang['MQ2_ROI'][$_SESSION['lang']]; ?></span></span>
+  <span class="mi"><span class="d"></span><?php echo $lang['MQ2_DIGITAL_AGENCY'][$_SESSION['lang']]; ?></span>
 </div></div>
 
 <!-- OFFERINGS -->
 <section class="sp-offers" id="offres">
   <div class="container">
-    <div class="sec-label">Nos Offres</div>
-    <h2 class="sec-title rv">Trois façons de <em>construire</em><br>votre produit</h2>
+    <div class="sec-label"><?php echo $lang['SAAS_OFFERS_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv"><?php echo $lang['SAAS_OFFERS_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="sp-offer-grid">
       <div class="sp-offer sp-offer-1 rv">
         <div class="sp-offer-visual">
          <img src="<?php echo $siteURL; ?>images/saas-mvp.webp" alt="MVP SaaS">
         </div>
         <div class="sp-offer-body">
-          <span class="sp-offer-tag">Lancement rapide</span>
-          <div class="sp-offer-title">MVP SaaS</div>
-          <p class="sp-offer-desc">Validez votre concept en 6 semaines avec un produit fonctionnel prêt à être présenté à vos premiers utilisateurs et investisseurs.</p>
+          <span class="sp-offer-tag"><?php echo $lang['SAAS_OFFER1_TAG'][$_SESSION['lang']]; ?></span>
+          <div class="sp-offer-title"><?php echo $lang['SAAS_OFFER1_TITLE'][$_SESSION['lang']]; ?></div>
+          <p class="sp-offer-desc"><?php echo $lang['SAAS_OFFER1_DESC'][$_SESSION['lang']]; ?></p>
           <ul class="sp-offer-feats">
-            <li class="sp-offer-feat">Authentification & gestion utilisateurs</li>
-            <li class="sp-offer-feat">Tableau de bord & interface admin</li>
-            <li class="sp-offer-feat">Paiements intégrés (Stripe)</li>
-            <li class="sp-offer-feat">Architecture scalable dès le jour 1</li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER1_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER1_FEAT2'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER1_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER1_FEAT4'][$_SESSION['lang']]; ?></li>
           </ul>
         </div>
       </div>
@@ -84,14 +84,14 @@
          <img src="<?php echo $siteURL; ?>images/platform-metier.webp" alt="Plateformes métiers">
         </div>
         <div class="sp-offer-body">
-          <span class="sp-offer-tag">Sur mesure</span>
-          <div class="sp-offer-title">Plateformes métiers</div>
-          <p class="sp-offer-desc">Solutions complexes multi-tenant avec workflows, automatisations et intégrations aux systèmes existants (ERP, CRM, comptabilité).</p>
+          <span class="sp-offer-tag"><?php echo $lang['SAAS_OFFER2_TAG'][$_SESSION['lang']]; ?></span>
+          <div class="sp-offer-title"><?php echo $lang['SAAS_OFFER2_TITLE'][$_SESSION['lang']]; ?></div>
+          <p class="sp-offer-desc"><?php echo $lang['SAAS_OFFER2_DESC'][$_SESSION['lang']]; ?></p>
           <ul class="sp-offer-feats">
-            <li class="sp-offer-feat">Architecture multi-tenant</li>
-            <li class="sp-offer-feat">Moteur de workflows configurable</li>
-            <li class="sp-offer-feat">Intégrations ERP / CRM / Comptabilité</li>
-            <li class="sp-offer-feat">API REST &amp; Webhooks documentés</li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER2_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER2_FEAT2'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER2_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER2_FEAT4'][$_SESSION['lang']]; ?></li>
           </ul>
         </div>
       </div>
@@ -101,14 +101,14 @@
          <img src="<?php echo $siteURL; ?>images/Dashboards_analytics.webp" alt="Dashboards analytics">
         </div>
         <div class="sp-offer-body">
-          <span class="sp-offer-tag">Data Intelligence</span>
-          <div class="sp-offer-title">Dashboards analytics</div>
-          <p class="sp-offer-desc">Tableaux de bord temps réel, reporting avancé et alertes intelligentes. Vos KPIs accessibles depuis n'importe quel appareil, à n'importe quelle heure.</p>
+          <span class="sp-offer-tag"><?php echo $lang['SAAS_OFFER3_TAG'][$_SESSION['lang']]; ?></span>
+          <div class="sp-offer-title"><?php echo $lang['SAAS_OFFER3_TITLE'][$_SESSION['lang']]; ?></div>
+          <p class="sp-offer-desc"><?php echo $lang['SAAS_OFFER3_DESC'][$_SESSION['lang']]; ?></p>
           <ul class="sp-offer-feats">
-            <li class="sp-offer-feat">Visualisations interactives (D3, Chart.js)</li>
-            <li class="sp-offer-feat">Connecteurs (SQL, API, Google Sheets)</li>
-            <li class="sp-offer-feat">Alertes email / Slack / SMS</li>
-            <li class="sp-offer-feat">Export PDF & rapports automatisés</li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER3_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER3_FEAT2'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER3_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="sp-offer-feat"><?php echo $lang['SAAS_OFFER3_FEAT4'][$_SESSION['lang']]; ?></li>
           </ul>
         </div>
       </div>
@@ -119,28 +119,28 @@
 <!-- METHODOLOGY -->
 <section class="sp-method">
   <div class="container">
-    <div class="sec-label">Notre méthode</div>
-    <h2 class="sec-title rv">Agile, <em>itératif</em>,<br>orienté résultat</h2>
+    <div class="sec-label"><?php echo $lang['SAAS_METHOD_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv"><?php echo $lang['SAAS_METHOD_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="sp-method-grid">
       <div class="sp-step rv">
         <span class="sp-step-num">01</span>
-        <div class="sp-step-title">Discovery Sprint</div>
-        <p class="sp-step-desc">1 semaine pour cadrer le produit. Ateliers Product Design, user stories, architecture technique et roadmap priorisée.</p>
+        <div class="sp-step-title"><?php echo $lang['SAAS_STEP1_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="sp-step-desc"><?php echo $lang['SAAS_STEP1_DESC'][$_SESSION['lang']]; ?></p>
       </div>
       <div class="sp-step rv d1">
         <span class="sp-step-num">02</span>
-        <div class="sp-step-title">MVP Sprint</div>
-        <p class="sp-step-desc">4 à 6 semaines de développement en sprints de 2 semaines. Démos régulières, feedback continu et livraisons incrémentales.</p>
+        <div class="sp-step-title"><?php echo $lang['SAAS_STEP2_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="sp-step-desc"><?php echo $lang['SAAS_STEP2_DESC'][$_SESSION['lang']]; ?></p>
       </div>
       <div class="sp-step rv d2">
         <span class="sp-step-num">03</span>
-        <div class="sp-step-title">Launch &amp; Scale</div>
-        <p class="sp-step-desc">Déploiement cloud (AWS/GCP/Azure), monitoring, CI/CD et load testing. Infrastructure dimensionnée pour 10x votre croissance.</p>
+        <div class="sp-step-title"><?php echo $lang['SAAS_STEP3_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="sp-step-desc"><?php echo $lang['SAAS_STEP3_DESC'][$_SESSION['lang']]; ?></p>
       </div>
       <div class="sp-step rv d3">
         <span class="sp-step-num">04</span>
-        <div class="sp-step-title">Product Evolution</div>
-        <p class="sp-step-desc">Retainer produit mensuel : nouvelles features, A/B tests, optimisations perf et intégration des retours utilisateurs.</p>
+        <div class="sp-step-title"><?php echo $lang['SAAS_STEP4_TITLE'][$_SESSION['lang']]; ?></div>
+        <p class="sp-step-desc"><?php echo $lang['SAAS_STEP4_DESC'][$_SESSION['lang']]; ?></p>
       </div>
     </div>
   </div>
@@ -148,8 +148,8 @@
 
 <section class="portfolio" id="work">
   <div class="container">
-    <div class="sec-label rv">Cas d'utilisation</div>
-    <h2 class="sec-title rv d1">Nos dernières <em>réalisations</em></h2>
+    <div class="sec-label rv"><?php echo $lang['SVC_SECTION_CAS_UTILISATION'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_REALISATIONS'][$_SESSION['lang']]; ?></h2>
     <div class="port-grid rv d2">
       <div class="port-item p-meridian tall">
         <a href="<?php echo $references[0]->getLink(); ?>" class="port-bg">
@@ -198,8 +198,8 @@
 <!-- STACK -->
 <section class="sp-stack">
   <div class="container">
-    <div class="sec-label">Stack technique</div>
-    <h2 class="sec-title rv">Technologies <em>battle-tested</em><br>à l'échelle</h2>
+    <div class="sec-label"><?php echo $lang['SAAS_STACK_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv"><?php echo $lang['SAAS_STACK_TITLE'][$_SESSION['lang']]; ?></h2>
     <div class="sp-stack-grid">
       <div class="sp-tech rv"><i class="fab fa-react sp-tech-icon"></i><span class="sp-tech-name">React</span></div>
       <div class="sp-tech rv d1"><span class="sp-tech-icon" style="font-size:1.1rem">Next.js</span><span class="sp-tech-name">Next.js</span></div>
@@ -223,16 +223,16 @@
   </video>
   <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container">
-    <div class="sec-label rv">Lancer votre produit</div>
-    <h2 class="sec-title rv d1">Votre MVP prêt<br><em>en 6 semaines</em></h2>
-    <p class="hw-f-list-cta-sub rv d2">Partagez votre idée. Nous vous livrons un prototype en 48h et un MVP fonctionnel en 6 semaines.</p>
+    <div class="sec-label rv"><?php echo $lang['SAAS_CTA_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['SAAS_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p class="hw-f-list-cta-sub rv d2"><?php echo $lang['SAAS_CTA_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns rv d3" style="justify-content:center">
       <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact" role="button">
-        <div class="sb-label"><span class="sb-hint">Démarrer votre MVP</span></div>
+        <div class="sb-label"><span class="sb-hint"><?php echo $lang['SAAS_CTA_BTN1'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
       </a>
-        <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir le marketplace IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="sb-label"><span class="sb-hint">Voir le marketplace IA</span></div>
+        <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SAAS_CTA_BTN2'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint"><?php echo $lang['SAAS_CTA_BTN2'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-shopping-basket"></i></div>
         </a>
     </div>

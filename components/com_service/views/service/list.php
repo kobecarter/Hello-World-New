@@ -15,18 +15,18 @@
     <div class="wm-hero-inner">
       <div>
         <div class="wm-hero-label"><?php echo $page->getTitre() ?></div>
-        <h1 class="sh-h1 rv">Notre <em>expertise</em></h1>
+        <h1 class="sh-h1 rv"><?php echo $lang['SVC_LIST_H1'][$_SESSION['lang']]; ?></h1>
         <p class="wm-hero-sub rv d1"><?php echo strip_tags($page->getExtrait()); ?></p>
         <div class="sh-cta-row">
-              <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Configurer votre agent" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Demander un audit technique</span> </div>
+              <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_LIST_CTA_AUDIT_ARIA'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_LIST_CTA_AUDIT'][$_SESSION['lang']]; ?></span> </div>
                   <div class="sb-knob"><i class="fal fa-bolt"></i></div>
                 </a>
-            
-                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir l'audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Voir les réalisations</span></div>
+
+                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_LIST_CTA_RECEVOIR_AUDIT_ARIA'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
-                </a>   
+                </a>
         </div>
       </div>
       <div class="wm-hero-side rv d3">
@@ -37,20 +37,20 @@
 </section>
 <div class="marquee">
   <div class="marquee-track">
-    <span class="mq-item">SITES SUR MESURE<span class="mq-dot"></span></span>
-    <span class="mq-item">APPS iOS &amp; ANDROID<span class="mq-dot"></span></span>
-    <span class="mq-item">PORTAILS CLIENTS<span class="mq-dot"></span></span>
-    <span class="mq-item">UX / UI DESIGN<span class="mq-dot"></span></span>
-    <span class="mq-item">PERFORMANCE &amp; SEO<span class="mq-dot"></span></span>
-    <span class="mq-item">IA INTÉGRÉE<span class="mq-dot"></span></span>
-    <span class="mq-item">ANALYTICS<span class="mq-dot"></span></span>
-    <span class="mq-item">SITES SUR MESURE<span class="mq-dot"></span></span>
-    <span class="mq-item">APPS iOS &amp; ANDROID<span class="mq-dot"></span></span>
-    <span class="mq-item">PORTAILS CLIENTS<span class="mq-dot"></span></span>
-    <span class="mq-item">UX / UI DESIGN<span class="mq-dot"></span></span>
-    <span class="mq-item">PERFORMANCE &amp; SEO<span class="mq-dot"></span></span>
-    <span class="mq-item">IA INTÉGRÉE<span class="mq-dot"></span></span>
-    <span class="mq-item">ANALYTICS<span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_SITES_SUR_MESURE'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_APPS_IOS_ANDROID'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_PORTAILS_CLIENTS'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_UX_UI_DESIGN'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_PERFORMANCE_SEO'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_IA_INTEGREE'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_ANALYTICS'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_SITES_SUR_MESURE'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_APPS_IOS_ANDROID'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_PORTAILS_CLIENTS'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_UX_UI_DESIGN'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_PERFORMANCE_SEO'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_IA_INTEGREE'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
+    <span class="mq-item"><?php echo $lang['MQ_ANALYTICS'][$_SESSION['lang']]; ?><span class="mq-dot"></span></span>
   </div>
 </div>
 
@@ -58,8 +58,8 @@
   <div class="container">
     <div class="services-header">
       <div>
-        <div class="sec-label rv">Notre expertise</div>
-        <h2 class="sec-title rv d1">Ce que nous <em>construisons</em></h2>
+        <div class="sec-label rv"><?php echo $lang['SVC_LIST_SECTION_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv d1"><?php echo $lang['SVC_LIST_SECTION_TITLE'][$_SESSION['lang']]; ?></h2>
       </div>
     </div>
     <div class="svc-grid rv d1">
@@ -72,7 +72,7 @@
         <div class="svc-icon"><svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="1" width="14" height="22" rx="2.5"/><path d="M9 4h6"/><rect x="8" y="7" width="8" height="5" rx=".8"/><path d="M8 15h5M8 18h8"/><circle cx="12" cy="21" r=".8"/></svg></div>
         <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
         <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
-        <a href="<?php echo $service->getLink(); ?>" class="svc-more">En savoir plus <i class="fa fa-arrow-right fa-xs"></i></a>
+        <a href="<?php echo $service->getLink(); ?>" class="svc-more"><?php echo $lang['SVC_CTA_EN_SAVOIR_PLUS'][$_SESSION['lang']]; ?> <i class="fa fa-arrow-right fa-xs"></i></a>
         </a>
       </div>
       <?php endforeach; ?>
@@ -83,7 +83,7 @@
 <section class="portfolio" id="work">
           <div class="container">
             <div class="sec-label rv">Selected Work</div>
-            <h2 class="sec-title rv d1">Nos dernières <em>réalisations</em></h2>
+            <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_REALISATIONS'][$_SESSION['lang']]; ?></h2>
             <div class="port-grid rv d2">
               <div class="port-item p-meridian tall">
                 <a href="<?php echo $references[0]->getLink(); ?>" class="port-bg">
@@ -129,15 +129,15 @@
           </div>
            <div class="container">
             <div class="col-sm-12 mt-4 text-center">
-                <a href="<?php echo $pageReference->getLink(); ?>" class="btn-hw">Voir plus de réalisations</a>
+                <a href="<?php echo $pageReference->getLink(); ?>" class="btn-hw"><?php echo $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?></a>
             </div>
         </div>
         </section>
 
 <section class="trust" id="trust">
   <div class="trust-head container">
-    <div class="sec-label rv">Partenaires</div>
-    <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+    <div class="sec-label rv"><?php echo $lang['SVC_SECTION_PARTENAIRES_LABEL'][$_SESSION['lang']]; ?></div>
+    <h2 class="sec-title rv d1"><?php echo $lang['SVC_SECTION_PARTENAIRES_TITLE'][$_SESSION['lang']]; ?></h2>
   </div>
   <div class="trust-rows">
 
