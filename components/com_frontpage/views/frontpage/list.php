@@ -1030,6 +1030,84 @@ img,video{display:block;max-width:100%}
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_DEV'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
+
+      <div class="team-card rv d4">
+        <div class="team-thumb">
+          <img src="<?php echo $siteURL; ?>images/team/hassna.webp" alt="Hasna">
+          <div class="team-initials">RA</div>
+          <div class="team-geo"></div>
+          <div class="team-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Hasna</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_ADMIN'][$_SESSION['lang']]; ?></div>
+        </div>
+      </div>
+
+      <div class="team-card rv d4">
+        <div class="team-thumb">
+          <img src="<?php echo $siteURL; ?>images/team/rokya.webp" alt="Rokya">
+          <div class="team-initials">CO</div>
+          <div class="team-geo"></div>
+          <div class="team-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Rokya</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_SALES'][$_SESSION['lang']]; ?></div>
+        </div>
+      </div>
+
+      <div class="team-card rv d4">
+        <div class="team-thumb">
+          <img src="<?php echo $siteURL; ?>images/team/siham.webp" alt="Siham">
+          <div class="team-initials">CO</div>
+          <div class="team-geo"></div>
+          <div class="team-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Siham</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_SALES'][$_SESSION['lang']]; ?></div>
+        </div>
+      </div>
+
+      <div class="team-card rv d4">
+        <div class="team-thumb">
+          <img src="<?php echo $siteURL; ?>images/team/marwa.jpg" alt="Marwa">
+          <div class="team-initials">CO</div>
+          <div class="team-geo"></div>
+          <div class="team-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Marwa</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_SALES'][$_SESSION['lang']]; ?></div>
+        </div>
+      </div>
+
+      <div class="team-card rv d4">
+        <div class="team-thumb">
+          <img src="<?php echo $siteURL; ?>images/team/salma.webp" alt="Salma">
+          <div class="team-initials">RM</div>
+          <div class="team-geo"></div>
+          <div class="team-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Salma</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_MARKETING'][$_SESSION['lang']]; ?></div>
+        </div>
+      </div>
+
+      <div class="team-card rv d4">
+        <div class="team-thumb">
+          <img src="<?php echo $siteURL; ?>images/team/anas.webp" alt="Anas">
+          <div class="team-initials">DW</div>
+          <div class="team-geo"></div>
+          <div class="team-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Anas</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_DEV_M'][$_SESSION['lang']]; ?></div>
+        </div>
+      </div>
     </div>
 
     <div class="team-nav">

@@ -1263,6 +1263,16 @@ $lang = array(
         'en' => "Founding <em>Team</em>"
     ),
 
+    'HOME_TEAM_PREV' => array(
+        'fr' => "Précédent",
+        'en' => "Previous"
+    ),
+
+    'HOME_TEAM_NEXT' => array(
+        'fr' => "Suivant",
+        'en' => "Next"
+    ),
+
     'HOME_TEAM_ROLE_ART' => array(
         'fr' => "Directeur artistique",
         'en' => "Art Director"
@@ -1271,6 +1281,26 @@ $lang = array(
     'HOME_TEAM_ROLE_DEV' => array(
         'fr' => "Developpeuse Web",
         'en' => "Web Developer"
+    ),
+
+    'HOME_TEAM_ROLE_DEV_M' => array(
+        'fr' => "Développeur Web",
+        'en' => "Web Developer"
+    ),
+
+    'HOME_TEAM_ROLE_ADMIN' => array(
+        'fr' => "Responsable Administrative",
+        'en' => "Administrative Manager"
+    ),
+
+    'HOME_TEAM_ROLE_SALES' => array(
+        'fr' => "Commerciale",
+        'en' => "Sales Executive"
+    ),
+
+    'HOME_TEAM_ROLE_MARKETING' => array(
+        'fr' => "Responsable Marketing",
+        'en' => "Marketing Manager"
     ),
 
     'HOME_BROCHURE_TITLE' => array(

@@ -83,14 +83,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($services as $service): ?>
+                    <?php
+                    function renderServiceRow($service, $depth = 0) {
+                        ?>
                         <tr id="row_<?= $service->getId(); ?>">
                             <td>
                                 <input type="checkbox" class="checkElement" value="<?php echo $service->getId();?>">
                             </td>
                             <td><?= $service->getId(); ?></td>
 							<td><?= $service->getSlug(); ?></td>
-                            <td><?= $service->getTitre(); ?></td>
+                            <td><?= str_repeat('___ ', $depth); ?><?= $service->getTitre(); ?></td>
                             <td><?= $service->getSousTitre(); ?></td>
 							<td><?= $service->getOrdre(); ?></td>
                             <td class="text-center">
@@ -115,43 +117,17 @@
                                 <?php } ?>
                             </td>
                         </tr>
-                        <?php if($service->hasChildren()): ?>
-                            <?php $ss_services = $service->getChildren($_SESSION["langue"]); ?>
-                            <?php foreach($ss_services as $ss_service): ?>
-                                <tr id="row_<?= $ss_service->getId(); ?>">
-                                    <td>
-                                        <input type="checkbox" class="checkElement" value="<?php echo $ss_service->getId();?>">
-                                    </td>
-                                    <td><?= $ss_service->getId(); ?></td>
-									<td><?= $ss_service->getSlug(); ?></td>
-                                    <td>___ <?= $ss_service->getTitre(); ?></td>
-                                    <td><?= $ss_service->getSousTitre(); ?></td>
-									<td><?= $ss_service->getOrdre(); ?></td>
-                                    <td class="text-center">
-                                        <?php if ($ss_service->isActive() && $_SESSION['user']->hasDroit('edit', 'com_service')) { ?>
-                                            <a href="javascript:void(0)" id="enable_<?= $ss_service->getId(); ?>_oui"
-                                               data-toggle="tooltip" data-placement="top" data-original-title="Activé"
-                                               class="btn btn-success btn-xs enable"><i class="fa fa-toggle-on"></i></a>
-                                        <?php } else if (!$ss_service->isActive() && $_SESSION['user']->hasDroit('edit', 'com_service')) { ?>
-                                            <a href="javascript:void(0)" id="enable_<?= $ss_service->getId(); ?>_non"
-                                               data-toggle="tooltip" data-placement="top" data-original-title="Désactivé"
-                                               class="btn btn-warning btn-xs enable"><i class="fa fa-toggle-off"></i></a>
-                                        <?php } ?>
-                                        <?php if ($_SESSION['user']->hasDroit('edit', 'com_service')) { ?>
-                                            <a href="index.php?option=com_service&task=edit&id=<?= $ss_service->getId(); ?>"
-                                               data-toggle="tooltip" data-placement="top" data-original-title="Modifier"
-                                               class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
-                                        <?php } ?>
-                                        <?php if ($_SESSION['user']->hasDroit('delete', 'com_service')) { ?>
-                                            <a href="javascript:void(0)" id="delete_<?= $ss_service->getId(); ?>"
-                                               data-toggle="tooltip" data-placement="top" data-original-title="Supprimer"
-                                               class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></a>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                        <?php
+                        if ($service->hasChildren()) {
+                            foreach ($service->getChildren($_SESSION["langue"]) as $child) {
+                                renderServiceRow($child, $depth + 1);
+                            }
+                        }
+                    }
+                    foreach ($services as $service) {
+                        renderServiceRow($service, 0);
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
