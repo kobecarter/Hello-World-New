@@ -429,8 +429,8 @@ public static function findAll($langue, $active = false, $services = false, $cur
     $SQLselect = sprintf(
         "SELECT A.id as ID, A.*, B.*
          FROM " . static::$table . " A
-         INNER JOIN " . static::$table2 . " B ON A.id = B.id_secteur
-         WHERE B.langue = %s",
+         LEFT JOIN " . static::$table2 . " B ON A.id = B.id_secteur AND B.langue = %s
+         WHERE 1=1",
         GetSQLValueString($langue, "text")
     );
 

@@ -117,9 +117,9 @@ $cats = array_keys($catLabels);
             </p>
             <div class="aia-about-tags rv d3">
                 <span class="aia-about-tag"><i class="fal fa-bolt"></i> <?= $lang['AGENT_LIST_TAG_72H'][$_SESSION['lang']]; ?></span>
-                <span class="aia-about-tag"><i class="fal fa-code"></i> <?= $lang['AGENT_LIST_TAG_NO_CODE'][$_SESSION['lang']]; ?></span>
                 <span class="aia-about-tag"><i class="fal fa-plug"></i> <?= $lang['AGENT_LIST_TAG_CONNECTED'][$_SESSION['lang']]; ?></span>
                 <span class="aia-about-tag"><i class="fal fa-language"></i> <?= $lang['AGENT_LIST_TAG_MULTILINGUAL'][$_SESSION['lang']]; ?></span>
+                <span class="aia-about-tag"><i class="fal fa-code"></i> <?= $lang['AGENT_LIST_TAG_NO_CODE'][$_SESSION['lang']]; ?></span>
             </div>
         </div>
     </div>

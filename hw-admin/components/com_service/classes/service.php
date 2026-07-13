@@ -566,7 +566,7 @@ class service
     public static function findBySlug($slug, $langue)
     {
         global $db;
-        $blog = new blog();
+        $service = new service();
         $SQLselect = sprintf("SELECT A.id as ID, A.*, B.* FROM " . static::$table . " A LEFT JOIN " . static::$table2 . " B ON A.id = B.id_service AND langue = %s WHERE B.slug = %s",
             GetSQLValueString($langue, "text"),
             GetSQLValueString($slug, "text")
@@ -574,9 +574,9 @@ class service
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1) {
             $data = $db->fetch_assoc($result);
-            $blog = static::build($data);
+            $service = static::build($data);
         }
-        return $blog;
+        return $service;
     }
     
     public static function generateSlug($slug, $langue , $id = false)

@@ -26,12 +26,12 @@ function getForm($data)
 		$pageConfid = new page(1,$db,$_SESSION['lang']);
 
 		switch($service->getSlug()){
-			case 'notorite' : $btnText = "Je booste maintenant"; break;
-			default : $btnText = "J'envoie ma demande maintenant !";
-		}	
+			case 'notorite' : $btnText = $lang['SVC_FORM_BTN_BOOST'][$_SESSION['lang']]; break;
+			default : $btnText = $lang['SVC_FORM_BTN_DEFAULT'][$_SESSION['lang']];
+		}
 		?>
 		<form action="<?= $siteURL; ?>components/com_service/controleurs/router.php?task=contact" method="post" id="serviceForm" class="ct-form">
-			<h4 class="job-title">Vous y êtes presque, il vous suffit de laisser vos coordonnées pour être contacté par nos EXPERTS</h4>
+			<h4 class="job-title"><?php echo $lang['SVC_FORM_HEADING'][$_SESSION['lang']]; ?></h4>
 			<div class="row">
 				<div class="msgbox col-12"></div>
 			</div>
@@ -40,25 +40,25 @@ function getForm($data)
 			<div class="ct-row">
 				<div class="ct-group">
 					<input class="ct-input" type="text" name="nom" id="ct-service-nom" placeholder=" " autocomplete="name" required>
-					<label class="ct-float-label" for="ct-service-nom">Nom complet *</label>
+					<label class="ct-float-label" for="ct-service-nom"><?php echo $lang['SVC_FORM_LABEL_NOM'][$_SESSION['lang']]; ?></label>
 					<span class="ct-line"></span>
 				</div>
 				<div class="ct-group">
 					<input class="ct-input" type="text" name="tel" id="ct-service-tel" placeholder=" " autocomplete="tel" required>
-					<label class="ct-float-label" for="ct-service-tel">Téléphone *</label>
+					<label class="ct-float-label" for="ct-service-tel"><?php echo $lang['SVC_FORM_LABEL_TEL'][$_SESSION['lang']]; ?></label>
 					<span class="ct-line"></span>
 				</div>
 			</div>
 
 			<div class="ct-group">
 				<input class="ct-input" type="email" name="email" id="ct-service-email" placeholder=" " autocomplete="email" required>
-				<label class="ct-float-label" for="ct-service-email">Email *</label>
+				<label class="ct-float-label" for="ct-service-email"><?php echo $lang['SVC_FORM_LABEL_EMAIL'][$_SESSION['lang']]; ?></label>
 				<span class="ct-line"></span>
 			</div>
 
 			<div class="ct-group">
 				<textarea class="ct-textarea" name="message" id="ct-service-message" placeholder=" " rows="5"></textarea>
-				<label class="ct-float-label" for="ct-service-message" style="top:.6rem">Détail à rajouter</label>
+				<label class="ct-float-label" for="ct-service-message" style="top:.6rem"><?php echo $lang['SVC_FORM_LABEL_DETAIL'][$_SESSION['lang']]; ?></label>
 				<span class="ct-line"></span>
 			</div>
 
@@ -71,15 +71,15 @@ function getForm($data)
 				<div class="sb-label"><span class="sb-hint"><?php echo $btnText; ?></span></div>
 				<div class="sb-knob"><i class="fa fa-paper-plane"></i></div>
 			</div>
-			<p class="ct-privacy"><i class="fa fa-lock"></i> Données confidentielles · <a href="javascript:void(0)" class="page-popup" data-id="<?php echo $pageConfid->getId(); ?>"><?php echo $pageConfid->getTitre(); ?></a></p>
+			<p class="ct-privacy"><i class="fa fa-lock"></i> <?php echo $lang['SVC_FORM_PRIVACY_PREFIX'][$_SESSION['lang']]; ?><a href="javascript:void(0)" class="page-popup" data-id="<?php echo $pageConfid->getId(); ?>"><?php echo $pageConfid->getTitre(); ?></a></p>
 			<div class="loading"></div>
 		</form>
-		<div class="or">Ou prenez contact avec nous directement</div>
+		<div class="or"><?php echo $lang['SVC_FORM_OR_CONTACT'][$_SESSION['lang']]; ?></div>
 		<div class="contact-box">
 			<p><i class="ti-mobile"></i> <a class="text-white" href="tel:<?php echo $config->getTel(); ?>"><?php echo $config->getTel(); ?></a></p>
 			<p><i class="ti-email"></i> <a class="text-white" href="mailto:<?php echo $config->getEmail(); ?>"><?php echo $config->getEmail(); ?></a></p>
 			<p><i class="fab fa-whatsapp"></i> <a class="text-white" href="whatsapp://send?text=Salut!&phone=<?= $config->getTel2();?>"><?php echo $config->getTel2(); ?></a></p>
-			<h4 align="center">Nous vous remercions pour votre confiance, excellente journée à vous !</h4>
+			<h4 align="center"><?php echo $lang['SVC_FORM_THANKS'][$_SESSION['lang']]; ?></h4>
 		</div>
 		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		<script>
@@ -109,7 +109,7 @@ function getForm($data)
 						);
 					} else if (parseInt(theResponse) === 2) {
 						jQuery('form#serviceForm .msgbox').html(
-							"<div class='alert alert-warning alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button> Veuillez cocher (Je ne suis pas un robot)</div>"
+							"<div class='alert alert-warning alert-dismissable'><button type='button' class='close' data-dismiss='alert'>&times;</button> <?= $lang['SVC_FORM_RECAPTCHA_ERROR'][$_SESSION['lang']]; ?></div>"
 						);
 					} else {
 						jQuery('form#serviceForm .msgbox').html(

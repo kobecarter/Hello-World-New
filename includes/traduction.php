@@ -1263,16 +1263,6 @@ $lang = array(
         'en' => "Founding <em>Team</em>"
     ),
 
-    'HOME_TEAM_PREV' => array(
-        'fr' => "Précédent",
-        'en' => "Previous"
-    ),
-
-    'HOME_TEAM_NEXT' => array(
-        'fr' => "Suivant",
-        'en' => "Next"
-    ),
-
     'HOME_TEAM_ROLE_ART' => array(
         'fr' => "Directeur artistique",
         'en' => "Art Director"

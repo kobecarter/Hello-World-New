@@ -115,11 +115,11 @@
 	            </a>
 	        </li>
 	         <li class="whatsapp-link">
-	             <a href="https://wa.me/212664606612?text=Bonjour" title="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip"  
+	             <a title="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip"  href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20"
 	                class="click" target="_blank" title="Whatsapp chat"><i class="fab fa-whatsapp"></i></a>
 	         </li>
 	         <li class="whatsapp-link">
-	             <a href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20" class="click custom-tooltip" title="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip" id="chat-bubble" target="_blank" title="Whatsapp chat">
+	             <a class="click custom-tooltip" title="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip" id="chat-bubble" href="https://wa.me/212664606612?text=Bonjour" target="_blank" title="Whatsapp chat">
                    <i class="fab fa-whatsapp"></i>
                    <span>1</span></a>
 	         </li>
@@ -133,19 +133,13 @@
 <?php
 $headerColor = '';
 if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['task']) && $_GET['task'] == 'showDetails') $headerColor = 'hdr-light';
-// Lien du logo vers l'accueil, adapté à la langue active (/, /en/, /ar/ le cas échéant).
-// Le français est la langue par défaut et n'a pas de préfixe dans les routes (voir .htaccess).
-$homeURL = ($_SESSION['lang'] == langue::getDefaultLanguage()) ? $siteURL : $siteURL . $_SESSION['lang'] . '/';
+// Lien du logo vers l'accueil, adapté à la langue active (/fr/, /en/, /ar/ le cas échéant).
+$homeURL = $siteURL . $_SESSION['lang'] . '/';
 
 // Sélecteur de langue : reconstruit le lien de la page courante pour chaque langue active.
 $langFlags = array('fr' => '🇫🇷', 'en' => '🇬🇧', 'ar' => '🇲🇦', 'es' => '🇪🇸');
 $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$siteBasePath = parse_url($siteURL, PHP_URL_PATH);
-if ($siteBasePath && $siteBasePath !== '/' && strpos($currentPath, $siteBasePath) === 0) {
-    $currentPath = substr($currentPath, strlen($siteBasePath));
-} else {
-    $currentPath = ltrim($currentPath, '/');
-}
+$currentPath = preg_replace('#^/helloworld/#', '', $currentPath);
 $currentPath = preg_replace('#^(fr|en|ar|es)/#', '', $currentPath);
 $langOptions = array();
 foreach (langue::findAll() as $idLangOpt) {
@@ -154,7 +148,7 @@ foreach (langue::findAll() as $idLangOpt) {
         'code' => $lOpt->getCode(),
         'nom' => $lOpt->getNom(),
         'flag' => isset($langFlags[$lOpt->getCode()]) ? $langFlags[$lOpt->getCode()] : '🌐',
-        'link' => $lOpt->isDefault() ? $siteURL . $currentPath : $siteURL . $lOpt->getCode() . '/' . $currentPath,
+        'link' => $siteURL . $lOpt->getCode() . '/' . $currentPath,
         'active' => ($lOpt->getCode() == $_SESSION['lang']),
         'disabled' => false,
     );

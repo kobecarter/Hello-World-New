@@ -1,79 +1,80 @@
 <?php
-/* ── meta statique par slug ─────────────────────────────────────────── */
+/* ── meta statique par id de formation (stable entre langues, contrairement au slug) ── */
+$hwl = $_SESSION['lang'];
 $hwfdMap = [
-    'formation-strategie-marketing-digital-ia-maroc' => [
+    1 => [
         'icon' => 'fa-chess', 'cat' => 'Stratégie', 'badge' => 'gold',
-        'intro' => 'L\'IA ne remplace pas une stratégie. Elle l\'accélère. Cette formation vous aide à intégrer les bons usages IA dans vos fondamentaux marketing, commerciaux et organisationnels pour générer un impact mesurable.',
-        'hero_cta' => 'Réserver un audit de maturité gratuit',
-        'final_cta' => 'Demander le programme complet',
-        'plus' => 'Nous appliquons une logique simple : "Strategy First, AI Second". Vous ne repartez pas avec une liste d\'outils à la mode, mais avec un cadre de décision robuste pour intégrer l\'IA dans votre croissance.',
+        'intro' => $lang['FORMD_1_INTRO'][$hwl],
+        'hero_cta' => $lang['FORMD_1_HERO_CTA'][$hwl],
+        'final_cta' => $lang['FORMD_1_FINAL_CTA'][$hwl],
+        'plus' => $lang['FORMD_1_PLUS'][$hwl],
         'pour_qui_items' => [
-            ['label' => 'Dirigeants de TPE et PME', 'icon' => 'fa-briefcase'],
-            ['label' => 'Chief Digital Officers', 'icon' => 'fa-user-tie'],
-            ['label' => 'Directeurs Marketing', 'icon' => 'fa-bullhorn'],
-            ['label' => 'Responsables Stratégie', 'icon' => 'fa-compass'],
-            ['label' => 'Étudiants en commerce, marketing et management', 'icon' => 'fa-graduation-cap'],
+            ['label' => $lang['FORMD_1_AUD1'][$hwl], 'icon' => 'fa-briefcase'],
+            ['label' => $lang['FORMD_1_AUD2'][$hwl], 'icon' => 'fa-user-tie'],
+            ['label' => $lang['FORMD_1_AUD3'][$hwl], 'icon' => 'fa-bullhorn'],
+            ['label' => $lang['FORMD_1_AUD4'][$hwl], 'icon' => 'fa-compass'],
+            ['label' => $lang['FORMD_1_AUD5'][$hwl], 'icon' => 'fa-graduation-cap'],
         ],
         'programme_img' => 'programme-strategie.jpg',
     ],
-    'formation-claude-code-developpement-web-maroc' => [
+    2 => [
         'icon' => 'fa-code', 'cat' => 'Tech & Build', 'badge' => 'purple',
-        'intro' => 'Cette formation intensive vous montre comment utiliser Claude Code comme un véritable copilote technique. En 2 jours, vous apprenez à dialoguer avec l\'agent comme avec un partenaire technique de haut niveau : cadrage du projet, génération de fonctionnalités, correction autonome de bugs, refactoring et préparation à la mise en production.',
-        'hero_cta' => 'Réserver ma place',
-        'final_cta' => 'Recevoir le programme du bootcamp',
-        'plus' => 'Nous ne vous apprenons pas seulement à "faire générer du code". Nous vous apprenons à piloter un flux de production agentique comme un builder professionnel.',
+        'intro' => $lang['FORMD_2_INTRO'][$hwl],
+        'hero_cta' => $lang['FORMD_2_HERO_CTA'][$hwl],
+        'final_cta' => $lang['FORMD_2_FINAL_CTA'][$hwl],
+        'plus' => $lang['FORMD_2_PLUS'][$hwl],
         'pour_qui_items' => [
-            ['label' => 'Entrepreneurs Tech', 'icon' => 'fa-rocket'],
-            ['label' => 'Développeurs Front et Back', 'icon' => 'fa-code'],
-            ['label' => 'Webdesigners', 'icon' => 'fa-palette'],
-            ['label' => 'Product Builders', 'icon' => 'fa-cube'],
-            ['label' => 'Étudiants en ingénierie, informatique ou produit', 'icon' => 'fa-graduation-cap'],
+            ['label' => $lang['FORMD_2_AUD1'][$hwl], 'icon' => 'fa-rocket'],
+            ['label' => $lang['FORMD_2_AUD2'][$hwl], 'icon' => 'fa-code'],
+            ['label' => $lang['FORMD_2_AUD3'][$hwl], 'icon' => 'fa-palette'],
+            ['label' => $lang['FORMD_2_AUD4'][$hwl], 'icon' => 'fa-cube'],
+            ['label' => $lang['FORMD_2_AUD5'][$hwl], 'icon' => 'fa-graduation-cap'],
         ],
         'programme_img' => 'programme-claudecode.jpg',
     ],
-    'formation-n8n-automatisation-ia-maroc' => [
+    3 => [
         'icon' => 'fa-diagram-project', 'cat' => 'Ops & Automatisation', 'badge' => 'gold',
-        'intro' => 'Cette formation vous aide à franchir un cap : sortir des automatisations limitées pour construire une vraie architecture d\'orchestration métier autour de n8n et de l\'IA.',
-        'hero_cta' => 'Demander une session',
-        'final_cta' => 'Recevoir le détail de la formation',
-        'plus' => 'Nous vous aidons à penser vos automatisations comme des systèmes métier durables, pas comme une accumulation de recettes fragiles.',
+        'intro' => $lang['FORMD_3_INTRO'][$hwl],
+        'hero_cta' => $lang['FORMD_3_HERO_CTA'][$hwl],
+        'final_cta' => $lang['FORMD_3_FINAL_CTA'][$hwl],
+        'plus' => $lang['FORMD_3_PLUS'][$hwl],
         'pour_qui_items' => [
-            ['label' => 'Responsables Opérations', 'icon' => 'fa-gears'],
-            ['label' => 'Growth Engineers', 'icon' => 'fa-chart-line'],
-            ['label' => 'Administrateurs Systèmes', 'icon' => 'fa-server'],
-            ['label' => 'Product Managers', 'icon' => 'fa-clipboard-list'],
-            ['label' => 'Étudiants en transformation digitale, data et systèmes', 'icon' => 'fa-graduation-cap'],
+            ['label' => $lang['FORMD_3_AUD1'][$hwl], 'icon' => 'fa-gears'],
+            ['label' => $lang['FORMD_3_AUD2'][$hwl], 'icon' => 'fa-chart-line'],
+            ['label' => $lang['FORMD_3_AUD3'][$hwl], 'icon' => 'fa-server'],
+            ['label' => $lang['FORMD_3_AUD4'][$hwl], 'icon' => 'fa-clipboard-list'],
+            ['label' => $lang['FORMD_3_AUD5'][$hwl], 'icon' => 'fa-graduation-cap'],
         ],
         'programme_img' => 'programme-n8n.jpg',
     ],
-    'formation-podcast-ia-maroc' => [
+    4 => [
         'icon' => 'fa-microphone', 'cat' => 'Podcast & Média', 'badge' => 'purple',
-        'intro' => 'Cette formation s\'adresse à celles et ceux qui veulent lancer un podcast stratégique, différenciant et soutenable dans le temps. L\'IA y devient un producteur exécutif, un conseiller éditorial et un accélérateur de pré-production.',
-        'hero_cta' => 'Réserver l\'atelier',
-        'final_cta' => 'Recevoir le programme complet',
-        'plus' => 'Nous utilisons l\'IA comme un partenaire éditorial et stratégique, pas comme un simple outil de montage ou de génération de texte.',
+        'intro' => $lang['FORMD_4_INTRO'][$hwl],
+        'hero_cta' => $lang['FORMD_4_HERO_CTA'][$hwl],
+        'final_cta' => $lang['FORMD_4_FINAL_CTA'][$hwl],
+        'plus' => $lang['FORMD_4_PLUS'][$hwl],
         'pour_qui_items' => [
-            ['label' => 'Futurs podcasteurs', 'icon' => 'fa-microphone'],
-            ['label' => 'Directeurs de la Communication', 'icon' => 'fa-comments'],
-            ['label' => 'Experts métiers', 'icon' => 'fa-lightbulb'],
-            ['label' => 'Créateurs de contenu', 'icon' => 'fa-pen-nib'],
-            ['label' => 'Étudiants en communication, médias et journalisme', 'icon' => 'fa-graduation-cap'],
+            ['label' => $lang['FORMD_4_AUD1'][$hwl], 'icon' => 'fa-microphone'],
+            ['label' => $lang['FORMD_4_AUD2'][$hwl], 'icon' => 'fa-comments'],
+            ['label' => $lang['FORMD_4_AUD3'][$hwl], 'icon' => 'fa-lightbulb'],
+            ['label' => $lang['FORMD_4_AUD4'][$hwl], 'icon' => 'fa-pen-nib'],
+            ['label' => $lang['FORMD_4_AUD5'][$hwl], 'icon' => 'fa-graduation-cap'],
         ],
         'programme_img' => 'programme-podcast.jpg',
     ],
 ];
-$slug = $formation ? ($formation->getSlug() ?? '') : '';
-$meta = isset($hwfdMap[$slug]) ? $hwfdMap[$slug] : ['icon' => 'fa-graduation-cap', 'cat' => 'Formation', 'badge' => 'gold', 'intro' => '', 'hero_cta' => 'Réserver ma place', 'final_cta' => 'Demander le programme complet', 'plus' => '', 'pour_qui_items' => [], 'programme_img' => ''];
+$fid  = $formation ? $formation->getId() : 0;
+$meta = isset($hwfdMap[$fid]) ? $hwfdMap[$fid] : ['icon' => 'fa-graduation-cap', 'cat' => 'Formation', 'badge' => 'gold', 'intro' => '', 'hero_cta' => $lang['FORMD_BTN_RESERVER_PLACE'][$hwl], 'final_cta' => $lang['FORMD_DEFAULT_FINAL_CTA'][$hwl], 'plus' => '', 'pour_qui_items' => [], 'programme_img' => ''];
 
 /* ── durée ──────────────────────────────────────────────────────────── */
-$hwfdDuree = 'Sur demande';
+$hwfdDuree = $lang['FORML_CARD_SUR_DEMANDE'][$hwl];
 $hwfdDateStr = '';
 if ($formation && $formation->getDateDebut() && $formation->getDateFin()) {
     try {
         $d1 = new DateTime($formation->getDateDebut());
         $d2 = new DateTime($formation->getDateFin());
         $days = (int)$d1->diff($d2)->days + 1;
-        $hwfdDuree = $days . ' ' . ($days > 1 ? 'jours' : 'jour');
+        $hwfdDuree = $days . ' ' . ($days > 1 ? $lang['FORML_CARD_JOURS'][$hwl] : $lang['FORML_CARD_JOUR'][$hwl]);
     } catch (Exception $e) {}
 }
 if ($formation && $formation->getDateDebut()) {
@@ -95,17 +96,17 @@ if ($formation && intval($formation->getNbParticipants()) > 0) {
 }
 
 /* ── lieu / modalité : dépend du "Type de formation" choisi dans l'admin ─ */
-$hwfdLieuLabel = 'Lieu';
+$hwfdLieuLabel = $lang['FORMD_CHIP_LIEU'][$hwl];
 $hwfdLieuIcon  = 'fa-location-dot';
 $hwfdLieuVal   = $formation ? explode(' —', $formation->getLieu() ?? '')[0] : '';
 if ($formation && $formation->getTypeFormation() === 'distance') {
-    $hwfdLieuLabel = 'Modalité';
+    $hwfdLieuLabel = $lang['FORMD_CHIP_MODALITE'][$hwl];
     $hwfdLieuIcon  = 'fa-wifi';
-    $hwfdLieuVal   = 'En ligne';
+    $hwfdLieuVal   = $lang['FORMD_LIEU_ONLINE'][$hwl];
 } elseif ($formation && $formation->getTypeFormation() === 'hybride') {
-    $hwfdLieuLabel = 'Modalité';
+    $hwfdLieuLabel = $lang['FORMD_CHIP_MODALITE'][$hwl];
     $hwfdLieuIcon  = 'fa-shuffle';
-    $hwfdLieuVal   = $hwfdLieuVal !== '' ? 'Hybride — ' . $hwfdLieuVal : 'Hybride';
+    $hwfdLieuVal   = $hwfdLieuVal !== '' ? $lang['FORMD_LIEU_HYBRIDE'][$hwl] . ' — ' . $hwfdLieuVal : $lang['FORMD_LIEU_HYBRIDE'][$hwl];
 }
 
 /* ── programme : parsing des modules (<li><strong>Module N — Titre</strong> : texte</li>)
@@ -131,12 +132,12 @@ if ($formation && $formation->getDescription()) {
     }
 }
 $hwfdModuleImgMap = [
-    'formation-strategie-marketing-digital-ia-maroc' => ['strategie-m1.jpg', 'strategie-m2.jpg', 'strategie-m3.jpg', 'strategie-m4.jpg'],
-    'formation-claude-code-developpement-web-maroc'  => ['claudecode-m1.jpg', 'claudecode-m2.jpg', 'claudecode-m3.jpg', 'claudecode-m4.jpg'],
-    'formation-n8n-automatisation-ia-maroc'          => ['n8n-m1.jpg', 'n8n-m2.jpg', 'n8n-m3.jpg', 'n8n-m4.jpg'],
-    'formation-podcast-ia-maroc'                       => ['podcast-m1.jpg', 'podcast-m2.jpg', 'podcast-m3.jpg', 'podcast-m4.jpg'],
+    1 => ['strategie-m1.jpg', 'strategie-m2.jpg', 'strategie-m3.jpg', 'strategie-m4.jpg'],
+    2 => ['claudecode-m1.jpg', 'claudecode-m2.jpg', 'claudecode-m3.jpg', 'claudecode-m4.jpg'],
+    3 => ['n8n-m1.jpg', 'n8n-m2.jpg', 'n8n-m3.jpg', 'n8n-m4.jpg'],
+    4 => ['podcast-m1.jpg', 'podcast-m2.jpg', 'podcast-m3.jpg', 'podcast-m4.jpg'],
 ];
-$hwfdModuleImgs = isset($hwfdModuleImgMap[$slug]) ? $hwfdModuleImgMap[$slug] : [];
+$hwfdModuleImgs = isset($hwfdModuleImgMap[$fid]) ? $hwfdModuleImgMap[$fid] : [];
 
 /* ── livrables : parsing en items pour la rangée horizontale de cercles
    (nombre variable selon la formation, 3 à 5) ─────────────────────────── */
@@ -183,12 +184,12 @@ $hwfdLivrGradients = [
 ];
 
 /* ── autres formations ──────────────────────────────────────────────── */
-$hwfdOthers = array_filter($formations ?? [], function($f) use ($slug) { return $f->getSlug() !== $slug; });
+$hwfdOthers = array_filter($formations ?? [], function($f) use ($fid) { return $f->getId() !== $fid; });
 $hwfdOtherMeta = [
-    'formation-strategie-marketing-digital-ia-maroc'  => ['icon' => 'fa-chess',           'label' => 'Stratégie',    'color' => '#09A1BE'],
-    'formation-claude-code-developpement-web-maroc'   => ['icon' => 'fa-code',            'label' => 'Tech & Build', 'color' => '#680262'],
-    'formation-n8n-automatisation-ia-maroc'            => ['icon' => 'fa-diagram-project', 'label' => 'Ops & Growth', 'color' => '#09A1BE'],
-    'formation-podcast-ia-maroc'                        => ['icon' => 'fa-microphone',      'label' => 'Créateurs',    'color' => '#680262'],
+    1 => ['icon' => 'fa-chess',           'label' => $lang['FORML_BADGE_STRATEGIE'][$hwl], 'color' => '#09A1BE'],
+    2 => ['icon' => 'fa-code',            'label' => 'Tech & Build', 'color' => '#680262'],
+    3 => ['icon' => 'fa-diagram-project', 'label' => 'Ops & Growth', 'color' => '#09A1BE'],
+    4 => ['icon' => 'fa-microphone',      'label' => $lang['FORML_BADGE_CREATEURS'][$hwl], 'color' => '#680262'],
 ];
 
 /* ── nom formation pour le formulaire ──────────────────────────────── */
@@ -199,9 +200,9 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <div class="hw-f-det-bc">
   <div class="container">
     <div class="hw-f-det-bc-inner">
-      <a href="<?= $siteURL; ?>">Accueil</a>
+      <a href="<?= $siteURL; ?>"><?= $lang['CT_BREAD_ACCUEIL'][$hwl]; ?></a>
       <span class="hw-f-det-bc-sep">/</span>
-      <a href="<?= $page->getLink(); ?>">Formations IA</a>
+      <a href="<?= $page->getLink(); ?>"><?= $lang['FORMD_BREADCRUMB_FORMATIONS'][$hwl]; ?></a>
       <span class="hw-f-det-bc-sep">/</span>
       <span><?= $formation->getTitre() ?? ''?></span>
     </div>
@@ -233,7 +234,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
             <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
           </a>
           <a href="#hwfd-programme" class="sb sb-compact sb-invert" role="button">
-            <div class="sb-label"><span class="sb-hint">Voir le programme</span></div>
+            <div class="sb-label"><span class="sb-hint"><?= $lang['FORML_CARD_CTA'][$hwl]; ?></span></div>
             <div class="sb-knob"><i class="fal fa-arrow-down"></i></div>
           </a>
         </div>
@@ -247,8 +248,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <section class="hw-f-det-cd-section">
   <div class="container">
     <div class="hwfd-countdown rv d2" id="hwfdCountdown" data-end="<?= date('c', strtotime($formation->getDateFin())); ?>">
-      <div class="sec-label rv" style="justify-content:center">Places limitées</div>
-      <h2 class="sec-title rv d1" style="font-size:clamp(1.6rem,3vw,2.6rem)">La formation démarre <em>bientôt</em></h2>
+      <div class="sec-label rv" style="justify-content:center"><?= $lang['FORMD_CD_LIMITED'][$hwl]; ?></div>
+      <h2 class="sec-title rv d1" style="font-size:clamp(1.6rem,3vw,2.6rem)"><?= $lang['FORMD_CD_TITLE'][$hwl]; ?></h2>
       <div class="hwfd-countdown-timer">
         <div class="hwfd-cd-unit">
           <svg class="hwfd-cd-ring" viewBox="0 0 100 100">
@@ -257,7 +258,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
             <circle class="hwfd-cd-fill" id="hwfdCdDaysFill" cx="50" cy="50" r="44"/>
           </svg>
           <div class="hwfd-cd-value" id="hwfdCdDays">–</div>
-          <div class="hwfd-cd-label">Jours</div>
+          <div class="hwfd-cd-label"><?= $lang['FORMD_CD_DAYS'][$hwl]; ?></div>
         </div>
         <div class="hwfd-cd-unit">
           <svg class="hwfd-cd-ring" viewBox="0 0 100 100">
@@ -265,7 +266,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
             <circle class="hwfd-cd-fill" id="hwfdCdHoursFill" cx="50" cy="50" r="44"/>
           </svg>
           <div class="hwfd-cd-value" id="hwfdCdHours">–</div>
-          <div class="hwfd-cd-label">Heures</div>
+          <div class="hwfd-cd-label"><?= $lang['FORMD_CD_HOURS'][$hwl]; ?></div>
         </div>
         <div class="hwfd-cd-unit">
           <svg class="hwfd-cd-ring" viewBox="0 0 100 100">
@@ -273,7 +274,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
             <circle class="hwfd-cd-fill" id="hwfdCdMinsFill" cx="50" cy="50" r="44"/>
           </svg>
           <div class="hwfd-cd-value" id="hwfdCdMins">–</div>
-          <div class="hwfd-cd-label">Minutes</div>
+          <div class="hwfd-cd-label"><?= $lang['FORMD_CD_MINS'][$hwl]; ?></div>
         </div>
         <div class="hwfd-cd-unit">
           <svg class="hwfd-cd-ring" viewBox="0 0 100 100">
@@ -281,19 +282,19 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
             <circle class="hwfd-cd-fill" id="hwfdCdSecsFill" cx="50" cy="50" r="44"/>
           </svg>
           <div class="hwfd-cd-value" id="hwfdCdSecs">–</div>
-          <div class="hwfd-cd-label">Secondes</div>
+          <div class="hwfd-cd-label"><?= $lang['FORMD_CD_SECS'][$hwl]; ?></div>
         </div>
       </div>
-      <p class="hwfd-countdown-note">Les inscriptions se clôturent définitivement à la fin de cette formation.</p>
+      <p class="hwfd-countdown-note"><?= $lang['FORMD_CD_NOTE'][$hwl]; ?></p>
       <div class="hwfd-countdown-chips">
         <div class="hwfd-cd-chip">
           <div class="hwfd-cd-chip-icon"><i class="fal fa-clock"></i></div>
-          <div><span class="hwfd-cd-chip-lbl">Durée</span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdDuree, ENT_QUOTES, 'UTF-8'); ?></span></div>
+          <div><span class="hwfd-cd-chip-lbl"><?= $lang['FORMD_CHIP_DUREE'][$hwl]; ?></span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdDuree, ENT_QUOTES, 'UTF-8'); ?></span></div>
         </div>
         <?php if ($hwfdDateStr): ?>
         <div class="hwfd-cd-chip">
           <div class="hwfd-cd-chip-icon"><i class="fal fa-calendar-check"></i></div>
-          <div><span class="hwfd-cd-chip-lbl">Démarrage</span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdDateStr, ENT_QUOTES, 'UTF-8'); ?></span></div>
+          <div><span class="hwfd-cd-chip-lbl"><?= $lang['FORMD_CHIP_DEMARRAGE'][$hwl]; ?></span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdDateStr, ENT_QUOTES, 'UTF-8'); ?></span></div>
         </div>
         <?php endif; ?>
         <?php if ($hwfdLieuVal): ?>
@@ -305,13 +306,13 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
         <?php if ($hwfdCapaciteStr): ?>
         <div class="hwfd-cd-chip">
           <div class="hwfd-cd-chip-icon"><i class="fal fa-users"></i></div>
-          <div><span class="hwfd-cd-chip-lbl">Places</span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdCapaciteStr, ENT_QUOTES, 'UTF-8'); ?></span></div>
+          <div><span class="hwfd-cd-chip-lbl"><?= $lang['FORMD_CHIP_PLACES'][$hwl]; ?></span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdCapaciteStr, ENT_QUOTES, 'UTF-8'); ?></span></div>
         </div>
         <?php endif; ?>
         <?php if ($hwfdLimiteStr): ?>
         <div class="hwfd-cd-chip">
           <div class="hwfd-cd-chip-icon"><i class="fal fa-calendar-xmark"></i></div>
-          <div><span class="hwfd-cd-chip-lbl">Clôture inscriptions</span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdLimiteStr, ENT_QUOTES, 'UTF-8'); ?></span></div>
+          <div><span class="hwfd-cd-chip-lbl"><?= $lang['FORMD_CHIP_CLOTURE'][$hwl]; ?></span><span class="hwfd-cd-chip-val"><?= htmlspecialchars($hwfdLimiteStr, ENT_QUOTES, 'UTF-8'); ?></span></div>
         </div>
         <?php endif; ?>
       </div>
@@ -328,8 +329,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
   <div class="container">
     <div class="hw-f-det-audience-grid">
       <div>
-        <div class="sec-label rv">Pour qui ?</div>
-        <h2 class="sec-title rv d1">Ce programme<br>s'adresse à <em>vous</em></h2>
+        <div class="sec-label rv"><?= $lang['FORMD_AUD_LABEL'][$hwl]; ?></div>
+        <h2 class="sec-title rv d1"><?= $lang['FORMD_AUD_TITLE'][$hwl]; ?></h2>
       </div>
       <div class="hwfd-audience-list" id="hwfdAudienceList">
         <?php foreach ($meta['pour_qui_items'] as $i => $p): ?>
@@ -350,8 +351,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <?php if ($formation->getDescription()): ?>
 <section class="hw-f-det-programme" id="hwfd-programme">
   <div class="container">
-    <div class="sec-label rv">Programme</div>
-    <h2 class="sec-title rv d1">Le programme <em>détaillé</em></h2>
+    <div class="sec-label rv"><?= $lang['FORMD_PROG_LABEL'][$hwl]; ?></div>
+    <h2 class="sec-title rv d1"><?= $lang['FORMD_PROG_TITLE'][$hwl]; ?></h2>
   </div>
 
   <?php if (!empty($hwfdModules)): ?>
@@ -392,8 +393,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <?php if ($formation->getLivrables()): ?>
 <section class="hw-f-det-livrables">
   <div class="container">
-    <div class="sec-label rv">Ce que vous repartez avec</div>
-    <h2 class="sec-title rv d1">Vos <em>livrables</em></h2>
+    <div class="sec-label rv"><?= $lang['FORMD_LIVR_LABEL'][$hwl]; ?></div>
+    <h2 class="sec-title rv d1"><?= $lang['FORMD_LIVR_TITLE'][$hwl]; ?></h2>
 
     <?php if (!empty($hwfdLivrItems)): ?>
     <div class="hwfd-livr-row rv d2" id="hwfdLivrWave" style="grid-template-columns:repeat(<?= count($hwfdLivrItems); ?>,1fr)">
@@ -413,7 +414,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
         </div>
         <div class="hwfd-livr-vline" style="background:linear-gradient(to bottom,<?= $grad[0]; ?>,rgba(0,0,0,.06))"></div>
         <div class="hwfd-livr-text">
-          <div class="hwfd-livr-num" style="color:<?= $grad[0]; ?>">Livrable <?= sprintf('%02d', $i + 1); ?></div>
+          <div class="hwfd-livr-num" style="color:<?= $grad[0]; ?>"><?= $lang['FORMD_LIVR_ITEM_PREFIX'][$hwl]; ?> <?= sprintf('%02d', $i + 1); ?></div>
           <p><?= htmlspecialchars($item, ENT_QUOTES, 'UTF-8'); ?></p>
         </div>
       </div>
@@ -431,8 +432,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <section class="hw-f-det-prereqs">
   <div class="container">
     <div class="hw-f-det-prereqs-inner">
-      <div class="sec-label rv" style="justify-content:center">Avant de vous inscrire</div>
-      <h2 class="sec-title rv d1">Prérequis</h2>
+      <div class="sec-label rv" style="justify-content:center"><?= $lang['FORMD_PREREQ_LABEL'][$hwl]; ?></div>
+      <h2 class="sec-title rv d1"><?= $lang['FORMD_PREREQ_TITLE'][$hwl]; ?></h2>
       <p class="hw-f-det-prereqs-text rv d2"><?= nl2br(htmlspecialchars($formation->getPrerequis(), ENT_QUOTES, 'UTF-8')); ?></p>
     </div>
   </div>
@@ -448,8 +449,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
   <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container" style="position:relative;z-index:2">
     <div class="hw-f-det-plus-inner">
-      <div class="hw-f-det-plus-lbl rv">Notre différence</div>
-      <div class="hw-f-det-plus-title rv d1">Le plus Hello World</div>
+      <div class="hw-f-det-plus-lbl rv"><?= $lang['FORMD_PLUS_LABEL'][$hwl]; ?></div>
+      <div class="hw-f-det-plus-title rv d1"><?= $lang['FORMD_PLUS_TITLE'][$hwl]; ?></div>
       <p class="hw-f-det-plus-text rv d2"><?= htmlspecialchars($meta['plus'], ENT_QUOTES, 'UTF-8'); ?></p>
       <div class="cta-btns rv d3" style="justify-content:center;margin-top:2.2rem">
         <a href="#hwfd-form" class="sb sb-compact sb-invert" role="button">
@@ -465,19 +466,19 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <!-- ══ FORMULAIRE D'INSCRIPTION / QUALIFICATION ════════════════════════════ -->
 <section class="hw-f-det-form-section" id="hwfd-form">
   <div class="container">
-    <div class="sec-label rv" style="text-align:center">Inscription / demande d'informations</div>
-    <h2 class="sec-title rv d1" style="text-align:center">Trouvez la formation<br>la plus adaptée à <em>votre profil</em></h2>
-    <p style="text-align:center;font-size:.82rem;color:var(--hwfd-txt2);max-width:560px;margin:1rem auto 3rem;line-height:1.9;font-weight:300" class="rv d2">Indiquez votre profil et vos besoins. Nous vous recontacterons avec le programme, le format et le niveau les plus pertinents pour vous.</p>
+    <div class="sec-label rv" style="text-align:center"><?= $lang['FORMD_FORM_LABEL'][$hwl]; ?></div>
+    <h2 class="sec-title rv d1" style="text-align:center"><?= $lang['FORMD_FORM_TITLE'][$hwl]; ?></h2>
+    <p style="text-align:center;font-size:.82rem;color:var(--hwfd-txt2);max-width:560px;margin:1rem auto 3rem;line-height:1.9;font-weight:300" class="rv d2"><?= $lang['FORMD_FORM_INTRO'][$hwl]; ?></p>
 
     <div class="hw-f-det-form-wrap rv d3">
       <div id="hwfd-form-content">
-        <div class="hw-f-det-form-title">Demande d'inscription</div>
-        <div class="hw-f-det-form-sub">Renseignez votre profil pour recevoir une recommandation personnalisée. Tous les champs marqués * sont obligatoires.</div>
+        <div class="hw-f-det-form-title"><?= $lang['FORMD_FORM_SUBTITLE'][$hwl]; ?></div>
+        <div class="hw-f-det-form-sub"><?= $lang['FORMD_FORM_SUB'][$hwl]; ?></div>
 
         <div class="hwfd-wizard-progress">
-          <div class="hwfd-wizard-step active" id="hwfd-wizard-step1"><span class="hwfd-wizard-dot">1</span><span>Votre besoin</span></div>
+          <div class="hwfd-wizard-step active" id="hwfd-wizard-step1"><span class="hwfd-wizard-dot">1</span><span><?= $lang['FORMD_WIZ_STEP1'][$hwl]; ?></span></div>
           <div class="hwfd-wizard-line" id="hwfd-wizard-line"></div>
-          <div class="hwfd-wizard-step" id="hwfd-wizard-step2"><span class="hwfd-wizard-dot">2</span><span>Vos coordonnées</span></div>
+          <div class="hwfd-wizard-step" id="hwfd-wizard-step2"><span class="hwfd-wizard-dot">2</span><span><?= $lang['FORMD_WIZ_STEP2'][$hwl]; ?></span></div>
         </div>
 
         <form id="hwfd-qualification-form" novalidate>
@@ -489,205 +490,205 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
           <div class="hwfd-step hw-f-det-form-grid" id="hwfd-step-1">
 
             <div class="hw-f-det-field">
-              <label class="hw-f-det-label" for="hwfd-formation">Formation souhaitée <span>*</span></label>
+              <label class="hw-f-det-label" for="hwfd-formation"><?= $lang['FORMD_F_FORMATION_LABEL'][$hwl]; ?> <span>*</span></label>
               <select class="hw-f-det-input" id="hwfd-formation" name="formation_souhaitee" required>
-                <option value="">— Sélectionner —</option>
-                <option value="strategie" <?= $slug === 'formation-strategie-marketing-digital-ia-maroc' ? 'selected' : ''; ?>>Stratégie & Performance Digitale à l'Ère de l'IA</option>
-                <option value="claude-code" <?= $slug === 'formation-claude-code-developpement-web-maroc' ? 'selected' : ''; ?>>Claude Code : Développer un site à 10 000 $</option>
-                <option value="n8n" <?= $slug === 'formation-n8n-automatisation-ia-maroc' ? 'selected' : ''; ?>>n8n & IA : Automatisation Avancée des Processus Métiers</option>
-                <option value="podcast" <?= $slug === 'formation-podcast-ia-maroc' ? 'selected' : ''; ?>>Podcast & IA : De l'idée fondatrice à la série à succès</option>
-                <option value="conseil">Je souhaite être conseillé</option>
+                <option value=""><?= $lang['FORMD_SELECT_DASH'][$hwl]; ?></option>
+                <option value="strategie" <?= $fid === 1 ? 'selected' : ''; ?>><?= $lang['FORMD_OPT_STRATEGIE'][$hwl]; ?></option>
+                <option value="claude-code" <?= $fid === 2 ? 'selected' : ''; ?>><?= $lang['FORMD_OPT_CLAUDECODE'][$hwl]; ?></option>
+                <option value="n8n" <?= $fid === 3 ? 'selected' : ''; ?>><?= $lang['FORMD_OPT_N8N'][$hwl]; ?></option>
+                <option value="podcast" <?= $fid === 4 ? 'selected' : ''; ?>><?= $lang['FORMD_OPT_PODCAST'][$hwl]; ?></option>
+                <option value="conseil"><?= $lang['FORMD_OPT_CONSEIL'][$hwl]; ?></option>
               </select>
             </div>
             <div class="hw-f-det-field">
-              <label class="hw-f-det-label" for="hwfd-format">Format souhaité</label>
+              <label class="hw-f-det-label" for="hwfd-format"><?= $lang['FORMD_F_FORMAT_LABEL'][$hwl]; ?></label>
               <select class="hw-f-det-input" id="hwfd-format" name="format">
-                <option value="presentiel">En présentiel</option>
-                <option value="distance">À distance</option>
-                <option value="peu-importe">Peu importe</option>
+                <option value="presentiel"><?= $lang['FORML_FORMAT_PRESENTIEL_TITLE'][$hwl]; ?></option>
+                <option value="distance"><?= $lang['FORML_FORMAT_DISTANCE_TITLE'][$hwl]; ?></option>
+                <option value="peu-importe"><?= $lang['FORMD_OPT_PEU_IMPORTE'][$hwl]; ?></option>
               </select>
             </div>
 
             <!-- Vous êtes — champ clé -->
             <div class="hw-f-det-field hw-f-det-form-full">
-              <label class="hw-f-det-label" for="hwfd-statut">Vous êtes <span>*</span></label>
+              <label class="hw-f-det-label" for="hwfd-statut"><?= $lang['FORMD_F_STATUT_LABEL'][$hwl]; ?> <span>*</span></label>
               <select class="hw-f-det-input" id="hwfd-statut" name="statut" required>
-                <option value="">— Sélectionner votre statut —</option>
-                <option value="particulier">Particulier</option>
-                <option value="freelancer">Freelancer / Indépendant</option>
-                <option value="societe">Société</option>
+                <option value=""><?= $lang['FORMD_SELECT_STATUT_DASH'][$hwl]; ?></option>
+                <option value="particulier"><?= $lang['FORMD_STATUT_PARTICULIER'][$hwl]; ?></option>
+                <option value="freelancer"><?= $lang['FORMD_STATUT_FREELANCE'][$hwl]; ?></option>
+                <option value="societe"><?= $lang['FORMD_STATUT_SOCIETE'][$hwl]; ?></option>
               </select>
             </div>
 
             <!-- ── PARTICULIER ─────────────────────────────────────────── -->
             <div class="hw-f-det-conditional hw-f-det-form-full" id="hwfd-grp-particulier">
-              <div class="hw-f-det-sep-label">Votre profil individuel</div>
+              <div class="hw-f-det-sep-label"><?= $lang['FORMD_SEP_PARTICULIER'][$hwl]; ?></div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-p1">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-p-niveau">Votre niveau en IA</label>
+                <label class="hw-f-det-label" for="hwfd-p-niveau"><?= $lang['FORMD_P_NIVEAU_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-p-niveau" name="niveau_ia">
-                  <option value="">— Sélectionner —</option>
-                  <option value="debutant">Débutant — je découvre les usages</option>
-                  <option value="intermediaire">Intermédiaire — j'utilise déjà quelques outils</option>
-                  <option value="avance">Avancé — j'ai mis en place des workflows</option>
-                  <option value="expert">Expert — je cherche à industrialiser</option>
+                  <option value=""><?= $lang['FORMD_SELECT_DASH'][$hwl]; ?></option>
+                  <option value="debutant"><?= $lang['FORMD_NIV_DEBUTANT'][$hwl]; ?></option>
+                  <option value="intermediaire"><?= $lang['FORMD_NIV_INTER'][$hwl]; ?></option>
+                  <option value="avance"><?= $lang['FORMD_NIV_AVANCE'][$hwl]; ?></option>
+                  <option value="expert"><?= $lang['FORMD_NIV_EXPERT'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-p2">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-p-domaine">Domaine d'activité</label>
-                <input class="hw-f-det-input" type="text" id="hwfd-p-domaine" name="domaine" placeholder="Ex : marketing, développement, design...">
+                <label class="hw-f-det-label" for="hwfd-p-domaine"><?= $lang['FORMD_P_DOMAINE_LABEL'][$hwl]; ?></label>
+                <input class="hw-f-det-input" type="text" id="hwfd-p-domaine" name="domaine" placeholder="<?= $lang['FORMD_P_DOMAINE_PH'][$hwl]; ?>">
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-p3">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-p-budget">Budget estimatif</label>
+                <label class="hw-f-det-label" for="hwfd-p-budget"><?= $lang['FORMD_P_BUDGET_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-p-budget" name="budget">
-                  <option value="">— Sélectionner —</option>
-                  <option value="moins-1000">Moins de 1 000 €</option>
-                  <option value="1000-2500">1 000 € — 2 500 €</option>
-                  <option value="2500-5000">2 500 € — 5 000 €</option>
-                  <option value="plus-5000">Plus de 5 000 €</option>
+                  <option value=""><?= $lang['FORMD_SELECT_DASH'][$hwl]; ?></option>
+                  <option value="moins-1000"><?= $lang['FORMD_BUDGET_1'][$hwl]; ?></option>
+                  <option value="1000-2500"><?= $lang['FORMD_BUDGET_2'][$hwl]; ?></option>
+                  <option value="2500-5000"><?= $lang['FORMD_BUDGET_3'][$hwl]; ?></option>
+                  <option value="plus-5000"><?= $lang['FORMD_BUDGET_4'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-p4">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-p-dispo">Disponibilité</label>
+                <label class="hw-f-det-label" for="hwfd-p-dispo"><?= $lang['FORMD_P_DISPO_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-p-dispo" name="disponibilite">
-                  <option value="urgent">Urgent — dès que possible</option>
-                  <option value="mois">Ce mois-ci</option>
-                  <option value="trimestre">Ce trimestre</option>
-                  <option value="reflexion">En réflexion</option>
+                  <option value="urgent"><?= $lang['FORMD_DISPO_URGENT'][$hwl]; ?></option>
+                  <option value="mois"><?= $lang['FORMD_DISPO_MOIS'][$hwl]; ?></option>
+                  <option value="trimestre"><?= $lang['FORMD_DISPO_TRIMESTRE'][$hwl]; ?></option>
+                  <option value="reflexion"><?= $lang['FORMD_DISPO_REFLEXION'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
 
             <!-- ── FREELANCER ──────────────────────────────────────────── -->
             <div class="hw-f-det-conditional hw-f-det-form-full" id="hwfd-grp-freelancer">
-              <div class="hw-f-det-sep-label">Votre profil freelance</div>
+              <div class="hw-f-det-sep-label"><?= $lang['FORMD_SEP_FREELANCE'][$hwl]; ?></div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-f1">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-f-metier">Métier / spécialité</label>
-                <input class="hw-f-det-input" type="text" id="hwfd-f-metier" name="metier" placeholder="Ex : consultant, développeur, créateur de contenu...">
+                <label class="hw-f-det-label" for="hwfd-f-metier"><?= $lang['FORMD_F_METIER_LABEL'][$hwl]; ?></label>
+                <input class="hw-f-det-input" type="text" id="hwfd-f-metier" name="metier" placeholder="<?= $lang['FORMD_F_METIER_PH'][$hwl]; ?>">
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-f2">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-f-exp">Années d'expérience</label>
+                <label class="hw-f-det-label" for="hwfd-f-exp"><?= $lang['FORMD_F_EXP_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-f-exp" name="annees_experience">
-                  <option value="moins-2">Moins de 2 ans</option>
-                  <option value="2-5">2 à 5 ans</option>
-                  <option value="5-10">5 à 10 ans</option>
-                  <option value="plus-10">Plus de 10 ans</option>
+                  <option value="moins-2"><?= $lang['FORMD_EXP_1'][$hwl]; ?></option>
+                  <option value="2-5"><?= $lang['FORMD_EXP_2'][$hwl]; ?></option>
+                  <option value="5-10"><?= $lang['FORMD_EXP_3'][$hwl]; ?></option>
+                  <option value="plus-10"><?= $lang['FORMD_EXP_4'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-f3">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-f-niveau">Niveau IA</label>
+                <label class="hw-f-det-label" for="hwfd-f-niveau"><?= $lang['FORMD_F_NIVEAU_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-f-niveau" name="niveau_ia_freelance">
-                  <option value="debutant">Débutant</option>
-                  <option value="intermediaire">Intermédiaire</option>
-                  <option value="avance">Avancé</option>
-                  <option value="expert">Expert</option>
+                  <option value="debutant"><?= $lang['FORMD_NIV_SIMPLE_DEBUTANT'][$hwl]; ?></option>
+                  <option value="intermediaire"><?= $lang['FORMD_NIV_SIMPLE_INTER'][$hwl]; ?></option>
+                  <option value="avance"><?= $lang['FORMD_NIV_SIMPLE_AVANCE'][$hwl]; ?></option>
+                  <option value="expert"><?= $lang['FORMD_NIV_SIMPLE_EXPERT'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-f4">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-f-objectif">Objectif business</label>
-                <input class="hw-f-det-input" type="text" id="hwfd-f-objectif" name="objectif_business" placeholder="Ex : automatiser ma prospection, créer un podcast...">
+                <label class="hw-f-det-label" for="hwfd-f-objectif"><?= $lang['FORMD_F_OBJECTIF_LABEL'][$hwl]; ?></label>
+                <input class="hw-f-det-input" type="text" id="hwfd-f-objectif" name="objectif_business" placeholder="<?= $lang['FORMD_F_OBJECTIF_PH'][$hwl]; ?>">
               </div>
             </div>
 
             <!-- ── SOCIÉTÉ ─────────────────────────────────────────────── -->
             <div class="hw-f-det-conditional hw-f-det-form-full" id="hwfd-grp-societe">
-              <div class="hw-f-det-sep-label">Votre organisation</div>
+              <div class="hw-f-det-sep-label"><?= $lang['FORMD_SEP_SOCIETE'][$hwl]; ?></div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-s1">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-s-societe">Nom de la société <span>*</span></label>
+                <label class="hw-f-det-label" for="hwfd-s-societe"><?= $lang['FORMD_S_NOM_LABEL'][$hwl]; ?> <span>*</span></label>
                 <input class="hw-f-det-input" type="text" id="hwfd-s-societe" name="nom_societe" placeholder="Hello World Agency">
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-s2">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-s-poste">Votre poste</label>
-                <input class="hw-f-det-input" type="text" id="hwfd-s-poste" name="poste" placeholder="Ex : Directeur Marketing, CDO...">
+                <label class="hw-f-det-label" for="hwfd-s-poste"><?= $lang['FORMD_S_POSTE_LABEL'][$hwl]; ?></label>
+                <input class="hw-f-det-input" type="text" id="hwfd-s-poste" name="poste" placeholder="<?= $lang['FORMD_S_POSTE_PH'][$hwl]; ?>">
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-s3">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-s-taille">Taille de la société</label>
+                <label class="hw-f-det-label" for="hwfd-s-taille"><?= $lang['FORMD_S_TAILLE_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-s-taille" name="taille_societe">
-                  <option value="">— Sélectionner —</option>
-                  <option value="1-9">1 à 9 collaborateurs (TPE)</option>
-                  <option value="10-49">10 à 49 collaborateurs (PME)</option>
-                  <option value="50-249">50 à 249 collaborateurs (ETI)</option>
-                  <option value="250-999">250 à 999 collaborateurs</option>
-                  <option value="1000+">1 000+ collaborateurs (Grand groupe)</option>
+                  <option value=""><?= $lang['FORMD_SELECT_DASH'][$hwl]; ?></option>
+                  <option value="1-9"><?= $lang['FORMD_TAILLE_1'][$hwl]; ?></option>
+                  <option value="10-49"><?= $lang['FORMD_TAILLE_2'][$hwl]; ?></option>
+                  <option value="50-249"><?= $lang['FORMD_TAILLE_3'][$hwl]; ?></option>
+                  <option value="250-999"><?= $lang['FORMD_TAILLE_4'][$hwl]; ?></option>
+                  <option value="1000+"><?= $lang['FORMD_TAILLE_5'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-s4">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-s-participants">Nombre de participants</label>
+                <label class="hw-f-det-label" for="hwfd-s-participants"><?= $lang['FORMD_S_PARTICIPANTS_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-s-participants" name="nb_participants">
-                  <option value="1-3">1 à 3 participants</option>
-                  <option value="4-10">4 à 10 participants</option>
-                  <option value="11-25">11 à 25 participants</option>
-                  <option value="26+">Plus de 26 participants</option>
+                  <option value="1-3"><?= $lang['FORMD_PART_1'][$hwl]; ?></option>
+                  <option value="4-10"><?= $lang['FORMD_PART_2'][$hwl]; ?></option>
+                  <option value="11-25"><?= $lang['FORMD_PART_3'][$hwl]; ?></option>
+                  <option value="26+"><?= $lang['FORMD_PART_4'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-s5">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-s-secteur">Secteur d'activité</label>
-                <input class="hw-f-det-input" type="text" id="hwfd-s-secteur" name="secteur" placeholder="Ex : e-commerce, finance, santé, industrie...">
+                <label class="hw-f-det-label" for="hwfd-s-secteur"><?= $lang['FORMD_S_SECTEUR_LABEL'][$hwl]; ?></label>
+                <input class="hw-f-det-input" type="text" id="hwfd-s-secteur" name="secteur" placeholder="<?= $lang['FORMD_S_SECTEUR_PH'][$hwl]; ?>">
               </div>
             </div>
             <div class="hw-f-det-conditional" id="hwfd-s6">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-s-maturite">Maturité IA de l'entreprise</label>
+                <label class="hw-f-det-label" for="hwfd-s-maturite"><?= $lang['FORMD_S_MATURITE_LABEL'][$hwl]; ?></label>
                 <select class="hw-f-det-input" id="hwfd-s-maturite" name="maturite_ia">
-                  <option value="exploration">Exploration — nous n'avons pas encore commencé</option>
-                  <option value="tests">Tests ponctuels — quelques expérimentations</option>
-                  <option value="partiel">Déploiement partiel — quelques équipes utilisent l'IA</option>
-                  <option value="structure">Déploiement structuré — processus en place</option>
-                  <option value="industrialisation">Industrialisation / gouvernance IA</option>
+                  <option value="exploration"><?= $lang['FORMD_MAT_1'][$hwl]; ?></option>
+                  <option value="tests"><?= $lang['FORMD_MAT_2'][$hwl]; ?></option>
+                  <option value="partiel"><?= $lang['FORMD_MAT_3'][$hwl]; ?></option>
+                  <option value="structure"><?= $lang['FORMD_MAT_4'][$hwl]; ?></option>
+                  <option value="industrialisation"><?= $lang['FORMD_MAT_5'][$hwl]; ?></option>
                 </select>
               </div>
             </div>
             <div class="hw-f-det-conditional hw-f-det-form-full" id="hwfd-s7">
               <div class="hw-f-det-field">
-                <label class="hw-f-det-label" for="hwfd-s-contexte">Contexte et enjeux internes</label>
-                <textarea class="hw-f-det-input" id="hwfd-s-contexte" name="contexte" rows="3" placeholder="Décrivez votre contexte : quels sont vos enjeux, vos blocages, vos objectifs pour cette formation ?"></textarea>
+                <label class="hw-f-det-label" for="hwfd-s-contexte"><?= $lang['FORMD_S_CONTEXTE_LABEL'][$hwl]; ?></label>
+                <textarea class="hw-f-det-input" id="hwfd-s-contexte" name="contexte" rows="3" placeholder="<?= $lang['FORMD_S_CONTEXTE_PH'][$hwl]; ?>"></textarea>
               </div>
             </div>
 
             <!-- ── CHAMPS COMMUNS FINAUX ───────────────────────────────── -->
             <div class="hw-f-det-field hw-f-det-form-full">
-              <label class="hw-f-det-label" for="hwfd-besoin">Votre besoin principal</label>
+              <label class="hw-f-det-label" for="hwfd-besoin"><?= $lang['FORMD_BESOIN_LABEL'][$hwl]; ?></label>
               <select class="hw-f-det-input" id="hwfd-besoin" name="besoin">
-                <option value="">— Sélectionner —</option>
-                <option value="competence">Montée en compétence individuelle</option>
-                <option value="equipe">Formation d'équipe</option>
-                <option value="process">Transformation d'un process</option>
-                <option value="strategie">Accompagnement stratégique</option>
-                <option value="sais-pas">Je ne sais pas encore</option>
+                <option value=""><?= $lang['FORMD_SELECT_DASH'][$hwl]; ?></option>
+                <option value="competence"><?= $lang['FORMD_BESOIN_1'][$hwl]; ?></option>
+                <option value="equipe"><?= $lang['FORMD_BESOIN_2'][$hwl]; ?></option>
+                <option value="process"><?= $lang['FORMD_BESOIN_3'][$hwl]; ?></option>
+                <option value="strategie"><?= $lang['FORMD_BESOIN_4'][$hwl]; ?></option>
+                <option value="sais-pas"><?= $lang['FORMD_BESOIN_5'][$hwl]; ?></option>
               </select>
             </div>
             <div class="hw-f-det-field hw-f-det-form-full">
-              <label class="hw-f-det-label" for="hwfd-message">Message / précisions complémentaires</label>
-              <textarea class="hw-f-det-input" id="hwfd-message" name="message" rows="4" placeholder="Partagez toute information utile pour que nous puissions vous orienter au mieux..."></textarea>
+              <label class="hw-f-det-label" for="hwfd-message"><?= $lang['FORMD_MESSAGE_LABEL'][$hwl]; ?></label>
+              <textarea class="hw-f-det-input" id="hwfd-message" name="message" rows="4" placeholder="<?= $lang['FORMD_MESSAGE_PH'][$hwl]; ?>"></textarea>
             </div>
 
             <div class="hwfd-step-nav">
-              <button type="button" class="hwfd-btn-next" id="hwfd-next-btn">Continuer <i class="fal fa-arrow-right" style="margin-left:.5rem"></i></button>
+              <button type="button" class="hwfd-btn-next" id="hwfd-next-btn"><?= $lang['FORMD_BTN_CONTINUER'][$hwl]; ?> <i class="fal fa-arrow-right" style="margin-left:.5rem"></i></button>
             </div>
 
           </div>
@@ -696,33 +697,33 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
           <div class="hwfd-step hw-f-det-form-grid" id="hwfd-step-2" style="display:none">
 
             <div class="hw-f-det-field">
-              <label class="hw-f-det-label" for="hwfd-prenom">Prénom <span>*</span></label>
-              <input class="hw-f-det-input" type="text" id="hwfd-prenom" name="prenom" placeholder="Votre prénom" required>
+              <label class="hw-f-det-label" for="hwfd-prenom"><?= $lang['FORMD_PRENOM_LABEL'][$hwl]; ?> <span>*</span></label>
+              <input class="hw-f-det-input" type="text" id="hwfd-prenom" name="prenom" placeholder="<?= $lang['FORMD_PRENOM_PH'][$hwl]; ?>" required>
             </div>
             <div class="hw-f-det-field">
-              <label class="hw-f-det-label" for="hwfd-nom">Nom <span>*</span></label>
-              <input class="hw-f-det-input" type="text" id="hwfd-nom" name="nom" placeholder="Votre nom" required>
+              <label class="hw-f-det-label" for="hwfd-nom"><?= $lang['FORMD_NOM_LABEL'][$hwl]; ?> <span>*</span></label>
+              <input class="hw-f-det-input" type="text" id="hwfd-nom" name="nom" placeholder="<?= $lang['FORMD_NOM_PH'][$hwl]; ?>" required>
             </div>
             <div class="hw-f-det-field">
-              <label class="hw-f-det-label" for="hwfd-email">Email professionnel <span>*</span></label>
+              <label class="hw-f-det-label" for="hwfd-email"><?= $lang['FORMD_EMAIL_LABEL'][$hwl]; ?> <span>*</span></label>
               <input class="hw-f-det-input" type="email" id="hwfd-email" name="email" placeholder="vous@entreprise.com" required>
             </div>
             <div class="hw-f-det-field">
-              <label class="hw-f-det-label" for="hwfd-tel">Téléphone <span>*</span></label>
+              <label class="hw-f-det-label" for="hwfd-tel"><?= $lang['CTF_TELEPHONE'][$hwl]; ?> <span>*</span></label>
               <input class="hw-f-det-input" type="tel" id="hwfd-tel" name="telephone" placeholder="+33 6 00 00 00 00" required>
             </div>
 
             <div class="hw-f-det-consent">
               <input type="checkbox" id="hwfd-consent" name="consent" required>
-              <span>J'accepte d'être recontacté par Hello World dans le cadre de ma demande d'inscription. Mes données sont traitées conformément à la <a href="<?= $siteURL; ?>politique-de-confidentialite/" style="color:var(--hwfd-gold)">politique de confidentialité</a> de Hello World.</span>
+              <span><?= $lang['FORMD_CONSENT_PRE'][$hwl]; ?> <a href="<?= $siteURL; ?>politique-de-confidentialite/" style="color:var(--hwfd-gold)"><?= $lang['FORMD_CONSENT_LINK'][$hwl]; ?></a> <?= $lang['FORMD_CONSENT_POST'][$hwl]; ?></span>
             </div>
 
-            <div class="hw-f-det-success-error hw-f-det-form-full" id="hwfd-error">Une erreur est survenue lors de l'envoi. Merci de réessayer ou de nous contacter directement.</div>
+            <div class="hw-f-det-success-error hw-f-det-form-full" id="hwfd-error"><?= $lang['FORMD_ERROR_MSG'][$hwl]; ?></div>
 
             <div class="hwfd-step-nav">
-              <button type="button" class="hwfd-btn-back" id="hwfd-back-btn"><i class="fal fa-arrow-left" style="margin-right:.5rem"></i> Retour</button>
+              <button type="button" class="hwfd-btn-back" id="hwfd-back-btn"><i class="fal fa-arrow-left" style="margin-right:.5rem"></i> <?= $lang['FORMD_BTN_RETOUR'][$hwl]; ?></button>
               <button type="submit" class="hw-f-det-submit-btn hwfd-btn-next" id="hwfd-submit-btn" style="flex:2">
-                <i class="fal fa-paper-plane" style="margin-right:.5rem"></i> Envoyer ma demande
+                <i class="fal fa-paper-plane" style="margin-right:.5rem"></i> <?= $lang['CTF_SUBMIT'][$hwl]; ?>
               </button>
             </div>
 
@@ -732,8 +733,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
       </div>
       <div class="hw-f-det-success" id="hwfd-success">
         <div class="hw-f-det-success-icon"><i class="fal fa-check"></i></div>
-        <div class="hw-f-det-success-title">Demande envoyée avec succès !</div>
-        <div class="hw-f-det-success-text">Merci pour votre intérêt. Notre équipe reviendra vers vous sous 24 à 48 heures pour valider votre inscription et vous orienter vers le programme le plus adapté à votre profil.</div>
+        <div class="hw-f-det-success-title"><?= $lang['FORMD_SUCCESS_TITLE'][$hwl]; ?></div>
+        <div class="hw-f-det-success-text"><?= $lang['FORMD_SUCCESS_TEXT'][$hwl]; ?></div>
       </div>
     </div>
   </div>
@@ -743,25 +744,24 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <?php if (!empty($hwfdOthers)): ?>
 <section class="hw-f-det-more hw-f-list-catalogue">
   <div class="container">
-    <div class="sec-label rv">Nos autres programmes</div>
-    <h2 class="sec-title rv d1">Découvrez aussi<br>nos <em>autres formations</em></h2>
-    <div class="hw-f-list-track-hint rv d2"><i class="fal fa-arrows-left-right"></i> Faites défiler pour parcourir nos autres programmes</div>
+    <div class="sec-label rv"><?= $lang['FORMD_OTHERS_LABEL'][$hwl]; ?></div>
+    <h2 class="sec-title rv d1"><?= $lang['FORMD_OTHERS_TITLE'][$hwl]; ?></h2>
+    <div class="hw-f-list-track-hint rv d2"><i class="fal fa-arrows-left-right"></i> <?= $lang['FORMD_OTHERS_HINT'][$hwl]; ?></div>
   </div>
 
   <div class="hw-f-list-pin" id="hwfdMorePin">
     <div class="hw-f-list-track" id="hwfdMoreTrack">
       <div class="hw-f-list-track-spacer" id="hwfdMoreSpacerStart" aria-hidden="true"></div>
       <?php foreach ($hwfdOthers as $of):
-        $osl   = $of->getSlug() ?? '';
-        $ometa = isset($hwfdOtherMeta[$osl]) ? $hwfdOtherMeta[$osl] : ['icon' => 'fa-graduation-cap', 'label' => 'Formation', 'color' => '#09A1BE'];
+        $ometa = isset($hwfdOtherMeta[$of->getId()]) ? $hwfdOtherMeta[$of->getId()] : ['icon' => 'fa-graduation-cap', 'label' => $lang['FORML_BADGE_DEFAULT'][$hwl], 'color' => '#09A1BE'];
         $oIsGold = $ometa['color'] === '#09A1BE';
-        $oDuree = 'Sur demande';
+        $oDuree = $lang['FORML_CARD_SUR_DEMANDE'][$hwl];
         if ($of->getDateDebut() && $of->getDateFin()) {
             try {
                 $od1 = new DateTime($of->getDateDebut());
                 $od2 = new DateTime($of->getDateFin());
                 $odays = (int)$od1->diff($od2)->days + 1;
-                $oDuree = $odays . ' ' . ($odays > 1 ? 'jours' : 'jour');
+                $oDuree = $odays . ' ' . ($odays > 1 ? $lang['FORML_CARD_JOURS'][$hwl] : $lang['FORML_CARD_JOUR'][$hwl]);
             } catch (Exception $e) {}
         }
         $oDateStr = $of->getDateDebut() ? date('d M Y', strtotime($of->getDateDebut())) : '';
@@ -783,18 +783,18 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
             <span class="hw-f-list-card-meta-item"><i class="fal fa-clock"></i> <?= htmlspecialchars($oDuree, ENT_QUOTES, 'UTF-8'); ?></span>
             <?php if ($oDateStr): ?><span class="hw-f-list-card-meta-item"><i class="fal fa-calendar"></i> <?= htmlspecialchars($oDateStr, ENT_QUOTES, 'UTF-8'); ?></span><?php endif; ?>
             <?php if ($of->getLieu()): ?><span class="hw-f-list-card-meta-item"><i class="fal fa-location-dot"></i> <?= htmlspecialchars(explode(' —', $of->getLieu())[0], ENT_QUOTES, 'UTF-8'); ?></span><?php endif; ?>
-            <span class="hw-f-list-card-meta-item"><i class="fal fa-users"></i> Max. <?= intval($of->getNbParticipants()); ?></span>
+            <span class="hw-f-list-card-meta-item"><i class="fal fa-users"></i> <?= $lang['FORML_CARD_MAX'][$hwl]; ?> <?= intval($of->getNbParticipants()); ?></span>
           </div>
-          <div class="hw-f-list-card-cta">Voir le programme <i class="fal fa-arrow-right"></i></div>
+          <div class="hw-f-list-card-cta"><?= $lang['FORML_CARD_CTA'][$hwl]; ?> <i class="fal fa-arrow-right"></i></div>
         </div>
       </a>
       <?php endforeach; ?>
       <div class="hw-f-list-card-3d hw-f-list-card-3d-cta">
         <div class="hw-f-list-card-3d-body" style="justify-content:center;text-align:center">
           <div class="hw-f-list-card-icon" style="background:linear-gradient(135deg,#680262,#09A1BE);margin:0 auto 1.4rem"><i class="fal fa-comments" style="color:#fff"></i></div>
-          <div class="hw-f-list-card-title">D'autres besoins ?</div>
-          <div class="hw-f-list-card-sub">Parlons de votre contexte, nous vous orientons vers le bon format.</div>
-          <a href="<?= $pageContact->getLink(); ?>" class="hw-f-list-card-cta" style="justify-content:center">Nous contacter <i class="fal fa-arrow-right"></i></a>
+          <div class="hw-f-list-card-title"><?= $lang['FORM_OTHER_NEEDS_TITLE'][$_SESSION['lang']]; ?></div>
+          <div class="hw-f-list-card-sub"><?= $lang['FORM_OTHER_NEEDS_SUB'][$_SESSION['lang']]; ?></div>
+          <a href="<?= $pageContact->getLink(); ?>" class="hw-f-list-card-cta" style="justify-content:center"><?= $lang['FORM_OTHER_NEEDS_CTA'][$_SESSION['lang']]; ?> <i class="fal fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="hw-f-list-track-spacer" id="hwfdMoreSpacerEnd" aria-hidden="true"></div>
@@ -807,8 +807,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <?php if (!empty($partners)): ?>
 <section class="trust" id="hwfd-trust-partners">
   <div class="trust-head container">
-    <div class="sec-label rv">Partenaires</div>
-    <h2 class="sec-title rv d1">Ils nous font <em>confiance</em></h2>
+    <div class="sec-label rv"><?= $lang['FORML_PARTNERS_LABEL'][$hwl]; ?></div>
+    <h2 class="sec-title rv d1"><?= $lang['FORML_PARTNERS_TITLE'][$hwl]; ?></h2>
   </div>
   <div class="trust-rows">
     <div class="trust-row">
@@ -868,8 +868,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
         </div>
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Contactez un expert" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="sb-label"><span class="sb-hint">Contactez un expert</span></div>
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?= $lang['FORML_CONTACT_EXPERT'][$hwl]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint"><?= $lang['FORML_CONTACT_EXPERT'][$hwl]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>
             </div>
@@ -882,8 +882,8 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 <?php if (!empty($tools)): ?>
 <section class="trust" id="hwfd-trust-tools">
   <div class="trust-head container text-center">
-    <h2 class="sec-title rv d1">Les <em>technologies</em> et <em>plateformes</em><br>au service de vos projets</h2>
-    <p>Nous utilisons les meilleurs outils du marché pour garantir la performance, la sécurité et la croissance de votre business.</p>
+    <h2 class="sec-title rv d1"><?= $lang['FORML_TOOLS_TITLE'][$hwl]; ?></h2>
+    <p><?= $lang['FORML_TOOLS_TEXT'][$hwl]; ?></p>
   </div>
   <div class="trust-rows">
     <div class="trust-row">
@@ -915,16 +915,16 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
   </video>
   <div class="hw-f-list-cta-final-scrim"></div>
   <div class="container" style="position:relative;z-index:2">
-    <div class="sec-label rv">Passez à l'action</div>
-    <h2 class="sec-title rv d1">Prêt à intégrer l'IA<br>dans <em>votre réalité</em>&nbsp;?</h2>
-    <p class="cta-sub rv d2">Places limitées. Réservez un audit de maturité gratuit pour valider que ce programme correspond à votre profil et vos objectifs.</p>
+    <div class="sec-label rv"><?= $lang['FORML_CTA_FINAL_LABEL'][$hwl]; ?></div>
+    <h2 class="sec-title rv d1"><?= $lang['FORMD_CTA_TITLE'][$hwl]; ?></h2>
+    <p class="cta-sub rv d2"><?= $lang['FORMD_CTA_SUB'][$hwl]; ?></p>
     <div class="cta-btns rv d3" style="justify-content:center">
       <a href="#hwfd-form" class="sb sb-compact" role="button">
-        <div class="sb-label"><span class="sb-hint">Réserver ma place</span></div>
+        <div class="sb-label"><span class="sb-hint"><?= $lang['FORMD_BTN_RESERVER_PLACE'][$hwl]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
       </a>
       <a href="<?= $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" role="button">
-        <div class="sb-label"><span class="sb-hint">Parler à un expert</span></div>
+        <div class="sb-label"><span class="sb-hint"><?= $lang['FORMD_BTN_PARLER_EXPERT'][$hwl]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-comment-dots"></i></div>
       </a>
     </div>
@@ -1311,7 +1311,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
             }
             if (errorBox) errorBox.style.display = 'none';
             var originalLabel = btn.innerHTML;
-            if (btn) { btn.disabled = true; btn.innerHTML = 'Envoi en cours…'; }
+            if (btn) { btn.disabled = true; btn.innerHTML = <?= json_encode($lang['FORMD_SENDING'][$hwl]); ?>; }
 
             var data = new FormData(form);
 
