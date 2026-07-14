@@ -314,6 +314,9 @@ img,video{display:block;max-width:100%}
 <section class="statement">
   <span class="px-ghost" data-px="0.22" style="font-size:clamp(12rem,28vw,40rem);bottom:-1.5rem;right:-1rem;color:rgba(0,0,0,.022)" aria-hidden="true">HW</span>
   <div class="container">
+    <h1 class="rv">
+      <span class="s-muted"><?php echo $lang['HOME_H1_PART1'][$_SESSION['lang']]; ?></span> <span class="s-gold"><?php echo $lang['HOME_H1_PART2'][$_SESSION['lang']]; ?></span>
+    </h1>
     <p class="rv">
       <span class="s-muted"><?php echo $lang['HOME_STATEMENT_PART1'][$_SESSION['lang']]; ?></span><?php echo $lang['HOME_STATEMENT_PART2'][$_SESSION['lang']]; ?>
       <span class="s-muted"><?php echo $lang['HOME_STATEMENT_PART3'][$_SESSION['lang']]; ?></span><span class="s-gold"><?php echo $lang['HOME_STATEMENT_PART4'][$_SESSION['lang']]; ?></span>

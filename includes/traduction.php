@@ -2894,6 +2894,9 @@ $lang = array(
 
     /* ===================== HOMEPAGE: statement + why sections ===================== */
 
+    'HOME_H1_PART1' => array( 'fr' => "Spécialistes en création de", 'en' => "Specialists in custom" ),
+    'HOME_H1_PART2' => array( 'fr' => "sites web et d'applications sur-mesure,", 'en' => "website and application development," ),
+
     'HOME_STATEMENT_PART1' => array( 'fr' => "Au-delà du simple code, ", 'en' => "Beyond mere code, " ),
     'HOME_STATEMENT_PART2' => array( 'fr' => "nous concevons l'intelligence", 'en' => "we design the intelligence" ),
     'HOME_STATEMENT_PART3' => array( 'fr' => " qui animera les produits ", 'en' => " that will power tomorrow's " ),
