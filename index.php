@@ -29,6 +29,13 @@ require_once('includes/functions/functions.php');
 
 if (!isset($_SESSION)){
 
+    // PHP's default session cache limiter ('nocache') forces a full
+    // re-fetch on every repeat visit. Pages here are session-driven
+    // (language) but public, so a short private cache is safe — and
+    // takes precedence over the site's much coarser 1-year .htaccess
+    // Expires rule for text/html, which is too long for CMS-driven content.
+    session_cache_limiter('private');
+    session_cache_expire(5);
     session_start();
 
 }
