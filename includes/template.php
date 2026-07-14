@@ -7,6 +7,163 @@
 
 	    <meta name="website" content="<?php echo $siteURL; ?>">
 	    <?php getSeoMeta($_GET); ?>
+	    <?php
+	    // Lien du logo vers l'accueil, adapté à la langue active (/, /en/, /ar/ le cas échéant).
+	    // Le français est la langue par défaut et n'a pas de préfixe dans les routes (voir .htaccess).
+	    $homeURL = ($_SESSION['lang'] == langue::getDefaultLanguage()) ? $siteURL : $siteURL . $_SESSION['lang'] . '/';
+
+	    // Sélecteur de langue : reconstruit le lien de la page courante pour chaque langue active.
+	    $langFlags = array('fr' => '🇫🇷', 'en' => '🇬🇧', 'ar' => '🇲🇦', 'es' => '🇪🇸');
+	    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+	    $siteBasePath = parse_url($siteURL, PHP_URL_PATH);
+	    if ($siteBasePath && $siteBasePath !== '/' && strpos($currentPath, $siteBasePath) === 0) {
+	        $currentPath = substr($currentPath, strlen($siteBasePath));
+	    } else {
+	        $currentPath = ltrim($currentPath, '/');
+	    }
+	    $currentPath = preg_replace('#^(fr|en|ar|es)/#', '', $currentPath);
+
+	    // Certaines pages statiques ont un slug différent selon la langue (voir .htaccess) --
+	    // changer uniquement le préfixe /en/ casserait ces liens (ex: devis-en-ligne -> online-quote).
+	    // Cette table ne couvre que ces pages ; les autres (services, contact, articles de blog...)
+	    // partagent le même slug dans toutes les langues et n'ont pas besoin de traduction.
+	    $slugPairsFrToEn = array(
+	        'politique-de-confidentialite' => 'privacy-policy',
+	        'realisations-et-cas-clients' => 'our-achievements',
+	        'recrutement' => 'recruitment',
+	        'qui-sommes-nous' => 'about-us',
+	        'devis-en-ligne' => 'online-quote',
+	        'mentions-legales' => 'legal-notice',
+	        'conditions-generales-de-ventes' => 'terms-and-conditions',
+	        'presse' => 'press',
+	        'notre-expertise' => 'our-expertise',
+	        'videotheque' => 'video-library',
+	        'telechargement' => 'downloads',
+	        'agence-marketing-digital-casablanca' => 'digital-marketing-agency-casablanca',
+	        'agence-marketing-digital-marrakech' => 'digital-marketing-agency-marrakech',
+	        'agence-marketing-digital-a-londres' => 'digital-marketing-agency-in-london',
+	        'agence-marketing-digital-a-dubai' => 'digital-marketing-agency-in-dubai',
+	        'agence-marketing-digital-rabat' => 'digital-marketing-agency-rabat',
+	        'agence-marketing-digital-tanger' => 'digital-marketing-agency-tangier',
+	        'agence-marketing-digital-agadir' => 'digital-marketing-agency-agadir',
+	        'agence-marketing-digital-fes' => 'digital-marketing-agency-fes',
+	        'formations-marketing-digital-ia-medias-marque-maroc' => 'digital-marketing-ai-media-branding-training-morocco',
+	        'nos-agences' => 'our-agencies',
+	        'agents-ia' => 'ai-agents',
+	    );
+	    $slugPairsEnToFr = array_flip($slugPairsFrToEn);
+
+	    // Deux services ont eux aussi un slug différent selon la langue (les autres
+	    // services partagent le même slug dans toutes les langues -- voir la traduction
+	    // en masse effectuée plus tôt, qui a conservé le slug FR tel quel).
+	    $servicePairsFrToEn = array(
+	        'creation-de-sites-web' => 'website-development',
+	        'brand-experience-et-contenus-de-marque' => 'brand-experience-and-brand-content',
+	    );
+	    $servicePairsEnToFr = array_flip($servicePairsFrToEn);
+
+	    $currentFirstSegment = strtok($currentPath, '/');
+	    $currentPathRest = substr($currentPath, strlen($currentFirstSegment));
+
+	    $langOptions = array();
+	    foreach (langue::findAll() as $idLangOpt) {
+	        $lOpt = new langue($idLangOpt, $db);
+	        $targetPath = $currentPath;
+	        if ($currentFirstSegment === 'service') {
+	            // Le slug du service est le 2e segment (service/{slug}/...).
+	            $serviceRest = ltrim($currentPathRest, '/');
+	            $serviceSlug = strtok($serviceRest, '/');
+	            $serviceTail = substr($serviceRest, strlen($serviceSlug));
+	            if ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($servicePairsFrToEn[$serviceSlug])) {
+	                $targetPath = 'service/' . $servicePairsFrToEn[$serviceSlug] . $serviceTail;
+	            } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($servicePairsEnToFr[$serviceSlug])) {
+	                $targetPath = 'service/' . $servicePairsEnToFr[$serviceSlug] . $serviceTail;
+	            }
+	        } elseif ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($slugPairsFrToEn[$currentFirstSegment])) {
+	            $targetPath = $slugPairsFrToEn[$currentFirstSegment] . $currentPathRest;
+	        } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($slugPairsEnToFr[$currentFirstSegment])) {
+	            $targetPath = $slugPairsEnToFr[$currentFirstSegment] . $currentPathRest;
+	        }
+	        $langOptions[] = array(
+	            'code' => $lOpt->getCode(),
+	            'nom' => $lOpt->getNom(),
+	            'flag' => isset($langFlags[$lOpt->getCode()]) ? $langFlags[$lOpt->getCode()] : '🌐',
+	            'link' => $lOpt->isDefault() ? $siteURL . $targetPath : $siteURL . $lOpt->getCode() . '/' . $targetPath,
+	            'active' => ($lOpt->getCode() == $_SESSION['lang']),
+	            'disabled' => false,
+	        );
+	    }
+
+	    // Hreflang alternates for <head>. Most content types are fully bilingual
+	    // (services, secteurs, agents IA, formations, packs, static pages), so the
+	    // switcher links above are trustworthy as-is. Blog, reference and produit
+	    // detail pages are only partially translated (see SEO audit), so an
+	    // hreflang claiming an alternate exists there needs an actual existence
+	    // check first -- pointing hreflang at a URL with no real translation is
+	    // worse than omitting it.
+	    $hreflangLinks = array();
+	    $detailOption = isset($_GET['option']) ? $_GET['option'] : '';
+	    $detailTask = isset($_GET['task']) ? $_GET['task'] : '';
+	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit'));
+	    // Look up the alternate by the numeric ID already resolved by the
+	    // component controller ($post/$reference/$produit), not by the current
+	    // URL's slug -- blog/reference/produit store a distinct slug per
+	    // language, so the current-language slug won't match the other
+	    // language's row.
+	    $currentDetailId = null;
+	    if ($detailOption === 'com_blog' && isset($post)) $currentDetailId = $post->getId();
+	    elseif ($detailOption === 'com_reference' && isset($reference)) $currentDetailId = $reference->getId();
+	    elseif ($detailOption === 'com_produit' && isset($produit)) $currentDetailId = $produit->getId();
+
+	    foreach ($langOptions as $langOpt) {
+	        if (!$isPartialContentDetail || $langOpt['code'] == $_SESSION['lang']) {
+	            $hreflangLinks[] = array('code' => $langOpt['code'], 'href' => $langOpt['link']);
+	            continue;
+	        }
+	        $altHref = null;
+	        if ($currentDetailId) {
+	            if ($detailOption === 'com_blog') {
+	                $alt = blog::find($currentDetailId, $langOpt['code']);
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_reference') {
+	                $alt = reference::find($currentDetailId, $langOpt['code']);
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_produit') {
+	                $alt = produit::find($currentDetailId, $langOpt['code']);
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            }
+	        }
+	        if ($altHref) {
+	            $hreflangLinks[] = array('code' => $langOpt['code'], 'href' => $altHref);
+	        }
+	    }
+
+	    // Variante pour le drawer mobile uniquement : ajoute l'arabe en placeholder
+	    // (pas encore de ligne active en base / pas de routes ni de traductions),
+	    // sans toucher au sélecteur desktop qui doit rester limité aux langues réelles.
+	    $mobileLangOptions = $langOptions;
+	    $mobileLangOptions[] = array(
+	        'code' => 'ar',
+	        'nom' => 'العربية',
+	        'flag' => $langFlags['ar'],
+	        'link' => null,
+	        'active' => false,
+	        'disabled' => true,
+	    );
+	    ?>
+	    <?php foreach ($hreflangLinks as $hl): ?>
+	    <link rel="alternate" hreflang="<?php echo htmlspecialchars($hl['code']); ?>" href="<?php echo htmlspecialchars($hl['href']); ?>">
+	    <?php endforeach; ?>
+	    <?php
+	    if (count($hreflangLinks) > 1) {
+	        foreach ($hreflangLinks as $hl) {
+	            if ($hl['code'] == langue::getDefaultLanguage()) {
+	                echo '<link rel="alternate" hreflang="x-default" href="' . htmlspecialchars($hl['href']) . '">' . "\n";
+	                break;
+	            }
+	        }
+	    }
+	    ?>
       <!-- Google tag (gtag.js) -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6N5Y8QJ1M"></script>
       <script>
@@ -121,107 +278,7 @@
 <div class="cur" id="cur"></div>
 <div class="cur2" id="cur2"></div>
 
-<?php
-$headerColor = '';
-if(isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['task']) && $_GET['task'] == 'showDetails') $headerColor = 'hdr-light';
-// Lien du logo vers l'accueil, adapté à la langue active (/, /en/, /ar/ le cas échéant).
-// Le français est la langue par défaut et n'a pas de préfixe dans les routes (voir .htaccess).
-$homeURL = ($_SESSION['lang'] == langue::getDefaultLanguage()) ? $siteURL : $siteURL . $_SESSION['lang'] . '/';
-
-// Sélecteur de langue : reconstruit le lien de la page courante pour chaque langue active.
-$langFlags = array('fr' => '🇫🇷', 'en' => '🇬🇧', 'ar' => '🇲🇦', 'es' => '🇪🇸');
-$currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$siteBasePath = parse_url($siteURL, PHP_URL_PATH);
-if ($siteBasePath && $siteBasePath !== '/' && strpos($currentPath, $siteBasePath) === 0) {
-    $currentPath = substr($currentPath, strlen($siteBasePath));
-} else {
-    $currentPath = ltrim($currentPath, '/');
-}
-$currentPath = preg_replace('#^(fr|en|ar|es)/#', '', $currentPath);
-
-// Certaines pages statiques ont un slug différent selon la langue (voir .htaccess) --
-// changer uniquement le préfixe /en/ casserait ces liens (ex: devis-en-ligne -> online-quote).
-// Cette table ne couvre que ces pages ; les autres (services, contact, articles de blog...)
-// partagent le même slug dans toutes les langues et n'ont pas besoin de traduction.
-$slugPairsFrToEn = array(
-    'politique-de-confidentialite' => 'privacy-policy',
-    'realisations-et-cas-clients' => 'our-achievements',
-    'recrutement' => 'recruitment',
-    'qui-sommes-nous' => 'about-us',
-    'devis-en-ligne' => 'online-quote',
-    'mentions-legales' => 'legal-notice',
-    'conditions-generales-de-ventes' => 'terms-and-conditions',
-    'presse' => 'press',
-    'notre-expertise' => 'our-expertise',
-    'videotheque' => 'video-library',
-    'telechargement' => 'downloads',
-    'agence-marketing-digital-casablanca' => 'digital-marketing-agency-casablanca',
-    'agence-marketing-digital-marrakech' => 'digital-marketing-agency-marrakech',
-    'agence-marketing-digital-a-londres' => 'digital-marketing-agency-in-london',
-    'agence-marketing-digital-a-dubai' => 'digital-marketing-agency-in-dubai',
-    'agence-marketing-digital-rabat' => 'digital-marketing-agency-rabat',
-    'agence-marketing-digital-tanger' => 'digital-marketing-agency-tangier',
-    'agence-marketing-digital-agadir' => 'digital-marketing-agency-agadir',
-    'agence-marketing-digital-fes' => 'digital-marketing-agency-fes',
-    'formations-marketing-digital-ia-medias-marque-maroc' => 'digital-marketing-ai-media-branding-training-morocco',
-    'nos-agences' => 'our-agencies',
-    'agents-ia' => 'ai-agents',
-);
-$slugPairsEnToFr = array_flip($slugPairsFrToEn);
-
-// Deux services ont eux aussi un slug différent selon la langue (les autres
-// services partagent le même slug dans toutes les langues -- voir la traduction
-// en masse effectuée plus tôt, qui a conservé le slug FR tel quel).
-$servicePairsFrToEn = array(
-    'creation-de-sites-web' => 'website-development',
-    'brand-experience-et-contenus-de-marque' => 'brand-experience-and-brand-content',
-);
-$servicePairsEnToFr = array_flip($servicePairsFrToEn);
-
-$currentFirstSegment = strtok($currentPath, '/');
-$currentPathRest = substr($currentPath, strlen($currentFirstSegment));
-
-$langOptions = array();
-foreach (langue::findAll() as $idLangOpt) {
-    $lOpt = new langue($idLangOpt, $db);
-    $targetPath = $currentPath;
-    if ($currentFirstSegment === 'service') {
-        // Le slug du service est le 2e segment (service/{slug}/...).
-        $serviceRest = ltrim($currentPathRest, '/');
-        $serviceSlug = strtok($serviceRest, '/');
-        $serviceTail = substr($serviceRest, strlen($serviceSlug));
-        if ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($servicePairsFrToEn[$serviceSlug])) {
-            $targetPath = 'service/' . $servicePairsFrToEn[$serviceSlug] . $serviceTail;
-        } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($servicePairsEnToFr[$serviceSlug])) {
-            $targetPath = 'service/' . $servicePairsEnToFr[$serviceSlug] . $serviceTail;
-        }
-    } elseif ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($slugPairsFrToEn[$currentFirstSegment])) {
-        $targetPath = $slugPairsFrToEn[$currentFirstSegment] . $currentPathRest;
-    } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($slugPairsEnToFr[$currentFirstSegment])) {
-        $targetPath = $slugPairsEnToFr[$currentFirstSegment] . $currentPathRest;
-    }
-    $langOptions[] = array(
-        'code' => $lOpt->getCode(),
-        'nom' => $lOpt->getNom(),
-        'flag' => isset($langFlags[$lOpt->getCode()]) ? $langFlags[$lOpt->getCode()] : '🌐',
-        'link' => $lOpt->isDefault() ? $siteURL . $targetPath : $siteURL . $lOpt->getCode() . '/' . $targetPath,
-        'active' => ($lOpt->getCode() == $_SESSION['lang']),
-        'disabled' => false,
-    );
-}
-// Variante pour le drawer mobile uniquement : ajoute l'arabe en placeholder
-// (pas encore de ligne active en base / pas de routes ni de traductions),
-// sans toucher au sélecteur desktop qui doit rester limité aux langues réelles.
-$mobileLangOptions = $langOptions;
-$mobileLangOptions[] = array(
-    'code' => 'ar',
-    'nom' => 'العربية',
-    'flag' => $langFlags['ar'],
-    'link' => null,
-    'active' => false,
-    'disabled' => true,
-);
-?>
+<?php $headerColor = (isset($_GET['option']) && $_GET['option'] == 'com_reference' && isset($_GET['task']) && $_GET['task'] == 'showDetails') ? 'hdr-light' : ''; ?>
 
 
 <header class="navshell <?php echo $headerColor; ?>" id="navshell">
