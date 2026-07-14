@@ -178,6 +178,15 @@ $slugPairsFrToEn = array(
 );
 $slugPairsEnToFr = array_flip($slugPairsFrToEn);
 
+// Deux services ont eux aussi un slug différent selon la langue (les autres
+// services partagent le même slug dans toutes les langues -- voir la traduction
+// en masse effectuée plus tôt, qui a conservé le slug FR tel quel).
+$servicePairsFrToEn = array(
+    'creation-de-sites-web' => 'website-development',
+    'brand-experience-et-contenus-de-marque' => 'brand-experience-and-brand-content',
+);
+$servicePairsEnToFr = array_flip($servicePairsFrToEn);
+
 $currentFirstSegment = strtok($currentPath, '/');
 $currentPathRest = substr($currentPath, strlen($currentFirstSegment));
 
@@ -185,7 +194,17 @@ $langOptions = array();
 foreach (langue::findAll() as $idLangOpt) {
     $lOpt = new langue($idLangOpt, $db);
     $targetPath = $currentPath;
-    if ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($slugPairsFrToEn[$currentFirstSegment])) {
+    if ($currentFirstSegment === 'service') {
+        // Le slug du service est le 2e segment (service/{slug}/...).
+        $serviceRest = ltrim($currentPathRest, '/');
+        $serviceSlug = strtok($serviceRest, '/');
+        $serviceTail = substr($serviceRest, strlen($serviceSlug));
+        if ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($servicePairsFrToEn[$serviceSlug])) {
+            $targetPath = 'service/' . $servicePairsFrToEn[$serviceSlug] . $serviceTail;
+        } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($servicePairsEnToFr[$serviceSlug])) {
+            $targetPath = 'service/' . $servicePairsEnToFr[$serviceSlug] . $serviceTail;
+        }
+    } elseif ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($slugPairsFrToEn[$currentFirstSegment])) {
         $targetPath = $slugPairsFrToEn[$currentFirstSegment] . $currentPathRest;
     } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($slugPairsEnToFr[$currentFirstSegment])) {
         $targetPath = $slugPairsEnToFr[$currentFirstSegment] . $currentPathRest;
