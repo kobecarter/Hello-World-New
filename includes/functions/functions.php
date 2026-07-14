@@ -246,6 +246,7 @@ $ogImageFinal = !empty($ogImage) ? $ogImage : $siteURL . 'images/config/' . $con
 echo '<title>' . htmlspecialchars($seoTitle) . '</title>
 <meta name="description" content="' . htmlspecialchars(substr($seoDescription, 0, 160)) . '">
 <meta name="keywords" content="' . htmlspecialchars($seoKeywords) . '">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="'.$canonical.'">
 
 <meta property="og:title" content="' . htmlspecialchars($ogTitleFinal) . '" />
