@@ -27,7 +27,7 @@ switch ($task)
         break;
     default :
         if ($_SESSION['user']->hasDroit('view', 'com_service')) {
-            $services = service::findAll($_SESSION["langue"], true, false, false, true);
+            $services = service::findAll($_SESSION["langue"], true, true, false, true);
             include_once("components/com_service/views/service/list.php");
         }
         break;
