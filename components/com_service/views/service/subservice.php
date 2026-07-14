@@ -639,7 +639,7 @@ document.addEventListener('click', function(e){
 	var order = 'slug=' + btn.getAttribute('data-slug');
 	jQuery.post("<?php echo $siteURL; ?>components/com_service/controleurs/router.php?task=getForm", order, function (theResponse) {
 		var box = document.querySelector(".service-form-box");
-		box.innerHTML = theResponse;
+		jQuery(box).html(theResponse);
 		if (window.gsap) {
 			gsap.fromTo(box, {autoAlpha: 0, y: 30}, {autoAlpha: 1, y: 0, duration: .7, ease: 'power2.out'});
 		} else {
