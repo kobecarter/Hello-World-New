@@ -106,12 +106,12 @@
 	    $detailTask = isset($_GET['task']) ? $_GET['task'] : '';
 	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit'));
 	    // Look up the alternate by the numeric ID already resolved by the
-	    // component controller ($post/$reference/$produit), not by the current
+	    // component controller ($currentPost/$reference/$produit), not by the current
 	    // URL's slug -- blog/reference/produit store a distinct slug per
 	    // language, so the current-language slug won't match the other
 	    // language's row.
 	    $currentDetailId = null;
-	    if ($detailOption === 'com_blog' && isset($post)) $currentDetailId = $post->getId();
+	    if ($detailOption === 'com_blog' && isset($currentPost)) $currentDetailId = $currentPost->getId();
 	    elseif ($detailOption === 'com_reference' && isset($reference)) $currentDetailId = $reference->getId();
 	    elseif ($detailOption === 'com_produit' && isset($produit)) $currentDetailId = $produit->getId();
 
@@ -164,6 +164,84 @@
 	        }
 	    }
 	    ?>
+	    <?php
+	    // Sitewide Organization + WebSite structured data -- the site had zero
+	    // Schema.org markup anywhere before this (see SEO audit). Uses the same
+	    // $config object already loaded for meta tags, so no extra query.
+	    $orgSchema = array(
+	        '@context' => 'https://schema.org',
+	        '@graph' => array(
+	            array(
+	                '@type' => 'Organization',
+	                '@id' => $siteURL . '#organization',
+	                'name' => $config->getNom(),
+	                'url' => $siteURL,
+	                'logo' => $siteURL . 'images/config/' . $config->getLogo(),
+	                'sameAs' => array_values(array_filter(array(
+	                    $config->getFacebook(),
+	                    $config->getInstagram(),
+	                    $config->getLinkedin(),
+	                    $config->getYoutube(),
+	                ))),
+	                'contactPoint' => array(
+	                    '@type' => 'ContactPoint',
+	                    'telephone' => $config->getTel(),
+	                    'email' => $config->getEmail(),
+	                    'contactType' => 'customer service',
+	                ),
+	            ),
+	            array(
+	                '@type' => 'WebSite',
+	                '@id' => $siteURL . '#website',
+	                'url' => $siteURL,
+	                'name' => $config->getNom(),
+	                'publisher' => array('@id' => $siteURL . '#organization'),
+	                'inLanguage' => $_SESSION['lang'],
+	            ),
+	        ),
+	    );
+	    ?>
+	    <script type="application/ld+json"><?php echo json_encode($orgSchema, JSON_UNESCAPED_UNICODE); ?></script>
+	    <?php if ($detailOption === 'com_service' && $detailTask === 'showDetails' && isset($service) && $service->getId()): ?>
+	    <?php
+	    $serviceSchema = array(
+	        '@context' => 'https://schema.org',
+	        '@type' => 'Service',
+	        'name' => $service->getTitre(),
+	        'description' => $service->getSeoDescription(),
+	        'url' => $service->getLink(),
+	        'provider' => array('@id' => $siteURL . '#organization'),
+	        'areaServed' => array('Casablanca', 'Marrakech', 'Rabat', 'Maroc'),
+	    );
+	    if ($service->getPhoto()) {
+	        $serviceSchema['image'] = $siteURL . 'images/services/' . $service->getPhoto();
+	    }
+	    ?>
+	    <script type="application/ld+json"><?php echo json_encode($serviceSchema, JSON_UNESCAPED_UNICODE); ?></script>
+	    <?php endif; ?>
+	    <?php if ($detailOption === 'com_blog' && $detailTask === 'showDetails' && isset($currentPost) && $currentPost->getId()): ?>
+	    <?php
+	    $articleSchema = array(
+	        '@context' => 'https://schema.org',
+	        '@type' => 'Article',
+	        'headline' => $currentPost->getTitre(),
+	        'description' => $currentPost->getSeoDescription() ? $currentPost->getSeoDescription() : $currentPost->getExtrait(),
+	        'url' => $currentPost->getLink(),
+	        'publisher' => array('@id' => $siteURL . '#organization'),
+	        'author' => array('@type' => 'Organization', 'name' => $config->getNom()),
+	    );
+	    if ($currentPost->getPhoto()) {
+	        $articleSchema['image'] = $siteURL . 'images/blog/' . $currentPost->getPhoto();
+	    }
+	    if ($currentPost->getDateAdd() && strtotime($currentPost->getDateAdd())) {
+	        $articleSchema['datePublished'] = date('c', strtotime($currentPost->getDateAdd()));
+	    }
+	    if ($currentPost->getLastEdit() && strtotime($currentPost->getLastEdit())) {
+	        $articleSchema['dateModified'] = date('c', strtotime($currentPost->getLastEdit()));
+	    }
+	    ?>
+	    <script type="application/ld+json"><?php echo json_encode($articleSchema, JSON_UNESCAPED_UNICODE); ?></script>
+	    <?php endif; ?>
       <!-- Google tag (gtag.js) -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6N5Y8QJ1M"></script>
       <script>
@@ -1155,7 +1233,7 @@ document.querySelectorAll('.card, .custom-sublink').forEach(item => {
     function apply(d, animate){
       vgrad.className = 'vimg-wrap ' + (d.grad||'');
       vico.innerHTML = svg(d.ico);
-      if (d.img){ vimg.style.display=''; vimg.src=d.img; } else { vimg.style.display='none'; vimg.removeAttribute('src'); }
+      if (d.img){ vimg.style.display=''; vimg.src=d.img; vimg.alt=clean(d.service||''); } else { vimg.style.display='none'; vimg.removeAttribute('src'); vimg.alt=''; }
       vTitle.innerHTML = clean(d.service);
       vDesc.textContent = d.desc;
       vServ.textContent = clean(d.service);

@@ -30,6 +30,10 @@ switch ($task)
                     include('404.html');
                     exit;
                 }
+                // detail.php's related-articles loop reassigns $post -- keep a
+                // stable reference to the actual post being viewed for anything
+                // (hreflang, schema) that runs later in template.php.
+                $currentPost = $post;
                 $similarblogs = blog::findSimilar($post->getCategorie()->getId(), true, $_SESSION["lang"], 3);
         		$id_categorie = $post->getCategorie()->getId() != "" ? $post->getCategorie()->getId() : 1;
         		$categories = categorie::findAll($_SESSION["lang"], true, true);
