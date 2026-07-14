@@ -4,10 +4,20 @@
 switch ($task)
 {
     case "showDetails":
-        if(isset($_GET["id"]) && !empty($_GET["id"])){	
+        if(isset($_GET["id"]) && !empty($_GET["id"])){
 			$id = $_GET["id"];
             $page = new page(25,$db,$_SESSION["lang"]);
             $produit = produit::find($id,$_SESSION["lang"]);
+            if(!$produit->getTitre()){
+                $produitDefault = produit::find($id, langue::getDefaultLanguage());
+                if($produitDefault->getTitre()){
+                    header("Location: " . $produitDefault->getLink(), true, 302);
+                    exit;
+                }
+                header("HTTP/1.1 404 Not Found");
+                include('404.html');
+                exit;
+            }
             include_once("components/com_produit/views/page/detail.php");
         }
         break;

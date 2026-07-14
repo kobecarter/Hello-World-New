@@ -35,7 +35,7 @@ function getSeoMeta($data){
 	$seoTitle = $config->getTitre();
 	$seoDescription = $config->getDescription();
 	$seoKeywords = "Hello World Maroc, agence digitale Maroc, marketing digital Marrakech, création de sites web Maroc, SEO Maroc, publicité en ligne, réseaux sociaux Maroc, développement mobile, branding et design graphique, stratégie digitale, web design, e-commerce Maroc, marketing d'influence, optimisation SEO, campagnes publicitaires Google, gestion des réseaux sociaux, communication digitale, marketing B2B Maroc, marketing B2C Maroc";
-	$canonical = $siteURL;
+	$canonical = ($_SESSION['lang'] == langue::getDefaultLanguage()) ? $siteURL : $siteURL . $_SESSION['lang'] . '/';
 	$ogImage = $siteURL . "images/config/" . $config->getLogo();
 	if($data != NULL){
 		if(isset($data['option']) && !empty($data['option'])){

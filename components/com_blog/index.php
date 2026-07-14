@@ -17,9 +17,19 @@ switch ($task)
         break;*/
     case "showDetails":
             if(isset($_GET["slug"]) && !empty($_GET["slug"])){
-        					
+
         		$slug = $_GET["slug"];
                 $post = blog::findBySlug($slug, $_SESSION["lang"]);
+                if(!$post->getId()){
+                    $postDefault = blog::findBySlug($slug, langue::getDefaultLanguage());
+                    if($postDefault->getId()){
+                        header("Location: " . $postDefault->getLink(), true, 302);
+                        exit;
+                    }
+                    header("HTTP/1.1 404 Not Found");
+                    include('404.html');
+                    exit;
+                }
                 $similarblogs = blog::findSimilar($post->getCategorie()->getId(), true, $_SESSION["lang"], 3);
         		$id_categorie = $post->getCategorie()->getId() != "" ? $post->getCategorie()->getId() : 1;
         		$categories = categorie::findAll($_SESSION["lang"], true, true);
