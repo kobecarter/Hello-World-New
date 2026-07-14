@@ -147,14 +147,54 @@ if ($siteBasePath && $siteBasePath !== '/' && strpos($currentPath, $siteBasePath
     $currentPath = ltrim($currentPath, '/');
 }
 $currentPath = preg_replace('#^(fr|en|ar|es)/#', '', $currentPath);
+
+// Certaines pages statiques ont un slug différent selon la langue (voir .htaccess) --
+// changer uniquement le préfixe /en/ casserait ces liens (ex: devis-en-ligne -> online-quote).
+// Cette table ne couvre que ces pages ; les autres (services, contact, articles de blog...)
+// partagent le même slug dans toutes les langues et n'ont pas besoin de traduction.
+$slugPairsFrToEn = array(
+    'politique-de-confidentialite' => 'privacy-policy',
+    'realisations-et-cas-clients' => 'our-achievements',
+    'recrutement' => 'recruitment',
+    'qui-sommes-nous' => 'about-us',
+    'devis-en-ligne' => 'online-quote',
+    'mentions-legales' => 'legal-notice',
+    'conditions-generales-de-ventes' => 'terms-and-conditions',
+    'presse' => 'press',
+    'notre-expertise' => 'our-expertise',
+    'videotheque' => 'video-library',
+    'telechargement' => 'downloads',
+    'agence-marketing-digital-casablanca' => 'digital-marketing-agency-casablanca',
+    'agence-marketing-digital-marrakech' => 'digital-marketing-agency-marrakech',
+    'agence-marketing-digital-a-londres' => 'digital-marketing-agency-in-london',
+    'agence-marketing-digital-a-dubai' => 'digital-marketing-agency-in-dubai',
+    'agence-marketing-digital-rabat' => 'digital-marketing-agency-rabat',
+    'agence-marketing-digital-tanger' => 'digital-marketing-agency-tangier',
+    'agence-marketing-digital-agadir' => 'digital-marketing-agency-agadir',
+    'agence-marketing-digital-fes' => 'digital-marketing-agency-fes',
+    'formations-marketing-digital-ia-medias-marque-maroc' => 'digital-marketing-ai-media-branding-training-morocco',
+    'nos-agences' => 'our-agencies',
+    'agents-ia' => 'ai-agents',
+);
+$slugPairsEnToFr = array_flip($slugPairsFrToEn);
+
+$currentFirstSegment = strtok($currentPath, '/');
+$currentPathRest = substr($currentPath, strlen($currentFirstSegment));
+
 $langOptions = array();
 foreach (langue::findAll() as $idLangOpt) {
     $lOpt = new langue($idLangOpt, $db);
+    $targetPath = $currentPath;
+    if ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($slugPairsFrToEn[$currentFirstSegment])) {
+        $targetPath = $slugPairsFrToEn[$currentFirstSegment] . $currentPathRest;
+    } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($slugPairsEnToFr[$currentFirstSegment])) {
+        $targetPath = $slugPairsEnToFr[$currentFirstSegment] . $currentPathRest;
+    }
     $langOptions[] = array(
         'code' => $lOpt->getCode(),
         'nom' => $lOpt->getNom(),
         'flag' => isset($langFlags[$lOpt->getCode()]) ? $langFlags[$lOpt->getCode()] : '🌐',
-        'link' => $lOpt->isDefault() ? $siteURL . $currentPath : $siteURL . $lOpt->getCode() . '/' . $currentPath,
+        'link' => $lOpt->isDefault() ? $siteURL . $targetPath : $siteURL . $lOpt->getCode() . '/' . $targetPath,
         'active' => ($lOpt->getCode() == $_SESSION['lang']),
         'disabled' => false,
     );
