@@ -9,4 +9,4 @@ jobs:
     runs-on: [self-hosted, macOS, deploy]
     steps:
       - name: Pull latest main on the server
-        run: ssh hw-cpanel-deploy "cd ~/public_html/helloworld-agency.com/new/ && git pull origin main"
+        run: ssh hw-cpanel-deploy "cd ~/public_html/helloworld-agency.com/ && git pull origin main"

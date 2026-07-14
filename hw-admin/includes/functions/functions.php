@@ -538,7 +538,7 @@ function seo($path = "")
 
     if ($_SERVER["REMOTE_ADDR"] != "::1" && $_SERVER["REMOTE_ADDR"] != "127.0.0.1") {
 
-        $details .=	'RewriteBase /new/
+        $details .=	'RewriteBase /
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
@@ -560,6 +560,9 @@ RewriteRule ^(.*) $1 [R=301,L]
 
 RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
 RewriteRule . %1/%2 [R=301,L]
+
+RewriteRule ^$ index.php?l=fr [L]
+RewriteRule ^en/$ index.php?l=en [L]
 
 ErrorDocument 404 /404.php
 
