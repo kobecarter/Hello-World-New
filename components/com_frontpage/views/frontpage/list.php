@@ -978,9 +978,9 @@ img,video{display:block;max-width:100%}
   <div class="container">
     <div class="sec-label rv"><?php echo $lang['HOME_TEAM_LABEL'][$_SESSION['lang']]; ?></div>
     <h2 class="sec-title rv d1"><?php echo $lang['HOME_TEAM_TITLE'][$_SESSION['lang']]; ?></h2>
-    <div class="team-grid" id="teamGrid">
+    <div id="owl-team" class="owl-carousel owl-theme team-grid">
 
-      <div class="team-card rv">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/hamid.webp" alt="Hamid K">
           <div class="team-initials">MC</div>
@@ -993,7 +993,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d1">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/zak.webp" alt="Zakaria EL">
           <div class="team-initials">IF</div>
@@ -1006,7 +1006,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d2">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/youssef.webp" alt="Youssef F">
           <div class="team-initials">DO</div>
@@ -1018,7 +1018,7 @@ img,video{display:block;max-width:100%}
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_ART'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
-      <div class="team-card rv d3">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/khadija.webp" alt="Khadija T">
           <div class="team-initials">NS</div>
@@ -1031,7 +1031,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d4">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/hassna.webp" alt="Hasna">
           <div class="team-initials">RA</div>
@@ -1044,7 +1044,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d4">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/rokya.webp" alt="Rokya">
           <div class="team-initials">CO</div>
@@ -1057,7 +1057,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d4">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/siham.webp" alt="Siham">
           <div class="team-initials">CO</div>
@@ -1070,7 +1070,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d4">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/marwa.jpg" alt="Marwa">
           <div class="team-initials">CO</div>
@@ -1083,7 +1083,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d4">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/salma.webp" alt="Salma">
           <div class="team-initials">RM</div>
@@ -1096,7 +1096,7 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
 
-      <div class="team-card rv d4">
+      <div class="team-card">
         <div class="team-thumb">
           <img src="<?php echo $siteURL; ?>images/team/anas.webp" alt="Anas">
           <div class="team-initials">DW</div>
@@ -1109,27 +1109,26 @@ img,video{display:block;max-width:100%}
         </div>
       </div>
     </div>
-
-    <div class="team-nav">
-      <button type="button" class="owl-prev" id="teamPrev" aria-label="<?php echo $lang['HOME_TEAM_PREV'][$_SESSION['lang']]; ?>"><i class="fa fa-arrow-left"></i></button>
-      <button type="button" class="owl-next" id="teamNext" aria-label="<?php echo $lang['HOME_TEAM_NEXT'][$_SESSION['lang']]; ?>"><i class="fa fa-arrow-right"></i></button>
-    </div>
   </div>
 </section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var teamGrid = document.getElementById('teamGrid');
-  var teamPrev = document.getElementById('teamPrev');
-  var teamNext = document.getElementById('teamNext');
-  if (!teamGrid || !teamPrev || !teamNext) return;
-  function scrollTeamBy(dir) {
-    var card = teamGrid.querySelector('.team-card');
-    if (!card) return;
-    teamGrid.scrollBy({ left: dir * card.getBoundingClientRect().width, behavior: 'smooth' });
-  }
-  teamPrev.addEventListener('click', function() { scrollTeamBy(-1); });
-  teamNext.addEventListener('click', function() { scrollTeamBy(1); });
+  $("#owl-team").owlCarousel({
+    loop: true,
+    nav: true,
+    navText: ['<i class="fa fa-arrow-left"></i>', '<i class="fa fa-arrow-right"></i>'],
+    dots: true,
+    autoplay: true,
+    autoplayTimeout: 3500,
+    autoplayHoverPause: true,
+    smartSpeed: 800,
+    margin: 24,
+    responsive: {
+      0: { items: 2 },
+      768: { items: 4 }
+    }
+  });
 });
 </script>
 
