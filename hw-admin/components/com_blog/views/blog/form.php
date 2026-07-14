@@ -36,6 +36,18 @@
                 <input name="seo_description" type="text" value="<?= isset($blog) ? $blog->getSeoDescription() : "" ;?>" class="form-control" />
             </div>
 
+            <div class="col-md-6 form-group" >
+                <label>
+                    <?php
+                        if(isset($trad_com_blog['KEYWORD_SEO'][$_SESSION['user']->getLangue()]))
+                            echo $trad_com_blog['KEYWORD_SEO'][$_SESSION['user']->getLangue()];
+                        else
+                            echo "Seo Keyword";
+                    ?>
+                </label>
+                <input name="seo_keyword" type="text" value="<?= isset($blog) ? $blog->getSeoKeyword() : "" ;?>" class="form-control" />
+            </div>
+
         </fieldset>
         <br/>
         <fieldset>

@@ -5,6 +5,7 @@ class page{
     private $id;
     private $titre_seo;
     private $description_seo;
+    private $keyword_seo;
     private $texte;
     private $titre;
     private $h1;
@@ -30,6 +31,7 @@ class page{
             $this->id = $data['id'];
             $this->titre_seo = $data['seo_titre'];
             $this->description_seo = $data['seo_description'];
+            $this->keyword_seo = isset($data['seo_keyword']) ? $data['seo_keyword'] : null;
             $this->texte = $data['texte'];
             $this->titre = $data['titre'];
             $this->h1 = $data['h1'];
@@ -65,6 +67,10 @@ class page{
 
     public function getSeoDescription(){
         return $this->description_seo;
+    }
+
+    public function getSeoKeyword(){
+        return $this->keyword_seo;
     }
 
     public function getTexte(){

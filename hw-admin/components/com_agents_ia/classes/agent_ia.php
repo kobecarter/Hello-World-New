@@ -22,6 +22,7 @@ class agent_ia
     private $texte;
     private $seo_titre;
     private $seo_description;
+    private $seo_keyword;
     private $date_add;
     private $last_edit;
     private $langue;
@@ -49,6 +50,7 @@ class agent_ia
     public function getTexte()           { return $this->texte; }
     public function getSeoTitre()        { return $this->seo_titre; }
     public function getSeoDescription()  { return $this->seo_description; }
+    public function getSeoKeyword()      { return $this->seo_keyword; }
     public function getDateAdd()         { return $this->date_add; }
     public function getLastEdit()        { return $this->last_edit; }
     public function getLangue()          { return $this->langue; }
@@ -70,6 +72,7 @@ class agent_ia
     public function setTexte($texte)              { $this->texte = $texte; }
     public function setSeoTitre($seo_titre)       { $this->seo_titre = $seo_titre; }
     public function setSeoDescription($seo_desc)  { $this->seo_description = $seo_desc; }
+    public function setSeoKeyword($seo_keyword)   { $this->seo_keyword = $seo_keyword; }
     public function setDateAdd($date_add)         { $this->date_add = $date_add; }
     public function setLastEdit($last_edit)       { $this->last_edit = $last_edit; }
     public function setLangue($langue)            { $this->langue = $langue; }
@@ -118,7 +121,7 @@ class agent_ia
             static::saveSecteurs($id_agent_ia, $this->secteur_ids);
 
             $SQLinsert2 = sprintf(
-                "INSERT INTO " . static::$table2 . " (id_agent_ia, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                "INSERT INTO " . static::$table2 . " (id_agent_ia, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 GetSQLValueString($id_agent_ia, "int"),
                 GetSQLValueString($this->titre, "text"),
                 GetSQLValueString($this->h1, "text"),
@@ -128,6 +131,7 @@ class agent_ia
                 GetSQLValueString($this->texte, "text"),
                 GetSQLValueString($this->seo_titre, "text"),
                 GetSQLValueString($this->seo_description, "text"),
+                GetSQLValueString($this->seo_keyword, "text"),
                 GetSQLValueString($this->langue, "text")
             );
             if (!$db->query($SQLinsert2)) {
@@ -164,7 +168,7 @@ class agent_ia
             $result = $db->query($SQLcheck);
             if ($db->num_rows($result) == 0) {
                 $SQLupdate2 = sprintf(
-                    "INSERT INTO " . static::$table2 . " (id_agent_ia, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    "INSERT INTO " . static::$table2 . " (id_agent_ia, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     GetSQLValueString($this->id, "int"),
                     GetSQLValueString($this->titre, "text"),
                     GetSQLValueString($this->h1, "text"),
@@ -174,11 +178,12 @@ class agent_ia
                     GetSQLValueString($this->texte, "text"),
                     GetSQLValueString($this->seo_titre, "text"),
                     GetSQLValueString($this->seo_description, "text"),
+                    GetSQLValueString($this->seo_keyword, "text"),
                     GetSQLValueString($this->langue, "text")
                 );
             } else {
                 $SQLupdate2 = sprintf(
-                    "UPDATE " . static::$table2 . " SET titre = %s, h1 = %s, slug = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s WHERE id_agent_ia = %s AND langue = %s",
+                    "UPDATE " . static::$table2 . " SET titre = %s, h1 = %s, slug = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s, seo_keyword = %s WHERE id_agent_ia = %s AND langue = %s",
                     GetSQLValueString($this->titre, "text"),
                     GetSQLValueString($this->h1, "text"),
                     GetSQLValueString($this->slug, "text"),
@@ -187,6 +192,7 @@ class agent_ia
                     GetSQLValueString($this->texte, "text"),
                     GetSQLValueString($this->seo_titre, "text"),
                     GetSQLValueString($this->seo_description, "text"),
+                    GetSQLValueString($this->seo_keyword, "text"),
                     GetSQLValueString($this->id, "int"),
                     GetSQLValueString($this->langue, "text")
                 );
@@ -353,6 +359,7 @@ class agent_ia
         $agent->setTexte($data['texte']);
         $agent->setSeoTitre($data['seo_titre']);
         $agent->setSeoDescription($data['seo_description']);
+        $agent->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : null);
         $agent->setDateAdd($data['date_add']);
         $agent->setLastEdit($data['last_edit']);
         $agent->setLangue($data['langue']);

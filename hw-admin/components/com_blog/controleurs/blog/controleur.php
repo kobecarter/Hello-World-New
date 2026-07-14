@@ -211,6 +211,7 @@ function buildBlog($data, $id = null)
     $blog->setTexte($data['texte']);
     $blog->setSeoTitre($data['seo_titre']);
     $blog->setSeoDescription($data['seo_description']);
+    $blog->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : '');
     $blog->setDateAdd(date("Y-m-d"));
     $blog->setLastEdit(date("Y-m-d"));
     $blog->setLangue($_SESSION['langue']);

@@ -240,6 +240,7 @@ function buildAgentIa($data, $id = null)
     $agent->setTexte(isset($data['texte']) ? $data['texte'] : '');
     $agent->setSeoTitre(isset($data['seo_titre']) ? $data['seo_titre'] : '');
     $agent->setSeoDescription(isset($data['seo_description']) ? $data['seo_description'] : '');
+    $agent->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : '');
     $agent->setDateAdd(date("Y-m-d"));
     $agent->setLastEdit(date("Y-m-d"));
     $agent->setLangue($_SESSION['langue']);

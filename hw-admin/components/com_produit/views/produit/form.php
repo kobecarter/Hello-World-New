@@ -36,6 +36,18 @@
                 <input name="seo_description" type="text" value="<?= isset($produit) ? $produit->getSeoDescription() : "" ;?>" class="form-control" />
             </div>
 
+            <div class="col-md-6 form-group" >
+                <label>
+                    <?php
+                        if(isset($trad_com_produit['KEYWORD_SEO'][$_SESSION['user']->getLangue()]))
+                            echo $trad_com_produit['KEYWORD_SEO'][$_SESSION['user']->getLangue()];
+                        else
+                            echo "Seo Keyword";
+                    ?>
+                </label>
+                <input name="seo_keyword" type="text" value="<?= isset($produit) ? $produit->getSeoKeyword() : "" ;?>" class="form-control" />
+            </div>
+
         </fieldset>
         <br/>
         <fieldset>

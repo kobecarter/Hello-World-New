@@ -15,6 +15,11 @@
                 <input name="seo_description" type="text" value="<?= isset($categorie) ? $categorie->getSeoDescription() : "" ;?>" class="form-control" />
             </div>
 
+            <div class="col-md-6 form-group" >
+                <label>Seo Keyword</label>
+                <input name="seo_keyword" type="text" value="<?= isset($categorie) ? $categorie->getSeoKeyword() : "" ;?>" class="form-control" />
+            </div>
+
         </fieldset>
         <br/>
         <fieldset>

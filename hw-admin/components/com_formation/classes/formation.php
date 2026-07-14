@@ -26,6 +26,7 @@ class formation
     // Champs traduits (details)
     private $seo_titre;
     private $seo_description;
+    private $seo_keyword;
     private $slug;
     private $titre;
     private $h1;
@@ -62,6 +63,7 @@ class formation
     public function getLastEdit()        { return $this->last_edit; }
     public function getSeoTitre()        { return $this->seo_titre; }
     public function getSeoDescription()  { return $this->seo_description; }
+    public function getSeoKeyword()      { return $this->seo_keyword; }
     public function getSlug()            { return $this->slug; }
     public function getTitre()           { return $this->titre; }
     public function getH1()              { return $this->h1; }
@@ -92,6 +94,7 @@ class formation
     public function setLastEdit($v)               { $this->last_edit = $v; }
     public function setSeoTitre($v)               { $this->seo_titre = $v; }
     public function setSeoDescription($v)         { $this->seo_description = $v; }
+    public function setSeoKeyword($v)             { $this->seo_keyword = $v; }
     public function setSlug($v)                   { $this->slug = $v; }
     public function setTitre($v)                  { $this->titre = $v; }
     public function setH1($v)                     { $this->h1 = $v; }
@@ -149,10 +152,11 @@ class formation
         if (!$db->query($SQLinsert)) {
             $id_formation = $db->last_id();
             $SQLinsert2 = sprintf(
-                "INSERT INTO " . static::$table2 . " (id_formation, seo_titre, seo_description, slug, titre, h1, sous_titre, extrait, description, prerequis, livrables, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                "INSERT INTO " . static::$table2 . " (id_formation, seo_titre, seo_description, seo_keyword, slug, titre, h1, sous_titre, extrait, description, prerequis, livrables, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 GetSQLValueString($id_formation,       "int"),
                 GetSQLValueString($this->seo_titre,    "text"),
                 GetSQLValueString($this->seo_description, "text"),
+                GetSQLValueString($this->seo_keyword,  "text"),
                 GetSQLValueString($this->slug,         "text"),
                 GetSQLValueString($this->titre,        "text"),
                 GetSQLValueString($this->h1,           "text"),
@@ -202,10 +206,11 @@ class formation
             $result = $db->query($SQLcheck);
             if ($db->num_rows($result) == 0) {
                 $SQLupdate2 = sprintf(
-                    "INSERT INTO " . static::$table2 . " (id_formation, seo_titre, seo_description, slug, titre, h1, sous_titre, extrait, description, prerequis, livrables, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    "INSERT INTO " . static::$table2 . " (id_formation, seo_titre, seo_description, seo_keyword, slug, titre, h1, sous_titre, extrait, description, prerequis, livrables, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     GetSQLValueString($this->id,             "int"),
                     GetSQLValueString($this->seo_titre,      "text"),
                     GetSQLValueString($this->seo_description,"text"),
+                    GetSQLValueString($this->seo_keyword,    "text"),
                     GetSQLValueString($this->slug,           "text"),
                     GetSQLValueString($this->titre,          "text"),
                     GetSQLValueString($this->h1,             "text"),
@@ -218,9 +223,10 @@ class formation
                 );
             } else {
                 $SQLupdate2 = sprintf(
-                    "UPDATE " . static::$table2 . " SET seo_titre = %s, seo_description = %s, slug = %s, titre = %s, h1 = %s, sous_titre = %s, extrait = %s, description = %s, prerequis = %s, livrables = %s WHERE id_formation = %s AND langue = %s",
+                    "UPDATE " . static::$table2 . " SET seo_titre = %s, seo_description = %s, seo_keyword = %s, slug = %s, titre = %s, h1 = %s, sous_titre = %s, extrait = %s, description = %s, prerequis = %s, livrables = %s WHERE id_formation = %s AND langue = %s",
                     GetSQLValueString($this->seo_titre,       "text"),
                     GetSQLValueString($this->seo_description, "text"),
+                    GetSQLValueString($this->seo_keyword,     "text"),
                     GetSQLValueString($this->slug,            "text"),
                     GetSQLValueString($this->titre,           "text"),
                     GetSQLValueString($this->h1,              "text"),
@@ -420,6 +426,7 @@ class formation
         $f->setLastEdit($data['last_edit']);
         $f->setSeoTitre(isset($data['seo_titre'])        ? $data['seo_titre']        : null);
         $f->setSeoDescription(isset($data['seo_description']) ? $data['seo_description'] : null);
+        $f->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : null);
         $f->setSlug(isset($data['slug'])                 ? $data['slug']             : null);
         $f->setTitre(isset($data['titre'])               ? $data['titre']            : null);
         $f->setH1(isset($data['h1'])                     ? $data['h1']               : null);

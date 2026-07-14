@@ -11,7 +11,12 @@
             <label>Seo description</label>
             <input name="seo_description" type="text" value="<?= isset($categorie) ? $categorie->getSeoDescription() : "" ;?>" class="form-control" >
         </div>
-		
+
+        <div class="col-md-6 form-group" >
+            <label>Seo keyword</label>
+            <input name="seo_keyword" type="text" value="<?= isset($categorie) ? $categorie->getSeoKeyword() : "" ;?>" class="form-control" >
+        </div>
+
 		<div class="col-md-3 form-group">
 			<label>Parent</label>
 			<select name="id_parent" class="form-control chosen-select">

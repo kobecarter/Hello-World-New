@@ -92,6 +92,11 @@ $trad_com_page = array(
         'en' => "SEO Description"
     ),
 
+    "KEYWORD_SEO" => array(
+        'fr' => "Mots-clés SEO",
+        'en' => "SEO Keywords"
+    ),
+
     "DETAILS_PAGE" => array(
         'fr' => "Détails page",
         'en' => "Page details"

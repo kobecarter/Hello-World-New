@@ -201,6 +201,7 @@ function buildProduit($data, $id = null)
     $produit->setTexte($data['texte']);
     $produit->setSeoTitre($data['seo_titre']);
     $produit->setSeoDescription($data['seo_description']);
+    $produit->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : '');
     $produit->setPrix($data['prix']);
     $produit->setDevise($data['devise']);
     $produit->setURL($data['url']);

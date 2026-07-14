@@ -156,6 +156,7 @@ function buildFormation($data, $id = null)
     $formation->setLivrables(isset($data['livrables'])           ? $data['livrables']        : '');
     $formation->setSeoTitre(isset($data['seo_titre'])            ? $data['seo_titre']        : '');
     $formation->setSeoDescription(isset($data['seo_description']) ? $data['seo_description'] : '');
+    $formation->setSeoKeyword(isset($data['seo_keyword'])         ? $data['seo_keyword']      : '');
     $formation->setDateAdd(date("Y-m-d"));
     $formation->setLastEdit(date("Y-m-d"));
     $formation->setLangue($_SESSION['langue']);

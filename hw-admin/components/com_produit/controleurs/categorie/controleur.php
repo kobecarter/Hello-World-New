@@ -124,6 +124,7 @@ function buildCategorie($data, $id = null)
     $categorie->setTitre($data['titre']);
     $categorie->setSeoTitre($data['seo_titre']);
     $categorie->setSeoDescription($data['seo_description']);
+    $categorie->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : '');
     $categorie->setDateAdd(date("Y-m-d"));
     $categorie->setLastEdit(date("Y-m-d"));
     $categorie->setLangue($_SESSION['langue']);

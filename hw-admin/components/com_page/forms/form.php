@@ -27,6 +27,13 @@ if (isset($p)) {
                                                  value="<?php if (isset($p)) echo stripslashes($p->getSeoDescription()); ?>"
                                                  class="form-control"/></div>
             </div>
+
+            <div class="col-md-6 form-group">
+                <label><?= $trad_com_page['KEYWORD_SEO'][$_SESSION['user']->getLangue()];?></label>
+                <div class="iconed-input"><input type="text" name="seo_keyword"
+                                                 value="<?php if (isset($p)) echo stripslashes($p->getSeoKeyword()); ?>"
+                                                 class="form-control"/></div>
+            </div>
         </fieldset>
 
         <fieldset>

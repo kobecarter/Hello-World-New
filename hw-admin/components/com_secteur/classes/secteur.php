@@ -19,6 +19,7 @@ class secteur
     private $texte;
     private $seo_titre;
     private $seo_description;
+    private $seo_keyword;
     private $date_add;
     private $last_edit;
     private $langue;
@@ -96,6 +97,11 @@ class secteur
     public function getSeoDescription()
     {
         return $this->seo_description;
+    }
+
+    public function getSeoKeyword()
+    {
+        return $this->seo_keyword;
     }
 
     public function getDateAdd()
@@ -178,6 +184,11 @@ class secteur
         $this->seo_description = $seo_description;
     }
 
+    public function setSeoKeyword($seo_keyword)
+    {
+        $this->seo_keyword = $seo_keyword;
+    }
+
     public function setDateAdd($date_add)
     {
         $this->date_add = $date_add;
@@ -209,7 +220,7 @@ class secteur
         if (!$db->query($SQLinsert)) 
         {
             $id_secteur = $db->last_id();
-            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 GetSQLValueString($id_secteur, "int"),
                 GetSQLValueString($this->titre, "text"),
                 GetSQLValueString($this->h1, "text"),
@@ -219,6 +230,7 @@ class secteur
                 GetSQLValueString($this->texte, "text"),
                 GetSQLValueString($this->seo_titre, "text"),
                 GetSQLValueString($this->seo_description, "text"),
+                GetSQLValueString($this->seo_keyword, "text"),
                 GetSQLValueString($this->langue, "text")
             );
             if (!$db->query($SQLinsert2)) {
@@ -249,7 +261,7 @@ class secteur
             
             $result = $db->query($SQLselect);
             if ($db->num_rows($result) == 0) {
-                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_secteur, titre, h1, slug, sous_titre, extrait, texte, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     GetSQLValueString($this->id, "int"),
                     GetSQLValueString($this->titre, "text"),
                     GetSQLValueString($this->h1, "text"),
@@ -259,10 +271,11 @@ class secteur
                     GetSQLValueString($this->texte, "text"),
                     GetSQLValueString($this->seo_titre, "text"),
                     GetSQLValueString($this->seo_description, "text"),
+                    GetSQLValueString($this->seo_keyword, "text"),
                     GetSQLValueString($this->langue, "text")
                 );
             } else {
-                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, h1 = %s, slug = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s WHERE id_secteur = %s AND langue = %s",
+                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, h1 = %s, slug = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s, seo_keyword = %s WHERE id_secteur = %s AND langue = %s",
                     GetSQLValueString($this->titre, "text"),
                     GetSQLValueString($this->h1, "text"),
                     GetSQLValueString($this->slug, "text"),
@@ -271,6 +284,7 @@ class secteur
                     GetSQLValueString($this->texte, "text"),
                     GetSQLValueString($this->seo_titre, "text"),
                     GetSQLValueString($this->seo_description, "text"),
+                    GetSQLValueString($this->seo_keyword, "text"),
                     GetSQLValueString($this->id, "int"),
                     GetSQLValueString($this->langue, "text")
                 );
@@ -506,6 +520,7 @@ public static function findAll($langue, $active = false, $services = false, $cur
         $secteur->setTexte($data['texte']);
         $secteur->setSeoTitre($data['seo_titre']);
         $secteur->setSeoDescription($data['seo_description']);
+        $secteur->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : null);
         $secteur->setDateAdd($data['date_add']);
         $secteur->setLastEdit($data['last_edit']);
         $secteur->setLangue($data['langue']);

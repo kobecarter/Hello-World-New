@@ -16,6 +16,7 @@ class produit
     private $texte;
     private $seo_titre;
     private $seo_description;
+    private $seo_keyword;
     private $prix;
     private $devise;
     private $url;
@@ -86,6 +87,11 @@ class produit
     public function getSeoDescription()
     {
         return $this->seo_description;
+    }
+
+    public function getSeoKeyword()
+    {
+        return $this->seo_keyword;
     }
 
     public function getPrix()
@@ -173,6 +179,11 @@ class produit
         $this->seo_description = $seo_description;
     }
 
+    public function setSeoKeyword($seo_keyword)
+    {
+        $this->seo_keyword = $seo_keyword;
+    }
+
     public function setPrix($prix)
     {
         $this->prix = $prix;
@@ -222,7 +233,7 @@ class produit
         if (!$db->query($SQLinsert)) 
         {
             $id_produit = $db->last_id();
-            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_produit, titre, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_produit, titre, sous_titre, extrait, texte, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 GetSQLValueString($id_produit, "int"),
                 GetSQLValueString($this->titre, "text"),
                 GetSQLValueString($this->sous_titre, "text"),
@@ -230,6 +241,7 @@ class produit
                 GetSQLValueString($this->texte, "text"),
                 GetSQLValueString($this->seo_titre, "text"),
                 GetSQLValueString($this->seo_description, "text"),
+                GetSQLValueString($this->seo_keyword, "text"),
                 GetSQLValueString($this->langue, "text")
             );
             if (!$db->query($SQLinsert2)) {
@@ -263,7 +275,7 @@ class produit
             
             $result = $db->query($SQLselect);
             if ($db->num_rows($result) == 0) {
-                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_produit, titre, sous_titre, extrait, texte, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_produit, titre, sous_titre, extrait, texte, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     GetSQLValueString($this->id, "int"),
                     GetSQLValueString($this->titre, "text"),
                     GetSQLValueString($this->sous_titre, "text"),
@@ -271,16 +283,18 @@ class produit
                     GetSQLValueString($this->texte, "text"),
                     GetSQLValueString($this->seo_titre, "text"),
                     GetSQLValueString($this->seo_description, "text"),
+                    GetSQLValueString($this->seo_keyword, "text"),
                     GetSQLValueString($this->langue, "text")
                 );
             } else {
-                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s WHERE id_produit = %s AND langue = %s",
+                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, sous_titre = %s, extrait = %s, texte = %s, seo_titre = %s, seo_description = %s, seo_keyword = %s WHERE id_produit = %s AND langue = %s",
                     GetSQLValueString($this->titre, "text"),
                     GetSQLValueString($this->sous_titre, "text"),
                     GetSQLValueString($this->extrait, "text"),
                     GetSQLValueString($this->texte, "text"),
                     GetSQLValueString($this->seo_titre, "text"),
                     GetSQLValueString($this->seo_description, "text"),
+                    GetSQLValueString($this->seo_keyword, "text"),
                     GetSQLValueString($this->id, "int"),
                     GetSQLValueString($this->langue, "text")
                 );
@@ -432,6 +446,7 @@ class produit
         $produit->setTexte($data['texte']);
         $produit->setSeoTitre($data['seo_titre']);
         $produit->setSeoDescription($data['seo_description']);
+        $produit->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : null);
         $produit->setPrix($data['prix']);
         $produit->setDevise($data['devise']);
         $produit->setURL($data['url']);

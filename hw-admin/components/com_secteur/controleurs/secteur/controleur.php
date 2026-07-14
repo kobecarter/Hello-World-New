@@ -207,6 +207,7 @@ function buildSecteur($data, $id = null)
     $secteur->setTexte($data['texte']);
     $secteur->setSeoTitre($data['seo_titre']);
     $secteur->setSeoDescription($data['seo_description']);
+    $secteur->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : '');
     $secteur->setDateAdd(date("Y-m-d"));
     $secteur->setLastEdit(date("Y-m-d"));
     $secteur->setLangue($_SESSION['langue']);

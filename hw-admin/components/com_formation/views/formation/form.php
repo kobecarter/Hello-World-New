@@ -15,6 +15,10 @@
                 <label>Description SEO</label>
                 <input name="seo_description" type="text" value="<?= isset($formation) ? htmlspecialchars($formation->getSeoDescription() ?? '', ENT_QUOTES, 'UTF-8') : ""; ?>" class="form-control" placeholder="Description courte pour les moteurs de recherche" />
             </div>
+            <div class="col-md-6 form-group">
+                <label>Mots-clés SEO</label>
+                <input name="seo_keyword" type="text" value="<?= isset($formation) ? htmlspecialchars($formation->getSeoKeyword() ?? '', ENT_QUOTES, 'UTF-8') : ""; ?>" class="form-control" placeholder="Mots-clés séparés par des virgules" />
+            </div>
             <div class="clearfix"></div>
         </fieldset>
 

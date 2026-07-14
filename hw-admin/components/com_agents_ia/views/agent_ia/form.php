@@ -59,13 +59,17 @@
 
         <fieldset>
             <legend>Référencement (SEO)</legend>
-            <div class="col-md-6 form-group">
+            <div class="col-md-4 form-group">
                 <label>Titre SEO</label>
                 <input name="seo_titre" type="text" value="<?= isset($agent_ia) ? $agent_ia->getSeoTitre() : ""; ?>" class="form-control" />
             </div>
-            <div class="col-md-6 form-group">
+            <div class="col-md-4 form-group">
                 <label>Description SEO</label>
                 <input name="seo_description" type="text" value="<?= isset($agent_ia) ? $agent_ia->getSeoDescription() : ""; ?>" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Mots-clés SEO</label>
+                <input name="seo_keyword" type="text" value="<?= isset($agent_ia) ? $agent_ia->getSeoKeyword() : ""; ?>" class="form-control" />
             </div>
         </fieldset>
 

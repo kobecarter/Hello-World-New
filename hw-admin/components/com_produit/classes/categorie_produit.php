@@ -13,6 +13,7 @@ class categorie_produit
     private $titre;
     private $seo_titre;
     private $seo_description;
+    private $seo_keyword;
     private $date_add;
     private $last_edit;
     private $langue;
@@ -65,6 +66,11 @@ class categorie_produit
     public function getSeoDescription()
     {
         return $this->seo_description;
+    }
+
+    public function getSeoKeyword()
+    {
+        return $this->seo_keyword;
     }
 
     public function getDateAdd()
@@ -122,6 +128,11 @@ class categorie_produit
         $this->seo_description = $seo_description;
     }
 
+    public function setSeoKeyword($seo_keyword)
+    {
+        $this->seo_keyword = $seo_keyword;
+    }
+
     public function setDateAdd($date_add)
     {
         $this->date_add = $date_add;
@@ -150,11 +161,12 @@ class categorie_produit
         );
         if (!$db->query($SQLinsert)) {
             $id_categorie = $db->last_id();
-            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_categorie, titre, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s)",
+            $SQLinsert2 = sprintf("INSERT INTO " . static::$table2 . " (id_categorie, titre, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s)",
                 GetSQLValueString($id_categorie, "int"),
                 GetSQLValueString($this->getTitre(), "text"),
                 GetSQLValueString($this->getSeoTitre(), "text"),
                 GetSQLValueString($this->getSeoDescription(), "text"),
+                GetSQLValueString($this->getSeoKeyword(), "text"),
                 GetSQLValueString($this->getLangue(), "text")
             );
             if (!$db->query($SQLinsert2)) {
@@ -184,18 +196,20 @@ class categorie_produit
             );
             $result = $db->query($SQLselect);
             if ($db->num_rows($result) == 0) {
-                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_categorie, titre, seo_titre, seo_description, langue) VALUES (%s, %s, %s, %s, %s)",
+                $SQLupdate = sprintf("INSERT INTO " . static::$table2 . " (id_categorie, titre, seo_titre, seo_description, seo_keyword, langue) VALUES (%s, %s, %s, %s, %s, %s)",
                     GetSQLValueString($this->getId(), "int"),
                     GetSQLValueString($this->getTitre(), "text"),
                     GetSQLValueString($this->getSeoTitre(), "text"),
                     GetSQLValueString($this->getSeoDescription(), "text"),
+                    GetSQLValueString($this->getSeoKeyword(), "text"),
                     GetSQLValueString($this->getLangue(), "text")
                 );
             } else {
-                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, seo_titre = %s, seo_description = %s WHERE id_categorie = %s AND langue = %s",
+                $SQLupdate = sprintf("UPDATE " . static::$table2 . " SET titre = %s, seo_titre = %s, seo_description = %s, seo_keyword = %s WHERE id_categorie = %s AND langue = %s",
                     GetSQLValueString($this->getTitre(), "text"),
                     GetSQLValueString($this->getSeoTitre(), "text"),
                     GetSQLValueString($this->getSeoDescription(), "text"),
+                    GetSQLValueString($this->getSeoKeyword(), "text"),
                     GetSQLValueString($this->getId(), "int"),
                     GetSQLValueString($this->getLangue(), "text")
                 );
@@ -327,6 +341,7 @@ class categorie_produit
         $categorie->setTitre($data['titre']);
         $categorie->setSeoTitre($data['seo_titre']);
         $categorie->setSeoDescription($data['seo_description']);
+        $categorie->setSeoKeyword(isset($data['seo_keyword']) ? $data['seo_keyword'] : null);
         $categorie->setDateAdd($data['date_add']);
         $categorie->setLastEdit($data['last_edit']);
         $categorie->setLangue($data['langue']);
