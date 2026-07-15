@@ -131,9 +131,13 @@ switch ($task)
             $page = getComponent("com_service");
 			$id = $_GET["id"];
             $service = service::find($id, $_SESSION["lang"]);
+			$pageRealisation = getComponent("com_reference");
+			$pageFormation = getComponent("com_formation");
+			$pageBlog = getComponent("com_blog&cat=1");
+			$pageIA = service::find(17, $_SESSION["lang"]);
 			include_once("components/com_service/views/service/thankyou.php");
         }
-        break;	
+        break;
     default :
         $page = getComponent("com_service");
         $services = service::findAll($_SESSION["lang"],true,true,true);
