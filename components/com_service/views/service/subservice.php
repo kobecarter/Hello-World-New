@@ -194,7 +194,7 @@ else{
                     </div>
                     <?php endif; ?>
 
-                    <a href="#0" class="btn-pack open-form-service"><span><?php echo $lang['SVC_CTA_DEMANDER_DEVIS_GRATUIT'][$_SESSION['lang']]; ?></span></a>
+                    <a href="#0" class="btn-pack open-form-service" data-slug="<?php echo $service->getSlug(); ?>"><span><?php echo $lang['SVC_CTA_DEMANDER_DEVIS_GRATUIT'][$_SESSION['lang']]; ?></span></a>
                 </div>
                 <?php endforeach; ?>
             </div>
