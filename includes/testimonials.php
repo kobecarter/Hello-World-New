@@ -24,9 +24,9 @@
               </div>
               <div class="textbox">
                   <p>
-                      <?php echo mb_substr(nl2br(strip_tags($temoignage->getTemoignage())), 0, 240, "UTF-8"); ?>
+                      <?php echo nl2br(strip_tags($temoignage->getTemoignage())); ?>
                       <?php if (mb_strlen($temoignage->getTemoignage()) > 240): ?>
-                      ... <br><a href="#0" data-id="<?= $temoignage->getId(); ?>" class="more"><?= $lang['LIRE_SUITE'][$_SESSION['lang']] ?></a>
+                      <br><a href="#0" data-id="<?= $temoignage->getId(); ?>" class="more"><?= $lang['LIRE_SUITE'][$_SESSION['lang']] ?></a>
                       <?php endif; ?>
                   </p>
               </div>
