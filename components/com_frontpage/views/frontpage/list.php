@@ -992,7 +992,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="team-info">
           <div class="team-name">Hamid K</div>
-          <div class="team-role">Ceo & Founder</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_CEO'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -1005,7 +1005,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="team-info">
           <div class="team-name">Zakaria EL</div>
-          <div class="team-role">Co-Founder & IT Manager</div>
+          <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_COFOUNDER'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
 
@@ -1127,6 +1127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     autoplayHoverPause: true,
     smartSpeed: 800,
     margin: 24,
+    rtl: document.documentElement.dir === 'rtl',
     responsive: {
       0: { items: 2 },
       768: { items: 4 }

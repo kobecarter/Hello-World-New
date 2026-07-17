@@ -1265,6 +1265,18 @@ $lang = array(
         "ar" => "التالي"
     ),
 
+    "HOME_TEAM_ROLE_CEO" => array(
+        "fr" => "PDG & Fondateur",
+        "en" => "Ceo & Founder",
+        "ar" => "الرئيس التنفيذي والمؤسس"
+    ),
+
+    "HOME_TEAM_ROLE_COFOUNDER" => array(
+        "fr" => "Co-fondateur & Responsable IT",
+        "en" => "Co-Founder & IT Manager",
+        "ar" => "المؤسس المشارك ومدير تقنية المعلومات"
+    ),
+
     "HOME_TEAM_ROLE_ART" => array(
         "fr" => "Directeur artistique",
         "en" => "Art Director",
