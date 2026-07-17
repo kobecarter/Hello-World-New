@@ -5,6 +5,7 @@ class langue{
     private $nom;
     private $code;
     private $defaut;
+    private $rtl;
     private $flag;
     private $actif;
     private $date_add;
@@ -21,6 +22,7 @@ class langue{
             $this->nom = $data['nom'];
             $this->code = $data['code'];
             $this->defaut = $data['defaut'];
+            $this->rtl = $data['rtl'];
             $this->flag = $data['flag'];
             $this->actif = $data['actif'];
             $this->date_add = $data['date_add'];
@@ -46,6 +48,10 @@ class langue{
 
     public function getCode(){
         return $this->code;
+    }
+
+    public function isRtl(){
+        return ($this->rtl == 1) ? true : false ;
     }
 
     public function getFlag(){
