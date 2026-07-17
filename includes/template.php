@@ -1,5 +1,9 @@
+<?php
+$idCurrentLang = langue::getIdLangue($_SESSION['lang']);
+$isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
+?>
 <!DOCTYPE html>
-<html lang="<?php echo htmlspecialchars($_SESSION['lang']); ?>">
+<html lang="<?php echo htmlspecialchars($_SESSION['lang']); ?>" dir="<?php echo $isRtl ? 'rtl' : 'ltr'; ?>">
 <head>
      <meta charset="utf-8">
 	    <meta content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
@@ -284,7 +288,7 @@
 <link rel="shortcut icon" href="<?= $siteURL; ?>assets/img/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;0,800;0,900;1,100;1,200;1,300&family=Raleway:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;0,800;0,900;1,100;1,200;1,300&family=Raleway:wght@300;400;500;600;700;900&family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/all.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/themify-icons.css">
 <link rel="stylesheet" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css" async defer>
@@ -457,7 +461,7 @@
 	                            <?php
                 			$marrakechPage = new page(33, $db, $_SESSION['lang']);
                 			?>
-	                        <h4><a href="<?php echo $marrakechPage->getLink(); ?>">Marrakech</a></h4>
+	                        <h4><a href="<?php echo $marrakechPage->getLink(); ?>"><?php echo $lang['TPL_FOOTER_CITY_MARRAKECH'][$_SESSION['lang']]; ?></a></h4>
 
 	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
 	                            <li class="nav-item" role="presentation">
@@ -494,7 +498,7 @@
 	                        	    <?php
                 			$casaPage = new page(32, $db, $_SESSION['lang']);
                 			?>
-	                        <h4><a href="<?php echo $casaPage->getLink(); ?>">Casablanca</a></h4>
+	                        <h4><a href="<?php echo $casaPage->getLink(); ?>"><?php echo $lang['TPL_FOOTER_CITY_CASABLANCA'][$_SESSION['lang']]; ?></a></h4>
 
 	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
 	                            <li class="nav-item" role="presentation">
@@ -532,7 +536,7 @@
 	                          	    <?php
                 			$londonPage = new page(34, $db, $_SESSION['lang']);
                 			?>
-	                         <h4><a href="<?php echo $londonPage->getLink(); ?>">Londres</a></h4>
+	                         <h4><a href="<?php echo $londonPage->getLink(); ?>"><?php echo $lang['TPL_FOOTER_CITY_LONDON'][$_SESSION['lang']]; ?></a></h4>
 
 	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
 	                            <li class="nav-item" role="presentation">
@@ -566,7 +570,7 @@
 
 	                <div class="col-sm-6 col-md-3">
 	                    <div class="item-agency">
-	                        <h4>Dubai</h4>
+	                        <h4><?php echo $lang['TPL_FOOTER_CITY_DUBAI'][$_SESSION['lang']]; ?></h4>
 
 	                        <ul class="nav nav-tabs" id="myTab" role="tablist">
 	                            <li class="nav-item" role="presentation">
@@ -866,10 +870,31 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
 (function(){
   function splitChars(el) {
     el.classList.add('fancy-title');
+    var isRtl = document.documentElement.dir === 'rtl';
     let ci = 0;
     function proc(node) {
       if (node.nodeType === 3) {
         const frag = document.createDocumentFragment();
+        if (isRtl) {
+          /* Arabic needs contextual letter joining: split by word, not by char, or shaping breaks */
+          node.textContent.split(/(\s+)/).forEach(function(w){
+            if (w === '') return;
+            if (/^\s+$/.test(w)) {
+              const s = document.createElement('span');
+              s.className = 'ch sp';
+              s.innerHTML = '&nbsp;';
+              frag.appendChild(s);
+            } else {
+              const s = document.createElement('span');
+              s.className = 'ch';
+              s.style.setProperty('--ci', ci++);
+              s.textContent = w;
+              frag.appendChild(s);
+            }
+          });
+          node.parentNode.replaceChild(frag, node);
+          return;
+        }
         let word = document.createElement('span');
         word.className = 'chw';
         function flushWord() {
