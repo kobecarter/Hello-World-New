@@ -34,6 +34,74 @@
     --mono:'Space Mono',monospace;
     --expo:cubic-bezier(.16,1,.3,1);
 }
+/* Fondation RTL (arabe) : bascule toutes les polices vers Cairo dès que dir="rtl"
+   est posé sur <html>, sans avoir à traquer chaque font-family individuellement. */
+html[dir="rtl"] {
+  --fd: 'Cairo', sans-serif;
+  --fm: 'Cairo', sans-serif;
+  --fb: 'Cairo', sans-serif;
+  --serif: 'Cairo', sans-serif;
+  --sans: 'Cairo', sans-serif;
+}
+/* Bootstrap's reboot.css forces body{text-align:left}, which cascades by
+   inheritance to every descendant lacking its own text-align rule — this is
+   the root cause behind most "text isn't RTL" bugs across the site. */
+html[dir="rtl"] body{text-align:right}
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .sec-title,
+html[dir="rtl"] .port-title,
+html[dir="rtl"] .page-hero-title{text-align:right}
+html[dir="rtl"] .brochure .textbox{direction:rtl;text-align:right}
+html[dir="rtl"] a[href^="tel:"]{direction:ltr;unicode-bidi:embed;display:inline-block}
+html[dir="rtl"] .ct-float-label,
+html[dir="rtl"] .ct-select-label{left:auto;right:0}
+html[dir="rtl"] .ct-select-arr{right:auto;left:0}
+html[dir="rtl"] .ct-office-card{border-right:none;border-left:1px solid var(--border)}
+html[dir="rtl"] .ct-office-card:last-child{border-left:none}
+html[dir="rtl"] .ct-hero-bread i,
+html[dir="rtl"] .rd-hero-breadcrumb i,
+html[dir="rtl"] .ty-hero-bread i{transform:scaleX(-1)}
+html[dir="rtl"] .item-service-city a i{display:inline-block;transform:scaleX(-1)}
+html[dir="rtl"] .pack-box .item-pack .textbox ul{padding-left:0;padding-right:10px}
+html[dir="rtl"] .pack-box .item-pack .textbox ul ul{margin-left:0;margin-right:-24px}
+html[dir="rtl"] .pack-box .item-pack .textbox ul ul li{padding:8px 25px 8px 15px}
+html[dir="rtl"] .pack-box .item-pack .textbox ul li:not(:last-child)::before,
+html[dir="rtl"] .pack-box .item-pack .textbox ul ul li::before{left:auto;right:0}
+html[dir="rtl"] .pack-box .item-pack .price{direction:ltr}
+html[dir="rtl"] .service-card2 .textbox .ul-number{padding-left:0;padding-right:30px}
+html[dir="rtl"] .service-card2 .textbox .ul-number li::before{left:auto;right:-30px}
+html[dir="rtl"] .service-card2 .textbox .ul-number li::after{left:auto;right:-36px}
+html[dir="rtl"] .ct-line{left:auto;right:0}
+/* height:calc(100% - 40px) on .item-testimonial is a circular percentage-height
+   reference against its auto-height .owl-item parent; Chrome resolves this
+   inconsistently under float:right (RTL), inflating cards to ~4000px. */
+html[dir="rtl"] .item-testimonial{height:auto}
+html[dir="rtl"] .item-testimonial .autor-box{padding:5px 110px 5px 10px}
+html[dir="rtl"] .item-testimonial .autor-box .imgbox{left:auto;right:20px}
+html[dir="rtl"] .item-testimonial .autor-box .autor,
+html[dir="rtl"] .item-testimonial .autor-box .profession{text-align:right}
+html[dir="rtl"] .item-testimonial .autor-box .google-icon,
+html[dir="rtl"] .item-testimonial .autor-box .fa-google{right:auto;left:0;border-radius:15px 0 15px 0}
+/* .trust-inner is a decorative logo marquee (no text): its flex order must stay
+   LTR so the go-l/go-r translateX keyframes (physical px, direction-agnostic)
+   keep scrolling the same visual set of items instead of flipping order. */
+html[dir="rtl"] .trust-inner{direction:ltr}
+/* .mq-t (top-of-page tagline marquee) has the same duplicated-content flex
+   loop as .trust-inner — keep it LTR so the seamless -50% loop still works. */
+html[dir="rtl"] .mq-t{direction:ltr}
+/* .agency-band pairs left-aligned text with a left-to-right opacity fade over
+   the background image; mirror the fade and re-anchor the text/number so the
+   readable backdrop stays behind the (now right-aligned) text. */
+html[dir="rtl"] .agency-band::before{background:linear-gradient(to left,rgb(247,245,242) 0%,rgba(247,245,242,.9) 38%,rgba(247,245,242,.1) 56%,rgba(247,245,242,0) 100%)}
+html[dir="rtl"] .agency-band::after{right:auto;left:0}
+html[dir="rtl"] .agency-band>.container{transform:translateX(50%)}
+html[dir="rtl"] .agency-num{right:auto;left:3.5rem}
+@media(max-width:991px){
+  html[dir="rtl"] .agency-band::before{background:linear-gradient(to left,var(--bg) 0%,var(--bg) 62%,rgba(247,245,242,.3) 100%)}
+}
+html[dir="rtl"] .item-video .textbox ul li::after{
+  left:auto;right: 34px;transform: rotate(225deg);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--fb);overflow-x:hidden;line-height:1.6}
@@ -453,6 +521,11 @@ header .lang-btn{font-size:.72rem;padding:0}
   margin-top: 20px;
   font-size: 14px;
   color: #666;
+  height: 138px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 .textbox .more{
 	display: table;
@@ -2814,6 +2887,7 @@ form .sb-knob{top: 7px;left: 7px;}
   .navlink{position:relative;font-weight:500;font-size:.9rem;color:var(--ink);padding:.55rem .5rem;background:transparent;border:none;cursor:pointer;white-space:nowrap;transition:color .25s var(--ease);}
   .navlink .caret{display:inline-block;margin-left:3px;font-size:.6em;opacity:.6;transition:transform .3s var(--ease);}
   .navlink::after{content:'';position:absolute;left:.35rem;right:.35rem;bottom:0;height:2px;border-radius:2px;background:var(--grad-primary);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);}
+  [dir="rtl"] .navlink::after{transform-origin:right;}
   .navlink:hover,.navlink[aria-expanded="true"]{color:#6a5cff;}
   .navlink:hover::after,.navlink[aria-expanded="true"]::after{transform:scaleX(1);}
   .navlink[aria-expanded="true"] .caret{transform:rotate(180deg);}
@@ -5043,6 +5117,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:800;padding:0;display:flex;al
 }
 .cta-hw-final .sec-title{
    color: #fff;
+   text-align: center !important;
 }
 
 /* Frontpage (accueil) style */

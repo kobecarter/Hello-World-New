@@ -6,7 +6,7 @@
     <div class="ct-hero-bread rv">
       <a href="<?php echo $siteURL; ?>"><?php echo $lang['CT_BREAD_ACCUEIL'][$_SESSION['lang']]; ?></a>
       <i class="fa fa-chevron-right"></i>
-      <span>Contact</span>
+      <span><?php echo $lang['CT_BREAD_CONTACT'][$_SESSION['lang']]; ?></span>
     </div>
     <div class="ct-hero-inner">
       <div>
@@ -85,7 +85,7 @@
           </div>
           <span class="ct-ceo-badge"><?php echo $lang['CT_CEO_BADGE'][$_SESSION['lang']]; ?></span>
         </div>
-        <div class="ct-ceo-name">Hamid Kennou</div>
+        <div class="ct-ceo-name"><?php echo $lang['CT_CEO_NAME'][$_SESSION['lang']]; ?></div>
         <div class="ct-ceo-role"><?php echo $lang['CT_CEO_ROLE'][$_SESSION['lang']]; ?></div>
         <p class="ct-ceo-bio"><i class="fa fa-quote-left"></i> <?php echo $lang['CT_CEO_BIO'][$_SESSION['lang']]; ?> <i class="fa fa-quote-right"></i></p>
         <div class="ct-ceo-contacts">
@@ -121,7 +121,7 @@
 
       <div class="ct-office-card">
         <div class="ct-office-city"><?php echo $lang['CT_OFFICE_AFRIQUE'][$_SESSION['lang']]; ?></div>
-        <div class="ct-office-name">Marrakech</div>
+        <div class="ct-office-name"><?php echo $lang['TPL_FOOTER_CITY_MARRAKECH'][$_SESSION['lang']]; ?></div>
         <div class="ct-office-addr"><?php echo $config->getAdresse(); ?></div>
         <div class="ct-office-details">
           <a href="tel:<?php echo $config->getTel(); ?>" class="ct-office-detail"><i class="fa fa-phone"></i> <?php echo $config->getTel(); ?></a>
@@ -130,8 +130,8 @@
       </div>
 
       <div class="ct-office-card">
-        <div class="ct-office-city">Europe</div>
-        <div class="ct-office-name">London</div>
+        <div class="ct-office-city"><?php echo $lang['CT_OFFICE_EUROPE'][$_SESSION['lang']]; ?></div>
+        <div class="ct-office-name"><?php echo $lang['TPL_FOOTER_CITY_LONDON'][$_SESSION['lang']]; ?></div>
         <div class="ct-office-addr">1 Canada Square, Level 30<br>Canary Wharf<br>London E14 5AB, UK</div>
         <div class="ct-office-details">
           <a href="tel:+442079460100" class="ct-office-detail"><i class="fa fa-phone"></i> +44 20 7946 0100</a>
@@ -141,7 +141,7 @@
 
       <div class="ct-office-card">
         <div class="ct-office-city"><?php echo $lang['CT_OFFICE_MOYEN_ORIENT'][$_SESSION['lang']]; ?></div>
-        <div class="ct-office-name">Dubai</div>
+        <div class="ct-office-name"><?php echo $lang['TPL_FOOTER_CITY_DUBAI'][$_SESSION['lang']]; ?></div>
         <div class="ct-office-addr">DIFC, Gate Avenue<br>Level 14, Office 1406<br>Dubai, UAE 117210</div>
         <div class="ct-office-details">
           <a href="tel:+97144550100" class="ct-office-detail"><i class="fa fa-phone"></i> +971 4 455 0100</a>

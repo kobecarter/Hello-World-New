@@ -208,6 +208,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 (function () {
     gsap.registerPlugin(ScrollTrigger);
     var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isRTL = document.documentElement.dir === 'rtl';
 
     var pin   = document.getElementById('beServicesPin');
     var track = document.getElementById('beServicesTrack');
@@ -248,7 +249,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
 
     if (!rm && window.innerWidth > 760) {
         gsap.to(track, {
-            x: function () { return -trackDistance(); },
+            x: function () { return isRTL ? trackDistance() : -trackDistance(); },
             ease: 'none',
             scrollTrigger: {
                 trigger: pin,
