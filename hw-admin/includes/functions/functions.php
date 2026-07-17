@@ -35,7 +35,7 @@ function url_rewriting($str)
     // Quelques entit�s � remplacer par les lettres correspondantes.
     $str = preg_replace('`&([a-z]{1,2})(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '$1', $str);
 
-    $str = preg_replace(array('`[^a-z0-9]`i', '`[-]+`'), '-', $str);
+    $str = preg_replace('`[^\pL\pN]+`u', '-', $str);
     return strtolower(trim($str, '-'));
 }
 
@@ -538,7 +538,7 @@ function seo($path = "")
 
     if ($_SERVER["REMOTE_ADDR"] != "::1" && $_SERVER["REMOTE_ADDR"] != "127.0.0.1") {
 
-        $details .=	'RewriteBase /
+        $details .=	'RewriteBase /new/
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
@@ -560,9 +560,6 @@ RewriteRule ^(.*) $1 [R=301,L]
 
 RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
 RewriteRule . %1/%2 [R=301,L]
-
-RewriteRule ^$ index.php?l=fr [L]
-RewriteRule ^en/$ index.php?l=en [L]
 
 ErrorDocument 404 /404.php
 

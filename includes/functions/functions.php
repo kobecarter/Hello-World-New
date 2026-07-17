@@ -492,7 +492,7 @@ function url_rewriting($str) {
     // Quelques entit�s � remplacer par les lettres correspondantes.
     $str = preg_replace('`&([a-z]{1,2})(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i','$1',$str);
 
-    $str = preg_replace(array('`[^a-z0-9]`i','`[-]+`'),'-',$str);
+    $str = preg_replace('`[^\pL\pN]+`u','-',$str);
     return strtolower(trim($str,'-'));
 }
 
