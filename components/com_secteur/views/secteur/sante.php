@@ -808,7 +808,7 @@
           <div class="sh-fcard-lbl">موفَّرة/أسبوعياً</div>
         </div>
         <div class="sh-fcard fc4">
-          <div class="sh-fcard-val">2 mois</div>
+          <div class="sh-fcard-val">شهران</div>
           <div class="sh-fcard-lbl">عائد الاستثمار المحقق</div>
         </div>
       </div>
@@ -1316,7 +1316,7 @@
               <div class="result-big-lbl">رضا NPS</div>
             </div>
             <div class="result-big">
-              <div class="result-big-val">2<span style="font-size:.7em">mois</span></div>
+              <div class="result-big-val">2<span style="font-size:.7em">أشهر</span></div>
               <div class="result-big-lbl">عائد الاستثمار المحقق</div>
             </div>
           </div>
