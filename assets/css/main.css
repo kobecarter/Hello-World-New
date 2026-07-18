@@ -122,6 +122,10 @@ html[dir="rtl"] .sh-stat:last-child{border-left:none}
   html[dir="rtl"] .sh-stat{border-left:none}
   html[dir="rtl"] .sh-stat:nth-child(odd){border-left:1px solid var(--border)}
 }
+/* .sec-title is right-aligned in RTL by default (see rule above), but the
+   sticky-CTA title sits in a centered flex column (.sticky-cta-inner) in
+   both LTR and RTL — restore the centering for this specific instance. */
+html[dir="rtl"] .sticky-cta-copy .sec-title{text-align:center}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--fb);overflow-x:hidden;line-height:1.6}
