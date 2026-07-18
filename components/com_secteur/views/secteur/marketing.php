@@ -276,6 +276,284 @@
   </div>
 </section>
 
+<?php elseif ($_SESSION['lang'] === 'ar'): ?>
+
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+  <div class="sh-hero-body"><div class="container"><div class="sh-hero-inner">
+    <div>
+      <div class="sh-breadcrumb">حلول الذكاء الاصطناعي · التسويق ووسائل التواصل الاجتماعي</div>
+        <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
+      <p class="sh-sub">صنّعوا إنتاج محتواكم على نطاق واسع، وثبّتوا مراكزكم في محركات البحث، وأتمتوا تقارير أدائكم. استرجعوا 10 ساعات أسبوعياً من مهام منخفضة القيمة المضافة.</p>
+      <div class="sh-cta-row">
+          <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="أتمتوا تسويقكم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">أتمتوا تسويقكم</span></div>
+          <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
+        </a>
+
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على نموذج تقرير" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">احصلوا على نموذج تقرير</span></div>
+          <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
+        </a>
+      </div>
+    </div>
+    <!-- ORBITAL MARKETING IA -->
+    <div class="sh-hero-right">
+      <div class="sho-scene">
+        <div class="sho-ring r1"></div>
+        <div class="sho-ring r2"></div>
+        <div class="sho-ring r3"></div>
+        <div class="sho-core">
+          <div class="sho-plus"><i class="fa fa-chart-bar" style="font-size:1.1rem"></i></div>
+          <div class="sho-lbl">التسويق بالذكاء الاصطناعي</div>
+        </div>
+        <!-- Orbit interne r=100px -->
+        <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="Google Analytics 4"><i class="fab fa-google"></i></div></div>
+        <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="Meta Facebook"><i class="fab fa-facebook"></i></div></div>
+        <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="LinkedIn API"><i class="fab fa-linkedin"></i></div></div>
+        <!-- Orbit moyenne r=170px -->
+        <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="تنبيهات Slack"><i class="fab fa-slack"></i></div></div>
+        <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="Semrush SEO"><i class="fal fa-chart-bar"></i></div></div>
+        <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="نشر Buffer"><i class="fal fa-calendar-check"></i></div></div>
+        <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="Google Search Console"><i class="fal fa-search"></i></div></div>
+        <!-- Orbit externe r=222px -->
+        <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="بث WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+        <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="قاعدة تحرير Notion"><i class="fal fa-book-open"></i></div></div>
+        <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="Google Sheets KPIs"><div class="ltr">GS</div></div></div>
+        <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="تقرير PDF تلقائي"><i class="fal fa-file-pdf"></i></div></div>
+        <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="X / Twitter"><i class="fab fa-twitter"></i></div></div>
+      </div>
+    </div>
+  </div></div></div>
+</section>
+
+<section class="sh-stats"><div class="container"><div class="sh-stats-grid">
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="10">0</span><span class="suf">س</span></div><div class="sh-stat-lbl">ساعات موفَّرة/أسبوعياً</div><div class="sh-stat-sub">في التقارير التحليلية</div></div>
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="suf">×</span><span class="sh-counter" data-target="3">0</span></div><div class="sh-stat-lbl">وتيرة النشر</div><div class="sh-stat-sub">نشر تلقائي عبر جميع القنوات</div></div>
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="40">0</span><span class="suf">%</span></div><div class="sh-stat-lbl">التفاعل العضوي</div><div class="sh-stat-sub">ارتفاع مقاس خلال 3 أشهر</div></div>
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="9">0</span><span class="suf">أسبوع</span></div><div class="sh-stat-lbl">عائد الاستثمار القابل للتحقيق</div><div class="sh-stat-sub">وظيفة بدوام كامل أُعيد توجيهها للاستراتيجية</div></div>
+</div></div></section>
+
+<section class="sh-context"><div class="container"><div class="sh-context-inner">
+  <div>
+    <div class="sec-label">السياق والتحديات</div>
+    <h2 class="sh-ctx-title rv"><strong>التسويق في المغرب</strong>بيانات متفرقة، تقارير مرهقة</h2>
+    <div class="sh-ctx-body rv d1">
+      <p>تتعامل إدارات التسويق المغربية مع كم هائل من البيانات المتفرقة (وسائل التواصل الاجتماعي، تحسين محركات البحث، التحليلات). يفرض معدل انتشار الهاتف المحمول الذي يتجاوز 130% وتيرة إنتاج <em>يصعب الحفاظ عليها دون أتمتة</em>.</p>
+      <p>بدمج وكلاء الأتمتة، تركّز الفرق على الاستراتيجية الإبداعية وتفوّض الإنتاج منخفض القيمة المضافة. تنتقل سرعة الاستجابة لتحسين محركات البحث من 5 أيام إلى أقل من 24 ساعة.</p>
+    </div>
+    <div class="sh-pills rv d2">
+      <span class="sh-pill"><i class="fal fa-chart-bar"></i> مراقبة SEO على مدار الساعة</span>
+      <span class="sh-pill"><i class="fal fa-chart-pie"></i> تقرير تلقائي</span>
+      <span class="sh-pill"><i class="fal fa-share-alt"></i> نشر عبر جميع القنوات</span>
+      <span class="sh-pill"><i class="fab fa-facebook"></i> Meta + LinkedIn</span>
+    </div>
+  </div>
+  <div class="sh-ctx-visual rv d3">
+    <div class="sh-ctx-blob"></div><div class="sh-ctx-blob2"></div>
+    <div class="sh-ctx-center-wrap"><div class="sh-ctx-center"><i class="fa fa-chart-bar"></i></div></div>
+    <div class="sh-fcard fc1"><div class="sh-fcard-val">10h</div><div class="sh-fcard-lbl">ساعات موفَّرة/أسبوعياً</div></div>
+    <div class="sh-fcard fc2"><div class="sh-fcard-val">×3</div><div class="sh-fcard-lbl">المنشورات</div></div>
+    <div class="sh-fcard fc3"><div class="sh-fcard-val">+40%</div><div class="sh-fcard-lbl">التفاعل</div></div>
+    <div class="sh-fcard fc4"><div class="sh-fcard-val">9sem</div><div class="sh-fcard-lbl">عائد الاستثمار</div></div>
+  </div>
+</div></div></section>
+
+<section class="sh-solutions" id="solutions"><div class="container">
+  <div class="sec-label">مجموعة التسويق بالذكاء الاصطناعي</div>
+  <h2 class="sec-title rv">أربعة وكلاء،<br><em>آلة تحريرية واحدة</em></h2>
+  <div class="sol-kpi-grid rv d1">
+    <div class="sol-kpi-card"><div class="sol-kpi-val">10<span style="font-size:.6em">h</span></div><div class="sol-kpi-lbl">ساعة مُسترجَعة أسبوعياً</div></div>
+    <div class="sol-kpi-card"><div class="sol-kpi-val">&lt;24<span style="font-size:.6em">h</span></div><div class="sol-kpi-lbl">تنبيه بانخفاض SEO</div></div>
+    <div class="sol-kpi-card"><div class="sol-kpi-val">×3</div><div class="sol-kpi-lbl">وتيرة النشر</div></div>
+    <div class="sol-kpi-card"><div class="sol-kpi-val">1<span style="font-size:.5em">ETP</span></div><div class="sol-kpi-lbl">أُعيد توجيهها للاستراتيجية</div></div>
+  </div>
+  <div class="sol-feature rv">
+    <div class="sol-fc-text">
+      <div class="sol-fc-title"><strong>مجموعة التقارير بالذكاء الاصطناعي</strong>SEO · التحليلات · نشر مؤتمت</div>
+      <p class="sol-fc-desc">وكيل يجمع كل صباح الساعة 7:00 بيانات GA4 وSearch Console وMeta، ويولّد ملخصاً سردياً، وينبّه فوراً عند اكتشاف أي حالات شاذة.</p>
+      <ul class="sol-benefits">
+        <li><i class="fa fa-check"></i><span><strong>مراقبة يومية لـSEO:</strong> تتبع المراكز على جميع الكلمات المفتاحية الاستراتيجية، واكتشاف الانخفاض في أقل من 24 ساعة</span></li>
+        <li><i class="fa fa-check"></i><span><strong>تقرير أسبوعي مؤتمت:</strong> مؤشرات أداء مجمَّعة ومُفسَّرة ومُنسَّقة. يُرسَل يوم الاثنين الساعة 8:00 إلى الإدارة</span></li>
+        <li><i class="fa fa-check"></i><span><strong>عناصر بصرية مقارنة:</strong> إنشاء تلقائي لـLinkedIn الإدارة وتقارير العملاء، بصيغة مخصَّصة لكل علامة</span></li>
+        <li><i class="fa fa-check"></i><span><strong>نشر عبر القنوات:</strong> إعادة نشر على LinkedIn وFacebook وX وWhatsApp حسب أوقات التفاعل المثلى</span></li>
+        <li><i class="fa fa-check"></i><span><strong>تنبيهات Slack فورية:</strong> إشعار فوري لمسؤول SEO مع السياق واقتراح إجراء تصحيحي</span></li>
+      </ul>
+      <div class="sol-roi-box">
+        <div class="sol-roi-num">1</div>
+        <div class="sol-roi-text"><strong>وظيفة تسويق بدوام كامل أُعيد توجيهها نحو مهام إبداعية استراتيجية.</strong><br>عائد استثمار منذ الشهر الأول بفضل توفير الوقت. رضا العملاء النهائيين +18 نقطة.</div>
+      </div>
+    </div>
+    <div class="sol-fc-visual">
+      <div class="dash" style="width:320px">
+        <div class="dash-bar"><span class="dash-logo">التقرير الأسبوعي · الاثنين 8:00</span></div>
+        <div class="dash-body">
+          <div style="margin-bottom:1rem;padding:.8rem;background:#f8f9fa;border-radius:10px">
+            <div style="font-size:.55rem;color:#888;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem">ملخص الأسبوع</div>
+            <div style="font-size:.78rem;color:#333;line-height:1.7">الزيارات العضوية <span style="color:var(--sc);font-weight:700">+12%</span> مقارنة بالأسبوع الماضي. متوسط الترتيب على جوجل: <span style="color:var(--sc);font-weight:700">4.2</span>. تم اكتشاف وتصحيح 3 حالات انخفاض.</div>
+          </div>
+          <div class="dash-kpi-row">
+            <div class="dash-kpi"><div class="dash-kpi-val" style="font-size:1.2rem">14.2k</div><div class="dash-kpi-lbl">الجلسات</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-val" style="font-size:1.2rem">8.4%</div><div class="dash-kpi-lbl">معدل التحويل</div></div>
+          </div>
+          <div class="dash-alert"><div class="dash-alert-dot"></div><span class="dash-alert-txt">منشورات مُبرمَجة: 12 هذا الأسبوع · أفضل تفاعل مُكتشَف بين 18:00 و20:00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sh-journey" id="parcours">
+  <div class="jp-bg"><img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>images/marketing-journey-bg.jpg" alt="وكالة تسويق رقمي" loading="eager"></div>
+  <div class="jp-content"><div class="container">
+    <div class="sec-label">المسار النموذجي للعميل</div>
+    <h2 class="sec-title rv">من الجمع الساعة 7:00<br><em>إلى تقرير صباح الاثنين</em></h2>
+    <p class="rv d1">ثلاثة تدفقات مؤتمتة تعمل على مدار الساعة حتى يركّز فريقكم فقط على الاستراتيجية الإبداعية.</p>
+    <div class="tab-nav rv d2">
+      <button class="tab-btn active" data-tab="seo">تدفق SEO</button>
+      <button class="tab-btn" data-tab="report">تدفق التقارير</button>
+      <button class="tab-btn" data-tab="social">تدفق النشر</button>
+    </div>
+    <div class="tab-pane active" id="tab-seo"><div class="journey-flow">
+      <div class="jf-track-wrap"><div class="jf-beam"></div></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">اتصال الساعة 7:00</div><p class="jf-desc">يتصل الوكيل تلقائياً بـGoogle Search Console وSemrush</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">جمع المراكز</div><p class="jf-desc">استخراج المراكز على جميع الكلمات المفتاحية الاستراتيجية المتتبَّعة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">اكتشاف الحالات الشاذة</div><p class="jf-desc">تحديد تلقائي للانخفاضات التي تتجاوز 3 مراكز خلال 24 ساعة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">تنبيه Slack</div><p class="jf-desc">إشعار فوري لمسؤول SEO مع السياق والتوصية</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">تحليل المنافسين</div><p class="jf-desc">مقارنة المراكز مع أهم 5 منافسين محدَّدين</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">تقرير يومي</div><p class="jf-desc">ملخص SEO يُرسَل كل صباح في Google Sheet مشترك مع الفريق</p></div>
+    </div></div>
+    <div class="tab-pane" id="tab-report"><div class="journey-flow">
+      <div class="jf-track-wrap"><div class="jf-beam"></div></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">متعدد المصادر</div><p class="jf-desc">اتصال متزامن بـGA4 وMeta Insights وLinkedIn API وSearch Console</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">التوحيد</div><p class="jf-desc">تجميع كل المؤشرات في Google Sheet منظَّم وموحَّد</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">ملخص سردي</div><p class="jf-desc">توليد نص تحليلي للتغيرات المهمة خلال الأسبوع</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">عناصر بصرية للعملاء</div><p class="jf-desc">إنشاء تلقائي لرسوم بيانية مقارنة لتقارير العملاء</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">PDF تنفيذي</div><p class="jf-desc">تقرير مُنسَّق وفق الهوية البصرية لكل علامة عميل</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">إرسال يوم الاثنين 8:00</div><p class="jf-desc">توزيع تلقائي على إدارة التسويق ورؤساء المشاريع</p></div>
+    </div></div>
+    <div class="tab-pane" id="tab-social"><div class="journey-flow">
+      <div class="jf-track-wrap"><div class="jf-beam"></div></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">تقويم بالذكاء الاصطناعي</div><p class="jf-desc">يبرمج الذكاء الاصطناعي المنشورات في أوقات التفاعل المثلى لكل قناة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">تكييف الصيغة</div><p class="jf-desc">إعادة تنسيق تلقائي للمحتوى حسب متطلبات كل منصة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">نشر على LinkedIn</div><p class="jf-desc">منشور مؤسسي يُنشَر في الوقت الأمثل بوسوم وإشارات مستهدَفة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">نشر عبر Meta</div><p class="jf-desc">إعادة نشر على Facebook وInstagram بصيغة ونص مُكيَّفين</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">بث WhatsApp</div><p class="jf-desc">إرسال إلى قوائم جهات الاتصال المؤهَّلة حسب شرائح القاعدة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">قياس التفاعل</div><p class="jf-desc">جمع مؤشرات التفاعل بعد 24 ساعة من النشر للتحسين</p></div>
+    </div></div>
+  </div></div>
+</section>
+
+<section class="sh-integrations" id="integrations"><div class="container">
+  <div class="sec-label">التكاملات الأساسية</div>
+  <h2 class="sec-title rv">متصل بمنظومتكم<br><em>التحليلية الكاملة</em></h2>
+  <div class="sh-int-inner">
+    <div class="accordion rv d1">
+      <div class="acc-item open"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-google"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Google Analytics 4 + Search Console</span><span class="acc-sub">الزيارات، التحويلات، ومراكز SEO</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>جمع يومي لمؤشرات الزيارات والتحويلات والسلوك. استخراج المراكز على الكلمات المفتاحية الاستراتيجية مع تنبيهات تلقائية عند التغيرات المهمة.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-facebook"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Meta Graph API</span><span class="acc-sub">تحليلات Facebook وInstagram</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>الوصول، والتفاعل، وتكلفة النتيجة، وأداء المحتوى الإبداعي مُستخرَجة تلقائياً. مقارنة أسبوعية مدمجة في التقرير الأسبوعي.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-linkedin"></i></div><div class="acc-lbl-wrap"><span class="acc-title">LinkedIn API</span><span class="acc-sub">تحليلات ونشر مؤتمت</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>أداء المنشورات العضوية والمموَّلة. إعادة نشر تلقائية لأفضل المقالات حسب أوقات التفاعل المثلى المحسوبة بالذكاء الاصطناعي.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-slack"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Slack + Notion</span><span class="acc-sub">التنبيهات وقاعدة المعرفة</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>تنبيهات SEO في الوقت الفعلي على Slack، وملخصات مخزَّنة في Notion لتتبع المحتوى التحريري. يتلقى كل عضو في الفريق فقط التنبيهات ذات الصلة بمجاله.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-google"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Semrush / Ahrefs + Buffer</span><span class="acc-sub">SEO متقدم وبرمجة</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>تحليل الروابط الخلفية، وفرص الكلمات المفتاحية، ومتابعة المنافسين. برمجة ونشر تلقائي عبر Buffer أو Hootsuite وفق التقويم التحريري للذكاء الاصطناعي.</p></div></div></div>
+    </div>
+    <div class="sh-int-visual rv d2">
+      <div class="sh-int-card">
+        <img class="sh-int-card-img" src="<?php echo $siteURL; ?>images/marketing-journey-bg.jpg" alt="وكالة رقمية بالرباط">
+        <div class="sh-int-card-body">
+          <div class="sh-int-card-title">نشر متعدد العملاء خلال 9 أسابيع</div>
+          <p class="sh-int-card-desc">تُنشَر مجموعة التسويق بالذكاء الاصطناعي تدريجياً: عميل تجريبي في الأسبوع 3، مصادقة سردية في الأسبوع 6، وتعميم على كامل المحفظة في الأسبوع 9. تدريب الفرق مشمول.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sdtl-section" id="deploiement">
+  <div class="sdtl-orb-wrap"><div class="sdtl-orb" id="sdtlOrb"><div class="sdtl-orb-ring r1"></div><div class="sdtl-orb-ring r2"></div><div class="sdtl-orb-ring r3"></div><div class="sdtl-orb-ring r4"></div></div></div>
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">نشر مخصص لقطاع التسويق</div>
+      <h2 class="sec-title rv">منهجية على مراحل<br><em>مُعايَرة وفق مؤشرات أدائكم</em></h2>
+      <p class="sdtl-intro rv d1">نطاق محدود لمعايرة جودة السرد قبل التعميم على عدة علامات. يصادق فريقكم على كل مخرَج قبل الانتقال إلى النطاق الواسع.</p>
+    </div>
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-glass">
+          <div class="sdtl-num">1</div><div class="sdtl-title">رسم خرائط مؤشرات الأداء</div>
+          <p class="sdtl-desc">جرد المؤشرات، ومصادر البيانات، ووتيرة التقارير، والمستلمين الداخليين/الخارجيين. اتصال واجهات البرمجة بالتوازي.</p>
+          <div style="margin-top:1rem"><div class="sdtl-li"><span>تدقيق المنظومة التحليلية الحالية</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>اتصالات API مُصادَق عليها</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>مؤشرات الأداء ذات الأولوية محدَّدة</span><i class="fa fa-circle"></i></div></div>
+          <span class="sdtl-tag">الأسبوع 1 – 2</span>
+        </div></div>
+        <div class="sdtl-node-wrap"><div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-map"></i></div><div class="sdtl-node-pulse"></div></div></div>
+        <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">تدقيق</div></div>
+      </div>
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-keyword">تجربة</div></div>
+        <div class="sdtl-node-wrap"><div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-flask"></i></div><div class="sdtl-node-pulse"></div></div></div>
+        <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-glass">
+          <div class="sdtl-num">2</div><div class="sdtl-title">تجربة على موقع واحد</div>
+          <p class="sdtl-desc">4 أسابيع من المعايرة على جودة السرد في الملخصات. مصادقة مع فريق التسويق على موقع تجريبي يُختار سوياً.</p>
+          <div style="margin-top:1rem"><div class="sdtl-li"><i class="fa fa-circle"></i><span>تقرير تجريبي مُولَّد ومُصادَق عليه</span></div><div class="sdtl-li"><i class="fa fa-circle"></i><span>تنبيهات SEO مُعايَرة</span></div><div class="sdtl-li"><i class="fa fa-circle"></i><span>نشر مُختبَر على 3 قنوات</span></div></div>
+          <span class="sdtl-tag">الأسبوع 3 – 6</span>
+        </div></div>
+      </div>
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-glass">
+          <div class="sdtl-num">3</div><div class="sdtl-title">تعميم على عدة علامات</div>
+          <p class="sdtl-desc">نشر على كامل المحفظة، وتدريب الفرق على المراجعة النقدية والتعديل التحريري. تحديد ميثاق الذكاء الاصطناعي.</p>
+          <div style="margin-top:1rem"><div class="sdtl-li"><span>4 وكلاء مُدرَّبين مُسلَّمين</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>لوحات تحكم ديناميكية نشطة</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>ميثاق تحريري للذكاء الاصطناعي محدَّد</span><i class="fa fa-circle"></i></div></div>
+          <span class="sdtl-tag">الأسبوع 7 – 10</span>
+        </div></div>
+        <div class="sdtl-node-wrap"><div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-rocket"></i></div><div class="sdtl-node-pulse"></div></div></div>
+        <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">التوسع</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sh-case" id="cas-client"><div class="container">
+  <div class="sec-label">دراسة حالة · قصة نجاح</div>
+  <h2 class="sec-title rv">نتائج ملموسة<br><em>في وكالة رقمية</em></h2>
+  <div class="case-wrap rv d1">
+    <div class="case-left">
+      <span class="case-tag">دراسة حالة · وكالة رقمية · الرباط</span>
+      <h3 class="case-headline">وكالة رقمية<br>الرباط</h3>
+      <p class="case-ctx"><strong>12 عميلاً متابَعاً</strong>، و6 ساعات أسبوعياً مخصَّصة لتجميع تقارير يدوية. تقارير SEO غير منتظمة، تنبيهات فائتة، ووتيرة نشر غير منتظمة.</p>
+      <div class="case-problem"><div class="case-problem-label">المشكلة المحددة</div><div class="case-problem-text">فريق من 4 أشخاص يخصص 40% من وقته لمهام التجميع بدل التركيز على الاستراتيجية الإبداعية والعلاقة مع العملاء.</div></div>
+      <p class="case-ctx" style="margin-bottom:0">مجموعة التسويق بالذكاء الاصطناعي المعتمدة: متابعة SEO + تقرير أسبوعي + لوحات تحكم + نشر عبر جميع القنوات لـ 12 عميلاً في آن واحد.</p>
+    </div>
+    <div class="case-right">
+      <div class="case-results">
+        <div class="result-big"><div class="result-num">35<span style="font-size:.5em">min</span></div><div class="result-lbl">إعداد التقرير (كان 6 ساعات)</div></div>
+        <div class="result-big"><div class="result-num">×2.8</div><div class="result-lbl">منشورات العملاء</div></div>
+        <div class="result-big"><div class="result-num">+18</div><div class="result-lbl">نقطة رضا</div></div>
+        <div class="result-big"><div class="result-num">9<span style="font-size:.5em">sem</span></div><div class="result-lbl">عائد الاستثمار المحقق</div></div>
+      </div>
+      <blockquote class="case-quote">استرجعنا وظيفة كاملة بدوام كامل أعدنا توجيهها نحو الاستراتيجية الإبداعية. ارتفعت القيمة المُدرَكة لدى عملائنا بشكل كبير.<span class="case-quote-author">مدير الوكالة، الرباط</span></blockquote>
+    </div>
+  </div>
+</div></section>
+
+<section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/marketing.jpg')">
+  <div class="container">
+    <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
+    <h2 class="sec-title rv">أتمتوا تقاريركم،<br> ومراقبتكم <br><em>ونشر محتواكم</em></h2>
+
+    <p class="cta-sub">نظّموا آلة تسويقية أكثر أداءً بفضل وكلاء ذكاء اصطناعي قادرين على متابعة مراكزكم في SEO، وتوليد تقاريركم الأسبوعية، وإعداد جداول المشاركة، وتوزيع محتواكم عبر القنوات المناسبة في الوقت المناسب.</p>
+    <div class="cta-btns">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
+          <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
+        </a>
+
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على عرض تجريبي للتسويق الذكي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">احصلوا على عرض تجريبي للتسويق الذكي</span></div>
+          <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
 <?php else: ?>
 
 <section class="sh-hero">
@@ -290,7 +568,7 @@
           <div class="sb-label"><span class="sb-hint">Automatiser votre marketing</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
-    
+
         <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir un exemple de rapport" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Recevoir un exemple de rapport</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
@@ -538,14 +816,14 @@
   <div class="container">
     <div class="sec-label">Vous êtes prêt à passer à l’action ?</div>
     <h2 class="sec-title rv">Automatisez vos reportings,<br> votre veille et votre <br><em>diffusion de contenu</em></h2>
- 
+
     <p class="cta-sub">Structurez une machine marketing plus performante grâce à des agents IA capables de suivre vos positions SEO, générer vos rapports hebdomadaires, préparer vos tableaux de partage et distribuer vos contenus sur les bons canaux au bon moment.</p>
     <div class="cta-btns">
       <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit IA gratuit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
-    
+
         <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir une démo marketing IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint">Recevoir une démo marketing IA</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
