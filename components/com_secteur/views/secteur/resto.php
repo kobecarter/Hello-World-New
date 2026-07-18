@@ -675,6 +675,683 @@
   </div>
 </section>
 
+<?php elseif ($_SESSION['lang'] === 'ar'): ?>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+
+  <div class="sh-hero-body">
+    <div class="container">
+      <div class="sh-hero-inner">
+
+        <!-- LEFT -->
+        <div class="sh-hero-left">
+          <div class="sh-breadcrumb rv">حلول الذكاء الاصطناعي — قطاع المطاعم</div>
+          <h1 class="sh-h1 rv d1">
+           <?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?>
+          </h1>
+          <p class="sh-sub rv d2">أتمتوا استقبال طلباتكم واكسبوا ولاء عملائكم بخدمة لا تشوبها شائبة، حتى في أوقات الذروة.</p>
+          <div class="sh-cta-row rv d3">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا عرضاً تجريبياً للمطعم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">اطلبوا عرضاً تجريبياً للمطعم</span></div>
+              <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
+            </a>
+
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="جربوا قائمة ذكية مباشرة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">جربوا قائمة ذكية مباشرة</span></div>
+              <div class="sb-knob"><i class="fal fa-search"></i></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT — 3D Medical Orbital -->
+        <div class="sh-hero-right">
+          <div class="sho-scene">
+            <div class="sho-ring r1"></div>
+            <div class="sho-ring r2"></div>
+            <div class="sho-ring r3"></div>
+            <div class="sho-core">
+              <div class="sho-plus">🍽</div>
+              <div class="sho-lbl">المطعم بالذكاء الاصطناعي</div>
+            </div>
+
+            <!-- Inner orbit (r=100px) -->
+            <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="POS Clyo"><i class="fal fa-cash-register"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="جوجل ماي بزنس"><i class="fab fa-google"></i></div></div>
+
+            <!-- Middle orbit (r=170px) -->
+            <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="الدفع عبر CMI"><i class="fal fa-credit-card"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="Glovo"><i class="fal fa-motorcycle"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="قائمة ذكية"><i class="fal fa-utensils"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="Uber Eats"><i class="fal fa-shopping-bag"></i></div></div>
+
+            <!-- Outer orbit (r=222px) -->
+            <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="Lightspeed"><i class="fal fa-bolt"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="رمز QR للطاولة"><i class="fal fa-qrcode"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="برنامج الولاء"><i class="fal fa-star"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="تحليلات المبيعات"><i class="fal fa-chart-line"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="n8n / Make"><i class="fal fa-project-diagram"></i></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT STRIP ════════════════════════════════════════════════ -->
+<section class="sh-stats">
+  <div class="container">
+    <div class="sh-stats-grid">
+      <div class="sh-stat rv">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="15">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">زيادة متوسط السلة</div>
+        <div class="sh-stat-sub">اقتراح منهجي للمشروبات/الحلويات</div>
+      </div>
+      <div class="sh-stat rv d1">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="100">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">الطلبات المعالجة</div>
+        <div class="sh-stat-sub">دون عامل هاتف بشري</div>
+      </div>
+      <div class="sh-stat rv d2">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="35">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">معدل التحويل</div>
+        <div class="sh-stat-sub">طلبات محققة مقابل ضائعة</div>
+      </div>
+      <div class="sh-stat rv d3">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="7">0</span><span class="suf"> أسابيع</span></div>
+        <div class="sh-stat-lbl">عائد الاستثمار المحقق</div>
+        <div class="sh-stat-sub">مقارنة بالاستثمار</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTE & ENJEUX ════════════════════════════════════════ -->
+<section class="sh-context">
+  <div class="container">
+    <div class="sh-context-inner">
+
+      <div>
+        <div class="sec-label">السياق والتحديات</div>
+        <h2 class="sh-ctx-title rv"><strong>قطاع المطاعم</strong>تحديات أوقات الذروة<br>في المغرب</h2>
+        <div class="sh-ctx-body rv d1">
+          <p>تواجه المطاعم الحضرية في المغرب تحديات كبيرة خلال أوقات الذروة: <em>خطوط هاتفية مشغولة</em>، أخطاء في الطلبات، وخسارة في رقم الأعمال. يتيح الذكاء الاصطناعي التعاملي استيعاب <em>100% من التدفقات الواردة</em> دون توظيف عمال إضافيين، مع التحفيز على البيع الإضافي.</p>
+          <p>أصبح العملاء المغاربة يطلبون الآن بشكل رئيسي عبر واتساب ومنصات التوصيل. العلامات التجارية التي لا تقدم خدمة تفاعلية سلسة <em>تخسر حصصاً سوقية</em> لصالح منافسين أفضل تجهيزاً. أصبح الذكاء الاصطناعي معياراً لاستيعاب الأحجام الكبيرة دون المساس بالجودة.</p>
+        </div>
+        <div class="sh-pills rv d2">
+          <span class="sh-pill"><i class="fa fa-exclamation-triangle"></i> أوقات الذروة</span>
+          <span class="sh-pill"><i class="fa fa-phone-slash"></i> مكالمات ضائعة ظهراً/مساءً</span>
+          <span class="sh-pill"><i class="fa fa-ban"></i> أخطاء في الطلبات</span>
+          <span class="sh-pill"><i class="fa fa-motorcycle"></i> توصيل غير مُدار</span>
+          <span class="sh-pill"><i class="fa fa-chart-line"></i> انخفاض رقم الأعمال في أوقات الذروة</span>
+        </div>
+      </div>
+
+      <!-- CSS ART Visual -->
+      <div class="sh-ctx-visual rv d2">
+        <div class="sh-ctx-blob"></div>
+        <div class="sh-ctx-blob2"></div>
+        <div class="sh-ctx-center"><div class="sh-ctx-cross">🍽</div></div>
+        <div class="sh-fcard fc1">
+          <div class="sh-fcard-val">1200</div>
+          <div class="sh-fcard-lbl">طلب/شهرياً</div>
+        </div>
+        <div class="sh-fcard fc2">
+          <div class="sh-fcard-val">+18%</div>
+          <div class="sh-fcard-lbl">متوسط السلة</div>
+        </div>
+        <div class="sh-fcard fc3">
+          <div class="sh-fcard-val">78%</div>
+          <div class="sh-fcard-lbl">مؤتمت</div>
+        </div>
+        <div class="sh-fcard fc4">
+          <div class="sh-fcard-val">شهران</div>
+          <div class="sh-fcard-lbl">عائد الاستثمار المحقق</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTIONS IA ══════════════════════════════════════════════ -->
+<section class="sh-solutions" id="solutions">
+  <div class="container">
+    <div class="sec-label">حلول الذكاء الاصطناعي — جوهر الصفحة</div>
+    <h2 class="sec-title rv">روبوت تعاملي<br><em>للطلبات والتوصيل</em></h2>
+
+    <!-- KPI Grid -->
+    <div class="sol-kpi-grid rv d1">
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+15<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">متوسط السلة</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+35<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">معدل التحويل</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">شهران</div>
+        <div class="sol-kpi-lbl">عائد الاستثمار المحقق</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">100<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">طلبات آلية</div>
+      </div>
+    </div>
+
+    <!-- Feature Card -->
+    <div class="sol-feature rv">
+      <!-- Left: Content -->
+      <div class="sol-fc-text">
+        <div class="sol-fc-title"><strong>وكيل طلبات المطعم</strong>صفر مكالمات ضائعة، اقتراح بيع منهجي</div>
+        <p class="sol-fc-desc">روبوت محادثة تعاملي يدير طلبات الأكل الخارجي والتوصيل وحجوزات الطاولات، بقائمة ذكية ديناميكية واقتراح بيع مدمج.</p>
+        <ul class="sol-benefits">
+          <li><i class="fa fa-check"></i><span><strong>صفر مكالمات ضائعة أثناء الخدمة</strong> — استيعاب 100% من التدفقات الواردة</span></li>
+          <li><i class="fa fa-check"></i><span><strong>اقتراح بيع منهجي</strong> — مشروب/حلوى مقترحة مع كل طلب</span></li>
+          <li><i class="fa fa-check"></i><span><strong>ولاء مؤتمت</strong> — دفتر عناوين ذكي لكل عميل</span></li>
+          <li><i class="fa fa-check"></i><span><strong>إدارة الشكاوى</strong> — خط أول دون تدخل بشري</span></li>
+          <li><i class="fa fa-check"></i><span><strong>توزيع تلقائي</strong> — نحو شركاء التوصيل (Glovo، Uber Eats)</span></li>
+          <li><i class="fa fa-check"></i><span><strong>قائمة ذكية ديناميكية</strong> — بصور ومسببات حساسية واقتراحات سياقية</span></li>
+        </ul>
+        <div class="sol-roi-box">
+          <div class="sol-roi-num">وظيفتان</div>
+          <div class="sol-roi-text"><strong>بدوام كامل موفَّرتان في امتياز تجاري بـ 5 نقاط بيع.</strong><br>100% من طلبات واتساب تُعالَج دون تدخل بشري.</div>
+        </div>
+      </div>
+
+      <!-- Right: WhatsApp CSS Mockup 3D -->
+      <div class="sol-fc-visual">
+        <div class="wa-scene" id="waScene">
+          <div class="wa-glow"></div>
+
+          <div class="wa-3d-group" id="wa3dGroup">
+            <!-- WhatsApp logo badge -->
+            <div class="wa-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+
+            <!-- Phone Frame -->
+            <div class="wa-phone">
+              <div class="wa-screen">
+                <!-- Status bar -->
+                <div class="wa-sbar">
+                  <span class="wa-sbar-time">12:45</span>
+                  <div class="wa-sbar-icons">
+                    <i class="fa fa-signal"></i>
+                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </div>
+                </div>
+                <!-- Header -->
+                <div class="wa-hdr">
+                  <span class="wa-hdr-back">&#8592;</span>
+                  <div class="wa-hdr-av">RM</div>
+                  <div class="wa-hdr-info">
+                    <div class="wa-hdr-name">مطعم لو مدينة</div>
+                    <div class="wa-hdr-status">وكيل ذكاء اصطناعي · متصل</div>
+                  </div>
+                  <div class="wa-hdr-ico">
+                    <i class="fa fa-video"></i>
+                    <i class="fa fa-phone"></i>
+                    <i class="fa fa-ellipsis-vertical"></i>
+                  </div>
+                </div>
+                <!-- Chat -->
+                <div class="wa-chat-area">
+                  <div class="wa-bubble ai">مرحباً! أهلاً بكم في لو مدينة 🍽️ هل ترغبون في الطلب أو الحجز أو تتبع توصيلتكم؟<span class="wa-bt">12:43</span></div>
+                  <div class="wa-bubble pt">أرغب في طلب خارجي من فضلكم 🙏<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble ai">رائع! إليكم قائمة اليوم:<br>🥘 طاجين لحم غنم — 85 درهم<br>🍗 دجاج شرمولة — 75 درهم<br>🐟 سمك مشوي — 95 درهم<br>ماذا تريدون؟<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble pt">طاجين لحم غنم ✅<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble ai">اختيار ممتاز! هل أقترح عليكم <strong>عصير برتقال طازج</strong> (25 درهم) أو <strong>ماء معدني</strong> (10 دراهم)؟<span class="wa-bt">12:44</span></div>
+                  <div class="wa-bubble pt">عصير البرتقال شكراً 🍊<span class="wa-bt">12:45</span></div>
+                  <div class="wa-dots-wrap"><span></span><span></span><span></span></div>
+                </div>
+                <!-- Input -->
+                <div class="wa-irow">
+                  <div class="wa-ifake">اكتب رسالة...</div>
+                  <div class="wa-isend"><i class="fa fa-paper-plane"></i></div>
+                </div>
+                <!-- Android nav -->
+                <div class="wa-navb">
+                  <span>&#9664;</span><span>&#9711;</span><span>&#9632;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification overlay -->
+            <div class="wa-notif">
+              <div class="wa-notif-hdr">
+                <div class="wa-notif-av">Dr</div>
+                <div>
+                  <div class="wa-notif-name">مطعم لو مدينة</div>
+                  <div class="wa-notif-st">وكيل ذكاء اصطناعي · متصل</div>
+                </div>
+              </div>
+              <div class="wa-notif-msg">الطلب جاهز •<br>طاجين + عصير برتقال</div>
+              <div class="wa-notif-rep"><i class="fa fa-face-smile"></i> الرد</div>
+              <div class="wa-notif-acts">
+                <div class="wa-notif-act">CLOSE</div>
+                <div class="wa-notif-act">VIEW</div>
+              </div>
+            </div>
+
+          </div><!-- /wa-3d-group -->
+        </div><!-- /wa-scene -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PARCOURS CLIENT — IMAGE PARALLAX + BEAM PROGRESSIF ════════ -->
+<section class="sh-journey" id="parcours">
+
+  <div class="jp-bg">
+    <img id="jpImg" class="jp-img"
+         src="<?php echo $siteURL; ?>images/restaurant-parcours-bg.jpeg"
+         alt="مطعم حديث في المغرب"
+         loading="eager"
+         decoding="async"
+         width="1584" height="672">
+  </div>
+
+  <div class="jp-content">
+    <div class="container">
+      <div class="sec-label">المسار النموذجي للعميل</div>
+      <h2 class="sec-title rv">تجربة العميل<br><em>من الألف إلى الياء</em></h2>
+      <p style="font-size:.9rem;color:var(--bg);max-width:580px;line-height:1.9;font-weight:300;margin-bottom:0" class="rv d1">ثلاث قنوات دخول، تجربة موحدة. اختاروا المسار الذي يناسب علامتكم التجارية.</p>
+
+      <div class="tab-nav rv d2">
+        <button class="tab-btn active" data-tab="wa">عبر واتساب</button>
+        <button class="tab-btn" data-tab="qr">عبر رمز QR للطاولة</button>
+        <button class="tab-btn" data-tab="web">عبر التوصيل</button>
+      </div>
+
+      <!-- Tab 1: WhatsApp -->
+      <div class="tab-pane active" id="tab-wa">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWa"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">رسالة واتساب</div><p class="jf-desc">يرسل العميل رسالة إلى رقم واتساب الخاص بالعلامة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">قائمة ديناميكية</div><p class="jf-desc">يعرض الذكاء الاصطناعي القائمة التفاعلية بالصور ومسببات الحساسية واقتراحات اليوم</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">اقتراح بيع تلقائي</div><p class="jf-desc">مشروبات وحلويات مقترحة حسب الطلب الذي اختاره العميل</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">دفع آمن</div><p class="jf-desc">رابط CMI/Stripe يُنشأ داخل محادثة واتساب بنقرة واحدة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">أمر المطبخ</div><p class="jf-desc">يُرسَل تلقائياً إلى نظام الكاشير (Clyo/Micros) دون إعادة إدخال يدوي</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">إشعار الاستلام</div><p class="jf-desc">يُخطَر العميل للاستلام أو تتبع GPS للتوصيل في الوقت الفعلي</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: QR Code Table -->
+      <div class="tab-pane" id="tab-qr">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamQr"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">رمز QR للطاولة</div><p class="jf-desc">يمسح العميل رمز QR المعروض على طاولته أو عند مدخل المطعم</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">قائمة رقمية</div><p class="jf-desc">تظهر القائمة التفاعلية فوراً بالصور والأسعار ومسببات الحساسية</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">طلب داخل القاعة</div><p class="jf-desc">الاختيار والتخصيص (دون غلوتين، دون لاكتوز، حار...)</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">اقتراح مشروبات</div><p class="jf-desc">اقتراحات تلقائية للمشروبات والحلويات حسب الأطباق المطلوبة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تأكيد المطبخ</div><p class="jf-desc">يُرسَل الطلب فوراً إلى نظام الكاشير في المطبخ، دون إعادة إدخال</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تقييم جوجل</div><p class="jf-desc">طلب تقييم رضا تلقائي بعد الوجبة عبر SMS/واتساب</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Livraison -->
+      <div class="tab-pane" id="tab-web">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWeb"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">استلام الطلب</div><p class="jf-desc">عبر Glovo أو Uber Eats أو واتساب مباشرة — مُركَّز في مسار واحد</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تأكيد بالذكاء الاصطناعي</div><p class="jf-desc">مدة التحضير المقدرة تُبلَّغ تلقائياً للعميل</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">التحضير عبر الكاشير</div><p class="jf-desc">يُنقَل أمر الطلب إلى المطبخ عبر نظام الكاشير في الوقت الفعلي دون إعادة إدخال</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">توزيع على عامل التوصيل</div><p class="jf-desc">إسناد تلقائي لعامل التوصيل الشريك الأقرب المتاح</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تتبع GPS</div><p class="jf-desc">يُخطَر العميل في كل مرحلة من التوصيل مع الموقع في الوقت الفعلي</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">الولاء والتقييم</div><p class="jf-desc">طلب تقييم الرضا، وإرسال عرض ولاء تلقائياً</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTÉGRATIONS — ACCORDION ════════════════════════════════ -->
+<section class="sh-integrations" id="integrations">
+  <div class="container">
+    <div class="sec-label">التكاملات الأساسية</div>
+    <h2 class="sec-title rv">متصل بمنظومتكم<br><em>الخاصة بالمطعم</em></h2>
+
+    <div class="sh-int-inner">
+
+      <!-- Accordion -->
+      <div class="accordion rv d1">
+
+        <div class="acc-item open">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-cash-register"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">أنظمة الكاشير</span>
+              <span class="acc-sub">Clyo وMicros وLightspeed</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>مزامنة الطلبات في الوقت الفعلي مع الصندوق الخاص بكم. تُنقَل الطلبات المستلمة عبر الوكيل الذكي مباشرة إلى المطبخ دون إعادة إدخال، مما يلغي الأخطاء والتأخيرات. متوافق مع أبرز أنظمة الكاشير المستخدمة في المغرب (Clyo وMicros وLightspeed).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-credit-card"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">منصات الدفع</span>
+              <span class="acc-sub">CMI وStripe — روابط آمنة</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>إنشاء روابط دفع آمنة مباشرة داخل محادثة واتساب. عربون الحجز، تسوية عند الطلب، واسترجاع تلقائي للمبالغ في حال الإلغاء. دعم البطاقات المغربية (CMI) والدولية (Stripe).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-whatsapp"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">WhatsApp Business API</span>
+              <span class="acc-sub">القناة الرئيسية للطلب</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>واجهة برمجية رسمية من Meta لمحادثات أصلية داخل واتساب. معدل فتح متوسط يبلغ 94% مقابل 21% للبريد الإلكتروني. نماذج رسائل معتمدة مسبقاً، تحليلات للتحويل، ومطابقة كاملة مع RGPD. يطلب عملاؤكم من داخل التطبيق الذي يستخدمونه يومياً بالفعل.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-motorcycle"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">منصات التوصيل</span>
+              <span class="acc-sub">Glovo وUber Eats عبر مجمّع</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>تكامل عبر مجمّع لتمركيز جميع طلبات التوصيل في مسار عمل واحد. توزيع تلقائي على عامل التوصيل المتاح، تتبع GPS يُشارَك مع العميل، وتأكيد تلقائي في كل مرحلة.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-google"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Google My Business</span>
+              <span class="acc-sub">التقييمات والظهور المحلي</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>جمع تلقائي لتقييمات جوجل بعد كل طلب أو توصيل ناجح. تحسين مستمر لتقييم جوجل، وردود آلية على التقييمات السلبية. ظهور محلي أفضل وتموقع في خرائط جوجل لجذب عملاء جدد.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-project-diagram"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">n8n / Make</span>
+              <span class="acc-sub">أتمتة سير العمل</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>تنسيق جميع المسارات المؤتمتة: تذكيرات السلات المهجورة، حملات ولاء عبر SMS، تقارير أسبوعية تلقائية للمدير، وتنبيهات انخفاض المخزون. لوحة مراقبة مركزية للامتيازات متعددة المواقع.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual Integration Hub -->
+      <div class="sh-int-visual rv d2">
+        <div class="sh-int-card">
+          <div class="sec-label" style="margin-bottom:.8rem">الاتصالات النشطة</div>
+          <div class="sh-int-orbit">
+            <div class="sio-ring r1">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-cash-register"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            <div class="sio-ring r2">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-utensils"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-motorcycle"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-credit-card"></i></div>
+            </div>
+            <div class="sio-ring r3">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-shield-alt"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-sms"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-qrcode"></i></div>
+              <div class="sio-dot" style="left:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-bell"></i></div>
+            </div>
+            <div class="sio-center"><span>IA</span></div>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+            <div style="font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)">تكامل خلال ساعات معدودة</div>
+            <div style="font-family:var(--fm);font-size:.72rem;color:var(--txt);margin-top:.4rem;font-weight:300">دون الحاجة لإعادة هيكلة نظامكم الحالي</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DÉPLOIEMENT ═══════════════════════════════════════════════ -->
+<!-- ══ DÉPLOIEMENT — TIMELINE LIGHT (style solutions-ia) ════════ -->
+<section class="sdtl-section" id="deploiement">
+
+  <!-- 3D Background orb subtil -->
+  <div class="sdtl-orb-wrap" aria-hidden="true">
+    <div class="sdtl-orb" id="sdtlOrb">
+      <div class="sdtl-orb-ring r1"></div>
+      <div class="sdtl-orb-ring r2"></div>
+      <div class="sdtl-orb-ring r3"></div>
+      <div class="sdtl-orb-ring r4"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">نشر مخصص لقطاع المطاعم</div>
+      <h2 class="sec-title rv">نشر متعدد المواقع<br><em>على 3 مراحل</em></h2>
+      <p class="sdtl-intro rv d1">منهجية مجرَّبة لنشر روبوت الطلبات الخاص بكم على نقطة بيع واحدة أو أكثر، مع تحقيق عائد الاستثمار خلال 7 أسابيع.</p>
+    </div>
+
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <!-- Spine -->
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+
+      <!-- ── PHASE 0 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">تجربة في نقطة بيع واحدة</div>
+            <p class="sdtl-desc">تأطير القائمة التفاعلية، تنسيق شكل الطلب، تكامل نظام الكاشير والدفع، وتدريب مدير القاعة على الإشراف.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>مسار عمل n8n مُهيَّأ</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>قائمة تفاعلية بالذكاء الاصطناعي</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>تكامل الكاشير مُختبَر</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>تدريب الفريق</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 1 – 4</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-store"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">اختبار حقيقي</div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 1 — RIGHT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-keyword">تجريبي</div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-flask"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">اختبار في ظروف حقيقية</div>
+            <p class="sdtl-desc">4 أسابيع في أوقات الذروة (مساء الجمعة، ظهيرة أيام الأسبوع) للتحقق من الموثوقية وزمن الاستجابة ومعدل التحويل الفعلي.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تقرير الموثوقية</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تعديلات القائمة الذكية</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>معدل التحويل المُصادَق عليه</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تحسينات اقتراح البيع</span></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 5 – 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">النشر متعدد المواقع</div>
+            <p class="sdtl-desc">التكرار على كامل الشبكة، توحيد القوائم، مراقبة مركزية، ولوحة إشراف للمديرين.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>لوحة المراقبة</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>دليل رقمي للمضيف</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>جميع المواقع منشورة</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>لوحة تحكم بالوقت الفعلي</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 7 – 10</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-rocket"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">متعدد المواقع</div>
+        </div>
+      </div>
+
+    </div><!-- /sdtl-timeline -->
+  </div>
+</section>
+
+<!-- ══ CAS CLIENT ════════════════════════════════════════════════ -->
+<section class="sh-case" id="cas-client">
+  <div class="container">
+    <div class="sec-label">دراسة حالة — قصة نجاح</div>
+    <h2 class="sec-title rv">نتائج ملموسة<br><em>في قطاع المطاعم</em></h2>
+
+    <div class="case-wrap rv d1">
+
+      <!-- Left: Context + Problem -->
+      <div class="case-left">
+        <div class="case-tag">دراسة حالة · امتياز مطاعم · الدار البيضاء</div>
+        <h3 class="case-headline">امتياز مطاعم وجبات سريعة<br>8 نقاط بيع، 1200 طلب شهرياً</h3>
+        <p class="case-ctx"><strong>السياق:</strong> امتياز يضم 8 نقاط بيع يعالج 1200 طلب شهرياً. طوابير هاتفية مكتظة الساعة 13:00، 3 عمال هاتف مثقلون، وطلبات ضائعة في أوقات الذروة.</p>
+        <div class="case-problem">
+          <div class="case-problem-label">المشكلة المحددة</div>
+          <div class="case-problem-text">23% من المكالمات لم تُجَب بين الساعة 12:00 و14:00. عمال الهاتف مشغولون بنسبة 100% أثناء الخدمة. متوسط السلة راكد دون اقتراح بيع منهجي. خسارة تقدَّر بـ 18,000 درهم شهرياً من رقم أعمال غير محقق.</div>
+        </div>
+        <div>
+          <div class="case-solution-label" style="font-family:var(--fm);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt2);margin-bottom:.45rem">الحل المعتمد</div>
+          <div class="case-solution-text" style="font-size:.8rem;color:var(--txt2);line-height:1.8">وكيل HW لواتساب + قائمة تفاعلية ديناميكية + تكامل مع نظام الكاشير Clyo. تدريب المديرين على الإشراف على الوكيل الذكي في 5 نقاط بيع تجريبية.</div>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="case-right">
+        <div>
+          <div class="results-title">النتائج الملاحظة بعد 7 أسابيع</div>
+          <div class="results-big-grid">
+            <div class="result-big">
+              <div class="result-big-val">+18<span style="font-size:.7em">%</span></div>
+              <div class="result-big-lbl">متوسط السلة</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">78%</div>
+              <div class="result-big-lbl">طلبات آلية</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">1.5</div>
+              <div class="result-big-lbl">وظيفة موفَّرة / نقطة بيع</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">7<span style="font-size:.7em">أسابيع</span></div>
+              <div class="result-big-lbl">عائد الاستثمار المحقق</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-testimonial">
+          <p class="ct-text">لم تعد فرقنا تفقد أي طلب خلال فترات الذروة. يقترح الروبوت تلقائياً الحلويات والمشروبات — قفز متوسط سلتنا خلال أسابيع قليلة.</p>
+          <div class="ct-author">— الإدارة، امتياز مطاعم بالدار البيضاء</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
+ <section class="cta-band" style="background: url(<?php echo $siteURL; ?>images/restaurant.jpg);">
+  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">مطاعم</span>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">المطعم: سرّعوا <br>طلباتكم دون إثقال <br><em>فرقكم</em></h2>
+    <p class="cta-sub">أرسوا وكيلاً بالذكاء الاصطناعي قادراً على إدارة استقبال الطلبات والحجوزات وطلبات العملاء عبر واتساب، حتى خلال أوقات الذروة، مع دعم أهدافكم في المبيعات والولاء.</p>
+    <div class="cta-btns">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
+            <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
+        </a>
+
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="جربوا عرضاً تجريبياً للمطعم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">جربوا عرضاً تجريبياً للمطعم</span></div>
+            <div class="sb-knob"><i class="fal fa-download"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
 <?php else: ?>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
