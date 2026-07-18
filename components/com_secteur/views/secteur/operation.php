@@ -335,6 +335,275 @@
   </div>
 </section>
 
+<?php elseif ($_SESSION['lang'] === 'ar'): ?>
+
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+  <div class="sh-hero-body"><div class="container"><div class="sh-hero-inner">
+    <div>
+      <div class="sh-breadcrumb">حلول الذكاء الاصطناعي · التنظيم والعمليات</div>
+      <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
+      <p class="sh-sub">اربطوا أدواتكم، وسهّلوا تدفق المعلومات، وزوّدوا موظفيكم بمساعدين افتراضيين فعّالين. ألغوا المهام المتكررة وهدّئوا إدارتكم الداخلية.</p>
+      <div class="sh-cta-row">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="حسّنوا عملياتكم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">حسّنوا عملياتكم</span></div>
+          <div class="sb-knob"><i class="fal fa-bolt"></i></div>
+        </a>
+
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على ميثاق الذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">احصلوا على ميثاق الذكاء الاصطناعي</span></div>
+          <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
+        </a>
+      </div>
+    </div>
+    <!-- ORBITAL OPS IA -->
+    <div class="sh-hero-right">
+      <div class="sho-scene">
+        <div class="sho-ring r1"></div>
+        <div class="sho-ring r2"></div>
+        <div class="sho-ring r3"></div>
+        <div class="sho-core">
+          <div class="sho-plus"><i class="fa fa-network-wired" style="font-size:1rem"></i></div>
+          <div class="sho-lbl">العمليات بالذكاء الاصطناعي</div>
+        </div>
+        <!-- Orbit interne r=100px -->
+        <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="ملخص Slack"><i class="fab fa-slack"></i></div></div>
+        <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="مشاريع Trello"><i class="fab fa-trello"></i></div></div>
+        <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="فرز Gmail الذكي"><i class="fal fa-envelope"></i></div></div>
+        <!-- Orbit moyenne r=170px -->
+        <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="تفريغ نصي Zoom"><i class="fal fa-video"></i></div></div>
+        <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="دعم WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+        <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="قاعدة Notion"><i class="fal fa-book-open"></i></div></div>
+        <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="Google Meet"><i class="fab fa-google"></i></div></div>
+        <!-- Orbit externe r=222px -->
+        <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="Jira / Asana"><div class="ltr">JR</div></div></div>
+        <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="Microsoft Teams"><div class="ltr">MS</div></div></div>
+        <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="هاتفة 3CX"><i class="fal fa-phone"></i></div></div>
+        <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="إنترانت SIRH"><i class="fal fa-users"></i></div></div>
+        <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="محضر اجتماع Zoom"><i class="fal fa-file-alt"></i></div></div>
+      </div>
+    </div>
+  </div></div></div>
+</section>
+
+<section class="sh-stats"><div class="container"><div class="sh-stats-grid">
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="50">0</span><span class="suf">%</span></div><div class="sh-stat-lbl">اجتماعات المتابعة</div><div class="sh-stat-sub">مخفَّضة بفضل ملخصات الذكاء الاصطناعي</div></div>
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="35">0</span><span class="suf">%</span></div><div class="sh-stat-lbl">المواعيد النهائية المُحترَمة</div><div class="sh-stat-sub">ارتفاع على 12 مشروعاً نشطاً</div></div>
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="4">0</span><span class="suf">h</span></div><div class="sh-stat-lbl">ساعات موفَّرة لكل مدير</div><div class="sh-stat-sub">أسبوعياً في المتوسط</div></div>
+  <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="5">0</span><span class="suf">أشهر</span></div><div class="sh-stat-lbl">عائد الاستثمار القابل للتحقيق</div><div class="sh-stat-sub">وظيفة سكرتارية بدوام كامل أُعيد توجيهها</div></div>
+</div></div></section>
+
+<section class="sh-context"><div class="container"><div class="sh-context-inner">
+  <div>
+    <div class="sec-label">السياق والتحديات</div>
+    <h2 class="sh-ctx-title rv"><strong>العمليات في المغرب</strong>المعلومات تضيع بين الأدوات</h2>
+    <div class="sh-ctx-body rv d1">
+      <p>تواجه الشركات المتوسطة والكبيرة المغربية تشتت المعلومات بين البريد الإلكتروني وTrello وZoom وSlack. يؤدي هذا النقص في التنسيق إلى تأخيرات في المشاريع و<em>فقدان بيانات حرجة</em>.</p>
+      <p>يعمل دمج وكلاء الذكاء الاصطناعي الداخليين كقائد أوركسترا رقمي يربط جميع هذه المنظومات. يصبح تتبع القرارات تلقائياً، وتُحتَرم المواعيد النهائية دون الحاجة لاجتماعات متابعة.</p>
+    </div>
+    <div class="sh-pills rv d2">
+      <span class="sh-pill"><i class="fa fa-envelope"></i> فرز Gmail الذكي</span>
+      <span class="sh-pill"><i class="fab fa-trello"></i> ملخص Trello</span>
+      <span class="sh-pill"><i class="fa fa-microphone"></i> محضر Zoom تلقائي</span>
+      <span class="sh-pill"><i class="fab fa-whatsapp"></i> دعم داخلي</span>
+    </div>
+  </div>
+  <div class="sh-ctx-visual rv d3">
+    <div class="sh-ctx-blob"></div><div class="sh-ctx-blob2"></div>
+    <div class="sh-ctx-center-wrap"><div class="sh-ctx-center"><i class="fa fa-network-wired"></i></div></div>
+    <div class="sh-fcard fc1"><div class="sh-fcard-val">50%</div><div class="sh-fcard-lbl">الاجتماعات</div></div>
+    <div class="sh-fcard fc2"><div class="sh-fcard-val">4h</div><div class="sh-fcard-lbl">ساعات موفَّرة/مدير</div></div>
+    <div class="sh-fcard fc3"><div class="sh-fcard-val">100%</div><div class="sh-fcard-lbl">محاضر موثَّقة</div></div>
+    <div class="sh-fcard fc4"><div class="sh-fcard-val">5m</div><div class="sh-fcard-lbl">عائد الاستثمار</div></div>
+  </div>
+</div></div></section>
+
+<section class="sh-solutions" id="solutions"><div class="container">
+  <div class="sec-label">وكلاء التنسيق الداخلي</div>
+  <h2 class="sec-title rv">خمسة وكلاء،<br><em>مكتب بلا احتكاك</em></h2>
+  <div class="sol-kpi-grid rv d1">
+    <div class="sol-kpi-card"><div class="sol-kpi-val">50<span style="font-size:.6em">%</span></div><div class="sol-kpi-lbl">اجتماعات مخفَّضة</div></div>
+    <div class="sol-kpi-card"><div class="sol-kpi-val">100<span style="font-size:.6em">%</span></div><div class="sol-kpi-lbl">محاضر مركزية</div></div>
+    <div class="sol-kpi-card"><div class="sol-kpi-val">4<span style="font-size:.6em">h</span></div><div class="sol-kpi-lbl">ساعات موفَّرة/مدير</div></div>
+    <div class="sol-kpi-card"><div class="sol-kpi-val">+35<span style="font-size:.6em">%</span></div><div class="sol-kpi-lbl">مواعيد نهائية محترمة</div></div>
+  </div>
+  <div class="sol-feature rv">
+    <div class="sol-fc-text">
+      <div class="sol-fc-title"><strong>مجموعة التنسيق بالذكاء الاصطناعي</strong>Gmail · Trello · Slack · Zoom · WhatsApp</div>
+      <p class="sol-fc-desc">خمسة وكلاء مترابطين يفرزون بريدكم الإلكتروني، ويلخّصون مشاريعكم، ويفرّغون اجتماعاتكم نصياً، ويردون على فرقكم في الوقت الفعلي. صفر معلومات ضائعة.</p>
+      <ul class="sol-benefits">
+        <li><i class="fa fa-check"></i><span><strong>فرز Gmail وتنبيهات عاجلة</strong> — اكتشاف الرسائل الحرجة (عملاء VIP، نزاعات)، إشعار فوري على Slack مع مسودة رد</span></li>
+        <li><i class="fa fa-check"></i><span><strong>ملخص Trello اليومي</strong> — حالة المشاريع موحَّدة، المواعيد النهائية لليوم على Slack كل صباح الساعة 8:00 مع تنبيهات حمراء عند التأخير</span></li>
+        <li><i class="fa fa-check"></i><span><strong>تفريغ Zoom تحليلي</strong> — محضر تلقائي خلال دقيقتين، مهام مستخرَجة ومُسنَدة، بطاقات Trello تُنشَأ فوراً</span></li>
+        <li><i class="fa fa-check"></i><span><strong>دعم داخلي عبر WhatsApp</strong> — مساعد موارد بشرية/تقنية معلومات تعاملي متاح على مدار الساعة، تصعيد تلقائي للحالات المعقدة</span></li>
+        <li><i class="fa fa-check"></i><span><strong>ملخص نشاط Trello</strong> — تقرير سردي يومي لكل لوحة يُرسَل إلى الإدارة، تأخيرات محدَّدة ومُبلَّغ عنها استباقياً</span></li>
+      </ul>
+      <div class="sol-roi-box">
+        <div class="sol-roi-num">1</div>
+        <div class="sol-roi-text"><strong>وظيفة سكرتارية إدارية موفَّرة.</strong><br>توفير 4 ساعات أسبوعياً لكل مدير. عائد استثمار خلال 5 أشهر. رضا داخلي +12 نقطة.</div>
+      </div>
+    </div>
+    <div class="sol-fc-visual">
+      <div class="slk" style="width:320px">
+        <div class="slk-head"><div class="slk-ico"><i class="fab fa-slack"></i></div><span class="slk-channel">#محضر-اجتماع-zoom</span></div>
+        <div class="slk-body">
+          <div class="slk-msg"><div class="slk-avatar bot">HW</div><div class="slk-msg-content"><div class="slk-msg-author">وكيل HW <span>الآن</span></div><div class="slk-msg-text"><strong>محضر اجتماع الإدارة · 16:00</strong></div><div class="slk-alert"><div class="slk-alert-txt"><span class="slk-dot"></span>3 قرارات متخذة · 5 مهام أُنشئت · بطاقتا Trello مُسنَدتان</div></div></div></div>
+          <div class="slk-msg" style="margin-top:.4rem"><div class="slk-avatar bot">HW</div><div class="slk-msg-content"><div class="slk-msg-author">المهام <span>تلقائية</span></div><div class="slk-msg-text"><strong style="color:#4ade80">@كريم</strong> — تسليم نموذج العميل · الجمعة<br><strong style="color:#4ade80">@نادية</strong> — تقرير الربع الثالث للإدارة المالية · صباح الاثنين<br><strong style="color:#f87171">@مُعاذ</strong> — عاجل: عقد بانتظار التوقيع</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══ PARCOURS CLIENT — IMAGE PARALLAX + BEAM PROGRESSIF ════════ -->
+<section class="sh-journey" id="parcours">
+  <div class="jp-bg"><img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>images/operations-journey-bg.jpg" alt="مكتب تنسيق حديث" loading="eager"></div>
+  <div class="jp-content"><div class="container">
+    <div class="sec-label">المسار النموذجي للعميل</div>
+    <h2 class="sec-title rv">من اجتماع عبر Zoom<br><em>إلى بطاقات Trello المُنشأة</em></h2>
+    <p class="rv d1" style="font-size:.9rem;color:var(--txt2);max-width:580px;line-height:1.9;font-weight:300;margin-bottom:0">ثلاثة تدفقات مؤتمتة تعالج اجتماعاتكم ومشاريعكم واتصالاتكم الداخلية دون تدخل بشري.</p>
+    <div class="tab-nav rv d2">
+      <button class="tab-btn active" data-tab="zoom">تدفق الاجتماعات</button>
+      <button class="tab-btn" data-tab="trello">تدفق المشاريع</button>
+      <button class="tab-btn" data-tab="support">تدفق الدعم</button>
+    </div>
+    <div class="tab-pane active" id="tab-zoom"><div class="journey-flow">
+      <div class="jf-track-wrap"><div class="jf-beam"></div></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">نهاية الاجتماع</div><p class="jf-desc">ينتهي اجتماع Zoom، ويُرسَل التسجيل تلقائياً إلى الوكيل</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">تفريغ بالذكاء الاصطناعي</div><p class="jf-desc">تفريغ نصي كامل خلال دقيقتين، وتحديد المتحدثين والقرارات</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">استخراج المهام</div><p class="jf-desc">تحديد المهام وإسنادها بالاسم إلى الموظفين المذكورين</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">بطاقات Trello</div><p class="jf-desc">إنشاء تلقائي للبطاقات بمواعيد نهائية مُستخرَجة من المحادثة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">إشعار Slack</div><p class="jf-desc">ملخص تنفيذي وروابط إجراءات تُرسَل لكل مشارك على Slack</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">أرشفة في Notion</div><p class="jf-desc">محضر منظَّم مؤرشَف في Notion، وقاعدة المعرفة تُثرى تلقائياً</p></div>
+    </div></div>
+    <div class="tab-pane" id="tab-trello"><div class="journey-flow">
+      <div class="jf-track-wrap"><div class="jf-beam"></div></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">فحص الساعة 7:30</div><p class="jf-desc">يحلل الوكيل تلقائياً جميع لوحات Trello وتذاكر Jira النشطة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">اكتشاف التأخيرات</div><p class="jf-desc">تحديد البطاقات المتأخرة أو المعرَّضة للخطر مع حساب مدة التجاوز</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">تنبيهات حمراء</div><p class="jf-desc">إشعار Slack فوري للمسؤولين عن المهام الحرجة المحدَّدة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">ملخص الساعة 8:00</div><p class="jf-desc">ملخص المواعيد النهائية لليوم يُرسَل لكل مدير على قناته في Slack</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">تقرير سردي</div><p class="jf-desc">ملخص أسبوعي لتقدم كل مشروع يُرسَل إلى الإدارة يوم الجمعة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">لوحة التحكم</div><p class="jf-desc">لوحة تحكم التنسيق تُحدَّث في الوقت الفعلي، متاحة لجميع المدراء</p></div>
+    </div></div>
+    <div class="tab-pane" id="tab-support"><div class="journey-flow">
+      <div class="jf-track-wrap"><div class="jf-beam"></div></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">سؤال موظف</div><p class="jf-desc">يرسل موظف سؤالاً متعلقاً بالموارد البشرية أو تقنية المعلومات عبر WhatsApp Business الداخلي على مدار الساعة</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">تصنيف بالذكاء الاصطناعي</div><p class="jf-desc">تصنيف تلقائي للطلب (موارد بشرية، تقنية معلومات، إجراء، حالة عاجلة)</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">رد فوري</div><p class="jf-desc">يرد الوكيل في أقل من 30 ثانية انطلاقاً من قاعدة معرفة SIRH</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">تصعيد عند الحاجة</div><p class="jf-desc">تحويل تلقائي إلى الفرق البشرية للحالات المعقدة الخارجة عن النطاق</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">متابعة التذكرة</div><p class="jf-desc">إنشاء تذكرة متابعة إذا تطلَّب الحل إجراءً يدوياً</p></div>
+      <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">قياس الرضا</div><p class="jf-desc">استبيان رضا تلقائي بعد الحل للتحسين المستمر</p></div>
+    </div></div>
+  </div></div>
+</section>
+
+<section class="sh-integrations" id="integrations"><div class="container">
+  <div class="sec-label">التكاملات الأساسية</div>
+  <h2 class="sec-title rv">متصل بمنظومتكم<br><em>التنظيمية</em></h2>
+  <div class="sh-int-inner">
+    <div class="accordion rv d1">
+      <div class="acc-item open"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-google"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Google Workspace / Office 365</span><span class="acc-sub">Gmail وDrive وCalendar وTeams</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>فرز تلقائي لـGmail مع اكتشاف الرسائل ذات الأولوية، وتكامل مع Calendar لتذكيرات الاجتماعات، وDrive لأرشفة المحاضر التي يولّدها الوكيل.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-trello"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Trello / Jira / Asana</span><span class="acc-sub">إدارة مشاريع مؤتمتة</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>إنشاء تلقائي للبطاقات انطلاقاً من اجتماعات Zoom، ومزامنة ثنائية الاتجاه للحالات، وتنبيهات Slack عند تجاوز المواعيد النهائية، وملخص يومي لكل مدير.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-slack"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Slack / Microsoft Teams</span><span class="acc-sub">مركز اتصال الوكلاء</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>قناة مركزية لاستقبال جميع تنبيهات وملخصات وإشعارات الوكلاء. يتلقى كل موظف فقط المعلومات ذات الصلة بنطاق عمله.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fa fa-video"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Zoom / Google Meet / Téléphonie IP</span><span class="acc-sub">تفريغ نصي واستخراج تحليلي</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>تفريغ نصي تلقائي عبر واجهة برمجية لـZoom أو Google Meet. متوافق أيضاً مع أنظمة الهاتفة عبر الإنترنت (3CX، Genesys) لمراكز الاتصال والفرق التجارية.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger"><div class="acc-ico"><i class="fab fa-whatsapp"></i></div><div class="acc-lbl-wrap"><span class="acc-title">WhatsApp Business / Notion / SIRH</span><span class="acc-sub">دعم داخلي وقاعدة معرفة</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button><div class="acc-body"><div class="acc-content"><p>وكيل دعم تعاملي متصل بقاعدة معرفة Notion ونظام SIRH للإجابة عن أسئلة الموارد البشرية وتقنية المعلومات. ميثاق استخدام مُحدَّد مع إدارة الموارد البشرية وإدارة نظم المعلومات.</p></div></div></div>
+    </div>
+    <div class="sh-int-visual rv d2"><div class="sh-int-card">
+      <img class="sh-int-card-img" src="<?php echo $siteURL; ?>images/secteur/<?= $secteur->getPhoto() ?>" alt="مكتب بالدار البيضاء">
+      <div class="sh-int-card-body">
+        <div class="sh-int-card-title">بنية مُصادَق عليها من إدارة الموارد البشرية وإدارة نظم المعلومات</div>
+        <p class="sh-int-card-desc">يبدأ كل نشر بتدقيق تنظيمي شامل مع إدارة الموارد البشرية وإدارة نظم المعلومات. تُحدَّد متطلبات الحوكمة، وتُصادَق صلاحيات الوصول للواجهات البرمجية، ويُحدَّد ميثاق استخدام الذكاء الاصطناعي قبل أي انطلاق تقني.</p>
+      </div>
+    </div></div>
+  </div>
+</div></section>
+
+<section class="sdtl-section" id="deploiement">
+  <div class="sdtl-orb-wrap"><div class="sdtl-orb" id="sdtlOrb"><div class="sdtl-orb-ring r1"></div><div class="sdtl-orb-ring r2"></div><div class="sdtl-orb-ring r3"></div><div class="sdtl-orb-ring r4"></div></div></div>
+  <div class="container"><div class="sdtl-header">
+    <div class="sec-label">نشر مخصص لقطاع العمليات</div>
+    <h2 class="sec-title rv">منهجية على مراحل<br><em>مُصادَق عليها من إدارة الموارد البشرية وإدارة نظم المعلومات</em></h2>
+    <p class="sdtl-intro rv d1">نشر منظَّم ينطلق من تدقيق تنظيمي لضمان التبني والتتبع. يصادق فريقكم التجريبي على كل وكيل قبل الانتقال إلى النطاق الواسع.</p>
+  </div>
+  <div class="sdtl-timeline" id="sdtlTimeline">
+    <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+    <div class="sdtl-step">
+      <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-glass">
+        <div class="sdtl-num">1</div><div class="sdtl-title">تدقيق تنظيمي</div>
+        <p class="sdtl-desc">رسم خرائط الأدوات الحالية، وتحديد الصوامع المعزولة، ومصادقة صلاحيات الوصول للواجهات البرمجية ومتطلبات الحوكمة مع إدارة الموارد البشرية وإدارة نظم المعلومات.</p>
+        <div style="margin-top:1rem"><div class="sdtl-li"><span>رسم خرائط التدفقات الداخلية</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>صلاحيات API مُصادَق عليها مع إدارة نظم المعلومات</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>ميثاق حوكمة الذكاء الاصطناعي محدَّد</span><i class="fa fa-circle"></i></div></div>
+        <span class="sdtl-tag">الأسبوع 1 – 2</span>
+      </div></div>
+      <div class="sdtl-node-wrap"><div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-sitemap"></i></div><div class="sdtl-node-pulse"></div></div></div>
+      <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">تدقيق</div></div>
+    </div>
+    <div class="sdtl-step">
+      <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-keyword">تجربة</div></div>
+      <div class="sdtl-node-wrap"><div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-users"></i></div><div class="sdtl-node-pulse"></div></div></div>
+      <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-glass">
+        <div class="sdtl-num">2</div><div class="sdtl-title">تجربة الموارد البشرية والمشاريع</div>
+        <p class="sdtl-desc">نشر على فرق الموارد البشرية ومدراء المشاريع خلال 6 أسابيع. معايرة الملخصات وعتبات التنبيه وفق ملاحظات المستخدمين.</p>
+        <div style="margin-top:1rem"><div class="sdtl-li"><i class="fa fa-circle"></i><span>5 وكلاء نشطون ومُعايَرون</span></div><div class="sdtl-li"><i class="fa fa-circle"></i><span>عتبات التنبيه مُعدَّلة</span></div><div class="sdtl-li"><i class="fa fa-circle"></i><span>ملاحظات الفرق مجمَّعة</span></div></div>
+        <span class="sdtl-tag">الأسبوع 3 – 6</span>
+      </div></div>
+    </div>
+    <div class="sdtl-step">
+      <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-glass">
+        <div class="sdtl-num">3</div><div class="sdtl-title">تعميم على عدة فرق</div>
+        <p class="sdtl-desc">نشر على جميع الأقسام، ومواكبة التغيير، وتدريب المدراء وسكرتاريات الإدارة. تحديد ميثاق استخدام الذكاء الاصطناعي.</p>
+        <div style="margin-top:1rem"><div class="sdtl-li"><span>ميثاق استخدام الذكاء الاصطناعي مُنشَر</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>تدريب 100% من المدراء</span><i class="fa fa-circle"></i></div><div class="sdtl-li"><span>دعم على مدار الساعة مشمول لمدة 3 أشهر</span><i class="fa fa-circle"></i></div></div>
+        <span class="sdtl-tag">الأسبوع 7 – 10</span>
+      </div></div>
+      <div class="sdtl-node-wrap"><div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-building"></i></div><div class="sdtl-node-pulse"></div></div></div>
+      <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">التوسع</div></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="sh-case" id="cas-client"><div class="container">
+  <div class="sec-label">دراسة حالة · قصة نجاح</div>
+  <h2 class="sec-title rv">نتائج ملموسة<br><em>في مجموعة خدمات B2B</em></h2>
+  <div class="case-wrap rv d1">
+    <div class="case-left">
+      <span class="case-tag">دراسة حالة · مجموعة B2B · الدار البيضاء</span>
+      <h3 class="case-headline">مجموعة خدمات<br>B2B بالدار البيضاء</h3>
+      <p class="case-ctx"><strong>180 موظفاً</strong>، و12 مشروعاً نشطاً على Trello، و4 اجتماعات إدارية أسبوعياً. المدير العام مُثقَل بالرسائل الإلكترونية ومتابعات المتابعة.</p>
+      <div class="case-problem"><div class="case-problem-label">المشكلة المحددة</div><div class="case-problem-text">قرارات تُتخَذ في الاجتماعات ولا تُوثَّق أبداً. مواعيد نهائية تُكتشَف متأخرة. مدراء يخصصون 30% من وقتهم لمهام المتابعة الإدارية.</div></div>
+      <p class="case-ctx" style="margin-bottom:0">مجموعة كاملة من وكلاء HW الداخليين مُنشَرة: ملخص Slack، تحليل Zoom، فرز Gmail للمدير العام، ودعم تقني عبر WhatsApp لـ 180 موظفاً.</p>
+    </div>
+    <div class="case-right" style="background-image:url('<?php echo $siteURL; ?>images/operations-case-bg.jpg')">
+      <div class="case-results">
+        <div class="result-big"><div class="result-num">65<span style="font-size:.5em">%</span></div><div class="result-lbl">وقت المدير العام في الرسائل</div></div>
+        <div class="result-big"><div class="result-num">+28<span style="font-size:.5em">%</span></div><div class="result-lbl">مواعيد نهائية محترمة</div></div>
+        <div class="result-big"><div class="result-num">+12</div><div class="result-lbl">الرضا الداخلي</div></div>
+        <div class="result-big"><div class="result-num">5<span style="font-size:.5em">m</span></div><div class="result-lbl">عائد الاستثمار المحقق</div></div>
+      </div>
+      <blockquote class="case-quote">هدّأ الذكاء الاصطناعي إدارتنا الداخلية. استعاد مدرائي السيطرة على أجنداتهم، وأصبحت قراراتهم موثَّقة أخيراً.<span class="case-quote-author">المدير العام، الدار البيضاء</span></blockquote>
+    </div>
+  </div>
+</div></section>
+
+<section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/para.jpg')">
+  <div class="container">
+    <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
+    <h2 class="sec-title rv">حسّنوا التنسيق <br>وقلّصوا الاحتكاكات <br><em>التشغيلية</em></h2>
+    <p class="cta-sub">اربطوا أدواتكم الداخلية لأتمتة الملخصات، والتنبيهات، ومتابعة المواعيد النهائية، وتحليل التبادلات، ومساعدة الفرق، لكسب مزيد من الرؤية وسرعة التنفيذ والانضباط التشغيلي.</p>
+    <div class="cta-btns">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="حسّنوا عملياتكم الداخلية" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
+          <div class="sb-knob"><i class="fal fa-bolt"></i></div>
+        </a>
+
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على ميثاق استخدام الذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">حسّنوا عملياتي الداخلية</span></div>
+          <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
 <?php else: ?>
 
 <section class="sh-hero">
