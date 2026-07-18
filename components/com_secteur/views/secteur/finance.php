@@ -464,6 +464,472 @@
   </div>
 </section>
 
+<?php elseif ($_SESSION['lang'] === 'ar'): ?>
+
+<!-- ═══════ HERO CLAIR ═══════ -->
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+  <div class="sh-hero-body">
+    <div class="container">
+      <div class="sh-hero-inner">
+        <div>
+          <div class="sh-breadcrumb">حلول الذكاء الاصطناعي · المالية والتداول</div>
+          <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
+          <p class="sh-sub">نفّذوا استراتيجياتكم المالية بدقة خوارزمية. أتمتوا معالجة تدفقات بياناتكم المعقدة وقلّصوا زمن استجابة التنفيذ إلى أقل من 100 مللي ثانية.</p>
+          <div class="sh-cta-row">
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="إعدوا وكيلكم الذكي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint">إعدوا وكيلكم الذكي</span></div>
+                  <div class="sb-knob"><i class="fal fa-bolt"></i></div>
+                </a>
+
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على التدقيق" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="sb-label"><span class="sb-hint">احصلوا على التدقيق</span></div>
+                  <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
+                </a>
+          </div>
+
+        </div>
+        <!-- ORBITAL FINANCE IA -->
+        <div class="sh-hero-right">
+          <div class="sho-scene">
+            <div class="sho-ring r1"></div>
+            <div class="sho-ring r2"></div>
+            <div class="sho-ring r3"></div>
+            <div class="sho-core">
+              <div class="sho-plus">₿</div>
+              <div class="sho-lbl">المالية بالذكاء الاصطناعي</div>
+            </div>
+            <!-- Orbit interne r=100px -->
+            <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="إشارات تيليغرام"><i class="fab fa-telegram"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="MetaTrader MT5"><i class="fal fa-chart-bar"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="Sage / Odoo"><i class="fal fa-file-invoice-dollar"></i></div></div>
+            <!-- Orbit moyenne r=170px -->
+            <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="cTrader API"><i class="fal fa-chart-line"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="Bloomberg RSS"><i class="fal fa-newspaper"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="CMI / Stripe"><i class="fal fa-credit-card"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="OCR محاسبي"><i class="fal fa-receipt"></i></div></div>
+            <!-- Orbit externe r=222px -->
+            <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="الامتثال لبنك المغرب"><i class="fal fa-shield-alt"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="لوحة تحكم الأرباح والخسائر"><i class="fal fa-chart-pie"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="إيقاف طارئ"><i class="fal fa-power-off"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="QuickBooks"><div class="ltr">QB</div></div></div>
+            <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="Forex EUR/USD"><div class="ltr">FX</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STATS ═══════ -->
+<section class="sh-stats">
+  <div class="container">
+    <div class="sh-stats-grid">
+      <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="85">0</span><span class="suf">ms</span></div><div class="sh-stat-lbl">زمن استجابة التنفيذ</div><div class="sh-stat-sub">من إشارات تيليغرام إلى الوسيط</div></div>
+      <div class="sh-stat rv"><div class="sh-stat-val"><span class="suf">÷</span><span class="sh-counter" data-target="4">0</span></div><div class="sh-stat-lbl">زمن المطابقة</div><div class="sh-stat-sub">محاسبة مُسرَّعة</div></div>
+      <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="98">0</span><span class="suf">%</span></div><div class="sh-stat-lbl">دقة OCR</div><div class="sh-stat-sub">استخراج الإيصالات والفواتير</div></div>
+      <div class="sh-stat rv"><div class="sh-stat-val"><span class="sh-counter" data-target="3">0</span><span class="suf">شهر</span></div><div class="sh-stat-lbl">عائد الاستثمار القابل للتحقيق</div><div class="sh-stat-sub">عائد الاستثمار</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTE & ENJEUX ════════════════════════════════════════ -->
+<section class="sh-context">
+  <div class="container">
+    <div class="sh-context-inner">
+
+      <div>
+        <div class="sec-label">السياق والتحديات</div>
+        <h2 class="sh-ctx-title rv"><strong>القطاع المالي</strong>زمن الاستجابة هو العدو رقم واحد</h2>
+        <div class="sh-ctx-body rv d1">
+          <p>في عالم المالية والتداول، زمن الاستجابة هو العدو. سواء تعلق الأمر بمعالجة إشارات الأسواق (الفوركس، الذهب) أو أتمتة تدفقات محاسبية داخلية ثقيلة، تتطلب المؤسسات <em>أماناً مطلقاً</em>، وسرعة تنفيذ بالمللي ثانية، وموثوقية بلا كلل.</p>
+          <p>في المغرب، سوق الفوركس عبر الوسطاء الدوليين (XM، IC Markets) في ازدهار متواصل، مدعوماً بمجتمع نشط على تيليغرام. أما على صعيد الشركات، فالإدارة المالية تحت ضغط لتعزيز موثوقية المحاسبة وتقليص آجال الإقفال.</p>
+        </div>
+        <div class="sh-pills rv d2">
+          <span class="sh-pill"><i class="fa fa-bolt"></i> تنفيذ أقل من 100 مللي ثانية</span>
+          <span class="sh-pill"><i class="fa fa-shield-halved"></i> الامتثال لبنك المغرب</span>
+          <span class="sh-pill"><i class="fa fa-calculator"></i> OCR محاسبي</span>
+          <span class="sh-pill"><i class="fab fa-telegram"></i> تكامل تيليغرام</span>
+        </div>
+      </div>
+
+      <!-- CSS ART Visual -->
+      <div class="sh-ctx-visual rv d2">
+        <div class="sh-ctx-blob"></div>
+        <div class="sh-ctx-blob2"></div>
+        <div class="sh-ctx-center"><div class="sh-ctx-cross"><i class="fal fa-chart-line"></i></div></div>
+        <div class="sh-fcard fc1">
+          <div class="sh-fcard-val">&lt;100ms</div>
+          <div class="sh-fcard-lbl">زمن التنفيذ</div>
+        </div>
+        <div class="sh-fcard fc2">
+          <div class="sh-fcard-val">24/7</div>
+          <div class="sh-fcard-lbl">المراقبة</div>
+        </div>
+        <div class="sh-fcard fc3">
+          <div class="sh-fcard-val">98%</div>
+          <div class="sh-fcard-lbl">دقة OCR</div>
+        </div>
+        <div class="sh-fcard fc4">
+          <div class="sh-fcard-val">÷4</div>
+          <div class="sh-fcard-lbl">المطابقة</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SOLUTIONS ═══════ -->
+<section class="sh-solutions" id="solutions">
+  <div class="container">
+    <div class="sec-label">حلول الذكاء الاصطناعي · الأتمتة المالية</div>
+    <h2 class="sec-title rv">مجموعة المالية بالذكاء الاصطناعي<br><em>4 وكلاء عمليّون</em></h2>
+    <div class="sol-kpi-grid rv d1">
+      <div class="sol-kpi-card"><div class="sol-kpi-val">&lt;100<span style="font-size:.6em">ms</span></div><div class="sol-kpi-lbl">زمن استجابة التنفيذ</div></div>
+      <div class="sol-kpi-card"><div class="sol-kpi-val">24/7</div><div class="sol-kpi-lbl">مراقبة الأسواق</div></div>
+      <div class="sol-kpi-card"><div class="sol-kpi-val">98<span style="font-size:.6em">%</span></div><div class="sol-kpi-lbl">دقة OCR</div></div>
+      <div class="sol-kpi-card"><div class="sol-kpi-val">0</div><div class="sol-kpi-lbl">خطأ محاسبي</div></div>
+    </div>
+    <div class="sol-feature rv">
+      <div class="sol-fc-text">
+        <div class="sol-fc-title"><strong>وكيل الإشارة والتنفيذ</strong>معالجة الفوركس والذهب من تيليغرام</div>
+        <p class="sol-fc-desc">وكيل مستقل يحلّل الإشارات المميّزة، ويستخرج المعطيات الحرجة (هدف الربح، وقف الخسارة، الحجم)، وينفّذ على MetaTrader أو cTrader في أقل من 100 مللي ثانية.</p>
+        <ul class="sol-benefits">
+          <li><i class="fa fa-check"></i><span><strong>تحليل فوري لإشارات تيليغرام</strong> — تحويل إلى صيغة قابلة للتنفيذ، واستخراج هدف الربح/وقف الخسارة/الحجم</span></li>
+          <li><i class="fa fa-check"></i><span><strong>توجيه عبر واجهة الوسيط البرمجية</strong> — اتصال مباشر بـ MetaTrader MT4/MT5 وcTrader مع تأكيد في الوقت الفعلي</span></li>
+          <li><i class="fa fa-check"></i><span><strong>تنبيهات معنويات السوق</strong> — مراقبة اقتصادية كلية على مدار الساعة، تجميع RSS ومعالجة اللغة الطبيعية لاستباق التحركات</span></li>
+          <li><i class="fa fa-check"></i><span><strong>OCR ومحاسبة تلقائية</strong> — إيصالات مُمسوحة ضوئياً، مصنَّفة ومُدرَجة في Sage/Odoo دون تدخل بشري</span></li>
+          <li><i class="fa fa-check"></i><span><strong>لوحة تحكم موحّدة للأرباح والخسائر</strong> — حصيلة يومية تلقائية، تقرير أسبوعي يُرسَل إلى الإدارة المالية</span></li>
+          <li><i class="fa fa-check"></i><span><strong>مفتاح إيقاف طارئ</strong> — إيقاف فوري لجميع المراكز بنقرة واحدة، مع تتبع كامل</span></li>
+        </ul>
+        <div class="sol-roi-box">
+          <div class="sol-roi-num">2</div>
+          <div class="sol-roi-text"><strong>وظيفتان محاسبيتان بدوام كامل موفَّرتان لشركة صغيرة ومتوسطة من 50 موظفاً.</strong><br>عائد استثمار قابل للتحقيق في أقل من 3 أشهر. موثوقية 100% على الأوامر المبرمجة.</div>
+        </div>
+      </div>
+      <!-- Telegram Signal Phone 3D — identique WhatsApp sante.html -->
+      <div class="sol-fc-visual">
+        <div class="tg-scene">
+          <div class="tg-glow"></div>
+          <div class="tg-3d-group">
+
+            <!-- Telegram logo badge -->
+            <div class="tg-logo"><i class="fab fa-telegram"></i></div>
+
+            <!-- Phone Frame -->
+            <div class="tg-phone">
+              <div class="tg-screen">
+                <!-- Status bar -->
+                <div class="tg-sbar">
+                  <span class="tg-sbar-time">09:17</span>
+                  <div class="tg-sbar-icons">
+                    <i class="fa fa-signal"></i>
+                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </div>
+                </div>
+                <!-- Header -->
+                <div class="tg-hdr">
+                  <span class="tg-hdr-back">&#8592;</span>
+                  <div class="tg-hdr-av"><i class="fab fa-telegram" style="font-size:.6rem"></i></div>
+                  <div class="tg-hdr-info">
+                    <div class="tg-hdr-name">إشارات فوركس المميزة</div>
+                    <div class="tg-hdr-status">قناة · 4,892 مشترك</div>
+                  </div>
+                  <div class="tg-hdr-ico">
+                    <i class="fa fa-magnifying-glass"></i>
+                    <i class="fa fa-ellipsis-vertical"></i>
+                  </div>
+                </div>
+                <!-- Chat -->
+                <div class="tg-chat">
+                  <div class="tg-msg sys">اليوم · 09:14</div>
+
+                  <!-- Signal message -->
+                  <div class="tg-signal">
+                    <div class="tg-signal-header">إشارة VIP مميزة</div>
+                    <div class="tg-signal-pair">EUR/USD &nbsp;<span class="dir">شراء</span></div>
+                    <div class="tg-signal-row">الدخول &nbsp;<span>1.08742</span></div>
+                    <div class="tg-signal-row">هدف الربح &nbsp;<span style="color:#4ade80">1.09120</span></div>
+                    <div class="tg-signal-row">وقف الخسارة &nbsp;<span style="color:#f87171">1.08300</span></div>
+                    <div class="tg-signal-row">اللوت &nbsp;<span>0.50</span></div>
+                    <div class="tg-signal-tag">⚡ وكيل HW للتحليل · تم</div>
+                    <span class="tg-bt">09:14</span>
+                  </div>
+
+                  <div class="tg-msg sys">وكيل HW · التنفيذ جارٍ…</div>
+
+                  <!-- Execution confirmation -->
+                  <div class="tg-exec">
+                    <div class="tg-exec-head">تم تنفيذ الأمر · MetaTrader</div>
+                    <div class="tg-exec-body">
+                      EUR/USD · شراء · <strong>0.50 لوت</strong><br>
+                      زمن الاستجابة: <strong>83 مللي ثانية</strong><br>
+                      الأرباح/الخسائر المفتوحة: <strong>+$0.00</strong>
+                    </div>
+                    <span class="tg-bt">09:14</span>
+                  </div>
+
+                  <div class="tg-msg sys">XAU/USD · إشارة مستلمة · 09:16</div>
+                </div>
+                <!-- Input -->
+                <div class="tg-irow">
+                  <div class="tg-ifake">رسالة…</div>
+                  <div class="tg-isend"><i class="fa fa-paper-plane"></i></div>
+                </div>
+                <!-- Android nav -->
+                <div class="tg-navb"><span>&#9664;</span><span>&#9711;</span><span>&#9632;</span></div>
+              </div>
+            </div>
+
+            <!-- Notification overlay -->
+            <div class="tg-notif">
+              <div class="tg-notif-hdr">
+                <div class="tg-notif-av"><i class="fab fa-telegram" style="font-size:.5rem"></i></div>
+                <div>
+                  <div class="tg-notif-name">وكيل HW · الأرباح والخسائر مباشرة</div>
+                  <div class="tg-notif-st">MetaTrader · متصل</div>
+                </div>
+              </div>
+              <div class="tg-notif-msg">تم تأكيد التنفيذ •<br>EUR/USD شراء 0.50</div>
+              <div class="tg-notif-sub">زمن الاستجابة: <span class="lat">83ms</span> &nbsp;·&nbsp; هدف الربح نشط</div>
+              <div class="tg-notif-acts">
+                <div class="tg-notif-act">إغلاق</div>
+                <div class="tg-notif-act">P&amp;L</div>
+              </div>
+            </div>
+
+          </div><!-- /tg-3d-group -->
+        </div><!-- /tg-scene -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ JOURNEY / TIMELINE ═══════ -->
+<section class="sh-journey" id="parcours">
+  <div class="jp-bg">
+    <img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>/images/finance-journey-bg.jpg" alt="غرفة تداول بالذكاء الاصطناعي" loading="eager">
+  </div>
+  <div class="jp-content">
+    <div class="container">
+      <div class="sec-label">المسار النموذجي للعميل</div>
+      <h2 class="sec-title rv">من إشارة تيليغرام<br><em>إلى الإقفال المحاسبي</em></h2>
+      <p class="rv d1">تدفقان مؤتمتان بالتوازي: تداول في الوقت الفعلي ومحاسبة سلسة. اختاروا أولويتكم.</p>
+      <div class="tab-nav rv d2">
+        <button class="tab-btn active" data-tab="trading">تدفق التداول</button>
+        <button class="tab-btn" data-tab="compta">التدفق المحاسبي</button>
+        <button class="tab-btn" data-tab="reporting">تقرير الإدارة المالية</button>
+      </div>
+
+      <div class="tab-pane active" id="tab-trading">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamT"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">إشارة مميزة</div><p class="jf-desc">إشارة مستلمة عبر قناة تيليغرام VIP من مزوّد معتمد ومميز</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">تحليل بالذكاء الاصطناعي</div><p class="jf-desc">استخراج فوري لمعطيات هدف الربح ووقف الخسارة والأداة والحجم</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">تنفيذ لدى الوسيط</div><p class="jf-desc">يُرسَل الأمر إلى واجهة MetaTrader/cTrader البرمجية في أقل من 100 مللي ثانية</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">التأكيد</div><p class="jf-desc">يُعاد إرسال تأكيد التنفيذ عبر قناة تيليغرام خاصة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">الأرباح والخسائر في الوقت الفعلي</div><p class="jf-desc">تحديث فوري للوحة تحكم الأرباح والخسائر بالمركز النشط</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">الحصيلة اليومية</div><p class="jf-desc">تقرير يومي موحّد يُرسَل تلقائياً إلى الإدارة المالية</p></div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-compta">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamC"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">مسح الإيصال</div><p class="jf-desc">صورة الإيصال مُلتقَطة عبر الهاتف أو فاتورة مستلمة بالبريد الإلكتروني</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">OCR والاستخراج</div><p class="jf-desc">استخراج تلقائي للمبلغ والتاريخ والمورّد والضريبة على القيمة المضافة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">التصنيف</div><p class="jf-desc">ترتيب ذكي حسب مركز التكلفة وفق القواعد المحاسبية</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">الإدخال في Sage/Odoo</div><p class="jf-desc">إدراج تلقائي في البرنامج المحاسبي دون تدخل</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">المطابقة</div><p class="jf-desc">مطابقة بنكية تلقائية مع كشف الحساب</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">إقفال مُسرَّع</div><p class="jf-desc">إقفال شهري خلال ساعتين بدل يومين. ضمان صفر خطأ.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-reporting">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamR"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div></div><div class="jf-title">جمع البيانات 18:00</div><p class="jf-desc">يجمع الوكيل تلقائياً المراكز والأرباح/الخسائر وإيصالات اليوم</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div></div><div class="jf-title">التوحيد</div><p class="jf-desc">تجميع تدفقات التداول والمصاريف في جدول موحّد</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div></div><div class="jf-title">تحليل بالذكاء الاصطناعي</div><p class="jf-desc">تحديد الحالات الشاذة والاتجاهات وفرص اليوم التالي</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div></div><div class="jf-title">توليد PDF</div><p class="jf-desc">تقرير تنفيذي مُنسَّق تلقائياً وفق الهوية البصرية</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div></div><div class="jf-title">إرسال آمن</div><p class="jf-desc">إرسال مُشفَّر إلى الإدارة المالية عبر بريد إلكتروني آمن الساعة 7 صباحاً</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div></div><div class="jf-title">الأرشفة</div><p class="jf-desc">تخزين متوافق مع بنك المغرب للتدقيق والتتبع الكامل لمدة 7 سنوات</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ INTEGRATIONS ═══════ -->
+<section class="sh-integrations" id="integrations">
+  <div class="container">
+    <div class="sec-label">التكاملات الأساسية</div>
+    <h2 class="sec-title rv">متصل بمنظومتكم<br><em>المالية</em></h2>
+    <div class="sh-int-inner">
+      <div class="accordion rv d1">
+        <div class="acc-item open">
+          <button class="acc-trigger"><div class="acc-ico"><i class="fal fa-chart-bar"></i></div><div class="acc-lbl-wrap"><span class="acc-title">MetaTrader MT4 / MT5</span><span class="acc-sub">تنفيذ الأوامر في الوقت الفعلي</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button>
+          <div class="acc-body"><div class="acc-content"><p>اتصال مباشر بواجهة الوسيط البرمجية لتنفيذ الأوامر في أقل من 100 مللي ثانية. إدارة المراكز، ووقف الخسارة المتحرك، وهدف الربح التلقائي مع تأكيد فوري في تيليغرام.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger"><div class="acc-ico"><i class="fab fa-telegram"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Telegram Bots</span><span class="acc-sub">استقبال الإشارات والإشعارات</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button>
+          <div class="acc-body"><div class="acc-content"><p>استماع دائم للقنوات المميزة، وتحليل الإشارات بمعالجة اللغة الطبيعية، وتوجيه تلقائي نحو واجهة الوسيط البرمجية. تأكيد التنفيذ والأرباح/الخسائر في الوقت الفعلي داخل قنواتكم الخاصة.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger"><div class="acc-ico"><i class="fal fa-file-invoice-dollar"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Sage / Odoo / QuickBooks</span><span class="acc-sub">إدخال محاسبي مؤتمت عبر OCR</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button>
+          <div class="acc-body"><div class="acc-content"><p>إدراج تلقائي للإيصالات والفواتير عبر OCR بدقة 98%. تصنيف ذكي حسب مركز التكلفة ومطابقة بنكية دون تدخل بشري.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger"><div class="acc-ico"><i class="fal fa-newspaper"></i></div><div class="acc-lbl-wrap"><span class="acc-title">Reuters / Bloomberg RSS</span><span class="acc-sub">مراقبة اقتصادية كلية على مدار الساعة</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button>
+          <div class="acc-body"><div class="acc-content"><p>تجميع تدفقات RSS المالية، وتحليل معنويات السوق بمعالجة اللغة الطبيعية، وتنبيهات تيليغرام قبل الأحداث الاقتصادية الكلية الكبرى (NFP، البنك المركزي الأوروبي، الاحتياطي الفيدرالي) لاستباق التحركات.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger"><div class="acc-ico"><i class="fal fa-credit-card"></i></div><div class="acc-lbl-wrap"><span class="acc-title">CMI / Stripe Connect</span><span class="acc-sub">بوابات الدفع المغربية</span></div><div class="acc-arr"><i class="fa fa-chevron-down"></i></div></button>
+          <div class="acc-body"><div class="acc-content"><p>تكامل بوابات الدفع CMI (المغرب) وStripe Connect لمتابعة التدفقات المالية الواردة والصادرة مع مطابقة تلقائية.</p></div></div>
+        </div>
+      </div>
+      <div class="sh-int-visual rv d2">
+        <div class="sh-int-card">
+          <img class="sh-int-card-img" src="<?php echo $siteURL; ?>images/finance-journey-bg.jpg" alt="منظومة المالية">
+          <div class="sh-int-card-body">
+            <div class="sh-int-card-title">بنية آمنة متوافقة مع بنك المغرب</div>
+            <p class="sh-int-card-desc">تحترم جميع تكاملاتنا المتطلبات التنظيمية لبنك المغرب. استضافة سيادية أو سحابة خاصة حسب متطلبات الامتثال لديكم. تدقيق أمني مشمول منذ المرحلة الأولى.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SDTL DEPLOYMENT TIMELINE ═══════ -->
+<section class="sdtl-section" id="deploiement">
+  <div class="sdtl-orb-wrap"><div class="sdtl-orb" id="sdtlOrb"><div class="sdtl-orb-ring r1"></div><div class="sdtl-orb-ring r2"></div><div class="sdtl-orb-ring r3"></div><div class="sdtl-orb-ring r4"></div></div></div>
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">نشر مخصص لقطاع المالية</div>
+      <h2 class="sec-title rv">منهجية على مراحل<br><em>معتمدة من بنك المغرب</em></h2>
+      <p class="sdtl-intro rv d1">نهج منظَّم مصمَّم لحماية تدفقاتكم المالية منذ اليوم الأول. مصادقة كاملة عبر التداول الوهمي (Paper Trading) قبل أي التزام برأس مال حقيقي.</p>
+    </div>
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">تدقيق الأمن والامتثال</div>
+            <p class="sdtl-desc">رسم خرائط التدفقات المالية، وتحديد المتطلبات التنظيمية لبنك المغرب، واختيار الاستضافة السيادية أو السحابة الخاصة.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>تقرير الامتثال لبنك المغرب</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>بنية آمنة مُصادَق عليها</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>رسم خرائط التدفقات المالية</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 1 – 2</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-shield-alt"></i></div><div class="sdtl-node-pulse"></div></div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">الامتثال</div></div>
+      </div>
+
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left"><div class="sdtl-keyword">تجربة</div></div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-flask"></i></div><div class="sdtl-node-pulse"></div></div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">التداول الوهمي (4 أسابيع)</div>
+            <p class="sdtl-desc">مصادقة كاملة على السلسلة دون التزام برأس مال. اختبارات زمن الاستجابة والموثوقية في ظروف السوق الفعلية.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>سلسلة مُصادَق عليها دون رأس مال</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>زمن الاستجابة مُقاس ومُحسَّن</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>مفتاح الإيقاف الطارئ مُختبَر وجاهز</span></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 3 – 6</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">الإنتاج برأس مال حقيقي</div>
+            <p class="sdtl-desc">نشر تدريجي بعتبات مخاطر قابلة للتخصيص، ومراقبة على مدار الساعة، ومفتاح إيقاف طارئ قابل للتفعيل بنقرة واحدة.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>وكلاء ماليون جاهزون للعمل</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>لوحة تحكم الأرباح والخسائر في الوقت الفعلي</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>دليل إدارة المخاطر مُسلَّم</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 7 – 10</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node"><div class="sdtl-node-ring r1"></div><div class="sdtl-node-ring r2"></div><div class="sdtl-node-ring r3"></div><div class="sdtl-node-core"><i class="fal fa-rocket"></i></div><div class="sdtl-node-pulse"></div></div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right"><div class="sdtl-keyword">الإنتاج</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CASE STUDY ═══════ -->
+<section class="sh-case" id="cas-client">
+  <div class="container">
+    <div class="sec-label">دراسة حالة · قصة نجاح</div>
+    <h2 class="sec-title rv">نتائج ملموسة<br><em>في التداول المستقل</em></h2>
+    <div class="case-wrap rv d1">
+      <div class="case-left">
+        <span class="case-tag">دراسة حالة · مكتب تداول · الدار البيضاء</span>
+        <h3 class="case-headline">مكتب تداول<br>مستقل</h3>
+        <p class="case-ctx"><strong>4 متداولين</strong> يعتمدون على 3 قنوات تيليغرام مميزة. عملية إدخال محاسبي يدوي يستهلك الوقت. متوسط زمن استجابة التنفيذ <strong>3 دقائق</strong> في الوضع اليدوي.</p>
+        <div class="case-problem">
+          <div class="case-problem-label">المشكلة المحددة</div>
+          <div class="case-problem-text">استحالة التوسع دون أتمتة. أخطاء متكررة في الإدخال المحاسبي. إشارات فائتة خلال ساعات العمل التقليدية.</div>
+        </div>
+        <p class="case-ctx" style="margin-bottom:0">الحل المعتمد: وكيل تنفيذ عبر تيليغرام + متابعة تلقائية للمصاريف عبر OCR + لوحة تحكم موحّدة للأرباح والخسائر.</p>
+      </div>
+      <div class="case-right">
+        <div class="case-results">
+          <div class="result-big"><div class="result-num">85<span style="font-size:.5em">ms</span></div><div class="result-lbl">متوسط زمن التنفيذ</div></div>
+          <div class="result-big"><div class="result-num">0</div><div class="result-lbl">أخطاء محاسبية</div></div>
+          <div class="result-big"><div class="result-num">100<span style="font-size:.5em">%</span></div><div class="result-lbl">أوامر موثوقة</div></div>
+          <div class="result-big"><div class="result-num">&lt;3<span style="font-size:.5em">m</span></div><div class="result-lbl">عائد الاستثمار المحقق</div></div>
+        </div>
+        <blockquote class="case-quote">
+          أصبحت استجابتنا في السوق الآن تفوق استجابة مكاتب أكبر بكثير. الآلة تنفّذ استراتيجيتنا دون أدنى خلل عاطفي.
+          <span class="case-quote-author">المدير، مكتب تداول بالدار البيضاء</span>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CTA BAND ═══════ -->
+<section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/finance-cta-bg.jpg')">
+  <div class="container">
+    <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
+    <h2 class="sec-title rv">عزّزوا موثوقية عملياتكم <br>وقلّصوا التدخلات <em>اليدوية</em></h2>
+    <p class="cta-sub">انشروا وكلاء ذكاء اصطناعي لمعالجة إشاراتكم، ومراقبة تدفقاتكم، وتنفيذ الإجراءات من تيليغرام، وأتمتة متابعة المصاريف، بمنطق أداء وتتبع وإشراف ملائم للبيئات الحساسة.</p>
+    <div class="cta-btns">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
+          <div class="sb-knob"><i class="fal fa-search"></i></div>
+        </a>
+
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="دقّقوا تدفقاتي المالية" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">دقّقوا تدفقاتي المالية</span></div>
+          <div class="sb-knob"><i class="fab fa-telegram"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
 <?php else: ?>
 
 <!-- ═══════ HERO CLAIR ═══════ -->
