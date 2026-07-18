@@ -675,6 +675,683 @@
   </div>
 </section>
 
+<?php elseif ($_SESSION['lang'] === 'ar'): ?>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+
+  <div class="sh-hero-body">
+    <div class="container">
+      <div class="sh-hero-inner">
+
+        <!-- LEFT -->
+        <div class="sh-hero-left">
+          <div class="sh-breadcrumb rv">حلول الذكاء الاصطناعي — قطاع الصحة</div>
+          <h1 class="sh-h1 rv d1">
+             <?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?>
+          </h1>
+          <p class="sh-sub rv d2">حدّثوا استقبال المرضى وقضوا على الغياب بفضل الأتمتة الذكية لحجز مواعيدكم في المغرب.</p>
+          <div class="sh-cta-row rv d3">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اكتشفوا الحلول" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">اكتشفوا الحلول</span></div>
+              <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
+            </a>
+
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً بالذكاء الاصطناعي</span></div>
+              <div class="sb-knob"><i class="fal fa-search"></i></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT — 3D Medical Orbital -->
+        <div class="sh-hero-right">
+          <div class="sho-scene">
+            <div class="sho-ring r1"></div>
+            <div class="sho-ring r2"></div>
+            <div class="sho-ring r3"></div>
+            <div class="sho-core">
+              <div class="sho-plus">✚</div>
+              <div class="sho-lbl">الصحة بالذكاء الاصطناعي</div>
+            </div>
+
+            <!-- Inner orbit (r=100px) -->
+            <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="Doctolib"><i class="fal fa-calendar-check"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="أجندة جوجل"><i class="fab fa-google"></i></div></div>
+
+            <!-- Middle orbit (r=170px) -->
+            <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="تذكيرات SMS"><i class="fal fa-sms"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="برنامج طبي"><i class="fal fa-laptop-medical"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="الدفع عبر CMI"><i class="fal fa-credit-card"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="ملف المريض"><i class="fal fa-file-medical"></i></div></div>
+
+            <!-- Outer orbit (r=222px) -->
+            <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="متوافق مع CNDP"><i class="fal fa-shield-alt"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="Crossway / Logos"><div class="ltr">Rx</div></div></div>
+            <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="تحليلات المواعيد"><i class="fal fa-chart-line"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="إشعارات"><i class="fal fa-bell"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="رمز QR للقاعة"><i class="fal fa-qrcode"></i></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT STRIP ════════════════════════════════════════════════ -->
+<section class="sh-stats">
+  <div class="container">
+    <div class="sh-stats-grid">
+      <div class="sh-stat rv">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="40">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">تقليص الغياب</div>
+        <div class="sh-stat-sub">تذكيرات تلقائية قبل يوم وساعتين</div>
+      </div>
+      <div class="sh-stat rv d1">
+        <div class="sh-stat-val" style="font-size:clamp(2rem,4vw,4rem)">24<span class="suf">/7</span></div>
+        <div class="sh-stat-lbl">حجز المواعيد</div>
+        <div class="sh-stat-sub">دون تدخل السكرتارية</div>
+      </div>
+      <div class="sh-stat rv d2">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="92">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">معالجة ذاتية</div>
+        <div class="sh-stat-sub">دون تدخل بشري</div>
+      </div>
+      <div class="sh-stat rv d3">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="5">0</span><span class="suf">h</span></div>
+        <div class="sh-stat-lbl">توفير وقت السكرتارية</div>
+        <div class="sh-stat-sub">أسبوعياً لكل عيادة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTE & ENJEUX ════════════════════════════════════════ -->
+<section class="sh-context">
+  <div class="container">
+    <div class="sh-context-inner">
+
+      <div>
+        <div class="sec-label">السياق والتحديات</div>
+        <h2 class="sh-ctx-title rv"><strong>القطاع الطبي</strong>لماذا أصبح الذكاء الاصطناعي<br>ضرورياً في المغرب</h2>
+        <div class="sh-ctx-body rv d1">
+          <p>يعاني القطاع الطبي المغربي من <em>اكتظاظ مزمن في السكرتاريات</em>. يفقد الأطباء وقتاً ثميناً بسبب المواعيد غير المحترمة (no-shows) والإدارة الإدارية. يتيح الذكاء الاصطناعي اليوم تحرير الوقت الطبي من خلال أتمتة العلاقة مع المريض من الألف إلى الياء، بصرامة مطلقة فيما يتعلق بسرية البيانات (معايير <em>CNDP</em>).</p>
+          <p>بين ضغط المرضى الذين يطالبون باستجابة على مدار الساعة وضرورة ضمان موثوقية أجندة الممارسين، أصبح اعتماد وكيل محادثة <em>معياراً لجودة الخدمة</em> بالنسبة للعيادات والمصحات ومراكز التصوير الطبي الحديثة في المغرب.</p>
+        </div>
+        <div class="sh-pills rv d2">
+          <span class="sh-pill"><i class="fal fa-exclamation-triangle"></i> اكتظاظ السكرتاريات</span>
+          <span class="sh-pill"><i class="fal fa-ban"></i> معدل غياب مرتفع</span>
+          <span class="sh-pill"><i class="fal fa-moon"></i> لا توفر بعد الساعة 18:00</span>
+          <span class="sh-pill"><i class="fal fa-shield-alt"></i> مطابقة CNDP مطلوبة</span>
+          <span class="sh-pill"><i class="fal fa-clock"></i> إدارة مستهلكة للوقت للمواعيد</span>
+        </div>
+      </div>
+
+      <!-- CSS ART Visual -->
+      <div class="sh-ctx-visual rv d2">
+        <div class="sh-ctx-blob"></div>
+        <div class="sh-ctx-blob2"></div>
+        <div class="sh-ctx-center"><div class="sh-ctx-cross">✚</div></div>
+        <div class="sh-fcard fc1">
+          <div class="sh-fcard-val">280</div>
+          <div class="sh-fcard-lbl">موعد/شهرياً</div>
+        </div>
+        <div class="sh-fcard fc2">
+          <div class="sh-fcard-val">-40%</div>
+          <div class="sh-fcard-lbl">غياب</div>
+        </div>
+        <div class="sh-fcard fc3">
+          <div class="sh-fcard-val">5h</div>
+          <div class="sh-fcard-lbl">موفَّرة/أسبوعياً</div>
+        </div>
+        <div class="sh-fcard fc4">
+          <div class="sh-fcard-val">2 mois</div>
+          <div class="sh-fcard-lbl">عائد الاستثمار المحقق</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTIONS IA ══════════════════════════════════════════════ -->
+<section class="sh-solutions" id="solutions">
+  <div class="container">
+    <div class="sec-label">حلول الذكاء الاصطناعي — جوهر الصفحة</div>
+    <h2 class="sec-title rv">نظام إدارة<br><em>المواعيد بالذكاء الاصطناعي</em></h2>
+
+    <!-- KPI Grid -->
+    <div class="sol-kpi-grid rv d1">
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">-40<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">غياب المرضى</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">24/7</div>
+        <div class="sol-kpi-lbl">توفر الوكيل الذكي</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+25<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">معدل امتلاء الأجندة</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">92<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">دون تدخل بشري</div>
+      </div>
+    </div>
+
+    <!-- Feature Card -->
+    <div class="sol-feature rv">
+      <!-- Left: Content -->
+      <div class="sol-fc-text">
+        <div class="sol-fc-title"><strong>وكيل مواعيد متعدد القنوات</strong>إدارة ذاتية لمواعيدكم</div>
+        <p class="sol-fc-desc">وكيل محادثة يدير بشكل ذاتي توفر الممارس، مع فرز ذكي لأسباب الاستشارة وتحسين الجدولة.</p>
+        <ul class="sol-benefits">
+          <li><i class="fa fa-check"></i><span><strong>حجز المواعيد على مدار الساعة</strong> — يمكن للمرضى الحجز حتى خارج ساعات العمل</span></li>
+          <li><i class="fa fa-check"></i><span><strong>تذكيرات تلقائية</strong> — عبر SMS وواتساب قبل يوم وساعتين من الاستشارة</span></li>
+          <li><i class="fa fa-check"></i><span><strong>تحرير فوري</strong> — المواعيد الملغاة تُحرَّر تلقائياً لمرضى آخرين</span></li>
+          <li><i class="fa fa-check"></i><span><strong>تحسين الجدولة</strong> — مدة الإجراءات تُؤخذ بعين الاعتبار تلقائياً</span></li>
+          <li><i class="fa fa-check"></i><span><strong>استبيان ما قبل الاستشارة</strong> — استمارة تفاعلية للسوابق الطبية وسبب الزيارة الدقيق</span></li>
+          <li><i class="fa fa-check"></i><span><strong>إدارة استباقية للغياب</strong> — تذكيرات موجهة عبر رصد السلوك</span></li>
+        </ul>
+        <div class="sol-roi-box">
+          <div class="sol-roi-num">0.3</div>
+          <div class="sol-roi-text"><strong>وظيفة بدوام كامل موفَّرة لكل عيادة متوسطة الحجم.</strong><br>5 ساعات من وقت السكرتارية موفَّرة أسبوعياً، استرداد الاستثمار خلال شهرين.</div>
+        </div>
+      </div>
+
+      <!-- Right: WhatsApp CSS Mockup 3D -->
+      <div class="sol-fc-visual">
+        <div class="wa-scene" id="waScene">
+          <div class="wa-glow"></div>
+
+          <div class="wa-3d-group" id="wa3dGroup">
+            <!-- WhatsApp logo badge -->
+            <div class="wa-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+
+            <!-- Phone Frame -->
+            <div class="wa-phone">
+              <div class="wa-screen">
+                <!-- Status bar -->
+                <div class="wa-sbar">
+                  <span class="wa-sbar-time">18:17</span>
+                  <div class="wa-sbar-icons">
+                    <i class="fa fa-signal"></i>
+                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </div>
+                </div>
+                <!-- Header -->
+                <div class="wa-hdr">
+                  <span class="wa-hdr-back">&#8592;</span>
+                  <div class="wa-hdr-av">Dr</div>
+                  <div class="wa-hdr-info">
+                    <div class="wa-hdr-name">عيادة الدكتور بنعلي</div>
+                    <div class="wa-hdr-status">وكيل ذكاء اصطناعي · متصل</div>
+                  </div>
+                  <div class="wa-hdr-ico">
+                    <i class="fa fa-video"></i>
+                    <i class="fa fa-phone"></i>
+                    <i class="fa fa-ellipsis-vertical"></i>
+                  </div>
+                </div>
+                <!-- Chat -->
+                <div class="wa-chat-area">
+                  <div class="wa-bubble ai">مرحباً! أنا المساعد الذكي لعيادة الدكتور بنعلي. هل ترغبون في حجز موعد؟<span class="wa-bt">09:14</span></div>
+                  <div class="wa-bubble pt">نعم، أود رؤية الطبيب هذا الأسبوع 🙏<span class="wa-bt">09:15</span></div>
+                  <div class="wa-bubble ai">بالطبع! ما نوع الاستشارة: <strong>عامة</strong>، <strong>متابعة</strong> أم <strong>طارئة</strong>؟<span class="wa-bt">09:15</span></div>
+                  <div class="wa-bubble pt">استشارة عامة<span class="wa-bt">09:15</span></div>
+                  <div class="wa-bubble ai">ممتاز! إليكم المواعيد المتاحة:<br>📅 <strong>الأربعاء 25 يناير · 10:30</strong><br>📅 <strong>الخميس 26 يناير · 14:00</strong><br>📅 <strong>الجمعة 27 يناير · 09:00</strong><br>أيها يناسبكم؟<span class="wa-bt">09:15</span></div>
+                  <div class="wa-bubble pt">الأربعاء 10:30 ✅<span class="wa-bt">09:16</span></div>
+                  <div class="wa-dots-wrap"><span></span><span></span><span></span></div>
+                </div>
+                <!-- Input -->
+                <div class="wa-irow">
+                  <div class="wa-ifake">اكتب رسالة...</div>
+                  <div class="wa-isend"><i class="fa fa-paper-plane"></i></div>
+                </div>
+                <!-- Android nav -->
+                <div class="wa-navb">
+                  <span>&#9664;</span><span>&#9711;</span><span>&#9632;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification overlay -->
+            <div class="wa-notif">
+              <div class="wa-notif-hdr">
+                <div class="wa-notif-av">Dr</div>
+                <div>
+                  <div class="wa-notif-name">عيادة الدكتور بنعلي</div>
+                  <div class="wa-notif-st">وكيل ذكاء اصطناعي · متصل</div>
+                </div>
+              </div>
+              <div class="wa-notif-msg">موعد •<br>الأربعاء 25 يناير • 10:30</div>
+              <div class="wa-notif-rep"><i class="fa fa-face-smile"></i> الرد</div>
+              <div class="wa-notif-acts">
+                <div class="wa-notif-act">CLOSE</div>
+                <div class="wa-notif-act">VIEW</div>
+              </div>
+            </div>
+
+          </div><!-- /wa-3d-group -->
+        </div><!-- /wa-scene -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PARCOURS CLIENT — IMAGE PARALLAX + BEAM PROGRESSIF ════════ -->
+<section class="sh-journey" id="parcours">
+
+  <div class="jp-bg">
+    <img id="jpImg" class="jp-img"
+         src="<?php echo $siteURL; ?>images/parcours-bg.jpeg"
+         alt="عيادة طبية حديثة هيلو وورلد"
+         loading="eager"
+         decoding="async"
+         width="1584" height="672">
+  </div>
+
+  <div class="jp-content">
+    <div class="container">
+      <div class="sec-label">المسار النموذجي للمريض</div>
+      <h2 class="sec-title rv">تجربة المريض<br><em>من الألف إلى الياء</em></h2>
+      <p class="rv d1">ثلاث قنوات دخول، تجربة موحدة. اختاروا المسار الذي يناسب مرضاكم.</p>
+
+      <div class="tab-nav rv d2">
+        <button class="tab-btn active" data-tab="wa">عبر واتساب</button>
+        <button class="tab-btn" data-tab="qr">عبر رمز QR</button>
+        <button class="tab-btn" data-tab="web">عبر الموقع الإلكتروني</button>
+      </div>
+
+      <!-- Tab 1: WhatsApp -->
+      <div class="tab-pane active" id="tab-wa">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWa"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">رسالة واتساب</div><p class="jf-desc">يرسل المريض رسالة إلى رقم العيادة عبر واتساب بيزنس</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">فرز بالذكاء الاصطناعي</div><p class="jf-desc">يحدد الذكاء الاصطناعي السبب (استشارة، طارئ، متابعة) ويقترح المواعيد المتاحة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">الحجز</div><p class="jf-desc">يُسجَّل الموعد فورياً في البرنامج الطبي وأجندة جوجل الخاصة بالممارس</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تذكيرات قبل يوم وساعتين</div><p class="jf-desc">إشعارات تلقائية عبر SMS وواتساب قبل الاستشارة لتجنب الغياب</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">التأكيد</div><p class="jf-desc">يؤكد المريض حضوره أو يُحرَّر الموعد تلقائياً لمريض آخر</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">ما قبل الاستشارة</div><p class="jf-desc">يُملأ استبيان السوابق والسبب بشكل تفاعلي قبل الوصول</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: QR Code -->
+      <div class="tab-pane" id="tab-qr">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamQr"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">رمز QR بالقاعة</div><p class="jf-desc">يمسح المريض رمز QR المعروض في قاعة الانتظار أو على بطاقة زيارة العيادة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تفعيل الوكيل</div><p class="jf-desc">فتح تلقائي لواتساب برسالة معبأة مسبقاً — بدون أي جهد من المريض</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">اختيار الموعد</div><p class="jf-desc">يعرض الذكاء الاصطناعي المواعيد المتاحة حسب مدة نوع الإجراء الطبي المختار</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تأكيد فوري</div><p class="jf-desc">يتلقى المريض تأكيداً موضحاً بالعنوان والوقت واسم الممارس</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">عربون اختياري</div><p class="jf-desc">بالنسبة للإجراءات المتخصصة، يُجمَع عربون عبر رابط CMI لتأمين الموعد</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">متابعة بعد الزيارة</div><p class="jf-desc">رسالة رضا تلقائية بعد 24 ساعة من الاستشارة لإثراء مؤشر رضا العيادة</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Web -->
+      <div class="tab-pane" id="tab-web">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWeb"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">أداة على الموقع</div><p class="jf-desc">ينقر المريض على روبوت المحادثة المدمج في موقع العيادة أو المصحة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">التعريف</div><p class="jf-desc">إدخال سريع للاسم ورقم الهاتف لتخصيص المحادثة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">أجندة ذكية</div><p class="jf-desc">عرض التوفر في الوقت الفعلي، مصفى حسب التخصص ومدة الاستشارة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">موعد متزامن</div><p class="jf-desc">تسجيل فوري في البرنامج الطبي و Doctolib وأجندة جوجل الخاصة بالممارس</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تذكيرات متعددة القنوات</div><p class="jf-desc">سلسلة تذكيرات: بريد إلكتروني للتأكيد، SMS قبل يوم، واتساب قبل ساعتين مع رابط الإلغاء</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تسجيل دخول رقمي</div><p class="jf-desc">استمارة ما قبل الاستشارة تُرسَل قبل ساعتين من الموعد لتحسين وقت الممارس</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTÉGRATIONS — ACCORDION ════════════════════════════════ -->
+<section class="sh-integrations" id="integrations">
+  <div class="container">
+    <div class="sec-label">التكاملات الأساسية</div>
+    <h2 class="sec-title rv">متصل بمنظومتكم<br><em>الطبية</em></h2>
+
+    <div class="sh-int-inner">
+
+      <!-- Accordion -->
+      <div class="accordion rv d1">
+
+        <div class="acc-item open">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-calendar-check"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Doctolib</span>
+              <span class="acc-sub">مزامنة ثنائية الاتجاه للأجندة</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>مزامنة ثنائية الاتجاه في الوقت الفعلي مع أجندة Doctolib الخاصة بكم. تظهر الحجوزات التي تتم عبر الوكيل الذكي (واتساب أو رمز QR أو الموقع الإلكتروني) فوراً في Doctolib لكامل الفريق. تنعكس الإلغاءات تلقائياً على النظامين، مما يلغي أي خطر للحجز المزدوج.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-laptop-medical"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">برامج العيادات</span>
+              <span class="acc-sub">Crossway وLogos وOsiris وأخرى</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>تكامل عبر واجهة برمجية أصلية مع أبرز برامج إدارة العيادات الطبية المستخدمة في المغرب. يُنشَأ ملف المريض أو يُحدَّث تلقائياً عند كل حجز. تُدرَج نتائج استبيان ما قبل الاستشارة مباشرة في الملف الرقمي للممارس.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-google"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">أجندة جوجل</span>
+              <span class="acc-sub">مزامنة فورية مع الممارس</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>مزامنة في الوقت الفعلي مع أجندة جوجل الشخصية للممارس لتجنب أي تعارض في الجدولة. يطّلع الوكيل الذكي على الأجندة قبل كل اقتراح لموعد. الأحداث المحجوبة (تكوين، مؤتمرات، إجازات) تُستبعد تلقائياً من المواعيد المقترحة على المرضى.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-whatsapp"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">WhatsApp Business API</span>
+              <span class="acc-sub">القناة الرئيسية للتواصل مع المرضى</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>واجهة واتساب البرمجية الرسمية (Meta Business) لمحادثات أصلية داخل التطبيق الذي يستخدمه مرضاكم يومياً بالفعل. نماذج رسائل معتمدة مسبقاً من Meta، تحليلات مفصلة لمعدلات الفتح والرد، ومطابقة كاملة مع RGPD. معدل فتح متوسط يبلغ 94% مقابل 21% للبريد الإلكتروني.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-credit-card"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">بوابات الدفع</span>
+              <span class="acc-sub">CMI وStripe — عربون تلقائي</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>تحصيل تلقائي للعربون بالنسبة للإجراءات المتخصصة أو الغرف الجراحية. يرسل الوكيل الذكي رابط دفع آمناً (CMI للبطاقات المغربية، Stripe للبطاقات الدولية) بعد تأكيد الموعد. استرجاع تلقائي للمبلغ في حال الإلغاء ضمن المهل المحددة. يقلص الغياب بنسبة إضافية تبلغ 68%.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-shield-alt"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">استضافة HDS وCNDP</span>
+              <span class="acc-sub">بيانات طبية مؤمّنة في المغرب</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>استضافة بيانات صحية مطابقة لمعايير CNDP (القانون 09-08) وHDS إذا لزم الأمر. تشفير AES-256 للبيانات أثناء التخزين والنقل. لا تُنقل أي بيانات للمرضى إلى نماذج ذكاء اصطناعي خارجية لأغراض التدريب. تقرير مطابقة CNDP يُسلَّم في نهاية المرحلة صفر من النشر.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual Integration Hub -->
+      <div class="sh-int-visual rv d2">
+        <div class="sh-int-card">
+          <div class="sec-label" style="margin-bottom:.8rem">الاتصالات النشطة</div>
+          <div class="sh-int-orbit">
+            <div class="sio-ring r1">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-calendar-check"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            <div class="sio-ring r2">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-laptop-medical"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fab fa-google"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-credit-card"></i></div>
+            </div>
+            <div class="sio-ring r3">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-shield-alt"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-sms"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-qrcode"></i></div>
+              <div class="sio-dot" style="left:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-bell"></i></div>
+            </div>
+            <div class="sio-center"><span>IA</span></div>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+            <div style="font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)">تكامل خلال ساعات معدودة</div>
+            <div style="font-family:var(--fm);font-size:.72rem;color:var(--txt);margin-top:.4rem;font-weight:300">دون الحاجة لإعادة هيكلة نظامكم الحالي</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DÉPLOIEMENT ═══════════════════════════════════════════════ -->
+<!-- ══ DÉPLOIEMENT — TIMELINE LIGHT (style solutions-ia) ════════ -->
+<section class="sdtl-section" id="deploiement">
+
+  <!-- 3D Background orb subtil -->
+  <div class="sdtl-orb-wrap" aria-hidden="true">
+    <div class="sdtl-orb" id="sdtlOrb">
+      <div class="sdtl-orb-ring r1"></div>
+      <div class="sdtl-orb-ring r2"></div>
+      <div class="sdtl-orb-ring r3"></div>
+      <div class="sdtl-orb-ring r4"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">نشر مخصص لقطاع الصحة</div>
+      <h2 class="sec-title rv">منهجية على مراحل<br><em>معتمدة من CNDP</em></h2>
+      <p class="sdtl-intro rv d1">منهج منظم ومعتمد مصمم لحماية بيانات المرضى منذ اليوم الأول وتعظيم عائد الاستثمار في تحولكم نحو الذكاء الاصطناعي.</p>
+    </div>
+
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <!-- Spine -->
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+
+      <!-- ── PHASE 0 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">مطابقة CNDP</div>
+            <p class="sdtl-desc">رسم خرائط كاملة لتدفقات بيانات المرضى، توقيع التزامات السرية، تحديد نطاق HDS إذا لزم الأمر.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>تقرير مصادقة CNDP</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>عقود السرية</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>خطة بنية HDS التحتية</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>تدقيق تدفقات البيانات</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 1 – 2</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-shield-alt"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">المطابقة</div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 1 — RIGHT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-keyword">تجريبي</div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-flask"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">تجربة مع ممارس واحد</div>
+            <p class="sdtl-desc">تدريب الوكيل الذكي على المواعيد الفعلية لطبيب تجريبي لمدة شهر واحد. تعديلات مستمرة بناءً على الاستخدام الفعلي.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>وكيل مدرَّب ومُختبَر</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تقارير جودة المواعيد</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>جمع ملاحظات الممارس</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تحسين الردود</span></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 3 – 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">التعميم</div>
+            <p class="sdtl-desc">النشر على جميع الممارسين، تدريب السكرتيرات على الإشراف البشري، دعم ومراقبة مستمرين.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>دليل الإشراف</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>تدريب كامل للطاقم</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>دعم على مدار الساعة</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>لوحة تحكم للمراقبة</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 7 – 10</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-rocket"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">الانطلاق الفعلي</div>
+        </div>
+      </div>
+
+    </div><!-- /sdtl-timeline -->
+  </div>
+</section>
+
+<!-- ══ CAS CLIENT ════════════════════════════════════════════════ -->
+<section class="sh-case" id="cas-client">
+  <div class="container">
+    <div class="sec-label">دراسة حالة — قصة نجاح</div>
+    <h2 class="sec-title rv">نتائج ملموسة<br><em>في القطاع الطبي</em></h2>
+
+    <div class="case-wrap rv d1">
+
+      <!-- Left: Context + Problem -->
+      <div class="case-left">
+        <div class="case-tag">دراسة حالة · مركز طب العيون · الدار البيضاء</div>
+        <h3 class="case-headline">مركز طب العيون<br>4 ممارسين، 280 موعداً شهرياً</h3>
+        <p class="case-ctx"><strong>السياق:</strong> مركز يضم 4 ممارسين يعالجون 280 موعداً شهرياً. معدل غياب 18%، سكرتارية مثقلة، واستحالة الرد على المرضى بعد الساعة 18:00.</p>
+        <div class="case-problem">
+          <div class="case-problem-label">المشكلة المحددة</div>
+          <div class="case-problem-text">معدل غياب مرتفع للمرضى ← مواعيد غير مستغلة ← خسارة مباشرة في رقم الأعمال. كانت السكرتيرات يخصصن 60% من وقتهن للمكالمات الواردة. المرضى المحبطون من عدم توفر الهاتف كانوا يحجزون مواعيد لدى المنافسين.</div>
+        </div>
+        <div>
+          <div class="case-solution-label" style="font-family:var(--fm);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt2);margin-bottom:.45rem">الحل المعتمد</div>
+          <div class="case-solution-text" style="font-size:.8rem;color:var(--txt2);line-height:1.8">وكيل مواعيد عبر واتساب + تذكيرات SMS قبل يوم وساعتين من الاستشارة. تكامل مع برنامج إدارة العيادة الحالي. تدريب السكرتيرات الثلاث على الإشراف على الوكيل الذكي.</div>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="case-right">
+        <div>
+          <div class="results-title">النتائج الملاحظة بعد 60 يوماً</div>
+          <div class="results-big-grid">
+            <div class="result-big">
+              <div class="result-big-val">-65<span style="font-size:.7em">%</span></div>
+              <div class="result-big-lbl">تقليص الغياب</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">6h</div>
+              <div class="result-big-lbl">توفير وقت السكرتارية أسبوعياً</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">+22<span style="font-size:.7em">pts</span></div>
+              <div class="result-big-lbl">رضا NPS</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">2<span style="font-size:.7em">mois</span></div>
+              <div class="result-big-lbl">عائد الاستثمار المحقق</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-testimonial">
+          <p class="ct-text">أصبحت سكرتيراتنا تركز الآن على الاستقبال الحضوري للمرضى، متابعة الملفات المعقدة والإصغاء الفعّال. تحسنت جودة خدمة العملاء المُدركة بشكل ملحوظ، وممارسونا سعداء بعدم وجود مواعيد فارغة بعد الآن.</p>
+          <div class="ct-author">— الإدارة، مركز طب العيون بالدار البيضاء</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
+ <section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/sante.jpg')">
+  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">الصحة</span>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">قلّصوا الغياب و<br>بسّطوا عملية<em> حجز<br>المواعيد</em></h2>
+    <p class="cta-sub">أرسوا نظاماً بالذكاء الاصطناعي قادراً على أتمتة التأكيدات والتذكيرات وتنظيم الأجندة الطبية، مع تحسين تجربة المريض وجودة خدمة مؤسستكم.</p>
+    <div class="cta-btns">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
+            <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
+        </a>
+
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احجزوا عرضاً تجريبياً للقطاع الصحي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="sb-label"><span class="sb-hint">احجزوا عرضاً تجريبياً للقطاع الصحي</span></div>
+            <div class="sb-knob"><i class="fal fa-download"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
 <?php else: ?>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
