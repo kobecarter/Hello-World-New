@@ -108,9 +108,20 @@ html[dir="rtl"] .item-video .textbox ul li::after{
    edge under direction:rtl — flex-start is what actually lands on the right. */
 html[dir="rtl"] .sdtl-panel--left,
 html[dir="rtl"] .sdtl-panel--right{text-align:right}
-html[dir="rtl"] .sdtl-panel--left .sdtl-li,
-html[dir="rtl"] .sdtl-panel--right .sdtl-li{justify-content:flex-start}
+html[dir="rtl"] .sdtl-panel--left .sdtl-li{flex-direction: row-reverse;}
+html[dir="rtl"] .sdtl-panel--left .sdtl-keyword{text-align: left;}
+/* html[dir="rtl"] .sdtl-panel--right .sdtl-li{} */
+
 html[dir="rtl"] .sdtl-section .sec-label{justify-content:flex-start}
+/* .sh-stat (stats strip under the hero) separators use border-right + remove
+   it on :last-child; the grid visually reverses in RTL so the "missing"
+   border ends up on the wrong card. Mirror to border-left instead. */
+html[dir="rtl"] .sh-stat{border-right:none;border-left:1px solid var(--border)}
+html[dir="rtl"] .sh-stat:last-child{border-left:none}
+@media(max-width:767px){
+  html[dir="rtl"] .sh-stat{border-left:none}
+  html[dir="rtl"] .sh-stat:nth-child(odd){border-left:1px solid var(--border)}
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--fb);overflow-x:hidden;line-height:1.6}
