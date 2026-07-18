@@ -674,6 +674,682 @@
   </div>
 </section>
 
+<?php elseif ($_SESSION['lang'] === 'ar'): ?>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+
+  <div class="sh-hero-body">
+    <div class="container">
+      <div class="sh-hero-inner">
+
+        <!-- LEFT -->
+        <div class="sh-hero-left">
+          <div class="sh-breadcrumb rv">حلول الذكاء الاصطناعي — قطاع الفندقة</div>
+            <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
+
+          <p class="sh-sub rv d2">قدّموا تجربة 5 نجوم بفضل موظف استقبال افتراضي متعدد اللغات متاح على مدار الساعة لعملائكم المستقبليين ونزلائكم.</p>
+          <div class="sh-cta-row rv d3">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اكتشفوا الذكاء الاصطناعي للفندقة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">اكتشفوا الذكاء الاصطناعي للفندقة</span></div>
+              <div class="sb-knob"><i class="fal fa-hotel"></i></div>
+            </a>
+
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احسبوا توفيري من عمولات OTA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">احسبوا توفيري من عمولات OTA</span></div>
+              <div class="sb-knob"><i class="fal fa-calculator"></i></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT — 3D Medical Orbital -->
+        <div class="sh-hero-right">
+          <div class="sho-scene">
+            <div class="sho-ring r1"></div>
+            <div class="sho-ring r2"></div>
+            <div class="sho-ring r3"></div>
+            <div class="sho-core">
+              <div class="sho-plus">✦</div>
+              <div class="sho-lbl">الفندق بالذكاء الاصطناعي</div>
+            </div>
+
+            <!-- Inner orbit (r=100px) -->
+            <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="PMS Opera/Mews"><i class="fal fa-building"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="محرك الحجز"><i class="fal fa-calendar-check"></i></div></div>
+
+            <!-- Middle orbit (r=170px) -->
+            <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="الدفع عبر CMI"><i class="fal fa-credit-card"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="TripAdvisor"><i class="fal fa-star"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="كونسيرج ذكي"><i class="fal fa-concierge-bell"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="Channel Manager"><i class="fal fa-project-diagram"></i></div></div>
+
+            <!-- Outer orbit (r=222px) -->
+            <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="متعدد اللغات FR/EN/AR"><i class="fal fa-language"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="تقييمات جوجل"><i class="fab fa-google"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="مغادرة متأخرة"><i class="fal fa-clock"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="خدمة الغرف الذكية"><i class="fal fa-utensils"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="Cloudbeds/Mews"><i class="fal fa-server"></i></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT STRIP ════════════════════════════════════════════════ -->
+<section class="sh-stats">
+  <div class="container">
+    <div class="sh-stats-grid">
+      <div class="sh-stat rv">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="20">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">الحجوزات المباشرة</div>
+        <div class="sh-stat-sub">مقارنة بـ OTA Booking.com</div>
+      </div>
+      <div class="sh-stat rv d1">
+        <div class="sh-stat-val" style="font-size:clamp(2rem,4vw,4rem)">24<span class="suf">/7</span></div>
+        <div class="sh-stat-lbl">التوفر متعدد اللغات</div>
+        <div class="sh-stat-sub">FR · EN · AR · ES</div>
+      </div>
+      <div class="sh-stat rv d2">
+        <div class="sh-stat-val">+0.4<span class="suf">pts</span></div>
+        <div class="sh-stat-lbl">متوسط تقييم جوجل</div>
+        <div class="sh-stat-sub">خلال 4 أشهر من النشر</div>
+      </div>
+      <div class="sh-stat rv d3">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="5">0</span><span class="suf"> أشهر</span></div>
+        <div class="sh-stat-lbl">عائد الاستثمار المحقق</div>
+        <div class="sh-stat-sub">لفندق 4 نجوم</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTE & ENJEUX ════════════════════════════════════════ -->
+<section class="sh-context">
+  <div class="container">
+    <div class="sh-context-inner">
+
+      <div>
+        <div class="sec-label">السياق والتحديات</div>
+        <h2 class="sh-ctx-title rv"><strong>صناعة الفندقة</strong>تقليص الاعتماد على<br>منصات OTA في المغرب</h2>
+        <div class="sh-ctx-body rv d1">
+          <p>تتطلب صناعة السياحة المغربية استجابة فورية لمواجهة هيمنة منصات OTA (Booking، Expedia). يجب على المؤسسات تقديم تجارب <em>حجز مباشر</em> وخدمات كونسيرج افتراضية لا تشوبها شائبة لتعظيم هوامشها ورضا عملائها.</p>
+          <p>الموسمية، وذروات الطلب متعددة اللغات (FR/EN/AR/ES)، ومتطلبات وجود كونسيرج <em>على مدار الساعة</em> تثقل كاهل تكاليف الموظفين. أصبح الذكاء الاصطناعي التعاملي رافعة استراتيجية لإعادة الوقت للفرق البشرية للاهتمام بالتجربة الحضورية.</p>
+        </div>
+        <div class="sh-pills rv d2">
+          <span class="sh-pill"><i class="fa fa-exclamation-triangle"></i> اعتماد على OTA بنسبة 75%</span>
+          <span class="sh-pill"><i class="fa fa-moon"></i> عدم التوفر على مدار الساعة</span>
+          <span class="sh-pill"><i class="fa fa-language"></i> حاجز اللغات</span>
+          <span class="sh-pill"><i class="fa fa-percent"></i> عمولات مرتفعة</span>
+          <span class="sh-pill"><i class="fa fa-star"></i> تقييم جوجل راكد</span>
+        </div>
+      </div>
+
+      <!-- CSS ART Visual -->
+      <div class="sh-ctx-visual rv d2">
+        <div class="sh-ctx-blob"></div>
+        <div class="sh-ctx-blob2"></div>
+        <div class="sh-ctx-center"><div class="sh-ctx-cross">✦</div></div>
+        <div class="sh-fcard fc1">
+          <div class="sh-fcard-val">22</div>
+          <div class="sh-fcard-lbl">غرفة</div>
+        </div>
+        <div class="sh-fcard fc2">
+          <div class="sh-fcard-val">-30%</div>
+          <div class="sh-fcard-lbl">عمولات OTA</div>
+        </div>
+        <div class="sh-fcard fc3">
+          <div class="sh-fcard-val">4.7★</div>
+          <div class="sh-fcard-lbl">تقييم جوجل</div>
+        </div>
+        <div class="sh-fcard fc4">
+          <div class="sh-fcard-val">شهران</div>
+          <div class="sh-fcard-lbl">عائد الاستثمار المحقق</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTIONS IA ══════════════════════════════════════════════ -->
+<section class="sh-solutions" id="solutions">
+  <div class="container">
+    <div class="sec-label">حلول الذكاء الاصطناعي — جوهر الصفحة</div>
+    <h2 class="sec-title rv">موظف استقبال ذكي<br><em>متعدد اللغات على مدار الساعة</em></h2>
+
+    <!-- KPI Grid -->
+    <div class="sol-kpi-grid rv d1">
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+20<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">الحجوزات المباشرة</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">24/7</div>
+        <div class="sol-kpi-lbl">التوفر</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+0.4<span style="font-size:.7em">pts</span></div>
+        <div class="sol-kpi-lbl">تقييم جوجل</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">-30<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">عمولات OTA</div>
+      </div>
+    </div>
+
+    <!-- Feature Card -->
+    <div class="sol-feature rv">
+      <!-- Left: Content -->
+      <div class="sol-fc-text">
+        <div class="sol-fc-title"><strong>HW Concierge AI للفندقة</strong>بيع مباشر، كونسيرج واقتراح بيع</div>
+        <p class="sol-fc-desc">وكيل متكامل يضمن بيع الليالي، الإجابة عن الأسئلة الشائعة، وخدمة الكونسيرج أثناء الإقامة بـ 4 لغات، متصل بنظام إدارة الفندق (PMS) الخاص بكم.</p>
+        <ul class="sol-benefits">
+          <li><i class="fa fa-check"></i><span><strong>زيادة الحجوزات المباشرة</strong> — تجاوز عمولات OTA</span></li>
+          <li><i class="fa fa-check"></i><span><strong>رد فوري متعدد اللغات</strong> — يتم رصد FR وEN وAR وES تلقائياً</span></li>
+          <li><i class="fa fa-check"></i><span><strong>أتمتة الطلبات البسيطة</strong> — أوقات المسبح، الواي فاي، خدمة الغرف، سيارات الأجرة</span></li>
+          <li><i class="fa fa-check"></i><span><strong>اقتراح بيع مؤتمت</strong> — غرفة أعلى فئة، فطور، مغادرة متأخرة</span></li>
+          <li><i class="fa fa-check"></i><span><strong>تخصيص للعميل</strong> — حسب السجل التاريخي والتفضيلات</span></li>
+          <li><i class="fa fa-check"></i><span><strong>إشعار خدمة التنظيف</strong> — طلبات الإقامة تُنقَل مباشرة إلى الطاقم</span></li>
+        </ul>
+        <div class="sol-roi-box">
+          <div class="sol-roi-num">-30%</div>
+          <div class="sol-roi-text"><strong>من عمولات OTA لفندق 4 نجوم بـ 80 غرفة.</strong><br>أي مئات الآلاف من الدراهم موفَّرة سنوياً.</div>
+        </div>
+      </div>
+
+      <!-- Right: WhatsApp CSS Mockup 3D -->
+      <div class="sol-fc-visual">
+        <div class="wa-scene" id="waScene">
+          <div class="wa-glow"></div>
+
+          <div class="wa-3d-group" id="wa3dGroup">
+            <!-- WhatsApp logo badge -->
+            <div class="wa-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+
+            <!-- Phone Frame -->
+            <div class="wa-phone">
+              <div class="wa-screen">
+                <!-- Status bar -->
+                <div class="wa-sbar">
+                  <span class="wa-sbar-time">14:22</span>
+                  <div class="wa-sbar-icons">
+                    <i class="fa fa-signal"></i>
+                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </div>
+                </div>
+                <!-- Header -->
+                <div class="wa-hdr">
+                  <span class="wa-hdr-back">&#8592;</span>
+                  <div class="wa-hdr-av">RJ</div>
+                  <div class="wa-hdr-info">
+                    <div class="wa-hdr-name">رياض لو جاردان · مراكش</div>
+                    <div class="wa-hdr-status">كونسيرج ذكي · متصل</div>
+                  </div>
+                  <div class="wa-hdr-ico">
+                    <i class="fa fa-video"></i>
+                    <i class="fa fa-phone"></i>
+                    <i class="fa fa-ellipsis-vertical"></i>
+                  </div>
+                </div>
+                <!-- Chat -->
+                <div class="wa-chat-area">
+                  <div class="wa-bubble ai">مرحباً! أهلاً بكم في رياض لو جاردان ✨ متاح بـ 🇫🇷 🇬🇧 🇲🇦 🇪🇸 — كيف يمكنني مساعدتكم؟<span class="wa-bt">14:22</span></div>
+                  <div class="wa-bubble pt">مرحباً، هل لديكم غرفة لليلتين في يونيو؟ 🙏<span class="wa-bt">14:22</span></div>
+                  <div class="wa-bubble ai">بالطبع! لليلتين في يونيو، لدينا:<br>🌹 جناح بالميري — 1200 درهم/الليلة<br>✨ غرفة فاخرة — 850 درهم/الليلة<br>إطلالة على الحديقة أم على الأسطح؟<span class="wa-bt">14:23</span></div>
+                  <div class="wa-bubble pt">جناح بالميري بإطلالة على الحديقة 🌿<span class="wa-bt">14:23</span></div>
+                  <div class="wa-bubble ai">اختيار ممتاز! هل ترغبون في إضافة <strong>فطور مع حمام</strong> (+180 درهم/الليلة) لتجربة كاملة؟<span class="wa-bt">14:23</span></div>
+                  <div class="wa-bubble pt">نعم ممتاز ✅<span class="wa-bt">14:24</span></div>
+                  <div class="wa-dots-wrap"><span></span><span></span><span></span></div>
+                </div>
+                <!-- Input -->
+                <div class="wa-irow">
+                  <div class="wa-ifake">اكتب رسالة...</div>
+                  <div class="wa-isend"><i class="fa fa-paper-plane"></i></div>
+                </div>
+                <!-- Android nav -->
+                <div class="wa-navb">
+                  <span>&#9664;</span><span>&#9711;</span><span>&#9632;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification overlay -->
+            <div class="wa-notif">
+              <div class="wa-notif-hdr">
+                <div class="wa-notif-av">Dr</div>
+                <div>
+                  <div class="wa-notif-name">رياض لو جاردان</div>
+                  <div class="wa-notif-st">وكيل ذكاء اصطناعي · متصل</div>
+                </div>
+              </div>
+              <div class="wa-notif-msg">حجز •<br>جناح بالميري · يونيو</div>
+              <div class="wa-notif-rep"><i class="fa fa-face-smile"></i> الرد</div>
+              <div class="wa-notif-acts">
+                <div class="wa-notif-act">CLOSE</div>
+                <div class="wa-notif-act">VIEW</div>
+              </div>
+            </div>
+
+          </div><!-- /wa-3d-group -->
+        </div><!-- /wa-scene -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PARCOURS CLIENT — IMAGE PARALLAX + BEAM PROGRESSIF ════════ -->
+<section class="sh-journey" id="parcours">
+
+  <div class="jp-bg">
+    <img id="jpImg" class="jp-img"
+         src="<?php echo $siteURL; ?>images/hotel-parcours-bg.jpeg"
+         alt="رياض فاخر في مراكش"
+         loading="eager"
+         decoding="async"
+         width="1584" height="672">
+  </div>
+
+  <div class="jp-content">
+    <div class="container">
+      <div class="sec-label">المسار النموذجي للضيف</div>
+      <h2 class="sec-title rv">تجربة الضيف<br><em>من الألف إلى الياء</em></h2>
+      <p class="rv d1">ثلاث قنوات دخول، تجربة 5 نجوم. اختاروا المسار الذي يناسب مؤسستكم.</p>
+
+      <div class="tab-nav rv d2">
+        <button class="tab-btn active" data-tab="wa">عبر واتساب</button>
+        <button class="tab-btn" data-tab="qr">عبر الموقع الرسمي</button>
+        <button class="tab-btn" data-tab="web">كونسيرج أثناء الإقامة</button>
+      </div>
+
+      <!-- Tab 1: WhatsApp -->
+      <div class="tab-pane active" id="tab-wa">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWa"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">طلب عبر واتساب</div><p class="jf-desc">يطلب العميل المحتمل التوفر عبر واتساب — رد في أقل من ثانيتين</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">اقتراح بالذكاء الاصطناعي</div><p class="jf-desc">غرف مقترحة بصورة وسعر مباشر واقتراح بيع مناسب (إطلالة بحر، نصف إقامة)</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تأكيد الإقامة</div><p class="jf-desc">رابط عربون آمن يُنشأ ويُرسَل مباشرة داخل المحادثة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">التأكيد</div><p class="jf-desc">بريد إلكتروني ورسالة SMS للتأكيد برمز QR لتسجيل الدخول تُرسَل تلقائياً</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">ما قبل الوصول</div><p class="jf-desc">معلومات عملية وخدمات إضافية مقترحة قبل الوصول</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تسجيل دخول ميسّر</div><p class="jf-desc">إجراءات مسبقة، غرفة مُجهَّزة حسب تفضيلات العميل</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Site Officiel -->
+      <div class="tab-pane" id="tab-qr">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamQr"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">أداة على الموقع</div><p class="jf-desc">ينقر الزائر على روبوت المحادثة المدمج في الموقع الرسمي للفندق أو الرياض</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">اختيار الغرفة</div><p class="jf-desc">توفر في الوقت الفعلي مصفى حسب النوع والتاريخ، دون عمولة OTA</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">اقتراح خدمات</div><p class="jf-desc">فطور، نقل من المطار، سبا، أنشطة مقترحة حسب الملف الشخصي</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">حجز مباشر</div><p class="jf-desc">دفع آمن عبر CMI دون عمولة OTA — توفير فوري بنسبة 15-20%</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">التأكيد</div><p class="jf-desc">بريد إلكتروني + SMS برمز QR لتسجيل الدخول ومعلومات الوصول</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تقييم بعد الإقامة</div><p class="jf-desc">طلب تقييم Google/TripAdvisor تلقائي بعد يوم واحد من مغادرة العميل</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: In-Stay -->
+      <div class="tab-pane" id="tab-web">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWeb"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">طلب أثناء الإقامة</div><p class="jf-desc">يرسل النزيل طلباً عبر واتساب من غرفته (مناشف، سيارة أجرة...)</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تعريف تلقائي</div><p class="jf-desc">يتعرف الذكاء الاصطناعي على العميل وغرفته تلقائياً عبر السجل</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">معالجة الطلب</div><p class="jf-desc">يُخطَر قسم خدمة الغرف أو التنظيف أو الكونسيرج في الوقت الفعلي</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">إشعار الطاقم</div><p class="jf-desc">يُنبَّه الفريق فوراً برقم الغرفة وتفاصيل الطلب</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">متابعة العميل</div><p class="jf-desc">يُبلَّغ العميل بمدة التدخل المقدرة عبر واتساب</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">مغادرة متأخرة</div><p class="jf-desc">تُقترَح قبل يوم حسب التوفر، تُقبَل أو تُرفَض بنقرة واحدة عبر واتساب</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTÉGRATIONS — ACCORDION ════════════════════════════════ -->
+<section class="sh-integrations" id="integrations">
+  <div class="container">
+    <div class="sec-label">التكاملات الأساسية</div>
+    <h2 class="sec-title rv">متصل بمنظومتكم<br><em>الفندقية</em></h2>
+
+    <div class="sh-int-inner">
+
+      <!-- Accordion -->
+      <div class="accordion rv d1">
+
+        <div class="acc-item open">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-building"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">أنظمة إدارة الفنادق</span>
+              <span class="acc-sub">Opera وMews وCloudbeds</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>اتصال ثنائي الاتجاه مع نظام إدارة الفندق الخاص بكم. تظهر الحجوزات المباشرة فوراً في Opera أو Mews. تُزامَن طلبات الإقامة مع مهام التنظيف في الوقت الفعلي، مما يلغي أي إعادة إدخال يدوي.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-calendar-check"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">محرك الحجز</span>
+              <span class="acc-sub">Booking Engine مباشر</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>تكامل مع محرك الحجز الخاص بكم لتقديم أسعار مباشرة مميزة. يدفع العميل دون عمولة Booking.com — توفرون 15 إلى 20% من العمولة على كل حجز مباشر، أي مئات الآلاف من الدراهم سنوياً.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-whatsapp"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">واتساب متعدد اللغات</span>
+              <span class="acc-sub">FR وEN وAR وES أصلياً</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>واجهة واتساب البرمجية الرسمية بدعم 4 لغات تُرصَد تلقائياً. يكتب العميل بالإنجليزية، فيرد الذكاء الاصطناعي بالإنجليزية. معدل فتح 94%، رد في أقل من ثانيتين، متاح على مدار الساعة دون إثقال الموظفين.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-credit-card"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">بوابات الدفع</span>
+              <span class="acc-sub">CMI وStripe — عربون مباشر</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>تحصيل عربون الحجز مباشرة داخل محادثة واتساب أو أداة الموقع. استرجاع تلقائي للمبالغ حسب شروط الإلغاء. دعم البطاقات المغربية (CMI) والدولية (Stripe وVisa وMastercard).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-star"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">TripAdvisor &amp; Google</span>
+              <span class="acc-sub">التقييمات والسمعة الرقمية</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>جمع تلقائي لتقييمات TripAdvisor وGoogle بعد يوم واحد من مغادرة العميل. ردود آلية على التقييمات السلبية. ربح رياض في مراكش +0.4 نقطة على جوجل خلال 4 أشهر فقط بفضل هذه الأتمتة.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-project-diagram"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">مدراء القنوات</span>
+              <span class="acc-sub">مزامنة الأسعار والتوفر</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>اتصال مع مدير القنوات الخاص بكم لمزامنة التوفر في الوقت الفعلي عبر جميع المنصات. لا يقترح الوكيل الذكي أبداً غرفة غير متوفرة. صفر حجز زائد، صفر ازدواجية في الحجز، تجربة عميل مثالية.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual Integration Hub -->
+      <div class="sh-int-visual rv d2">
+        <div class="sh-int-card">
+          <div class="sec-label" style="margin-bottom:.8rem">الاتصالات النشطة</div>
+          <div class="sh-int-orbit">
+            <div class="sio-ring r1">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-calendar-check"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            <div class="sio-ring r2">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-laptop-medical"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fab fa-google"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-credit-card"></i></div>
+            </div>
+            <div class="sio-ring r3">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-shield-alt"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-sms"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-qrcode"></i></div>
+              <div class="sio-dot" style="left:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-bell"></i></div>
+            </div>
+            <div class="sio-center"><span>IA</span></div>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+            <div style="font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)">تكامل خلال ساعات معدودة</div>
+            <div style="font-family:var(--fm);font-size:.72rem;color:var(--txt);margin-top:.4rem;font-weight:300">دون الحاجة لإعادة هيكلة نظامكم الحالي</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DÉPLOIEMENT ═══════════════════════════════════════════════ -->
+<!-- ══ DÉPLOIEMENT — TIMELINE LIGHT (style solutions-ia) ════════ -->
+<section class="sdtl-section" id="deploiement">
+
+  <!-- 3D Background orb subtil -->
+  <div class="sdtl-orb-wrap" aria-hidden="true">
+    <div class="sdtl-orb" id="sdtlOrb">
+      <div class="sdtl-orb-ring r1"></div>
+      <div class="sdtl-orb-ring r2"></div>
+      <div class="sdtl-orb-ring r3"></div>
+      <div class="sdtl-orb-ring r4"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">نشر مخصص لقطاع الفندقة</div>
+      <h2 class="sec-title rv">نشر فندقي<br><em>على 3 مراحل أساسية</em></h2>
+      <p class="sdtl-intro rv d1">منهجية مجرَّبة لنشر الكونسيرج الذكي الخاص بكم، وتقليص عمولات OTA، وتحقيق عائد الاستثمار خلال 5 أشهر.</p>
+    </div>
+
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <!-- Spine -->
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+
+      <!-- ── PHASE 0 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">تدقيق نظام إدارة الفندق والتدفقات</div>
+            <p class="sdtl-desc">رسم خرائط لنظام إدارة الفندق، اللغات المدعومة، إجراءات الكونسيرج، والأدوات الرقمية القائمة. تحليل التدفقات بين OTA والحجز المباشر.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>تقرير تدقيق نظام إدارة الفندق</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>رسم خرائط التدفقات</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>خطة تقليص الاعتماد على OTA</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>اللغات مُهيَّأة</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 1 – 2</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-search"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">تدقيق</div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 1 — RIGHT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-keyword">ما قبل الموسم</div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-flask"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">تجربة ما قبل الموسم</div>
+            <p class="sdtl-desc">تدريب على قاعدة المعرفة الفندقية، اختبارات متعددة اللغات، سيناريوهات الكونسيرج أثناء الإقامة، وتكامل نظام إدارة الفندق.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>الكونسيرج الذكي مُدرَّب</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>اختبارات متعددة اللغات مُصادَق عليها</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>سيناريوهات الكونسيرج</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تكامل نظام إدارة الفندق تم</span></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 3 – 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">الانطلاق الفعلي في ذروة الموسم</div>
+            <p class="sdtl-desc">الانطلاق الفعلي بإشراف على مدار الساعة خلال الثلاثين يوماً الأولى، وتعديل الأوامر حسب الملاحظات الميدانية الفعلية.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>الكونسيرج جاهز للعمل</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>لوحة تحكم الكونسيرج</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>قاعدة المعرفة</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>تدريب موظفي الاستقبال</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 7 – 10</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-rocket"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">ذروة الموسم</div>
+        </div>
+      </div>
+
+    </div><!-- /sdtl-timeline -->
+  </div>
+</section>
+
+<!-- ══ CAS CLIENT ════════════════════════════════════════════════ -->
+<section class="sh-case" id="cas-client">
+  <div class="container">
+    <div class="sec-label">دراسة حالة — قصة نجاح</div>
+    <h2 class="sec-title rv">نتائج ملموسة<br><em>في قطاع الفندقة</em></h2>
+
+    <div class="case-wrap rv d1">
+
+      <!-- Left: Context + Problem -->
+      <div class="case-left">
+        <div class="case-tag">دراسة حالة · رياض راقٍ · مراكش</div>
+        <h3 class="case-headline">رياض راقٍ<br>22 غرفة، اعتماد 75% على OTA</h3>
+        <p class="case-ctx"><strong>السياق:</strong> رياض بـ 22 غرفة، 75% من الحجوزات عبر Booking.com وExpedia، تقييم جوجل 4.3 نجوم. فريق غير قادر على الرد على مدار الساعة على العملاء المحتملين الدوليين.</p>
+        <div class="case-problem">
+          <div class="case-problem-label">المشكلة المحددة</div>
+          <div class="case-problem-text">75% من الحجوزات عبر OTA ← عمولات 18-20% لكل ليلة. تقييم جوجل 4.3 راكد. فريق الاستقبال مثقل في أوقات الذروة متعددة اللغات. استحالة الرد على مدار الساعة على العملاء المحتملين الدوليين.</div>
+        </div>
+        <div>
+          <div class="case-solution-label" style="font-family:var(--fm);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt2);margin-bottom:.45rem">الحل المعتمد</div>
+          <div class="case-solution-text" style="font-size:.8rem;color:var(--txt2);line-height:1.8">HW Concierge AI + واتساب متعدد اللغات (FR/EN/AR/ES) + محرك حجز مباشر مدمج. تدريب موظفي الاستقبال على الإشراف على الوكيل الذكي.</div>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="case-right">
+        <div>
+          <div class="results-title">النتائج الملاحظة بعد 4 أشهر</div>
+          <div class="results-big-grid">
+            <div class="result-big">
+              <div class="result-big-val">41%</div>
+              <div class="result-big-lbl">الحجوزات المباشرة</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">+0.4<span style="font-size:.7em">pts</span></div>
+              <div class="result-big-lbl">تقييم جوجل</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">180K</div>
+              <div class="result-big-lbl">درهم من العمولات الموفَّرة</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">5<span style="font-size:.7em">أشهر</span></div>
+              <div class="result-big-lbl">عائد الاستثمار المحقق</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-testimonial">
+          <p class="ct-text">يقدّر عملاؤنا الدوليون إمكانية الحجز بالفرنسية أو الإنجليزية دون انتظار. أصبح فريقنا أخيراً يركز على التجربة الحضورية والعلاقة المباشرة مع العملاء.</p>
+          <div class="ct-author">— المدير العام، رياض بمراكش</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
+ <section class="cta-band" style="background: url(<?php echo $siteURL; ?>images/hotel.jpg);">
+  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">فندق</span>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">عزّزوا حجوزاتكم المباشرة <br>وجودة <em>خدمتكم</em></h2>
+    <p class="cta-sub">قدّموا لعملائكم المحتملين والحاليين موظف استقبال ذكياً قادراً على الرد فوراً، وإدارة الطلبات المتكررة، وتسهيل العلاقة مع العملاء، ودعم الأداء التجاري لمؤسستكم.</p>
+    <div class="cta-btns">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
+          <div class="sb-knob"><i class="fal fa-hotel"></i></div>
+        </a>
+
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احجزوا عرضاً تجريبياً للفندقة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">احجزوا عرضاً تجريبياً للفندقة</span></div>
+          <div class="sb-knob"><i class="fal fa-calculator"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
 <?php else: ?>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
@@ -688,14 +1364,14 @@
         <div class="sh-hero-left">
           <div class="sh-breadcrumb rv">Solutions IA — Secteur Hôtellerie</div>
             <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
-        
+
           <p class="sh-sub rv d2">Offrez une expérience 5 étoiles grâce à un réceptionniste virtuel multilingue disponible 24h/24 pour vos futurs clients et résidents.</p>
           <div class="sh-cta-row rv d3">
               <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Découvrir l'IA Hôtellerie" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="sb-label"><span class="sb-hint">Découvrir l'IA Hôtellerie</span></div>
               <div class="sb-knob"><i class="fal fa-hotel"></i></div>
             </a>
-        
+
             <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Calculer mon économie OTA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="sb-label"><span class="sb-hint">Calculer mon économie OTA</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
