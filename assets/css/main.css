@@ -102,6 +102,12 @@ html[dir="rtl"] .agency-num{right:auto;left:3.5rem}
 html[dir="rtl"] .item-video .textbox ul li::after{
   left:auto;right: 34px;transform: rotate(225deg);
 }
+/* .sdtl-panel--left/--right alternate text-align to hug the center spine in
+   LTR (zigzag timeline design); in RTL just right-align both sides' card text. */
+html[dir="rtl"] .sdtl-panel--left,
+html[dir="rtl"] .sdtl-panel--right{text-align:right}
+html[dir="rtl"] .sdtl-panel--right .sdtl-li{justify-content:flex-end}
+html[dir="rtl"] .sdtl-section .sec-label{justify-content:flex-end}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--fb);overflow-x:hidden;line-height:1.6}
