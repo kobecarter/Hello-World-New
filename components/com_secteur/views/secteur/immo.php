@@ -676,6 +676,684 @@
   </div>
 </section>
 
+<?php elseif ($_SESSION['lang'] === 'ar'): ?>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="sh-hero">
+  <canvas id="sh-canvas"></canvas>
+
+  <div class="sh-hero-body">
+    <div class="container">
+      <div class="sh-hero-inner">
+
+        <!-- LEFT -->
+        <div class="sh-hero-left">
+          <div class="sh-breadcrumb rv">حلول الذكاء الاصطناعي — قطاع العقار</div>
+          <h1 class="sh-h1 rv d1">
+            <?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?>
+          </h1>
+          <p class="sh-sub rv d2">أتمتوا تأهيل عملائكم المحتملين وتصدّروا سوق العقار المغربي بوكلاء بيع افتراضيين لا يعرفون الكلل.</p>
+          <div class="sh-cta-row rv d3">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اكتشفوا الذكاء الاصطناعي للعقار" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">اكتشفوا الذكاء الاصطناعي للعقار</span></div>
+              <div class="sb-knob"><i class="fal fa-key"></i></div>
+            </a>
+
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احسبوا توفيري في تكلفة SDR" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sb-label"><span class="sb-hint">احسبوا توفيري في تكلفة SDR</span></div>
+              <div class="sb-knob"><i class="fal fa-calculator"></i></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT — 3D Medical Orbital -->
+        <div class="sh-hero-right">
+          <div class="sho-scene">
+            <div class="sho-ring r1"></div>
+            <div class="sho-ring r2"></div>
+            <div class="sho-ring r3"></div>
+            <div class="sho-core">
+              <div class="sho-plus">🏢</div>
+              <div class="sho-lbl">العقار بالذكاء الاصطناعي</div>
+            </div>
+
+            <!-- Inner orbit (r=100px) -->
+            <div class="sho-orb o1" style="--dl:0s"><div class="sho-ic" data-tip="Salesforce CRM"><i class="fab fa-salesforce"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-5.3s"><div class="sho-ic" data-tip="WhatsApp"><i class="fab fa-whatsapp"></i></div></div>
+            <div class="sho-orb o1" style="--dl:-10.6s"><div class="sho-ic" data-tip="Facebook Lead Ads"><i class="fab fa-facebook"></i></div></div>
+
+            <!-- Middle orbit (r=170px) -->
+            <div class="sho-orb o2" style="--dl:0s"><div class="sho-ic" data-tip="HubSpot"><i class="fab fa-hubspot"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-6s"><div class="sho-ic" data-tip="Calendly"><i class="fal fa-calendar-check"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-12s"><div class="sho-ic" data-tip="Mubawab"><i class="fal fa-house"></i></div></div>
+            <div class="sho-orb o2" style="--dl:-18s"><div class="sho-ic" data-tip="Avito Maroc"><i class="fal fa-tag"></i></div></div>
+
+            <!-- Outer orbit (r=222px) -->
+            <div class="sho-orb o3" style="--dl:0s"><div class="sho-ic" data-tip="VoIP / SIP"><i class="fal fa-phone-volume"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-6.8s"><div class="sho-ic" data-tip="Instagram Ads"><i class="fab fa-instagram"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-13.6s"><div class="sho-ic" data-tip="تقييم التأهيل"><i class="fal fa-star-half-alt"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-20.4s"><div class="sho-ic" data-tip="تقرير تقدم الورش"><i class="fal fa-hard-hat"></i></div></div>
+            <div class="sho-orb o3" style="--dl:-27.2s"><div class="sho-ic" data-tip="أجندة جوجل"><i class="fab fa-google"></i></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT STRIP ════════════════════════════════════════════════ -->
+<section class="sh-stats">
+  <div class="container">
+    <div class="sh-stats-grid">
+      <div class="sh-stat rv">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="30">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">زيارات ميدانية</div>
+        <div class="sh-stat-sub">تعزيز تحويل العميل المحتمل إلى زيارة</div>
+      </div>
+      <div class="sh-stat rv d1">
+        <div class="sh-stat-val" style="font-size:clamp(2rem,4vw,4rem)">&lt;1<span class="suf"> min</span></div>
+        <div class="sh-stat-lbl">معالجة العميل المحتمل</div>
+        <div class="sh-stat-sub">يتم التواصل معه قبل المنافسين</div>
+      </div>
+      <div class="sh-stat rv d2">
+        <div class="sh-stat-val">+<span class="sh-counter" data-target="22">0</span><span class="suf">%</span></div>
+        <div class="sh-stat-lbl">تحويل العميل المحتمل إلى بيع</div>
+        <div class="sh-stat-sub">تقييم تأهيل دقيق بالذكاء الاصطناعي</div>
+      </div>
+      <div class="sh-stat rv d3">
+        <div class="sh-stat-val"><span class="sh-counter" data-target="4">0</span><span class="suf"> أشهر</span></div>
+        <div class="sh-stat-lbl">عائد الاستثمار المحقق</div>
+        <div class="sh-stat-sub">توفير ~360,000 درهم سنوياً</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTE & ENJEUX ════════════════════════════════════════ -->
+<section class="sh-context">
+  <div class="container">
+    <div class="sh-context-inner">
+
+      <div>
+        <div class="sec-label">السياق والتحديات</div>
+        <h2 class="sh-ctx-title rv"><strong>قطاع العقار</strong>العملاء المحتملون الضائعون<br>يكلفون ملايين الدراهم</h2>
+        <div class="sh-ctx-body rv d1">
+          <p>يولّد المطورون والوكالات العقارية في المغرب أحجاماً هائلة من العملاء المحتملين الرقميين، لكنهم يعانون من <em>آجال معالجة طويلة جداً</em>. العميل المحتمل الذي لا يُتَّصَل به خلال 15 دقيقة يفقد 80% من فرص تحوّله. يتدخل الذكاء الاصطناعي كموظف SDR افتراضي يؤهّل العميل المحتمل <em>فورياً، ليلاً نهاراً</em>.</p>
+          <p>المنافسة شديدة في مراكش والدار البيضاء وطنجة والساحل الأطلسي. يطالب المشترون بشفافية كاملة حول تقدم الأوراش واستجابة تجارية دائمة. المطورون الذين يُصنّعون قوتهم التجارية عبر الذكاء الاصطناعي يكتسبون <em>ميزة هيكلية</em> على منافسيهم.</p>
+        </div>
+        <div class="sh-pills rv d2">
+          <span class="sh-pill"><i class="fa fa-exclamation-triangle"></i> عملاء محتملون لم تتم معالجتهم في الوقت المناسب</span>
+          <span class="sh-pill"><i class="fa fa-clock"></i> تأخير > 15 دقيقة = -80% تحويل</span>
+          <span class="sh-pill"><i class="fa fa-ban"></i> موظفو SDR البشريون مثقَلون</span>
+          <span class="sh-pill"><i class="fa fa-hard-hat"></i> تقرير الورش يدوي</span>
+          <span class="sh-pill"><i class="fa fa-chart-line"></i> منافسة متزايدة من منصات OTA</span>
+        </div>
+      </div>
+
+      <!-- CSS ART Visual -->
+      <div class="sh-ctx-visual rv d2">
+        <div class="sh-ctx-blob"></div>
+        <div class="sh-ctx-blob2"></div>
+        <div class="sh-ctx-center"><div class="sh-ctx-cross">🏢</div></div>
+        <div class="sh-fcard fc1">
+          <div class="sh-fcard-val">1000</div>
+          <div class="sh-fcard-lbl">عميل محتمل/شهرياً</div>
+        </div>
+        <div class="sh-fcard fc2">
+          <div class="sh-fcard-val">72%</div>
+          <div class="sh-fcard-lbl">التأهيل</div>
+        </div>
+        <div class="sh-fcard fc3">
+          <div class="sh-fcard-val">+45%</div>
+          <div class="sh-fcard-lbl">مواعيد ميدانية</div>
+        </div>
+        <div class="sh-fcard fc4">
+          <div class="sh-fcard-val">شهران</div>
+          <div class="sh-fcard-lbl">عائد الاستثمار المحقق</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTIONS IA ══════════════════════════════════════════════ -->
+<section class="sh-solutions" id="solutions">
+  <div class="container">
+    <div class="sec-label">حلول الذكاء الاصطناعي — جوهر الصفحة</div>
+    <h2 class="sec-title rv">مجموعة الذكاء الاصطناعي العقارية<br><em>4 وكلاء متخصصون</em></h2>
+
+    <!-- KPI Grid -->
+    <div class="sol-kpi-grid rv d1">
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+30<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">زيارات ميدانية</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">&lt;1<span style="font-size:.7em">min</span></div>
+        <div class="sol-kpi-lbl">معالجة العميل المحتمل</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">+22<span style="font-size:.7em">%</span></div>
+        <div class="sol-kpi-lbl">تحويل إلى بيع</div>
+      </div>
+      <div class="sol-kpi-card">
+        <div class="sol-kpi-val">4 أشهر</div>
+        <div class="sol-kpi-lbl">عائد الاستثمار المحقق</div>
+      </div>
+    </div>
+
+    <!-- Feature Card -->
+    <div class="sol-feature rv">
+      <!-- Left: Content -->
+      <div class="sol-fc-text">
+        <div class="sol-fc-title"><strong>HW SDR Agent للعقار</strong>تأهيل فوري على مدار الساعة، عملاء محتملون محوَّلون</div>
+        <p class="sol-fc-desc">مجموعة من 4 وكلاء ذكاء اصطناعي مكلَّفين بالتأهيل، وتحديثات تقدم الورش، ومراقبة المنافسين، والمكالمات الصادرة المؤتمتة.</p>
+        <ul class="sol-benefits">
+          <li><i class="fa fa-check"></i><span><strong>صفر عميل محتمل مفقود</strong> — استجابة فورية عبر جميع القنوات الواردة</span></li>
+          <li><i class="fa fa-check"></i><span><strong>تأهيل الميزانية والاحتياجات</strong> — تقييم فرز تلقائي يُرسَل إلى نظام CRM</span></li>
+          <li><i class="fa fa-check"></i><span><strong>تقرير تقدم الورش المؤتمت</strong> — صور وتحديثات تُرسَل أسبوعياً إلى المشترين</span></li>
+          <li><i class="fa fa-check"></i><span><strong>مراقبة مستمرة للمنافسين</strong> — مقارنات أسعار مجمَّعة من Mubawab وAvito</span></li>
+          <li><i class="fa fa-check"></i><span><strong>مكالمات صادرة مؤتمتة</strong> — متابعة هاتفية بالدارجة أو الفرنسية، بنص تأهيلي</span></li>
+          <li><i class="fa fa-check"></i><span><strong>حجز مواعيد متزامن</strong> — تُحدَّد الزيارة الميدانية مباشرة في أجندة المندوب التجاري</span></li>
+        </ul>
+        <div class="sol-roi-box">
+          <div class="sol-roi-num">360K</div>
+          <div class="sol-roi-text"><strong>درهم موفَّرة سنوياً لمطور متوسط الحجم</strong><br>تأهيل 1000 عميل محتمل شهرياً دون توظيف مندوبين مبتدئين.</div>
+        </div>
+      </div>
+
+      <!-- Right: WhatsApp CSS Mockup 3D -->
+      <div class="sol-fc-visual">
+        <div class="wa-scene" id="waScene">
+          <div class="wa-glow"></div>
+
+          <div class="wa-3d-group" id="wa3dGroup">
+            <!-- WhatsApp logo badge -->
+            <div class="wa-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+
+            <!-- Phone Frame -->
+            <div class="wa-phone">
+              <div class="wa-screen">
+                <!-- Status bar -->
+                <div class="wa-sbar">
+                  <span class="wa-sbar-time">10:22</span>
+                  <div class="wa-sbar-icons">
+                    <i class="fa fa-signal"></i>
+                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </div>
+                </div>
+                <!-- Header -->
+                <div class="wa-hdr">
+                  <span class="wa-hdr-back">&#8592;</span>
+                  <div class="wa-hdr-av">HW</div>
+                  <div class="wa-hdr-info">
+                    <div class="wa-hdr-name">HW SDR — مارينا طنجة</div>
+                    <div class="wa-hdr-status">وكيل SDR ذكي · نشط</div>
+                  </div>
+                  <div class="wa-hdr-ico">
+                    <i class="fa fa-video"></i>
+                    <i class="fa fa-phone"></i>
+                    <i class="fa fa-ellipsis-vertical"></i>
+                  </div>
+                </div>
+                <!-- Chat -->
+                <div class="wa-chat-area">
+                  <div class="wa-bubble ai">مرحباً! أنا الوكيل التجاري الذكي لمارينا طنجة 🏢 أبديتم اهتماماً بشققنا — هل يمكنني طرح بعض الأسئلة؟<span class="wa-bt">10:22</span></div>
+                  <div class="wa-bubble pt">نعم بالطبع، أبحث عن شقة في طنجة 🙏<span class="wa-bt">10:22</span></div>
+                  <div class="wa-bubble ai">ممتاز! ما هي ميزانيتكم التقريبية؟<br>🔵 <strong>أقل من 800 ألف درهم</strong><br>🔵 <strong>800 ألف – 1.5 مليون درهم</strong><br>🔵 <strong>أكثر من 1.5 مليون درهم</strong><span class="wa-bt">10:23</span></div>
+                  <div class="wa-bubble pt">بين 800 ألف و1.5 مليون درهم ✅<span class="wa-bt">10:23</span></div>
+                  <div class="wa-bubble ai">ممتاز! هل تفضلون شقة من <strong>3 غرف</strong> أم <strong>4 غرف</strong>؟ وهل ترغبون في <strong>إطلالة على البحر</strong>؟<span class="wa-bt">10:23</span></div>
+                  <div class="wa-bubble pt">3 غرف بإطلالة على البحر إن أمكن<span class="wa-bt">10:24</span></div>
+                  <div class="wa-dots-wrap"><span></span><span></span><span></span></div>
+                </div>
+                <!-- Input -->
+                <div class="wa-irow">
+                  <div class="wa-ifake">اكتب رسالة...</div>
+                  <div class="wa-isend"><i class="fa fa-paper-plane"></i></div>
+                </div>
+                <!-- Android nav -->
+                <div class="wa-navb">
+                  <span>&#9664;</span><span>&#9711;</span><span>&#9632;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification overlay -->
+            <div class="wa-notif">
+              <div class="wa-notif-hdr">
+                <div class="wa-notif-av">Dr</div>
+                <div>
+                  <div class="wa-notif-name">مارينا طنجة — SDR ذكي</div>
+                  <div class="wa-notif-st">وكيل ذكاء اصطناعي · متصل</div>
+                </div>
+              </div>
+              <div class="wa-notif-msg">موعد مؤكد •<br>زيارة شقة 3 غرف إطلالة بحر الجمعة 10 صباحاً</div>
+              <div class="wa-notif-rep"><i class="fa fa-face-smile"></i> الرد</div>
+              <div class="wa-notif-acts">
+                <div class="wa-notif-act">CLOSE</div>
+                <div class="wa-notif-act">VIEW</div>
+              </div>
+            </div>
+
+          </div><!-- /wa-3d-group -->
+        </div><!-- /wa-scene -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PARCOURS CLIENT — IMAGE PARALLAX + BEAM PROGRESSIF ════════ -->
+<section class="sh-journey" id="parcours">
+
+  <div class="jp-bg">
+    <img id="jpImg" class="jp-img"
+         src="<?php echo $siteURL; ?>images/real-estate-timeline-.jpg"
+         alt="عقارات فاخرة في المغرب"
+         loading="eager"
+         decoding="async"
+         width="1584" height="672">
+  </div>
+
+  <div class="jp-content">
+    <div class="container">
+      <div class="sec-label">المسار النموذجي للعميل</div>
+      <h2 class="sec-title rv">مسار العميل المحتمل<br><em>من الألف إلى الياء</em></h2>
+      <p class="rv d1">ثلاث قنوات اكتساب، مسار موحّد. اختاروا المسار الذي يناسب استراتيجيتكم التجارية.</p>
+
+      <div class="tab-nav rv d2">
+        <button class="tab-btn active" data-tab="wa">عبر واتساب</button>
+        <button class="tab-btn" data-tab="qr">عبر مكالمة SDR ذكية</button>
+        <button class="tab-btn" data-tab="web">عبر CRM مؤتمت</button>
+      </div>
+
+      <!-- Tab 1: WhatsApp -->
+      <div class="tab-pane active" id="tab-wa">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWa"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">عميل محتمل وارد</div><p class="jf-desc">عميل محتمل نتج عن إعلانات فيسبوك/إنستغرام حول مشروع (مثال: مارينا طنجة)</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تواصل في أقل من دقيقة</div><p class="jf-desc">يتواصل الذكاء الاصطناعي مع العميل المحتمل عبر واتساب خلال دقيقة برسالة مخصصة للسياق</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">التأهيل</div><p class="jf-desc">الميزانية، المدينة، نوع السكن، مدة الاقتناء — يُرسَل التقييم إلى CRM</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">موعد زيارة</div><p class="jf-desc">يقترح الذكاء الاصطناعي موعداً للزيارة ويحدده في أجندة المندوب التجاري</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">CRM متزامن</div><p class="jf-desc">يُحدَّث HubSpot/Salesforce تلقائياً بتقييم التأهيل</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تقرير الورش</div><p class="jf-desc">يتلقى المشتري تقريراً أسبوعياً مؤتمتاً بصور التقدم</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Appel SDR IA -->
+      <div class="tab-pane" id="tab-qr">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamQr"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">رصد العميل المحتمل</div><p class="jf-desc">يُرصَد العميل المحتمل الوارد عبر إعلانات فيسبوك أو نموذج الموقع في الوقت الفعلي</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">مكالمة صادرة</div><p class="jf-desc">يبادر الوكيل الذكي بمكالمة هاتفية خلال 60 ثانية عبر VoIP</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">نص تأهيلي</div><p class="jf-desc">محادثة طبيعية لتحديد الميزانية والاحتياجات ومدى إلحاح الشراء</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تحويل إلى موظف بشري</div><p class="jf-desc">إذا كان مؤهلاً، تُحوَّل المكالمة فوراً إلى المندوب التجاري المناسب</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">موعد مبرمج</div><p class="jf-desc">تُحدَّد الزيارة الميدانية في Calendly، وتُرسَل رسالة تأكيد SMS للعميل المحتمل</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">ملخص CRM</div><p class="jf-desc">يُدرَج النص المفرَّغ وتقييم التأهيل في HubSpot/Salesforce</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: CRM automatisé -->
+      <div class="tab-pane" id="tab-web">
+        <div class="journey-flow">
+          <div class="jf-track-wrap"><div class="jf-beam" id="jfBeamWeb"></div></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">1</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">عميل محتمل في CRM</div><p class="jf-desc">يُستورَد العميل المحتمل تلقائياً من إعلانات فيسبوك أو Mubawab أو Avito</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">2</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تقييم بالذكاء الاصطناعي</div><p class="jf-desc">يحلل الذكاء الاصطناعي الملف الشخصي ويمنح تقييم تأهيل من 0 إلى 100</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">3</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">متابعة عبر واتساب</div><p class="jf-desc">حملة صادرة مخصَّصة حسب المشروع والميزانية المرصودة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">4</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">مراقبة المنافسين</div><p class="jf-desc">مقارنات أسعار حسب المنطقة تُجمَع تلقائياً من Mubawab/Avito</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">5</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">تقرير الورش</div><p class="jf-desc">يتلقى المشترون الحاليون صوراً وتقدم المشروع كل جمعة</p></div>
+          <div class="jf-step"><div class="jf-num-wrap"><div class="jf-num">6</div><i class="fa fa-check jf-check"></i></div><div class="jf-title">لوحة تحكم تجارية</div><p class="jf-desc">مؤشرات أداء التحويل تُحدَّث في الوقت الفعلي لكامل الفريق التجاري</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTÉGRATIONS — ACCORDION ════════════════════════════════ -->
+<section class="sh-integrations" id="integrations">
+  <div class="container">
+    <div class="sec-label">التكاملات الأساسية</div>
+    <h2 class="sec-title rv">متصل بمنظومتكم<br><em>العقارية</em></h2>
+
+    <div class="sh-int-inner">
+
+      <!-- Accordion -->
+      <div class="accordion rv d1">
+
+        <div class="acc-item open">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-salesforce"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Salesforce / HubSpot</span>
+              <span class="acc-sub">CRM — تقييم تأهيل في الوقت الفعلي</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>مزامنة ثنائية الاتجاه مع نظام CRM الخاص بكم. يحصل كل عميل محتمل مؤهَّل على تقييم تلقائي، وتُثرى معلوماته (الميزانية، النوع، المدة)، وتُنشَأ مهمة متابعة للمندوب التجاري المسؤول. صفر إعادة إدخال يدوي.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-facebook"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Facebook / Instagram Ads</span>
+              <span class="acc-sub">إعلانات العملاء المحتملين متصلة في الوقت الفعلي</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>اتصال مباشر بحملاتكم على Facebook Lead Ads وInstagram. بمجرد أن يملأ العميل المحتمل النموذج الإعلاني، يتواصل معه الوكيل الذكي خلال دقيقة عبر واتساب — قبل أن تفعل المنافسة ذلك. معدل تحويل ×3 مقارنة بالمعالجة اليدوية.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fab fa-whatsapp"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">WhatsApp Business API</span>
+              <span class="acc-sub">قناة SDR وتقرير الورش</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>القناة الرئيسية لتأهيل العملاء المحتملين وتقرير الورش للمشترين. معدل فتح 94% على واتساب. يرسل الوكيل صوراً وفيديوهات وتحديثات أسبوعية مباشرة إلى المشترين عبر تطبيقهم المفضل.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-calendar-check"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Calendly / Google Agenda</span>
+              <span class="acc-sub">حجز مواعيد الزيارة مؤتمت</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>يطّلع الوكيل الذكي على توفر المندوب التجاري في الوقت الفعلي ويقترح مواعيد زيارة مناسبة. يُؤكَّد الموعد في Calendly ويُزامَن مع أجندة جوجل — دون تدخل بشري. تُرسَل رسالة تذكير تلقائية قبل يوم واحد للعميل المحتمل.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-house"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">Mubawab / Avito</span>
+              <span class="acc-sub">مراقبة المنافسين عبر الجمع الآلي</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>جمع آلي للإعلانات المنافسة على Mubawab وAvito وSeLoger Maroc. تُولَّد مقارنات أسعار حسب المنطقة ونوع العقار كل أسبوع. لوحة مراقبة لتعديل أسعار بيعكم في الوقت الفعلي.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-trigger">
+            <div class="acc-ico"><i class="fal fa-phone-volume"></i></div>
+            <div class="acc-lbl-wrap">
+              <span class="acc-title">VoIP / SIP — Appels sortants</span>
+              <span class="acc-sub">وكيل SDR هاتفي مؤتمت</span>
+            </div>
+            <div class="acc-arr"><i class="fa fa-chevron-down"></i></div>
+          </button>
+          <div class="acc-body">
+            <div class="acc-content">
+              <p>وكيل مكالمات صادرة مؤتمتة نحو العملاء المحتملين الواردين. صوت طبيعي بالدارجة أو الفرنسية، بنص تأهيلي مُكيَّف لكل مشروع. تحويل إلى مندوب تجاري بشري إذا كان العميل المحتمل مؤهَّلاً. نص مفرَّغ كامل يُدرَج في CRM.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual Integration Hub -->
+      <div class="sh-int-visual rv d2">
+        <div class="sh-int-card">
+          <div class="sec-label" style="margin-bottom:.8rem">الاتصالات النشطة</div>
+          <div class="sh-int-orbit">
+            <div class="sio-ring r1">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-cash-register"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fab fa-whatsapp"></i></div>
+            </div>
+            <div class="sio-ring r2">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-utensils"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-motorcycle"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-credit-card"></i></div>
+            </div>
+            <div class="sio-ring r3">
+              <div class="sio-dot" style="top:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-shield-alt"></i></div>
+              <div class="sio-dot" style="right:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-sms"></i></div>
+              <div class="sio-dot" style="bottom:-18px;left:50%;transform:translateX(-50%)"><i class="fal fa-qrcode"></i></div>
+              <div class="sio-dot" style="left:-18px;top:50%;transform:translateY(-50%)"><i class="fal fa-bell"></i></div>
+            </div>
+            <div class="sio-center"><span>IA</span></div>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+            <div style="font-family:var(--fm);font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)">تكامل خلال ساعات معدودة</div>
+            <div style="font-family:var(--fm);font-size:.72rem;color:var(--txt);margin-top:.4rem;font-weight:300">دون الحاجة لإعادة هيكلة نظامكم الحالي</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DÉPLOIEMENT ═══════════════════════════════════════════════ -->
+<!-- ══ DÉPLOIEMENT — TIMELINE LIGHT (style solutions-ia) ════════ -->
+<section class="sdtl-section" id="deploiement">
+
+  <!-- 3D Background orb subtil -->
+  <div class="sdtl-orb-wrap" aria-hidden="true">
+    <div class="sdtl-orb" id="sdtlOrb">
+      <div class="sdtl-orb-ring r1"></div>
+      <div class="sdtl-orb-ring r2"></div>
+      <div class="sdtl-orb-ring r3"></div>
+      <div class="sdtl-orb-ring r4"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sdtl-header">
+      <div class="sec-label">نشر مخصص لقطاع العقار</div>
+      <h2 class="sec-title rv">نشر SDR ذكي<br><em>على 3 مراحل</em></h2>
+      <p class="sdtl-intro rv d1">منهجية مجرَّبة لنشر وكلائكم الأربعة الذكيين على محفظة مشاريعكم، مع تحقيق عائد الاستثمار خلال 4 أشهر.</p>
+    </div>
+
+    <div class="sdtl-timeline" id="sdtlTimeline">
+      <!-- Spine -->
+      <div class="sdtl-spine"><div class="sdtl-spine-fill" id="sdtlSpineFill"></div></div>
+
+      <!-- ── PHASE 0 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">1</div>
+            <div class="sdtl-title">رسم الخرائط وCRM</div>
+            <p class="sdtl-desc">جرد بطاقات المشاريع، قواعد التأهيل، رسم خرائط CRM الحالي (Salesforce/HubSpot)، وتحديد مصادر العملاء المحتملين.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>بطاقات المشاريع مُهيَّأة</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>قواعد التأهيل محدَّدة</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>CRM مرسوم ومتصل</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>مصادر العملاء المحتملين مجرودة</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 1 – 2</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-map"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">تجربة</div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 1 — RIGHT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-keyword">رسم الخرائط</div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-flask"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">2</div>
+            <div class="sdtl-title">تجربة على مشروع رائد</div>
+            <p class="sdtl-desc">تدريب على مشروع سكني واحد، واختبار A/B مع فريق SDR بشري تقليدي للتحقق من معدل تأهيل الذكاء الاصطناعي.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>وكيل SDR مُدرَّب</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>اختبار A/B مقابل الفريق البشري</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تقييم التأهيل مُصادَق عليه</span></div>
+              <div class="sdtl-li"><i class="fa fa-circle"></i><span>تقرير الورش مُختبَر</span></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 3 – 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 — LEFT ── -->
+      <div class="sdtl-step">
+        <div class="sdtl-panel sdtl-panel--left">
+          <div class="sdtl-glass">
+            <div class="sdtl-num">3</div>
+            <div class="sdtl-title">تعميم على عدة مشاريع</div>
+            <p class="sdtl-desc">نشر على كامل المحفظة، تدريب الفريق التجاري على التعاون مع الذكاء الاصطناعي، ولوحة تحكم تجارية موحّدة.</p>
+            <div style="margin-top:1rem">
+              <div class="sdtl-li"><span>4 وكلاء منشورون</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>لوحة تحكم تجارية</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>دليل SDR الذكي</span><i class="fa fa-circle"></i></div>
+              <div class="sdtl-li"><span>تكامل CRM كامل</span><i class="fa fa-circle"></i></div>
+            </div>
+            <span class="sdtl-tag">الأسبوع 7 – 10</span>
+          </div>
+        </div>
+        <div class="sdtl-node-wrap">
+          <div class="sdtl-node">
+            <div class="sdtl-node-ring r1"></div>
+            <div class="sdtl-node-ring r2"></div>
+            <div class="sdtl-node-ring r3"></div>
+            <div class="sdtl-node-core"><i class="fal fa-rocket"></i></div>
+            <div class="sdtl-node-pulse"></div>
+          </div>
+        </div>
+        <div class="sdtl-panel sdtl-panel--right">
+          <div class="sdtl-keyword">تعميم</div>
+        </div>
+      </div>
+
+    </div><!-- /sdtl-timeline -->
+  </div>
+</section>
+
+<!-- ══ CAS CLIENT ════════════════════════════════════════════════ -->
+<section class="sh-case" id="cas-client">
+  <div class="container">
+    <div class="sec-label">دراسة حالة — قصة نجاح</div>
+    <h2 class="sec-title rv">نتائج ملموسة<br><em>في قطاع العقار</em></h2>
+
+    <div class="case-wrap rv d1">
+
+      <!-- Left: Context + Problem -->
+      <div class="case-left">
+        <div class="case-tag">دراسة حالة · مطور سكني · الدار البيضاء</div>
+        <h3 class="case-headline">مطور سكني<br>3 مشاريع، 150 عميلاً محتملاً شهرياً</h3>
+        <p class="case-ctx"><strong>السياق:</strong> مطور لديه 3 مشاريع قيد التسويق، 150 عميلاً محتملاً واردين شهرياً، فريق SDR من 3 مبتدئين مثقَل. معدل تأهيل أولي 38%.</p>
+        <div class="case-problem">
+          <div class="case-problem-label">المشكلة المحددة</div>
+          <div class="case-problem-text">متوسط زمن معالجة العميل المحتمل: 4 ساعات. 62% من العملاء المحتملين لم تتم إعادة الاتصال بهم أبداً. فريق SDR من 3 مبتدئين مثقَل بأحجام إعلانات فيسبوك. عائد الاستثمار الإعلاني غير قابل للقياس بسبب غياب متابعة CRM.</div>
+        </div>
+        <div>
+          <div class="case-solution-label" style="font-family:var(--fm);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt2);margin-bottom:.45rem">الحل المعتمد</div>
+          <div class="case-solution-text" style="font-size:.8rem;color:var(--txt2);line-height:1.8">HW SDR Agent + حملات واتساب صادرة + تقرير ورش مؤتمت. تدريب الفريق التجاري على التعاون مع الذكاء الاصطناعي.</div>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="case-right">
+        <div>
+          <div class="results-title">النتائج الملاحظة بعد 4 أشهر</div>
+          <div class="results-big-grid">
+            <div class="result-big">
+              <div class="result-big-val">72<span style="font-size:.7em">%</span></div>
+              <div class="result-big-lbl">معدل التأهيل</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">+45%</div>
+              <div class="result-big-lbl">مواعيد ميدانية</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">2</div>
+              <div class="result-big-lbl">وظيفتا SDR بدوام كامل موفَّرتان</div>
+            </div>
+            <div class="result-big">
+              <div class="result-big-val">4<span style="font-size:.7em">أشهر</span></div>
+              <div class="result-big-lbl">عائد الاستثمار المحقق</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-testimonial">
+          <p class="ct-text">انتقل فريقنا التجاري من منطق الحجم إلى منطق إغلاق الصفقات. أعاد لنا الذكاء الاصطناعي أفضل عناصرنا — أصبحوا يركزون على الزيارات والتفاوض، لا على المتابعة الهاتفية.</p>
+          <div class="ct-author">— المدير التجاري، مطور سكني بالدار البيضاء</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
+ <section class="cta-band" style="background: url(<?php echo $siteURL; ?>images/real-estate-.jpg);">
+  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">عقار</span>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
+    <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">سرّعوا التأهيل <br>والمتابعات <em>التجارية</em></h2>
+
+    <p class="cta-sub">فعّلوا وكلاء ذكاء اصطناعي قادرين على معالجة عملائكم المحتملين في الوقت الفعلي، وإدارة حملات واتساب، وتأهيل العملاء المحتملين هاتفياً، وتحسين ظهور مشاريعكم وأوراشكم أمام مشتريكم.<p>
+    <div class="cta-btns">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
+          <div class="sb-knob"><i class="fal fa-key"></i></div>
+        </a>
+
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="دقّقوا قمع مبيعاتي العقاري" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="sb-label"><span class="sb-hint">دقّقوا قمع مبيعاتي العقاري</span></div>
+          <div class="sb-knob"><i class="fal fa-calculator"></i></div>
+        </a>
+    </div>
+  </div>
+</section>
+
 <?php else: ?>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
