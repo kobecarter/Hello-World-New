@@ -98,26 +98,28 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	        );
 	    }
 
-	    // Hreflang alternates for <head>. Most content types are fully bilingual
-	    // (services, secteurs, agents IA, formations, packs, static pages), so the
-	    // switcher links above are trustworthy as-is. Blog, reference and produit
-	    // detail pages are only partially translated (see SEO audit), so an
-	    // hreflang claiming an alternate exists there needs an actual existence
-	    // check first -- pointing hreflang at a URL with no real translation is
-	    // worse than omitting it.
+	    // Hreflang alternates for <head>. Services, formations, packs and static
+	    // pages share the same slug across languages, so the switcher links above
+	    // are trustworthy as-is. Blog, reference, produit, secteur and agent_ia
+	    // detail pages each store a distinct slug per language (secteur/agent_ia
+	    // Arabic slugs are transliterated, not shared with FR/EN) -- naively
+	    // swapping the language prefix on the current URL produces a broken link,
+	    // so these need an ID-based lookup of the actual per-language row instead.
 	    $hreflangLinks = array();
 	    $detailOption = isset($_GET['option']) ? $_GET['option'] : '';
 	    $detailTask = isset($_GET['task']) ? $_GET['task'] : '';
-	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit'));
+	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit', 'com_secteur', 'com_agents_ia'));
 	    // Look up the alternate by the numeric ID already resolved by the
-	    // component controller ($currentPost/$reference/$produit), not by the current
-	    // URL's slug -- blog/reference/produit store a distinct slug per
+	    // component controller ($currentPost/$reference/$produit/$secteur/$agent_ia),
+	    // not by the current URL's slug -- these store a distinct slug per
 	    // language, so the current-language slug won't match the other
 	    // language's row.
 	    $currentDetailId = null;
 	    if ($detailOption === 'com_blog' && isset($currentPost)) $currentDetailId = $currentPost->getId();
 	    elseif ($detailOption === 'com_reference' && isset($reference)) $currentDetailId = $reference->getId();
 	    elseif ($detailOption === 'com_produit' && isset($produit)) $currentDetailId = $produit->getId();
+	    elseif ($detailOption === 'com_secteur' && isset($secteur)) $currentDetailId = $secteur->getId();
+	    elseif ($detailOption === 'com_agents_ia' && isset($agent_ia)) $currentDetailId = $agent_ia->getId();
 
 	    foreach ($langOptions as $langOpt) {
 	        if (!$isPartialContentDetail || $langOpt['code'] == $_SESSION['lang']) {
@@ -134,6 +136,12 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	                if ($alt->getTitre()) $altHref = $alt->getLink();
 	            } elseif ($detailOption === 'com_produit') {
 	                $alt = produit::find($currentDetailId, $langOpt['code']);
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_secteur') {
+	                $alt = secteur::find($currentDetailId, $langOpt['code']);
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_agents_ia') {
+	                $alt = agent_ia::find($currentDetailId, $langOpt['code']);
 	                if ($alt->getTitre()) $altHref = $alt->getLink();
 	            }
 	        }
