@@ -47,6 +47,11 @@ html[dir="rtl"] {
    inheritance to every descendant lacking its own text-align rule — this is
    the root cause behind most "text isn't RTL" bugs across the site. */
 html[dir="rtl"] body{text-align:right}
+/* .nav-row (logo, menu, language switcher) has no direction-aware CSS of its
+   own, so under dir="rtl" the browser auto-mirrors the flex order -- logo
+   jumps to the right, language switcher to the left. Requested: header stays
+   laid out exactly like the French version, only the text translates. */
+html[dir="rtl"] .nav-row{direction:ltr}
 html[dir="rtl"] .hero-title,
 html[dir="rtl"] .sec-title,
 html[dir="rtl"] .port-title,
