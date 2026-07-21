@@ -7118,5 +7118,49 @@ $lang = array(
         "ar" => "طلاب الاتصال والإعلام والصحافة"
     ),
 
+    /* ===================== RÉALISATION DETAIL: com_reference/views/reference/detail.php ===================== */
+
+    "REF_LBL_CLIENT" => array(
+        "fr" => "Client",
+        "en" => "Client",
+        "ar" => "العميل"
+    ),
+
+    "REF_LBL_SECTEUR" => array(
+        "fr" => "Secteur",
+        "en" => "Sector",
+        "ar" => "القطاع"
+    ),
+
+    "REF_LBL_DUREE" => array(
+        "fr" => "Durée",
+        "en" => "Duration",
+        "ar" => "المدة"
+    ),
+
+    "REF_LBL_SERVICES" => array(
+        "fr" => "Services",
+        "en" => "Services",
+        "ar" => "الخدمات"
+    ),
+
+    "REF_LBL_VOIR_SITE" => array(
+        "fr" => "Voir le site",
+        "en" => "View website",
+        "ar" => "زيارة الموقع"
+    ),
+
+    "REF_INTRO_TITLE" => array(
+        "fr" => "Secteur d'<em>activité</em>",
+        "en" => "Industry <em>sector</em>",
+        "ar" => "قطاع <em>النشاط</em>"
+    ),
+
+    "REF_NEXT_LABEL" => array(
+        "fr" => "Projet suivant",
+        "en" => "Next project",
+        "ar" => "المشروع التالي"
+    ),
+
 );
 ?>
