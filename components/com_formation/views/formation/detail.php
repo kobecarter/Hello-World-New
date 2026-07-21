@@ -1106,6 +1106,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 
     /* ── AUTRES FORMATIONS : scroll horizontal épinglé + coverflow 3D (comme la page liste) ── */
     (function () {
+        var isRTL = document.documentElement.dir === 'rtl';
         var pin   = document.getElementById('hwfdMorePin');
         var track = document.getElementById('hwfdMoreTrack');
         var cards = track ? track.querySelectorAll('.hw-f-list-card-3d') : [];
@@ -1145,7 +1146,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
 
         if (!rm && window.innerWidth > 760) {
             gsap.to(track, {
-                x: function () { return -trackDistance(); },
+                x: function () { return isRTL ? trackDistance() : -trackDistance(); },
                 ease: 'none',
                 scrollTrigger: {
                     trigger: pin,
