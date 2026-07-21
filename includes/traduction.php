@@ -5006,10 +5006,16 @@ $lang = array(
         "ar" => " أهم المنتجات في المستقبل."
     ),
 
+    "HOME_WHY_LABEL" => array(
+        "fr" => "Hello World",
+        "en" => "Hello World",
+        "ar" => "هيلو وورلد"
+    ),
+
     "HOME_WHY_TITLE" => array(
         "fr" => "Pourquoi<br><em>Hello World</em>",
         "en" => "Why<br><em>Hello World</em>",
-        "ar" => "لماذا<br><em>Hello World</em>"
+        "ar" => "لماذا<br><em>هيلو وورلد</em>"
     ),
 
     "HOME_WHY_BG_ALT" => array(

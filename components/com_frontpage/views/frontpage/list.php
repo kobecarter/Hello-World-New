@@ -537,7 +537,7 @@ img,video{display:block;max-width:100%}
     <!-- Desktop copy overlay — heading + paragraph hidden on mobile
          (they live in .why-mobile-hd for mobile readers) -->
     <div class="why-copy">
-      <div class="sec-label rv">Hello World</div>
+      <div class="sec-label rv"><?php echo $lang['HOME_WHY_LABEL'][$_SESSION['lang']]; ?></div>
       <h2 class="sec-title rv d1"><?php echo $lang['HOME_WHY_TITLE'][$_SESSION['lang']]; ?></h2>
 
       <p class="why-p" aria-hidden="true"><?php echo $lang['HOME_WHY_P'][$_SESSION['lang']]; ?></p>
