@@ -58,6 +58,13 @@ html[dir="rtl"] .port-title,
 html[dir="rtl"] .page-hero-title{text-align:right}
 html[dir="rtl"] .brochure .textbox{direction:rtl;text-align:right}
 html[dir="rtl"] a[href^="tel:"]{direction:ltr;unicode-bidi:embed;display:inline-block}
+/* Homepage contact section (#contact .c-val) prints the phone number as
+   plain text, not an a[href^="tel:"] link -- with no strong-direction
+   character anchoring it, the space-separated digit groups reorder under
+   RTL (e.g. "+212 6 75 47 20 01" flips group order). Scope to the phone
+   row only via :has(), since .c-val is reused for email/address too and
+   the address can legitimately be Arabic text. */
+html[dir="rtl"] .c-detail:has(.fa-phone) .c-val{direction:ltr;unicode-bidi:embed;text-align:right}
 html[dir="rtl"] .ct-float-label,
 html[dir="rtl"] .ct-select-label{left:auto;right:0}
 html[dir="rtl"] .ct-select-arr{right:auto;left:0}
