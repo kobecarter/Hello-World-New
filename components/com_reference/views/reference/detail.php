@@ -108,7 +108,7 @@
   <div class="rd-split">
     <div class="container">
       <div class="rd-split-inner">
-        <div class="rd-split-img rv">
+        <div class="rd-split-img rv<?php echo $item->getService() == 'mobile' ? ' rd-split-img--mobile' : ''; ?>">
           <div class="rd-split-img-inner" style="background:linear-gradient(135deg,#06080e 0%,#0e1525 60%,#14213a 100%)">
 			<img src="<?= $siteURL; ?>images/references/<?= $item->getPhoto(); ?>" alt="" />
 		  </div>
@@ -181,6 +181,8 @@
 </a>
 
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa fa-arrow-up"></i></button>
+
+<script src="<?php echo $siteURL; ?>assets/js/reference.js"></script>
 
 <script>
 // const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
