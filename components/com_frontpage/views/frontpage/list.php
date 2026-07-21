@@ -991,7 +991,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Hamid K</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_CEO'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_CEO'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1004,7 +1004,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Zakaria EL</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_COFOUNDER'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_COFOUNDER'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1017,7 +1017,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Youssef F</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_ART'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_ART'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1029,7 +1029,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Khadija T</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_DEV'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_DEV'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1042,7 +1042,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Hasna</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_ADMIN'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_ADMIN'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1055,7 +1055,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Rokya</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_SALES1'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_SALES'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1068,7 +1068,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Siham</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_SALES2'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_SALES'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1081,7 +1081,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Marwa</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_SALES3'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_SALES'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1094,7 +1094,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Salma</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_MARKETING'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_MARKETING'][$_SESSION['lang']]; ?></div>
         </div>
       </div>
@@ -1107,7 +1107,7 @@ img,video{display:block;max-width:100%}
           <div class="team-overlay"></div>
         </div>
         <div class="team-info">
-          <div class="team-name">Anas</div>
+          <div class="team-name"><?php echo $lang['HOME_TEAM_NAME_DEV_M'][$_SESSION['lang']]; ?></div>
           <div class="team-role"><?php echo $lang['HOME_TEAM_ROLE_DEV_M'][$_SESSION['lang']]; ?></div>
         </div>
       </div>

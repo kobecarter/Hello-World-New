@@ -1325,6 +1325,66 @@ $lang = array(
         "ar" => "مسؤول التسويق"
     ),
 
+    "HOME_TEAM_NAME_CEO" => array(
+        "fr" => "Hamid K",
+        "en" => "Hamid K",
+        "ar" => "حميد ك."
+    ),
+
+    "HOME_TEAM_NAME_COFOUNDER" => array(
+        "fr" => "Zakaria EL",
+        "en" => "Zakaria EL",
+        "ar" => "زكرياء إيل"
+    ),
+
+    "HOME_TEAM_NAME_ART" => array(
+        "fr" => "Youssef F",
+        "en" => "Youssef F",
+        "ar" => "يوسف ف."
+    ),
+
+    "HOME_TEAM_NAME_DEV" => array(
+        "fr" => "Khadija T",
+        "en" => "Khadija T",
+        "ar" => "خديجة ت."
+    ),
+
+    "HOME_TEAM_NAME_ADMIN" => array(
+        "fr" => "Hasna",
+        "en" => "Hasna",
+        "ar" => "حسناء"
+    ),
+
+    "HOME_TEAM_NAME_SALES1" => array(
+        "fr" => "Rokya",
+        "en" => "Rokya",
+        "ar" => "رقية"
+    ),
+
+    "HOME_TEAM_NAME_SALES2" => array(
+        "fr" => "Siham",
+        "en" => "Siham",
+        "ar" => "سهام"
+    ),
+
+    "HOME_TEAM_NAME_SALES3" => array(
+        "fr" => "Marwa",
+        "en" => "Marwa",
+        "ar" => "مروى"
+    ),
+
+    "HOME_TEAM_NAME_MARKETING" => array(
+        "fr" => "Salma",
+        "en" => "Salma",
+        "ar" => "سلمى"
+    ),
+
+    "HOME_TEAM_NAME_DEV_M" => array(
+        "fr" => "Anas",
+        "en" => "Anas",
+        "ar" => "أنس"
+    ),
+
     "HOME_BROCHURE_TITLE" => array(
         "fr" => "Découvrez Notre <br><em>Brochure</em>",
         "en" => "Discover Our <br><em>Brochure</em>",
