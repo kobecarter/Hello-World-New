@@ -1034,7 +1034,7 @@ $lang = array(
     "HOME_WHY_H" => array(
         "fr" => "Pourquoi<em>Hello World</em>",
         "en" => "Why<em> Hello World</em>",
-        "ar" => "لماذا<em> Hello World</em>"
+        "ar" => "لماذا<em> هيلو وورلد</em>"
     ),
 
     "HOME_WHY_P" => array(
