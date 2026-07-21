@@ -49,12 +49,17 @@
         <div class="rd-meta-lbl">Services</div>
         <div class="rd-meta-val" style="font-size:1rem;"><?php echo $reference->getService(); ?></div>
       </div>
-      <div class="rd-meta-item">
-        <div class="rd-meta-lbl">Voir le site</div>
-        <div class="rd-meta-val">
-          <a href="<?php echo 'https://' . $reference->getSiteWeb(); ?>" target="_blank"><?php echo $reference->getSiteWeb(); ?> <i class="fa fa-arrow-up-right-from-square"></i></a>
+      <?php if (!empty($reference->getSiteWeb())) : ?>
+        <div class="rd-meta-item">
+            <div class="rd-meta-lbl">Voir le site</div>
+            <div class="rd-meta-val">
+                <a href="https://<?php echo $reference->getSiteWeb(); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo $reference->getSiteWeb(); ?>
+                    <i class="fa fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
         </div>
-      </div>
+      <?php endif; ?>
     </div>
   </div>
 </div>
