@@ -769,8 +769,8 @@ img,video{display:block;max-width:100%}
 
 <section id="expert">
     <div class="container">
-        <div class="sec-label rv">Digital Expert</div>
-        <h2 class="sec-title rv d1"><em>Digital</em> Expert</h2>
+        <div class="sec-label rv"><?php echo $lang['HOME_EXPERT_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv d1"><?php echo $lang['HOME_EXPERT_TITLE'][$_SESSION['lang']]; ?></h2>
 
         <div id="owl-videos" class="owl-carousel owl-theme">
             <?php foreach ($videos as $video): ?>
@@ -798,7 +798,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Contactez un expert" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['HOME_CONTACT_EXPERT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                   <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_CONTACT_EXPERT'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>

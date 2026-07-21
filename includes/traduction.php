@@ -1187,6 +1187,18 @@ $lang = array(
         "ar" => "تواصلوا مع خبير"
     ),
 
+    "HOME_EXPERT_LABEL" => array(
+        "fr" => "Digital Expert",
+        "en" => "Digital Expert",
+        "ar" => "الخبير الرقمي"
+    ),
+
+    "HOME_EXPERT_TITLE" => array(
+        "fr" => "<em>Digital</em> Expert",
+        "en" => "<em>Digital</em> Expert",
+        "ar" => "الخبير <em>الرقمي</em>"
+    ),
+
     "HOME_LIRE_PLUS" => array(
         "fr" => "lire plus",
         "en" => "read more",
