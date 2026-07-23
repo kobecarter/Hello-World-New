@@ -34,27 +34,32 @@
   <div class="container" style="padding:0">
     <div class="rd-meta-inner">
       <div class="rd-meta-item">
-        <div class="rd-meta-lbl">Client</div>
+        <div class="rd-meta-lbl"><?php echo $lang['REF_LBL_CLIENT'][$_SESSION['lang']]; ?></div>
         <div class="rd-meta-val"><?php echo $reference->getNomClient(); ?></div>
       </div>
       <div class="rd-meta-item">
-        <div class="rd-meta-lbl">Secteur</div>
+        <div class="rd-meta-lbl"><?php echo $lang['REF_LBL_SECTEUR'][$_SESSION['lang']]; ?></div>
         <div class="rd-meta-val"><?php echo $reference->getSecteur(); ?></div>
       </div>
       <div class="rd-meta-item">
-        <div class="rd-meta-lbl">Durée</div>
+        <div class="rd-meta-lbl"><?php echo $lang['REF_LBL_DUREE'][$_SESSION['lang']]; ?></div>
         <div class="rd-meta-val"><?php echo $reference->getDuree(); ?></div>
       </div>
       <div class="rd-meta-item">
-        <div class="rd-meta-lbl">Services</div>
+        <div class="rd-meta-lbl"><?php echo $lang['REF_LBL_SERVICES'][$_SESSION['lang']]; ?></div>
         <div class="rd-meta-val" style="font-size:1rem;"><?php echo $reference->getService(); ?></div>
       </div>
-      <div class="rd-meta-item">
-        <div class="rd-meta-lbl">Voir le site</div>
-        <div class="rd-meta-val">
-          <a href="<?php echo 'https://' . $reference->getSiteWeb(); ?>" target="_blank"><?php echo $reference->getSiteWeb(); ?> <i class="fa fa-arrow-up-right-from-square"></i></a>
+      <?php if (!empty($reference->getSiteWeb())) : ?>
+        <div class="rd-meta-item">
+            <div class="rd-meta-lbl"><?php echo $lang['REF_LBL_VOIR_SITE'][$_SESSION['lang']]; ?></div>
+            <div class="rd-meta-val">
+                <a href="https://<?php echo $reference->getSiteWeb(); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo $reference->getSiteWeb(); ?>
+                    <i class="fa fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
         </div>
-      </div>
+      <?php endif; ?>
     </div>
   </div>
 </div>
@@ -65,7 +70,7 @@
     <div class="container">
       <div class="rd-intro-inner">
         <div>
-          <h2 class="rd-intro-title rv">Secteur d'<em>activité</em></h2>
+          <h2 class="rd-intro-title rv"><?php echo $lang['REF_INTRO_TITLE'][$_SESSION['lang']]; ?></h2>
           <p class="rd-intro-lead rv d1"><?php echo strip_tags($reference->getSecteurActivite()); ?></p>
         </div>
         <div>
@@ -108,7 +113,7 @@
   <div class="rd-split">
     <div class="container">
       <div class="rd-split-inner">
-        <div class="rd-split-img rv">
+        <div class="rd-split-img rv<?php echo $item->getService() == 'mobile' ? ' rd-split-img--mobile' : ''; ?>">
           <div class="rd-split-img-inner" style="background:linear-gradient(135deg,#06080e 0%,#0e1525 60%,#14213a 100%)">
 			<img src="<?= $siteURL; ?>images/references/<?= $item->getPhoto(); ?>" alt="" />
 		  </div>
@@ -126,45 +131,7 @@
   <?php endif; ?>
   <?php endforeach; ?>
 
-  <!-- PULL QUOTE -->
-  <!-- <div class="rd-quote">
-    <div class="container">
-      <div class="rd-quote-inner rv">
-        <p class="rd-quote-text">Hello World Agency n'a pas juste redesigné notre interface — ils ont transformé la façon dont nos clients vivent notre produit. La différence est mesurable, immédiate, et durable.</p>
-        <div class="rd-quote-attr">Marcus Chen — CPO, Orbital Inc.</div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- METRICS -->
-  <!-- <div class="rd-metrics">
-    <div class="container">
-      <div class="sec-label">Résultats</div>
-      <h2 class="sec-title rv">Des métriques qui <em>parlent</em></h2>
-      <div class="rd-metrics-grid rv d1">
-        <div class="rd-metric">
-          <div class="rd-metric-val" id="m1">0<span>%</span></div>
-          <div class="rd-metric-lbl">Rétention</div>
-          <div class="rd-metric-desc">+68 pts en 3 mois</div>
-        </div>
-        <div class="rd-metric">
-          <div class="rd-metric-val" id="m2">0<span>%</span></div>
-          <div class="rd-metric-lbl">NPS Score</div>
-          <div class="rd-metric-desc">De 18 à 74</div>
-        </div>
-        <div class="rd-metric">
-          <div class="rd-metric-val" id="m3">0<span>%</span></div>
-          <div class="rd-metric-lbl">Support calls</div>
-          <div class="rd-metric-desc">Réduction des tickets</div>
-        </div>
-        <div class="rd-metric">
-          <div class="rd-metric-val" id="m4">0<span>sem.</span></div>
-          <div class="rd-metric-lbl">Time-to-value</div>
-          <div class="rd-metric-desc">De 3 sem. à 4 jours</div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+  
 </section>
 
 <!-- NEXT PROJECT -->
@@ -172,7 +139,7 @@
   <div class="rd-next-bg">
     <div class="rd-next-inner">
       <div>
-        <div class="rd-next-label">Projet suivant</div>
+        <div class="rd-next-label"><?php echo $lang['REF_NEXT_LABEL'][$_SESSION['lang']]; ?></div>
         <div class="rd-next-title"><?php echo $reference->getNext()->getNomClient(); ?></div>
       </div>
       <div class="rd-next-arr"><i class="fa fa-arrow-right"></i></div>
@@ -181,6 +148,8 @@
 </a>
 
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa fa-arrow-up"></i></button>
+
+<script src="<?php echo $siteURL; ?>assets/js/reference.js"></script>
 
 <script>
 // const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
