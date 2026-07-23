@@ -94,19 +94,41 @@
   <?php if($item->getService() == 'shooting'): // Shooting Photo ?>
   <!-- GALLERY -->
   <div class="rd-gallery">
-	<?php
-	$photos = galerie_photo::findAllByGalerie($_SESSION['lang'], $item->getGalerie()->getId());
-	foreach($photos as $photo) {
-		?>
-    <div class="rd-gal-item rv">
-      <a href="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" data-fancybox="rd-gallery-<?php echo $item->getGalerie()->getId(); ?>" data-caption="<?php echo $photo->getTitre(); ?>" class="rd-gal-inner" style="background:linear-gradient(135deg,#081428 0%,#0d2545 100%)">
-		<img src="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" alt="<?php echo $photo->getTitre(); ?>"/>
-	  </a>
-      <!-- <span class="rd-gal-num">01 / Dashboard</span> -->
+    <?php
+    $photos = galerie_photo::findAllByGalerie($_SESSION['lang'], $item->getGalerie()->getId());
+    foreach($photos as $photo) {
+      ?>
+      <div class="rd-gal-item rv">
+        <a href="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" data-fancybox="rd-gallery-<?php echo $item->getGalerie()->getId(); ?>" data-caption="<?php echo $photo->getTitre(); ?>" class="rd-gal-inner">
+          <img src="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" alt="<?php echo $photo->getTitre(); ?>"/>
+        </a>
+        <!-- <span class="rd-gal-num">01 / Dashboard</span> -->
+      </div>
+    <?php
+    }
+    ?>
+  </div>
+  <?php elseif($item->getService() == 'video'): ?>		
+  <?php $video = $item->getVideo(); ?>  
+  <!-- SPLIT SECTION -->
+  <div class="rd-split">
+    <div class="container">
+      <div class="rd-split-inner">
+        <div class="rd-split-img rv<?php echo $item->getService() == 'mobile' ? ' rd-split-img--mobile' : ''; ?>">
+          <a href="javascript:void(0)" class="btn-play" data-src="https://www.youtube.com/watch?v=<?php echo $video->getVideo(); ?>" data-fancybox><i class="fal fa-play"></i></a>
+          <div class="rd-split-img-inner img-video">
+			      <img src="<?php echo $siteURL; ?>images/videos/<?php echo $video->getPhoto(); ?>" alt="<?php echo $video->getTitre(); ?>" />
+		      </div>
+        </div>
+        <div>
+          <div class="rd-split-label rv d1"><?php echo $item->getSousTitre(); ?></div>
+          <h3 class="rd-split-heading rv d1"><?php echo $item->getTitre(); ?></h3>
+          <div class="rd-split-text rv d2">
+            <p><?php echo nl2br($item->getDescription()); ?></p>
+          </div>
+        </div>
+      </div>
     </div>
-	<?php
-	}
-	?>
   </div>
   <?php else: ?>		
   <!-- SPLIT SECTION -->
