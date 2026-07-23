@@ -99,9 +99,9 @@
 	foreach($photos as $photo) {
 		?>
     <div class="rd-gal-item rv">
-      <div class="rd-gal-inner" style="background:linear-gradient(135deg,#081428 0%,#0d2545 100%)">
+      <a href="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" data-fancybox="rd-gallery-<?php echo $item->getGalerie()->getId(); ?>" data-caption="<?php echo $photo->getTitre(); ?>" class="rd-gal-inner" style="background:linear-gradient(135deg,#081428 0%,#0d2545 100%)">
 		<img src="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" alt="<?php echo $photo->getTitre(); ?>"/>
-	  </div>
+	  </a>
       <!-- <span class="rd-gal-num">01 / Dashboard</span> -->
     </div>
 	<?php
