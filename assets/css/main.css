@@ -1098,9 +1098,14 @@ footer .nav-tabs .nav-link{
 }
 .bottom .footer-bottom-menu {
     margin: 0;
-	padding:0;
+	  padding:0;
     float: left;
     list-style: none;
+}
+html[dir="rtl"] body .bottom .footer-bottom-menu {
+  float: none;
+  margin: auto;
+  display: table;
 }
 .bottom .footer-bottom-menu li {
 	float:left;
@@ -4603,7 +4608,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:800;padding:0;display:flex;al
 .wm-hero-grid{position:absolute;inset:0;z-index:0;overflow:hidden}
 .wm-hero-grid svg{width:100%;height:100%;opacity:.045}
 .wm-hero .container{position:relative;z-index:2}
-.wm-hero-inner{display:grid;grid-template-columns:1fr 400px;gap:4rem}
+.wm-hero-inner{display:grid;grid-template-columns:1fr 600px;gap:1rem}
 .wm-hero-label{font-size:.6rem;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
 .wm-hero-label::before{content:'';width:36px;height:1px;background:var(--gold)}
 .wm-hero-title{font-family:var(--fm);font-weight:100;font-size:84px;line-height:1.1;letter-spacing:-.04em;color:var(--gold2);margin-bottom:2.5rem}
