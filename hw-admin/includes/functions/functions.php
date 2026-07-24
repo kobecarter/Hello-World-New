@@ -538,7 +538,7 @@ function seo($path = "")
 
     if ($_SERVER["REMOTE_ADDR"] != "::1" && $_SERVER["REMOTE_ADDR"] != "127.0.0.1") {
 
-        $details .=	'RewriteBase /new/
+        $details .=	'RewriteBase /
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
