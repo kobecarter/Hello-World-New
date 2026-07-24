@@ -7930,7 +7930,7 @@ object-fit: cover;
 
 .rd-intro-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
 
-.rd-intro-title{font-weight:100;font-size:clamp(2.5rem,5vw,6rem);line-height:1;letter-spacing:-.03em;color:var(--gold2);margin-bottom:1rem}
+.rd-intro-title{font-weight:100;font-size:clamp(2.5rem,4vw,6rem);line-height:1;letter-spacing:-.03em;color:var(--gold2);margin-bottom:1rem}
 
 .rd-intro-title em{font-style:normal;color:var(--gold)}
 
@@ -8053,6 +8053,7 @@ object-fit: cover;
 }
 .rd-gal-inner img{
   height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
