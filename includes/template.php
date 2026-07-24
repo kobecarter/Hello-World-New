@@ -29,18 +29,6 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    }
 	    $currentPath = preg_replace('#^(fr|en|ar|es)/#', '', $currentPath);
 
-	    // Deux services ont eux aussi un slug différent selon la langue (les autres
-	    // services partagent le même slug dans toutes les langues -- voir la traduction
-	    // en masse effectuée plus tôt, qui a conservé le slug FR tel quel).
-	    $servicePairsFrToEn = array(
-	        'creation-de-sites-web' => 'website-development',
-	        'brand-experience-et-contenus-de-marque' => 'brand-experience-and-brand-content',
-	    );
-	    $servicePairsEnToFr = array_flip($servicePairsFrToEn);
-
-	    $currentFirstSegment = strtok($currentPath, '/');
-	    $currentPathRest = substr($currentPath, strlen($currentFirstSegment));
-
 	    // Blog, reference, produit, secteur and agent_ia detail pages each store a
 	    // distinct slug per language (secteur/agent_ia Arabic slugs are transliterated,
 	    // not shared with FR/EN) -- naively swapping the language prefix on the current
@@ -49,7 +37,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    // the visible switcher links below and the <head> hreflang alternates.
 	    $detailOption = isset($_GET['option']) ? $_GET['option'] : '';
 	    $detailTask = isset($_GET['task']) ? $_GET['task'] : '';
-	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit', 'com_secteur', 'com_agents_ia', 'com_formation'));
+	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit', 'com_secteur', 'com_agents_ia', 'com_formation', 'com_service'));
 	    $currentDetailId = null;
 	    if ($detailOption === 'com_blog' && isset($currentPost)) $currentDetailId = $currentPost->getId();
 	    elseif ($detailOption === 'com_reference' && isset($reference)) $currentDetailId = $reference->getId();
@@ -57,6 +45,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    elseif ($detailOption === 'com_secteur' && isset($secteur)) $currentDetailId = $secteur->getId();
 	    elseif ($detailOption === 'com_agents_ia' && isset($agent_ia)) $currentDetailId = $agent_ia->getId();
 	    elseif ($detailOption === 'com_formation' && isset($formation)) $currentDetailId = $formation->getId();
+	    elseif ($detailOption === 'com_service' && isset($service)) $currentDetailId = $service->getId();
 
 	    // Static pages (contact, à-propos, pages villes, marketplace, agents-ia hub, etc.)
 	    // are all hw_page rows: their slug is computed live from the page's titre (see
@@ -105,21 +94,13 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	            } elseif ($detailOption === 'com_formation') {
 	                $alt = formation::find($currentDetailId, $lOpt->getCode());
 	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_service') {
+	                $alt = service::find($currentDetailId, $lOpt->getCode());
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
 	            }
 	        } elseif ($currentPageObj && $lOpt->getCode() != $_SESSION['lang']) {
 	            $altPage = new page($currentPageObj->getId(), $db, $lOpt->getCode());
 	            if ($altPage->getTitre() != '') $altHref = $altPage->getLink();
-	        }
-	        if ($currentFirstSegment === 'service') {
-	            // Le slug du service est le 2e segment (service/{slug}/...).
-	            $serviceRest = ltrim($currentPathRest, '/');
-	            $serviceSlug = strtok($serviceRest, '/');
-	            $serviceTail = substr($serviceRest, strlen($serviceSlug));
-	            if ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($servicePairsFrToEn[$serviceSlug])) {
-	                $targetPath = 'service/' . $servicePairsFrToEn[$serviceSlug] . $serviceTail;
-	            } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($servicePairsEnToFr[$serviceSlug])) {
-	                $targetPath = 'service/' . $servicePairsEnToFr[$serviceSlug] . $serviceTail;
-	            }
 	        }
 	        // A detail/static page lacking a translation in this language has no correct
 	        // URL to offer -- fall back to the naive path swap for the visible switcher
