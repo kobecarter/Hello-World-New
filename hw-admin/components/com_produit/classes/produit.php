@@ -354,13 +354,13 @@ class produit
 
     public static function getSeo(){
         $url = "";
-        $url .= "RewriteRule ^" . __CLASS__ . "/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_" . __CLASS__ . "&task=showDetails&id=$2 [NC,L]
+        $url .= "RewriteRule ^" . __CLASS__ . "/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_" . __CLASS__ . "&task=showDetails&id=$2&l=fr [NC,L]
         RewriteRule ^([a-z]+)/" . __CLASS__ . "/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_" . __CLASS__ . "&task=showDetails&l=$1&id=$3 [NC,L]
         ";
-		$url .= "RewriteRule ^categorie_produit/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_" . __CLASS__ . "&task=showCategorie&id=$2 [NC,L]\n";
+		$url .= "RewriteRule ^categorie_produit/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_" . __CLASS__ . "&task=showCategorie&id=$2&l=fr [NC,L]\n";
         $url .= "RewriteRule ^([a-z]+)/categorie_produit/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_" . __CLASS__ . "&task=showCategorie&l=$1&id=$3 [NC,L]\n";
-        $url .= "RewriteRule ^produits/$ index.php?option=com_" . __CLASS__ . "&task=produits [NC,L]\n";
-        $url .= "RewriteRule ^([a-z]+)/produits/$ index.php?option=com_" . __CLASS__ . "&task=produits [NC,L]\n";
+        $url .= "RewriteRule ^produits/$ index.php?option=com_" . __CLASS__ . "&task=produits&l=fr [NC,L]\n";
+        $url .= "RewriteRule ^([a-z]+)/produits/$ index.php?option=com_" . __CLASS__ . "&task=produits&l=$1 [NC,L]\n";
         return $url;
     }
 

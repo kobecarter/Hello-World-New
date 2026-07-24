@@ -645,7 +645,9 @@ Header append Vary User-Agent env=!dont-vary
     //Url des Langues
     foreach ($ids_langues as $id) {
         $lg = new langue($id, $db);
-        if (!$lg->isDefault()) {
+        if ($lg->isDefault()) {
+            $urls .= "RewriteRule ^$ index.php?l=" . $lg->getCode() . " [L]\n";
+        } else {
             $urls .= "RewriteRule ^" . $lg->getCode() . "/$ index.php?l=" . $lg->getCode() . " [L]\n";
         }
     }

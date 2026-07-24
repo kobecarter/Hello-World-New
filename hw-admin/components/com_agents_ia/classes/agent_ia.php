@@ -93,9 +93,9 @@ class agent_ia
 
     public static function getSeo()
     {
-        $url  = "RewriteRule ^agent_ia/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_agents_ia&task=showDetails&id=\$2 [NC,L]\n";
+        $url  = "RewriteRule ^agent_ia/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_agents_ia&task=showDetails&id=\$2&l=fr [NC,L]\n";
         $url .= "        RewriteRule ^([a-z]+)/agent_ia/([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?option=com_agents_ia&task=showDetails&l=\$1&id=\$3 [NC,L]\n";
-        $url .= "        RewriteRule ^agent_ia/([^/]+)/$ index.php?option=com_agents_ia&task=showDetails&slug=\$1 [NC,L]\n";
+        $url .= "        RewriteRule ^agent_ia/([^/]+)/$ index.php?option=com_agents_ia&task=showDetails&slug=\$1&l=fr [NC,L]\n";
         $url .= "        RewriteRule ^([a-z]+)/agent_ia/([^/]+)/$ index.php?option=com_agents_ia&task=showDetails&l=\$1&slug=\$2 [NC,L]\n";
         return $url;
     }

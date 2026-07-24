@@ -121,7 +121,7 @@ class formation
 
     public static function getSeo()
     {
-        $url  = "RewriteRule ^formation/([^/]+)/$ index.php?option=com_formation&task=showDetails&slug=\$1 [NC,L]\n";
+        $url  = "RewriteRule ^formation/([^/]+)/$ index.php?option=com_formation&task=showDetails&slug=\$1&l=fr [NC,L]\n";
         $url .= "        RewriteRule ^([a-z]+)/formation/([^/]+)/$ index.php?option=com_formation&task=showDetails&l=\$1&slug=\$2 [NC,L]\n";
         return $url;
     }
