@@ -18,7 +18,9 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 
 	    // Sélecteur de langue : reconstruit le lien de la page courante pour chaque langue active.
 	    $langFlags = array('fr' => '🇫🇷', 'en' => '🇬🇧', 'ar' => '🇲🇦', 'es' => '🇪🇸');
-	    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+	    // REQUEST_URI stays percent-encoded (e.g. %D8%A7... for Arabic slugs); decode it
+	    // so it matches the literal UTF-8 strings in $staticPageSlugs below.
+	    $currentPath = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 	    $siteBasePath = parse_url($siteURL, PHP_URL_PATH);
 	    if ($siteBasePath && $siteBasePath !== '/' && strpos($currentPath, $siteBasePath) === 0) {
 	        $currentPath = substr($currentPath, strlen($siteBasePath));
@@ -27,35 +29,61 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    }
 	    $currentPath = preg_replace('#^(fr|en|ar|es)/#', '', $currentPath);
 
-	    // Certaines pages statiques ont un slug différent selon la langue (voir .htaccess) --
-	    // changer uniquement le préfixe /en/ casserait ces liens (ex: devis-en-ligne -> online-quote).
-	    // Cette table ne couvre que ces pages ; les autres (services, contact, articles de blog...)
-	    // partagent le même slug dans toutes les langues et n'ont pas besoin de traduction.
-	    $slugPairsFrToEn = array(
-	        'politique-de-confidentialite' => 'privacy-policy',
-	        'realisations-et-cas-clients' => 'our-achievements',
-	        'recrutement' => 'recruitment',
-	        'qui-sommes-nous' => 'about-us',
-	        'devis-en-ligne' => 'online-quote',
-	        'mentions-legales' => 'legal-notice',
-	        'conditions-generales-de-ventes' => 'terms-and-conditions',
-	        'presse' => 'press',
-	        'notre-expertise' => 'our-expertise',
-	        'videotheque' => 'video-library',
-	        'telechargement' => 'downloads',
-	        'agence-marketing-digital-casablanca' => 'digital-marketing-agency-casablanca',
-	        'agence-marketing-digital-marrakech' => 'digital-marketing-agency-marrakech',
-	        'agence-marketing-digital-a-londres' => 'digital-marketing-agency-in-london',
-	        'agence-marketing-digital-a-dubai' => 'digital-marketing-agency-in-dubai',
-	        'agence-marketing-digital-rabat' => 'digital-marketing-agency-rabat',
-	        'agence-marketing-digital-tanger' => 'digital-marketing-agency-tangier',
-	        'agence-marketing-digital-agadir' => 'digital-marketing-agency-agadir',
-	        'agence-marketing-digital-fes' => 'digital-marketing-agency-fes',
-	        'formations-marketing-digital-ia-medias-marque-maroc' => 'digital-marketing-ai-media-branding-training-morocco',
-	        'nos-agences' => 'our-agencies',
-	        'agents-ia' => 'ai-agents',
+	    // Certaines pages statiques ont un slug différent selon la langue, y compris en arabe
+	    // (voir .htaccess) -- changer uniquement le préfixe /en/ ou /ar/ casserait ces liens
+	    // (ex: devis-en-ligne -> online-quote -> طلب-عرض-أسعار-عبر-الإنترنت). Cette table ne
+	    // couvre que ces pages ; les autres (services génériques, articles de blog...)
+	    // partagent le même slug dans toutes les langues ou sont gérées plus bas par ID.
+	    $staticPageSlugs = array(
+	        array('fr' => 'politique-de-confidentialite', 'en' => 'privacy-policy', 'ar' => 'سياسة-الخصوصية'),
+	        array('fr' => 'realisations-et-cas-clients', 'en' => 'our-achievements', 'ar' => 'الإنجازات-ودراسات-الحالة'),
+	        array('fr' => 'recrutement', 'en' => 'recruitment', 'ar' => 'التوظيف'),
+	        array('fr' => 'qui-sommes-nous', 'en' => 'about-us', 'ar' => 'من-نحن'),
+	        array('fr' => 'agence-marketing-digital-casablanca', 'en' => 'digital-marketing-agency-casablanca', 'ar' => 'وكالة-تسويق-رقمي-الدار-البيضاء'),
+	        array('fr' => 'contact', 'en' => 'contact', 'ar' => 'اتصل-بنا'),
+	        array('fr' => 'devis-en-ligne', 'en' => 'online-quote', 'ar' => 'طلب-عرض-أسعار-عبر-الإنترنت'),
+	        array('fr' => 'mentions-legales', 'en' => 'legal-notice', 'ar' => 'الإشعارات-القانونية'),
+	        array('fr' => 'conditions-generales-de-ventes', 'en' => 'terms-and-conditions', 'ar' => 'الشروط-العامة-للبيع'),
+	        array('fr' => 'blog', 'en' => 'blog', 'ar' => 'المدونة'),
+	        array('fr' => 'daily-life', 'en' => 'daily-life', 'ar' => 'الحياة-اليومية'),
+	        array('fr' => 'presse', 'en' => 'press', 'ar' => 'الصحافة'),
+	        array('fr' => 'notre-expertise', 'en' => 'our-expertise', 'ar' => 'خبرتنا'),
+	        array('fr' => 'videotheque', 'en' => 'video-library', 'ar' => 'مكتبة-الفيديو'),
+	        array('fr' => 'intro', 'en' => 'intro', 'ar' => 'مقدمة'),
+	        array('fr' => 'telechargement', 'en' => 'downloads', 'ar' => 'التنزيلات'),
+	        array('fr' => 'donnees-personnelles', 'ar' => 'البيانات-الشخصية'),
+	        array('fr' => 'activation-compte', 'ar' => 'تفعيل-الحساب'),
+	        array('fr' => 'client-space', 'ar' => 'فضاء-العميل'),
+	        array('fr' => 'confirmation', 'ar' => 'التأكيد'),
+	        array('fr' => 'confirmation-devis', 'ar' => 'تأكيد-عرض-الأسعار'),
+	        array('fr' => 'offre-rise-up', 'ar' => 'عرض-rise-up'),
+	        array('fr' => 'se-connecter', 'ar' => 'تسجيل-الدخول'),
+	        array('fr' => 'panneaux-des-administrateurs', 'ar' => 'لوحات-المسؤولين'),
+	        array('fr' => 'marketplace', 'en' => 'marketplace', 'ar' => 'متجر-حلول-الذكاء-الاصطناعي'),
+	        array('fr' => 'formations-marketing-digital-ia-medias-marque-maroc', 'en' => 'digital-marketing-ai-media-branding-training-morocco', 'ar' => 'تكوينات-التسويق-الرقمي-والذكاء-الاصطناعي-ووسائل-الإعلام-والعلامة-التجارية-بالمغرب'),
+	        array('fr' => 'actualites-du-marketing-numerique', 'ar' => 'أخبار-التسويق-الرقمي'),
+	        array('fr' => 'password-recovery', 'ar' => 'استعادة-كلمة-المرور'),
+	        array('fr' => 'create-a-new-password', 'ar' => 'إنشاء-كلمة-مرور-جديدة'),
+	        array('fr' => 'digital-expert', 'en' => 'digital-expert', 'ar' => 'الخبير-الرقمي'),
+	        array('fr' => 'felicitations', 'ar' => 'تهانينا'),
+	        array('fr' => 'agence-marketing-digital-marrakech', 'en' => 'digital-marketing-agency-marrakech', 'ar' => 'وكالة-تسويق-رقمي-مراكش'),
+	        array('fr' => 'agence-marketing-digital-a-londres', 'en' => 'digital-marketing-agency-in-london', 'ar' => 'وكالة-تسويق-رقمي-في-لندن'),
+	        array('fr' => 'agents-ia', 'en' => 'ai-agents', 'ar' => 'وكلاء-الذكاء-الاصطناعي'),
+	        array('fr' => 'agence-marketing-digital-a-dubai', 'en' => 'digital-marketing-agency-in-dubai', 'ar' => 'وكالة-التسويق-الرقمي-في-دبي'),
+	        array('fr' => 'agence-marketing-digital-rabat', 'en' => 'digital-marketing-agency-rabat', 'ar' => 'وكالة-تسويق-رقمي-الرباط'),
+	        array('fr' => 'agence-marketing-digital-tanger', 'en' => 'digital-marketing-agency-tangier', 'ar' => 'وكالة-تسويق-رقمي-طنجة'),
+	        array('fr' => 'agence-marketing-digital-agadir', 'en' => 'digital-marketing-agency-agadir', 'ar' => 'وكالة-تسويق-رقمي-أكادير'),
+	        array('fr' => 'agence-marketing-digital-fes', 'en' => 'digital-marketing-agency-fes', 'ar' => 'وكالة-تسويق-رقمي-فاس'),
+	        array('fr' => 'nos-agences', 'en' => 'our-agencies', 'ar' => 'وكالاتنا'),
 	    );
-	    $slugPairsEnToFr = array_flip($slugPairsFrToEn);
+	    // Index inversé : $staticSlugIndex['ar']['اتصل-بنا'] = &array('fr'=>'contact', ...)
+	    $staticSlugIndex = array();
+	    foreach ($staticPageSlugs as &$slugGroup) {
+	        foreach ($slugGroup as $code => $slug) {
+	            $staticSlugIndex[$code][$slug] = &$slugGroup;
+	        }
+	    }
+	    unset($slugGroup);
 
 	    // Deux services ont eux aussi un slug différent selon la langue (les autres
 	    // services partagent le même slug dans toutes les langues -- voir la traduction
@@ -69,10 +97,45 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    $currentFirstSegment = strtok($currentPath, '/');
 	    $currentPathRest = substr($currentPath, strlen($currentFirstSegment));
 
+	    // Blog, reference, produit, secteur and agent_ia detail pages each store a
+	    // distinct slug per language (secteur/agent_ia Arabic slugs are transliterated,
+	    // not shared with FR/EN) -- naively swapping the language prefix on the current
+	    // URL produces a broken link, so these need an ID-based lookup of the actual
+	    // per-language row instead. Resolved here (not by URL slug) so it can drive both
+	    // the visible switcher links below and the <head> hreflang alternates.
+	    $detailOption = isset($_GET['option']) ? $_GET['option'] : '';
+	    $detailTask = isset($_GET['task']) ? $_GET['task'] : '';
+	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit', 'com_secteur', 'com_agents_ia'));
+	    $currentDetailId = null;
+	    if ($detailOption === 'com_blog' && isset($currentPost)) $currentDetailId = $currentPost->getId();
+	    elseif ($detailOption === 'com_reference' && isset($reference)) $currentDetailId = $reference->getId();
+	    elseif ($detailOption === 'com_produit' && isset($produit)) $currentDetailId = $produit->getId();
+	    elseif ($detailOption === 'com_secteur' && isset($secteur)) $currentDetailId = $secteur->getId();
+	    elseif ($detailOption === 'com_agents_ia' && isset($agent_ia)) $currentDetailId = $agent_ia->getId();
+
 	    $langOptions = array();
 	    foreach (langue::findAll() as $idLangOpt) {
 	        $lOpt = new langue($idLangOpt, $db);
 	        $targetPath = $currentPath;
+	        $altHref = null;
+	        if ($isPartialContentDetail && $currentDetailId && $lOpt->getCode() != $_SESSION['lang']) {
+	            if ($detailOption === 'com_blog') {
+	                $alt = blog::find($currentDetailId, $lOpt->getCode());
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_reference') {
+	                $alt = reference::find($currentDetailId, $lOpt->getCode());
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_produit') {
+	                $alt = produit::find($currentDetailId, $lOpt->getCode());
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_secteur') {
+	                $alt = secteur::find($currentDetailId, $lOpt->getCode());
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_agents_ia') {
+	                $alt = agent_ia::find($currentDetailId, $lOpt->getCode());
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            }
+	        }
 	        if ($currentFirstSegment === 'service') {
 	            // Le slug du service est le 2e segment (service/{slug}/...).
 	            $serviceRest = ltrim($currentPathRest, '/');
@@ -83,71 +146,35 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	            } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($servicePairsEnToFr[$serviceSlug])) {
 	                $targetPath = 'service/' . $servicePairsEnToFr[$serviceSlug] . $serviceTail;
 	            }
-	        } elseif ($_SESSION['lang'] != 'en' && $lOpt->getCode() == 'en' && isset($slugPairsFrToEn[$currentFirstSegment])) {
-	            $targetPath = $slugPairsFrToEn[$currentFirstSegment] . $currentPathRest;
-	        } elseif ($_SESSION['lang'] == 'en' && $lOpt->getCode() != 'en' && isset($slugPairsEnToFr[$currentFirstSegment])) {
-	            $targetPath = $slugPairsEnToFr[$currentFirstSegment] . $currentPathRest;
+	        } elseif (isset($staticSlugIndex[$_SESSION['lang']][$currentFirstSegment])) {
+	            $group = $staticSlugIndex[$_SESSION['lang']][$currentFirstSegment];
+	            if (isset($group[$lOpt->getCode()])) {
+	                $targetPath = $group[$lOpt->getCode()] . $currentPathRest;
+	            }
 	        }
+	        // A detail page lacking a translation in this language has no correct URL to
+	        // offer -- fall back to the naive path swap for the visible switcher (matches
+	        // prior behavior for all other page types), but omit it from hreflang below
+	        // rather than advertise a link that 404s.
+	        $hrefMissing = $isPartialContentDetail && $currentDetailId && $lOpt->getCode() != $_SESSION['lang'] && !$altHref;
+	        $link = $altHref ? $altHref : ($lOpt->isDefault() ? $siteURL . $targetPath : $siteURL . $lOpt->getCode() . '/' . $targetPath);
 	        $langOptions[] = array(
 	            'code' => $lOpt->getCode(),
 	            'nom' => $lOpt->getNom(),
 	            'flag' => isset($langFlags[$lOpt->getCode()]) ? $langFlags[$lOpt->getCode()] : '🌐',
-	            'link' => $lOpt->isDefault() ? $siteURL . $targetPath : $siteURL . $lOpt->getCode() . '/' . $targetPath,
+	            'link' => $link,
 	            'active' => ($lOpt->getCode() == $_SESSION['lang']),
 	            'disabled' => false,
+	            'hrefMissing' => $hrefMissing,
 	        );
 	    }
 
-	    // Hreflang alternates for <head>. Services, formations, packs and static
-	    // pages share the same slug across languages, so the switcher links above
-	    // are trustworthy as-is. Blog, reference, produit, secteur and agent_ia
-	    // detail pages each store a distinct slug per language (secteur/agent_ia
-	    // Arabic slugs are transliterated, not shared with FR/EN) -- naively
-	    // swapping the language prefix on the current URL produces a broken link,
-	    // so these need an ID-based lookup of the actual per-language row instead.
+	    // Hreflang alternates for <head> reuse the same corrected links, but skip any
+	    // detail-page language with no translation instead of advertising a 404.
 	    $hreflangLinks = array();
-	    $detailOption = isset($_GET['option']) ? $_GET['option'] : '';
-	    $detailTask = isset($_GET['task']) ? $_GET['task'] : '';
-	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit', 'com_secteur', 'com_agents_ia'));
-	    // Look up the alternate by the numeric ID already resolved by the
-	    // component controller ($currentPost/$reference/$produit/$secteur/$agent_ia),
-	    // not by the current URL's slug -- these store a distinct slug per
-	    // language, so the current-language slug won't match the other
-	    // language's row.
-	    $currentDetailId = null;
-	    if ($detailOption === 'com_blog' && isset($currentPost)) $currentDetailId = $currentPost->getId();
-	    elseif ($detailOption === 'com_reference' && isset($reference)) $currentDetailId = $reference->getId();
-	    elseif ($detailOption === 'com_produit' && isset($produit)) $currentDetailId = $produit->getId();
-	    elseif ($detailOption === 'com_secteur' && isset($secteur)) $currentDetailId = $secteur->getId();
-	    elseif ($detailOption === 'com_agents_ia' && isset($agent_ia)) $currentDetailId = $agent_ia->getId();
-
 	    foreach ($langOptions as $langOpt) {
-	        if (!$isPartialContentDetail || $langOpt['code'] == $_SESSION['lang']) {
-	            $hreflangLinks[] = array('code' => $langOpt['code'], 'href' => $langOpt['link']);
-	            continue;
-	        }
-	        $altHref = null;
-	        if ($currentDetailId) {
-	            if ($detailOption === 'com_blog') {
-	                $alt = blog::find($currentDetailId, $langOpt['code']);
-	                if ($alt->getTitre()) $altHref = $alt->getLink();
-	            } elseif ($detailOption === 'com_reference') {
-	                $alt = reference::find($currentDetailId, $langOpt['code']);
-	                if ($alt->getTitre()) $altHref = $alt->getLink();
-	            } elseif ($detailOption === 'com_produit') {
-	                $alt = produit::find($currentDetailId, $langOpt['code']);
-	                if ($alt->getTitre()) $altHref = $alt->getLink();
-	            } elseif ($detailOption === 'com_secteur') {
-	                $alt = secteur::find($currentDetailId, $langOpt['code']);
-	                if ($alt->getTitre()) $altHref = $alt->getLink();
-	            } elseif ($detailOption === 'com_agents_ia') {
-	                $alt = agent_ia::find($currentDetailId, $langOpt['code']);
-	                if ($alt->getTitre()) $altHref = $alt->getLink();
-	            }
-	        }
-	        if ($altHref) {
-	            $hreflangLinks[] = array('code' => $langOpt['code'], 'href' => $altHref);
-	        }
+	        if ($langOpt['hrefMissing']) continue;
+	        $hreflangLinks[] = array('code' => $langOpt['code'], 'href' => $langOpt['link']);
 	    }
 
 	    // Variante pour le drawer mobile uniquement : ajoute l'arabe en placeholder
