@@ -49,13 +49,14 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    // the visible switcher links below and the <head> hreflang alternates.
 	    $detailOption = isset($_GET['option']) ? $_GET['option'] : '';
 	    $detailTask = isset($_GET['task']) ? $_GET['task'] : '';
-	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit', 'com_secteur', 'com_agents_ia'));
+	    $isPartialContentDetail = $detailTask === 'showDetails' && in_array($detailOption, array('com_blog', 'com_reference', 'com_produit', 'com_secteur', 'com_agents_ia', 'com_formation'));
 	    $currentDetailId = null;
 	    if ($detailOption === 'com_blog' && isset($currentPost)) $currentDetailId = $currentPost->getId();
 	    elseif ($detailOption === 'com_reference' && isset($reference)) $currentDetailId = $reference->getId();
 	    elseif ($detailOption === 'com_produit' && isset($produit)) $currentDetailId = $produit->getId();
 	    elseif ($detailOption === 'com_secteur' && isset($secteur)) $currentDetailId = $secteur->getId();
 	    elseif ($detailOption === 'com_agents_ia' && isset($agent_ia)) $currentDetailId = $agent_ia->getId();
+	    elseif ($detailOption === 'com_formation' && isset($formation)) $currentDetailId = $formation->getId();
 
 	    // Static pages (contact, à-propos, pages villes, marketplace, agents-ia hub, etc.)
 	    // are all hw_page rows: their slug is computed live from the page's titre (see
@@ -100,6 +101,9 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	                if ($alt->getTitre()) $altHref = $alt->getLink();
 	            } elseif ($detailOption === 'com_agents_ia') {
 	                $alt = agent_ia::find($currentDetailId, $lOpt->getCode());
+	                if ($alt->getTitre()) $altHref = $alt->getLink();
+	            } elseif ($detailOption === 'com_formation') {
+	                $alt = formation::find($currentDetailId, $lOpt->getCode());
 	                if ($alt->getTitre()) $altHref = $alt->getLink();
 	            }
 	        } elseif ($currentPageObj && $lOpt->getCode() != $_SESSION['lang']) {
