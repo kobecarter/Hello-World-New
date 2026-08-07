@@ -8819,3 +8819,193 @@ object-fit: cover;
       padding: 4rem 0;
     }
 }
+
+/* =========================================================================
+   ESPACE CLIENT — Auth pages (login / password recovery / new password /
+   account activation).  Centered premium card on a branded ground, reusing
+   the site's gold/teal palette and the .ct floating-label field pattern.
+   ========================================================================= */
+.cl-auth{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:9rem 1.5rem 5rem;background:var(--bg);overflow:hidden}
+.cl-auth::before{content:'';position:absolute;top:-30%;right:-15%;width:60vw;height:60vw;max-width:820px;max-height:820px;border-radius:50%;background:radial-gradient(circle at center,rgba(9,161,190,.10),transparent 68%);pointer-events:none}
+.cl-auth::after{content:'';position:absolute;bottom:-30%;left:-15%;width:55vw;height:55vw;max-width:760px;max-height:760px;border-radius:50%;background:radial-gradient(circle at center,rgba(104,2,98,.08),transparent 68%);pointer-events:none}
+.cl-auth-ghost{position:absolute;bottom:-2rem;left:-1rem;font-family:var(--fm);font-weight:900;font-size:clamp(11rem,26vw,34rem);line-height:1;letter-spacing:-.06em;color:rgba(0,0,0,.02);pointer-events:none;user-select:none;white-space:nowrap;z-index:0}
+
+.cl-auth-card{position:relative;z-index:1;width:100%;max-width:460px;background:var(--bg);border:1px solid var(--border);border-radius:26px;padding:3.4rem 3rem 3rem;box-shadow:0 34px 90px -40px rgba(9,20,40,.28)}
+
+.cl-auth-bread{display:flex;align-items:center;gap:.55rem;font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);margin-bottom:2.2rem}
+.cl-auth-bread a{color:inherit;text-decoration:none;transition:color .2s}
+.cl-auth-bread a:hover{color:var(--gold)}
+.cl-auth-bread i{font-size:.4rem}
+
+.cl-auth-label{font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.1rem}
+.cl-auth-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+.cl-auth-title{font-family:var(--fm);font-weight:200;font-size:clamp(2.1rem,6vw,2.9rem);line-height:1.02;letter-spacing:-.03em;color:var(--gold2);margin:0 0 .8rem}
+.cl-auth-title em{font-style:normal;color:var(--gold);font-weight:100}
+.cl-auth-sub{font-family:var(--fm);font-size:.82rem;font-weight:300;color:var(--txt2);line-height:1.7;margin:0 0 2.2rem}
+
+.cl-auth-form{display:flex;flex-direction:column;gap:.4rem}
+.cl-auth .msgbox:empty{display:none}
+.cl-auth .msgbox{margin-bottom:.4rem}
+.cl-auth .alert{font-family:var(--fm);font-size:.78rem;font-weight:400;line-height:1.55;padding:.85rem 1.1rem;border-radius:12px;border:1px solid var(--border);position:relative}
+.cl-auth .alert .close{position:absolute;top:.4rem;right:.7rem;background:none;border:none;font-size:1.1rem;line-height:1;color:inherit;opacity:.5;cursor:pointer}
+.cl-auth .alert-success{background:rgba(9,161,190,.08);border-color:rgba(9,161,190,.3);color:var(--gold)}
+.cl-auth .alert-warning{background:rgba(191,120,9,.08);border-color:rgba(191,120,9,.3);color:#a6650a}
+.cl-auth .alert-danger{background:rgba(190,30,45,.07);border-color:rgba(190,30,45,.28);color:#b21e2d}
+
+/* Field group — reuses the .ct floating-label mechanics with a little more room */
+.cl-auth .ct-group{position:relative}
+.cl-auth .ct-input{width:100%;padding:1.4rem 0 .7rem;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--fm);font-size:.9rem;font-weight:300;color:var(--txt);outline:none;transition:border-color .3s;-webkit-appearance:none;display:block}
+.cl-auth .ct-input:focus{border-bottom-color:var(--gold)}
+.cl-auth .ct-input::placeholder{color:transparent}
+.cl-auth .ct-input:read-only{color:var(--txt2)}
+.cl-auth .ct-float-label{position:absolute;top:1.4rem;left:0;font-family:var(--fm);font-size:.82rem;color:var(--txt2);pointer-events:none;transition:all .25s cubic-bezier(.16,1,.3,1)}
+.cl-auth .ct-input:not(:placeholder-shown)+.ct-float-label,
+.cl-auth .ct-input:focus+.ct-float-label{top:-.2rem;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.cl-auth .ct-line{position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .35s cubic-bezier(.16,1,.3,1)}
+.cl-auth .ct-input:focus~.ct-line{width:100%}
+html[dir="rtl"] .cl-auth .ct-float-label,html[dir="rtl"] .cl-auth .ct-line{left:auto;right:0}
+
+.cl-auth-btn{position:relative;display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;margin-top:1.4rem;padding:1.15rem 2rem;background:var(--txt);color:var(--bg);font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--txt);border-radius:30px;cursor:pointer;overflow:hidden;transition:color .35s}
+.cl-auth-btn span{position:relative;z-index:1}
+.cl-auth-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .45s cubic-bezier(.16,1,.3,1);z-index:0}
+.cl-auth-btn:hover::before{transform:translateX(0)}
+html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
+
+.cl-auth-alt{margin:1.8rem 0 0;text-align:center;font-family:var(--fm);font-size:.74rem;color:var(--txt2)}
+.cl-auth-alt a{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold2);font-weight:600;text-decoration:none;transition:color .2s}
+.cl-auth-alt a:hover{color:var(--gold)}
+.cl-auth-alt a i{font-size:.72rem}
+
+/* Loading spinner shown by the ajaxForm handler */
+.cl-auth .loading{display:none;margin:1rem auto 0;width:26px;height:26px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:cl-spin .7s linear infinite}
+@keyframes cl-spin{to{transform:rotate(360deg)}}
+
+/* Account activation — status card variant */
+.cl-auth-status{text-align:center}
+.cl-auth-status .alert{text-align:left;margin-bottom:1.6rem}
+.cl-auth-status .cl-auth-btn{display:inline-flex;width:auto;padding-inline:2.6rem;text-decoration:none}
+
+@media(max-width:520px){
+  .cl-auth{padding:7rem 1rem 4rem}
+  .cl-auth-card{padding:2.6rem 1.6rem 2.4rem;border-radius:22px}
+}
+
+/* =========================================================================
+   ESPACE CLIENT — Dashboard (facture.php).  All rules scoped under
+   .cl-dash-hero / .page-client-space so nothing leaks to other pages.
+   Keeps the existing Bootstrap markup + JS hooks; restyles the surface.
+   ========================================================================= */
+
+/* ---- Hero ---- */
+.cl-dash-hero{position:relative;padding:10rem 0 3rem;background:var(--bg);overflow:hidden;border-bottom:1px solid var(--border)}
+.cl-dash-hero-ghost{position:absolute;bottom:-4rem;right:-1rem;font-family:var(--fm);font-weight:900;font-size:clamp(9rem,22vw,26rem);line-height:1;letter-spacing:-.06em;color:rgba(0,0,0,.02);pointer-events:none;user-select:none;white-space:nowrap;z-index:0}
+.cl-dash-hero-inner{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cl-dash-hero-bread{display:flex;align-items:center;gap:.55rem;font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);margin-bottom:1.6rem}
+.cl-dash-hero-bread a{color:inherit;text-decoration:none;transition:color .2s}
+.cl-dash-hero-bread a:hover{color:var(--gold)}
+.cl-dash-hero-bread i{font-size:.4rem}
+.cl-dash-hero-label{font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+.cl-dash-hero-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+.cl-dash-hero-title{font-family:var(--fm);font-weight:200;font-size:clamp(2.2rem,6vw,4rem);line-height:1;letter-spacing:-.03em;color:var(--gold2);margin:0}
+.cl-dash-hero-title em{font-style:normal;color:var(--gold);font-weight:100}
+
+/* ---- Section shell ---- */
+.page-client-space{background:var(--bg2);padding:3.5rem 0 5rem}
+.page-client-space .big-title{font-family:var(--fm);font-weight:200;font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.02em;color:var(--gold2)}
+
+/* ---- Stat cards ---- */
+.page-client-space .div-card-content{height:100%}
+.page-client-space .div-card-content .card{height:100%;background:var(--bg);border:1px solid var(--border);border-radius:20px;box-shadow:0 20px 50px -38px rgba(9,20,40,.4);transition:transform .3s,box-shadow .3s;overflow:hidden;position:relative}
+.page-client-space .div-card-content .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gold)}
+.page-client-space .div-card-content.bg-quote .card::before{background:var(--gold2)}
+.page-client-space .div-card-content.bg-reclamation .card::before{background:#c98a09}
+.page-client-space .div-card-content.bg-recall .card::before{background:#2f9e6f}
+.page-client-space .div-card-content .card:hover{transform:translateY(-4px);box-shadow:0 28px 60px -36px rgba(9,20,40,.5)}
+.page-client-space .div-card-content .card-body{padding:1.6rem 1.5rem}
+.page-client-space .div-card-info div:first-child b{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .div-card-info .font-bold{font-family:var(--fm);font-size:2.2rem;font-weight:300;color:var(--txt);letter-spacing:-.02em;line-height:1.1}
+.page-client-space .div-card-content .ti,.page-client-space .div-card-content [class^="ti-"]{font-size:1.7rem;color:var(--gold);opacity:.9}
+.page-client-space .div-card-content.bg-quote .ti{color:var(--gold2)}
+.page-client-space .div-card-content.bg-reclamation .ti{color:#c98a09}
+.page-client-space .div-card-content.bg-recall .ti{color:#2f9e6f}
+
+/* ---- Panel wrapping tabs ---- */
+.page-client-space .div-client-space{background:var(--bg);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 24px 60px -44px rgba(9,20,40,.35)}
+.page-client-space .div-client-space-tabs{border-bottom:1px solid var(--border);background:var(--bg2)}
+.page-client-space .nav-tabs{border:none;flex-wrap:nowrap;overflow-x:auto;padding:0 .5rem}
+.page-client-space .nav-tabs .nav-item{margin:0}
+.page-client-space .nav-tabs .nav-link{border:none;border-bottom:2px solid transparent;border-radius:0;background:transparent;font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);padding:1.2rem 1.3rem;white-space:nowrap;display:flex;align-items:center;gap:.5rem;transition:color .2s,border-color .2s}
+.page-client-space .nav-tabs .nav-link i{font-size:.9rem}
+.page-client-space .nav-tabs .nav-link:hover{color:var(--gold)}
+.page-client-space .nav-tabs .nav-link.active{color:var(--gold2);background:transparent;border-bottom-color:var(--gold)}
+.page-client-space .tab-content{padding:2rem}
+
+/* ---- Tables ---- */
+.page-client-space .div-table-client-space{overflow-x:auto;border-radius:14px;border:1px solid var(--border)}
+.page-client-space .table-client-space{margin:0;border-collapse:collapse;width:100%;font-family:var(--fm)}
+.page-client-space .table-client-space thead th{background:var(--bg2);border:none;border-bottom:1px solid var(--border);padding:1rem 1.1rem;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);white-space:nowrap}
+.page-client-space .table-client-space tbody td{border:none;border-bottom:1px solid var(--border);padding:1rem 1.1rem;font-size:.82rem;font-weight:400;color:var(--txt);vertical-align:middle}
+.page-client-space .table-client-space.table-striped tbody tr:nth-of-type(odd){background:transparent}
+.page-client-space .table-client-space tbody tr{transition:background .18s}
+.page-client-space .table-client-space tbody tr:hover{background:var(--bg2)}
+.page-client-space .table-client-space tbody tr:last-child td{border-bottom:none}
+
+/* ---- Status badges ---- */
+.page-client-space .badge{display:inline-block;padding:.4rem .8rem;border-radius:30px;font-family:var(--fm);font-size:.56rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid transparent}
+.page-client-space .badge.bg-success{background:rgba(47,158,111,.1)!important;color:#2f9e6f;border-color:rgba(47,158,111,.3)}
+.page-client-space .badge.bg-danger{background:rgba(190,30,45,.08)!important;color:#b21e2d;border-color:rgba(190,30,45,.28)}
+.page-client-space .badge.bg-warning{background:rgba(201,138,9,.1)!important;color:#a6650a;border-color:rgba(201,138,9,.3)}
+.page-client-space .badge.bg-primary{background:rgba(9,161,190,.1)!important;color:var(--gold);border-color:rgba(9,161,190,.3)}
+
+/* ---- Action buttons in tables ---- */
+.page-client-space .btn-sm{border-radius:20px;font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .95rem;border:1px solid transparent;transition:transform .2s,opacity .2s}
+.page-client-space .btn-sm:hover{transform:translateY(-1px)}
+.page-client-space .btn-info{background:var(--gold2);border-color:var(--gold2);color:#fff}
+.page-client-space .btn-danger{background:var(--gold);border-color:var(--gold);color:#fff}
+.page-client-space .btn-secondary,.page-client-space .btn-disabled{background:var(--bg3);border-color:var(--border);color:var(--txt2);opacity:.7}
+
+/* ---- Forms (request + profile) ---- */
+.page-client-space .div-reclamation-form,.page-client-space .div-profil-form{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:2rem}
+.page-client-space .form-group{margin-bottom:1.2rem}
+.page-client-space .form-group label{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin-bottom:.5rem;display:block}
+.page-client-space .form-control,.page-client-space .form-select{width:100%;padding:.9rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--bg2);font-family:var(--fm);font-size:.86rem;font-weight:300;color:var(--txt);outline:none;transition:border-color .25s,background .25s}
+.page-client-space .form-control:focus,.page-client-space .form-select:focus{border-color:var(--gold);background:var(--bg)}
+.page-client-space .form-control[readonly]{background:var(--bg3);color:var(--txt2);cursor:not-allowed}
+.page-client-space textarea.form-control{resize:vertical;min-height:110px}
+.page-client-space .btn-primary,.page-client-space .btn-block[value],.page-client-space input.btn-primary{background:var(--txt);border:1px solid var(--txt);color:var(--bg);border-radius:30px;font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:1rem 2.4rem;cursor:pointer;transition:background .3s,color .3s}
+.page-client-space .btn-primary:hover,.page-client-space input.btn-primary:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.page-client-space .loading{display:none;margin:1rem auto 0;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:cl-spin .7s linear infinite}
+.page-client-space .alert{font-family:var(--fm);font-size:.8rem;padding:.85rem 1.1rem;border-radius:12px;border:1px solid var(--border);margin-bottom:1rem}
+.page-client-space .alert-success{background:rgba(47,158,111,.08);border-color:rgba(47,158,111,.3);color:#2f9e6f}
+.page-client-space .alert-warning{background:rgba(201,138,9,.08);border-color:rgba(201,138,9,.3);color:#a6650a}
+.page-client-space .alert-danger{background:rgba(190,30,45,.07);border-color:rgba(190,30,45,.28);color:#b21e2d}
+
+/* ---- Bank details accordion ---- */
+.page-client-space #accordionOne .card{background:var(--bg);border:1px solid var(--border)!important;border-radius:16px!important;overflow:hidden;margin-bottom:1rem}
+.page-client-space #accordionOne .card-header{background:var(--bg2)!important;border:none!important}
+.page-client-space .collapsible-link{width:100%;text-align:left;padding:1.1rem 1.4rem;font-family:var(--fm)!important;font-size:.68rem!important;font-weight:700!important;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2)!important;text-decoration:none;background:transparent}
+.page-client-space #accordionOne .card-body table th{font-family:var(--fm);font-size:.72rem;color:var(--txt2);font-weight:600}
+.page-client-space #accordionOne .card-body table td{font-family:var(--fm);font-size:.82rem;color:var(--txt)}
+.page-client-space #accordionOne h5{font-family:var(--fm)!important;font-weight:700;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)!important}
+
+/* ---- Modal (invoice follow-up) ---- */
+.page-client-space .modal-content{border-radius:20px;border:1px solid var(--border)}
+.page-client-space .modal-header{border-bottom:1px solid var(--border)}
+.page-client-space .modal-title{font-family:var(--fm);font-weight:600;font-size:.9rem;color:var(--gold2)}
+
+/* ---- Packages / tools headings ---- */
+.page-client-space .cs-section_subtitle{color:var(--gold)}
+.page-client-space .cs-section_title{color:var(--gold2)}
+
+@media(max-width:767px){
+  .cl-dash-hero{padding:8rem 0 2.5rem}
+  .cl-dash-hero-inner{align-items:flex-start}
+  .page-client-space .tab-content{padding:1.2rem}
+  .page-client-space .div-reclamation-form,.page-client-space .div-profil-form{padding:1.3rem}
+}
+
+
+/* Espace client only: drop the decorative teal/purple glow behind the services
+   (srv-section ::before/::after) — keep it flat on the dashboard. */
+.page-client-space .srv-section::before,
+.page-client-space .srv-section::after{display:none!important}

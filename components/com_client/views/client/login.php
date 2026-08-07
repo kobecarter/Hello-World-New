@@ -1,54 +1,40 @@
-<?php $banner = $page->getPhoto() == "" ? "images/banner.jpg" : "images/pages/".$page->getPhoto(); ?>
+<section class="cl-auth">
+  <span class="cl-auth-ghost" aria-hidden="true">Hello</span>
 
-<!-- Page Title -->
-<div class="banner">
-	<div class="bg-image bg-parallax">
-		<img src="<?php echo $siteURL.$banner; ?>" alt="<?php echo $page->getTitre(); ?>">
-	</div>
-	<div class="title-box">
-	<h1 class="banner-title"><?php echo $page->getTitre(); ?></h1>
-	</div>	
-</div> 
-
-<section>
-	<div class="container">
-		<nav aria-label="breadcrumb">
-		  <ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page"><?php echo $page->getTitre(); ?></li>
-		  </ol>
-		</nav>
-	</div>
-</section>
-
-  <!--========================================================
-                          BLOG
-  =========================================================-->
-  <section class="page-template page-blog">
-    <div class="container">
-		<div class="row justify-content-center">
-			<div class="col-sm-12"><?php echo $page->getTexte(); ?></div>
-			<div class="col-sm-12">
-				<h2 class="big-title">Client space</h2>
-            </div>
-            <div class="col-sm-6">
-                <h3 align="center">Authentication</h3>
-                <p align="center">Log in to your Hello World customer space</p>
-                <form action="<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=loginApi"  id="loginApiForm" method="post" class="formTemplate">
-                    <div class="msgbox"></div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-block" value="Login">
-                        <div class="loading"></div>
-                    </div>
-                </form>
-                <p align="center"><a href="<?=$page_password_recovery->getLink()?>"><i class="fa fa-unlock-alt sm"></i> Forgot password ?</a></p>
-            </div>
-		</div>
+  <div class="cl-auth-card">
+    <div class="cl-auth-bread">
+      <a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> Accueil</a>
+      <i class="fa fa-chevron-right"></i>
+      <span><?php echo $page->getTitre(); ?></span>
     </div>
-  </section>
+
+    <div class="cl-auth-label">Hello World Agency</div>
+    <h1 class="cl-auth-title"><?php echo $page->getTitre(); ?></h1>
+    <p class="cl-auth-sub">Connectez-vous à votre espace client Hello World.</p>
+
+    <?php echo $page->getTexte(); ?>
+
+    <form action="<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=loginApi" id="loginApiForm" method="post" class="cl-auth-form formTemplate">
+      <div class="msgbox"></div>
+
+      <div class="ct-group">
+        <input class="ct-input" type="email" name="email" id="cl-email" placeholder=" " autocomplete="email" required>
+        <label class="ct-float-label" for="cl-email">Email</label>
+        <span class="ct-line"></span>
+      </div>
+
+      <div class="ct-group">
+        <input class="ct-input" type="password" name="password" id="cl-password" placeholder=" " autocomplete="current-password" required>
+        <label class="ct-float-label" for="cl-password">Mot de passe</label>
+        <span class="ct-line"></span>
+      </div>
+
+      <button type="submit" class="cl-auth-btn"><span>Se connecter</span></button>
+      <div class="loading"></div>
+    </form>
+
+    <p class="cl-auth-alt">
+      <a href="<?= $page_password_recovery->getLink() ?>"><i class="fa fa-unlock-alt"></i> Mot de passe oublié ?</a>
+    </p>
+  </div>
+</section>

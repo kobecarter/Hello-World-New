@@ -496,9 +496,15 @@ class client
 		// Close cURL session
 		curl_close($ch);
 		// Process the API response
-		$info = json_decode($response);	
+		$info = json_decode($response);
 		if(is_object($info) && $info->icon == 'success'){
 			$_SESSION['client'] = $info->token;
+			// The login response carries the full client record (nom, prenom,
+			// email, tel, raison_social...). Keep it — the token only encodes
+			// id + email, and findClientByIdApi can come back empty.
+			if (isset($info->client)) {
+				$_SESSION['client_info'] = $info->client;
+			}
 		}
 		return $response;
 	}else{
@@ -568,6 +574,53 @@ public static function setNewPasswordApi($data)
 	}
 }
 
+    /* Shared authenticated GET -> decoded JSON, with automatic retry when the
+       remote host anti-flood rate-limits the burst of calls the client space
+       makes per page load (HTTP 429 / TigerProtect HTML). Backs off and retries
+       instead of silently returning empty data. */
+    private static $lastApiCallAt = 0.0;
+    private static function apiGetJson($url, $bearer = null, $maxAttempts = 3){
+        // Anti-burst: space successive calls (~0.6s) so the 5-per-page-load
+        // sequence doesn't look like a flood and trip the host rate-limit
+        // before we even get a response.
+        $minGap = 0.6;
+        $sinceLast = microtime(true) - self::$lastApiCallAt;
+        if (self::$lastApiCallAt > 0 && $sinceLast < $minGap) {
+            usleep((int) (($minGap - $sinceLast) * 1000000));
+        }
+        self::$lastApiCallAt = microtime(true);
+        $attempt = 0;
+        while (true) {
+            $attempt++;
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+            if ($bearer !== null) {
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $bearer));
+            }
+            $response = curl_exec($ch);
+            $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $errno = curl_errno($ch);
+            curl_close($ch);
+
+            if ($errno) {
+                if ($attempt < $maxAttempts) { usleep(400000 * $attempt); continue; }
+                return json_encode(array("icon" => "error", "message" => "There is a problem with the server"));
+            }
+
+            $rateLimited = ($httpCode === 429)
+                || (is_string($response) && (stripos($response, 'TigerProtect') !== false
+                    || stripos($response, 'HTTP 429') !== false
+                    || stripos($response, 'Ralentissez') !== false));
+
+            if ($rateLimited && $attempt < $maxAttempts) {
+                usleep(700000 * $attempt); // 0.7s, then 1.4s
+                continue;
+            }
+            return json_decode($response);
+        }
+    }
+
     public static function getClientByIdApi($clientID){
         global $apiURL;
         try {
@@ -576,24 +629,7 @@ public static function setNewPasswordApi($data)
                 $api_url = $apiURL."com_client/controleurs/router.php?task=findClientByIdApi&id=".$clientID;
         
                 // Initialize cURL session
-                $ch = curl_init($api_url);
-        
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Authorization: Bearer ' . $_SESSION['client']
-                ));
-                // Execute cURL session and get the response
-                $response = curl_exec($ch);
-                if (curl_errno($ch)) {
-                    return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
-                }
-                // Close cURL session
-                curl_close($ch);
-                // Process the API response
-                return json_decode($response);
+                return self::apiGetJson($api_url, $_SESSION['client']);
                 // return $response;
             }
         } catch (\Throwable $th) {
@@ -608,19 +644,7 @@ public static function setNewPasswordApi($data)
                 $api_url = $apiURL."com_client/controleurs/router.php?task=getInfoFromTokenApi&token=".$token;
         
                 // Initialize cURL session
-                $ch = curl_init($api_url);
-        
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Execute cURL session and get the response
-                $response = curl_exec($ch);
-                if (curl_errno($ch)) {
-                    return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
-                }
-                // Close cURL session
-                curl_close($ch);
-                // Process the API response
-                return json_decode($response);
+                return self::apiGetJson($api_url);
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -636,24 +660,7 @@ public static function setNewPasswordApi($data)
                 $api_url = $apiURL."com_facture/controleurs/router.php?task=findAllByClientApi&client=".$clientID;
         
                 // Initialize cURL session
-                $ch = curl_init($api_url);
-        
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Authorization: Bearer ' . $_SESSION['client']
-                ));
-                // Execute cURL session and get the response
-                $response = curl_exec($ch);
-                if (curl_errno($ch)) {
-                    return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
-                }
-                // Close cURL session
-                curl_close($ch);
-                // Process the API response
-                return json_decode($response);
+                return self::apiGetJson($api_url, $_SESSION['client']);
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -667,24 +674,7 @@ public static function setNewPasswordApi($data)
                 $api_url = $apiURL."com_devis/controleurs/router.php?task=findAllByClientApi&client=".$clientID;
         
                 // Initialize cURL session
-                $ch = curl_init($api_url);
-        
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Authorization: Bearer ' . $_SESSION['client']
-                ));
-                // Execute cURL session and get the response
-                $response = curl_exec($ch);
-                if (curl_errno($ch)) {
-                    return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
-                }
-                // Close cURL session
-                curl_close($ch);
-                // Process the API response
-                return json_decode($response);
+                return self::apiGetJson($api_url, $_SESSION['client']);
                 // return $response;
                 // return $response;
             }
@@ -700,24 +690,7 @@ public static function setNewPasswordApi($data)
                 $api_url = $apiURL."com_reclamation/controleurs/router.php?task=findAllByClientApi&client=".$clientID;
         
                 // Initialize cURL session
-                $ch = curl_init($api_url);
-        
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Authorization: Bearer ' . $_SESSION['client']
-                ));
-                // Execute cURL session and get the response
-                $response = curl_exec($ch);
-                if (curl_errno($ch)) {
-                    return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
-                }
-                // Close cURL session
-                curl_close($ch);
-                // Process the API response
-                return json_decode($response);
+                return self::apiGetJson($api_url, $_SESSION['client']);
                 // return $response;
             }
         } catch (\Throwable $th) {
@@ -732,24 +705,7 @@ public static function setNewPasswordApi($data)
                 $api_url = $apiURL."com_rappel/controleurs/router.php?task=findAllByClientApi&client=".$clientID;
         
                 // Initialize cURL session
-                $ch = curl_init($api_url);
-        
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Set cURL options
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Authorization: Bearer ' . $_SESSION['client']
-                ));
-                // Execute cURL session and get the response
-                $response = curl_exec($ch);
-                if (curl_errno($ch)) {
-                    return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
-                }
-                // Close cURL session
-                curl_close($ch);
-                // Process the API response
-                return json_decode($response);
+                return self::apiGetJson($api_url, $_SESSION['client']);
                 // return $response;
             }
         } catch (\Throwable $th) {

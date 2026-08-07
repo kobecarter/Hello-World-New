@@ -194,6 +194,202 @@ $(document).ready(function() {
 								}
 							});
 	
+	/* -----------------------------------
+	Espace client — Login
+	-------------------------------------*/
+	$('form#loginApiForm').ajaxForm({
+		beforeSubmit: function () {
+			$("#loginApiForm .loading").show();
+		},
+		success: function (theResponse) {
+			console.log(theResponse)
+			$("#loginApiForm .loading").hide();
+			var offset = $("#loginApiForm .msgbox").offset().top - 100;
+			$("html, body").animate({ scrollTop: offset }, "slow");
+			let data = JSON.parse(theResponse)
+			if (data.icon == "success") {
+				$('#loginApiForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.message+'</div>');
+				$('form#loginApiForm')[0].reset();
+				setTimeout(function () {
+					document.location.reload();
+				}, 1500)
+			}
+			else if (["error","warning"].includes(data.icon)) {
+				$('#loginApiForm .msgbox').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+data.message+' </div>');
+			} else {
+				$('#loginApiForm .msgbox').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+ERREUR_EXEC+'</div>');
+			}
+		}
+	});
+
+	/* -----------------------------------
+	Espace client — Password recovery
+	-------------------------------------*/
+	$('form#verifyEmailApiForm').ajaxForm({
+		beforeSubmit: function () {
+			$("#verifyEmailApiForm .loading").show();
+		},
+		success: function (theResponse) {
+			console.log(theResponse)
+			$("#verifyEmailApiForm .loading").hide();
+			var offset = $("#verifyEmailApiForm .msgbox").offset().top - 100;
+			$("html, body").animate({ scrollTop: offset }, "slow");
+			let data = JSON.parse(theResponse)
+			if (data.icon == "success") {
+				$('#verifyEmailApiForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.message+'</div>');
+				$('form#verifyEmailApiForm')[0].reset();
+			}
+			else if (["error","warning"].includes(data.icon)) {
+				$('#verifyEmailApiForm .msgbox').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+data.message+' </div>');
+			} else {
+				$('#verifyEmailApiForm .msgbox').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+ERREUR_EXEC+'</div>');
+			}
+		}
+	});
+
+	/* -----------------------------------
+	Espace client — New password
+	-------------------------------------*/
+	$('form#setNewPasswordApiForm').ajaxForm({
+		beforeSubmit: function () {
+			$("#setNewPasswordApiForm .loading").show();
+		},
+		success: function (theResponse) {
+			console.log(theResponse)
+			$("#setNewPasswordApiForm .loading").hide();
+			var offset = $("#setNewPasswordApiForm .msgbox").offset().top - 100;
+			$("html, body").animate({ scrollTop: offset }, "slow");
+			let data = JSON.parse(theResponse)
+			if (data.icon == "success") {
+				$('#setNewPasswordApiForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.message+'</div>');
+				$('form#setNewPasswordApiForm')[0].reset();
+				setTimeout(function () {
+					location.href = siteURL + "client-space/";
+				}, 1500)
+			}
+			else if (["error","warning"].includes(data.icon)) {
+				$('#setNewPasswordApiForm .msgbox').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+data.message+' </div>');
+			} else {
+				$('#setNewPasswordApiForm .msgbox').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+ERREUR_EXEC+'</div>');
+			}
+		}
+	});
+
+	/* -----------------------------------
+	Espace client — Réclamation
+	-------------------------------------*/
+	$('form#reclamationApiForm').ajaxForm({
+		beforeSubmit: function () {
+			$("#reclamationApiForm .loading").show();
+		},
+		success: function (theResponse) {
+			console.log(theResponse)
+			$("#reclamationApiForm .loading").hide();
+			var offset = $("#reclamationApiForm .msgbox").offset().top - 100;
+			$("html, body").animate({ scrollTop: offset }, "slow");
+			let data = JSON.parse(theResponse)
+			if (data.icon == "success") {
+				$('#reclamationApiForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.message+'</div>');
+				$('form#reclamationApiForm')[0].reset();
+				setTimeout(function () {
+					document.location.reload();
+				}, 1500)
+			}
+			else if (["error","warning"].includes(data.icon)) {
+				$('#reclamationApiForm .msgbox').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+data.message+' </div>');
+			} else {
+				$('#reclamationApiForm .msgbox').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+ERREUR_EXEC+'</div>');
+			}
+		}
+	});
+
+	/* -----------------------------------
+	Espace client — Profil
+	-------------------------------------*/
+	$('form#profileApiForm').ajaxForm({
+		beforeSubmit: function () {
+			$("#profileApiForm .loading").show();
+		},
+		success: function (theResponse) {
+			console.log(theResponse)
+			$("#profileApiForm .loading").hide();
+			var offset = $("#profileApiForm .msgbox").offset().top - 100;
+			$("html, body").animate({ scrollTop: offset }, "slow");
+			let data = JSON.parse(theResponse)
+			if (data.icon == "success") {
+				$('#profileApiForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.message+'</div>');
+				$('form#profileApiForm')[0].reset();
+				setTimeout(function () {
+					document.location.reload();
+				}, 1500)
+			}
+			else if (["error","warning"].includes(data.icon)) {
+				$('#profileApiForm .msgbox').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+data.message+' </div>');
+			} else {
+				$('#profileApiForm .msgbox').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+ERREUR_EXEC+'</div>');
+			}
+		}
+	});
+
+	/* -----------------------------------
+	Espace client — Téléchargement facture / devis (PDF)
+	-------------------------------------*/
+	$(document).on("click",".btn-download-invoice",function(){
+		let self = $(this)
+		let id = self.attr('data-id')
+		self.addClass('d-none')
+		self.siblings('.btn-loading').removeClass('d-none')
+		$.get(siteURL+"components/com_client/controleurs/router.php?task=pdfInvoiceApi&id="+id, function (theResponse) {
+			let data = JSON.parse(theResponse)
+			if (data.icon == "success") {
+				var pdfUrl = platURL+"uploads/"+(data.message).trim();
+				window.open(pdfUrl, '_blank');
+				self.removeClass('d-none')
+				self.siblings('.btn-loading').addClass('d-none')
+			} else {
+				self.removeClass('d-none')
+				self.siblings('.btn-loading').addClass('d-none')
+			}
+		})
+	})
+
+	$(document).on("click",".btn-download-quote",function(){
+		let self = $(this)
+		let id = self.attr('data-id')
+		self.addClass('d-none')
+		self.siblings('.btn-loading').removeClass('d-none')
+		$.get(siteURL+"components/com_client/controleurs/router.php?task=pdfQuoteApi&id="+id, function (theResponse) {
+			let data = JSON.parse(theResponse)
+			if (data.icon == "success") {
+				var pdfUrl = platURL+"uploads/"+(data.message).trim();
+				window.open(pdfUrl, '_blank');
+				self.removeClass('d-none')
+				self.siblings('.btn-loading').addClass('d-none')
+			} else {
+				self.removeClass('d-none')
+				self.siblings('.btn-loading').addClass('d-none')
+			}
+		})
+	})
+
+	/* -----------------------------------
+	Espace client — Déconnexion
+	-------------------------------------*/
+	$(document).on("click", ".btn-sign-out", function (e) {
+		e.preventDefault();
+		$.get(siteURL+"components/com_client/controleurs/router.php?task=logoutApi", function (theResponse) {
+			console.log(theResponse)
+			if (theResponse == 1) {
+				$('#logoutMessage .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> Déconnexion réussie</div>');
+				setTimeout(function () {
+					document.location.reload();
+				}, 1200)
+			} else {
+				$('#logoutMessage .msgbox').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> '+ERREUR_EXEC+'</div>');
+			}
+		})
+	})
+
 	$(document).on('click','.collaps-item',function(){
 		if($(this).hasClass("opened")){
 			$(this).removeClass("opened", 1000, "ease");

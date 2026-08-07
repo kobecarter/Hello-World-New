@@ -1,24 +1,17 @@
-<?php $banner = $page->getPhoto() == "" ? "images/banner.jpg" : "images/page/" . $page->getPhoto(); ?>
-
-<!-- Page Title -->
-<div class="banner d-none d-sm-block">
-	<div class="bg-image bg-parallax">
-		<img src="<?php echo $siteURL . $banner; ?>" alt="<?php echo $page->getTitre(); ?>">
-	</div>
-	<div class="title-box">
-		<h1 class="banner-title"><?php echo $page->getTitre(); ?></h1>
-	</div>
-</div>
-
-<section class="breadcrumb-mobile">
-	<div class="container">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page"><?php echo $page->getTitre(); ?></li>
-			</ol>
-			<a class="btn-sign-out"><i class="fa fa-sign-out"></i> Logout</a>
-		</nav>
+<!-- CLIENT SPACE HERO -->
+<section class="cl-dash-hero">
+	<span class="cl-dash-hero-ghost" aria-hidden="true">Client</span>
+	<div class="container cl-dash-hero-inner">
+		<div class="cl-dash-hero-lead">
+			<div class="cl-dash-hero-bread">
+				<a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> <?php echo $lang['CL_HOME'][$_SESSION['lang']]; ?></a>
+				<i class="fa fa-chevron-right"></i>
+				<span><?php echo $page->getTitre(); ?></span>
+			</div>
+			<div class="cl-dash-hero-label"><?php echo $lang['CL_SPACE_LABEL'][$_SESSION['lang']]; ?></div>
+			<h1 class="cl-dash-hero-title"><?php echo $lang['CL_HELLO'][$_SESSION['lang']]; ?> <em><?= trim($user->nom . " " . $user->prenom) ?: 'Client' ?></em></h1>
+		</div>
+		<a href="javascript:void(0)" class="btn-hw btn-sign-out"><i class="fa fa-sign-out"></i> <span>Déconnexion</span></a>
 	</div>
 </section>
 
@@ -33,11 +26,6 @@
 					<div class="msgbox"></div>
 				</div>
 			</div>
-			<div class="col-12">
-				<div class="d-block d-sm-flex justify-content-between text-center mb-4">
-					<h3>Hello <?= $user->nom . " " . $user->prenom ?></h3>
-				</div>
-			</div>
 			<div class="col-12 mb-5">
 				<div class="row">
 					<div class="col-6 col-md-3 p-2">
@@ -46,7 +34,7 @@
 								<div class="card-body">
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="div-card-info">
-											<div><b class="m-0">Invoices</b></div>
+											<div><b class="m-0"><?php echo $lang['CL_INVOICES'][$_SESSION['lang']]; ?></b></div>
 											<div><b class="m-0 font-bold"><?= sizeof($factures) ?></b></div>
 										</div>
 										<i class="ti ti-files"></i>
@@ -61,7 +49,7 @@
 								<div class="card-body">
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="div-card-info">
-											<div><b class="m-0">Quotes</b></div>
+											<div><b class="m-0"><?php echo $lang['CL_QUOTES'][$_SESSION['lang']]; ?></b></div>
 											<div><b class="m-0 font-bold"><?= sizeof($devis) ?></b></div>
 										</div>
 										<i class="ti ti-clipboard"></i>
@@ -76,7 +64,7 @@
 								<div class="card-body">
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="div-card-info">
-											<div><b class="m-0">Requests</b></div>
+											<div><b class="m-0"><?php echo $lang['CL_REQUESTS'][$_SESSION['lang']]; ?></b></div>
 											<div><b class="m-0 font-bold"><?= sizeof($reclamations) ?></b></div>
 										</div>
 										<i class="ti ti-file"></i>
@@ -91,7 +79,7 @@
 								<div class="card-body">
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="div-card-info">
-											<div><b class="m-0">Recalls</b></div>
+											<div><b class="m-0"><?php echo $lang['CL_RECALLS'][$_SESSION['lang']]; ?></b></div>
 											<div><b class="m-0 font-bold"><?= sizeof($rapples) ?></b></div>
 										</div>
 										<i class="ti ti-mobile"></i>
@@ -108,25 +96,22 @@
 					<div class="div-client-space-tabs">
 						<ul class="nav nav-tabs m-0" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><i class="ti ti-files"></i> My invoices</a>
+								<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><i class="ti ti-files"></i> <?php echo $lang['CL_TAB_INVOICES'][$_SESSION['lang']]; ?></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><i class="ti ti-clipboard"></i> My quotes</a>
+								<a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><i class="ti ti-clipboard"></i> <?php echo $lang['CL_TAB_QUOTES'][$_SESSION['lang']]; ?></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><i class="ti ti-file"></i> My requests</a>
+								<a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><i class="ti ti-file"></i> <?php echo $lang['CL_TAB_REQUESTS'][$_SESSION['lang']]; ?></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"><i class="ti ti-mobile"></i> My recalls</a>
+								<a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"><i class="ti ti-mobile"></i> <?php echo $lang['CL_TAB_RECALLS'][$_SESSION['lang']]; ?></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab"><i class="ti ti-user"></i> My Profile</a>
+								<a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab"><i class="ti ti-user"></i> <?php echo $lang['CL_TAB_PROFILE'][$_SESSION['lang']]; ?></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab"><i class="fas fa-bank"></i> Bank details
-
-
-								</a>
+								<a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab"><i class="ti ti-wallet"></i> <?php echo $lang['CL_TAB_BANK'][$_SESSION['lang']]; ?></a>
 							</li>
 						</ul><!-- Tab panes -->
 					</div>
@@ -137,12 +122,12 @@
 								<table class="table table-striped table-client-space">
 									<thead>
 										<tr>
-											<th>Invoice #</th>
-											<th>Billing date</th>
-											<th>Total</th>
-											<th>Rest</th>
-											<th>Status</th>
-											<th>Action</th>
+											<th><?php echo $lang['CL_TH_INVOICE_NUM'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_BILLING_DATE'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_TOTAL'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_REST'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_STATUS'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_ACTION'][$_SESSION['lang']]; ?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -151,11 +136,11 @@
 										foreach ($factures as $factureJson) :
 										    $facture = $factureJson;
 											if($facture->total == $facture->reste){
-                                                $statu = '<span class="badge bg-danger text-white">Unpaid</span>';
+                                                $statu = '<span class="badge bg-danger text-white">' . $lang['CL_ST_UNPAID'][$_SESSION['lang']] . '</span>';
                                             }elseif($facture->total > $facture->reste && $facture->reste > 0)	{
-                                                $statu = '<span class="badge bg-warning text-white">Partially paid</span>';
+                                                $statu = '<span class="badge bg-warning text-white">' . $lang['CL_ST_PARTIAL'][$_SESSION['lang']] . '</span>';
                                             }elseif($facture->reste <= 0){
-                                                $statu = '<span class="badge bg-success text-white">Paid</span>';
+                                                $statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_PAID'][$_SESSION['lang']] . '</span>';
                                             }
 										?>
 											<tr>
@@ -165,13 +150,13 @@
 												<td><?php echo number_format($facture->reste, 2, ',', ' ') . ' ' . $facture->devise; ?></td>
 												<td><?php echo $statu; ?></td>
 												<td>
-												    <a class="btn btn-sm btn-info text-white" href="javascript:void(0)"  data-toggle="modal" data-target="#invoice-detail<?=$facture->ID?>" title="Show">Follow up</a>
+												    <a class="btn btn-sm btn-info text-white" href="javascript:void(0)"  data-toggle="modal" data-target="#invoice-detail<?=$facture->ID?>" title="Show"><?php echo $lang['CL_FOLLOW_UP'][$_SESSION['lang']]; ?></a>
 												        <!-- Modal / Demo -->
                                                         <div class="modal fade" id="invoice-detail<?=$facture->ID?>" role="dialog">
                                                         	<div class="modal-dialog" role="document">
                                                         		<div class="modal-content">
                                                         			<div class="modal-header">
-                                                        				<h4 class="modal-title" id="myModalLabel"><i class="far fa-eye"></i> Détail</h4>
+                                                        				<h4 class="modal-title" id="myModalLabel"><i class="far fa-eye"></i> <?php echo $lang['CL_DETAIL'][$_SESSION['lang']]; ?></h4>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
                                                         			</div>
                                                         			<div class="modal-body">
@@ -194,13 +179,13 @@
                                                                                     ?>
                                                                                     <div class="row-row mb-5 text-center">
                                                                                         <div class="col-md-6">
-                                                                                            <h3>Deadline : <span class="text-success"><?=$days?> Day(s)</span></h3>
+                                                                                            <h3><?php echo $lang['CL_DEADLINE'][$_SESSION['lang']]; ?> : <span class="text-success"><?=$days?> <?php echo $lang['CL_DAYS'][$_SESSION['lang']]; ?></span></h3>
                                                                                         </div>
                                                                                         <div class="col-md-6">
                                                                                             <?php if($startDate <= $today) :?>
-                                                                                                <h3><span class="text-danger"><?=$rest_days?> Day(s)</span> left</h3>
+                                                                                                <h3><span class="text-danger"><?=$rest_days?> <?php echo $lang['CL_DAYS'][$_SESSION['lang']]; ?></span> <?php echo $lang['CL_DAYS_LEFT'][$_SESSION['lang']]; ?></h3>
                                                                                             <?php else :?>
-                                                                                                <h3><span class="text-danger">It doesn't start yet</span></h3>
+                                                                                                <h3><span class="text-danger"><?php echo $lang['CL_NOT_STARTED'][$_SESSION['lang']]; ?></span></h3>
                                                                                             <?php endif;?>
                                                                                         </div>
                                                                                     </div>
@@ -222,7 +207,7 @@
                                                                                             ?>
                                                                                             <a class="a-wizard <?=$wizard_status_quote?>" href="javascript:void(0)">
                                                                                                 <i class="i-wizard fa fa-file-invoice-dollar"></i>
-                                                                                                <span class="span-wizard">Devis</span>
+                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_QUOTE'][$_SESSION['lang']]; ?></span>
                                                                                             </a>
                                                                                         </li>
                                                                                         <li class="li-wizard">
@@ -238,7 +223,7 @@
                                                                                             ?>
                                                                                             <a class="a-wizard <?=$wizard_status_contrat?>" href="javascript:void(0)">
                                                                                                 <i class="i-wizard fa fa-file-invoice-dollar"></i>
-                                                                                                <span class="span-wizard">Contrat</span>
+                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_CONTRACT'][$_SESSION['lang']]; ?></span>
                                                                                             </a>
                                                                                         </li>
                                                                                         <li class="li-wizard">
@@ -247,7 +232,7 @@
                                                                                             ?>
                                                                                             <a class="a-wizard <?=$wizard_status_invoice?>" href="javascript:void(0)">
                                                                                                 <i class="i-wizard fa fa-file-invoice"></i>
-                                                                                                <span class="span-wizard">Facture</span>
+                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_INVOICE'][$_SESSION['lang']]; ?></span>
                                                                                             </a>
                                                                                         </li>
                                                                                         <li class="li-wizard">
@@ -263,7 +248,7 @@
                                                                                             ?>
                                                                                             <a class="a-wizard <?=$wizard_status_payment?> " href="javascript:void(0)">
                                                                                                 <i class="i-wizard far fa-money-bill-alt"></i>
-                                                                                                <span class="span-wizard">Paiements</span>
+                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_PAYMENT'][$_SESSION['lang']]; ?></span>
                                                                                             </a>
                                                                                         </li>
                                                                                     </ul>
@@ -297,11 +282,11 @@
 								<table class="table table-striped table-client-space">
 									<thead>
 										<tr>
-											<th>Quote #</th>
-											<th>Quotation date</th>
-											<th>Total</th>
-											<th>Status</th>
-											<th>Action</th>
+											<th><?php echo $lang['CL_TH_QUOTE_NUM'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_QUOTE_DATE'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_TOTAL'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_STATUS'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_ACTION'][$_SESSION['lang']]; ?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -310,19 +295,19 @@
 										    $devi = $devisJson;
 											switch ($devi->statu) {
 												case '1':
-                                                    $statu = '<span class="badge bg-success text-white">Validé Ss contrat signé</span>';
+                                                    $statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_QUOTE_VALID_NOSIGN'][$_SESSION['lang']] . '</span>';
                                                     break;
                                                 case '2':
-                                                    $statu = '<span class="badge bg-danger text-white">Refusé</span>';
+                                                    $statu = '<span class="badge bg-danger text-white">' . $lang['CL_ST_QUOTE_REFUSED'][$_SESSION['lang']] . '</span>';
                                                     break;
                                                 case '3':
-                                                    $statu = '<span class="badge bg-primary text-white">Validé avec contrat signé</span>';
+                                                    $statu = '<span class="badge bg-primary text-white">' . $lang['CL_ST_QUOTE_VALID_SIGNED'][$_SESSION['lang']] . '</span>';
                                                     break;
                                                 case '4':
-                                                    $statu = '<span class="badge bg-warning text-white">Valide.NP</span>';
+                                                    $statu = '<span class="badge bg-warning text-white">' . $lang['CL_ST_QUOTE_VALID_NP'][$_SESSION['lang']] . '</span>';
                                                     break;
                                                 default:
-                                                    $statu = '<span class="badge bg-warning text-white">Non valide</span>';
+                                                    $statu = '<span class="badge bg-warning text-white">' . $lang['CL_ST_QUOTE_INVALID'][$_SESSION['lang']] . '</span>';
                                                     break;
 											}
 										?>
@@ -348,9 +333,9 @@
 										<table class="table table-striped table-client-space">
 											<thead>
 												<tr>
-													<th>Subject</th>
-													<th>Date</th>
-													<th>Status</th>
+													<th><?php echo $lang['CL_TH_SUBJECT'][$_SESSION['lang']]; ?></th>
+													<th><?php echo $lang['CL_TH_DATE'][$_SESSION['lang']]; ?></th>
+													<th><?php echo $lang['CL_TH_STATUS'][$_SESSION['lang']]; ?></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -359,10 +344,10 @@
 												foreach ($reclamations as $reclamation) :
 													switch ($reclamation->etat) {
 														case '1':
-															$statu = '<span class="badge bg-success text-white">Traité</span>';
+															$statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_TREATED'][$_SESSION['lang']] . '</span>';
 															break;
 														default:
-															$statu = '<span class="badge bg-danger text-white">Non traité</span>';
+															$statu = '<span class="badge bg-danger text-white">' . $lang['CL_ST_UNTREATED'][$_SESSION['lang']] . '</span>';
 															break;
 													}
 												?>
@@ -381,7 +366,7 @@
 								</div>
 								<div class="col-12">
 									<div class="reclamation-title mt-5">
-										<h2 class="big-title">Request</h2>
+										<h2 class="big-title"><?php echo $lang['CL_REQUEST_TITLE'][$_SESSION['lang']]; ?></h2>
 									</div>
 									<div class="div-reclamation-form">
 										<form action="<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=createReclamationApi" id="reclamationApiForm" method="post" class="formTemplate">
@@ -389,26 +374,26 @@
 											<div class="row">
 												<div class="col-12 col-md-6">
 													<div class="form-group text-left">
-														<label for="sujet">Subject<span class="text-danger"> * </span></label>
-														<input type="text" class="form-control" name="sujet" placeholder="Sujet" required>
+														<label for="sujet"><?php echo $lang['CL_TH_SUBJECT'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+														<input type="text" class="form-control" name="sujet" placeholder="<?php echo $lang['CL_TH_SUBJECT'][$_SESSION['lang']]; ?>" required>
 													</div>
 												</div>
 												<div class="col-12 col-md-6">
 													<div class="form-group text-left">
-														<label for="sujet">Department<span class="text-danger"> * </span></label>
+														<label for="sujet"><?php echo $lang['CL_FORM_DEPARTMENT'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
 														<select class="from-control form-select" name="department" id="department" required>
-															<option value="">Select</option>
-															<option value="Support">Support</option>
-															<option value="Billing">Billing</option>
-															<option value="Sales">Sales</option>
-															<option value="Abuse">Abuse</option>
+															<option value=""><?php echo $lang['CL_FORM_SELECT'][$_SESSION['lang']]; ?></option>
+															<option value="Support"><?php echo $lang['CL_DEPT_SUPPORT'][$_SESSION['lang']]; ?></option>
+															<option value="Billing"><?php echo $lang['CL_DEPT_BILLING'][$_SESSION['lang']]; ?></option>
+															<option value="Sales"><?php echo $lang['CL_DEPT_SALES'][$_SESSION['lang']]; ?></option>
+															<option value="Abuse"><?php echo $lang['CL_DEPT_ABUSE'][$_SESSION['lang']]; ?></option>
 														</select>
 													</div>
 												</div>
 												<div class="col-12">
 													<div class="form-group text-left">
-														<label for="message">Request<span class="text-danger"> * </span></label>
-														<textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
+														<label for="message"><?php echo $lang['CL_FORM_REQUEST'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+														<textarea rows="4" class="form-control" name="message" placeholder="<?php echo $lang['CL_FORM_REQUEST'][$_SESSION['lang']]; ?>" required></textarea>
 													</div>
 												</div>
 											</div>
@@ -416,7 +401,7 @@
 
 
 											<div class="form-group">
-												<input type="submit" class="btn btn-primary btn-block" value="Envoyer">
+												<input type="submit" class="btn btn-primary btn-block" value="<?php echo $lang['CL_SEND'][$_SESSION['lang']]; ?>">
 												<div class="loading"></div>
 											</div>
 										</form>
@@ -432,9 +417,9 @@
 								<table class="table table-striped table-client-space">
 									<thead>
 										<tr>
-											<th>Type</th>
-											<th>Domain</th>
-											<th>Expiration date</th>
+											<th><?php echo $lang['CL_TH_TYPE'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_DOMAIN'][$_SESSION['lang']]; ?></th>
+											<th><?php echo $lang['CL_TH_EXPIRATION'][$_SESSION['lang']]; ?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -462,47 +447,47 @@
 									<div class="row">
 										<div class="co-12 col-md-6">
 											<div class="form-group text-left">
-												<label for="nom">First name<span class="text-danger"> * </span></label>
-												<input type="text" class="form-control" value="<?= $user->nom ?>" name="nom" placeholder="First name" readonly required>
+												<label for="nom"><?php echo $lang['CL_FIRST_NAME'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+												<input type="text" class="form-control" value="<?= $user->nom ?>" name="nom" placeholder="<?php echo $lang['CL_FIRST_NAME'][$_SESSION['lang']]; ?>" readonly required>
 											</div>
 										</div>
 										<div class="co-12 col-md-6">
 											<div class="form-group text-left">
-												<label for="prenom">Last name<span class="text-danger"> * </span></label>
-												<input type="text" class="form-control" value="<?= $user->prenom ?>" name="prenom" placeholder="Last name" readonly required>
+												<label for="prenom"><?php echo $lang['CL_LAST_NAME'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+												<input type="text" class="form-control" value="<?= $user->prenom ?>" name="prenom" placeholder="<?php echo $lang['CL_LAST_NAME'][$_SESSION['lang']]; ?>" readonly required>
 											</div>
 										</div>
 										<div class="co-12 col-md-6">
 											<div class="form-group text-left">
-												<label for="email">Email<span class="text-danger"> * </span></label>
-												<input type="email" class="form-control" value="<?= $user->email ?>" name="email" placeholder="Email" readonly required>
+												<label for="email"><?php echo $lang['CL_EMAIL'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+												<input type="email" class="form-control" value="<?= $user->email ?>" name="email" placeholder="<?php echo $lang['CL_EMAIL'][$_SESSION['lang']]; ?>" readonly required>
 											</div>
 										</div>
 										<div class="co-12 col-md-6">
 											<div class="form-group text-left">
-												<label for="tel">Phone<span class="text-danger"> * </span></label>
-												<input type="tel" class="form-control" value="<?= $user->tel ?>" name="tel" placeholder="Phone" readonly required>
+												<label for="tel"><?php echo $lang['CL_PHONE'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+												<input type="tel" class="form-control" value="<?= $user->tel ?>" name="tel" placeholder="<?php echo $lang['CL_PHONE'][$_SESSION['lang']]; ?>" readonly required>
 											</div>
 										</div>
 										<div class="co-12 col-md-6">
 											<div class="form-group text-left">
-												<label for="raison_social">Business name<span class="text-danger"> * </span></label>
-												<input type="text" class="form-control" value="<?= $user->raison_social ?>" name="raison_social" placeholder="Business name" readonly required>
+												<label for="raison_social"><?php echo $lang['CL_BUSINESS_NAME'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+												<input type="text" class="form-control" value="<?= $user->raison_social ?>" name="raison_social" placeholder="<?php echo $lang['CL_BUSINESS_NAME'][$_SESSION['lang']]; ?>" readonly required>
 											</div>
 										</div>
 										<div class="co-12 col-md-6">
 											<div class="form-group text-left">
-												<label for="tel">Password<span class="text-danger"> * </span></label>
-												<input type="password" class="form-control" name="password" placeholder="Password" required>
+												<label for="tel"><?php echo $lang['CL_PASSWORD'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
+												<input type="password" class="form-control" name="password" placeholder="<?php echo $lang['CL_PASSWORD'][$_SESSION['lang']]; ?>" required>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-block" value="Modify">
+										<input type="submit" class="btn btn-primary btn-block" value="<?php echo $lang['CL_MODIFY'][$_SESSION['lang']]; ?>">
 										<div class="loading"></div>
 									</div>
 								</form>
-							</div>ƒ
+							</div>
 						</div>
 						<div class="tab-pane" id="tabs-6" role="tabpanel">
 							<div class="container">
@@ -522,15 +507,15 @@
 														<table class="table table-striped text-left mb-0">
 															<tbody>
 																<tr>
-																	<th scope="row" width="300">Business Name</th>
+																	<th scope="row" width="300"><?php echo $lang['CL_BUSINESS_NAME'][$_SESSION['lang']]; ?></th>
 																	<td>HW LABEL</td>
 																</tr>
 																<tr>
-																	<th scope="row">Registered Office</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_OFFICE'][$_SESSION['lang']]; ?></th>
 																	<td>PORTE 13, Immeuble Essalam,BAB DOUKALA , Marrakech</td>
 																</tr>
 																<tr>
-																	<th scope="row">Commercial Registry Number</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_RC'][$_SESSION['lang']]; ?></th>
 																	<td>91301</td>
 																</tr>
 																<tr>
@@ -542,13 +527,13 @@
 																	<td>145 450 21211 18465020006 83</td>
 																</tr>
 																<tr>
-																	<th scope="row">SWIFT Code for Banque Populaire</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_SWIFT'][$_SESSION['lang']]; ?></th>
 																	<td>BCPOMAMC</td>
 																</tr>
 
 															</tbody>
 														</table>
-														<h5 class="my-4 text-dark">Foreign Currency Account</h5>
+														<h5 class="my-4 text-dark"><?php echo $lang['CL_BANK_FOREIGN'][$_SESSION['lang']]; ?></h5>
 														<table class="table table-striped text-left mb-0">
 															<tbody>
 																<tr>
@@ -556,7 +541,7 @@
 																	<td>145 450 21283 18465020047 44</td>
 																</tr>
 																<tr>
-																	<th scope="row">SWIFT Code for Banque Populaire</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_SWIFT'][$_SESSION['lang']]; ?></th>
 																	<td>BCPOMAMC</td>
 																</tr>
 															</tbody>
@@ -569,7 +554,7 @@
 																	<td>011450000012210002095446</td>
 																</tr>
 																<tr>
-																	<th scope="row">SWIFT Code for Banque Populaire</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_SWIFT'][$_SESSION['lang']]; ?></th>
 																	<td>BCPOMAMC</td>
 																</tr>
 															</tbody>
@@ -590,15 +575,15 @@
 														<table class="table table-striped text-left mb-0">
 															<tbody>
 																<tr>
-																	<th scope="row" width="300">Business Name</th>
+																	<th scope="row" width="300"><?php echo $lang['CL_BUSINESS_NAME'][$_SESSION['lang']]; ?></th>
 																	<td>Verse concept</td>
 																</tr>
 																<tr>
-																	<th scope="row">Registered Office</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_OFFICE'][$_SESSION['lang']]; ?></th>
 																	<td>PORTE 13, Immeuble Essalam, BAB DOUKALA, Marrakech</td>
 																</tr>
 																<tr>
-																	<th scope="row">Commercial Registry Number</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_RC'][$_SESSION['lang']]; ?></th>
 																	<td>123993</td>
 																</tr>
 																<tr>
@@ -610,7 +595,7 @@
 																	<td>145 450 21211 72309250022 43</td>
 																</tr>
 																<tr>
-																	<th scope="row">SWIFT Code for Banque Populaire</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_SWIFT'][$_SESSION['lang']]; ?></th>
 																	<td>BCPOMAMC</td>
 																</tr>
 
@@ -632,11 +617,11 @@
 														<table class="table table-striped text-left mb-0">
 															<tbody>
 																<tr>
-																	<th scope="row" width="300">Bank Name</th>
+																	<th scope="row" width="300"><?php echo $lang['CL_BANK_NAME'][$_SESSION['lang']]; ?></th>
 																	<td>WIO BANK</td>
 																</tr>
 																<tr>
-																	<th scope="row">Account Number</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_ACCT_NUM'][$_SESSION['lang']]; ?></th>
 																	<td>9984582655</td>
 																</tr>
 																<tr>
@@ -644,11 +629,11 @@
 																	<td>WIOBAEADXXX</td>
 																</tr>
 																<tr>
-																	<th scope="row">Account Name</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_ACCT_NAME'][$_SESSION['lang']]; ?></th>
 																	<td>HELLOWORLDLABEL - FZCO</td>
 																</tr>
 																<tr>
-																	<th scope="row">Account Currency</th>
+																	<th scope="row"><?php echo $lang['CL_BANK_ACCT_CURRENCY'][$_SESSION['lang']]; ?></th>
 																	<td>AED</td>
 																</tr>
 																<tr>
@@ -670,129 +655,172 @@
 				</div>
 			</div>
 			<div class="col-12">
-				<!-- Start Latest Project -->
-				<section class="mt-5">
-					<div class="container">
-						<div class="cs-section_heading cs-style1 text-center">
-							<h3 class="cs-section_subtitle">Recent Packages</h3>
-							<h2 class="cs-section_title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">HELLO WORLD Packages & Services</h2>
-						</div>
-					</div>
-					<div class="cs-height_50 cs-height_lg_45"></div>
-					<div class="cs-slider cs-style3 cs-gap-24">
-						<div class="cs-slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="1" data-slides-per-view="1">
-							<div class="cs-slider_wrapper">
-								<?php foreach ($packs as $key => $value) : ?>
-									<div class="cs-slide">
-										<a href="<?= $value->getURL() ?>" class="cs-portfolio cs-style1 cs-bg">
-											<div class="cs-portfolio_bg" data-src="<?php echo $siteURL; ?>images/produit/<?= $value->getPhoto() ?>">
-												<div class="cs-portfolio_hover"></div>
-											</div>
-											<div class="cs-portfolio_info">
-												<div class="cs-portfolio_info_bg cs-accent_bg"></div>
-												<h2 class="cs-portfolio_title"><?= $value->getTitre() ?></h2>
-												<div class="cs-portfolio_subtitle">View details</div>
-											</div>
-										</a>
-									</div>
-								<?php endforeach; ?>
-								<!-- .cs-slide -->
-							</div>
-						</div>
-						<!-- .cs-slider_container -->
-						<div class="cs-pagination cs-style1"></div>
-					</div>
-					<!-- .cs-slider -->
-				</section>
-				<!-- End Latest Project -->
+				<section class="srv-section" id="services-dev">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="sec-label rv"><?php echo $lang['HOME_SRV_DEV_LABEL'][$_SESSION['lang']]; ?></div>
+        <h2 class="sec-title rv d1"><?php echo $lang['HOME_SRV_CORE_TITLE'][$_SESSION['lang']]; ?></h2>
+      </div>
+    </div>
+    <div class="srv-grid rv d2" id="srvGrid3d">
+
+      <div id="owl-core-services" class="owl-carousel owl-theme">
+
+      <!-- Web -->
+      <?php $serviceWeb = service::find(38,$_SESSION['lang']); ?>
+      <div class="srv-card">
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+              <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceWeb->getPhotoBanniere(); ?>" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag">Web & Front-end</div>
+          <div class="srv-visual-num">01</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_WEB_TITLE'][$_SESSION['lang']]; ?></h3>
+          <p class="srv-desc"><?php echo $serviceWeb->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_WEB_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>React / Next.js & TypeScript</li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>API REST / GraphQL & back-end</li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO technique & Core Web Vitals</li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_WEB_FEAT5'][$_SESSION['lang']]; ?></li>
+          </ul>
+            <a href="<?php echo $serviceWeb->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_WEB_CTA'][$_SESSION['lang']]; ?></span></div>
+              <div class="sb-knob"><i class="fal fa-laptop-code"></i></div>
+            </a>
+        </div>
+      </div>
+
+      <!-- Mobile -->
+      <?php $serviceMobile = service::find(39,$_SESSION['lang']); ?>
+      <div class="srv-card">
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceMobile->getPhoto(); ?>" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag">iOS & Android</div>
+          <div class="srv-visual-num">02</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_MOBILE_TITLE'][$_SESSION['lang']]; ?></h3>
+          <p class="srv-desc"><?php echo $serviceMobile->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iOS & Android natif / React Native</li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>UI/UX mobile-first & micro-animations</li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_MOBILE_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_MOBILE_FEAT4'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_MOBILE_FEAT5'][$_SESSION['lang']]; ?></li>
+          </ul>
+            <a href="<?php echo $serviceMobile->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_MOBILE_CTA'][$_SESSION['lang']]; ?></span></div>
+              <div class="sb-knob"><i class="fal fa-mobile"></i></div>
+            </a>
+        </div>
+      </div>
+
+      <!-- SaaS -->
+      <?php $serviceSaaS = service::find(1,$_SESSION['lang']); if(!$serviceSaaS->getSlug()) $serviceSaaS = service::find(1, langue::getDefaultLanguage()); ?>
+      <div class="srv-card">
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceSaaS->getPhoto(); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_SAAS_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="srv-visual-num">03</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_SAAS_TITLE'][$_SESSION['lang']]; ?></h3>
+          <p class="srv-desc"><?php echo $serviceSaaS->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT2'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT4'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT5'][$_SESSION['lang']]; ?></li>
+          </ul>
+            <a href="<?php echo $serviceSaaS->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_SAAS_CTA'][$_SESSION['lang']]; ?></span></div>
+              <div class="sb-knob"><i class="fal fa-desktop"></i></div>
+            </a>
+        </div>
+      </div>
+
+      <!-- AI -->
+      <?php $serviceIA = service::find(17,$_SESSION['lang']); if(!$serviceIA->getSlug()) $serviceIA = service::find(17, langue::getDefaultLanguage()); ?>
+      <div class="srv-card">
+        <div class="srv-visual">
+          <div class="srv-visual-bg">
+             <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceIA->getPhoto(); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
+          </div>
+          <div class="srv-visual-tint"></div>
+          <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_IA_TAG'][$_SESSION['lang']]; ?></div>
+          <div class="srv-visual-num">04</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-title"><?php echo $lang['HOME_SRV_IA_TITLE'][$_SESSION['lang']]; ?></h3>
+          <p class="srv-desc"><?php echo $serviceIA->getTexteAccueil(); ?></p>
+          <ul class="srv-features">
+            <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT1'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT2'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:2"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT3'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT4'][$_SESSION['lang']]; ?></li>
+            <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><?php echo $lang['HOME_SRV_SAAS_FEAT5'][$_SESSION['lang']]; ?></li>
+          </ul>
+            <a href="<?php echo $serviceIA->getLink(); ?>" class="sb sb-compact" role="button">
+              <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_SRV_IA_CTA'][$_SESSION['lang']]; ?></span></div>
+              <div class="sb-knob"><i class="fal fa-robot"></i></div>
+            </a>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-12">
 			<!-- Start Service Section -->
-			<section id="service">
-				<div class="cs-height_150 cs-height_lg_80"></div>
-				<div class="container">
-					<div class="row">
-						<div class="col-xl-4">
-							<div class="cs-section_heading cs-style1">
-								<h3 class="cs-section_subtitle">Our Selection of Digital Tools</h3>
-								<h2 class="cs-section_title">Optimize your online performance with our digital tools</h2>
-								<div class="cs-height_45 cs-height_lg_20"></div>
-								<a href="<?= $categorie_tools->getLink() ?>" class="cs-text_btn wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.2s">
-									<span>Explore our latest digital tools</span>
-									<svg width="26" height="12" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M25.5303 6.53033C25.8232 6.23744 25.8232 5.76256 25.5303 5.46967L20.7574 0.696699C20.4645 0.403806 19.9896 0.403806 19.6967 0.696699C19.4038 0.989593 19.4038 1.46447 19.6967 1.75736L23.9393 6L19.6967 10.2426C19.4038 10.5355 19.4038 11.0104 19.6967 11.3033C19.9896 11.5962 20.4645 11.5962 20.7574 11.3033L25.5303 6.53033ZM0 6.75H25V5.25H0V6.75Z" fill="currentColor"></path>
-									</svg>
-								</a>
-							</div>
-							<div class="cs-height_90 cs-height_lg_45"></div>
-						</div>
-						<div class="col-xl-8">
-							<div class="row">
+			<section class="trust" id="trust">
+  <div class="trust-head container text-center">
+    <h2 class="sec-title rv d1"><?php echo $lang['HOME_TECH_TITLE'][$_SESSION['lang']]; ?></h2>
+    <p><?php echo $lang['HOME_TECH_SUB'][$_SESSION['lang']]; ?></p>
+  </div>
+  <div class="trust-rows">
 
-								<div class="col-lg-3 col-sm-6 cs-hidden_mobile"></div>
-								<div class="col-lg-3 col-sm-6">
-									<div class="cs-hobble">
-										<a href="<?= $tools[0]->getLink() ?>" class="cs-card cs-style1 cs-hover_layer1">
-											<img src="<?php echo $siteURL; ?>images/produit/<?= $tools[0]->getPhoto() ?>" alt="<?= $tools[0]->getTitre() ?>">
-											<div class="cs-card_overlay"></div>
-											<div class="cs-card_info">
-												<span class="cs-hover_layer3 cs-accent_bg"></span>
-												<h2 class="cs-card_title"><?= $tools[0]->getTitre() ?></h2>
-											</div>
-										</a>
-									</div>
-									<div class="cs-height_0 cs-height_lg_30"></div>
-								</div>
-								<div class="col-lg-3 col-sm-6 cs-hidden_mobile"></div>
-								<div class="col-lg-3 col-sm-6">
-									<div class="cs-hobble">
-										<a href="<?= $tools[1]->getLink() ?>" class="cs-card cs-style1 cs-hover_layer1">
-											<img src="<?php echo $siteURL; ?>images/produit/<?= $tools[1]->getPhoto() ?>" alt="<?= $tools[1]->getTitre() ?>">
-											<div class="cs-card_overlay"></div>
-											<div class="cs-card_info">
-												<span class="cs-hover_layer3 cs-accent_bg"></span>
-												<h2 class="cs-card_title"><?= $tools[1]->getTitre() ?></h2>
-											</div>
-										</a>
-									</div>
-									<div class="cs-height_0 cs-height_lg_30"></div>
-								</div>
-								<div class="col-lg-3 col-sm-6">
-									<div class="cs-hobble">
-										<a href="<?= $tools[2]->getLink() ?>" class="cs-card cs-style1 cs-hover_layer1">
-											<img src="<?php echo $siteURL; ?>images/produit/<?= $tools[2]->getPhoto() ?>" alt="<?= $tools[2]->getTitre() ?>">
-											<div class="cs-card_overlay"></div>
-											<div class="cs-card_info">
-												<span class="cs-hover_layer3 cs-accent_bg"></span>
-												<h2 class="cs-card_title"><?= $tools[2]->getTitre() ?></h2>
-											</div>
-										</a>
-									</div>
-									<div class="cs-height_0 cs-height_lg_30"></div>
-								</div>
-								<div class="col-lg-3 col-sm-6 cs-hidden_mobile"></div>
-								<div class="col-lg-3 col-sm-6">
-									<div class="cs-hobble">
-										<a href="<?= $tools[3]->getLink() ?>" class="cs-card cs-style1 cs-hover_layer1">
-											<img src="<?php echo $siteURL; ?>images/produit/<?= $tools[3]->getPhoto() ?>" alt="<?= $tools[3]->getTitre() ?>">
-											<div class="cs-card_overlay"></div>
-											<div class="cs-card_info">
-												<span class="cs-hover_layer3 cs-accent_bg"></span>
-												<h2 class="cs-card_title"><?= $tools[3]->getTitre() ?></h2>
-											</div>
-										</a>
-									</div>
-									<div class="cs-height_0 cs-height_lg_30"></div>
-								</div>
-								<div class="col-lg-3 col-sm-6 cs-hidden_mobile"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+    <!-- Rangée 1 → gauche -->
+    <div class="trust-row">
+      <div class="trust-inner go-l">
+        <?php foreach($tools as $tool): ?>
+          <div class="trust-item">
+            <img class="img-partner" src="<?php echo $siteURL; ?>images/tools/<?php echo $tool->getPhoto(); ?>" alt="<?php echo $tool->getTitre(); ?>">
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <!-- Rangée 2 → droite (direction opposée) -->
+    <div class="trust-row">
+      <div class="trust-inner go-r">
+        <?php foreach($tools as $tool): ?>
+          <div class="trust-item">
+            <img class="img-partner" src="<?php echo $siteURL; ?>images/tools/<?php echo $tool->getPhoto(); ?>" alt="<?php echo $tool->getTitre(); ?>">
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+  </div>
+</section>
 			<!-- End Service Section -->
 		</div>
 	</div>
