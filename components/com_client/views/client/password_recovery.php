@@ -1,50 +1,34 @@
-<?php $banner = $page->getPhoto() == "" ? "images/banner.jpg" : "images/pages/".$page->getPhoto(); ?>
+<section class="cl-auth">
+  <span class="cl-auth-ghost" aria-hidden="true">Reset</span>
 
-<!-- Page Title -->
-<div class="banner">
-	<div class="bg-image bg-parallax">
-		<img src="<?php echo $siteURL.$banner; ?>" alt="<?php echo $page->getTitre(); ?>">
-	</div>
-	<div class="title-box">
-	<h1 class="banner-title"><?php echo $page->getTitre(); ?></h1>
-	</div>	
-</div> 
-
-<section>
-	<div class="container">
-		<nav aria-label="breadcrumb">
-		  <ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page"><?php echo $page->getTitre(); ?></li>
-		  </ol>
-		</nav>
-	</div>
-</section>
-
-  <!--========================================================
-                          BLOG
-  =========================================================-->
-  <section class="page-template page-blog">
-    <div class="container">
-		<div class="row justify-content-center">
-			<div class="col-sm-12"><?php echo $page->getTexte(); ?></div>
-			<div class="col-sm-12">
-            </div>
-            <div class="col-sm-6">
-                <h3 align="center">Password Recovery</h3>
-                <p align="center">Enter Your Email to Receive Password Recovery Instructions</p>
-                <form action="<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=verifyEmailApi"  id="verifyEmailApiForm" method="post" class="formTemplate">
-                    <div class="msgbox"></div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-block" value="Send">
-                        <div class="loading"></div>
-                    </div>
-                </form>
-                <p align="center"><a href="<?=$page_client_space->getLink()?>"><i class="fa fa-sign-in sm"></i> Go back to login </a></p>
-            </div>
-		</div>
+  <div class="cl-auth-card">
+    <div class="cl-auth-bread">
+      <a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> Accueil</a>
+      <i class="fa fa-chevron-right"></i>
+      <span><?php echo $page->getTitre(); ?></span>
     </div>
-  </section>
+
+    <div class="cl-auth-label">Espace client</div>
+    <h1 class="cl-auth-title"><?php echo $page->getTitre(); ?></h1>
+    <p class="cl-auth-sub">Saisissez votre email pour recevoir les instructions de réinitialisation de votre mot de passe.</p>
+
+    <?php echo $page->getTexte(); ?>
+
+    <form action="<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=verifyEmailApi" id="verifyEmailApiForm" method="post" class="cl-auth-form formTemplate">
+      <div class="msgbox"></div>
+
+      <div class="ct-group">
+        <input class="ct-input" type="email" name="email" id="cl-recovery-email" placeholder=" " autocomplete="email" required>
+        <label class="ct-float-label" for="cl-recovery-email">Email</label>
+        <span class="ct-line"></span>
+      </div>
+
+      <button type="submit" class="cl-auth-btn"><span>Envoyer</span></button>
+      <div class="loading"></div>
+    </form>
+
+    <p class="cl-auth-alt">
+      <a href="<?= $page_client_space->getLink() ?>"><i class="fa fa-sign-in"></i> Retour à la connexion</a>
+    </p>
+  </div>
+</section>
