@@ -7291,6 +7291,22 @@ $lang = array(
     "CL_DEADLINE" => array("fr" => "Délai", "en" => "Deadline", "ar" => "المهلة"),
     "CL_DAYS" => array("fr" => "jour(s)", "en" => "day(s)", "ar" => "أيام"),
     "CL_DAYS_LEFT" => array("fr" => "restant(s)", "en" => "left", "ar" => "متبقية"),
+    "CL_NOTIF_TITLE" => array("fr" => "Notifications", "en" => "Notifications", "ar" => "الإشعارات"),
+    "CL_NOTIF_EMPTY" => array("fr" => "Aucune notification pour le moment.", "en" => "No notifications for now.", "ar" => "لا توجد إشعارات حالياً."),
+    "CL_ATTN_TITLE" => array("fr" => "À votre attention", "en" => "Requires your attention", "ar" => "يتطلب انتباهك"),
+    "CL_ATTN_EXP" => array("fr" => "Échéances à venir", "en" => "Upcoming expirations", "ar" => "انتهاءات وشيكة"),
+    "CL_ATTN_PAY" => array("fr" => "Paiements en attente", "en" => "Pending payments", "ar" => "مدفوعات معلقة"),
+    "CL_ATTN_NONE_EXP" => array("fr" => "Aucune échéance proche.", "en" => "No upcoming expirations.", "ar" => "لا توجد انتهاءات وشيكة."),
+    "CL_ATTN_NONE_PAY" => array("fr" => "Aucun paiement en attente.", "en" => "No pending payments.", "ar" => "لا توجد مدفوعات معلقة."),
+    "CL_ATTN_TOTAL_DUE" => array("fr" => "Total à régler", "en" => "Total due", "ar" => "المجموع المستحق"),
+    "CL_ATTN_RENEW_HINT" => array("fr" => "Contactez-nous pour renouveler à temps.", "en" => "Contact us to renew in time.", "ar" => "اتصل بنا للتجديد في الوقت المناسب."),
+    "CL_EXP_EXPIRED" => array("fr" => "Expiré", "en" => "Expired", "ar" => "منتهي"),
+    "CL_EXP_TODAY" => array("fr" => "Expire aujourd'hui", "en" => "Expires today", "ar" => "ينتهي اليوم"),
+    "CL_EXP_IN_DAYS" => array("fr" => "Expire dans %s j", "en" => "Expires in %s d", "ar" => "ينتهي خلال %s يوم"),
+    "CL_EXP_AGO_DAYS" => array("fr" => "Expiré depuis %s j", "en" => "Expired %s d ago", "ar" => "منتهي منذ %s يوم"),
+    "CL_TYPE_DOMAINE" => array("fr" => "Nom de domaine", "en" => "Domain name", "ar" => "اسم النطاق"),
+    "CL_TYPE_HOSTING" => array("fr" => "Hébergement", "en" => "Hosting", "ar" => "الاستضافة"),
+    "CL_TYPE_SSL" => array("fr" => "Certificat SSL", "en" => "SSL certificate", "ar" => "شهادة SSL"),
     "CL_NOT_STARTED" => array("fr" => "Pas encore commencé", "en" => "It hasn't started yet", "ar" => "لم يبدأ بعد"),
     "CL_WIZ_QUOTE" => array("fr" => "Devis", "en" => "Quote", "ar" => "عرض السعر"),
     "CL_WIZ_CONTRACT" => array("fr" => "Contrat", "en" => "Contract", "ar" => "العقد"),
@@ -7320,6 +7336,17 @@ $lang = array(
     "CL_BANK_ACCT_NUM" => array("fr" => "Numéro de compte", "en" => "Account Number", "ar" => "رقم الحساب"),
     "CL_BANK_ACCT_NAME" => array("fr" => "Nom du compte", "en" => "Account Name", "ar" => "اسم صاحب الحساب"),
     "CL_BANK_ACCT_CURRENCY" => array("fr" => "Devise du compte", "en" => "Account Currency", "ar" => "عملة الحساب"),
+
+    "CL_CHART_TITLE" => array("fr" => "Évolution des paiements", "en" => "Payment evolution", "ar" => "تطور المدفوعات"),
+    "CL_CHART_INVOICED" => array("fr" => "Facturé (cumulé)", "en" => "Invoiced (cumulative)", "ar" => "المفوتر (تراكمي)"),
+    "CL_CHART_PAID" => array("fr" => "Payé (cumulé)", "en" => "Paid (cumulative)", "ar" => "المدفوع (تراكمي)"),
+
+    "CL_RECL_RESPONSE" => array("fr" => "Réponse de l'équipe", "en" => "Team response", "ar" => "رد الفريق"),
+    "CL_RECL_PENDING" => array("fr" => "En attente de réponse", "en" => "Awaiting a response", "ar" => "في انتظار الرد"),
+
+    "CL_RECL_EDIT" => array("fr" => "Modifier", "en" => "Edit", "ar" => "تعديل"),
+    "CL_RECL_SAVE" => array("fr" => "Enregistrer", "en" => "Save", "ar" => "حفظ"),
+    "CL_RECL_CANCEL" => array("fr" => "Annuler", "en" => "Cancel", "ar" => "إلغاء"),
 
 );
 ?>

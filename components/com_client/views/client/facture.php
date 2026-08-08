@@ -1,3 +1,64 @@
+<?php
+/* -------------------------------------------------------------------------
+   "Attention" data for the client: domain / hosting / SSL renewals coming up
+   (or already overdue) + invoices that still have an outstanding balance.
+   Consumed by the "À votre attention" panel and the reminders tab below.
+   ------------------------------------------------------------------------- */
+$__today = new DateTime('today');
+
+// Reminders: skip archived ones and rows without a real expiry date.
+$__remActive = array();   // every active reminder, with signed day delta
+$__expSoon   = array();   // subset that needs attention (overdue or <= 60 days)
+foreach ($rapples as $__r) {
+    if (isset($__r->archived) && (int) $__r->archived === 1) continue;
+    if (empty($__r->date_expir) || $__r->date_expir === '0000-00-00') continue;
+    try { $__d = new DateTime($__r->date_expir); } catch (Exception $e) { continue; }
+    $__days = (int) $__today->diff($__d)->format('%r%a'); // signed days to expiry
+    $__item = array('r' => $__r, 'days' => $__days);
+    $__remActive[] = $__item;
+    if ($__days <= 60) $__expSoon[] = $__item;
+}
+$__sortByDays = function ($a, $b) { return $a['days'] <=> $b['days']; };
+usort($__remActive, $__sortByDays);
+usort($__expSoon, $__sortByDays);
+
+// Invoices with money still owed (reste > 0), plus the total due per currency.
+$__pending  = array();
+$__dueByCur = array();
+foreach ($factures as $__f) {
+    $__reste = (float) $__f->reste;
+    if ($__reste > 0.005) {
+        $__pending[] = $__f;
+        $__cur = isset($__f->devise) ? $__f->devise : '';
+        if (!isset($__dueByCur[$__cur])) $__dueByCur[$__cur] = 0.0;
+        $__dueByCur[$__cur] += $__reste;
+    }
+}
+$__hasAttn = (count($__expSoon) > 0 || count($__pending) > 0);
+$__notifCount = count($__expSoon) + count($__pending); // badge on the notification bell
+
+// Shared display helpers (label / icon / status for a reminder).
+$__typeLabel = function ($type) use ($lang) {
+    $t = strtolower(trim((string) $type));
+    if ($t === 'domaine' || $t === 'domain') return $lang['CL_TYPE_DOMAINE'][$_SESSION['lang']];
+    if ($t === 'hosting'  || $t === 'hebergement') return $lang['CL_TYPE_HOSTING'][$_SESSION['lang']];
+    if ($t === 'ssl') return $lang['CL_TYPE_SSL'][$_SESSION['lang']];
+    return htmlspecialchars((string) $type);
+};
+$__typeIcon = function ($type) {
+    $t = strtolower(trim((string) $type));
+    if ($t === 'hosting' || $t === 'hebergement') return 'ti ti-server';
+    if ($t === 'ssl') return 'ti ti-lock';
+    return 'ti ti-world';
+};
+// Returns array(cssKey, label) for an expiry from its signed day delta.
+$__expStatus = function ($days) use ($lang) {
+    if ($days < 0)   return array('exp',  sprintf($lang['CL_EXP_AGO_DAYS'][$_SESSION['lang']], abs($days)));
+    if ($days === 0) return array('soon', $lang['CL_EXP_TODAY'][$_SESSION['lang']]);
+    if ($days <= 30) return array('soon', sprintf($lang['CL_EXP_IN_DAYS'][$_SESSION['lang']], $days));
+    return array('ok', sprintf($lang['CL_EXP_IN_DAYS'][$_SESSION['lang']], $days));
+};
+?>
 <!-- CLIENT SPACE HERO -->
 <section class="cl-dash-hero">
 	<span class="cl-dash-hero-ghost" aria-hidden="true">Client</span>
@@ -11,7 +72,50 @@
 			<div class="cl-dash-hero-label"><?php echo $lang['CL_SPACE_LABEL'][$_SESSION['lang']]; ?></div>
 			<h1 class="cl-dash-hero-title"><?php echo $lang['CL_HELLO'][$_SESSION['lang']]; ?> <em><?= trim($user->nom . " " . $user->prenom) ?: 'Client' ?></em></h1>
 		</div>
-		<a href="javascript:void(0)" class="btn-hw btn-sign-out"><i class="fa fa-sign-out"></i> <span>Déconnexion</span></a>
+		<div class="cl-dash-hero-actions">
+			<div class="cl-notif" id="clNotif">
+				<button type="button" class="cl-notif-btn<?php echo $__notifCount > 0 ? ' has-alert' : ''; ?>" id="clNotifBtn" aria-haspopup="true" aria-expanded="false" aria-label="<?php echo $lang['CL_NOTIF_TITLE'][$_SESSION['lang']]; ?>">
+					<i class="fa fa-bell"></i>
+					<?php if ($__notifCount > 0) : ?><span class="cl-notif-badge"><?php echo $__notifCount; ?></span><?php endif; ?>
+				</button>
+				<div class="cl-notif-panel" id="clNotifPanel" role="menu" aria-hidden="true">
+					<div class="cl-notif-head">
+						<span><?php echo $lang['CL_NOTIF_TITLE'][$_SESSION['lang']]; ?></span>
+						<?php if ($__notifCount > 0) : ?><span class="cl-notif-count"><?php echo $__notifCount; ?></span><?php endif; ?>
+					</div>
+					<div class="cl-notif-body">
+						<?php if ($__notifCount === 0) : ?>
+						<div class="cl-notif-empty"><i class="fa fa-check-circle"></i> <?php echo $lang['CL_NOTIF_EMPTY'][$_SESSION['lang']]; ?></div>
+						<?php else : ?>
+						<?php foreach ($__expSoon as $__e) :
+							list($__cls, $__stLabel) = $__expStatus($__e['days']);
+							$__r = $__e['r']; ?>
+						<a class="cl-notif-item is-<?php echo $__cls; ?>" href="javascript:void(0)" data-cl-tab="tabs-4">
+							<span class="cl-notif-ico"><i class="<?php echo $__typeIcon($__r->type); ?>"></i></span>
+							<span class="cl-notif-txt">
+								<b><?php echo htmlspecialchars($__r->domaine); ?></b>
+								<small><?php echo $__typeLabel($__r->type) . ' &middot; ' . $__stLabel; ?></small>
+							</span>
+						</a>
+						<?php endforeach; ?>
+						<?php foreach ($__pending as $__f) :
+							$__isUnpaid = ((float) $__f->total <= (float) $__f->reste + 0.005);
+							$__pcls = $__isUnpaid ? 'exp' : 'soon';
+							$__plabel = $__isUnpaid ? $lang['CL_ST_UNPAID'][$_SESSION['lang']] : $lang['CL_ST_PARTIAL'][$_SESSION['lang']]; ?>
+						<a class="cl-notif-item is-<?php echo $__pcls; ?>" href="javascript:void(0)" data-cl-tab="tabs-1">
+							<span class="cl-notif-ico"><i class="ti ti-files"></i></span>
+							<span class="cl-notif-txt">
+								<b><?php echo number_format((float) $__f->reste, 2, ',', ' ') . ' ' . $__f->devise; ?></b>
+								<small><?php echo $__f->numero . ' &middot; ' . $__plabel; ?></small>
+							</span>
+						</a>
+						<?php endforeach; ?>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+			<a href="javascript:void(0)" class="btn-hw btn-sign-out"><i class="fa fa-sign-out"></i> <span>Déconnexion</span></a>
+		</div>
 	</div>
 </section>
 
@@ -90,7 +194,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-12">
+<div class="col-sm-12">
 				<?php echo $page->getTexte(); ?>
 				<div class="div-client-space">
 					<div class="div-client-space-tabs">
@@ -118,6 +222,70 @@
 
 					<div class="tab-content">
 						<div class="tab-pane active" id="tabs-1" role="tabpanel">
+							<?php
+							// Build a cumulative payment-evolution series from the invoices.
+							$__pcRows = array();
+							foreach ($factures as $__f) {
+								if (!is_object($__f) || !isset($__f->date_facture)) { continue; }
+								$__pcRows[] = array(
+									'd' => $__f->date_facture,
+									't' => (float) $__f->total,
+									'p' => (float) $__f->total - (float) $__f->reste,
+								);
+							}
+							usort($__pcRows, function ($a, $b) { return strcmp($a['d'], $b['d']); });
+							$__pcLabels = array(); $__pcTot = array(); $__pcPaid = array();
+							$__rt = 0; $__rp = 0;
+							foreach ($__pcRows as $__r) {
+								$__rt += $__r['t']; $__rp += $__r['p'];
+								$__pcLabels[] = date('d/m/Y', strtotime($__r['d']));
+								$__pcTot[]  = round($__rt, 2);
+								$__pcPaid[] = round($__rp, 2);
+							}
+							if (count($__pcLabels) > 0) :
+							?>
+							<div class="cl-chart-card">
+								<h3 class="cl-chart-title"><?php echo $lang['CL_CHART_TITLE'][$_SESSION['lang']]; ?></h3>
+								<div class="cl-chart-canvas-wrap"><canvas id="paymentChart"></canvas></div>
+							</div>
+							<script src="<?php echo $siteURL; ?>assets/js/chart.umd.min.js"></script>
+							<script>
+							(function () {
+								var el = document.getElementById('paymentChart');
+								if (!el || typeof Chart === 'undefined') return;
+								var labels   = <?php echo json_encode($__pcLabels); ?>;
+								var invoiced = <?php echo json_encode($__pcTot); ?>;
+								var paid     = <?php echo json_encode($__pcPaid); ?>;
+								var ctx = el.getContext('2d');
+								var gInv = ctx.createLinearGradient(0, 0, 0, 260);
+								gInv.addColorStop(0, 'rgba(104,2,98,.20)'); gInv.addColorStop(1, 'rgba(104,2,98,0)');
+								var gPaid = ctx.createLinearGradient(0, 0, 0, 260);
+								gPaid.addColorStop(0, 'rgba(9,161,190,.28)'); gPaid.addColorStop(1, 'rgba(9,161,190,0)');
+								new Chart(el, {
+									type: 'line',
+									data: {
+										labels: labels,
+										datasets: [
+											{ label: <?php echo json_encode($lang['CL_CHART_INVOICED'][$_SESSION['lang']]); ?>, data: invoiced, borderColor: '#680262', backgroundColor: gInv, borderWidth: 2, fill: true, tension: .35, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#680262' },
+											{ label: <?php echo json_encode($lang['CL_CHART_PAID'][$_SESSION['lang']]); ?>, data: paid, borderColor: '#09A1BE', backgroundColor: gPaid, borderWidth: 2, fill: true, tension: .35, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#09A1BE' }
+										]
+									},
+									options: {
+										responsive: true, maintainAspectRatio: false,
+										interaction: { mode: 'index', intersect: false },
+										plugins: {
+											legend: { labels: { font: { family: 'Montserrat', size: 12 }, usePointStyle: true, pointStyle: 'circle', padding: 18 } },
+											tooltip: { callbacks: { label: function (c) { return c.dataset.label + ' : ' + Number(c.parsed.y).toLocaleString('fr-FR'); } } }
+										},
+										scales: {
+											x: { grid: { display: false }, ticks: { font: { family: 'Montserrat', size: 10 }, maxRotation: 0, autoSkip: true } },
+											y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,.06)' }, ticks: { font: { family: 'Montserrat', size: 10 }, callback: function (v) { return Number(v).toLocaleString('fr-FR'); } } }
+										}
+									}
+								});
+							})();
+							</script>
+							<?php endif; ?>
 							<div class="div-table-client-space">
 								<table class="table table-striped table-client-space">
 									<thead>
@@ -329,40 +497,42 @@
 						<div class="tab-pane" id="tabs-3" role="tabpanel">
 							<div class="row">
 								<div class="col-12">
-									<div class="div-table-client-space">
-										<table class="table table-striped table-client-space">
-											<thead>
-												<tr>
-													<th><?php echo $lang['CL_TH_SUBJECT'][$_SESSION['lang']]; ?></th>
-													<th><?php echo $lang['CL_TH_DATE'][$_SESSION['lang']]; ?></th>
-													<th><?php echo $lang['CL_TH_STATUS'][$_SESSION['lang']]; ?></th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php
-
-												foreach ($reclamations as $reclamation) :
-													switch ($reclamation->etat) {
-														case '1':
-															$statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_TREATED'][$_SESSION['lang']] . '</span>';
-															break;
-														default:
-															$statu = '<span class="badge bg-danger text-white">' . $lang['CL_ST_UNTREATED'][$_SESSION['lang']] . '</span>';
-															break;
-													}
-												?>
-													<tr>
-														<td><?php echo $reclamation->sujet ?></td>
-														<td><?php echo normaldate($reclamation->date_add); ?></td>
-														<td><?php echo $statu; ?></td>
-													</tr>
-												<?php
-												endforeach;
-
-												?>
-											</tbody>
-										</table>
-									</div>
+									<div class="cl-recl-list">
+											<?php foreach ($reclamations as $reclamation) : ?>
+												<div class="cl-recl-item">
+													<div class="cl-recl-head">
+														<span class="cl-recl-subject"><?php echo htmlspecialchars($reclamation->sujet); ?></span>
+														<span class="cl-recl-date"><?php echo normaldate($reclamation->date_add); ?></span>
+													</div>
+													<div class="cl-recl-message"><?php echo nl2br(htmlspecialchars($reclamation->message)); ?></div>
+													<?php if (!empty($reclamation->reponse)) : ?>
+														<div class="cl-recl-response">
+															<div class="cl-recl-response-head"><i class="fa fa-reply"></i> <?php echo $lang['CL_RECL_RESPONSE'][$_SESSION['lang']]; ?><?php if (!empty($reclamation->date_reponse)) : ?> <span class="cl-recl-response-date">· <?php echo date("d/m/Y", strtotime($reclamation->date_reponse)); ?></span><?php endif; ?></div>
+															<div class="cl-recl-response-text"><?php echo nl2br(htmlspecialchars($reclamation->reponse)); ?></div>
+														</div>
+													<?php else : ?>
+														<div class="cl-recl-foot">
+															<span class="cl-recl-pending"><i class="fa fa-clock"></i> <?php echo $lang['CL_RECL_PENDING'][$_SESSION['lang']]; ?></span>
+															<button type="button" class="cl-recl-edit-toggle"><i class="fa fa-pen"></i> <?php echo $lang['CL_RECL_EDIT'][$_SESSION['lang']]; ?></button>
+														</div>
+														<form class="cl-recl-edit-form formTemplate" method="post" action="<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=updateReclamationApi">
+															<div class="msgbox"></div>
+															<input type="hidden" name="id" value="<?php echo (int) $reclamation->id; ?>">
+															<input type="hidden" name="department" value="<?php echo htmlspecialchars($reclamation->department); ?>">
+															<label class="cl-recl-edit-label"><?php echo $lang['CL_TH_SUBJECT'][$_SESSION['lang']]; ?></label>
+															<input class="cl-recl-edit-input" type="text" name="sujet" value="<?php echo htmlspecialchars($reclamation->sujet); ?>" required>
+															<label class="cl-recl-edit-label"><?php echo $lang['CL_FORM_REQUEST'][$_SESSION['lang']]; ?></label>
+															<textarea class="cl-recl-edit-input" name="message" rows="3" required><?php echo htmlspecialchars($reclamation->message); ?></textarea>
+															<div class="cl-recl-edit-actions">
+																<button type="button" class="cl-recl-edit-cancel"><?php echo $lang['CL_RECL_CANCEL'][$_SESSION['lang']]; ?></button>
+																<button type="submit" class="cl-recl-edit-save"><?php echo $lang['CL_RECL_SAVE'][$_SESSION['lang']]; ?></button>
+															</div>
+															<div class="loading"></div>
+														</form>
+													<?php endif; ?>
+												</div>
+											<?php endforeach; ?>
+										</div>
 								</div>
 								<div class="col-12">
 									<div class="reclamation-title mt-5">
@@ -420,23 +590,28 @@
 											<th><?php echo $lang['CL_TH_TYPE'][$_SESSION['lang']]; ?></th>
 											<th><?php echo $lang['CL_TH_DOMAIN'][$_SESSION['lang']]; ?></th>
 											<th><?php echo $lang['CL_TH_EXPIRATION'][$_SESSION['lang']]; ?></th>
+												<th><?php echo $lang['CL_TH_STATUS'][$_SESSION['lang']]; ?></th>
 										</tr>
 									</thead>
 									<tbody>
 
-										<?php
-                                           
-										foreach ($rapples as $rapple) : ?>
+										<?php if (count($__remActive) === 0) : ?>
+											<tr><td colspan="4" class="text-center text-muted"><?php echo $lang['CL_ATTN_NONE_EXP'][$_SESSION['lang']]; ?></td></tr>
+										<?php else :
+											foreach ($__remActive as $__e) :
+												$__r = $__e['r'];
+												list($__cls, $__stLabel) = $__expStatus($__e['days']); ?>
 											<tr>
-												<td><?php echo $rapple->type ?></td>
-												<td><?php echo $rapple->domaine ?></td>
-												<td><?php echo normaldate($rapple->date_expir); ?></td>
+												<td><span class="cl-recl-type-ico"><i class="<?php echo $__typeIcon($__r->type); ?>"></i></span> <?php echo $__typeLabel($__r->type); ?></td>
+												<td><?php echo htmlspecialchars($__r->domaine); ?></td>
+												<td><?php echo normaldate($__r->date_expir); ?></td>
+												<td><span class="cl-attn-badge cl-attn-<?php echo $__cls; ?>"><?php echo $__stLabel; ?></span></td>
 											</tr>
 										<?php
-										endforeach;
-
+											endforeach;
+										endif;
 										?>
-									</tbody>
+										</tbody>
 								</table>
 							</DIV>
 						</div>

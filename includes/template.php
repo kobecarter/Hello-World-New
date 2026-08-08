@@ -280,7 +280,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=7.1">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=8.0">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -318,7 +318,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    </script>
 	    <!-- End Google Tag Manager -->
 </head>
-<body>
+<body class="<?php echo (isset($option) && $option == 'com_client') ? 'is-client-space' : ''; ?>">
     <!-- Whatsapp btns -->
     <ul class="whatsapp-buttons">
             <?php $quotePage = getComponent("com_contact&task=quote"); ?>
@@ -339,7 +339,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
                    <span>1</span></a>
 	         </li>
 	         <li class="apple-app"><a href="https://apps.apple.com/ma/app/hello-world-agency/id1566017621?l=fr-FR" target="_blank" title="<?php echo $lang['TPL_APPSTORE_TITLE'][$_SESSION['lang']]; ?>"><i class="fab fa-apple"></i></a></li>
-	        <li class="espace-client"><a href="<?php echo $clientPage->getLink(); ?>" title="Login Client"><i class="fa fa-user-circle"></i></a></li>
+	        <li class="espace-client<?php echo isset($_SESSION['client']) ? ' is-online' : ''; ?>"><a href="<?php echo $clientPage->getLink(); ?>" title="<?php echo isset($_SESSION['client']) ? 'Espace client — en ligne' : 'Login Client'; ?>"><i class="fa fa-user-circle"></i><?php if (isset($_SESSION['client'])) : ?><span class="online-dot" aria-hidden="true"></span><?php endif; ?></a></li>
 	     </ul>
 <!-- End whatsapp btns -->
 <div class="cur" id="cur"></div>
@@ -637,7 +637,7 @@ var REDIRECT_LINK_CONG = '<?php echo $congPage->getLink(); ?>';
 <script src='<?php echo $siteURL; ?>assets/js/jquery.form.js'></script>
 <script src='<?php echo $siteURL; ?>flip-book/js/flipbook.min.js'></script>
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.4'></script>
+<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.6'></script>
 <script>
 /* CURSOR */
 const cur  = document.getElementById('cur');

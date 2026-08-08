@@ -8951,11 +8951,11 @@ html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
 .page-client-space .table-client-space tbody tr:last-child td{border-bottom:none}
 
 /* ---- Status badges ---- */
-.page-client-space .badge{display:inline-block;padding:.4rem .8rem;border-radius:30px;font-family:var(--fm);font-size:.56rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid transparent}
-.page-client-space .badge.bg-success{background:rgba(47,158,111,.1)!important;color:#2f9e6f;border-color:rgba(47,158,111,.3)}
-.page-client-space .badge.bg-danger{background:rgba(190,30,45,.08)!important;color:#b21e2d;border-color:rgba(190,30,45,.28)}
-.page-client-space .badge.bg-warning{background:rgba(201,138,9,.1)!important;color:#a6650a;border-color:rgba(201,138,9,.3)}
-.page-client-space .badge.bg-primary{background:rgba(9,161,190,.1)!important;color:var(--gold);border-color:rgba(9,161,190,.3)}
+.page-client-space .badge{display:inline-block;padding:.5rem .95rem;border-radius:30px;font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;color:#fff!important;white-space:nowrap}
+.page-client-space .badge.bg-success{background:#157347!important}
+.page-client-space .badge.bg-danger{background:#a4161a!important}
+.page-client-space .badge.bg-warning{background:#b45309!important}
+.page-client-space .badge.bg-primary{background:#0e6e83!important}
 
 /* ---- Action buttons in tables ---- */
 .page-client-space .btn-sm{border-radius:20px;font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .95rem;border:1px solid transparent;transition:transform .2s,opacity .2s}
@@ -9009,3 +9009,108 @@ html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
    (srv-section ::before/::after) — keep it flat on the dashboard. */
 .page-client-space .srv-section::before,
 .page-client-space .srv-section::after{display:none!important}
+
+/* Espace client — graphique d'évolution des paiements (onglet factures) */
+.page-client-space .cl-chart-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:1.6rem 1.8rem;margin-bottom:1.8rem;box-shadow:0 20px 50px -40px rgba(9,20,40,.35)}
+.page-client-space .cl-chart-title{font-family:var(--fm);font-weight:600;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);margin:0 0 1.2rem}
+.page-client-space .cl-chart-canvas-wrap{position:relative;height:300px}
+@media(max-width:767px){.page-client-space .cl-chart-canvas-wrap{height:240px}.page-client-space .cl-chart-card{padding:1.1rem 1rem}}
+
+/* Espace client — indicateur "en ligne" (icône verte + pastille façon Facebook) */
+.espace-client.is-online a{color:#22c55e}
+.espace-client .online-dot{position:absolute;bottom:3px;right:3px;width:12px;height:12px;border-radius:50%;background:#22c55e;border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.05);z-index:2}
+.espace-client .online-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(34,197,94,.55);animation:cl-online-pulse 1.8s ease-out infinite}
+@keyframes cl-online-pulse{0%{transform:scale(.7);opacity:.9}100%{transform:scale(2.1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.espace-client .online-dot::after{animation:none}}
+
+/* Espace client — masquer entièrement le header/menu du site */
+.is-client-space .navshell{display:none!important}
+.is-client-space .cl-dash-hero{padding-top:3.5rem}
+
+/* Espace client — réclamations avec réponse de l'équipe */
+.page-client-space .cl-recl-list{display:flex;flex-direction:column;gap:1.1rem}
+.page-client-space .cl-recl-item{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem}
+.page-client-space .cl-recl-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.7rem;flex-wrap:wrap}
+.page-client-space .cl-recl-subject{font-family:var(--fm);font-weight:600;font-size:.95rem;color:var(--gold2)}
+.page-client-space .cl-recl-date{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .cl-recl-message{font-family:var(--fm);font-size:.86rem;font-weight:300;line-height:1.65;color:var(--txt)}
+.page-client-space .cl-recl-response{margin-top:1rem;padding:1rem 1.2rem;background:rgba(9,161,190,.06);border-left:3px solid var(--gold);border-radius:0 12px 12px 0}
+html[dir="rtl"] .page-client-space .cl-recl-response{border-left:none;border-right:3px solid var(--gold);border-radius:12px 0 0 12px}
+.page-client-space .cl-recl-response-head{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.page-client-space .cl-recl-response-date{color:var(--txt2);font-weight:500}
+.page-client-space .cl-recl-response-text{font-family:var(--fm);font-size:.86rem;font-weight:300;line-height:1.65;color:var(--txt)}
+.page-client-space .cl-recl-pending{margin-top:.9rem;font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a6650a;background:rgba(201,138,9,.1);display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .9rem;border-radius:30px}
+
+/* Espace client — édition d'une réclamation par le client */
+.page-client-space .cl-recl-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.9rem;flex-wrap:wrap}
+.page-client-space .cl-recl-edit-toggle{background:none;border:1px solid var(--border);border-radius:30px;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);padding:.4rem .9rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:color .2s,border-color .2s}
+.page-client-space .cl-recl-edit-toggle:hover{color:var(--gold);border-color:var(--gold)}
+.page-client-space .cl-recl-edit-form{display:none;margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--border)}
+.page-client-space .cl-recl-edit-label{display:block;font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:.6rem 0 .35rem}
+.page-client-space .cl-recl-edit-input{width:100%;padding:.7rem .9rem;border:1px solid var(--border);border-radius:10px;background:var(--bg2);font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt);outline:none;transition:border-color .25s;resize:vertical}
+.page-client-space .cl-recl-edit-input:focus{border-color:var(--gold);background:var(--bg)}
+.page-client-space .cl-recl-edit-actions{display:flex;gap:.6rem;justify-content:flex-end;margin-top:.9rem}
+.page-client-space .cl-recl-edit-cancel{background:none;border:1px solid var(--border);border-radius:30px;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);padding:.55rem 1.3rem;cursor:pointer;transition:color .2s}
+.page-client-space .cl-recl-edit-cancel:hover{color:var(--txt)}
+.page-client-space .cl-recl-edit-save{background:var(--txt);border:1px solid var(--txt);border-radius:30px;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bg);padding:.55rem 1.5rem;cursor:pointer;transition:background .25s,color .25s}
+.page-client-space .cl-recl-edit-save:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+
+/* Espace client — panneau "À votre attention" (échéances + impayés) */
+.page-client-space .cl-attn{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 1px 2px rgba(13,11,9,.04),0 10px 30px rgba(13,11,9,.05)}
+.page-client-space .cl-attn-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem}
+.page-client-space .cl-attn-head i{font-size:1.15rem;color:var(--gold2)}
+.page-client-space .cl-attn-head h2{margin:0;font-family:var(--fb);font-size:1.05rem;font-weight:700;letter-spacing:-.01em;color:var(--txt)}
+.page-client-space .cl-attn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.page-client-space .cl-attn-col-title{display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin-bottom:.9rem}
+.page-client-space .cl-attn-col-title i{color:var(--gold)}
+.page-client-space .cl-attn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+.page-client-space .cl-attn-item{display:flex;align-items:center;gap:.85rem;background:var(--bg2);border:1px solid var(--border);border-inline-start:3px solid var(--border);border-radius:12px;padding:.7rem .9rem}
+.page-client-space .cl-attn-item.is-exp{border-inline-start-color:#a4161a}
+.page-client-space .cl-attn-item.is-soon{border-inline-start-color:#b45309}
+.page-client-space .cl-attn-item.is-ok{border-inline-start-color:var(--gold)}
+.page-client-space .cl-attn-ico{flex:none;width:34px;height:34px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);color:var(--txt2)}
+.page-client-space .cl-attn-ico i{font-size:.95rem}
+.page-client-space .cl-attn-main{display:flex;flex-direction:column;min-width:0;flex:1}
+.page-client-space .cl-attn-main b{font-family:var(--fm);font-size:.9rem;font-weight:600;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.page-client-space .cl-attn-main small{font-family:var(--fm);font-size:.72rem;font-weight:400;color:var(--txt2)}
+.page-client-space .cl-attn-badge{flex:none;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.32rem .7rem;border-radius:30px;white-space:nowrap;color:#fff}
+.page-client-space .cl-attn-exp{background:#a4161a}
+.page-client-space .cl-attn-soon{background:#b45309}
+.page-client-space .cl-attn-ok{background:var(--gold)}
+.page-client-space .cl-attn-hint{margin:.9rem 0 0;font-family:var(--fm);font-size:.75rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-attn-total{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:1rem 0 0;padding-top:.9rem;border-top:1px dashed var(--border)}
+.page-client-space .cl-attn-total span{font-family:var(--fm);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .cl-attn-total b{font-family:var(--fb);font-size:1.05rem;font-weight:700;color:#a4161a}
+.page-client-space .cl-recl-type-ico{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:var(--bg2);border:1px solid var(--border);color:var(--gold);margin-inline-end:.4rem}
+.page-client-space .cl-recl-type-ico i{font-size:.8rem}
+
+/* Espace client — cloche de notification (hero) */
+.cl-dash-hero-actions{display:flex;align-items:center;gap:1rem}
+.cl-notif{position:relative}
+.cl-notif-btn{position:relative;width:46px;height:46px;border-radius:50%;background:var(--bg);border:1px solid var(--border);color:var(--txt2);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s,box-shadow .2s}
+.cl-notif-btn i{font-size:1.05rem}
+.cl-notif-btn:hover{color:var(--gold);border-color:var(--gold)}
+.cl-notif-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.cl-notif-btn.has-alert{color:var(--gold2);border-color:var(--gold2)}
+.cl-notif-badge{position:absolute;top:-3px;inset-inline-end:-3px;min-width:19px;height:19px;padding:0 5px;border-radius:30px;background:#a4161a;color:#fff;font-family:var(--fm);font-size:.62rem;font-weight:700;line-height:19px;text-align:center;box-shadow:0 0 0 2px var(--bg)}
+.cl-notif-btn.has-alert .cl-notif-badge{animation:clNotifPulse 2s ease-out infinite}
+@keyframes clNotifPulse{0%{box-shadow:0 0 0 2px var(--bg),0 0 0 0 rgba(164,22,26,.45)}70%{box-shadow:0 0 0 2px var(--bg),0 0 0 8px rgba(164,22,26,0)}100%{box-shadow:0 0 0 2px var(--bg),0 0 0 0 rgba(164,22,26,0)}}
+@media (prefers-reduced-motion:reduce){.cl-notif-btn.has-alert .cl-notif-badge{animation:none}}
+.cl-notif-panel{position:fixed;top:0;inset-inline-end:0;width:min(360px,calc(100vw - 1.5rem));background:var(--bg);border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 40px rgba(13,11,9,.18);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:1200;overflow:hidden}
+.cl-notif.open .cl-notif-panel{opacity:1;visibility:visible;transform:none}
+.cl-notif-head{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-bottom:1px solid var(--border);font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt)}
+.cl-notif-count{background:var(--gold);color:#fff;border-radius:30px;padding:.12rem .55rem;font-size:.62rem;letter-spacing:.02em}
+.cl-notif-body{max-height:min(60vh,380px);overflow-y:auto}
+.cl-notif-empty{padding:1.8rem 1.1rem;text-align:center;font-family:var(--fm);font-size:.82rem;font-weight:300;color:var(--txt2)}
+.cl-notif-empty i{color:var(--gold);margin-inline-end:.35rem}
+.cl-notif-item{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.1rem;border-bottom:1px solid var(--border);border-inline-start:3px solid transparent;text-decoration:none;transition:background .15s}
+.cl-notif-item:last-child{border-bottom:none}
+.cl-notif-item:hover{background:var(--bg2)}
+.cl-notif-item.is-exp{border-inline-start-color:#a4161a}
+.cl-notif-item.is-soon{border-inline-start-color:#b45309}
+.cl-notif-item.is-ok{border-inline-start-color:var(--gold)}
+.cl-notif-ico{flex:none;width:34px;height:34px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--border);color:var(--txt2)}
+.cl-notif-ico i{font-size:.92rem}
+.cl-notif-txt{display:flex;flex-direction:column;min-width:0}
+.cl-notif-txt b{font-family:var(--fm);font-size:.85rem;font-weight:600;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-notif-txt small{font-family:var(--fm);font-size:.72rem;font-weight:400;color:var(--txt2)}

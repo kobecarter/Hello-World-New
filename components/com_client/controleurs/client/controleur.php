@@ -20,6 +20,9 @@ if (isset($task) && !empty($task)) {
 		case "createReclamationApi":
 			createReclamationApi($_POST);
 			break;
+		case "updateReclamationApi":
+			updateReclamationApi($_POST);
+			break;
 		case "updateProfileApi":
 			updateProfileApi($_POST);
 			break;
@@ -81,6 +84,11 @@ function createReclamationApi($data){
 	$info = client::getInfoFromTokenApi($_SESSION['client']);
 	$data['id_client'] = $info->info->id;
 	echo client::createReclamationApi($data);
+}
+
+function updateReclamationApi($data){
+	// L'appartenance est vérifiée côté CRM via le token.
+	echo client::updateReclamationApi($data);
 }
 
 function updateProfileApi($data){

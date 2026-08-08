@@ -749,6 +749,35 @@ public static function setNewPasswordApi($data)
         }
     }
 
+    public static function updateReclamationApi($data)
+    {
+        global $apiURL;
+        if (isset($data['id']) && isset($data['sujet']) && isset($data['message']) && !empty($data['id']) && !empty($data['sujet']) && !empty($data['message'])) {
+            $post_data = array(
+                'id' => $data['id'],
+                'department' => isset($data['department']) ? $data['department'] : '',
+                'sujet' => $data['sujet'],
+                'message' => $data['message']
+            );
+            // L'appartenance est vérifiée côté CRM via le token (aucun id_client transmis).
+            $ch = curl_init($apiURL."com_reclamation/controleurs/router.php?task=updateReclamationApi");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Authorization: Bearer ' . $_SESSION['client']
+            ));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+            $response = curl_exec($ch);
+            if (curl_errno($ch)) {
+                return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
+            }
+            curl_close($ch);
+            return $response;
+        }else{
+            return json_encode(array("icon"=>"warning","message"=>"All fields must be filled in"));
+        }
+    }
+
     // Update Profile
     public static function updateProfileApi($data)
     {

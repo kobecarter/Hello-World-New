@@ -19,7 +19,10 @@ if(isset($_GET['task']) && !empty($_GET['task'])) {
             break;
         case 'createReclamationApi' :
             include_once ("client/controleur.php");
-            break;	
+            break;
+        case 'updateReclamationApi' :
+            include_once ("client/controleur.php");
+            break;
         case 'updateProfileApi' :
             include_once ("client/controleur.php");
             break;	
