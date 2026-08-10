@@ -280,7 +280,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=8.0">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=8.1">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 

@@ -8875,6 +8875,18 @@ html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
 .cl-auth-alt a{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold2);font-weight:600;text-decoration:none;transition:color .2s}
 .cl-auth-alt a:hover{color:var(--gold)}
 .cl-auth-alt a i{font-size:.72rem}
+/* Connexion sociale (espace client) */
+.cl-social{display:flex;flex-direction:column;gap:.7rem;margin-bottom:.4rem}
+.cl-social-msg:empty{display:none}
+.cl-social-google{display:flex;justify-content:center;min-height:44px}
+.cl-social-google > div{width:100%!important}
+.cl-social-btn{display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;padding:.9rem 1.4rem;border-radius:30px;font-family:var(--fm);font-size:.82rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg);color:var(--txt);transition:background .2s,border-color .2s,box-shadow .2s}
+.cl-social-btn i{font-size:1.1rem}
+.cl-social-fb{background:#1877f2;border-color:#1877f2;color:#fff}
+.cl-social-fb:hover{background:#166fe0;border-color:#166fe0;box-shadow:0 4px 14px rgba(24,119,242,.35)}
+.cl-auth-divider{display:flex;align-items:center;gap:1rem;margin:1.4rem 0 .4rem;color:var(--txt2)}
+.cl-auth-divider::before,.cl-auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.cl-auth-divider span{font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 
 /* Loading spinner shown by the ajaxForm handler */
 .cl-auth .loading{display:none;margin:1rem auto 0;width:26px;height:26px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:cl-spin .7s linear infinite}

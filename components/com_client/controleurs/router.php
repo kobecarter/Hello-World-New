@@ -13,7 +13,13 @@ if(isset($_GET['task']) && !empty($_GET['task'])) {
             break;	
         case 'loginApi' :
             include_once ("client/controleur.php");
-            break;	
+            break;
+        case 'googleLoginApi' :
+            include_once ("client/controleur.php");
+            break;
+        case 'facebookLoginApi' :
+            include_once ("client/controleur.php");
+            break;
         case 'logoutApi' :
             include_once ("client/controleur.php");
             break;

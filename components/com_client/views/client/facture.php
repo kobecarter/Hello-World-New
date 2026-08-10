@@ -560,6 +560,17 @@ $__expStatus = function ($days) use ($lang) {
 														</select>
 													</div>
 												</div>
+												<div class="col-12 cl-recl-facture" id="reclFactureWrap" style="display:none;">
+													<div class="form-group text-left">
+														<label for="facture_ref"><?php echo $lang['CL_RECL_WHICH_INVOICE'][$_SESSION['lang']]; ?></label>
+														<select class="from-control form-select" name="facture_ref" id="facture_ref">
+															<option value=""><?php echo $lang['CL_RECL_SELECT_INVOICE'][$_SESSION['lang']]; ?></option>
+															<?php foreach ($factures as $__rf) : ?>
+															<option value="<?php echo htmlspecialchars($__rf->numero); ?>"><?php echo htmlspecialchars($__rf->numero) . ' — ' . normaldate($__rf->date_facture) . ' — ' . number_format((float) $__rf->total, 2, ',', ' ') . ' ' . $__rf->devise; ?></option>
+															<?php endforeach; ?>
+														</select>
+													</div>
+												</div>
 												<div class="col-12">
 													<div class="form-group text-left">
 														<label for="message"><?php echo $lang['CL_FORM_REQUEST'][$_SESSION['lang']]; ?><span class="text-danger"> * </span></label>
@@ -575,6 +586,21 @@ $__expStatus = function ($days) use ($lang) {
 												<div class="loading"></div>
 											</div>
 										</form>
+										<script>
+										(function(){
+											var dep = document.getElementById("department");
+											var wrap = document.getElementById("reclFactureWrap");
+											var sel = document.getElementById("facture_ref");
+											if(!dep || !wrap) return;
+											function sync(){
+												var on = (dep.value === "Billing");
+												wrap.style.display = on ? "" : "none";
+												if(sel){ if(on){ sel.setAttribute("required","required"); } else { sel.removeAttribute("required"); sel.value=""; } }
+											}
+											dep.addEventListener("change", sync);
+											sync();
+										})();
+										</script>
 									</div>
 
 								</div>
