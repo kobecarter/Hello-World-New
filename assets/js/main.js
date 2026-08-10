@@ -337,38 +337,48 @@ $(document).ready(function() {
 	$(document).on("click",".btn-download-invoice",function(){
 		let self = $(this)
 		let id = self.attr('data-id')
+		// Ouvrir l'onglet MAINTENANT (dans le geste du clic) pour ne pas être bloqué
+		// par le bloqueur de pop-up ; on y chargera le PDF une fois le nom reçu.
+		var pdfWin = window.open('', '_blank')
 		self.addClass('d-none')
 		self.siblings('.btn-loading').removeClass('d-none')
 		$.get(siteURL+"components/com_client/controleurs/router.php?task=pdfInvoiceApi&id="+id, function (theResponse) {
-			let data = JSON.parse(theResponse)
-			if (data.icon == "success") {
+			self.removeClass('d-none')
+			self.siblings('.btn-loading').addClass('d-none')
+			var data; try { data = JSON.parse(theResponse) } catch (e) { data = { icon: 'error' } }
+			if (data.icon == "success" && data.message && (data.message).trim().slice(-4).toLowerCase() == '.pdf') {
 				var pdfUrl = platURL+"uploads/"+(data.message).trim();
-				window.open(pdfUrl, '_blank');
-				self.removeClass('d-none')
-				self.siblings('.btn-loading').addClass('d-none')
+				if (pdfWin) { pdfWin.location = pdfUrl } else { window.location = pdfUrl }
 			} else {
-				self.removeClass('d-none')
-				self.siblings('.btn-loading').addClass('d-none')
+				if (pdfWin) pdfWin.close()
 			}
+		}).fail(function () {
+			self.removeClass('d-none')
+			self.siblings('.btn-loading').addClass('d-none')
+			if (pdfWin) pdfWin.close()
 		})
 	})
 
 	$(document).on("click",".btn-download-quote",function(){
 		let self = $(this)
 		let id = self.attr('data-id')
+		var pdfWin = window.open('', '_blank')
 		self.addClass('d-none')
 		self.siblings('.btn-loading').removeClass('d-none')
 		$.get(siteURL+"components/com_client/controleurs/router.php?task=pdfQuoteApi&id="+id, function (theResponse) {
-			let data = JSON.parse(theResponse)
-			if (data.icon == "success") {
+			self.removeClass('d-none')
+			self.siblings('.btn-loading').addClass('d-none')
+			var data; try { data = JSON.parse(theResponse) } catch (e) { data = { icon: 'error' } }
+			if (data.icon == "success" && data.message && (data.message).trim().slice(-4).toLowerCase() == '.pdf') {
 				var pdfUrl = platURL+"uploads/"+(data.message).trim();
-				window.open(pdfUrl, '_blank');
-				self.removeClass('d-none')
-				self.siblings('.btn-loading').addClass('d-none')
+				if (pdfWin) { pdfWin.location = pdfUrl } else { window.location = pdfUrl }
 			} else {
-				self.removeClass('d-none')
-				self.siblings('.btn-loading').addClass('d-none')
+				if (pdfWin) pdfWin.close()
 			}
+		}).fail(function () {
+			self.removeClass('d-none')
+			self.siblings('.btn-loading').addClass('d-none')
+			if (pdfWin) pdfWin.close()
 		})
 	})
 
