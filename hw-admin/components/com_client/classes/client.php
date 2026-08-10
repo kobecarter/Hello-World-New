@@ -491,7 +491,7 @@ class client
 		$response = curl_exec($ch);
 
 		if (curl_errno($ch)) {
-			return json_encode(array("icon"=>"error","message"=>"There is a problem with the service"));
+			return json_encode(array("icon"=>"error","message"=>"There is a problem with the service","code"=>"error"));
 		}
 		// Close cURL session
 		curl_close($ch);
@@ -511,6 +511,58 @@ class client
 		return json_encode(array("icon"=>"warning","message"=>"All fields must be filled in"));
 	}
 }
+// Connexion sociale (proxy vers le CRM). Sur succès, on stocke le token + les infos
+// client en session, exactement comme loginApi(), pour que l'espace client soit identique.
+public static function googleLoginApi($data)
+{
+    global $apiURL;
+	if (!isset($data['credential']) || empty($data['credential'])) {
+		return json_encode(array("icon"=>"warning","message"=>"Missing Google credential","code"=>"missing"));
+	}
+	$ch = curl_init($apiURL."com_client/controleurs/router.php?task=googleLoginApi");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, array('credential' => $data['credential']));
+	$response = curl_exec($ch);
+	if (curl_errno($ch)) {
+		return json_encode(array("icon"=>"error","message"=>"There is a problem with the service","code"=>"error"));
+	}
+	curl_close($ch);
+	$info = json_decode($response);
+	if (is_object($info) && $info->icon == 'success') {
+		$_SESSION['client'] = $info->token;
+		if (isset($info->client)) {
+			$_SESSION['client_info'] = $info->client;
+		}
+	}
+	return $response;
+}
+
+public static function facebookLoginApi($data)
+{
+    global $apiURL;
+	if (!isset($data['access_token']) || empty($data['access_token'])) {
+		return json_encode(array("icon"=>"warning","message"=>"Missing Facebook token","code"=>"missing"));
+	}
+	$ch = curl_init($apiURL."com_client/controleurs/router.php?task=facebookLoginApi");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, array('access_token' => $data['access_token']));
+	$response = curl_exec($ch);
+	if (curl_errno($ch)) {
+		return json_encode(array("icon"=>"error","message"=>"There is a problem with the service","code"=>"error"));
+	}
+	curl_close($ch);
+	$info = json_decode($response);
+	if (is_object($info) && $info->icon == 'success') {
+		$_SESSION['client'] = $info->token;
+		if (isset($info->client)) {
+			$_SESSION['client_info'] = $info->client;
+		}
+	}
+	return $response;
+}
+
 public static function verifyEmailApi($data)
 {
     global $apiURL;
@@ -529,7 +581,7 @@ public static function verifyEmailApi($data)
 		$response = curl_exec($ch);
 
 		if (curl_errno($ch)) {
-			return json_encode(array("icon"=>"error","message"=>"There is a problem with the service"));
+			return json_encode(array("icon"=>"error","message"=>"There is a problem with the service","code"=>"error"));
 		}
 		// Close cURL session
 		curl_close($ch);
@@ -562,7 +614,7 @@ public static function setNewPasswordApi($data)
 		$response = curl_exec($ch);
 
 		if (curl_errno($ch)) {
-			return json_encode(array("icon"=>"error","message"=>"There is a problem with the service"));
+			return json_encode(array("icon"=>"error","message"=>"There is a problem with the service","code"=>"error"));
 		}
 		// Close cURL session
 		curl_close($ch);
@@ -744,6 +796,35 @@ public static function setNewPasswordApi($data)
            curl_close($ch);
            // Process the API response
            return $response;
+        }else{
+            return json_encode(array("icon"=>"warning","message"=>"All fields must be filled in"));
+        }
+    }
+
+    public static function updateReclamationApi($data)
+    {
+        global $apiURL;
+        if (isset($data['id']) && isset($data['sujet']) && isset($data['message']) && !empty($data['id']) && !empty($data['sujet']) && !empty($data['message'])) {
+            $post_data = array(
+                'id' => $data['id'],
+                'department' => isset($data['department']) ? $data['department'] : '',
+                'sujet' => $data['sujet'],
+                'message' => $data['message']
+            );
+            // L'appartenance est vérifiée côté CRM via le token (aucun id_client transmis).
+            $ch = curl_init($apiURL."com_reclamation/controleurs/router.php?task=updateReclamationApi");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Authorization: Bearer ' . $_SESSION['client']
+            ));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+            $response = curl_exec($ch);
+            if (curl_errno($ch)) {
+                return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
+            }
+            curl_close($ch);
+            return $response;
         }else{
             return json_encode(array("icon"=>"warning","message"=>"All fields must be filled in"));
         }

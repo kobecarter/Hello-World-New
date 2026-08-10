@@ -8,6 +8,12 @@ if (isset($task) && !empty($task)) {
 		case "loginApi":
 			loginApi($_POST);
 			break;
+		case "googleLoginApi":
+			googleLoginApi($_POST);
+			break;
+		case "facebookLoginApi":
+			facebookLoginApi($_POST);
+			break;
 		case "verifyEmailApi":
 			verifyEmailApi($_POST);
 			break;
@@ -19,6 +25,9 @@ if (isset($task) && !empty($task)) {
 			break;
 		case "createReclamationApi":
 			createReclamationApi($_POST);
+			break;
+		case "updateReclamationApi":
+			updateReclamationApi($_POST);
 			break;
 		case "updateProfileApi":
 			updateProfileApi($_POST);
@@ -62,6 +71,17 @@ function loginApi($data)
 	echo client::loginApi($data);
 }
 
+// Connexion sociale
+function googleLoginApi($data)
+{
+	echo client::googleLoginApi($data);
+}
+
+function facebookLoginApi($data)
+{
+	echo client::facebookLoginApi($data);
+}
+
 function verifyEmailApi($data)
 {
 	echo client::verifyEmailApi($data);
@@ -80,7 +100,18 @@ function logoutApi(){
 function createReclamationApi($data){
 	$info = client::getInfoFromTokenApi($_SESSION['client']);
 	$data['id_client'] = $info->info->id;
+	// Facturation : rattacher la facture concernée en tête du message (visible côté CRM).
+	if (isset($data['department']) && $data['department'] === 'Billing'
+	    && isset($data['facture_ref']) && trim($data['facture_ref']) !== '') {
+		$ref = trim($data['facture_ref']);
+		$data['message'] = "Facture concernée : " . $ref . "\n\n" . (isset($data['message']) ? $data['message'] : '');
+	}
 	echo client::createReclamationApi($data);
+}
+
+function updateReclamationApi($data){
+	// L'appartenance est vérifiée côté CRM via le token.
+	echo client::updateReclamationApi($data);
 }
 
 function updateProfileApi($data){

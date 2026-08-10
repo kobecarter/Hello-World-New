@@ -390,6 +390,92 @@ $(document).ready(function() {
 		})
 	})
 
+	/* -----------------------------------
+	Espace client — Cloche de notification
+	-------------------------------------*/
+	function clPositionNotif() {
+		var $n = $('#clNotif');
+		if (!$n.length || !$n.hasClass('open')) return;
+		var btn = document.getElementById('clNotifBtn');
+		var panel = document.getElementById('clNotifPanel');
+		if (!btn || !panel) return;
+		var r = btn.getBoundingClientRect();
+		var isRtl = (document.documentElement.getAttribute('dir') === 'rtl');
+		panel.style.top = (r.bottom + 8) + 'px';
+		if (isRtl) {
+			panel.style.left = r.left + 'px';
+			panel.style.right = 'auto';
+		} else {
+			panel.style.right = (window.innerWidth - r.right) + 'px';
+			panel.style.left = 'auto';
+		}
+	}
+	$(document).on('click', '#clNotifBtn', function (e) {
+		e.stopPropagation();
+		var $n = $('#clNotif');
+		var willOpen = !$n.hasClass('open');
+		$n.toggleClass('open', willOpen);
+		$('#clNotifBtn').attr('aria-expanded', willOpen);
+		$('#clNotifPanel').attr('aria-hidden', !willOpen);
+		if (willOpen) clPositionNotif();
+	});
+	$(document).on('click', '.cl-notif-item[data-cl-tab]', function () {
+		var tab = $(this).attr('data-cl-tab');
+		var $link = $('.div-client-space-tabs .nav-tabs a[href="#' + tab + '"]');
+		$('#clNotif').removeClass('open');
+		$('#clNotifBtn').attr('aria-expanded', false);
+		if ($link.length) {
+			$link.trigger('click');
+			if ($('.div-client-space').length) {
+				$('html, body').animate({ scrollTop: $('.div-client-space').offset().top - 90 }, 300);
+			}
+		}
+	});
+	$(document).on('click', function (e) {
+		if (!$(e.target).closest('#clNotif').length) {
+			$('#clNotif').removeClass('open');
+			$('#clNotifBtn').attr('aria-expanded', false);
+		}
+	});
+	$(document).on('keydown', function (e) {
+		if (e.key === 'Escape') {
+			$('#clNotif').removeClass('open');
+			$('#clNotifBtn').attr('aria-expanded', false);
+		}
+	});
+	$(window).on('scroll resize', function () {
+		if ($('#clNotif').hasClass('open')) clPositionNotif();
+	});
+
+	/* -----------------------------------
+	Espace client — Modifier une réclamation (client)
+	-------------------------------------*/
+	$(document).on('click', '.cl-recl-edit-toggle', function () {
+		$(this).closest('.cl-recl-item').find('.cl-recl-edit-form').slideToggle(180);
+	});
+	$(document).on('click', '.cl-recl-edit-cancel', function () {
+		$(this).closest('.cl-recl-edit-form').slideUp(180);
+	});
+	$('.cl-recl-edit-form').ajaxForm({
+		beforeSubmit: function (arr, $form) {
+			$form.find('.loading').show();
+		},
+		success: function (theResponse, status, xhr, $form) {
+			console.log(theResponse);
+			$form.find('.loading').hide();
+			var data;
+			try { data = JSON.parse(theResponse); } catch (e) { data = { icon: 'error' }; }
+			if (data.icon == 'success') {
+				$form.find('.msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>' + data.message + '</div>');
+				setTimeout(function () { document.location.reload(); }, 1200);
+			} else if (["error", "warning"].includes(data.icon)) {
+				$form.find('.msgbox').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> ' + data.message + ' </div>');
+			} else {
+				$form.find('.msgbox').html('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button> ' + ERREUR_EXEC + '</div>');
+			}
+		}
+	});
+
 	$(document).on('click','.collaps-item',function(){
 		if($(this).hasClass("opened")){
 			$(this).removeClass("opened", 1000, "ease");
