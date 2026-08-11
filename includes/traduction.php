@@ -7331,6 +7331,10 @@ $lang = array(
     "CL_PARRAIN_GAIN_ADS" => array("fr" => "Crédits publicitaires Google Ads", "en" => "Google Ads credits", "ar" => "أرصدة إعلانات Google"),
     "CL_PARRAIN_GAIN_REMISE" => array("fr" => "Remise sur votre prochaine facture", "en" => "Discount on your next invoice", "ar" => "خصم على فاتورتك القادمة"),
     "CL_PARRAIN_GAIN_CADEAU" => array("fr" => "Cartes-cadeaux pour les meilleurs parrains", "en" => "Gift cards for top referrers", "ar" => "بطاقات هدايا لأفضل المُوصين"),
+    "CL_PARRAIN_GAIN_POINTS" => array("fr" => "Points de fidélité cumulables", "en" => "Collectable loyalty points", "ar" => "نقاط ولاء قابلة للتجميع"),
+    "CL_PARRAIN_GAIN_AUDIT" => array("fr" => "Audit SEO offert", "en" => "Free SEO audit", "ar" => "تدقيق SEO مجاني"),
+    "CL_PARRAIN_GAIN_FORMATION" => array("fr" => "Formation offerte", "en" => "Free training session", "ar" => "دورة تدريبية مجانية"),
+    "CL_REVIEW_REWARD_HINT" => array("fr" => "Laissez un avis et gagnez une récompense !", "en" => "Leave a review and earn a reward!", "ar" => "اترك تقييماً واربح مكافأة!"),
     "CL_PARRAIN_POP_TITLE" => array("fr" => "Parrainez, gagnez !", "en" => "Refer &amp; earn!", "ar" => "أوصِ واربح!"),
     "CL_PARRAIN_POP_TEXT" => array("fr" => "Recommandez une entreprise à Hello World. Dès qu'elle devient cliente, vous êtes récompensé — et votre filleul profite d'une offre de bienvenue.", "en" => "Recommend a business to Hello World. As soon as they become a client, you're rewarded — and your referral gets a welcome offer.", "ar" => "أوصِ بشركة إلى Hello World. بمجرد أن تصبح عميلاً، تحصل على مكافأة — ويحصل من أوصيت به على عرض ترحيبي."),
     "CL_PARRAIN_POP_FILLEUL" => array("fr" => "Votre filleul reçoit une offre de bienvenue et un mini-audit offert.", "en" => "Your referral gets a welcome offer and a free mini-audit.", "ar" => "يحصل من أوصيت به على عرض ترحيبي وتدقيق مصغّر مجاني."),
@@ -7406,6 +7410,7 @@ $lang = array(
     "CL_CHART_TITLE" => array("fr" => "Évolution des paiements", "en" => "Payment evolution", "ar" => "تطور المدفوعات"),
     "CL_CHART_INVOICED" => array("fr" => "Facturé (cumulé)", "en" => "Invoiced (cumulative)", "ar" => "المفوتر (تراكمي)"),
     "CL_CHART_PAID" => array("fr" => "Payé (cumulé)", "en" => "Paid (cumulative)", "ar" => "المدفوع (تراكمي)"),
+    "CL_CHART_REMAINING" => array("fr" => "Reste à payer", "en" => "Outstanding balance", "ar" => "المبلغ المتبقّي"),
 
     "CL_RECL_RESPONSE" => array("fr" => "Réponse de l'équipe", "en" => "Team response", "ar" => "رد الفريق"),
     "CL_RECL_PENDING" => array("fr" => "En attente de réponse", "en" => "Awaiting a response", "ar" => "في انتظار الرد"),

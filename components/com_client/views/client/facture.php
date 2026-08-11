@@ -164,6 +164,9 @@ $__expStatus = function ($days) use ($lang) {
 								<li><i class="fa fa-bullhorn"></i> <?php echo $lang['CL_PARRAIN_GAIN_ADS'][$_SESSION['lang']]; ?></li>
 								<li><i class="fa fa-percent"></i> <?php echo $lang['CL_PARRAIN_GAIN_REMISE'][$_SESSION['lang']]; ?></li>
 								<li><i class="fa fa-gift"></i> <?php echo $lang['CL_PARRAIN_GAIN_CADEAU'][$_SESSION['lang']]; ?></li>
+								<li><i class="fa fa-star"></i> <?php echo $lang['CL_PARRAIN_GAIN_POINTS'][$_SESSION['lang']]; ?></li>
+								<li><i class="fa fa-search"></i> <?php echo $lang['CL_PARRAIN_GAIN_AUDIT'][$_SESSION['lang']]; ?></li>
+								<li><i class="fa fa-graduation-cap"></i> <?php echo $lang['CL_PARRAIN_GAIN_FORMATION'][$_SESSION['lang']]; ?></li>
 							</ul>
 						</div>
 					</div>
@@ -263,24 +266,35 @@ $__expStatus = function ($days) use ($lang) {
 					<div class="tab-content">
 						<div class="tab-pane active" id="tabs-1" role="tabpanel">
 							<?php
-							// Build a cumulative payment-evolution series from the invoices.
-							$__pcRows = array();
+// Courbe du solde restant dû : chaque facture augmente le dû (+total à sa
+							// date), chaque paiement le diminue (−montant). Elle baisse à chaque paiement.
+							$__ev = array();
 							foreach ($factures as $__f) {
-								if (!is_object($__f) || !isset($__f->date_facture)) { continue; }
-								$__pcRows[] = array(
-									'd' => $__f->date_facture,
-									't' => (float) $__f->total,
-									'p' => (float) $__f->total - (float) $__f->reste,
-								);
+								if (!is_object($__f) || empty($__f->date_facture)) { continue; }
+								$__ev[] = array('d' => $__f->date_facture, 'inv' => (float) $__f->total, 'pay' => 0.0);
 							}
-							usort($__pcRows, function ($a, $b) { return strcmp($a['d'], $b['d']); });
-							$__pcLabels = array(); $__pcTot = array(); $__pcPaid = array();
-							$__rt = 0; $__rp = 0;
-							foreach ($__pcRows as $__r) {
-								$__rt += $__r['t']; $__rp += $__r['p'];
-								$__pcLabels[] = date('d/m/Y', strtotime($__r['d']));
-								$__pcTot[]  = round($__rt, 2);
-								$__pcPaid[] = round($__rp, 2);
+							foreach ($payments as $__p) {
+								$__pd = is_array($__p) ? (isset($__p['date']) ? $__p['date'] : null) : (isset($__p->date) ? $__p->date : null);
+								$__pm = is_array($__p) ? (isset($__p['montant']) ? $__p['montant'] : 0) : (isset($__p->montant) ? $__p->montant : 0);
+								if (empty($__pd) || $__pd === '0000-00-00') { continue; }
+								$__ev[] = array('d' => $__pd, 'inv' => 0.0, 'pay' => (float) $__pm);
+							}
+							usort($__ev, function ($a, $b) { return strcmp($a['d'], $b['d']); });
+							$__pcLabels = array(); $__pcInv = array(); $__pcSolde = array();
+							$__cumInv = 0; $__cumPay = 0;
+							foreach ($__ev as $__e) {
+								$__cumInv += $__e['inv']; $__cumPay += $__e['pay'];
+								$__pcLabels[] = date('d/m/Y', strtotime($__e['d']));
+								$__pcInv[]   = round($__cumInv, 2);
+								$__pcSolde[] = round(max($__cumInv - $__cumPay, 0), 2);
+							}
+							if (count($__ev) > 0) {
+								$__lastD = date('Y-m-d', strtotime($__ev[count($__ev) - 1]['d']));
+								if ($__lastD < date('Y-m-d')) {
+									$__pcLabels[] = date('d/m/Y');
+									$__pcInv[]   = round($__cumInv, 2);
+									$__pcSolde[] = round(max($__cumInv - $__cumPay, 0), 2);
+								}
 							}
 							if (count($__pcLabels) > 0) :
 							?>
@@ -294,20 +308,20 @@ $__expStatus = function ($days) use ($lang) {
 								var el = document.getElementById('paymentChart');
 								if (!el || typeof Chart === 'undefined') return;
 								var labels   = <?php echo json_encode($__pcLabels); ?>;
-								var invoiced = <?php echo json_encode($__pcTot); ?>;
-								var paid     = <?php echo json_encode($__pcPaid); ?>;
+								var invoiced = <?php echo json_encode($__pcInv); ?>;
+								var paid     = <?php echo json_encode($__pcSolde); ?>;
 								var ctx = el.getContext('2d');
 								var gInv = ctx.createLinearGradient(0, 0, 0, 260);
 								gInv.addColorStop(0, 'rgba(104,2,98,.20)'); gInv.addColorStop(1, 'rgba(104,2,98,0)');
 								var gPaid = ctx.createLinearGradient(0, 0, 0, 260);
-								gPaid.addColorStop(0, 'rgba(9,161,190,.28)'); gPaid.addColorStop(1, 'rgba(9,161,190,0)');
+								gPaid.addColorStop(0, 'rgba(245,166,35,.30)'); gPaid.addColorStop(1, 'rgba(245,166,35,0)');
 								new Chart(el, {
 									type: 'line',
 									data: {
 										labels: labels,
 										datasets: [
-											{ label: <?php echo json_encode($lang['CL_CHART_INVOICED'][$_SESSION['lang']]); ?>, data: invoiced, borderColor: '#680262', backgroundColor: gInv, borderWidth: 2, fill: true, tension: .35, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#680262' },
-											{ label: <?php echo json_encode($lang['CL_CHART_PAID'][$_SESSION['lang']]); ?>, data: paid, borderColor: '#09A1BE', backgroundColor: gPaid, borderWidth: 2, fill: true, tension: .35, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#09A1BE' }
+											{ label: <?php echo json_encode($lang['CL_CHART_INVOICED'][$_SESSION['lang']]); ?>, data: invoiced, borderColor: '#680262', backgroundColor: gInv, borderWidth: 1.5, borderDash: [5,4], fill: false, tension: .35, pointRadius: 0, pointHoverRadius: 4, pointBackgroundColor: '#680262' },
+											{ label: <?php echo json_encode($lang['CL_CHART_REMAINING'][$_SESSION['lang']]); ?>, data: paid, borderColor: '#f5a623', backgroundColor: gPaid, borderWidth: 3, fill: true, tension: .35, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#f5a623' }
 										]
 									},
 									options: {
@@ -819,6 +833,7 @@ $__expStatus = function ($days) use ($lang) {
 						<div>
 							<h2><?php echo $lang['CL_REVIEW_TITLE'][$_SESSION['lang']]; ?></h2>
 							<p><?php echo $lang['CL_REVIEW_SUB'][$_SESSION['lang']]; ?></p>
+							<span class="cl-review-reward-hint"><i class="fa fa-gift"></i> <?php echo $lang['CL_REVIEW_REWARD_HINT'][$_SESSION['lang']]; ?></span>
 						</div>
 					</div>
 					<div class="cl-review-body">
@@ -847,6 +862,7 @@ $__expStatus = function ($days) use ($lang) {
 							</form>
 						</div>
 						<?php if ($__gmbOn) : ?>
+						<div class="cl-review-arrow" aria-hidden="true"><i class="fa fa-long-arrow-right"></i></div>
 						<div class="cl-review-col cl-review-gmb">
 							<span class="cl-review-gmb-ico"><i class="fa fa-google"></i></span>
 							<p class="cl-review-gmb-text"><?php echo $lang['CL_REVIEW_GMB_TEXT'][$_SESSION['lang']]; ?></p>
@@ -900,6 +916,9 @@ $__expStatus = function ($days) use ($lang) {
 									<span class="cl-parrain-gain"><i class="fa fa-bullhorn"></i> <?php echo $lang['CL_PARRAIN_GAIN_ADS'][$_SESSION['lang']]; ?></span>
 									<span class="cl-parrain-gain"><i class="fa fa-percent"></i> <?php echo $lang['CL_PARRAIN_GAIN_REMISE'][$_SESSION['lang']]; ?></span>
 									<span class="cl-parrain-gain"><i class="fa fa-gift"></i> <?php echo $lang['CL_PARRAIN_GAIN_CADEAU'][$_SESSION['lang']]; ?></span>
+									<span class="cl-parrain-gain"><i class="fa fa-star"></i> <?php echo $lang['CL_PARRAIN_GAIN_POINTS'][$_SESSION['lang']]; ?></span>
+									<span class="cl-parrain-gain"><i class="fa fa-search"></i> <?php echo $lang['CL_PARRAIN_GAIN_AUDIT'][$_SESSION['lang']]; ?></span>
+									<span class="cl-parrain-gain"><i class="fa fa-graduation-cap"></i> <?php echo $lang['CL_PARRAIN_GAIN_FORMATION'][$_SESSION['lang']]; ?></span>
 								</div>
 																<div class="cl-parrain-body">
 									<form id="parrainageForm" class="cl-parrain-form">
@@ -975,6 +994,9 @@ $__expStatus = function ($days) use ($lang) {
 															<li><i class="fa fa-bullhorn"></i> <?php echo $lang['CL_PARRAIN_GAIN_ADS'][$_SESSION['lang']]; ?></li>
 															<li><i class="fa fa-percent"></i> <?php echo $lang['CL_PARRAIN_GAIN_REMISE'][$_SESSION['lang']]; ?></li>
 															<li><i class="fa fa-gift"></i> <?php echo $lang['CL_PARRAIN_GAIN_CADEAU'][$_SESSION['lang']]; ?></li>
+															<li><i class="fa fa-star"></i> <?php echo $lang['CL_PARRAIN_GAIN_POINTS'][$_SESSION['lang']]; ?></li>
+															<li><i class="fa fa-search"></i> <?php echo $lang['CL_PARRAIN_GAIN_AUDIT'][$_SESSION['lang']]; ?></li>
+															<li><i class="fa fa-graduation-cap"></i> <?php echo $lang['CL_PARRAIN_GAIN_FORMATION'][$_SESSION['lang']]; ?></li>
 														</ul>
 														<p class="cl-parrain-popup-filleul"><i class="fa fa-user-plus"></i> <?php echo $lang['CL_PARRAIN_POP_FILLEUL'][$_SESSION['lang']]; ?></p>
 														<div class="cl-parrain-popup-actions">
