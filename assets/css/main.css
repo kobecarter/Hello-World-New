@@ -9126,3 +9126,37 @@ html[dir="rtl"] .page-client-space .cl-recl-response{border-left:none;border-rig
 .cl-notif-txt{display:flex;flex-direction:column;min-width:0}
 .cl-notif-txt b{font-family:var(--fm);font-size:.85rem;font-weight:600;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cl-notif-txt small{font-family:var(--fm);font-size:.72rem;font-weight:400;color:var(--txt2)}
+
+/* Espace client — carte "Votre avis compte" (témoignage + avis Google) */
+.page-client-space .cl-review{margin-top:2.5rem;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.8rem 2rem;box-shadow:0 1px 2px rgba(13,11,9,.04),0 10px 30px rgba(13,11,9,.05)}
+.page-client-space .cl-review-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
+.page-client-space .cl-review-ico{flex:none;width:46px;height:46px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;background:var(--gold2);color:#fff;font-size:1.3rem}
+.page-client-space .cl-review-head h2{margin:0 0 .2rem;font-family:var(--fb);font-size:1.15rem;font-weight:700;letter-spacing:-.01em;color:var(--txt)}
+.page-client-space .cl-review-head p{margin:0;font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-review-body{display:grid;grid-template-columns:1.4fr 1fr;gap:1.6rem;align-items:stretch}
+.page-client-space .cl-review-label{display:block;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:.9rem 0 .5rem}
+.page-client-space .cl-review-stars{display:inline-flex;gap:.4rem;font-size:1.5rem;color:#d8d0c4;cursor:pointer}
+.page-client-space .cl-review-stars i{transition:color .12s,transform .12s}
+.page-client-space .cl-review-stars i.on{color:#f5a623}
+.page-client-space .cl-review-stars i:hover{transform:scale(1.12)}
+.page-client-space .cl-review-stars-static{display:flex;gap:.3rem;font-size:1.15rem;color:#e3dfda;margin-bottom:.7rem}
+.page-client-space .cl-review-stars-static i.on{color:#f5a623}
+.page-client-space .cl-review-input{width:100%;padding:.8rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--bg2);font-family:var(--fm);font-size:.9rem;font-weight:300;color:var(--txt);outline:none;transition:border-color .2s;resize:vertical}
+.page-client-space .cl-review-input:focus{border-color:var(--gold);background:var(--bg)}
+.page-client-space .cl-review-submit{margin-top:1.1rem}
+.page-client-space .cl-review-sent{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem}
+.page-client-space .cl-review-sent-msg{font-family:var(--fm);font-size:.9rem;font-weight:300;line-height:1.6;color:var(--txt);margin:.2rem 0 .8rem}
+.page-client-space .cl-review-badge{display:inline-block;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .7rem;border-radius:30px;color:#fff}
+.page-client-space .cl-review-badge.wait{background:#b45309}
+.page-client-space .cl-review-badge.ok{background:#157347}
+.page-client-space .cl-review-badge.no{background:#a4161a}
+.page-client-space .cl-review-edit{display:inline-flex;align-items:center;gap:.4rem;margin-inline-start:.7rem;background:none;border:1px solid var(--border);border-radius:30px;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold2);padding:.35rem .8rem;cursor:pointer;transition:color .2s,border-color .2s}
+.page-client-space .cl-review-edit:hover{color:var(--gold);border-color:var(--gold)}
+.page-client-space .cl-review-gmb{background:linear-gradient(135deg,rgba(9,161,190,.08),rgba(104,2,98,.06));border:1px solid var(--border);border-radius:14px;padding:1.4rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.7rem}
+.page-client-space .cl-review-gmb-ico{width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;color:#4285F4}
+.page-client-space .cl-review-gmb-text{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);margin:0}
+.page-client-space .cl-review-gmb-btn{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--border);border-radius:30px;padding:.7rem 1.3rem;font-family:var(--fm);font-size:.8rem;font-weight:600;color:var(--txt);text-decoration:none;transition:box-shadow .2s,border-color .2s}
+.page-client-space .cl-review-gmb-btn i{color:#f5a623}
+.page-client-space .cl-review-gmb-btn:hover{border-color:#4285F4;box-shadow:0 4px 14px rgba(66,133,244,.2)}
+.page-client-space .cl-review-msg:empty{display:none}
+@media (max-width:768px){.page-client-space .cl-review-body{grid-template-columns:1fr}}

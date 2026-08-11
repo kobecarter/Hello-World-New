@@ -280,7 +280,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=8.1">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=8.3">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -637,7 +637,7 @@ var REDIRECT_LINK_CONG = '<?php echo $congPage->getLink(); ?>';
 <script src='<?php echo $siteURL; ?>assets/js/jquery.form.js'></script>
 <script src='<?php echo $siteURL; ?>flip-book/js/flipbook.min.js'></script>
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.6'></script>
+<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.7'></script>
 <script>
 /* CURSOR */
 const cur  = document.getElementById('cur');

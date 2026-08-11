@@ -37,6 +37,15 @@ foreach ($factures as $__f) {
 $__hasAttn = (count($__expSoon) > 0 || count($__pending) > 0);
 $__notifCount = count($__expSoon) + count($__pending); // badge on the notification bell
 
+// Avis client : témoignage déjà soumis ? (stocké dans la base du site)
+global $db;
+$__avis = null;
+if (!empty($clientId)) {
+    $__ar = $db->queryS(sprintf("SELECT a.note, a.message, t.active AS temoignage_active FROM " . __prefixe_db__ . "avis_client a LEFT JOIN " . __prefixe_db__ . "temoignage t ON t.id = a.id_temoignage WHERE a.id_client = %s ORDER BY a.id DESC LIMIT 1", GetSQLValueString((int) $clientId, "int")));
+    if (is_array($__ar) && count($__ar) > 0) { $__avis = $__ar[0]; }
+}
+$__gmbOn = defined('GMB_REVIEW_URL') && GMB_REVIEW_URL !== '';
+
 // Shared display helpers (label / icon / status for a reminder).
 $__typeLabel = function ($type) use ($lang) {
     $t = strtolower(trim((string) $type));
@@ -318,117 +327,7 @@ $__expStatus = function ($days) use ($lang) {
 												<td><?php echo number_format($facture->reste, 2, ',', ' ') . ' ' . $facture->devise; ?></td>
 												<td><?php echo $statu; ?></td>
 												<td>
-												    <a class="btn btn-sm btn-info text-white" href="javascript:void(0)"  data-toggle="modal" data-target="#invoice-detail<?=$facture->ID?>" title="Show"><?php echo $lang['CL_FOLLOW_UP'][$_SESSION['lang']]; ?></a>
-												        <!-- Modal / Demo -->
-                                                        <div class="modal fade" id="invoice-detail<?=$facture->ID?>" role="dialog">
-                                                        	<div class="modal-dialog" role="document">
-                                                        		<div class="modal-content">
-                                                        			<div class="modal-header">
-                                                        				<h4 class="modal-title" id="myModalLabel"><i class="far fa-eye"></i> <?php echo $lang['CL_DETAIL'][$_SESSION['lang']]; ?></h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
-                                                        			</div>
-                                                        			<div class="modal-body">
-                                                        			    <div class="row-row">
-                                                        			        <?php if(isValidDate($facture->date_debut) && isValidDate($facture->date_fin)) :?>
-                                                                                <div class="col-12">
-                                                                                    <?php
-                                                                                        // Define the two dates
-                                                                                        $today = new DateTime();
-                                                                                        $startDate = new DateTime($facture->date_debut);
-                                                                                        $endDate = new DateTime($facture->date_fin);
-                                                                                        
-                                                                                        // Calculate the difference
-                                                                                        $interval1 = $startDate->diff($endDate);
-                                                                                        $interval2 = $today->diff($endDate);
-                                                                                        
-                                                                                        // Get the difference in days
-                                                                                        $days = $interval1->days;
-                                                                                        $rest_days = $interval2->days;
-                                                                                    ?>
-                                                                                    <div class="row-row mb-5 text-center">
-                                                                                        <div class="col-md-6">
-                                                                                            <h3><?php echo $lang['CL_DEADLINE'][$_SESSION['lang']]; ?> : <span class="text-success"><?=$days?> <?php echo $lang['CL_DAYS'][$_SESSION['lang']]; ?></span></h3>
-                                                                                        </div>
-                                                                                        <div class="col-md-6">
-                                                                                            <?php if($startDate <= $today) :?>
-                                                                                                <h3><span class="text-danger"><?=$rest_days?> <?php echo $lang['CL_DAYS'][$_SESSION['lang']]; ?></span> <?php echo $lang['CL_DAYS_LEFT'][$_SESSION['lang']]; ?></h3>
-                                                                                            <?php else :?>
-                                                                                                <h3><span class="text-danger"><?php echo $lang['CL_NOT_STARTED'][$_SESSION['lang']]; ?></span></h3>
-                                                                                            <?php endif;?>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            <?php endif;?>
-                                                        			        <div class="col-12">
-                                                        			            <div class="wizard">
-                                                                                    <ul class="ul-wizard" id="myTab" role="tablist">
-                                                                                        <li class="li-wizard">
-                                                                                            <?php 
-                                                                                                $wizard_status_quote = "";
-                                                                                                if($facture->devis->statu){
-                                                                                                    if($facture->devis->statu == 0 || $facture->devis->statu == 2){
-                                                                                                        $wizard_status_quote = "wizard-danger";
-                                                                                                    }else if($facture->devis->statu == 1 || $facture->devis->statu == 3){
-                                                                                                        $wizard_status_quote = "wizard-success";
-                                                                                                    }
-                                                                                                }
-                                                                                            ?>
-                                                                                            <a class="a-wizard <?=$wizard_status_quote?>" href="javascript:void(0)">
-                                                                                                <i class="i-wizard fa fa-file-invoice-dollar"></i>
-                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_QUOTE'][$_SESSION['lang']]; ?></span>
-                                                                                            </a>
-                                                                                        </li>
-                                                                                        <li class="li-wizard">
-                                                                                            <?php 
-                                                                                                $wizard_status_contrat = "";
-                                                                                                if($facture->devis){
-                                                                                                    if($facture->devis->statu == 1){
-                                                                                                        $wizard_status_contrat = "wizard-danger";
-                                                                                                    }else if($facture->devis->statu == 3){
-                                                                                                        $wizard_status_contrat = "wizard-success";
-                                                                                                    }
-                                                                                                }
-                                                                                            ?>
-                                                                                            <a class="a-wizard <?=$wizard_status_contrat?>" href="javascript:void(0)">
-                                                                                                <i class="i-wizard fa fa-file-invoice-dollar"></i>
-                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_CONTRACT'][$_SESSION['lang']]; ?></span>
-                                                                                            </a>
-                                                                                        </li>
-                                                                                        <li class="li-wizard">
-                                                                                            <?php
-                                                                                                $wizard_status_invoice = "wizard-success";
-                                                                                            ?>
-                                                                                            <a class="a-wizard <?=$wizard_status_invoice?>" href="javascript:void(0)">
-                                                                                                <i class="i-wizard fa fa-file-invoice"></i>
-                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_INVOICE'][$_SESSION['lang']]; ?></span>
-                                                                                            </a>
-                                                                                        </li>
-                                                                                        <li class="li-wizard">
-                                                                                            <?php
-                                                                                                $wizard_status_payment = "";
-                                                                                                if($facture->total == $facture->reste){
-                                                                                                    $wizard_status_payment = "wizard-danger";
-                                                                                                }elseif($facture->total > $facture->reste && $facture->reste > 0)	{
-                                                                                                    $wizard_status_payment = "wizard-warning";
-                                                                                                }elseif($facture->reste <= 0){
-                                                                                                    $wizard_status_payment = "wizard-success";
-                                                                                                }
-                                                                                            ?>
-                                                                                            <a class="a-wizard <?=$wizard_status_payment?> " href="javascript:void(0)">
-                                                                                                <i class="i-wizard far fa-money-bill-alt"></i>
-                                                                                                <span class="span-wizard"><?php echo $lang['CL_WIZ_PAYMENT'][$_SESSION['lang']]; ?></span>
-                                                                                            </a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                        			        </div>
-                                                        			    </div>
-                                                        				
-                                                        			</div>
-                                                        		</div>
-                                                        	</div>
-                                                        </div>
-													<?php if ($facture->statu == '1') : ?>
+<?php if ($facture->statu == '1') : ?>
 														<a class="btn btn-sm btn-danger btn-download-invoice text-white" data-id="<?= $facture->ID ?>" href="javascript:void(0)" data-toggle="tooltip" title="Download"><i class="far fa-file-pdf"></i></a>
 													    <a class="btn btn-sm btn-danger btn-loading d-none" href="javascript:void(0)"><i class="fa fa-spinner"></i></a>
 													<?php else : ?>
@@ -855,7 +754,82 @@ $__expStatus = function ($days) use ($lang) {
 					</div>
 				</div>
 			</div>
-			<div class="col-12">
+<?php if (true) : ?>
+			<div class="col-12 mb-5">
+				<div class="cl-review">
+					<div class="cl-review-head">
+						<span class="cl-review-ico"><i class="ti ti-star"></i></span>
+						<div>
+							<h2><?php echo $lang['CL_REVIEW_TITLE'][$_SESSION['lang']]; ?></h2>
+							<p><?php echo $lang['CL_REVIEW_SUB'][$_SESSION['lang']]; ?></p>
+						</div>
+					</div>
+					<div class="cl-review-body">
+						<div class="cl-review-col">
+							<?php if ($__avis) : ?>
+							<div class="cl-review-sent" id="clReviewSent">
+								<div class="cl-review-stars-static">
+									<?php for ($i = 1; $i <= 5; $i++) : ?><i class="fa fa-star<?php echo $i <= (int) $__avis['note'] ? ' on' : ''; ?>"></i><?php endfor; ?>
+								</div>
+								<p class="cl-review-sent-msg"><?php echo nl2br(htmlspecialchars($__avis['message'])); ?></p>
+								<?php $__pub = ((int) $__avis['temoignage_active'] === 1); ?>
+								<span class="cl-review-badge <?php echo $__pub ? 'ok' : 'wait'; ?>"><?php echo $__pub ? $lang['CL_REVIEW_ST_PUBLISHED'][$_SESSION['lang']] : $lang['CL_REVIEW_ST_PENDING'][$_SESSION['lang']]; ?></span>
+								<button type="button" class="cl-review-edit" id="clReviewEdit"><i class="fa fa-pencil"></i> <?php echo $lang['CL_REVIEW_EDIT'][$_SESSION['lang']]; ?></button>
+							</div>
+							<?php endif; ?>
+							<form id="temoignageForm" class="cl-review-form"<?php echo $__avis ? ' style="display:none;"' : ''; ?>>
+								<div class="msgbox cl-review-msg"></div>
+								<label class="cl-review-label"><?php echo $lang['CL_REVIEW_RATING'][$_SESSION['lang']]; ?></label>
+								<div class="cl-review-stars" id="clStars">
+									<?php $__n = $__avis ? (int) $__avis['note'] : 5; for ($i = 1; $i <= 5; $i++) : ?><i class="fa fa-star<?php echo $i <= $__n ? ' on' : ''; ?>" data-v="<?php echo $i; ?>"></i><?php endfor; ?>
+								</div>
+								<input type="hidden" name="note" id="clNote" value="<?php echo $__avis ? (int) $__avis['note'] : 5; ?>">
+								<label class="cl-review-label" for="clMsg"><?php echo $lang['CL_REVIEW_YOUR_MESSAGE'][$_SESSION['lang']]; ?></label>
+								<textarea class="cl-review-input" name="message" id="clMsg" rows="4" required><?php echo $__avis ? htmlspecialchars($__avis['message']) : ''; ?></textarea>
+								<button type="submit" class="btn-hw cl-review-submit"><span><?php echo $lang['CL_REVIEW_SUBMIT'][$_SESSION['lang']]; ?></span></button>
+							</form>
+						</div>
+						<?php if ($__gmbOn) : ?>
+						<div class="cl-review-col cl-review-gmb">
+							<span class="cl-review-gmb-ico"><i class="fa fa-google"></i></span>
+							<p class="cl-review-gmb-text"><?php echo $lang['CL_REVIEW_GMB_TEXT'][$_SESSION['lang']]; ?></p>
+							<a href="<?php echo htmlspecialchars(GMB_REVIEW_URL); ?>" target="_blank" rel="noopener" class="cl-review-gmb-btn"><i class="fa fa-star"></i> <?php echo $lang['CL_REVIEW_GMB'][$_SESSION['lang']]; ?></a>
+						</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+			<script>
+			(function(){
+				var stars = document.querySelectorAll('#clStars i');
+				var noteInput = document.getElementById('clNote');
+				var form = document.getElementById('temoignageForm');
+				if(!form) return;
+				function paint(n){ stars.forEach(function(s){ s.classList.toggle('on', parseInt(s.getAttribute('data-v'),10) <= n); }); }
+				stars.forEach(function(s){
+					var v = parseInt(s.getAttribute('data-v'),10);
+					s.addEventListener('mouseenter', function(){ paint(v); });
+					s.addEventListener('click', function(){ noteInput.value = v; paint(v); });
+				});
+				document.getElementById('clStars').addEventListener('mouseleave', function(){ paint(parseInt(noteInput.value,10)||0); });
+				var editBtn = document.getElementById('clReviewEdit');
+				if(editBtn) editBtn.addEventListener('click', function(){ var sent=document.getElementById('clReviewSent'); if(sent) sent.style.display='none'; form.style.display=''; });
+				form.addEventListener('submit', function(e){
+					e.preventDefault();
+					var box = form.querySelector('.cl-review-msg');
+					var body = new URLSearchParams({ note: noteInput.value, message: document.getElementById('clMsg').value }).toString();
+					fetch('<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=createTemoignageApi', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:body })
+						.then(function(r){ return r.text(); })
+						.then(function(t){ var d; try{ d=JSON.parse(t); }catch(e){ d={icon:'error'}; }
+							if(d.icon==='success'){ box.innerHTML='<div class="alert alert-success">'+<?php echo json_encode($lang['CL_REVIEW_THANKS'][$_SESSION['lang']]); ?>+'</div>'; }
+							else{ box.innerHTML='<div class="alert alert-warning">'+<?php echo json_encode($lang['CL_REVIEW_ERROR'][$_SESSION['lang']]); ?>+'</div>'; }
+						})
+						.catch(function(){ box.innerHTML='<div class="alert alert-danger">'+<?php echo json_encode($lang['CL_REVIEW_ERROR'][$_SESSION['lang']]); ?>+'</div>'; });
+				});
+			})();
+			</script>
+			<?php endif; ?>
+						<div class="col-12">
 				<section class="srv-section" id="services-dev">
   <div class="container">
     <div class="services-header">
