@@ -29,6 +29,25 @@ CREATE TABLE IF NOT EXISTS `hw_avis_client` (
   `last_edit`     DATETIME NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --- Parrainage : un client (parrain) recommande un prospect (filleul).
+--     Suivi + attribution des récompenses côté agence (manuel).
+CREATE TABLE IF NOT EXISTS `hw_parrainage` (
+  `id`                 INT AUTO_INCREMENT PRIMARY KEY,
+  `id_parrain`         INT NULL,                 -- id du client parrain (CRM)
+  `parrain_nom`        VARCHAR(255) NULL,
+  `parrain_email`      VARCHAR(255) NULL,
+  `filleul_nom`        VARCHAR(255) NOT NULL,
+  `filleul_entreprise` VARCHAR(255) NULL,
+  `filleul_email`      VARCHAR(255) NOT NULL,
+  `filleul_tel`        VARCHAR(50) NULL,
+  `message`            MEDIUMTEXT NULL,
+  `statut`             TINYINT NOT NULL DEFAULT 0,  -- 0 en attente, 1 contacté, 2 converti, 3 clôturé
+  `recompense`         VARCHAR(255) NULL,           -- récompense attribuée (texte libre)
+  `recompense_donnee`  TINYINT NOT NULL DEFAULT 0,
+  `date_add`           DATETIME NOT NULL,
+  `last_edit`          DATETIME NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Rappel : la colonne id_temoignage est DÉJÀ incluse dans le CREATE ci-dessus.
 -- (En local, elle avait été ajoutée en 2 temps. En prod, le CREATE suffit.)
 -- Si — et seulement si — la table existait déjà SANS cette colonne, décommente :

@@ -29,6 +29,9 @@ if (isset($task) && !empty($task)) {
 		case "createTemoignageApi":
 			createTemoignageApi($_POST);
 			break;
+		case "createParrainageApi":
+			createParrainageApi($_POST);
+			break;
 		case "updateReclamationApi":
 			updateReclamationApi($_POST);
 			break;
@@ -193,6 +196,100 @@ function createTemoignageApi($data){
 		}
 	}
 	echo json_encode(array("icon"=>"success","message"=>"Merci pour votre avis !","code"=>"ok"));
+}
+
+// Parrainage : le parrain (client connecté) recommande un prospect (filleul).
+// Stocké dans la base du SITE (hw_parrainage), statut 0 = en attente. Le suivi
+// et l'attribution des récompenses se font côté agence (manuel).
+function createParrainageApi($data){
+	global $db;
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		echo json_encode(array("icon"=>"error","message"=>"Not authenticated","code"=>"auth"));
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idParrain = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int)$info->info->id : 0;
+	if ($idParrain <= 0) {
+		echo json_encode(array("icon"=>"error","message"=>"Not authenticated","code"=>"auth"));
+		return;
+	}
+	$fNom   = isset($data['filleul_nom']) ? trim($data['filleul_nom']) : '';
+	$fEmail = isset($data['filleul_email']) ? trim($data['filleul_email']) : '';
+	if ($fNom === '' || $fEmail === '' || !filter_var($fEmail, FILTER_VALIDATE_EMAIL)) {
+		echo json_encode(array("icon"=>"warning","message"=>"Missing or invalid fields","code"=>"missing"));
+		return;
+	}
+	$fEnt = isset($data['filleul_entreprise']) ? trim($data['filleul_entreprise']) : '';
+	$fTel = isset($data['filleul_tel']) ? trim($data['filleul_tel']) : '';
+	$msg  = isset($data['message']) ? trim($data['message']) : '';
+	// Nom / email du parrain (infos capturées à la connexion).
+	$pNom = ''; $pEmail = '';
+	if (isset($_SESSION['client_info']) && is_object($_SESSION['client_info'])) {
+		$ci = $_SESSION['client_info'];
+		$rs = isset($ci->raison_social) ? trim($ci->raison_social) : '';
+		$full = trim((isset($ci->prenom) ? $ci->prenom : '') . ' ' . (isset($ci->nom) ? $ci->nom : ''));
+		$pNom = $rs !== '' ? $rs : $full;
+		$pEmail = isset($ci->email) ? $ci->email : '';
+	}
+	if ($pEmail === '' && is_object($info) && isset($info->info->email)) { $pEmail = $info->info->email; }
+	// Anti-doublon : même filleul déjà parrainé par ce parrain.
+	$dup = $db->queryS(sprintf("SELECT id FROM " . __prefixe_db__ . "parrainage WHERE id_parrain = %s AND filleul_email = %s LIMIT 1",
+		GetSQLValueString($idParrain, "int"), GetSQLValueString($fEmail, "text")));
+	if (is_array($dup) && count($dup) > 0) {
+		echo json_encode(array("icon"=>"warning","message"=>"Already referred","code"=>"dup"));
+		return;
+	}
+	$now = date("Y-m-d H:i:s");
+	$db->query(sprintf("INSERT INTO " . __prefixe_db__ . "parrainage (id_parrain, parrain_nom, parrain_email, filleul_nom, filleul_entreprise, filleul_email, filleul_tel, message, statut, recompense_donnee, date_add) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 0, 0, %s)",
+		GetSQLValueString($idParrain, "int"), GetSQLValueString($pNom, "text"), GetSQLValueString($pEmail, "text"),
+		GetSQLValueString($fNom, "text"), GetSQLValueString($fEnt, "text"), GetSQLValueString($fEmail, "text"),
+		GetSQLValueString($fTel, "text"), GetSQLValueString($msg, "text"), GetSQLValueString($now, "text")));
+	// Email d'invitation au filleul (best-effort : n'interrompt jamais la réponse).
+	sendParrainageInvitationEmail($fEmail, $fNom, $pNom);
+	echo json_encode(array("icon"=>"success","message"=>"Merci ! Nous contactons votre filleul rapidement.","code"=>"ok"));
+}
+
+// Envoie au filleul un email d'invitation (mentionne le parrain + offre de bienvenue).
+// Même mécanisme PHPMailer que le formulaire de contact (fonctionne en production).
+function sendParrainageInvitationEmail($fEmail, $fNom, $pNom) {
+	global $db, $siteURL, $emailUsername;
+	if (empty($fEmail)) { return; }
+	try {
+		require_once __DIR__ . '/../../../../vendor/autoload.php';
+		$fromEmail = ''; $fromName = 'Hello World Agency';
+		try { $config = new config($db); $fromEmail = $config->getEmail(); $fromName = $config->getNom(); } catch (\Throwable $e) {}
+		if (empty($fromEmail)) { $fromEmail = isset($emailUsername) && $emailUsername !== '' ? $emailUsername : 'contact@helloworld-agency.com'; }
+		$parrainRaw = ($pNom !== '' ? $pNom : 'Un client');
+		$parrain = htmlspecialchars($parrainRaw);
+		$fil = htmlspecialchars($fNom);
+		$logo = $siteURL . 'images/logo_hello_world.png';
+		$message = '<html><body style="font-family:Arial,sans-serif;color:#1a1613;background:#f6f6f6;padding:20px">'
+			. '<table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden">'
+			. '<tr><td style="text-align:center;padding:24px"><img src="' . $logo . '" alt="Hello World Agency" height="54"></td></tr>'
+			. '<tr><td style="padding:0 28px 26px">'
+			. '<h2 style="color:#680262;font-weight:normal">Vous &ecirc;tes recommand&eacute; par ' . $parrain . ' &#127873;</h2>'
+			. '<p>Bonjour ' . $fil . ',</p>'
+			. '<p><strong>' . $parrain . '</strong> vous recommande <strong>Hello World Agency</strong> pour vos projets web, marketing et digital.</p>'
+			. '<p>En tant que filleul, vous b&eacute;n&eacute;ficiez d&#39;une <strong>offre de bienvenue</strong> et d&#39;un <strong>mini-audit offert</strong> d&egrave;s votre premier contact.</p>'
+			. '<p style="text-align:center;margin:28px 0"><a href="' . $siteURL . '" style="background:#09A1BE;color:#fff;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:bold">D&eacute;couvrir Hello World</a></p>'
+			. '<p style="color:#6b6460;font-size:12px">Vous recevez cet email car ' . $parrain . ' vous a recommand&eacute; aupr&egrave;s de Hello World Agency.</p>'
+			. '</td></tr></table></body></html>';
+		$mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+		$mail->Host = 'helloworld-agency.com';
+		$mail->Username = $fromEmail;
+		$mail->setFrom($fromEmail, $fromName);
+		$mail->addAddress($fEmail, $fNom !== '' ? $fNom : $fEmail);
+		$mail->addReplyTo($fromEmail, $fromName);
+		$mail->isHTML(true);
+		$mail->CharSet = 'UTF-8';
+		$mail->Encoding = 'base64';
+		$mail->Subject = $parrainRaw . ' vous recommande Hello World Agency';
+		$mail->AltBody = $parrainRaw . ' vous recommande Hello World Agency. Offre de bienvenue + mini-audit offert.';
+		$mail->Body = $message;
+		$mail->send();
+	} catch (\Throwable $e) {
+		error_log('Parrainage invitation email failed: ' . $e->getMessage());
+	}
 }
 
 function updateReclamationApi($data){
