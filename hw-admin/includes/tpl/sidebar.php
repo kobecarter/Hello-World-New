@@ -35,5 +35,11 @@
           <?php
       }
       ?>
+      <li class="com_parrainage">
+          <a href="index.php?option=com_parrainage" data-toggle="tooltip"
+             data-placement="right" title="" data-original-title="Parrainages">
+              <i class="fa fa-handshake-o"></i>
+          </a>
+      </li>
   </ul>
 </div>

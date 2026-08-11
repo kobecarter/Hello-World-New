@@ -46,6 +46,21 @@ if (!empty($clientId)) {
 }
 $__gmbOn = defined('GMB_REVIEW_URL') && GMB_REVIEW_URL !== '';
 
+// Parrainage : filleuls recommandés par ce client.
+$__parrainages = array();
+if (!empty($clientId)) {
+    $__pr = $db->queryS(sprintf("SELECT filleul_nom, filleul_entreprise, filleul_email, statut, recompense, date_add FROM " . __prefixe_db__ . "parrainage WHERE id_parrain = %s ORDER BY id DESC", GetSQLValueString((int) $clientId, "int")));
+    if (is_array($__pr)) { $__parrainages = $__pr; }
+}
+// Stats parrainage (résumé sous le profil).
+$__parrainTotal = count($__parrainages);
+$__parrainConverted = 0; $__parrainPending = 0; $__parrainRewards = array();
+foreach ($__parrainages as $__pp) {
+    $__ps = (int) $__pp['statut'];
+    if ($__ps === 2) { $__parrainConverted++; if (!empty($__pp['recompense'])) { $__parrainRewards[] = $__pp['recompense']; } }
+    elseif ($__ps === 0 || $__ps === 1) { $__parrainPending++; }
+}
+
 // Shared display helpers (label / icon / status for a reminder).
 $__typeLabel = function ($type) use ($lang) {
     $t = strtolower(trim((string) $type));
@@ -137,6 +152,22 @@ $__expStatus = function ($days) use ($lang) {
 			<div class="col-12">
 				<div id="logoutMessage">
 					<div class="msgbox"></div>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="cl-gains-banner">
+					<div class="cl-gains-banner-main">
+						<span class="cl-gains-banner-ico"><i class="fa fa-gift"></i></span>
+						<div class="cl-gains-banner-body">
+							<b><?php echo $lang['CL_PARRAIN_GAINS'][$_SESSION['lang']]; ?></b>
+							<ul class="cl-gains-banner-list">
+								<li><i class="fa fa-bullhorn"></i> <?php echo $lang['CL_PARRAIN_GAIN_ADS'][$_SESSION['lang']]; ?></li>
+								<li><i class="fa fa-percent"></i> <?php echo $lang['CL_PARRAIN_GAIN_REMISE'][$_SESSION['lang']]; ?></li>
+								<li><i class="fa fa-gift"></i> <?php echo $lang['CL_PARRAIN_GAIN_CADEAU'][$_SESSION['lang']]; ?></li>
+							</ul>
+						</div>
+					</div>
+					<a href="javascript:void(0)" class="btn-hw cl-gains-banner-btn" data-parrain-scroll><span><?php echo $lang['CL_PARRAIN_POP_CTA'][$_SESSION['lang']]; ?></span></a>
 				</div>
 			</div>
 			<div class="col-12 mb-5">
@@ -587,6 +618,32 @@ $__expStatus = function ($days) use ($lang) {
 										<div class="loading"></div>
 									</div>
 								</form>
+								<div class="cl-psum">
+									<div class="cl-psum-head"><i class="fa fa-handshake-o"></i> <?php echo $lang['CL_PARRAIN_MY'][$_SESSION['lang']]; ?></div>
+									<?php if ($__parrainTotal === 0) : ?>
+									<div class="cl-psum-empty">
+										<p><?php echo $lang['CL_PARRAIN_SUB'][$_SESSION['lang']]; ?></p>
+										<a href="javascript:void(0)" class="btn-hw cl-psum-cta" data-parrain-scroll><span><?php echo $lang['CL_PARRAIN_POP_CTA'][$_SESSION['lang']]; ?></span></a>
+									</div>
+									<?php else : ?>
+									<div class="cl-psum-stats">
+										<div class="cl-psum-stat"><span class="n"><?php echo $__parrainTotal; ?></span><span class="l"><?php echo $lang['CL_PARRAIN_STAT_TOTAL'][$_SESSION['lang']]; ?></span></div>
+										<div class="cl-psum-stat is-ok"><span class="n"><?php echo $__parrainConverted; ?></span><span class="l"><?php echo $lang['CL_PARRAIN_STAT_CONVERTED'][$_SESSION['lang']]; ?></span></div>
+										<div class="cl-psum-stat is-wait"><span class="n"><?php echo $__parrainPending; ?></span><span class="l"><?php echo $lang['CL_PARRAIN_STAT_PENDING'][$_SESSION['lang']]; ?></span></div>
+										<div class="cl-psum-stat is-gold"><span class="n"><?php echo count($__parrainRewards); ?></span><span class="l"><?php echo $lang['CL_PARRAIN_STAT_REWARDS'][$_SESSION['lang']]; ?></span></div>
+									</div>
+									<?php if (!empty($__parrainRewards)) : ?>
+									<div class="cl-psum-rewards">
+										<span class="cl-psum-rewards-label"><i class="fa fa-gift"></i> <?php echo $lang['CL_PARRAIN_STAT_REWARDS'][$_SESSION['lang']]; ?></span>
+										<?php foreach ($__parrainRewards as $__rw) : ?><span class="cl-psum-reward"><?php echo htmlspecialchars($__rw); ?></span><?php endforeach; ?>
+									</div>
+									<?php endif; ?>
+									<a href="javascript:void(0)" class="cl-psum-link" data-parrain-scroll><?php echo $lang['CL_PARRAIN_POP_CTA'][$_SESSION['lang']]; ?> &rarr;</a>
+									<?php endif; ?>
+								</div>
+								<script>
+								(function(){ Array.prototype.forEach.call(document.querySelectorAll("[data-parrain-scroll]"), function(el){ el.addEventListener("click", function(){ var sec=document.getElementById("parrainageSection"); if(sec){ sec.scrollIntoView({behavior:"smooth", block:"center"}); var f=document.getElementById("paFNom"); if(f) setTimeout(function(){ f.focus(); },600); } }); }); })();
+								</script>
 							</div>
 						</div>
 						<div class="tab-pane" id="tabs-6" role="tabpanel">
@@ -829,7 +886,123 @@ $__expStatus = function ($days) use ($lang) {
 			})();
 			</script>
 			<?php endif; ?>
-						<div class="col-12">
+<div class="col-12 mb-5">
+							<div class="cl-parrain" id="parrainageSection">
+								<div class="cl-parrain-head">
+									<span class="cl-parrain-ico"><i class="ti ti-user"></i></span>
+									<div>
+										<h2><?php echo $lang['CL_PARRAIN_TITLE'][$_SESSION['lang']]; ?></h2>
+										<p><?php echo $lang['CL_PARRAIN_SUB'][$_SESSION['lang']]; ?></p>
+									</div>
+								</div>
+<div class="cl-parrain-gains">
+									<span class="cl-parrain-gains-label"><?php echo $lang['CL_PARRAIN_GAINS'][$_SESSION['lang']]; ?></span>
+									<span class="cl-parrain-gain"><i class="fa fa-bullhorn"></i> <?php echo $lang['CL_PARRAIN_GAIN_ADS'][$_SESSION['lang']]; ?></span>
+									<span class="cl-parrain-gain"><i class="fa fa-percent"></i> <?php echo $lang['CL_PARRAIN_GAIN_REMISE'][$_SESSION['lang']]; ?></span>
+									<span class="cl-parrain-gain"><i class="fa fa-gift"></i> <?php echo $lang['CL_PARRAIN_GAIN_CADEAU'][$_SESSION['lang']]; ?></span>
+								</div>
+																<div class="cl-parrain-body">
+									<form id="parrainageForm" class="cl-parrain-form">
+										<div class="msgbox cl-parrain-msg"></div>
+										<div class="cl-parrain-grid">
+											<div><label class="cl-review-label" for="paFNom"><?php echo $lang['CL_PARRAIN_FNAME'][$_SESSION['lang']]; ?> *</label><input class="cl-review-input" type="text" id="paFNom" name="filleul_nom" required></div>
+											<div><label class="cl-review-label" for="paFEnt"><?php echo $lang['CL_PARRAIN_FCOMPANY'][$_SESSION['lang']]; ?></label><input class="cl-review-input" type="text" id="paFEnt" name="filleul_entreprise"></div>
+											<div><label class="cl-review-label" for="paFMail"><?php echo $lang['CL_PARRAIN_FEMAIL'][$_SESSION['lang']]; ?> *</label><input class="cl-review-input" type="email" id="paFMail" name="filleul_email" required></div>
+											<div><label class="cl-review-label" for="paFTel"><?php echo $lang['CL_PARRAIN_FTEL'][$_SESSION['lang']]; ?></label><input class="cl-review-input" type="tel" id="paFTel" name="filleul_tel"></div>
+										</div>
+										<label class="cl-review-label" for="paMsg"><?php echo $lang['CL_PARRAIN_MSG'][$_SESSION['lang']]; ?></label>
+										<textarea class="cl-review-input" id="paMsg" name="message" rows="2"></textarea>
+										<button type="submit" class="btn-hw cl-parrain-submit"><span><?php echo $lang['CL_PARRAIN_SUBMIT'][$_SESSION['lang']]; ?></span></button>
+									</form>
+									<div class="cl-parrain-list">
+										<div class="cl-parrain-list-title"><?php echo $lang['CL_PARRAIN_LIST_TITLE'][$_SESSION['lang']]; ?></div>
+										<?php if (empty($__parrainages)) : ?>
+										<p class="cl-parrain-empty"><?php echo $lang['CL_PARRAIN_EMPTY'][$_SESSION['lang']]; ?></p>
+										<?php else : ?>
+										<table class="cl-parrain-table">
+											<thead><tr><th><?php echo $lang['CL_PARRAIN_TH_FILLEUL'][$_SESSION['lang']]; ?></th><th><?php echo $lang['CL_PARRAIN_TH_STATUS'][$_SESSION['lang']]; ?></th><th><?php echo $lang['CL_PARRAIN_TH_REWARD'][$_SESSION['lang']]; ?></th></tr></thead>
+											<tbody>
+											<?php foreach ($__parrainages as $__p) :
+												$__pst = (int) $__p['statut'];
+												$__pcls = $__pst === 2 ? 'ok' : ($__pst === 3 ? 'no' : ($__pst === 1 ? 'info' : 'wait'));
+												$__plabel = $__pst === 2 ? $lang['CL_PARRAIN_ST_CONVERTED'][$_SESSION['lang']] : ($__pst === 3 ? $lang['CL_PARRAIN_ST_CLOSED'][$_SESSION['lang']] : ($__pst === 1 ? $lang['CL_PARRAIN_ST_CONTACTED'][$_SESSION['lang']] : $lang['CL_PARRAIN_ST_PENDING'][$_SESSION['lang']])); ?>
+											<tr>
+												<td><b><?php echo htmlspecialchars($__p['filleul_nom']); ?></b><?php if (!empty($__p['filleul_entreprise'])) : ?><small><?php echo htmlspecialchars($__p['filleul_entreprise']); ?></small><?php endif; ?></td>
+												<td><span class="cl-review-badge <?php echo $__pcls; ?>"><?php echo $__plabel; ?></span></td>
+												<td><?php echo !empty($__p['recompense']) ? htmlspecialchars($__p['recompense']) : '—'; ?></td>
+											</tr>
+											<?php endforeach; ?>
+											</tbody>
+										</table>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+						</div>
+						<script>
+						(function(){
+							var form = document.getElementById('parrainageForm');
+							if(!form) return;
+							var MSG = {
+								ok: <?php echo json_encode($lang['CL_PARRAIN_THANKS'][$_SESSION['lang']]); ?>,
+								dup: <?php echo json_encode($lang['CL_PARRAIN_DUP'][$_SESSION['lang']]); ?>,
+								err: <?php echo json_encode($lang['CL_PARRAIN_ERROR'][$_SESSION['lang']]); ?>
+							};
+							form.addEventListener('submit', function(e){
+								e.preventDefault();
+								var box = form.querySelector('.cl-parrain-msg');
+								var body = new URLSearchParams(new FormData(form)).toString();
+								fetch('<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=createParrainageApi', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:body })
+									.then(function(r){ return r.text(); })
+									.then(function(t){ var d; try{ d=JSON.parse(t); }catch(e){ d={icon:'error'}; }
+										if(d.icon==='success'){ box.innerHTML='<div class="alert alert-success">'+MSG.ok+'</div>'; form.reset(); setTimeout(function(){ document.location.reload(); }, 1400); }
+										else if(d.code==='dup'){ box.innerHTML='<div class="alert alert-warning">'+MSG.dup+'</div>'; }
+										else{ box.innerHTML='<div class="alert alert-warning">'+MSG.err+'</div>'; }
+									})
+									.catch(function(){ box.innerHTML='<div class="alert alert-danger">'+MSG.err+'</div>'; });
+							});
+						})();
+						</script>
+<?php if (empty($__parrainages)) : ?>
+												<div class="cl-parrain-popup" id="clParrainPopup" role="dialog" aria-hidden="true">
+													<div class="cl-parrain-popup-backdrop" data-parrain-close></div>
+													<div class="cl-parrain-popup-card">
+														<button type="button" class="cl-parrain-popup-x" data-parrain-close aria-label="Fermer">&times;</button>
+														<span class="cl-parrain-popup-ico"><i class="fa fa-gift"></i></span>
+														<h3><?php echo $lang['CL_PARRAIN_POP_TITLE'][$_SESSION['lang']]; ?></h3>
+														<p class="cl-parrain-popup-text"><?php echo $lang['CL_PARRAIN_POP_TEXT'][$_SESSION['lang']]; ?></p>
+														<ul class="cl-parrain-popup-list">
+															<li><i class="fa fa-bullhorn"></i> <?php echo $lang['CL_PARRAIN_GAIN_ADS'][$_SESSION['lang']]; ?></li>
+															<li><i class="fa fa-percent"></i> <?php echo $lang['CL_PARRAIN_GAIN_REMISE'][$_SESSION['lang']]; ?></li>
+															<li><i class="fa fa-gift"></i> <?php echo $lang['CL_PARRAIN_GAIN_CADEAU'][$_SESSION['lang']]; ?></li>
+														</ul>
+														<p class="cl-parrain-popup-filleul"><i class="fa fa-user-plus"></i> <?php echo $lang['CL_PARRAIN_POP_FILLEUL'][$_SESSION['lang']]; ?></p>
+														<div class="cl-parrain-popup-actions">
+															<a href="javascript:void(0)" class="btn-hw cl-parrain-popup-cta" id="clParrainPopupCta"><span><?php echo $lang['CL_PARRAIN_POP_CTA'][$_SESSION['lang']]; ?></span></a>
+															<button type="button" class="cl-parrain-popup-later" data-parrain-close><?php echo $lang['CL_PARRAIN_POP_LATER'][$_SESSION['lang']]; ?></button>
+														</div>
+														<button type="button" class="cl-parrain-popup-never" id="clParrainPopupNever"><?php echo $lang['CL_PARRAIN_POP_NEVER'][$_SESSION['lang']]; ?></button>
+													</div>
+												</div>
+												<script>
+												(function(){
+													var pop = document.getElementById("clParrainPopup");
+													if(!pop) return;
+													function close(){ pop.classList.remove("open"); pop.setAttribute("aria-hidden","true"); }
+													function open(){ pop.classList.add("open"); pop.setAttribute("aria-hidden","false"); }
+													try {
+														if(!localStorage.getItem("clParrainNever") && !sessionStorage.getItem("clParrainSeen")){ setTimeout(open, 1200); sessionStorage.setItem("clParrainSeen","1"); }
+													} catch(e){ setTimeout(open, 1200); }
+													Array.prototype.forEach.call(pop.querySelectorAll("[data-parrain-close]"), function(el){ el.addEventListener("click", close); });
+													var cta = document.getElementById("clParrainPopupCta");
+													if(cta) cta.addEventListener("click", function(){ close(); var sec=document.getElementById("parrainageSection"); if(sec){ sec.scrollIntoView({behavior:"smooth", block:"center"}); var f=document.getElementById("paFNom"); if(f) setTimeout(function(){ f.focus(); }, 600); } });
+													var never = document.getElementById("clParrainPopupNever");
+													if(never) never.addEventListener("click", function(){ try{ localStorage.setItem("clParrainNever","1"); }catch(e){} close(); });
+													document.addEventListener("keydown", function(e){ if(e.key==="Escape") close(); });
+												})();
+												</script>
+												<?php endif; ?>
+																								<div class="col-12">
 				<section class="srv-section" id="services-dev">
   <div class="container">
     <div class="services-header">

@@ -3,14 +3,14 @@
 
   <div class="cl-auth-card">
     <div class="cl-auth-bread">
-      <a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> Accueil</a>
+      <a href="<?php echo $siteURL; ?>"><i class="fa fa-home"></i> <?php echo $lang['CL_HOME'][$_SESSION['lang']]; ?></a>
       <i class="fa fa-chevron-right"></i>
       <span><?php echo $page->getTitre(); ?></span>
     </div>
 
-    <div class="cl-auth-label">Espace client</div>
+    <div class="cl-auth-label"><?php echo $lang['CL_SPACE_LABEL'][$_SESSION['lang']]; ?></div>
     <h1 class="cl-auth-title"><?php echo $page->getTitre(); ?></h1>
-    <p class="cl-auth-sub">Saisissez votre email pour recevoir les instructions de réinitialisation de votre mot de passe.</p>
+    <p class="cl-auth-sub"><?php echo $lang['CL_RECOVERY_SUB'][$_SESSION['lang']]; ?></p>
 
     <?php echo $page->getTexte(); ?>
 
@@ -19,16 +19,16 @@
 
       <div class="ct-group">
         <input class="ct-input" type="email" name="email" id="cl-recovery-email" placeholder=" " autocomplete="email" required>
-        <label class="ct-float-label" for="cl-recovery-email">Email</label>
+        <label class="ct-float-label" for="cl-recovery-email"><?php echo $lang['CL_EMAIL'][$_SESSION['lang']]; ?></label>
         <span class="ct-line"></span>
       </div>
 
-      <button type="submit" class="cl-auth-btn"><span>Envoyer</span></button>
+      <button type="submit" class="cl-auth-btn"><span><?php echo $lang['CL_SEND'][$_SESSION['lang']]; ?></span></button>
       <div class="loading"></div>
     </form>
 
     <p class="cl-auth-alt">
-      <a href="<?= $page_client_space->getLink() ?>"><i class="fa fa-sign-in"></i> Retour à la connexion</a>
+      <a href="<?= $page_client_space->getLink() ?>"><i class="fa fa-sign-in"></i> <?php echo $lang['CL_BACK_TO_LOGIN'][$_SESSION['lang']]; ?></a>
     </p>
   </div>
 </section>

@@ -9160,3 +9160,83 @@ html[dir="rtl"] .page-client-space .cl-recl-response{border-left:none;border-rig
 .page-client-space .cl-review-gmb-btn:hover{border-color:#4285F4;box-shadow:0 4px 14px rgba(66,133,244,.2)}
 .page-client-space .cl-review-msg:empty{display:none}
 @media (max-width:768px){.page-client-space .cl-review-body{grid-template-columns:1fr}}
+
+/* Espace client — carte Parrainage */
+.page-client-space .cl-parrain{margin-top:2.5rem;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.8rem 2rem;box-shadow:0 1px 2px rgba(13,11,9,.04),0 10px 30px rgba(13,11,9,.05)}
+.page-client-space .cl-parrain-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
+.page-client-space .cl-parrain-ico{flex:none;width:46px;height:46px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#fff;font-size:1.3rem}
+.page-client-space .cl-parrain-head h2{margin:0 0 .2rem;font-family:var(--fb);font-size:1.15rem;font-weight:700;letter-spacing:-.01em;color:var(--txt)}
+.page-client-space .cl-parrain-head p{margin:0;font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-parrain-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2rem 1.2rem}
+.page-client-space .cl-parrain-submit{margin-top:1.1rem}
+.page-client-space .cl-parrain-list{margin-top:1.8rem;border-top:1px solid var(--border);padding-top:1.4rem}
+.page-client-space .cl-parrain-list-title{font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin-bottom:.9rem}
+.page-client-space .cl-parrain-empty{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);margin:0}
+.page-client-space .cl-parrain-table{width:100%;border-collapse:collapse}
+.page-client-space .cl-parrain-table th{text-align:start;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);padding:.5rem .6rem;border-bottom:1px solid var(--border)}
+.page-client-space .cl-parrain-table td{padding:.7rem .6rem;border-bottom:1px solid var(--border);font-family:var(--fm);font-size:.85rem;color:var(--txt);vertical-align:middle}
+.page-client-space .cl-parrain-table td b{font-weight:600;display:block}
+.page-client-space .cl-parrain-table td small{color:var(--txt2);font-size:.72rem}
+.page-client-space .cl-parrain-msg:empty{display:none}
+.page-client-space .cl-review-badge.info{background:#0e6e83}
+@media (max-width:768px){.page-client-space .cl-parrain-grid{grid-template-columns:1fr}}
+/* Bandeau "ce que vous gagnez" */
+.page-client-space .cl-parrain-gains{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:-.3rem 0 1.4rem}
+.page-client-space .cl-parrain-gains-label{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .cl-parrain-gain{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--fm);font-size:.78rem;font-weight:600;color:var(--gold2);background:linear-gradient(135deg,rgba(9,161,190,.1),rgba(104,2,98,.08));border:1px solid var(--border);border-radius:30px;padding:.35rem .8rem}
+.page-client-space .cl-parrain-gain i{color:var(--gold)}
+/* Pop-up incitatif parrainage */
+.page-client-space .cl-parrain-popup{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.page-client-space .cl-parrain-popup.open{opacity:1;visibility:visible}
+.page-client-space .cl-parrain-popup-backdrop{position:absolute;inset:0;background:rgba(13,11,9,.55)}
+.page-client-space .cl-parrain-popup-card{position:relative;z-index:1;width:min(460px,100%);max-height:92vh;overflow-y:auto;background:var(--bg);border-radius:20px;padding:2.2rem 2rem 1.6rem;text-align:center;box-shadow:0 30px 80px rgba(13,11,9,.4);transform:translateY(12px) scale(.98);transition:transform .3s}
+.page-client-space .cl-parrain-popup.open .cl-parrain-popup-card{transform:none}
+.page-client-space .cl-parrain-popup-x{position:absolute;top:.8rem;inset-inline-end:1rem;background:none;border:none;font-size:1.5rem;line-height:1;color:var(--txt2);cursor:pointer;padding:.2rem}
+.page-client-space .cl-parrain-popup-x:hover{color:var(--txt)}
+.page-client-space .cl-parrain-popup-ico{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;font-size:1.7rem;margin-bottom:1rem;box-shadow:0 8px 24px rgba(104,2,98,.3)}
+.page-client-space .cl-parrain-popup-card h3{font-family:var(--fb);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:var(--gold2);margin:0 0 .6rem}
+.page-client-space .cl-parrain-popup-text{font-family:var(--fm);font-size:.9rem;font-weight:300;line-height:1.6;color:var(--txt2);margin:0 0 1.2rem}
+.page-client-space .cl-parrain-popup-list{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-direction:column;gap:.55rem;text-align:start}
+.page-client-space .cl-parrain-popup-list li{display:flex;align-items:center;gap:.7rem;font-family:var(--fm);font-size:.88rem;font-weight:500;color:var(--txt)}
+.page-client-space .cl-parrain-popup-list li i{flex:none;width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:rgba(9,161,190,.12);color:var(--gold);font-size:.9rem}
+.page-client-space .cl-parrain-popup-filleul{font-family:var(--fm);font-size:.82rem;font-weight:400;color:var(--txt2);background:var(--bg2);border-radius:12px;padding:.7rem .9rem;margin:0 0 1.3rem;display:flex;align-items:center;gap:.6rem;text-align:start}
+.page-client-space .cl-parrain-popup-filleul i{flex:none;color:var(--gold2)}
+.page-client-space .cl-parrain-popup-actions{display:flex;flex-direction:column;gap:.5rem}
+.page-client-space .cl-parrain-popup-cta{justify-content:center}
+.page-client-space .cl-parrain-popup-later{background:none;border:none;font-family:var(--fm);font-size:.8rem;color:var(--txt2);cursor:pointer;padding:.4rem}
+.page-client-space .cl-parrain-popup-later:hover{color:var(--txt)}
+.page-client-space .cl-parrain-popup-never{background:none;border:none;font-family:var(--fm);font-size:.66rem;color:#938b83;cursor:pointer;margin-top:.6rem;text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.page-client-space .cl-parrain-popup,.page-client-space .cl-parrain-popup-card{transition:none}}
+/* Résumé parrainage sous le profil */
+.page-client-space .cl-psum{margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--border)}
+.page-client-space .cl-psum-head{display:flex;align-items:center;gap:.6rem;font-family:var(--fb);font-size:1rem;font-weight:700;color:var(--txt);margin-bottom:1.1rem}
+.page-client-space .cl-psum-head i{color:var(--gold2)}
+.page-client-space .cl-psum-empty{background:linear-gradient(135deg,rgba(9,161,190,.08),rgba(104,2,98,.06));border:1px solid var(--border);border-radius:14px;padding:1.4rem;text-align:center}
+.page-client-space .cl-psum-empty p{font-family:var(--fm);font-size:.86rem;font-weight:300;color:var(--txt2);margin:0 0 1rem}
+.page-client-space .cl-psum-cta{justify-content:center}
+.page-client-space .cl-psum-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.page-client-space .cl-psum-stat{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem .8rem;text-align:center}
+.page-client-space .cl-psum-stat .n{display:block;font-family:var(--fb);font-size:1.8rem;font-weight:800;line-height:1;color:var(--txt)}
+.page-client-space .cl-psum-stat .l{display:block;font-family:var(--fm);font-size:.64rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);margin-top:.4rem}
+.page-client-space .cl-psum-stat.is-ok .n{color:#157347}
+.page-client-space .cl-psum-stat.is-wait .n{color:#b45309}
+.page-client-space .cl-psum-stat.is-gold .n{color:var(--gold2)}
+.page-client-space .cl-psum-rewards{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:1rem}
+.page-client-space .cl-psum-rewards-label{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .cl-psum-rewards-label i{color:var(--gold)}
+.page-client-space .cl-psum-reward{font-family:var(--fm);font-size:.78rem;font-weight:600;color:#157347;background:rgba(21,115,71,.1);border-radius:30px;padding:.3rem .8rem}
+.page-client-space .cl-psum-link{display:inline-block;margin-top:1.1rem;font-family:var(--fm);font-size:.8rem;font-weight:600;color:var(--gold2);text-decoration:none;transition:color .2s}
+.page-client-space .cl-psum-link:hover{color:var(--gold)}
+@media (max-width:768px){.page-client-space .cl-psum-stats{grid-template-columns:repeat(2,1fr)}}
+/* Bannière "Ce que vous gagnez" sous le hero */
+.page-client-space .cl-gains-banner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;background:linear-gradient(120deg,rgba(9,161,190,.12),rgba(104,2,98,.1));border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.6rem;margin-bottom:1.6rem}
+.page-client-space .cl-gains-banner-main{display:flex;align-items:center;gap:1.1rem;min-width:0;flex:1}
+.page-client-space .cl-gains-banner-ico{flex:none;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 6px 18px rgba(104,2,98,.25)}
+.page-client-space .cl-gains-banner-body{min-width:0}
+.page-client-space .cl-gains-banner-body>b{display:block;font-family:var(--fb);font-size:1.05rem;font-weight:700;color:var(--gold2);margin-bottom:.45rem}
+.page-client-space .cl-gains-banner-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+.page-client-space .cl-gains-banner-list li{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.85rem;font-weight:500;color:var(--txt)}
+.page-client-space .cl-gains-banner-list li i{flex:none;color:var(--gold);font-size:.85rem}
+.page-client-space .cl-gains-banner-btn{flex:none}
+@media (max-width:700px){.page-client-space .cl-gains-banner-list{flex-direction:column;gap:.45rem}}
+@media (max-width:600px){.page-client-space .cl-gains-banner{flex-direction:column;align-items:flex-start}}

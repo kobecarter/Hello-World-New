@@ -29,6 +29,9 @@ if(isset($_GET['task']) && !empty($_GET['task'])) {
         case 'createTemoignageApi' :
             include_once ("client/controleur.php");
             break;
+        case 'createParrainageApi' :
+            include_once ("client/controleur.php");
+            break;
         case 'updateReclamationApi' :
             include_once ("client/controleur.php");
             break;
