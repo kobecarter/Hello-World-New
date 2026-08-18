@@ -54,6 +54,7 @@ switch ($task)
 				? $info->info->id : null;
 
 			$factures     = $clientId ? client::getInvoicesByClientApi($clientId)     : null;
+			$payments     = $clientId ? client::getPaymentsByClientApi($clientId)     : null;
 			$devis        = $clientId ? client::getQuotesByClientApi($clientId)       : null;
 			$reclamations = $clientId ? client::getReclamationsByClientApi($clientId) : null;
 			$rapples      = $clientId ? client::getRapplesByClientApi($clientId)      : null;
@@ -67,6 +68,7 @@ switch ($task)
 
 			// Normalize to types the view can safely count()/foreach over.
 			$factures     = (is_array($factures) || is_object($factures)) ? $factures : array();
+			$payments     = (is_array($payments) || is_object($payments)) ? $payments : array();
 			$devis        = (is_array($devis) || is_object($devis)) ? $devis : array();
 			$reclamations = (is_array($reclamations) || is_object($reclamations)) ? $reclamations : array();
 			$rapples      = (is_array($rapples) || is_object($rapples)) ? $rapples : array();

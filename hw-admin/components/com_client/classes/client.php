@@ -719,6 +719,18 @@ public static function setNewPasswordApi($data)
         }
     }
 
+    public static function getPaymentsByClientApi($clientID){
+        global $apiURL;
+        try {
+            if (isset($clientID) && !empty($clientID)){
+                $api_url = $apiURL."com_facture/controleurs/router.php?task=getPaymentsByClientApi&client=".$clientID;
+                return self::apiGetJson($api_url, $_SESSION['client']);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     public static function getQuotesByClientApi($clientID){
         global $apiURL;
         try {

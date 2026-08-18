@@ -17,6 +17,7 @@ $recompenses = array(
     "Points de fidélité",
     "Carte-cadeau",
     "Audit SEO offert",
+    "Formation offerte",
 );
 ?>
 <style>
