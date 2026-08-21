@@ -50,5 +50,23 @@ if(isset($_GET['task']) && !empty($_GET['task'])) {
         case 'setNewPasswordApi' :
             include_once ("client/controleur.php");
             break;
+        case 'findAttestationsApi' :
+            include_once ("client/controleur.php");
+            break;
+        case 'signAttestationApi' :
+            include_once ("client/controleur.php");
+            break;
+        case 'pdfAttestationApi' :
+            include_once ("client/controleur.php");
+            break;
+        case 'findClientSocialsApi' :
+            include_once ("client/controleur.php");
+            break;
+        case 'createDemandeApi' :
+            include_once ("client/controleur.php");
+            break;
+        case 'followSocialApi' :
+            include_once ("client/controleur.php");
+            break;
 	}
 }

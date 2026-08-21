@@ -8922,7 +8922,7 @@ html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
 .cl-dash-hero-title em{font-style:normal;color:var(--gold);font-weight:100}
 
 /* ---- Section shell ---- */
-.page-client-space{background:var(--bg2);padding:3.5rem 0 5rem}
+.page-client-space{background:var(--bg2);padding:.5rem 0 5rem!important}
 .page-client-space .big-title{font-family:var(--fm);font-weight:200;font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.02em;color:var(--gold2)}
 
 /* ---- Stat cards ---- */
@@ -8956,7 +8956,7 @@ html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
 .page-client-space .div-table-client-space{overflow-x:auto;border-radius:14px;border:1px solid var(--border)}
 .page-client-space .table-client-space{margin:0;border-collapse:collapse;width:100%;font-family:var(--fm)}
 .page-client-space .table-client-space thead th{background:var(--bg2);border:none;border-bottom:1px solid var(--border);padding:1rem 1.1rem;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);white-space:nowrap}
-.page-client-space .table-client-space tbody td{border:none;border-bottom:1px solid var(--border);padding:1rem 1.1rem;font-size:.82rem;font-weight:400;color:var(--txt);vertical-align:middle}
+.page-client-space .table-client-space tbody td{border:none;border-bottom:1px solid var(--border);padding:1rem 1.1rem;font-size:.82rem;font-weight:400;color:var(--txt);vertical-align:middle;white-space:nowrap}
 .page-client-space .table-client-space.table-striped tbody tr:nth-of-type(odd){background:transparent}
 .page-client-space .table-client-space tbody tr{transition:background .18s}
 .page-client-space .table-client-space tbody tr:hover{background:var(--bg2)}
@@ -9037,6 +9037,10 @@ html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
 
 /* Espace client — masquer entièrement le header/menu du site */
 .is-client-space .navshell{display:none!important}
+/* Les bulles flottantes (devis/WhatsApp/App Store/espace client) chevauchaient
+   le graphique de paiements sur mobile — inutiles ici, l'espace client a déjà
+   son propre onglet Support et sa propre nav. */
+.is-client-space .whatsapp-buttons{display:none!important}
 .is-client-space .cl-dash-hero{padding-top:3.5rem}
 
 /* Espace client — réclamations avec réponse de l'équipe */
@@ -9109,7 +9113,8 @@ html[dir="rtl"] .page-client-space .cl-recl-response{border-left:none;border-rig
 @keyframes clNotifPulse{0%{box-shadow:0 0 0 2px var(--bg),0 0 0 0 rgba(164,22,26,.45)}70%{box-shadow:0 0 0 2px var(--bg),0 0 0 8px rgba(164,22,26,0)}100%{box-shadow:0 0 0 2px var(--bg),0 0 0 0 rgba(164,22,26,0)}}
 @media (prefers-reduced-motion:reduce){.cl-notif-btn.has-alert .cl-notif-badge{animation:none}}
 .cl-notif-panel{position:fixed;top:0;inset-inline-end:0;width:min(360px,calc(100vw - 1.5rem));background:var(--bg);border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 40px rgba(13,11,9,.18);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:1200;overflow:hidden}
-.cl-notif.open .cl-notif-panel{opacity:1;visibility:visible;transform:none}
+.cl-notif.open .cl-notif-panel,
+.cl-notif-panel.open{opacity:1;visibility:visible;transform:none}
 .cl-notif-head{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-bottom:1px solid var(--border);font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt)}
 .cl-notif-count{background:var(--gold);color:#fff;border-radius:30px;padding:.12rem .55rem;font-size:.62rem;letter-spacing:.02em}
 .cl-notif-body{max-height:min(60vh,380px);overflow-y:auto}
@@ -9245,3 +9250,902 @@ html[dir="rtl"] .page-client-space .cl-recl-response{border-left:none;border-rig
 .page-client-space .cl-gains-banner-btn{flex:none}
 @media (max-width:700px){.page-client-space .cl-gains-banner-list{flex-direction:column;gap:.45rem}}
 @media (max-width:600px){.page-client-space .cl-gains-banner{flex-direction:column;align-items:flex-start}}
+
+/* =========================================================================
+   ESPACE CLIENT — Refonte navigation (topnav + pillnav + burger + avatar)
+   et nouvel onglet "Aperçu" / "Club Élite" / "Découvrir". Complète le bloc
+   ci-dessus sans le modifier ; scopé pareil (page-client-space + sélecteurs
+   globaux pour la topnav, qui vit hors de .page-client-space).
+   ========================================================================= */
+
+/* ---- Barre de navigation supérieure ---- */
+.cl-topnav{position:fixed;top:0;left:0;right:0;z-index:1100;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.cl-topnav-inner{display:flex;align-items:center;gap:1.6rem;padding:.85rem 1.5rem;position:relative}
+.cl-topnav-logo{flex:none;font-family:var(--fb);font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:var(--txt);text-decoration:none}
+.cl-topnav-logo span{color:var(--gold2)}
+.cl-topnav-actions{flex:none;display:flex;align-items:center;gap:.9rem;margin-inline-start:auto}
+.cl-topnav-spacer{display:block;width:100%}
+
+/* ---- Pill nav (groupes) ---- */
+.cl-pillnav{display:flex;align-items:center;gap:.25rem;list-style:none;margin:0;padding:0;flex:1;overflow-x:auto;scrollbar-width:none}
+.cl-pillnav::-webkit-scrollbar{display:none}
+.cl-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.1rem;border-radius:30px;font-family:var(--fm);font-size:.72rem;font-weight:600;letter-spacing:.02em;color:var(--txt2);text-decoration:none;white-space:nowrap;transition:background .2s,color .2s}
+.cl-pill i{font-size:.85rem}
+.cl-pill:hover{color:var(--txt);background:var(--bg2)}
+.cl-pill.active{color:#fff;background:var(--gold2)}
+.cl-pill-club{color:#b8860b}
+.cl-pill-club:hover{color:#9a6f08;background:rgba(245,166,35,.1)}
+.cl-pill-club.active{color:#fff;background:#c9860a}
+
+/* ---- Burger (mobile) ---- */
+.cl-burger{display:none;flex:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--txt);align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s}
+.cl-burger:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---- Avatar + pastille en ligne ---- */
+.cl-avatar{position:relative;flex:none;display:inline-flex;width:42px;height:42px}
+.cl-avatar-clip{display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--gold),var(--gold2));border:2px solid var(--bg);box-shadow:0 0 0 1px var(--border)}
+.cl-avatar-clip img{width:100%;height:100%;object-fit:cover}
+.cl-avatar-initials{font-family:var(--fb);font-weight:700;font-size:.82rem;color:#fff;letter-spacing:.02em}
+.cl-avatar-online{position:absolute;bottom:0;inset-inline-end:0;width:12px;height:12px;border-radius:50%;background:#22c55e;border:2.5px solid var(--bg);box-shadow:0 0 0 1px rgba(0,0,0,.05)}
+
+.cl-logout-btn{flex:none;width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--txt2);border:1px solid var(--border);background:var(--bg);text-decoration:none;transition:color .2s,border-color .2s}
+.cl-logout-btn:hover{color:#a4161a;border-color:#a4161a}
+
+@media(max-width:900px){
+  .cl-burger{display:inline-flex}
+  .cl-pillnav{position:absolute;top:100%;inset-inline:0;flex-direction:column;align-items:stretch;gap:.2rem;background:var(--bg);border-bottom:1px solid var(--border);box-shadow:0 16px 40px rgba(13,11,9,.12);padding:.6rem;max-height:0;overflow:hidden;opacity:0;visibility:hidden;transition:max-height .25s,opacity .2s,visibility .25s}
+  .cl-pillnav.is-open{max-height:75vh;overflow-y:auto;opacity:1;visibility:visible}
+  .cl-pill{width:100%}
+  /* Burger à gauche / logo centré / actions à droite (le pillnav sort du
+     flux normal — position:absolute — donc n'occupe pas de "case" flex ici). */
+  .cl-topnav-inner{justify-content:space-between}
+  .cl-burger{order:1}
+  .cl-topnav-logo{order:2;flex:1;text-align:center;margin-inline:0rem}
+  .cl-topnav-actions{order:3;margin-inline-start:0}
+}
+
+/* ---- Hero : filet dégradé sous le titre ---- */
+.cl-dash-hero-rule{display:block;flex:none;width:56px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));margin-bottom:.6rem}
+/* La topnav fixe + son spacer JS remplacent déjà l'ancien header du site :
+   l'ancien padding-top (prévu pour le grand header) est ramené à la taille
+   de la nouvelle topnav fine. */
+.is-client-space .cl-dash-hero{padding-top:2.4rem}
+
+/* ---- Conteneur des panneaux (remplace l'ancien .tab-content Bootstrap) ---- */
+.page-client-space .cl-group-content{padding:2rem}
+.page-client-space .cl-group-panel{display:none}
+.page-client-space .cl-group-panel.active{display:block}
+.page-client-space .cl-subhead{display:flex;align-items:center;gap:.6rem;font-family:var(--fb);font-size:1rem;font-weight:700;color:var(--txt);margin:0 0 1rem}
+.page-client-space .cl-subhead:not(:first-child){margin-top:2.2rem}
+.page-client-space .cl-subhead i{color:var(--gold2);font-size:.95rem}
+@media(max-width:767px){.page-client-space .cl-group-content{padding:1.2rem}}
+
+/* ---- Aperçu : bandeau "urgent" (échéances proches + impayés) ---- */
+.page-client-space .cl-urgent-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem;margin-bottom:1.6rem}
+.page-client-space .cl-urgent-card{display:flex;align-items:center;gap:1rem;background:var(--bg);border:1px solid var(--border);border-inline-start:4px solid var(--border);border-radius:16px;padding:1.1rem 1.3rem;box-shadow:0 1px 2px rgba(13,11,9,.04),0 10px 30px rgba(13,11,9,.05)}
+.page-client-space .cl-urgent-card.is-danger{border-inline-start-color:#a4161a}
+.page-client-space .cl-urgent-card.is-warning{border-inline-start-color:#b45309}
+.page-client-space .cl-urgent-ico{flex:none;width:44px;height:44px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg2);font-size:1.2rem}
+.page-client-space .cl-urgent-card.is-danger .cl-urgent-ico{color:#a4161a;background:rgba(164,22,26,.08)}
+.page-client-space .cl-urgent-card.is-warning .cl-urgent-ico{color:#b45309;background:rgba(180,83,9,.08)}
+.page-client-space .cl-urgent-body{flex:1;min-width:0}
+.page-client-space .cl-urgent-label{font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .cl-urgent-title{font-family:var(--fb);font-size:1.05rem;font-weight:700;color:var(--txt);margin-top:.2rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.page-client-space .cl-urgent-sub{font-family:var(--fm);font-size:.72rem;color:var(--txt2);margin-top:.15rem}
+.page-client-space .cl-urgent-cta{flex:none;font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--txt);border-radius:30px;padding:.55rem 1.1rem;text-decoration:none;transition:opacity .2s}
+.page-client-space .cl-urgent-card.is-danger .cl-urgent-cta{background:#a4161a}
+.page-client-space .cl-urgent-card.is-warning .cl-urgent-cta{background:#b45309}
+.page-client-space .cl-urgent-cta:hover{opacity:.85}
+.page-client-space .cl-urgent-empty{display:flex;align-items:center;gap:.6rem;background:rgba(47,158,111,.08);border:1px solid rgba(47,158,111,.3);border-radius:14px;padding:.9rem 1.2rem;font-family:var(--fm);font-size:.85rem;color:#2f9e6f;margin-bottom:1.6rem}
+
+/* ---- Aperçu : grille principale (graphique 63% / colonne stats 37%) ---- */
+.page-client-space .cl-apercu-grid{display:grid;grid-template-columns:63% 1fr;gap:1.6rem;align-items:start}
+.page-client-space .cl-apercu-side{display:flex;flex-direction:column;gap:1.2rem}
+.page-client-space .cl-apercu-lower{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:1.6rem;align-items:start}
+@media(max-width:900px){
+  .page-client-space .cl-apercu-grid{grid-template-columns:1fr}
+  .page-client-space .cl-apercu-lower{grid-template-columns:1fr}
+}
+
+/* ---- Aperçu : en-tête + KPIs du graphique de paiements ---- */
+.page-client-space .cl-chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.page-client-space .cl-chart-head .cl-chart-title{margin:0}
+.page-client-space .cl-chart-kpis{display:flex;gap:1.4rem;flex-wrap:wrap}
+.page-client-space .cl-chart-kpi{display:flex;flex-direction:column;gap:.2rem}
+.page-client-space .cl-chart-kpi-label{font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .cl-chart-kpi-val{font-family:var(--fb);font-size:1.05rem;font-weight:800;color:var(--gold2)}
+.page-client-space .cl-chart-empty{display:flex;align-items:center;justify-content:center;min-height:260px}
+.page-client-space .cl-chart-empty-inner{text-align:center;max-width:340px;margin:0 auto;padding:2rem 1rem}
+.page-client-space .cl-chart-empty-ico{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(9,161,190,.1);color:var(--gold);font-size:1.5rem;margin-bottom:1rem}
+.page-client-space .cl-chart-empty-inner h3{font-family:var(--fb);font-size:1.05rem;font-weight:700;color:var(--txt);margin:0 0 .5rem}
+.page-client-space .cl-chart-empty-inner p{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);margin:0 0 1.3rem}
+
+/* ---- Aperçu : 4 tuiles-stats en 2×2 + mini-carte points ---- */
+.page-client-space .cl-stat-2x2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.page-client-space .cl-stat-tile{display:flex;flex-direction:column;gap:.5rem;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.1rem 1rem;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.page-client-space .cl-stat-tile:hover{transform:translateY(-3px);box-shadow:0 16px 40px -28px rgba(9,20,40,.4)}
+.page-client-space .cl-stat-ico{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;font-size:1.05rem}
+.page-client-space .cl-stat-tile.t-teal .cl-stat-ico{background:rgba(9,161,190,.12);color:var(--gold)}
+.page-client-space .cl-stat-tile.t-purple .cl-stat-ico{background:rgba(104,2,98,.1);color:var(--gold2)}
+.page-client-space .cl-stat-tile.t-amber .cl-stat-ico{background:rgba(245,166,35,.14);color:#d98a00}
+.page-client-space .cl-stat-tile.t-green .cl-stat-ico{background:rgba(47,158,111,.12);color:#2f9e6f}
+.page-client-space .cl-stat-num{font-family:var(--fb);font-weight:800;font-size:1.7rem;line-height:1;color:var(--txt)}
+.page-client-space .cl-stat-label{font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)}
+@media(max-width:420px){.page-client-space .cl-stat-2x2{grid-template-columns:1fr}}
+
+.page-client-space .cl-points-mini{display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(245,166,35,.14),rgba(245,166,35,.04));border:1px solid rgba(245,166,35,.35);border-radius:16px;padding:1rem 1.1rem;text-decoration:none;transition:transform .25s,box-shadow .25s;cursor:pointer}
+.page-client-space .cl-points-mini:hover{transform:translateY(-2px);box-shadow:0 14px 34px -26px rgba(217,138,0,.5)}
+.page-client-space .cl-points-mini-ico{flex:none;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#f5a623,#e08a00);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 6px 16px rgba(245,166,35,.4)}
+.page-client-space .cl-points-mini-body{flex:1;min-width:0}
+.page-client-space .cl-points-mini-num{font-family:var(--fb);font-weight:800;font-size:1.3rem;line-height:1;color:#d98a00}
+.page-client-space .cl-points-mini-label{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin-top:.25rem}
+.page-client-space .cl-points-mini-arrow{flex:none;color:#d98a00}
+
+/* ---- Aperçu : fil d'activité récente ---- */
+.page-client-space .cl-activity-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.6rem;box-shadow:0 20px 50px -40px rgba(9,20,40,.35)}
+.page-client-space .cl-activity-title{margin:0 0 1.1rem;font-family:var(--fb);font-size:.95rem;font-weight:700;color:var(--txt)}
+.page-client-space .cl-activity-empty{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-activity-row{display:flex;align-items:flex-start;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.page-client-space .cl-activity-row:last-child{border-bottom:none;padding-bottom:0}
+.page-client-space .cl-activity-row:first-child{padding-top:0}
+.page-client-space .cl-activity-ico{flex:none;width:34px;height:34px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--border);color:var(--gold)}
+.page-client-space .cl-activity-txt{display:flex;flex-direction:column;min-width:0}
+.page-client-space .cl-activity-txt b{font-family:var(--fm);font-size:.85rem;font-weight:600;color:var(--txt)}
+.page-client-space .cl-activity-txt span{font-family:var(--fm);font-size:.74rem;font-weight:400;color:var(--txt2);margin-top:.1rem}
+
+/* ---- Facturation : coordonnées bancaires liées aux factures du client ---- */
+.page-client-space .cl-bank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+.page-client-space .cl-bank-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.4rem}
+.page-client-space .cl-bank-card-head{font-family:var(--fb);font-size:.92rem;font-weight:700;color:var(--gold2);margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.page-client-space .cl-bank-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.35rem 0;font-family:var(--fm);font-size:.8rem}
+.page-client-space .cl-bank-row span{color:var(--txt2);font-weight:500}
+.page-client-space .cl-bank-row b{color:var(--txt);font-weight:600;text-align:end;word-break:break-all}
+.page-client-space .cl-bank-empty{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center}
+
+/* ---- Support : sélecteur de facture liée (formulaire de réclamation) ---- */
+.page-client-space .cl-recl-facture{margin-top:-.3rem}
+
+/* ---- Club Élite : hero + carte points + attestations ---- */
+.page-client-space .cl-club-hero{display:flex;align-items:center;gap:1.1rem;background:linear-gradient(120deg,rgba(104,2,98,.08),rgba(9,161,190,.05));border:1px solid var(--border);border-radius:18px;padding:1.6rem 1.8rem;margin-bottom:1.8rem}
+.page-client-space .cl-club-hero-ico{flex:none;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#f5a623,#680262);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 10px 24px rgba(104,2,98,.3)}
+.page-client-space .cl-club-hero h2{margin:0 0 .3rem;font-family:var(--fb);font-size:1.2rem;font-weight:800;color:var(--gold2)}
+.page-client-space .cl-club-hero p{margin:0;font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2)}
+
+.page-client-space .cl-points-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:1.7rem 1.8rem;margin-bottom:1.6rem;box-shadow:0 20px 50px -40px rgba(9,20,40,.35)}
+.page-client-space .cl-points-head{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.2rem}
+.page-client-space .cl-points-headtxt{flex:1;min-width:0}
+.page-client-space .cl-points-total{flex:none;font-family:var(--fb);font-weight:900;font-size:2.6rem;line-height:1;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.page-client-space .cl-points-title{font-family:var(--fb);font-size:1rem;font-weight:700;color:var(--txt)}
+.page-client-space .cl-points-desc{font-family:var(--fm);font-size:.8rem;font-weight:300;color:var(--txt2);margin-top:.2rem}
+.page-client-space .cl-points-empty{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);padding-top:1rem;border-top:1px dashed var(--border)}
+.page-client-space .cl-points-history{padding-top:1rem;border-top:1px dashed var(--border);display:flex;flex-direction:column;gap:.6rem}
+.page-client-space .cl-points-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:var(--fm);font-size:.82rem}
+.page-client-space .cl-points-row span{color:var(--txt2)}
+.page-client-space .cl-points-row b{color:#157347;font-weight:800}
+
+.page-client-space .cl-gains-showcase{margin-bottom:1.6rem}
+.page-client-space .cl-gains-showcase h3{font-family:var(--fb);font-size:.9rem;font-weight:700;color:var(--txt);margin:0 0 .9rem}
+.page-client-space .cl-gains-showcase-grid{display:flex;flex-wrap:wrap;gap:.6rem}
+.page-client-space .cl-gains-chip{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.78rem;font-weight:600;color:var(--gold2);background:linear-gradient(135deg,rgba(9,161,190,.1),rgba(104,2,98,.08));border:1px solid var(--border);border-radius:30px;padding:.5rem 1rem}
+.page-client-space .cl-gains-chip i{color:var(--gold)}
+
+.page-client-space .cl-attestation-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:1.7rem 1.8rem;box-shadow:0 20px 50px -40px rgba(9,20,40,.35)}
+.page-client-space .cl-attestation-card>h3{margin:0 0 1.1rem;font-family:var(--fb);font-size:.95rem;font-weight:700;color:var(--txt)}
+.page-client-space .cl-attestation-empty{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-attestation-item{border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;margin-bottom:1rem}
+.page-client-space .cl-attestation-item:last-child{margin-bottom:0}
+.page-client-space .cl-attestation-item-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
+.page-client-space .cl-attestation-item-head b{font-family:var(--fm);font-size:.92rem;font-weight:600;color:var(--txt)}
+.page-client-space .cl-attestation-badge{flex:none;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.32rem .8rem;border-radius:30px;color:#fff;white-space:nowrap}
+.page-client-space .cl-attestation-badge.is-signed{background:#157347}
+.page-client-space .cl-attestation-badge.is-pending{background:#b45309}
+.page-client-space .cl-attestation-msg{font-family:var(--fm);font-size:.82rem;font-weight:300;line-height:1.6;color:var(--txt2);margin-bottom:.8rem}
+.page-client-space .cl-attestation-doclink{margin-bottom:.8rem}
+.page-client-space .cl-attestation-dl{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.78rem;font-weight:600;color:var(--gold2);text-decoration:none}
+.page-client-space .cl-attestation-dl:hover{color:var(--gold)}
+.page-client-space .cl-attestation-foot{padding-top:.7rem;border-top:1px dashed var(--border)}
+.page-client-space .cl-attestation-signed-by{font-family:var(--fm);font-size:.72rem;color:var(--txt2)}
+.page-client-space .cl-attestation-sign-form{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;padding-top:.8rem;border-top:1px dashed var(--border)}
+.page-client-space .cl-attestation-msgbox:empty{display:none}
+.page-client-space .cl-attestation-msgbox{flex:0 0 100%}
+.page-client-space .cl-attestation-input{flex:1;min-width:180px;padding:.65rem .9rem;border:1px solid var(--border);border-radius:10px;background:var(--bg2);font-family:var(--fm);font-size:.82rem;color:var(--txt);outline:none;transition:border-color .2s}
+.page-client-space .cl-attestation-input:focus{border-color:var(--gold);background:var(--bg)}
+.page-client-space .cl-attestation-confirm{flex:0 0 100%;display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.76rem;color:var(--txt2)}
+.page-client-space .cl-attestation-sign-btn{flex:none;background:var(--txt);border:1px solid var(--txt);border-radius:30px;color:var(--bg);font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.5rem;cursor:pointer;transition:background .2s,color .2s}
+.page-client-space .cl-attestation-sign-btn:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.page-client-space .cl-attestation-sign-btn:disabled{opacity:.6;cursor:not-allowed}
+
+/* ---- Mon compte : parrainage teaser vers Club Élite ---- */
+.page-client-space .cl-club-teaser{display:flex;align-items:center;gap:1rem;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.1rem 1.3rem;text-decoration:none;margin:2.2rem 0;transition:transform .25s,box-shadow .25s;cursor:pointer}
+.page-client-space .cl-club-teaser:hover{transform:translateY(-2px);box-shadow:0 16px 40px -30px rgba(9,20,40,.4)}
+.page-client-space .cl-club-teaser-ico{flex:none;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#f5a623,#680262);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem}
+.page-client-space .cl-club-teaser-body{flex:1;min-width:0}
+.page-client-space .cl-club-teaser-title{font-family:var(--fm);font-size:.85rem;font-weight:700;color:var(--txt)}
+.page-client-space .cl-club-teaser-sub{font-family:var(--fm);font-size:.76rem;color:var(--txt2);margin-top:.15rem}
+.page-client-space .cl-club-teaser-sub b{color:#d98a00;font-weight:800}
+.page-client-space .cl-club-teaser-cta{flex:none;font-family:var(--fm);font-size:.68rem;font-weight:700;color:var(--gold2);white-space:nowrap}
+
+/* ---- Mon compte : comptes réseaux/plateformes gérés par l'agence ---- */
+.page-client-space .cl-social-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:1.7rem 1.8rem;margin-top:2.2rem;box-shadow:0 20px 50px -40px rgba(9,20,40,.35)}
+.page-client-space .cl-social-card>h3{margin:0 0 .3rem;font-family:var(--fb);font-size:1rem;font-weight:700;color:var(--txt)}
+.page-client-space .cl-social-sub{margin:0 0 1.2rem;font-family:var(--fm);font-size:.82rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-social-empty{display:flex;align-items:center;gap:.6rem;font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.2rem}
+.page-client-space .cl-social-list{display:flex;flex-direction:column;gap:.7rem}
+.page-client-space .cl-social-row{display:flex;align-items:center;gap:.9rem;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.9rem 1.1rem}
+.page-client-space .cl-social-ico{flex:none;width:38px;height:38px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;color:var(--gold)}
+.page-client-space .cl-social-body{flex:1;min-width:0;display:flex;flex-direction:column}
+.page-client-space .cl-social-body b{font-family:var(--fm);font-size:.85rem;font-weight:600;color:var(--txt)}
+.page-client-space .cl-social-body span{font-family:var(--fm);font-size:.72rem;color:var(--txt2);margin-top:.1rem}
+.page-client-space .cl-social-open{flex:none;font-family:var(--fm);font-size:.7rem;font-weight:700;color:var(--gold2);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:.4rem}
+.page-client-space .cl-social-open:hover{color:var(--gold)}
+
+/* ---- Mon compte : formulaire d'avis (wrapper) ---- */
+.page-client-space .cl-review-form{display:flex;flex-direction:column;gap:.2rem}
+
+/* ---- Découvrir / Produits & Services ---- */
+.page-client-space .cl-discover-hero{margin-bottom:1.6rem}
+.page-client-space .cl-discover-mydemandes{margin-bottom:2rem}
+.page-client-space .cl-discover-mydemandes h3{font-family:var(--fb);font-size:.92rem;font-weight:700;color:var(--txt);margin:0 0 .9rem}
+.page-client-space .cl-discover-mydemandes-empty{font-family:var(--fm);font-size:.84rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-discover-mydemandes-list{display:flex;flex-direction:column;gap:.6rem}
+.page-client-space .cl-discover-mydemande-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.8rem 1.1rem}
+.page-client-space .cl-discover-mydemande-type{flex:none;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold2);background:rgba(104,2,98,.08);border-radius:30px;padding:.3rem .7rem}
+.page-client-space .cl-discover-mydemande-titre{flex:1;min-width:120px;font-family:var(--fm);font-size:.85rem;font-weight:600;color:var(--txt)}
+.page-client-space .cl-discover-mydemande-badge{flex:none;font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .7rem;border-radius:30px;color:#fff}
+.page-client-space .cl-discover-mydemande-badge.is-new{background:#0e6e83}
+.page-client-space .cl-discover-mydemande-badge.is-progress{background:#b45309}
+.page-client-space .cl-discover-mydemande-badge.is-done{background:#157347}
+.page-client-space .cl-discover-mydemande-date{flex:none;font-family:var(--fm);font-size:.68rem;color:var(--txt2)}
+
+.page-client-space .cl-discover-section{margin-top:2.4rem}
+.page-client-space .cl-discover-section:first-of-type{margin-top:0}
+.page-client-space .cl-discover-section-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.page-client-space .cl-discover-section>h3,.page-client-space .cl-discover-section-head>h3{display:flex;align-items:center;gap:.55rem;font-family:var(--fb);font-size:1rem;font-weight:700;color:var(--txt);margin:0 0 .3rem}
+.page-client-space .cl-discover-section>h3 i,.page-client-space .cl-discover-section-head>h3 i{color:var(--gold2)}
+.page-client-space .cl-discover-section-sub{margin:0 0 1.2rem;font-family:var(--fm);font-size:.82rem;font-weight:300;color:var(--txt2)}
+.page-client-space .cl-discover-section-btn{flex:none;padding:.55rem 1.2rem;font-size:.6rem}
+.page-client-space .cl-discover-empty{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center}
+.page-client-space .cl-discover-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+.page-client-space .cl-discover-card{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--border);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s}
+.page-client-space .cl-discover-card:hover{transform:translateY(-3px);box-shadow:0 20px 46px -32px rgba(9,20,40,.4)}
+.page-client-space .cl-discover-card-img{height:140px;overflow:hidden;background:var(--bg2)}
+.page-client-space .cl-discover-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.page-client-space .cl-discover-card-body{flex:1;padding:1.1rem 1.2rem}
+.page-client-space .cl-discover-card-body b{display:block;font-family:var(--fm);font-size:.9rem;font-weight:700;color:var(--txt);margin-bottom:.4rem}
+.page-client-space .cl-discover-card-body p{margin:0;font-family:var(--fm);font-size:.78rem;font-weight:300;line-height:1.55;color:var(--txt2)}
+.page-client-space .cl-discover-card-meta{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.68rem;font-weight:600;color:var(--gold2);margin-bottom:.5rem}
+.page-client-space .cl-discover-card-actions{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 1.2rem 1.2rem}
+.page-client-space .cl-discover-btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--gold2);border:1px solid var(--gold2);border-radius:30px;padding:.55rem 1.05rem;cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.page-client-space .cl-discover-btn:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.page-client-space .cl-discover-btn.is-ghost{background:transparent;color:var(--gold2)}
+.page-client-space .cl-discover-btn.is-ghost:hover{background:var(--gold2);color:#fff}
+.page-client-space a.cl-discover-card-link .cl-discover-btn{pointer-events:none}
+
+/* ---- Modale de demande (essai / commande / inscription) ---- */
+.cl-demande-modal{position:fixed;inset:0;z-index:2100;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.cl-demande-modal.open{opacity:1;visibility:visible}
+.cl-demande-modal-backdrop{position:absolute;inset:0;background:rgba(13,11,9,.55)}
+.cl-demande-modal-card{position:relative;z-index:1;width:min(440px,100%);background:var(--bg);border-radius:20px;padding:2rem 1.8rem 1.8rem;box-shadow:0 30px 80px rgba(13,11,9,.4);transform:translateY(12px) scale(.98);transition:transform .3s}
+.cl-demande-modal.open .cl-demande-modal-card{transform:none}
+.cl-demande-modal-x{position:absolute;top:.8rem;inset-inline-end:1rem;background:none;border:none;font-size:1.5rem;line-height:1;color:var(--txt2);cursor:pointer;padding:.2rem}
+.cl-demande-modal-x:hover{color:var(--txt)}
+.cl-demande-modal-card h3{margin:0 0 .4rem;font-family:var(--fb);font-size:1.15rem;font-weight:700;color:var(--gold2)}
+.cl-demande-modal-card>p{margin:0 0 1.2rem;font-family:var(--fm);font-size:.85rem;font-weight:400;color:var(--txt2)}
+.cl-demande-modal-msg:empty{display:none}
+.cl-demande-modal-msg{margin-bottom:.8rem}
+#clDemandeMessage{width:100%;padding:.8rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--bg2);font-family:var(--fm);font-size:.86rem;font-weight:300;color:var(--txt);outline:none;resize:vertical;transition:border-color .2s}
+#clDemandeMessage:focus{border-color:var(--gold);background:var(--bg)}
+.cl-demande-modal-submit{margin-top:1rem;width:100%;background:var(--txt);border:1px solid var(--txt);border-radius:30px;color:var(--bg);font-family:var(--fm);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.9rem;cursor:pointer;transition:background .25s,color .25s}
+.cl-demande-modal-submit:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.cl-demande-modal-submit:disabled{opacity:.6;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){.cl-demande-modal,.cl-demande-modal-card{transition:none}}
+
+/* =========================================================================
+   ESPACE CLIENT — Verre dépoli, aligné sur le SEUL système "glass" déjà
+   établi sur ce site (variables --glass-border/--shadow/--shadow-card/--ease
+   et la recette de .glass-nav / .card plus haut dans ce fichier), plutôt
+   que des valeurs inventées séparément. Remplace toute la passe visuelle
+   précédente sur ce tableau de bord.
+   ========================================================================= */
+
+/* ---- Fond de page : halos de couleur flous et fixes (même palette que les
+   .blob du site : violet / rose / turquoise), sous tout le contenu. ---- */
+body.is-client-space{position:relative}
+body.is-client-space::before,body.is-client-space::after{content:'';position:fixed;z-index:0;border-radius:50%;filter:blur(90px);pointer-events:none}
+body.is-client-space::before{top:-8rem;inset-inline-end:-8rem;width:32rem;height:32rem;background:#a78bff;opacity:.35}
+body.is-client-space::after{bottom:-10rem;inset-inline-start:10%;width:34rem;height:34rem;background:#5fe0d0;opacity:.28}
+body.is-client-space .cl-dash-hero,
+body.is-client-space .page-client-space{position:relative;z-index:1}
+/* NB: .cl-topnav est volontairement exclu de la règle ci-dessus — elle a une
+   spécificité (2 classes) plus forte que la règle .cl-topnav{position:fixed;
+   z-index:1100} plus bas dans ce fichier, et l'écrasait silencieusement en
+   position:relative. C'était la vraie cause du menu "pas fixe" au défilement. */
+
+/* Le filigrane "Client" derrière le titre remonte jusqu'en haut de page,
+   sous la topnav en verre (qui le laisse deviner à travers le flou) — il
+   garde son ancrage d'origine (bottom:-4rem, près du titre) mais n'est
+   plus coupé par le overflow:hidden du hero, donc sa hauteur (jusqu'à
+   26rem) déborde naturellement vers le haut de la page. */
+.is-client-space .cl-dash-hero{overflow:visible}
+
+/* ---- Topnav : carte flottante en verre dépoli — même recette que .glass-nav
+   (dégradé blanc translucide + blur(26px) saturate(155%) + --glass-border +
+   --shadow), ~77% de la largeur de page, et FIXE au défilement (réaffirmé
+   explicitement, aucune autre règle .cl-topnav ne redéfinit position). ---- */
+/* Centrage SANS transform : left+right+margin-inline:auto (comme margin:0
+   auto sur un bloc classique) plutôt que left:50%+transform:translateX(-50%).
+   Un `transform` sur cet ancêtre créait un nouveau "containing block" pour
+   TOUT descendant en position:fixed — notamment #clNotifPanel, positionné
+   par JS en coordonnées viewport — le décalant complètement de sa cible
+   réelle. C'était la vraie cause du panneau de notification mal placé. */
+.cl-topnav{
+  position:fixed;top:1.4rem;left:0;right:0;margin-inline:auto;
+  width:77%;max-width:1160px;
+  background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(255,255,255,.4));
+  -webkit-backdrop-filter:blur(26px) saturate(155%);
+  backdrop-filter:blur(26px) saturate(155%);
+  border:1px solid var(--glass-border);
+  border-radius:26px;
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.7);
+}
+.cl-topnav-inner.container{max-width:none;width:100%}
+@media(max-width:900px){.cl-topnav{left:.8rem;right:.8rem;top:.8rem;width:auto;max-width:none;margin-inline:0;border-radius:22px}}
+
+/* ---- Hero : simplifié, posé directement sur le fond (pas de carte/filet) ;
+   même taille de police que le "Rencontrez-nous" du footer (footer .big-title). ---- */
+.is-client-space .cl-dash-hero{padding:1.8rem 0 1rem!important;border-bottom:none;background:transparent}
+.cl-dash-hero-title{font-weight:100;letter-spacing:-.01em;font-size:70px;line-height:1.1;text-transform:uppercase}
+.cl-dash-hero-title em{font-style:normal;font-weight:100;background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media(max-width:767px){.cl-dash-hero-title{font-size:39px}}
+/* Filet fin qui part de la fin du nom et va jusqu'au bord du conteneur
+   (le span est déjà le frère flex du h1 dans .cl-dash-hero-inner). */
+.is-client-space .cl-dash-hero-rule{display:block;flex:1;min-width:3rem;height:1px;background:var(--border);align-self:center;margin-inline-start:1rem}
+
+/* ---- Recette de carte en verre commune (fond translucide, --glass-border,
+   --shadow-card + reflet interne, sans ligne de bordure visible dure). ---- */
+.page-client-space .cl-chart-card,
+.page-client-space .cl-stat-tile,
+.page-client-space .cl-activity-card,
+.page-client-space .cl-urgent-card,
+.page-client-space .cl-urgent-empty,
+.page-client-space .cl-bank-card,
+.page-client-space .cl-points-card,
+.page-client-space .cl-attestation-card,
+.page-client-space .cl-attestation-item,
+.page-client-space .cl-social-card,
+.page-client-space .cl-discover-card,
+.page-client-space .cl-club-teaser,
+.cl-notif-panel,
+.cl-demande-modal-card{
+  background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.6);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.page-client-space .cl-chart-card:hover,
+.page-client-space .cl-stat-tile:hover,
+.page-client-space .cl-activity-card:hover,
+.page-client-space .cl-urgent-card:hover,
+.page-client-space .cl-bank-card:hover,
+.page-client-space .cl-discover-card:hover,
+.page-client-space .cl-club-teaser:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.7);
+}
+.page-client-space .cl-club-hero,
+.page-client-space .cl-gains-banner{
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.3);
+}
+
+/* ---- "Vos points de fidélité" : pleine largeur (du début du graphique
+   jusqu'à la fin des tuiles-stats), même dégradé que le reste du site
+   (teal → violet) au lieu du ton jaune/ambré d'origine. ---- */
+.page-client-space .cl-points-mini{
+  width:100%;margin:1.2rem 0 0;
+  background:linear-gradient(120deg,var(--gold),var(--gold2));
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.page-client-space .cl-points-mini:hover{box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.4)}
+.page-client-space .cl-points-mini-ico{background:rgba(255,255,255,.22);box-shadow:none}
+.page-client-space .cl-points-mini-num{color:#fff}
+.page-client-space .cl-points-mini-label{color:rgba(255,255,255,.85)}
+.page-client-space .cl-points-mini-arrow{color:#fff}
+
+/* ---- CTA des cartes "urgent" : dégradé teal → violet en pilule, comme le
+   bouton "Découvrir nos services" (au lieu du noir plein). ---- */
+.page-client-space .cl-urgent-cta,
+.page-client-space .cl-urgent-card.is-danger .cl-urgent-cta,
+.page-client-space .cl-urgent-card.is-warning .cl-urgent-cta{
+  background:linear-gradient(120deg,var(--gold),var(--gold2));
+  color:#fff;
+}
+.page-client-space .cl-urgent-ico{width:48px;height:48px;border-radius:14px}
+.page-client-space .cl-urgent-card.is-danger .cl-urgent-ico{color:#fff;background:#e5484d}
+.page-client-space .cl-urgent-card.is-warning .cl-urgent-ico{color:#fff;background:#f5a623}
+
+/* ---- Bouton "Découvrir nos services" : pilule dégradée pleine (au lieu du
+   contour transparent par défaut de .btn-hw). L'icône du bloc vide a le
+   même dégradé que ce bouton, et le pill "Aperçu" actif aussi (même
+   identité de couleur partout). ---- */
+.page-client-space .cl-chart-empty-cta{background:linear-gradient(120deg,var(--gold),var(--gold2));border-color:transparent;color:#fff}
+.page-client-space .cl-chart-empty-cta::before{display:none}
+.page-client-space .cl-chart-empty-cta:hover{color:#fff;opacity:.9}
+.page-client-space .cl-chart-empty-ico{background:linear-gradient(120deg,var(--gold),var(--gold2));color:#fff}
+.cl-pill.active{background:linear-gradient(120deg,var(--gold),var(--gold2))}
+
+/* Bloc "Votre historique de paiements apparaîtra ici" : pas de marge en bas. */
+.page-client-space .cl-chart-card.cl-chart-empty{margin-bottom:0}
+
+/* "Parrainer maintenant" aligné à droite du bloc, sous le texte. */
+.page-client-space .cl-gains-banner-btn{align-self:flex-end}
+
+/* Retire le halo de couleur qui traverse le header/topnav en haut de page. */
+body.is-client-space::before{display:none}
+
+/* ---- Tuiles-stats : badge d'icône rond, couleur pleine + icône blanche ;
+   nombre en gras noir, libellé en casse normale et poids léger (comme la
+   capture de référence — pas de majuscules/gras sur "Factures" etc.). ---- */
+.page-client-space .cl-stat-ico{width:50px;height:50px;border-radius:18px;font-size:1.3rem}
+.page-client-space .cl-stat-tile.t-teal .cl-stat-ico{background:var(--gold);color:#fff}
+.page-client-space .cl-stat-tile.t-purple .cl-stat-ico{background:var(--gold2);color:#fff}
+.page-client-space .cl-stat-tile.t-amber .cl-stat-ico{background:#f5a623;color:#fff}
+.page-client-space .cl-stat-tile.t-green .cl-stat-ico{background:#22c55e;color:#fff}
+.page-client-space .cl-stat-num{font-weight:600;font-size:2rem}
+.page-client-space .cl-stat-label{font-weight:400;letter-spacing:normal;text-transform:none;font-size:.86rem;color:var(--txt2)}
+.page-client-space .cl-stat-tile{gap:.9rem;padding:1.4rem 1.3rem}
+
+/* ---- Fil d'activité : badges plus doux, sans bordure ---- */
+.page-client-space .cl-activity-ico{background:rgba(9,161,190,.12);border:none;color:var(--gold)}
+
+/* ---- Bannière "ce que vous gagnez" : dégradé plein (comme la maquette). ---- */
+.page-client-space .cl-gains-banner{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--gold),var(--gold2));border-radius:22px}
+.page-client-space .cl-gains-banner::after{content:'';position:absolute;top:-2.6rem;inset-inline-end:-2.2rem;width:9rem;height:9rem;border-radius:50%;background:rgba(255,255,255,.16);pointer-events:none}
+.page-client-space .cl-gains-banner-ico{background:rgba(255,255,255,.22);box-shadow:none}
+.page-client-space .cl-gains-banner-body>b{color:#fff}
+.page-client-space .cl-gains-banner-list li{color:rgba(255,255,255,.92)}
+.page-client-space .cl-gains-banner-list li i{color:#fff}
+.page-client-space .cl-gains-banner-btn{position:relative;z-index:1;background:#fff;border-color:#fff;color:var(--gold2)}
+.page-client-space .cl-gains-banner-btn::before{display:none}
+.page-client-space .cl-gains-banner-btn:hover{background:rgba(255,255,255,.85);color:var(--gold2)}
+/* Bouton remis en bas (icône + texte au-dessus, bouton en dessous) plutôt
+   qu'à côté du texte sur la même ligne. */
+.page-client-space .cl-gains-banner{flex-direction:column;align-items:flex-start;margin-bottom:0}
+.page-client-space .cl-gains-banner-btn{align-self:flex-start;margin-top:.4rem}
+/* Espace identique entre le bloc fidélité et "Activité récente" / "Ce que
+   vous gagnez" : les deux cartes démarrent à la même distance (margin-top
+   de la ligne), qu'elles soient côte à côte (desktop) ou empilées (mobile). */
+.page-client-space .cl-apercu-lower{margin-top:2.6rem;gap:1.6rem}
+.page-client-space .cl-activity-card,
+.page-client-space .cl-gains-banner{margin-top:0;transform:translate(0px,0px)!important}
+
+/* ---- Aperçu : le bloc graphique et les 4 tuiles-stats ont la même hauteur. ---- */
+.page-client-space .cl-apercu-grid{align-items:stretch}
+.page-client-space .cl-apercu-side{height:100%}
+.page-client-space .cl-stat-2x2{height:100%;grid-template-rows:1fr 1fr}
+.page-client-space .cl-stat-tile{height:100%}
+
+/* ---- Bouton "Envoyer" (Réclamation) : même style que "Découvrir nos
+   services" (pilule dégradée), et les deux animent doucement pour attirer
+   l'œil (respiration douce de l'ombre — pas de saut brusque). ---- */
+.page-client-space .div-reclamation-form .btn-primary,
+.page-client-space .div-reclamation-form input.btn-primary{
+  background:linear-gradient(120deg,var(--gold),var(--gold2));
+  border-color:transparent;
+  animation:clCtaPulse 2.6s ease-in-out infinite;
+}
+.page-client-space .div-reclamation-form .btn-primary:hover,
+.page-client-space .div-reclamation-form input.btn-primary:hover{
+  background:linear-gradient(120deg,var(--gold),var(--gold2));
+  border-color:transparent;
+  opacity:.92;
+}
+.page-client-space .cl-chart-empty-cta{animation:clCtaPulse 2.6s ease-in-out infinite}
+@keyframes clCtaPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(104,2,98,.35)}
+  50%{box-shadow:0 0 0 10px rgba(104,2,98,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .page-client-space .div-reclamation-form .btn-primary,
+  .page-client-space .div-reclamation-form input.btn-primary,
+  .page-client-space .cl-chart-empty-cta{animation:none}
+}
+
+/* ---- Club Élite : icône plus "premium" (couronne dégradée) que le losange
+   plat d'origine. ---- */
+.page-client-space .cl-club-hero-ico{background:linear-gradient(135deg,#ffd76a,#f5a623,var(--gold2));box-shadow:0 10px 24px rgba(245,166,35,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* ---- Découvrir : boutons "Tester" / "Commander" — même gabarit, palette
+   claire et engageante au lieu du violet plein d'origine. ---- */
+.page-client-space .cl-discover-card-actions{align-items:stretch;flex-direction:column}
+.page-client-space .cl-discover-btn{
+  flex:1;min-width:0;
+  background:linear-gradient(120deg,var(--gold),var(--gold2));
+  border-color:transparent;color:#fff;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),opacity .2s;
+}
+.page-client-space .cl-discover-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(104,2,98,.5);color:#fff}
+.page-client-space .cl-discover-btn.is-ghost{
+  background:rgba(9,161,190,.1);
+  color:var(--gold2);
+  border:1px solid rgba(9,161,190,.25);
+}
+.page-client-space .cl-discover-btn.is-ghost:hover{background:rgba(9,161,190,.18);color:var(--gold2)}
+@media(max-width:480px){.page-client-space .cl-discover-card-actions{flex-direction:column}}
+
+/* =========================================================================
+   "Parrainez une entreprise" — refonte complète : bandeau dégradé en tête
+   de carte (icône flottante + blob décoratif), puces "ce que vous gagnez"
+   en couleurs variées, carte en verre cohérente avec le reste du site.
+   ========================================================================= */
+.page-client-space .cl-parrain{
+  background:rgba(255,255,255,.72);
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.6);
+  padding:0 2rem 2rem;
+  overflow:hidden;
+}
+.page-client-space .cl-parrain-head{
+  margin:0 -2rem 1.6rem;
+  padding:2.2rem 2rem 2.6rem;
+  background:linear-gradient(125deg,var(--gold),var(--gold2) 65%,#8B2568);
+  background-size:220% 220%;
+  animation:clProfileCoverShift 10s ease-in-out infinite;
+  position:relative;
+  overflow:hidden;
+  align-items:flex-start;
+}
+@media(prefers-reduced-motion:reduce){.page-client-space .cl-parrain-head{animation:none}}
+
+/* Club Élite : même dégradé mouvant que le profil et le parrainage, au lieu
+   du fond pâle d'origine. */
+.page-client-space .cl-club-hero{
+  background:linear-gradient(125deg,#5fe0d0,var(--gold),var(--gold2) 70%,#8B2568);
+  background-size:220% 220%;
+  animation:clProfileCoverShift 10s ease-in-out infinite;
+  border:1px solid var(--glass-border);
+  position:relative;overflow:hidden;
+}
+.page-client-space .cl-club-hero h2{color:#fff}
+.page-client-space .cl-club-hero p{color:rgba(255,255,255,.9)}
+@media(prefers-reduced-motion:reduce){.page-client-space .cl-club-hero{animation:none}}
+.page-client-space .cl-parrain-head::before{
+  content:'';position:absolute;top:-3rem;inset-inline-end:-3rem;width:12rem;height:12rem;
+  border-radius:50%;background:rgba(255,255,255,.16);pointer-events:none;
+}
+.page-client-space .cl-parrain-head::after{
+  content:'';position:absolute;bottom:-4rem;inset-inline-start:20%;width:9rem;height:9rem;
+  border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none;
+}
+.page-client-space .cl-parrain-ico{
+  position:relative;z-index:1;
+  width:54px;height:54px;border-radius:16px;
+  background:rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4);
+  font-size:1.5rem;
+  animation:clParrainFloat 3.2s ease-in-out infinite;
+}
+.page-client-space .cl-parrain-head h2{position:relative;z-index:1;color:#fff;font-size:1.35rem}
+.page-client-space .cl-parrain-head p{position:relative;z-index:1;color:rgba(255,255,255,.9)}
+@keyframes clParrainFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){.page-client-space .cl-parrain-ico{animation:none}}
+
+/* Puces "ce que vous gagnez" : une couleur différente par avantage. */
+.page-client-space .cl-parrain-gains{margin-top:-1.2rem;position:relative;z-index:1;display:block}
+.page-client-space .cl-parrain-gains .cl-parrain-gains-label{display:block;margin-bottom:.8rem}
+.page-client-space .cl-parrain-gains .cl-gains-showcase-grid{margin-top:0}
+.page-client-space .cl-parrain-gain{border:none;font-weight:700;box-shadow:0 6px 16px -8px rgba(13,11,9,.25);transition:transform .2s var(--ease)}
+.page-client-space .cl-parrain-gain:hover{transform:translateY(-2px)}
+.page-client-space .cl-parrain-gain:nth-child(2){color:#0e6e83;background:#e3f6fa}
+.page-client-space .cl-parrain-gain:nth-child(2) i{color:#0e6e83}
+.page-client-space .cl-parrain-gain:nth-child(3){color:#8B2568;background:#fbe8f2}
+.page-client-space .cl-parrain-gain:nth-child(3) i{color:#8B2568}
+.page-client-space .cl-parrain-gain:nth-child(4){color:#b45309;background:#fef3e2}
+.page-client-space .cl-parrain-gain:nth-child(4) i{color:#b45309}
+.page-client-space .cl-parrain-gain:nth-child(5){color:#157347;background:#e6f6ee}
+.page-client-space .cl-parrain-gain:nth-child(5) i{color:#157347}
+.page-client-space .cl-parrain-gain:nth-child(6){color:var(--gold2);background:#f1e6f5}
+.page-client-space .cl-parrain-gain:nth-child(6) i{color:var(--gold2)}
+.page-client-space .cl-parrain-gain:nth-child(7){color:var(--gold);background:#e3f4f7}
+.page-client-space .cl-parrain-gain:nth-child(7) i{color:var(--gold)}
+
+/* Formulaire + liste : champs en verre léger, bouton dégradé animé. */
+.page-client-space .cl-parrain-body{position:relative;z-index:1}
+.page-client-space .cl-review-input{background:rgba(255,255,255,.7);border-color:var(--glass-border)}
+/* Champs du formulaire de parrainage : liseré du bas bien visible pour
+   repérer immédiatement où écrire. */
+.page-client-space .cl-parrain-form .cl-review-input{
+  border:none;border-bottom:1px solid rgba(13,11,9,.18);
+  border-radius:8px 8px 0 0;background:rgba(255,255,255,.5);
+}
+.page-client-space .cl-parrain-form .cl-review-input:focus{border-bottom-color:var(--gold2);background:rgba(255,255,255,.8)}
+.page-client-space .cl-parrain-submit{
+  background:linear-gradient(120deg,rgba(9,161,190,.78),rgba(104,2,98,.78));
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  backdrop-filter:blur(14px) saturate(160%);
+  border:1px solid var(--glass-border);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4);
+  color:#fff;
+  animation:clCtaPulse 2.6s ease-in-out infinite;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.page-client-space .cl-parrain-submit:hover{
+  color:#fff;
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.5);
+}
+.page-client-space .cl-parrain-submit::before{display:none}
+@media(prefers-reduced-motion:reduce){.page-client-space .cl-parrain-submit{animation:none}}
+
+/* =========================================================================
+   "Mon Profil" — refonte complète : hero avec photo de couverture (dégradé
+   animé + blobs) et avatar qui chevauche le bas de la couverture, comme un
+   profil social. Rompt volontairement avec le style "carte plate" du reste
+   du tableau de bord.
+   ========================================================================= */
+.page-client-space .cl-profile-hero{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  background:rgba(255,255,255,.72);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.6);
+  margin-bottom:2.6rem;
+}
+.page-client-space .cl-profile-cover{
+  height:120px;
+  background:linear-gradient(120deg,#5fe0d0,var(--gold),var(--gold2) 70%,#8B2568);
+  background-size:220% 220%;
+  animation:clProfileCoverShift 10s ease-in-out infinite;
+  position:relative;
+}
+.page-client-space .cl-profile-cover::before{
+  content:'';position:absolute;top:-2.5rem;inset-inline-end:10%;width:11rem;height:11rem;
+  border-radius:50%;background:rgba(255,255,255,.18);filter:blur(2px);pointer-events:none;
+}
+.page-client-space .cl-profile-cover::after{
+  content:'';position:absolute;bottom:-3.5rem;inset-inline-start:-2rem;width:9rem;height:9rem;
+  border-radius:50%;background:rgba(255,255,255,.14);pointer-events:none;
+}
+@keyframes clProfileCoverShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){.page-client-space .cl-profile-cover{animation:none}}
+.page-client-space .cl-profile-hero-body{
+  display:flex;align-items:flex-end;flex-wrap:wrap;gap:1rem 1.4rem;
+  padding:0 1.8rem 1.6rem;
+  margin-top:-38px;
+}
+.page-client-space .cl-profile-avatar{position:relative;flex:none;width:96px;height:96px}
+.page-client-space .cl-profile-avatar-clip{
+  display:flex;align-items:center;justify-content:center;width:100%;height:100%;
+  border-radius:50%;overflow:hidden;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:4px solid var(--bg);
+  box-shadow:0 10px 26px -10px rgba(104,2,98,.5);
+}
+.page-client-space .cl-profile-avatar-clip img{width:100%;height:100%;object-fit:cover}
+.page-client-space .cl-profile-avatar-initials{font-family:var(--fb);font-weight:700;font-size:1.9rem;color:#fff}
+.page-client-space .cl-profile-info{min-width:0;padding-bottom:.3rem}
+.page-client-space .cl-profile-name{font-family:var(--fb);font-weight:800;font-size:1.35rem;color:var(--txt)}
+.page-client-space .cl-profile-company{display:flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.84rem;color:var(--gold2);margin-top:.3rem}
+.page-client-space .cl-profile-email{display:flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.8rem;color:var(--txt2);margin-top:.2rem}
+.page-client-space .cl-profile-stats{display:flex;gap:.7rem;margin-inline-start:auto;padding-bottom:.3rem}
+.page-client-space .cl-profile-stat{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-width:84px;padding:.6rem .9rem;border-radius:14px;
+  background:rgba(255,255,255,.6);border:1px solid var(--glass-border);
+  text-decoration:none;cursor:pointer;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.page-client-space .cl-profile-stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-card)}
+.page-client-space .cl-profile-stat b{font-family:var(--fb);font-weight:800;font-size:1.3rem;color:var(--gold2)}
+.page-client-space .cl-profile-stat span{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);margin-top:.15rem}
+@media(max-width:600px){
+  .page-client-space .cl-profile-hero-body{margin-top:-30px}
+  .page-client-space .cl-profile-avatar{width:76px;height:76px}
+  .page-client-space .cl-profile-stats{margin-inline-start:0;width:100%}
+  .page-client-space .cl-profile-stat{flex:1}
+}
+
+/* ---- Topnav : les 7 pills tiennent sans scroll horizontal (gabarit plus
+   compact — icônes et texte resserrés). ---- */
+.cl-pillnav{overflow-x:visible;gap:.1rem}
+.cl-pill{padding:.55rem .75rem;font-size:.64rem;gap:.4rem}
+.cl-pill i{font-size:.78rem}
+@media(min-width:901px) and (max-width:1140px){
+  .cl-pill{padding:.5rem .6rem;font-size:.6rem}
+}
+
+/* =========================================================================
+   Club Élite — schéma "comment gagner des points" (3 étapes) et refonte de
+   "Ce que vos points débloquent" en 6 boîtes illustrées (3 par ligne) au
+   lieu de puces.
+   ========================================================================= */
+.page-client-space .cl-points-how{
+  background:rgba(255,255,255,.72);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.6);
+  padding:1.6rem 1.7rem;
+  margin-bottom:1.6rem;
+}
+.page-client-space .cl-points-how>h3{display:flex;align-items:center;gap:.55rem;margin:0 0 1.2rem;font-family:var(--fb);font-size:1rem;font-weight:700;color:var(--txt)}
+.page-client-space .cl-points-how>h3 i{color:var(--gold2)}
+.page-client-space .cl-points-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.page-client-space .cl-points-how-step{
+  position:relative;display:flex;flex-direction:column;align-items:flex-start;
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  padding:1.2rem 1.1rem 1.1rem;text-decoration:none;color:inherit;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s;
+}
+a.cl-points-how-step{cursor:pointer}
+a.cl-points-how-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-card);border-color:transparent}
+.page-client-space .cl-points-how-badge{
+  position:absolute;top:.9rem;inset-inline-end:.9rem;
+  font-family:var(--fb);font-weight:800;font-size:.78rem;color:#fff;
+  background:linear-gradient(120deg,var(--gold),var(--gold2));
+  border-radius:30px;padding:.2rem .6rem;
+}
+.page-client-space .cl-points-how-ico{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:13px;margin-bottom:.8rem;
+  background:linear-gradient(135deg,#ffd76a,#f5a623);color:#fff;font-size:1.15rem;
+  box-shadow:0 8px 18px -8px rgba(245,166,35,.5);
+}
+.page-client-space .cl-points-how-step b{font-family:var(--fm);font-size:.9rem;font-weight:700;color:var(--txt)}
+.page-client-space .cl-points-how-step p{margin:.35rem 0 0;font-family:var(--fm);font-size:.78rem;font-weight:300;line-height:1.5;color:var(--txt2)}
+@media(max-width:767px){.page-client-space .cl-points-how-grid{grid-template-columns:1fr}}
+
+/* "Ce que vos points débloquent" : 6 boîtes illustrées, 3 par ligne. */
+.page-client-space .cl-gains-showcase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.page-client-space .cl-gains-box{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:.7rem;
+  background:rgba(255,255,255,.72);border:1px solid var(--glass-border);border-radius:16px;
+  padding:1.4rem 1rem;
+  box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.6);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.page-client-space .cl-gains-box:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.page-client-space .cl-gains-box-ico{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;font-size:1.25rem;
+}
+.page-client-space .cl-gains-box b{font-family:var(--fm);font-size:.84rem;font-weight:600;color:var(--txt);line-height:1.4}
+.page-client-space .cl-gains-box:nth-child(2) .cl-gains-box-ico{background:linear-gradient(135deg,#0e6e83,var(--gold))}
+.page-client-space .cl-gains-box:nth-child(3) .cl-gains-box-ico{background:linear-gradient(135deg,#8B2568,var(--gold2))}
+.page-client-space .cl-gains-box:nth-child(4) .cl-gains-box-ico{background:linear-gradient(135deg,#f5a623,#b45309)}
+.page-client-space .cl-gains-box:nth-child(5) .cl-gains-box-ico{background:linear-gradient(135deg,#157347,#0e6e83)}
+.page-client-space .cl-gains-box:nth-child(6) .cl-gains-box-ico{background:linear-gradient(135deg,var(--gold2),#8B2568)}
+@media(max-width:600px){.page-client-space .cl-gains-showcase-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:400px){.page-client-space .cl-gains-showcase-grid{grid-template-columns:1fr}}
+
+/* ---- "Suivez nos réseaux" : variante déclarative de cl-points-how-step
+   (icônes de réseaux + bouton de confirmation, pas un simple lien). ---- */
+.page-client-space .cl-points-how-social .cl-points-how-ico{background:linear-gradient(135deg,#e1306c,#8B2568)}
+.page-client-space .cl-points-how-social-links{display:flex;gap:.5rem;margin-top:.7rem}
+.page-client-space .cl-points-how-social-links a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--border);color:var(--gold2);
+  text-decoration:none;font-size:.85rem;transition:transform .2s var(--ease),color .2s;
+}
+.page-client-space .cl-points-how-social-links a:hover{transform:translateY(-2px);color:var(--gold)}
+.page-client-space .cl-points-how-social-btn{
+  margin-top:.9rem;align-self:flex-start;
+  background:linear-gradient(120deg,var(--gold),var(--gold2));
+  border:none;border-radius:30px;color:#fff;
+  font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:.55rem 1.1rem;cursor:pointer;transition:transform .2s var(--ease),opacity .2s;
+}
+.page-client-space .cl-points-how-social-btn:hover{transform:translateY(-2px)}
+.page-client-space .cl-points-how-social-btn:disabled{opacity:.7;cursor:default;transform:none}
+
+/* =========================================================================
+   Club Élite — paliers de récompenses (10/20/50/100 pts) + modale de
+   félicitations quand un nouveau palier vient d'être débloqué.
+   ========================================================================= */
+.page-client-space .cl-rewards-tiers{margin-bottom:1.6rem}
+.page-client-space .cl-rewards-tiers>h3{font-family:var(--fb);font-size:.9rem;font-weight:700;color:var(--txt);margin:0 0 .9rem}
+.page-client-space .cl-rewards-tiers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.page-client-space .cl-rewards-tier{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;
+  background:rgba(255,255,255,.72);border:1px solid var(--glass-border);border-radius:16px;
+  padding:1.3rem 1rem;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.6);
+  transition:transform .25s var(--ease);
+}
+.page-client-space .cl-rewards-tier.is-unlocked:hover{transform:translateY(-3px)}
+.page-client-space .cl-rewards-tier.is-locked{opacity:.55;filter:grayscale(1)}
+.page-client-space .cl-rewards-tier-ico{
+  display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;
+  background:var(--bg2);color:var(--txt2);font-size:1.2rem;
+}
+.page-client-space .cl-rewards-tier.is-unlocked .cl-rewards-tier-ico{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff}
+.page-client-space .cl-rewards-tier.is-given .cl-rewards-tier-ico{background:linear-gradient(135deg,#157347,#0e6e83)}
+.page-client-space .cl-rewards-tier-seuil{font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)}
+.page-client-space .cl-rewards-tier b{font-family:var(--fm);font-size:.85rem;font-weight:700;color:var(--txt);line-height:1.3}
+.page-client-space .cl-rewards-tier-status{font-family:var(--fm);font-size:.68rem;color:var(--txt2)}
+.page-client-space .cl-rewards-tier.is-unlocked:not(.is-given) .cl-rewards-tier-status{color:#b45309;font-weight:600}
+.page-client-space .cl-rewards-tier.is-given .cl-rewards-tier-status{color:#157347;font-weight:600}
+@media(max-width:700px){.page-client-space .cl-rewards-tiers-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.page-client-space .cl-rewards-tiers-grid{grid-template-columns:1fr}}
+
+/* Modale de félicitations */
+.cl-reward-congrats-modal{position:fixed;inset:0;z-index:2200;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.cl-reward-congrats-modal.open{opacity:1;visibility:visible}
+.cl-reward-congrats-backdrop{position:absolute;inset:0;background:rgba(13,11,9,.6)}
+.cl-reward-congrats-card{
+  position:relative;z-index:1;width:min(440px,100%);text-align:center;
+  background:linear-gradient(135deg,#5fe0d0,var(--gold),var(--gold2) 70%,#8B2568);
+  border-radius:24px;padding:2.6rem 2rem 2.2rem;color:#fff;
+  box-shadow:var(--shadow);transform:translateY(12px) scale(.97);transition:transform .35s var(--ease);
+}
+.cl-reward-congrats-modal.open .cl-reward-congrats-card{transform:none}
+.cl-reward-congrats-ico{
+  display:inline-flex;align-items:center;justify-content:center;width:70px;height:70px;border-radius:50%;
+  background:rgba(255,255,255,.22);font-size:2rem;margin-bottom:1.1rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.4);
+}
+.cl-reward-congrats-card h3{font-family:var(--fb);font-weight:800;font-size:1.6rem;margin:0 0 1rem}
+.cl-reward-congrats-card p{font-family:var(--fm);font-size:.92rem;font-weight:300;line-height:1.6;margin:0 0 .6rem;color:rgba(255,255,255,.95)}
+.cl-reward-congrats-cta{margin-top:1.2rem;background:#fff;border-color:#fff;color:var(--gold2)}
+.cl-reward-congrats-cta::before{display:none}
+.cl-reward-congrats-cta:hover{background:rgba(255,255,255,.85);color:var(--gold2)}
+@media(prefers-reduced-motion:reduce){.cl-reward-congrats-modal,.cl-reward-congrats-card{transition:none}}
+
+/* Variante "cadeau prêt à récupérer" (même carte, dégradé or/vert plutôt
+   qu'arc-en-ciel, pour se distinguer visuellement des félicitations). */
+.cl-reward-congrats-card.is-given{background:linear-gradient(135deg,#157347,#0e6e83)}
+
+/* ---- Club Élite : historique des cadeaux reçus ---- */
+.page-client-space .cl-rewards-history{margin-top:1.8rem}
+.page-client-space .cl-rewards-history>h3{display:flex;align-items:center;gap:.55rem;font-family:var(--fb);font-size:.9rem;font-weight:700;color:var(--txt);margin:0 0 1rem}
+.page-client-space .cl-rewards-history>h3 i{color:#157347}
+.page-client-space .cl-rewards-history-empty{font-family:var(--fm);font-size:.85rem;font-weight:300;color:var(--txt2);background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.2rem;text-align:center}
+.page-client-space .cl-rewards-history-list{display:flex;flex-direction:column;gap:.6rem}
+.page-client-space .cl-rewards-history-row{
+  display:flex;align-items:center;gap:.9rem;
+  background:rgba(255,255,255,.72);border:1px solid var(--glass-border);border-radius:14px;
+  padding:.9rem 1.1rem;box-shadow:var(--shadow-card),inset 0 1px 0 rgba(255,255,255,.6);
+}
+.page-client-space .cl-rewards-history-ico{
+  flex:none;width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,#157347,#0e6e83);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.95rem;
+}
+.page-client-space .cl-rewards-history-txt{flex:1;min-width:0;display:flex;flex-direction:column}
+.page-client-space .cl-rewards-history-txt b{font-family:var(--fm);font-size:.85rem;font-weight:600;color:var(--txt)}
+.page-client-space .cl-rewards-history-txt span{font-family:var(--fm);font-size:.7rem;color:var(--txt2);margin-top:.1rem}
+.page-client-space .cl-rewards-history-date{flex:none;font-family:var(--fm);font-size:.72rem;color:var(--txt2)}
+
+@media(max-width:767px){
+  .is-client-space .container{padding:0 .5rem!important}
+}
+
+.page-client-space .cl-chart-card{transform:translate(0px,0px)!important}
+
+/* ---- Petit indice "faites glisser" au-dessus des tableaux (mobile only,
+   le débordement horizontal est déjà géré par .div-table-client-space). ---- */
+.page-client-space .cl-table-scroll-hint{display:none}
+@media(max-width:767px){
+  .page-client-space .cl-table-scroll-hint{
+    display:flex;align-items:center;gap:.4rem;
+    font-family:var(--fm);font-size:.68rem;font-weight:600;color:var(--gold2);
+    margin:0 0 .5rem;
+  }
+  .page-client-space .cl-table-scroll-hint i{font-size:.7rem;color:var(--gold)}
+}
+
+/* ---- "Laissez un avis Google" : mis en valeur (PC et mobile) — icône
+   Google agrandie, bordure et ombre teintées bleu Google au lieu du gris
+   neutre d'origine. ---- */
+.page-client-space .cl-review-gmb{
+  border-color:rgba(66,133,244,.35);
+  box-shadow:0 10px 28px -18px rgba(66,133,244,.55);
+}
+.page-client-space .cl-review-gmb-ico{
+  width:52px;height:52px;font-size:1.6rem;
+  box-shadow:0 6px 16px -6px rgba(66,133,244,.5);
+}

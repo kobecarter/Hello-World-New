@@ -274,13 +274,16 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;0,800;0,900;1,100;1,200;1,300&family=Raleway:wght@300;400;500;600;700;900&family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<?php if (isset($option) && $option == 'com_client') : ?>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<?php endif; ?>
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/all.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/themify-icons.css">
 <link rel="stylesheet" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css" async defer>
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=9.0">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=9.53">
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -605,8 +608,8 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	        </div>
 	    </section>
 
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="fal fa-arrow-up"></i>
+<button class="back-top" id="backTop" aria-label="Retour en haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fal fa-arrow-up" aria-hidden="true"></i>
 </button>
 
 <script>
@@ -637,7 +640,7 @@ var REDIRECT_LINK_CONG = '<?php echo $congPage->getLink(); ?>';
 <script src='<?php echo $siteURL; ?>assets/js/jquery.form.js'></script>
 <script src='<?php echo $siteURL; ?>flip-book/js/flipbook.min.js'></script>
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.7'></script>
+<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.11'></script>
 <script>
 /* CURSOR */
 const cur  = document.getElementById('cur');

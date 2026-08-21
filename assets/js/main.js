@@ -403,58 +403,71 @@ $(document).ready(function() {
 	/* -----------------------------------
 	Espace client — Cloche de notification
 	-------------------------------------*/
+	// #clNotifPanel vit hors de #clNotif dans le DOM (voir facture.php — un
+	// ancêtre avec backdrop-filter/transform casse position:fixed sinon), donc
+	// tout ce qui gérait l'ouverture/fermeture via la relation parent/enfant
+	// entre les deux doit agir explicitement sur les DEUX éléments.
+	function clNotifSetOpen(open) {
+		$('#clNotif').toggleClass('open', open);
+		$('#clNotifPanel').toggleClass('open', open);
+		$('#clNotifBtn').attr('aria-expanded', open);
+		$('#clNotifPanel').attr('aria-hidden', !open);
+	}
+	window.clNotifSetOpen = clNotifSetOpen;
 	function clPositionNotif() {
-		var $n = $('#clNotif');
-		if (!$n.length || !$n.hasClass('open')) return;
+		if (!$('#clNotifPanel').hasClass('open')) return;
 		var btn = document.getElementById('clNotifBtn');
 		var panel = document.getElementById('clNotifPanel');
 		if (!btn || !panel) return;
 		var r = btn.getBoundingClientRect();
 		var isRtl = (document.documentElement.getAttribute('dir') === 'rtl');
+		var margin = 12; // marge mini gardée avec le bord de l'écran (sur mobile, le
+			// panneau est presque aussi large que l'écran : sans ce clamp, l'aligner
+			// sur la cloche pouvait le pousser en partie hors-écran à gauche).
+		var panelWidth = panel.offsetWidth || 360;
 		panel.style.top = (r.bottom + 8) + 'px';
 		if (isRtl) {
-			panel.style.left = r.left + 'px';
+			var left = Math.max(margin, Math.min(r.left, window.innerWidth - panelWidth - margin));
+			panel.style.left = left + 'px';
 			panel.style.right = 'auto';
 		} else {
-			panel.style.right = (window.innerWidth - r.right) + 'px';
+			var right = Math.max(margin, Math.min(window.innerWidth - r.right, window.innerWidth - panelWidth - margin));
+			panel.style.right = right + 'px';
 			panel.style.left = 'auto';
 		}
 	}
 	$(document).on('click', '#clNotifBtn', function (e) {
 		e.stopPropagation();
-		var $n = $('#clNotif');
-		var willOpen = !$n.hasClass('open');
-		$n.toggleClass('open', willOpen);
-		$('#clNotifBtn').attr('aria-expanded', willOpen);
-		$('#clNotifPanel').attr('aria-hidden', !willOpen);
-		if (willOpen) clPositionNotif();
+		var willOpen = !$('#clNotifPanel').hasClass('open');
+		clNotifSetOpen(willOpen);
+		if (willOpen) {
+			if (typeof window.clCloseBurger === 'function') window.clCloseBurger();
+			clPositionNotif();
+			window.requestAnimationFrame(clPositionNotif);
+		}
 	});
-	$(document).on('click', '.cl-notif-item[data-cl-tab]', function () {
-		var tab = $(this).attr('data-cl-tab');
-		var $link = $('.div-client-space-tabs .nav-tabs a[href="#' + tab + '"]');
-		$('#clNotif').removeClass('open');
-		$('#clNotifBtn').attr('aria-expanded', false);
-		if ($link.length) {
-			$link.trigger('click');
+	$(document).on('click', '.cl-notif-item[data-cl-group]', function () {
+		var group = $(this).attr('data-cl-group');
+		clNotifSetOpen(false);
+		if (typeof window.clShowGroup === 'function') {
+			window.clShowGroup(group);
 			if ($('.div-client-space').length) {
 				$('html, body').animate({ scrollTop: $('.div-client-space').offset().top - 90 }, 300);
 			}
 		}
 	});
 	$(document).on('click', function (e) {
-		if (!$(e.target).closest('#clNotif').length) {
-			$('#clNotif').removeClass('open');
-			$('#clNotifBtn').attr('aria-expanded', false);
+		if (!$(e.target).closest('#clNotif, #clNotifPanel').length) {
+			clNotifSetOpen(false);
 		}
 	});
 	$(document).on('keydown', function (e) {
 		if (e.key === 'Escape') {
-			$('#clNotif').removeClass('open');
-			$('#clNotifBtn').attr('aria-expanded', false);
+			clNotifSetOpen(false);
 		}
 	});
 	$(window).on('scroll resize', function () {
-		if ($('#clNotif').hasClass('open')) clPositionNotif();
+		if ($('#clNotifPanel').hasClass('open')) clPositionNotif();
 	});
 
 	/* -----------------------------------

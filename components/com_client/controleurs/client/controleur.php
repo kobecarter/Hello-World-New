@@ -1,5 +1,20 @@
 <?php
 
+// Points de fidélité : valeurs par action (ajustables ici, aucun autre
+// endroit du code ne les redéfinit). L'attribution des récompenses (crédits
+// Ads, remise, cartes-cadeaux, audit, formation) reste manuelle côté agence —
+// ce compteur ne fait que donner à l'équipe un chiffre objectif à regarder.
+// Doit rester tout en haut du fichier : le switch juste en dessous appelle
+// des fonctions qui lisent ces constantes dès le premier include du fichier,
+// avant que l'exécution n'atteigne un define() placé plus bas.
+define('CL_POINTS_AVIS', 10);
+define('CL_POINTS_PARRAINAGE', 15);
+define('CL_POINTS_ATTESTATION', 20);
+define('CL_POINTS_TELECHARGEMENT', 1);
+define('CL_POINTS_SOCIAL', 3);
+define('CL_POINTS_CONNEXION_REGULIERE', 1);
+define('CL_LOGIN_BONUS_THRESHOLD', 4);
+
 if (isset($task) && !empty($task)) {
     switch ($task) {
         case "login":
@@ -44,6 +59,24 @@ if (isset($task) && !empty($task)) {
 		case "pdfQuoteApi":
 			pdfQuoteApi($_GET);
 			break;
+		case "findAttestationsApi":
+			findAttestationsApi($_GET);
+			break;
+		case "signAttestationApi":
+			signAttestationApi($_POST);
+			break;
+		case "pdfAttestationApi":
+			pdfAttestationApi($_GET);
+			break;
+		case "findClientSocialsApi":
+			findClientSocialsApi($_GET);
+			break;
+		case "createDemandeApi":
+			createDemandeApi($_POST);
+			break;
+		case "followSocialApi":
+			followSocialApi($_POST);
+			break;
     }
 }
 /* ----------------------------------------- login ----------------------------------------- */
@@ -74,18 +107,24 @@ function login($data)
 // Login
 function loginApi($data)
 {
-	echo client::loginApi($data);
+	$response = client::loginApi($data);
+	clTrackLoginAndCheckMonthlyBonus($response);
+	echo $response;
 }
 
 // Connexion sociale
 function googleLoginApi($data)
 {
-	echo client::googleLoginApi($data);
+	$response = client::googleLoginApi($data);
+	clTrackLoginAndCheckMonthlyBonus($response);
+	echo $response;
 }
 
 function facebookLoginApi($data)
 {
-	echo client::facebookLoginApi($data);
+	$response = client::facebookLoginApi($data);
+	clTrackLoginAndCheckMonthlyBonus($response);
+	echo $response;
 }
 
 function verifyEmailApi($data)
@@ -113,6 +152,115 @@ function createReclamationApi($data){
 		$data['message'] = "Facture concernée : " . $ref . "\n\n" . (isset($data['message']) ? $data['message'] : '');
 	}
 	echo client::createReclamationApi($data);
+}
+
+function clAwardPoints($idClient, $points, $type, $libelle = null) {
+	global $db;
+	if ($idClient <= 0 || $points <= 0) return;
+	$db->query(sprintf(
+		"INSERT INTO " . __prefixe_db__ . "points_client (id_client, points, type, libelle, date_add) VALUES (%s, %s, %s, %s, %s)",
+		GetSQLValueString($idClient, "int"), GetSQLValueString($points, "int"),
+		GetSQLValueString($type, "text"), GetSQLValueString($libelle, "text"),
+		GetSQLValueString(date("Y-m-d H:i:s"), "text")
+	));
+	clCheckRewardThresholds($idClient);
+}
+
+// Paliers de récompenses : 10/20/50/100 points cumulés. Recalcule le total et
+// débloque (INSERT IGNORE, contrainte UNIQUE(id_client, seuil)) toute
+// récompense nouvellement atteinte — la remise effective (audit, formation,
+// budget Ads, remise facture) reste un geste manuel de l'agence, marqué
+// depuis le CRM (com_fidelite). ⚠️ Les seuils/libellés doivent rester
+// synchronisés avec leur équivalent côté CRM
+// (hw_crm/components/com_fidelite/classes/fidelite.php::REWARD_THRESHOLDS).
+function clRewardThresholds() {
+	return array(
+		10  => 'Audit SEO offert',
+		20  => 'Formation offerte',
+		50  => 'Crédits publicitaires Google Ads',
+		100 => 'Remise de 10% sur votre prochaine facture',
+	);
+}
+function clCheckRewardThresholds($idClient) {
+	global $db;
+	if ($idClient <= 0) return;
+	$rows = $db->queryS(sprintf(
+		"SELECT SUM(points) AS total FROM " . __prefixe_db__ . "points_client WHERE id_client = %s",
+		GetSQLValueString($idClient, "int")
+	));
+	$total = (is_array($rows) && count($rows) > 0 && $rows[0]['total'] !== null) ? (int) $rows[0]['total'] : 0;
+	$now = date("Y-m-d H:i:s");
+	foreach (clRewardThresholds() as $seuil => $libelle) {
+		if ($total < $seuil) continue;
+		$db->query(sprintf(
+			"INSERT IGNORE INTO " . __prefixe_db__ . "client_rewards (id_client, seuil, libelle, date_debloque) VALUES (%s, %s, %s, %s)",
+			GetSQLValueString($idClient, "int"), GetSQLValueString($seuil, "int"),
+			GetSQLValueString($libelle, "text"), GetSQLValueString($now, "text")
+		));
+	}
+}
+
+// Comme clAwardPoints, mais n'attribue les points qu'une seule fois par
+// document (facture/devis) : hw_points_client n'a pas de colonne de
+// référence dédiée, donc l'unicité est vérifiée sur (id_client, type,
+// libelle) — le libelle inclut l'id du document, ce qui suffit à empêcher
+// un gain à chaque clic de téléchargement sur le même document.
+function clAwardDownloadPointOnce($idClient, $type, $refId, $libelleBase) {
+	global $db;
+	if ($idClient <= 0 || $refId <= 0) return;
+	$libelle = $libelleBase . ' #' . $refId;
+	$existing = $db->queryS(sprintf(
+		"SELECT id FROM " . __prefixe_db__ . "points_client WHERE id_client = %s AND type = %s AND libelle = %s LIMIT 1",
+		GetSQLValueString($idClient, "int"), GetSQLValueString($type, "text"), GetSQLValueString($libelle, "text")
+	));
+	if (is_array($existing) && count($existing) > 0) return;
+	clAwardPoints($idClient, CL_POINTS_TELECHARGEMENT, $type, $libelle);
+}
+
+// Connexion régulière : journalise chaque connexion réussie (hw_client_login_log)
+// puis, si le client a au moins CL_LOGIN_BONUS_THRESHOLD jours de connexion
+// DISTINCTS sur le mois calendaire en cours, attribue le bonus mensuel — une
+// seule fois par mois (vérifié via le libelle, qui inclut l'année-mois, comme
+// clAwardDownloadPointOnce). On compte des jours distincts plutôt que des
+// connexions brutes pour éviter qu'une suite de déconnexions/reconnexions le
+// même jour ne déclenche le seuil artificiellement.
+function clTrackLoginAndCheckMonthlyBonus($loginResponse)
+{
+	global $db;
+	$decoded = json_decode($loginResponse);
+	if (!is_object($decoded) || !isset($decoded->icon) || $decoded->icon !== 'success' || !isset($decoded->client)) {
+		return;
+	}
+	$c = $decoded->client;
+	$idClient = isset($c->id) ? (int) $c->id : (isset($c->ID) ? (int) $c->ID : 0);
+	if ($idClient <= 0) {
+		return;
+	}
+	$now = date("Y-m-d H:i:s");
+	$db->query(sprintf(
+		"INSERT INTO " . __prefixe_db__ . "client_login_log (id_client, date_add) VALUES (%s, %s)",
+		GetSQLValueString($idClient, "int"), GetSQLValueString($now, "text")
+	));
+
+	$monthKey = date("Y-m");
+	$rows = $db->queryS(sprintf(
+		"SELECT COUNT(DISTINCT DATE(date_add)) AS n FROM " . __prefixe_db__ . "client_login_log WHERE id_client = %s AND DATE_FORMAT(date_add, '%%Y-%%m') = %s",
+		GetSQLValueString($idClient, "int"), GetSQLValueString($monthKey, "text")
+	));
+	$distinctDays = (is_array($rows) && count($rows) > 0) ? (int) $rows[0]['n'] : 0;
+	if ($distinctDays < CL_LOGIN_BONUS_THRESHOLD) {
+		return;
+	}
+
+	$libelle = 'Connexion régulière · ' . $monthKey;
+	$existing = $db->queryS(sprintf(
+		"SELECT id FROM " . __prefixe_db__ . "points_client WHERE id_client = %s AND type = 'connexion_reguliere' AND libelle = %s LIMIT 1",
+		GetSQLValueString($idClient, "int"), GetSQLValueString($libelle, "text")
+	));
+	if (is_array($existing) && count($existing) > 0) {
+		return;
+	}
+	clAwardPoints($idClient, CL_POINTS_CONNEXION_REGULIERE, 'connexion_reguliere', $libelle);
 }
 
 // Témoignage client : alimente le système de témoignages du SITE
@@ -195,6 +343,7 @@ function createTemoignageApi($data){
 				GetSQLValueString($idClient, "int"), GetSQLValueString($idT, "int"), GetSQLValueString($nomAffiche, "text"), GetSQLValueString($email, "text"), GetSQLValueString($note, "int"), GetSQLValueString($message, "text"), GetSQLValueString($now, "text")));
 		}
 	}
+	if (!$existing) { clAwardPoints($idClient, CL_POINTS_AVIS, 'avis', 'Avis client déposé'); }
 	echo json_encode(array("icon"=>"success","message"=>"Merci pour votre avis !","code"=>"ok"));
 }
 
@@ -232,6 +381,11 @@ function createParrainageApi($data){
 		$pEmail = isset($ci->email) ? $ci->email : '';
 	}
 	if ($pEmail === '' && is_object($info) && isset($info->info->email)) { $pEmail = $info->info->email; }
+	// Un client ne peut pas se parrainer lui-même.
+	if ($pEmail !== '' && strcasecmp($pEmail, $fEmail) === 0) {
+		echo json_encode(array("icon"=>"warning","message"=>"You cannot refer yourself","code"=>"self"));
+		return;
+	}
 	// Anti-doublon : même filleul déjà parrainé par ce parrain.
 	$dup = $db->queryS(sprintf("SELECT id FROM " . __prefixe_db__ . "parrainage WHERE id_parrain = %s AND filleul_email = %s LIMIT 1",
 		GetSQLValueString($idParrain, "int"), GetSQLValueString($fEmail, "text")));
@@ -246,6 +400,7 @@ function createParrainageApi($data){
 		GetSQLValueString($fTel, "text"), GetSQLValueString($msg, "text"), GetSQLValueString($now, "text")));
 	// Email d'invitation au filleul (best-effort : n'interrompt jamais la réponse).
 	sendParrainageInvitationEmail($fEmail, $fNom, $pNom);
+	clAwardPoints($idParrain, CL_POINTS_PARRAINAGE, 'parrainage', 'Recommandation de ' . $fNom);
 	echo json_encode(array("icon"=>"success","message"=>"Merci ! Nous contactons votre filleul rapidement.","code"=>"ok"));
 }
 
@@ -305,14 +460,249 @@ function updateProfileApi($data){
 
 function pdfInvoiceApi($data)
 {
-	echo client::pdfInvoiceApi($data['id']);
+	$response = client::pdfInvoiceApi($data['id']);
+	clAwardDownloadPointFromPdfResponse($response, (int) $data['id'], 'facture_telechargement', 'Facture téléchargée');
+	echo $response;
 }
 
 function pdfQuoteApi($data)
 {
-	echo client::pdfQuoteApi($data['id']);
+	$response = client::pdfQuoteApi($data['id']);
+	clAwardDownloadPointFromPdfResponse($response, (int) $data['id'], 'devis_telechargement', 'Devis téléchargé');
+	echo $response;
 }
 
+// Attribue 1 point au client connecté quand un PDF (facture/devis) a bien
+// été généré (icon=success dans la réponse), une seule fois par document —
+// voir clAwardDownloadPointOnce(). Ne modifie jamais $response : appelée
+// avant le echo qui renvoie exactement la même chose qu'avant côté client.
+function clAwardDownloadPointFromPdfResponse($response, $refId, $type, $libelleBase)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client']) || $refId <= 0) {
+		return;
+	}
+	$decoded = json_decode($response);
+	if (!is_object($decoded) || !isset($decoded->icon) || $decoded->icon !== 'success') {
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int) $info->info->id : 0;
+	if ($idClient > 0) {
+		clAwardDownloadPointOnce($idClient, $type, $refId, $libelleBase);
+	}
+}
 
+function findAttestationsApi($data)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		echo json_encode(array());
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int)$info->info->id : 0;
+	if ($idClient <= 0) {
+		echo json_encode(array());
+		return;
+	}
+	echo client::getAttestationsByClientApi($idClient);
+}
+
+function signAttestationApi($data)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		echo json_encode(array("icon"=>"error","message"=>"Not authenticated","code"=>"auth"));
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int)$info->info->id : 0;
+	if ($idClient <= 0) {
+		echo json_encode(array("icon"=>"error","message"=>"Not authenticated","code"=>"auth"));
+		return;
+	}
+	$id = isset($data['id']) ? (int) $data['id'] : 0;
+	$nom = isset($data['nom']) ? trim($data['nom']) : '';
+	$response = client::signAttestationApi($idClient, $id, $nom);
+	$decoded = json_decode($response);
+	if (is_object($decoded) && isset($decoded->icon) && $decoded->icon === 'success') {
+		clAwardPoints($idClient, CL_POINTS_ATTESTATION, 'attestation', 'Attestation signée');
+	}
+	echo $response;
+}
+
+function pdfAttestationApi($data)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		http_response_code(401);
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int)$info->info->id : 0;
+	$id = isset($data['id']) ? (int) $data['id'] : 0;
+	if ($idClient <= 0 || $id <= 0) {
+		http_response_code(400);
+		return;
+	}
+	$response = client::pdfAttestationApi($idClient, $id);
+	$decoded = json_decode($response);
+	if (!is_object($decoded) || !isset($decoded->icon) || $decoded->icon !== 'success' || empty($decoded->pdf_base64)) {
+		http_response_code(404);
+		echo "PDF not found";
+		return;
+	}
+	// Le téléchargement est possible avant signature (le client peut vouloir
+	// consulter le document, ou le télécharger pour le traiter autrement) :
+	// le CRM ne renvoie first_download=true qu'une seule fois par attestation
+	// (download_date posé au premier appel), donc les points ne sont
+	// attribués qu'au tout premier téléchargement, pas à chaque relecture.
+	if (!empty($decoded->first_download)) {
+		clAwardPoints($idClient, CL_POINTS_ATTESTATION, 'attestation_telechargement', 'Attestation téléchargée');
+	}
+	$pdfBytes = base64_decode($decoded->pdf_base64);
+	$filename = isset($decoded->filename) ? $decoded->filename : ('attestation-' . $id . '.pdf');
+	$mime = isset($decoded->mime) ? $decoded->mime : 'application/pdf';
+	header('Content-Type: ' . $mime);
+	header('Content-Disposition: inline; filename="' . $filename . '"');
+	header('Content-Length: ' . strlen($pdfBytes));
+	echo $pdfBytes;
+}
+
+function findClientSocialsApi($data)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		echo json_encode(array());
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int)$info->info->id : 0;
+	if ($idClient <= 0) {
+		echo json_encode(array());
+		return;
+	}
+	echo client::getClientSocialsByClientApi($idClient);
+}
+
+// "J'ai suivi nos réseaux" : système déclaratif (aucun moyen de vérifier
+// côté serveur qu'un compte a réellement suivi une page tierce), 3 points
+// attribués une seule fois par client — pas de ref_id ici (une seule action
+// possible, pas par document), donc vérification directe sur (id_client,
+// type) plutôt que via clAwardDownloadPointOnce.
+function followSocialApi($data)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		echo json_encode(array("icon" => "error", "message" => "Unauthorized"));
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int) $info->info->id : 0;
+	if ($idClient <= 0) {
+		echo json_encode(array("icon" => "error", "message" => "Unauthorized"));
+		return;
+	}
+	global $db;
+	$existing = $db->queryS(sprintf(
+		"SELECT id FROM " . __prefixe_db__ . "points_client WHERE id_client = %s AND type = 'social_follow' LIMIT 1",
+		GetSQLValueString($idClient, "int")
+	));
+	if (is_array($existing) && count($existing) > 0) {
+		echo json_encode(array("icon" => "success", "already" => true));
+		return;
+	}
+	clAwardPoints($idClient, CL_POINTS_SOCIAL, 'social_follow', 'Réseaux sociaux suivis');
+	echo json_encode(array("icon" => "success", "already" => false));
+}
+
+// Demandes client : essai gratuit d'un agent IA, commande d'un agent IA,
+// inscription à une formation, ou commande d'un service. Un seul mécanisme
+// générique (hw_demande_client) pour les 4 cas — voir Découvrir dans
+// l'espace client. Chaque demande envoie aussi un email à l'agence (même
+// schéma que com_service/com_formation) pour ne rien perdre tant qu'il n'y a
+// pas encore d'écran de gestion dédié côté CRM.
+function createDemandeApi($data)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		echo json_encode(array("icon" => "error", "message" => "Not authenticated", "code" => "auth"));
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int) $info->info->id : 0;
+	if ($idClient <= 0) {
+		echo json_encode(array("icon" => "error", "message" => "Not authenticated", "code" => "auth"));
+		return;
+	}
+	$allowedTypes = array('agent_essai', 'agent_commande', 'formation', 'service');
+	$type = isset($data['type']) ? trim($data['type']) : '';
+	if (!in_array($type, $allowedTypes, true)) {
+		echo json_encode(array("icon" => "warning", "message" => "Type invalide", "code" => "type"));
+		return;
+	}
+	$idRef = isset($data['id_ref']) ? (int) $data['id_ref'] : 0;
+	$refTitre = isset($data['ref_titre']) ? trim($data['ref_titre']) : '';
+	$refSlug = isset($data['ref_slug']) ? trim($data['ref_slug']) : '';
+	$message = isset($data['message']) ? trim($data['message']) : '';
+	if ($refTitre === '') {
+		echo json_encode(array("icon" => "warning", "message" => "Champs manquants", "code" => "missing"));
+		return;
+	}
+
+	global $db;
+	$now = date("Y-m-d H:i:s");
+	$db->query(sprintf(
+		"INSERT INTO " . __prefixe_db__ . "demande_client (id_client, type, id_ref, ref_titre, ref_slug, message, statut, date_add) VALUES (%s, %s, %s, %s, %s, %s, 0, %s)",
+		GetSQLValueString($idClient, "int"), GetSQLValueString($type, "text"),
+		GetSQLValueString($idRef > 0 ? $idRef : null, "int"), GetSQLValueString($refTitre, "text"),
+		GetSQLValueString($refSlug, "text"), GetSQLValueString($message !== '' ? $message : null, "text"),
+		GetSQLValueString($now, "text")
+	));
+
+	// Infos client (même schéma que createTemoignageApi).
+	$prenom = ''; $nom = ''; $rs = ''; $email = '';
+	if (isset($_SESSION['client_info']) && is_object($_SESSION['client_info'])) {
+		$ci = $_SESSION['client_info'];
+		$prenom = isset($ci->prenom) ? trim($ci->prenom) : '';
+		$nom    = isset($ci->nom) ? trim($ci->nom) : '';
+		$rs     = isset($ci->raison_social) ? trim($ci->raison_social) : '';
+		$email  = isset($ci->email) ? $ci->email : '';
+	}
+	if ($email === '' && is_object($info) && isset($info->info->email)) { $email = $info->info->email; }
+	$nomAffiche = trim($prenom . ' ' . $nom);
+	if ($nomAffiche === '') { $nomAffiche = $rs !== '' ? $rs : 'Client'; }
+
+	$typeLabels = array(
+		'agent_essai'    => "Essai gratuit d'un agent IA",
+		'agent_commande' => "Commande d'un agent IA",
+		'formation'      => "Inscription à une formation",
+		'service'        => "Commande d'un service",
+	);
+	$sujet = $typeLabels[$type];
+
+	require_once '../../../vendor/autoload.php';
+	try {
+		$config = new config($db, isset($_SESSION['lang']) ? $_SESSION['lang'] : 'fr');
+		$mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+		$mail->Host = 'helloworld-agency.com';
+		$mail->Username = $config->getEmail();
+		if ($email !== '') { $mail->setFrom($email, $nomAffiche); }
+		$mail->addAddress($config->getEmail(), $config->getNom());
+		$mail->isHTML(true);
+		$mail->CharSet = 'UTF-8';
+		$mail->Encoding = 'base64';
+		$mail->Subject = $sujet . ' — espace client';
+		$mail->AltBody = $sujet;
+		$mail->Body = '<html><body>'
+			. '<h1 style="font-weight:normal">' . htmlspecialchars($sujet) . '</h1>'
+			. '<table border="0" cellpadding="5">'
+			. '<tr><td><strong>Client : </strong></td><td>' . htmlspecialchars($nomAffiche) . ($rs !== '' ? ' (' . htmlspecialchars($rs) . ')' : '') . '</td></tr>'
+			. '<tr><td><strong>E-mail : </strong></td><td>' . htmlspecialchars($email) . '</td></tr>'
+			. '<tr><td><strong>Concerne : </strong></td><td>' . htmlspecialchars($refTitre) . '</td></tr>'
+			. ($message !== '' ? '<tr><td><strong>Message : </strong></td><td>' . nl2br(htmlspecialchars($message)) . '</td></tr>' : '')
+			. '</table></body></html>';
+		$mail->send();
+	} catch (\Throwable $e) {
+		// L'email est un bonus (notification immédiate) : la demande est déjà
+		// enregistrée en base, donc on n'échoue pas la requête si l'envoi rate.
+	}
+
+	echo json_encode(array("icon" => "success", "message" => "Demande envoyée"));
+}
 
 

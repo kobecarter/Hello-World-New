@@ -939,5 +939,75 @@ public static function setNewPasswordApi($data)
             throw $th;
         }
     }
-	
+
+    public static function getAttestationsByClientApi($clientID){
+        global $apiURL;
+        try {
+            if (isset($clientID) && !empty($clientID)){
+                $api_url = $apiURL."com_client/controleurs/router.php?task=findAttestationsByClientApi&client=".$clientID;
+                return self::apiGetJson($api_url, $_SESSION['client']);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public static function signAttestationApi($clientID, $attestationId, $signatureNom){
+        global $apiURL;
+        try {
+            $post_data = array('client' => $clientID, 'id' => $attestationId, 'nom' => $signatureNom);
+            $ch = curl_init($apiURL."com_client/controleurs/router.php?task=signAttestationApi");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $_SESSION['client']));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+            $response = curl_exec($ch);
+            if (curl_errno($ch)) {
+                return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
+            }
+            curl_close($ch);
+            return $response;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public static function pdfAttestationApi($clientID, $attestationId){
+        global $apiURL;
+        try {
+            $api_url = $apiURL."com_client/controleurs/router.php?task=pdfAttestationApi&client=".$clientID."&id=".$attestationId;
+            $ch = curl_init($api_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $_SESSION['client']));
+            $response = curl_exec($ch);
+            if (curl_errno($ch)) {
+                return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
+            }
+            curl_close($ch);
+            return $response;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public static function countPendingAttestationsApi($clientID){
+        global $apiURL;
+        try {
+            if (isset($clientID) && !empty($clientID)){
+                $api_url = $apiURL."com_client/controleurs/router.php?task=countPendingAttestationsApi&client=".$clientID;
+                return self::apiGetJson($api_url, $_SESSION['client']);
+            }
+        } catch (\Throwable $th) { throw $th; }
+    }
+
+    public static function getClientSocialsByClientApi($clientID){
+        global $apiURL;
+        try {
+            if (isset($clientID) && !empty($clientID)){
+                $api_url = $apiURL."com_client/controleurs/router.php?task=findClientSocialsByClientApi&client=".$clientID;
+                return self::apiGetJson($api_url, $_SESSION['client']);
+            }
+        } catch (\Throwable $th) { throw $th; }
+    }
+
 }
