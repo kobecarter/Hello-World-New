@@ -53,10 +53,13 @@ CREATE TABLE IF NOT EXISTS `hw_parrainage` (
 -- Si — et seulement si — la table existait déjà SANS cette colonne, décommente :
 -- ALTER TABLE `hw_avis_client` ADD COLUMN `id_temoignage` INT NULL AFTER `id_client`;
 
--- --- Points de fidélité : historique des gains (avis laissé, parrainage
---     converti, attestation signée/téléchargée...). Le total affiché dans
---     l'espace client (onglet Club Élite) est la SOMME des lignes de cette
---     table pour le client, pas une colonne dénormalisée.
+-- --- Points de fidélité : le CRM (com_fidelite, crm_points_client) est la
+--     source de vérité pour le TOTAL affiché au client (voir
+--     client::getFideliteTotalApi/getFideliteHistoryApi, qui appellent
+--     hw_crm/components/com_fidelite/controleurs/router.php). Cette table
+--     locale ne sert plus qu'à dédupliquer les gains ponctuels côté site
+--     (clAwardDownloadPointOnce, bonus de connexion régulière) : elle n'est
+--     jamais lue pour l'affichage du total/historique.
 CREATE TABLE IF NOT EXISTS `hw_points_client` (
   `id`         INT AUTO_INCREMENT PRIMARY KEY,
   `id_client`  INT NOT NULL,                  -- id du client (CRM)
@@ -96,24 +99,28 @@ CREATE TABLE IF NOT EXISTS `hw_client_login_log` (
   KEY `idx_id_client` (`id_client`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --- Paliers de récompenses : dès qu'un client franchit un seuil de points
---     (10/20/50/100 — voir clCheckRewardThresholds dans le contrôleur ET son
---     équivalent côté CRM dans com_fidelite/classes/fidelite.php, les deux
---     DOIVENT rester synchronisés), une ligne est débloquée ici. `statut`
---     suit si l'agence a effectivement remis la récompense (audit, formation,
---     budget Ads, remise — geste manuel, jamais automatique) ; `notifie`
---     évite de réafficher le message de félicitations au client à chaque visite.
+-- --- Paliers de récompenses : le CRM (crm_client_rewards, com_fidelite) est
+--     la seule source de vérité pour QUELS paliers sont débloqués et si
+--     l'agence les a remis (statut/libelle/date_affecte/affecte_par) --
+--     fidelite::addPoints() y débloque les seuils automatiquement, pas de
+--     règle dupliquée côté site. Cette table locale n'est plus qu'un MIROIR :
+--     à chaque chargement de l'espace client, facture.php upsert une ligne
+--     par palier CRM reçu (voir client::getFideliteRewardsApi) et n'utilise
+--     localement que `notifie`/`notifie_don`, un pur état d'affichage ("a-t-on
+--     déjà montré le popup one-shot à ce client ?") qui n'a pas de sens côté
+--     CRM. Pas de rattrapage/backfill nécessaire ici : le miroir se remplit
+--     tout seul dès la première visite du client après déploiement.
 CREATE TABLE IF NOT EXISTS `hw_client_rewards` (
   `id`             INT AUTO_INCREMENT PRIMARY KEY,
   `id_client`      INT NOT NULL,
   `seuil`          INT NOT NULL,
   `libelle`        VARCHAR(255) NOT NULL,
-  `statut`         TINYINT NOT NULL DEFAULT 0,  -- 0 débloqué/en attente, 1 affecté par l'agence
-  `notifie`        TINYINT NOT NULL DEFAULT 0,  -- 0 message de félicitations pas encore vu, 1 déjà vu
-  `notifie_don`    TINYINT NOT NULL DEFAULT 0,  -- 0 popup "contactez l'agence" pas encore vu, 1 déjà vu
+  `statut`         TINYINT NOT NULL DEFAULT 0,  -- miroir de crm_client_rewards.statut
+  `notifie`        TINYINT NOT NULL DEFAULT 0,  -- 0 message de félicitations pas encore vu, 1 déjà vu (local)
+  `notifie_don`    TINYINT NOT NULL DEFAULT 0,  -- 0 popup "contactez l'agence" pas encore vu, 1 déjà vu (local)
   `date_debloque`  DATETIME NOT NULL,
   `date_affecte`   DATETIME NULL,
-  `affecte_par`    VARCHAR(255) NULL,           -- utilisateur CRM qui a marqué la récompense comme donnée
+  `affecte_par`    VARCHAR(255) NULL,           -- miroir de crm_client_rewards.affecte_par
   KEY `idx_id_client` (`id_client`),
   UNIQUE KEY `uniq_client_seuil` (`id_client`, `seuil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -121,23 +128,6 @@ CREATE TABLE IF NOT EXISTS `hw_client_rewards` (
 -- Si la table existait déjà (installation antérieure à l'ajout de
 -- notifie_don), ajoute la colonne manquante :
 -- ALTER TABLE `hw_client_rewards` ADD COLUMN `notifie_don` TINYINT NOT NULL DEFAULT 0 AFTER `notifie`;
-
--- Rattrapage ponctuel : les clients qui avaient déjà accumulé des points
--- AVANT la mise en place de ce système de paliers doivent aussi voir leurs
--- récompenses déjà méritées débloquées (sinon un client à 140 points, par
--- exemple, se retrouve sans aucun palier tant qu'il ne regagne pas de
--- points après le déploiement). Idempotent (INSERT IGNORE + contrainte
--- UNIQUE) — sans effet si déjà exécuté.
-INSERT IGNORE INTO `hw_client_rewards` (`id_client`, `seuil`, `libelle`, `date_debloque`)
-SELECT t.id_client, s.seuil, s.libelle, NOW()
-FROM (SELECT id_client, SUM(points) AS total FROM `hw_points_client` GROUP BY id_client) t
-CROSS JOIN (
-    SELECT 10 AS seuil, 'Audit SEO offert' AS libelle
-    UNION ALL SELECT 20, 'Formation offerte'
-    UNION ALL SELECT 50, 'Crédits publicitaires Google Ads'
-    UNION ALL SELECT 100, 'Remise de 10% sur votre prochaine facture'
-) s
-WHERE t.total >= s.seuil;
 
 
 -- =====================================================================
@@ -173,11 +163,14 @@ CREATE TABLE IF NOT EXISTS `crm_attestation` (
   KEY `idx_id_client` (`id_client`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --- Espace Fidélité (admin CRM, module com_fidelite) : gère les points de
---     fidélité des clients — les points eux-mêmes restent dans la base du
---     SITE (hw_points_client, SECTION A), le CRM n'est qu'une couche
---     d'administration par-dessus (voir hw_crm/components/com_fidelite/).
---     Pas de nouvelle table ici : seulement le module + les permissions.
+-- --- Espace Fidélité (admin CRM, module com_fidelite) : le CRM est la
+--     source de vérité pour les points/récompenses (crm_points_client,
+--     crm_client_rewards -- créées par la migration du dépôt hw_crm, pas
+--     ici) ; le site (SECTION A) les consulte/écrit via l'API exposée par
+--     com_fidelite/controleurs/router.php (task=apiXxx, secret partagé
+--     FIDELITE_API_SECRET), jamais par connexion DB directe entre les deux
+--     applications. Pas de nouvelle table ici : seulement le module + les
+--     permissions d'administration CRM.
 --     ⚠️ Adapter la valeur d'`ordre` si un module 'ordre'=13 existe déjà en
 --     prod dans crm_modules (positioned='side').
 INSERT IGNORE INTO `crm_modules` (`id_module`, `enabled`, `installed`, `nom`, `classe`, `nom_table`, `translated`, `url`, `system`, `icon`, `positioned`, `ordre`)

@@ -1010,4 +1010,119 @@ public static function setNewPasswordApi($data)
         } catch (\Throwable $th) { throw $th; }
     }
 
+    // Points de fidélité (CRM com_fidelite) : le CRM est la source de vérité,
+    // ces endpoints ne sont PAS gardés par le token client (bearer) mais par un
+    // secret partagé (FIDELITE_API_SECRET, même valeur des deux côtés, jamais
+    // la même entre environnements) -- voir com_fidelite/controleurs/router.php
+    // côté CRM. Réutilise le même anti-flood ($lastApiCallAt) que apiGetJson.
+    // Décode en tableaux associatifs (pas en objets) pour rester compatible
+    // avec le style $row['champ'] utilisé partout ailleurs dans facture.php.
+    private static function apiCallFidelite($task, $params = array(), $method = 'GET')
+    {
+        global $apiURL;
+        if (!defined('FIDELITE_API_SECRET') || FIDELITE_API_SECRET === '') {
+            return null;
+        }
+        $minGap = 0.6;
+        $sinceLast = microtime(true) - self::$lastApiCallAt;
+        if (self::$lastApiCallAt > 0 && $sinceLast < $minGap) {
+            usleep((int) (($minGap - $sinceLast) * 1000000));
+        }
+        self::$lastApiCallAt = microtime(true);
+
+        $url = $apiURL."com_fidelite/controleurs/router.php?task=".$task;
+        $headers = array('X-Webhook-Secret: '.FIDELITE_API_SECRET);
+        $ch = curl_init();
+        if ($method === 'POST') {
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+            $headers[] = 'Content-Type: application/json';
+        } else {
+            foreach ($params as $k => $v) { $url .= "&".$k."=".urlencode($v); }
+            curl_setopt($ch, CURLOPT_URL, $url);
+        }
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    public static function getFideliteTotalApi($idClient){
+        $r = self::apiCallFidelite('apiGetTotal', array('id_client' => (int) $idClient));
+        return (is_array($r) && isset($r['total'])) ? (int) $r['total'] : 0;
+    }
+
+    public static function getFideliteHistoryApi($idClient){
+        $r = self::apiCallFidelite('apiGetHistory', array('id_client' => (int) $idClient));
+        return (is_array($r) && isset($r['history']) && is_array($r['history'])) ? $r['history'] : array();
+    }
+
+    public static function getFideliteRewardsApi($idClient){
+        $r = self::apiCallFidelite('apiGetRewards', array('id_client' => (int) $idClient));
+        return (is_array($r) && isset($r['rewards']) && is_array($r['rewards'])) ? $r['rewards'] : array();
+    }
+
+    // Appelé côté site après une action du client qui mérite des points.
+    // N'échoue jamais bruyamment : si le CRM est injoignable, l'action métier
+    // (signature, avis...) reste acquise -- seuls les points seraient manqués.
+    public static function addFideliteApi($idClient, $points, $type, $libelle){
+        return self::apiCallFidelite('apiAddPoints', array(
+            'id_client' => (int) $idClient,
+            'points' => (int) $points,
+            'type' => $type,
+            'libelle' => $libelle,
+        ), 'POST');
+    }
+
+    // Parrainage (CRM crm_client_parrainage) : le CRM est la source de vérité
+    // -- mêmes endpoints à jeton client que le reste de l'espace client (voir
+    // com_client/controleurs/router.php côté CRM). Décodé en tableau
+    // associatif pour rester compatible avec le style $row['champ'] de
+    // facture.php.
+    public static function getParrainagesByClientApi($clientID){
+        global $apiURL;
+        try {
+            if (isset($clientID) && !empty($clientID)){
+                $api_url = $apiURL."com_client/controleurs/router.php?task=findParrainagesByClientApi&client=".$clientID;
+                $ch = curl_init($api_url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $_SESSION['client']));
+                $response = curl_exec($ch);
+                curl_close($ch);
+                $decoded = json_decode($response, true);
+                return is_array($decoded) ? $decoded : array();
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return array();
+    }
+
+    public static function createParrainageApi($clientID, $parrainNom, $parrainEmail, $filleulNom, $filleulEntreprise, $filleulEmail, $filleulTel, $message){
+        global $apiURL;
+        try {
+            $post_data = array(
+                'client' => $clientID, 'parrain_nom' => $parrainNom, 'parrain_email' => $parrainEmail,
+                'filleul_nom' => $filleulNom, 'filleul_entreprise' => $filleulEntreprise,
+                'filleul_email' => $filleulEmail, 'filleul_tel' => $filleulTel, 'message' => $message,
+            );
+            $ch = curl_init($apiURL."com_client/controleurs/router.php?task=createParrainageApi");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $_SESSION['client']));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+            $response = curl_exec($ch);
+            if (curl_errno($ch)) {
+                return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
+            }
+            curl_close($ch);
+            return $response;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
 }

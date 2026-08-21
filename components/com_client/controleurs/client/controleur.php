@@ -154,6 +154,13 @@ function createReclamationApi($data){
 	echo client::createReclamationApi($data);
 }
 
+// Le CRM (com_fidelite) est la source de vérité pour le total de points et
+// les paliers de récompenses -- voir hw_crm/components/com_fidelite/classes/
+// fidelite.php (addPoints() y débloque déjà les paliers automatiquement,
+// pas besoin de le refaire ici). L'INSERT local sert uniquement de journal
+// de déduplication pour clAwardDownloadPointOnce/clTrackLoginAndCheckMonthlyBonus
+// ci-dessous (éviter d'attribuer deux fois le même gain) ; ce n'est plus la
+// source du total affiché au client (voir $__pointsTotal dans facture.php).
 function clAwardPoints($idClient, $points, $type, $libelle = null) {
 	global $db;
 	if ($idClient <= 0 || $points <= 0) return;
@@ -163,41 +170,7 @@ function clAwardPoints($idClient, $points, $type, $libelle = null) {
 		GetSQLValueString($type, "text"), GetSQLValueString($libelle, "text"),
 		GetSQLValueString(date("Y-m-d H:i:s"), "text")
 	));
-	clCheckRewardThresholds($idClient);
-}
-
-// Paliers de récompenses : 10/20/50/100 points cumulés. Recalcule le total et
-// débloque (INSERT IGNORE, contrainte UNIQUE(id_client, seuil)) toute
-// récompense nouvellement atteinte — la remise effective (audit, formation,
-// budget Ads, remise facture) reste un geste manuel de l'agence, marqué
-// depuis le CRM (com_fidelite). ⚠️ Les seuils/libellés doivent rester
-// synchronisés avec leur équivalent côté CRM
-// (hw_crm/components/com_fidelite/classes/fidelite.php::REWARD_THRESHOLDS).
-function clRewardThresholds() {
-	return array(
-		10  => 'Audit SEO offert',
-		20  => 'Formation offerte',
-		50  => 'Crédits publicitaires Google Ads',
-		100 => 'Remise de 10% sur votre prochaine facture',
-	);
-}
-function clCheckRewardThresholds($idClient) {
-	global $db;
-	if ($idClient <= 0) return;
-	$rows = $db->queryS(sprintf(
-		"SELECT SUM(points) AS total FROM " . __prefixe_db__ . "points_client WHERE id_client = %s",
-		GetSQLValueString($idClient, "int")
-	));
-	$total = (is_array($rows) && count($rows) > 0 && $rows[0]['total'] !== null) ? (int) $rows[0]['total'] : 0;
-	$now = date("Y-m-d H:i:s");
-	foreach (clRewardThresholds() as $seuil => $libelle) {
-		if ($total < $seuil) continue;
-		$db->query(sprintf(
-			"INSERT IGNORE INTO " . __prefixe_db__ . "client_rewards (id_client, seuil, libelle, date_debloque) VALUES (%s, %s, %s, %s)",
-			GetSQLValueString($idClient, "int"), GetSQLValueString($seuil, "int"),
-			GetSQLValueString($libelle, "text"), GetSQLValueString($now, "text")
-		));
-	}
+	client::addFideliteApi($idClient, $points, $type, $libelle);
 }
 
 // Comme clAwardPoints, mais n'attribue les points qu'une seule fois par
@@ -348,10 +321,11 @@ function createTemoignageApi($data){
 }
 
 // Parrainage : le parrain (client connecté) recommande un prospect (filleul).
-// Stocké dans la base du SITE (hw_parrainage), statut 0 = en attente. Le suivi
-// et l'attribution des récompenses se font côté agence (manuel).
+// Le CRM (crm_client_parrainage) est la source de vérité -- validation
+// (champs, auto-parrainage, anti-doublon) et notification de l'agence par
+// e-mail se font côté CRM (clientparrainage::createApi), pas ici. Le suivi et
+// l'attribution des récompenses restent un geste manuel de l'agence.
 function createParrainageApi($data){
-	global $db;
 	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
 		echo json_encode(array("icon"=>"error","message"=>"Not authenticated","code"=>"auth"));
 		return;
@@ -364,10 +338,6 @@ function createParrainageApi($data){
 	}
 	$fNom   = isset($data['filleul_nom']) ? trim($data['filleul_nom']) : '';
 	$fEmail = isset($data['filleul_email']) ? trim($data['filleul_email']) : '';
-	if ($fNom === '' || $fEmail === '' || !filter_var($fEmail, FILTER_VALIDATE_EMAIL)) {
-		echo json_encode(array("icon"=>"warning","message"=>"Missing or invalid fields","code"=>"missing"));
-		return;
-	}
 	$fEnt = isset($data['filleul_entreprise']) ? trim($data['filleul_entreprise']) : '';
 	$fTel = isset($data['filleul_tel']) ? trim($data['filleul_tel']) : '';
 	$msg  = isset($data['message']) ? trim($data['message']) : '';
@@ -381,27 +351,15 @@ function createParrainageApi($data){
 		$pEmail = isset($ci->email) ? $ci->email : '';
 	}
 	if ($pEmail === '' && is_object($info) && isset($info->info->email)) { $pEmail = $info->info->email; }
-	// Un client ne peut pas se parrainer lui-même.
-	if ($pEmail !== '' && strcasecmp($pEmail, $fEmail) === 0) {
-		echo json_encode(array("icon"=>"warning","message"=>"You cannot refer yourself","code"=>"self"));
-		return;
+
+	$response = client::createParrainageApi($idParrain, $pNom, $pEmail, $fNom, $fEnt, $fEmail, $fTel, $msg);
+	$decoded = json_decode($response);
+	if (is_object($decoded) && isset($decoded->icon) && $decoded->icon === 'success') {
+		// Email d'invitation au filleul (best-effort : n'interrompt jamais la réponse).
+		sendParrainageInvitationEmail($fEmail, $fNom, $pNom);
+		clAwardPoints($idParrain, CL_POINTS_PARRAINAGE, 'parrainage', 'Recommandation de ' . $fNom);
 	}
-	// Anti-doublon : même filleul déjà parrainé par ce parrain.
-	$dup = $db->queryS(sprintf("SELECT id FROM " . __prefixe_db__ . "parrainage WHERE id_parrain = %s AND filleul_email = %s LIMIT 1",
-		GetSQLValueString($idParrain, "int"), GetSQLValueString($fEmail, "text")));
-	if (is_array($dup) && count($dup) > 0) {
-		echo json_encode(array("icon"=>"warning","message"=>"Already referred","code"=>"dup"));
-		return;
-	}
-	$now = date("Y-m-d H:i:s");
-	$db->query(sprintf("INSERT INTO " . __prefixe_db__ . "parrainage (id_parrain, parrain_nom, parrain_email, filleul_nom, filleul_entreprise, filleul_email, filleul_tel, message, statut, recompense_donnee, date_add) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 0, 0, %s)",
-		GetSQLValueString($idParrain, "int"), GetSQLValueString($pNom, "text"), GetSQLValueString($pEmail, "text"),
-		GetSQLValueString($fNom, "text"), GetSQLValueString($fEnt, "text"), GetSQLValueString($fEmail, "text"),
-		GetSQLValueString($fTel, "text"), GetSQLValueString($msg, "text"), GetSQLValueString($now, "text")));
-	// Email d'invitation au filleul (best-effort : n'interrompt jamais la réponse).
-	sendParrainageInvitationEmail($fEmail, $fNom, $pNom);
-	clAwardPoints($idParrain, CL_POINTS_PARRAINAGE, 'parrainage', 'Recommandation de ' . $fNom);
-	echo json_encode(array("icon"=>"success","message"=>"Merci ! Nous contactons votre filleul rapidement.","code"=>"ok"));
+	echo $response;
 }
 
 // Envoie au filleul un email d'invitation (mentionne le parrain + offre de bienvenue).

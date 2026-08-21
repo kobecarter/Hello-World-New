@@ -53,11 +53,11 @@ if ($__gmbOn) {
     $__gmbUrl = (stripos($__clientVille, 'marrakech') !== false) ? GMB_REVIEW_URL_MARRAKECH : GMB_REVIEW_URL_CASABLANCA;
 }
 
-// Parrainage : filleuls recommandés par ce client.
+// Parrainage : filleuls recommandés par ce client. Le CRM (crm_client_parrainage)
+// est la source de vérité -- voir client::getParrainagesByClientApi.
 $__parrainages = array();
 if (!empty($clientId)) {
-    $__pr = $db->queryS(sprintf("SELECT filleul_nom, filleul_entreprise, filleul_email, statut, recompense, date_add FROM " . __prefixe_db__ . "parrainage WHERE id_parrain = %s ORDER BY id DESC", GetSQLValueString((int) $clientId, "int")));
-    if (is_array($__pr)) { $__parrainages = $__pr; }
+    $__parrainages = client::getParrainagesByClientApi($clientId);
 }
 // Stats parrainage (résumé sous le profil).
 $__parrainTotal = count($__parrainages);
@@ -151,29 +151,41 @@ foreach ($factures as $__bf) {
     $__clientBanks[] = $__bk;
 }
 
-// Points de fidélité (base du site) : total + historique récent. Gagnés en
-// laissant un avis, en parrainant, ou en signant une attestation de référence.
+// Points de fidélité : le CRM (com_fidelite) est la source de vérité pour le
+// total et l'historique -- voir client::getFideliteTotalApi/getFideliteHistoryApi
+// (hw-admin/components/com_client/classes/client.php), qui appellent
+// hw_crm/components/com_fidelite/controleurs/router.php (task=apiXxx, secret
+// partagé). La table locale hw_points_client ne sert plus qu'au journal de
+// déduplication côté contrôleur (clAwardDownloadPointOnce, bonus connexion).
 $__pointsTotal = 0;
 $__pointsHistory = array();
 if (!empty($clientId)) {
-    $__ptRows = $db->queryS(sprintf("SELECT points, type, libelle, date_add FROM " . __prefixe_db__ . "points_client WHERE id_client = %s ORDER BY date_add DESC", GetSQLValueString((int) $clientId, "int")));
-    if (is_array($__ptRows)) {
-        foreach ($__ptRows as $__pt) {
-            $__pointsTotal += (int) $__pt['points'];
-            if (count($__pointsHistory) < 6) { $__pointsHistory[] = $__pt; }
-        }
-    }
+    $__pointsTotal = client::getFideliteTotalApi($clientId);
+    $__pointsHistory = array_slice(client::getFideliteHistoryApi($clientId), 0, 6);
 }
 
-// Paliers de récompenses (10/20/50/100 points) : débloqués automatiquement
-// dès qu'un total est atteint (voir clCheckRewardThresholds côté contrôleur),
-// la remise effective reste manuelle (agence, depuis le CRM — com_fidelite).
-// $__newRewards = paliers jamais montrés au client : affichés une fois ici
-// (message de félicitations), puis marqués vus pour ne plus réapparaître.
+// Paliers de récompenses (10/20/50/100 points) : le CRM décide seul quand un
+// palier est débloqué et si l'agence l'a remis (statut/libelle/date_affecte
+// viennent de crm_client_rewards à chaque chargement). Seuls notifie/
+// notifie_don (a-t-on déjà montré le popup one-shot à CE client) restent
+// suivis localement -- pure state d'affichage, pas une donnée métier -- dans
+// un mini-miroir local (hw_client_rewards) synchronisé ci-dessous.
 $__rewards = array();
 $__newRewards = array();
 $__newGivenRewards = array(); // paliers remis par l'agence, popup "contactez l'agence" pas encore vu
 if (!empty($clientId)) {
+    $__crmRewards = client::getFideliteRewardsApi($clientId);
+    foreach ($__crmRewards as $__cr) {
+        $db->query(sprintf(
+            "INSERT INTO " . __prefixe_db__ . "client_rewards (id_client, seuil, libelle, statut, date_debloque, date_affecte, affecte_par, notifie, notifie_don)
+             VALUES (%s, %s, %s, %s, %s, %s, %s, 0, 0)
+             ON DUPLICATE KEY UPDATE libelle = VALUES(libelle), statut = VALUES(statut), date_affecte = VALUES(date_affecte), affecte_par = VALUES(affecte_par)",
+            GetSQLValueString((int) $clientId, "int"), GetSQLValueString((int) $__cr['seuil'], "int"),
+            GetSQLValueString($__cr['libelle'], "text"), GetSQLValueString((int) $__cr['statut'], "int"),
+            GetSQLValueString($__cr['date_debloque'], "text"), GetSQLValueString($__cr['date_affecte'], "text"),
+            GetSQLValueString($__cr['affecte_par'], "text")
+        ));
+    }
     $__rwRows = $db->queryS(sprintf("SELECT id, seuil, libelle, statut, notifie, notifie_don, date_debloque, date_affecte FROM " . __prefixe_db__ . "client_rewards WHERE id_client = %s ORDER BY seuil ASC", GetSQLValueString((int) $clientId, "int")));
     if (is_array($__rwRows)) {
         $__rewards = $__rwRows;
