@@ -9040,7 +9040,7 @@ html[dir="rtl"] .cl-auth-btn::before{transform:translateX(101%)}
 /* Les bulles flottantes (devis/WhatsApp/App Store/espace client) chevauchaient
    le graphique de paiements sur mobile — inutiles ici, l'espace client a déjà
    son propre onglet Support et sa propre nav. */
-.is-client-space .whatsapp-buttons{display:none!important}
+/* .is-client-space .whatsapp-buttons{display:none!important} */
 .is-client-space .cl-dash-hero{padding-top:3.5rem}
 
 /* Espace client — réclamations avec réponse de l'équipe */
@@ -9371,7 +9371,6 @@ html[dir="rtl"] .page-client-space .cl-recl-response{border-left:none;border-rig
 .page-client-space .cl-stat-tile.t-green .cl-stat-ico{background:rgba(47,158,111,.12);color:#2f9e6f}
 .page-client-space .cl-stat-num{font-family:var(--fb);font-weight:800;font-size:1.7rem;line-height:1;color:var(--txt)}
 .page-client-space .cl-stat-label{font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)}
-@media(max-width:420px){.page-client-space .cl-stat-2x2{grid-template-columns:1fr}}
 
 .page-client-space .cl-points-mini{display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(245,166,35,.14),rgba(245,166,35,.04));border:1px solid rgba(245,166,35,.35);border-radius:16px;padding:1rem 1.1rem;text-decoration:none;transition:transform .25s,box-shadow .25s;cursor:pointer}
 .page-client-space .cl-points-mini:hover{transform:translateY(-2px);box-shadow:0 14px 34px -26px rgba(217,138,0,.5)}
@@ -9520,7 +9519,9 @@ html[dir="rtl"] .page-client-space .cl-recl-response{border-left:none;border-rig
 .page-client-space .cl-discover-btn.is-ghost{background:transparent;color:var(--gold2)}
 .page-client-space .cl-discover-btn.is-ghost:hover{background:var(--gold2);color:#fff}
 .page-client-space a.cl-discover-card-link .cl-discover-btn{pointer-events:none}
-
+@media(max-width:767px){
+  .page-client-space .cl-discover-card-img{height: 240px;}
+}
 /* ---- Modale de demande (essai / commande / inscription) ---- */
 .cl-demande-modal{position:fixed;inset:0;z-index:2100;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
 .cl-demande-modal.open{opacity:1;visibility:visible}
@@ -9596,7 +9597,7 @@ body.is-client-space .page-client-space{position:relative;z-index:1}
 .is-client-space .cl-dash-hero{padding:1.8rem 0 1rem!important;border-bottom:none;background:transparent}
 .cl-dash-hero-title{font-weight:100;letter-spacing:-.01em;font-size:70px;line-height:1.1;text-transform:uppercase}
 .cl-dash-hero-title em{font-style:normal;font-weight:100;background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-@media(max-width:767px){.cl-dash-hero-title{font-size:39px}}
+@media(max-width:767px){.cl-dash-hero-title{font-size:34px}}
 /* Filet fin qui part de la fin du nom et va jusqu'au bord du conteneur
    (le span est déjà le frère flex du h1 dans .cl-dash-hero-inner). */
 .is-client-space .cl-dash-hero-rule{display:block;flex:1;min-width:3rem;height:1px;background:var(--border);align-self:center;margin-inline-start:1rem}
@@ -10122,9 +10123,10 @@ a.cl-points-how-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-ca
 
 @media(max-width:767px){
   .is-client-space .container{padding:0 .5rem!important}
+  .cl-topnav-inner{gap: 0.6rem;}
 }
 
-.page-client-space .cl-chart-card{transform:translate(0px,0px)!important}
+.page-client-space .cl-chart-card{transform:translate(0px,24px)!important}
 
 /* ---- Petit indice "faites glisser" au-dessus des tableaux (mobile only,
    le débordement horizontal est déjà géré par .div-table-client-space). ---- */
