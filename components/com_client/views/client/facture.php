@@ -753,12 +753,16 @@ $__hasNoBillingHistory = (count($factures) === 0 && count($payments) === 0);
 									<tbody>
 									<?php foreach ($devis as $devisJson) :
 										$devi = $devisJson;
+										// Mêmes codes de statut que le CRM (devis::STATU_* -- components/com_devis/classes/devis.php)
+										// et mêmes libellés que components/com_devis/views/devis/list.php côté CRM.
 										switch ($devi->statu) {
-											case '1': $statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_QUOTE_VALID_NOSIGN'][$_SESSION['lang']] . '</span>'; break;
-											case '2': $statu = '<span class="badge bg-danger text-white">' . $lang['CL_ST_QUOTE_REFUSED'][$_SESSION['lang']] . '</span>'; break;
-											case '3': $statu = '<span class="badge bg-primary text-white">' . $lang['CL_ST_QUOTE_VALID_SIGNED'][$_SESSION['lang']] . '</span>'; break;
-											case '4': $statu = '<span class="badge bg-warning text-white">' . $lang['CL_ST_QUOTE_VALID_NP'][$_SESSION['lang']] . '</span>'; break;
-											default:  $statu = '<span class="badge bg-warning text-white">' . $lang['CL_ST_QUOTE_INVALID'][$_SESSION['lang']] . '</span>'; break;
+											case '1': $statu = '<span class="badge bg-primary text-white">' . $lang['CL_ST_QUOTE_SENT'][$_SESSION['lang']] . '</span>'; break;
+											case '2': $statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_QUOTE_ACCEPTED'][$_SESSION['lang']] . '</span>'; break;
+											case '3': $statu = '<span class="badge bg-primary text-white">' . $lang['CL_ST_QUOTE_CONTRACT_PENDING'][$_SESSION['lang']] . '</span>'; break;
+											case '4': $statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_QUOTE_PAID'][$_SESSION['lang']] . '</span>'; break;
+											case '5': $statu = '<span class="badge bg-danger text-white">' . $lang['CL_ST_QUOTE_REFUSED'][$_SESSION['lang']] . '</span>'; break;
+											case '6': $statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_QUOTE_SIGNED'][$_SESSION['lang']] . '</span>'; break;
+											default:  $statu = '<span class="badge bg-warning text-white">' . $lang['CL_ST_QUOTE_DRAFT'][$_SESSION['lang']] . '</span>'; break;
 										}
 									?>
 									<tr>
