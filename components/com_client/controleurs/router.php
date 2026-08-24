@@ -44,6 +44,9 @@ if(isset($_GET['task']) && !empty($_GET['task'])) {
         case 'pdfQuoteApi' :
             include_once ("client/controleur.php");
             break;
+        case 'pdfPaymentApi' :
+            include_once ("client/controleur.php");
+            break;
         case 'verifyEmailApi' :
             include_once ("client/controleur.php");
             break;

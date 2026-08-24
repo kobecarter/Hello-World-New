@@ -59,6 +59,9 @@ if (isset($task) && !empty($task)) {
 		case "pdfQuoteApi":
 			pdfQuoteApi($_GET);
 			break;
+		case "pdfPaymentApi":
+			pdfPaymentApi($_GET);
+			break;
 		case "findAttestationsApi":
 			findAttestationsApi($_GET);
 			break;
@@ -420,6 +423,23 @@ function pdfInvoiceApi($data)
 {
 	$response = client::pdfInvoiceApi($data['id']);
 	clAwardDownloadPointFromPdfResponse($response, (int) $data['id'], 'facture_telechargement', 'Facture téléchargée');
+	echo $response;
+}
+
+function pdfPaymentApi($data)
+{
+	if (!isset($_SESSION['client']) || empty($_SESSION['client'])) {
+		echo json_encode(array("icon"=>"error","message"=>"Not authenticated","code"=>"auth"));
+		return;
+	}
+	$info = client::getInfoFromTokenApi($_SESSION['client']);
+	$idClient = (is_object($info) && isset($info->info) && is_object($info->info) && isset($info->info->id)) ? (int) $info->info->id : 0;
+	if ($idClient <= 0) {
+		echo json_encode(array("icon"=>"error","message"=>"Not authenticated","code"=>"auth"));
+		return;
+	}
+	$response = client::pdfPaymentApi($idClient, isset($data['id']) ? $data['id'] : 0);
+	clAwardDownloadPointFromPdfResponse($response, (int) $data['id'], 'paiement_telechargement', 'Paiement téléchargé');
 	echo $response;
 }
 

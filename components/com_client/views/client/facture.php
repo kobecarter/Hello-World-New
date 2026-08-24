@@ -151,6 +151,27 @@ foreach ($factures as $__bf) {
     $__clientBanks[] = $__bk;
 }
 
+// Paiements groupés par facture, pour décider dans le tableau "Mes factures"
+// si on affiche la ligne facture globale ou le détail des paiements -- même
+// règle que facture::isGlobalPdfAllowed() côté CRM (0 paiement, ou 1 seul
+// paiement couvrant tout le total, à 1 centime près) : la vérité finale reste
+// calculée côté CRM au moment du téléchargement, ceci ne pilote que l'affichage.
+$__paymentsByFacture = array();
+foreach ($payments as $__pm) {
+    $__pmFid = is_array($__pm) ? (isset($__pm['id_facture']) ? $__pm['id_facture'] : 0) : (isset($__pm->id_facture) ? $__pm->id_facture : 0);
+    if (!$__pmFid) continue;
+    if (!isset($__paymentsByFacture[$__pmFid])) { $__paymentsByFacture[$__pmFid] = array(); }
+    $__paymentsByFacture[$__pmFid][] = $__pm;
+}
+$__pmField = function ($p, $k) {
+    return is_array($p) ? (isset($p[$k]) ? $p[$k] : null) : (isset($p->$k) ? $p->$k : null);
+};
+$__isGlobalPdfAllowed = function ($facture) use ($__paymentsByFacture, $__pmField) {
+    $pmts = isset($__paymentsByFacture[$facture->ID]) ? $__paymentsByFacture[$facture->ID] : array();
+    if (count($pmts) === 0) return true;
+    return count($pmts) === 1 && abs((float) $__pmField($pmts[0], 'montant') - (float) $facture->total) < 0.01;
+};
+
 // Points de fidélité : le CRM (com_fidelite) est la source de vérité pour le
 // total et l'historique -- voir client::getFideliteTotalApi/getFideliteHistoryApi
 // (hw-admin/components/com_client/classes/client.php), qui appellent
@@ -677,6 +698,7 @@ $__hasNoBillingHistory = (count($factures) === 0 && count($payments) === 0);
 										elseif ($facture->total > $facture->reste && $facture->reste > 0) { $statu = '<span class="badge bg-warning text-white">' . $lang['CL_ST_PARTIAL'][$_SESSION['lang']] . '</span>'; }
 										elseif ($facture->reste <= 0) { $statu = '<span class="badge bg-success text-white">' . $lang['CL_ST_PAID'][$_SESSION['lang']] . '</span>'; }
 									?>
+									<?php if ($__isGlobalPdfAllowed($facture)) : ?>
 									<tr>
 										<td><?php echo $facture->numero; ?></td>
 										<td><?php echo normaldate($facture->date_facture); ?></td>
@@ -692,6 +714,26 @@ $__hasNoBillingHistory = (count($factures) === 0 && count($payments) === 0);
 											<?php endif; ?>
 										</td>
 									</tr>
+									<?php else :
+										$__fPmts = $__paymentsByFacture[$facture->ID];
+										foreach ($__fPmts as $__fpIdx => $__fp) :
+											$__fpId = $__pmField($__fp, 'id');
+											$__fpSeq = $__pmField($__fp, 'numero_sequence');
+											$__fpSeq = ($__fpSeq !== null && $__fpSeq !== '') ? $__fpSeq : ($__fpIdx + 1);
+									?>
+									<tr>
+										<td><?php echo $facture->numero . '-' . $__fpSeq; ?></td>
+										<td><?php echo normaldate($__pmField($__fp, 'date')); ?></td>
+										<td><?php echo number_format((float) $__pmField($__fp, 'montant'), 2, ',', ' ') . ' ' . $__pmField($__fp, 'devise'); ?></td>
+										<td>—</td>
+										<td><span class="badge bg-success text-white"><?php echo $lang['CL_ST_PAID'][$_SESSION['lang']]; ?></span></td>
+										<td>
+											<a class="btn btn-sm btn-danger btn-download-payment text-white" data-id="<?php echo (int) $__fpId; ?>" href="javascript:void(0)" data-toggle="tooltip" title="Download"><i class="far fa-file-pdf"></i></a>
+											<a class="btn btn-sm btn-danger btn-loading d-none" href="javascript:void(0)"><i class="fa fa-spinner"></i></a>
+										</td>
+									</tr>
+									<?php endforeach;
+									endif; ?>
 									<?php endforeach; ?>
 									</tbody>
 								</table>

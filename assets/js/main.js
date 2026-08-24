@@ -382,6 +382,29 @@ $(document).ready(function() {
 		})
 	})
 
+	$(document).on("click",".btn-download-payment",function(){
+		let self = $(this)
+		let id = self.attr('data-id')
+		var pdfWin = window.open('', '_blank')
+		self.addClass('d-none')
+		self.siblings('.btn-loading').removeClass('d-none')
+		$.get(siteURL+"components/com_client/controleurs/router.php?task=pdfPaymentApi&id="+id, function (theResponse) {
+			self.removeClass('d-none')
+			self.siblings('.btn-loading').addClass('d-none')
+			var data; try { data = JSON.parse(theResponse) } catch (e) { data = { icon: 'error' } }
+			if (data.icon == "success" && data.message && (data.message).trim().slice(-4).toLowerCase() == '.pdf') {
+				var pdfUrl = platURL+"uploads/"+(data.message).trim();
+				if (pdfWin) { pdfWin.location = pdfUrl } else { window.location = pdfUrl }
+			} else {
+				if (pdfWin) pdfWin.close()
+			}
+		}).fail(function () {
+			self.removeClass('d-none')
+			self.siblings('.btn-loading').addClass('d-none')
+			if (pdfWin) pdfWin.close()
+		})
+	})
+
 	/* -----------------------------------
 	Espace client — Déconnexion
 	-------------------------------------*/

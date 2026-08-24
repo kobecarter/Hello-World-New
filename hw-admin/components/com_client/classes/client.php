@@ -908,6 +908,28 @@ public static function setNewPasswordApi($data)
         }
     }
 
+    // Reçu de paiement (facture réglée en plusieurs fois) : le CRM refuse ce
+    // téléchargement si la facture n'a en réalité qu'un seul paiement couvrant
+    // tout le total (isGlobalPdfAllowed) -- même vérification que le site fait
+    // déjà pour l'affichage (facture.php), mais la source de vérité reste le CRM.
+    public static function pdfPaymentApi($clientID, $paymentId){
+        global $apiURL;
+        try {
+            $api_url = $apiURL."com_facture/controleurs/router.php?task=pdfPaymentApi&client=".$clientID."&id=".$paymentId;
+            $ch = curl_init($api_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $_SESSION['client']));
+            $response = curl_exec($ch);
+            if (curl_errno($ch)) {
+                return json_encode(array("icon"=>"error","message"=>"There is a problem with the server"));
+            }
+            curl_close($ch);
+            return json_encode(array("icon"=>"success","message"=>$response));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     public static function pdfQuoteApi($id){
         global $apiURL;
         try {
