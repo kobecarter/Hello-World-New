@@ -76,6 +76,9 @@ switch ($task) {
     case 'apiConfig':
         crmBridgeApiConfig();
         break;
+    case 'apiDigitalExpertVideos':
+        crmBridgeApiDigitalExpertVideos($langue);
+        break;
     default:
         http_response_code(404);
         echo json_encode(array('error' => 'unknown_task'));
@@ -206,4 +209,34 @@ function crmBridgeApiConfig()
     global $db, $prefixe_db;
     $rows = $db->queryS("SELECT email, tel, tel2, facebook, twitter, instagram, youtube, linkedin FROM " . $prefixe_db . "config LIMIT 1");
     echo json_encode(array('data' => (is_array($rows) && count($rows) > 0) ? $rows[0] : array()));
+}
+
+// Vidéos "Digital Expert" (hw_video, id_categorie = 14) - même source que la page
+// d'accueil du site (components/com_frontpage/index.php: video::findAllByCategorie($lang,14,...)).
+function crmBridgeApiDigitalExpertVideos($langue)
+{
+    global $db, $prefixe_db;
+    $sql = sprintf(
+        "SELECT A.id AS ID, A.video, A.photo, A.date_shooting, B.titre, B.extrait, B.localisation FROM %svideo A " .
+        "LEFT JOIN %sdetails_video B ON A.id = B.id_video AND B.langue = %s " .
+        "WHERE A.active = 1 AND A.id_categorie = 14 ORDER BY A.ordre ASC",
+        $prefixe_db,
+        $prefixe_db,
+        GetSQLValueString($langue, "text")
+    );
+    $rows = $db->queryS($sql);
+    $items = array();
+    foreach ((is_array($rows) ? $rows : array()) as $row) {
+        $items[] = array(
+            "id" => (int) $row['ID'],
+            "titre" => crmBridgeCleanText($row['titre']),
+            "extrait" => crmBridgeCleanText($row['extrait']),
+            "localisation" => crmBridgeCleanText($row['localisation']),
+            "date_shooting" => $row['date_shooting'],
+            "photo" => crmBridgePhotoUrl('videos', $row['photo']),
+            "youtube_id" => $row['video'],
+            "youtube_url" => !empty($row['video']) ? 'https://www.youtube.com/watch?v=' . $row['video'] : "",
+        );
+    }
+    echo json_encode(array('data' => $items));
 }
