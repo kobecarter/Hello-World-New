@@ -37,8 +37,8 @@
       <div class="msgbox"></div>
 
       <div class="ct-group">
-        <input class="ct-input" type="email" name="email" id="cl-email" placeholder=" " autocomplete="email" required>
-        <label class="ct-float-label" for="cl-email">Email</label>
+        <input class="ct-input" type="text" name="login" id="cl-login" placeholder=" " autocomplete="username" required>
+        <label class="ct-float-label" for="cl-login">Identifiant</label>
         <span class="ct-line"></span>
       </div>
 

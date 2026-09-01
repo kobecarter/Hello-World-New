@@ -475,9 +475,9 @@ class client
     public static function loginApi($data)
 {
     global $apiURL;
-	if (isset($data['email']) && isset($data['password']) && !empty($data['email'])&& !empty($data['password']) ){
+	if (isset($data['login']) && isset($data['password']) && !empty($data['login'])&& !empty($data['password']) ){
 		$post_data = array(
-			'email' => $data['email'],
+			'login' => $data['login'],
 			'password' => $data['password']
 		);
 		$ch = curl_init($apiURL."com_client/controleurs/router.php?task=loginApi");
