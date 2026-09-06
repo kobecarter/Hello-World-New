@@ -1333,12 +1333,10 @@ document.querySelectorAll('.card, .custom-sublink').forEach(item => {
 
 })();
         </script>
-        <?php if($option == 'com_client'): ?>
-            <!-- Start of HubSpot Embed Code -->
-    	    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/143509868.js">
-    	    </script>
-    	    <!-- End of HubSpot Embed Code -->
-        <?php endif ?>
+        <!-- Start of HubSpot Embed Code -->
+	    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/143509868.js">
+	    </script>
+	    <!-- End of HubSpot Embed Code -->
 
 </body>
 </html>
