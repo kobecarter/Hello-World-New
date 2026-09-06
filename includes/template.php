@@ -1338,5 +1338,33 @@ document.querySelectorAll('.card, .custom-sublink').forEach(item => {
 	    </script>
 	    <!-- End of HubSpot Embed Code -->
 
+    <!-- Hello World — signal d'envoi des formulaires vers GTM -->
+    <script>
+    (function () {
+      if (!window.jQuery) return;
+
+      jQuery(document).ajaxSuccess(function (event, xhr, settings) {
+        var url = (settings && settings.url) || '';
+        if (url.indexOf('contact.php') === -1) return;
+
+        // On ignore les réponses d'erreur du serveur
+        var body = '';
+        try { body = xhr.responseText || ''; } catch (e) {}
+        if (/erreur|error|invalid|captcha/i.test(body) &&
+            !/succ|merci|envoy/i.test(body)) return;
+
+        var type = url.indexOf('task=quote') !== -1
+          ? 'devis_envoye'
+          : 'contact_envoye';
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: type,
+          form_id: type === 'devis_envoye' ? 'devisForm' : 'contactForm',
+          page_path: location.pathname
+        });
+      });
+    })();
+    </script>
 </body>
 </html>
