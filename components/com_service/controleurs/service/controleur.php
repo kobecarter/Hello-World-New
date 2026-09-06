@@ -71,6 +71,8 @@ function getForm($data)
 				<div class="sb-label"><span class="sb-hint"><?php echo $btnText; ?></span></div>
 				<div class="sb-knob"><i class="fa fa-paper-plane"></i></div>
 			</div>
+			<!-- Bouton réel requis pour que le submit natif se déclenche (form.submit() en JS ne le fait pas) -->
+			<button type="submit" class="hs-submit-bridge" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Envoyer</button>
 			<p class="ct-privacy"><i class="fa fa-lock"></i> <?php echo $lang['SVC_FORM_PRIVACY_PREFIX'][$_SESSION['lang']]; ?><a href="javascript:void(0)" class="page-popup" data-id="<?php echo $pageConfid->getId(); ?>"><?php echo $pageConfid->getTitre(); ?></a></p>
 			<div class="loading"></div>
 		</form>
@@ -121,7 +123,10 @@ function getForm($data)
 			});
 
 			jQuery("#serviceForm .submit-form").click(function(){
-				jQuery(this).closest('form').submit();
+				// Clic sur le vrai bouton submit (et non form.submit() directement) pour que
+				// l'événement natif "submit" soit émis - requis pour la détection HubSpot des
+				// formulaires non-HubSpot, form.submit() ne déclenchant jamais cet événement.
+				jQuery(this).closest('form').find('button[type="submit"]').get(0).click();
 			});
 		})();
 		</script>

@@ -125,6 +125,8 @@
       <div class="sb-label"><span class="sb-hint"><?php echo $lang['CTF_SUBMIT'][$_SESSION['lang']]; ?></span></div>
       <div class="sb-knob"><i class="fa fa-paper-plane"></i></div>
     </div>
+    <!-- Bouton réel requis pour que le submit natif se déclenche (form.submit() en JS ne le fait pas) -->
+    <button type="submit" class="hs-submit-bridge" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Envoyer</button>
     <p class="ct-privacy"><i class="fa fa-lock"></i> <?php echo $lang['CTF_PRIVACY'][$_SESSION['lang']]; ?></p>
 
 </form>

@@ -555,6 +555,9 @@ $(document).ready(function() {
       });
       
       $(".submit-form").click(function(){
-          $(this).parent('form').submit();
+          // Clic sur le vrai bouton submit (et non form.submit() directement) pour que
+          // l'événement natif "submit" soit émis - requis pour la détection HubSpot des
+          // formulaires non-HubSpot, form.submit() ne déclenchant jamais cet événement.
+          $(this).closest('form').find('button[type="submit"]').get(0).click();
       })
 });

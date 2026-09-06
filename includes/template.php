@@ -640,7 +640,7 @@ var REDIRECT_LINK_CONG = '<?php echo $congPage->getLink(); ?>';
 <script src='<?php echo $siteURL; ?>assets/js/jquery.form.js'></script>
 <script src='<?php echo $siteURL; ?>flip-book/js/flipbook.min.js'></script>
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.12'></script>
+<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.13'></script>
 <script>
 /* CURSOR */
 const cur  = document.getElementById('cur');
