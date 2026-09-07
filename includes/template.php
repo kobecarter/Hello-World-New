@@ -343,10 +343,10 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	                <i class="fa fa-calculator"></i>
 	            </a>
 	        </li>
-	         <li class="whatsapp-link">
-	             <a href="https://wa.me/212664606612?text=Bonjour" title="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip"  
+	        <!-- <li class="whatsapp-link">
+	             <a href="https://wa.me/212664606612?text=Bonjour" title="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_MANAR'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip"
 	                class="click" target="_blank" title="Whatsapp chat"><i class="fab fa-whatsapp"></i></a>
-	         </li>
+	         </li>-->
 	         <li class="whatsapp-link">
 	             <a href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20" class="click custom-tooltip" title="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip" id="chat-bubble" target="_blank" title="Whatsapp chat">
                    <i class="fab fa-whatsapp"></i>
