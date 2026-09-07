@@ -287,19 +287,30 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-      <!-- Event snippet for Contact (hello world) conversion page -->
+	    <?php
+	    // Conversions Google Ads : uniquement sur les vraies pages de remerciement
+	    // (chargées après un envoi réussi), jamais sitewide - sinon Ads compte une
+	    // conversion à chaque visite de n'importe quelle page.
+	    $__isContactConfirmationPage = ($option === 'com_contact' && isset($_GET['task']) && $_GET['task'] === 'confirmation' && isset($_GET['id']) && (int) $_GET['id'] === 19);
+	    $__isDevisConfirmationPage = ($option === 'com_page' && isset($_GET['id']) && (int) $_GET['id'] === 20);
+	    ?>
+	    <?php if ($__isContactConfirmationPage) : ?>
+	    <!-- Event snippet for Contact (hello world) conversion page -->
 	    <script>
 	    if (typeof gtag === 'function') gtag('event', 'conversion', {
 	        'send_to': 'AW-988470532/wIfpCLro748DEIS6q9cD'
 	    });
 	    </script>
+	    <?php endif; ?>
 
+	    <?php if ($__isDevisConfirmationPage) : ?>
 	    <!-- Event snippet for Envoi de formulaire pour prospects conversion page -->
 	    <script>
 	    if (typeof gtag === 'function') gtag('event', 'conversion', {
 	        'send_to': 'AW-988470532/gtHMCIHqpZADEIS6q9cD'
 	    });
 	    </script>
+	    <?php endif; ?>
 
 
 	    <!-- Google Tag Manager -->
