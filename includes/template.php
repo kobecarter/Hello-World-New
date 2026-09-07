@@ -287,30 +287,10 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-	    <?php
-	    // Conversions Google Ads : uniquement sur les vraies pages de remerciement
-	    // (chargées après un envoi réussi), jamais sitewide - sinon Ads compte une
-	    // conversion à chaque visite de n'importe quelle page.
-	    $__isContactConfirmationPage = ($option === 'com_contact' && isset($_GET['task']) && $_GET['task'] === 'confirmation' && isset($_GET['id']) && (int) $_GET['id'] === 19);
-	    $__isDevisConfirmationPage = ($option === 'com_page' && isset($_GET['id']) && (int) $_GET['id'] === 20);
-	    ?>
-	    <?php if ($__isContactConfirmationPage) : ?>
-	    <!-- Event snippet for Contact (hello world) conversion page -->
-	    <script>
-	    if (typeof gtag === 'function') gtag('event', 'conversion', {
-	        'send_to': 'AW-988470532/wIfpCLro748DEIS6q9cD'
-	    });
-	    </script>
-	    <?php endif; ?>
-
-	    <?php if ($__isDevisConfirmationPage) : ?>
-	    <!-- Event snippet for Envoi de formulaire pour prospects conversion page -->
-	    <script>
-	    if (typeof gtag === 'function') gtag('event', 'conversion', {
-	        'send_to': 'AW-988470532/gtHMCIHqpZADEIS6q9cD'
-	    });
-	    </script>
-	    <?php endif; ?>
+	    <!-- Conversions Google Ads (Contact, Envoi de formulaire pour prospects) : déclenchées
+	         directement dans les callbacks de succès AJAX (voir assets/js/main.js), pas ici au
+	         chargement de la page de remerciement - sinon une revisite/rechargement/lien direct
+	         vers /confirmation/ ou /confirmation-devis/ recompte une conversion à chaque fois. -->
 
 
 	    <!-- Google Tag Manager -->
@@ -651,7 +631,7 @@ var REDIRECT_LINK_CONG = '<?php echo $congPage->getLink(); ?>';
 <script src='<?php echo $siteURL; ?>assets/js/jquery.form.js'></script>
 <script src='<?php echo $siteURL; ?>flip-book/js/flipbook.min.js'></script>
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.13'></script>
+<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.14'></script>
 <script>
 /* CURSOR */
 const cur  = document.getElementById('cur');

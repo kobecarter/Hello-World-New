@@ -123,6 +123,9 @@ $(document).ready(function() {
 			if (parseInt(theResponse) === 1) {
 				$('#contactForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+SUCCES_ENVOI+'</div>');
 				$('#contactForm').resetForm();
+				// Conversion déclenchée ici (envoi confirmé par le serveur), pas au chargement
+				// de la page de destination - sinon une revisite/rechargement la recompte.
+				if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-988470532/wIfpCLro748DEIS6q9cD' });
 				document.location = REDIRECT_LINK;
 			}
 			else if (parseInt(theResponse) === 0) {
@@ -152,6 +155,9 @@ $(document).ready(function() {
 			if (parseInt(theResponse) === 1) {
 				$('#quickContactForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+SUCCES_ENVOI+'</div>');
 				$('#quickContactForm').resetForm();
+				// Conversion déclenchée ici (envoi confirmé par le serveur), pas au chargement
+				// de la page de destination - sinon une revisite/rechargement la recompte.
+				if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-988470532/wIfpCLro748DEIS6q9cD' });
 				document.location = REDIRECT_LINK;
 			}
 			else if (parseInt(theResponse) === 0) {
@@ -180,6 +186,9 @@ $(document).ready(function() {
 									if (parseInt(theResponse) === 1) {
 										$('form#devisForm .msgbox').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>'+SUCCES_ENVOI+'</div>');
 										$('form#devisForm')[0].reset();
+										// Conversion déclenchée ici (envoi confirmé par le serveur), pas au chargement
+										// de la page de destination - sinon une revisite/rechargement la recompte.
+										if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-988470532/gtHMCIHqpZADEIS6q9cD' });
 										document.location = REDIRECT_LINK_QUOTE;
 									}
 									else if (parseInt(theResponse) === 0) {
