@@ -5708,12 +5708,6 @@ $lang = array(
         "ar" => "كل طلب يُحلَّل ويُعالَج من طرف فريقنا. لا روبوتات، بشر فقط."
     ),
 
-    "CT_MAP_LINK" => array(
-        "fr" => "Voir sur Google Maps",
-        "en" => "View on Google Maps",
-        "ar" => "عرض على خرائط جوجل"
-    ),
-
     "CT_OFFICES_LABEL" => array(
         "fr" => "Nos Bureaux",
         "en" => "Our Offices",

@@ -81,9 +81,6 @@
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen></iframe>
-            <div class="ct-map-caption">
-              <a href="https://www.google.com/maps/search/?api=1&query=<?php echo urlencode('Hello World Agency Marrakech, ' . $config->getAdresse()); ?>" target="_blank" rel="noopener" class="ct-map-link"><?php echo $lang['CT_MAP_LINK'][$_SESSION['lang']]; ?> <i class="fa fa-arrow-up-right-from-square"></i></a>
-            </div>
           </div>
         </div>
       </div>
