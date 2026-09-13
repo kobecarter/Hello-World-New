@@ -73,6 +73,27 @@
         </div>
 
         <?php include("components/com_contact/views/contact/form.php"); ?>
+
+        <div class="ct-map-block rv d3">
+          <div class="sec-label"><?php echo $lang['CT_MAP_LABEL'][$_SESSION['lang']]; ?></div>
+          <div class="ct-map-card">
+            <iframe
+              src="https://www.google.com/maps?q=<?php echo urlencode('Hello World Agency Marrakech, ' . $config->getAdresse()); ?>&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+            <div class="ct-map-caption">
+              <div class="ct-map-caption-text">
+                <i class="fa fa-location-dot"></i>
+                <div>
+                  <div class="ct-map-caption-title"><?php echo $lang['CT_MAP_TITLE'][$_SESSION['lang']]; ?></div>
+                  <div class="ct-map-caption-addr"><?php echo $config->getAdresse(); ?></div>
+                </div>
+              </div>
+              <a href="https://www.google.com/maps/search/?api=1&query=<?php echo urlencode('Hello World Agency Marrakech, ' . $config->getAdresse()); ?>" target="_blank" rel="noopener" class="ct-map-link"><?php echo $lang['CT_MAP_LINK'][$_SESSION['lang']]; ?> <i class="fa fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- CEO SIDEBAR -->

@@ -5708,6 +5708,24 @@ $lang = array(
         "ar" => "كل طلب يُحلَّل ويُعالَج من طرف فريقنا. لا روبوتات، بشر فقط."
     ),
 
+    "CT_MAP_LABEL" => array(
+        "fr" => "Nous trouver",
+        "en" => "Find us",
+        "ar" => "موقعنا"
+    ),
+
+    "CT_MAP_TITLE" => array(
+        "fr" => "Notre bureau à Marrakech",
+        "en" => "Our Marrakech office",
+        "ar" => "مكتبنا في مراكش"
+    ),
+
+    "CT_MAP_LINK" => array(
+        "fr" => "Voir sur Google Maps",
+        "en" => "View on Google Maps",
+        "ar" => "عرض على خرائط جوجل"
+    ),
+
     "CT_OFFICES_LABEL" => array(
         "fr" => "Nos Bureaux",
         "en" => "Our Offices",
