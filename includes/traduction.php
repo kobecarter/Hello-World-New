@@ -4079,6 +4079,12 @@ $lang = array(
         "ar" => "تطبيق HelloWorld Agency المغرب على App Store"
     ),
 
+    "TPL_PLAYSTORE_TITLE" => array(
+        "fr" => "Application HelloWorld Agency Maroc sur Google Play",
+        "en" => "HelloWorld Agency Morocco App on Google Play",
+        "ar" => "تطبيق HelloWorld Agency المغرب على Google Play"
+    ),
+
     "TPL_MENU_OUVRIR" => array(
         "fr" => "Ouvrir le menu",
         "en" => "Open menu",

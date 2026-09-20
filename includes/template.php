@@ -333,6 +333,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
                    <span>1</span></a>
 	         </li>
 	         <li class="apple-app"><a href="https://apps.apple.com/ma/app/hello-world-agency/id1566017621?l=fr-FR" target="_blank" title="<?php echo $lang['TPL_APPSTORE_TITLE'][$_SESSION['lang']]; ?>"><i class="fab fa-apple"></i></a></li>
+	         <li class="android-app"><a href="#" target="_blank" title="<?php echo $lang['TPL_PLAYSTORE_TITLE'][$_SESSION['lang']]; ?>"><i class="fab fa-google-play"></i></a></li>
 	        <li class="espace-client<?php echo isset($_SESSION['client']) ? ' is-online' : ''; ?>"><a href="<?php echo $clientPage->getLink(); ?>" title="<?php echo isset($_SESSION['client']) ? 'Espace client — en ligne' : 'Login Client'; ?>"><i class="fa fa-user-circle"></i><?php if (isset($_SESSION['client'])) : ?><span class="online-dot" aria-hidden="true"></span><?php endif; ?></a></li>
 	     </ul>
 <!-- End whatsapp btns -->

@@ -2818,7 +2818,7 @@ linear infinite;
   50% { transform: translateY(-2px); }
   100% { transform: translateY(0); }
 }
-.apple-app a, .espace-client a{
+.apple-app a, .android-app a, .espace-client a{
     display: block;
     position: relative;
     height: 46px;
@@ -8596,7 +8596,7 @@ object-fit: cover;
     .whatsapp-buttons .whatsapp-link a i{
       font-size: 22px;
     }
-    .apple-app a, .espace-client a{
+    .apple-app a, .android-app a, .espace-client a{
       height: 42px;
       width: 42px;
       line-height: 42px;
