@@ -1,4 +1,6 @@
 <?php
+// Script de migration ponctuel : exécutable en CLI uniquement, jamais via HTTP.
+if (PHP_SAPI !== 'cli') { http_response_code(403); exit; }
 /* One-off data repair/seed for menu id=3 ("Main menu" / mega menu).
    Completes the 7 existing top-level rows in place (they already point to
    the right records) and inserts group/item rows reproducing today's

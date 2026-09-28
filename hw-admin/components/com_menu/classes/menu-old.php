@@ -8,7 +8,7 @@ class menu
     public function __construct($id, $db)
     {
         if (isset($id)) {
-            $result = $db->query("SELECT * FROM " . __prefixe_db__ . "menu WHERE id = " . $id);
+            $result = $db->query("SELECT * FROM " . __prefixe_db__ . "menu WHERE id = " . (int) $id);
             if ($db->num_rows($result) == 1) {
 
                 $data = $db->fetch_assoc($result);
@@ -40,7 +40,7 @@ class menu
 					  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
 					  WHERE id_menu = " . $this->id . " 
 					  AND parent_id = 0
-					  AND langue = '" . $_SESSION["lang"] . "' 
+					  AND langue = " . GetSQLValueString($_SESSION["lang"], "text") . " 
 					  ORDER BY ordre ASC";
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) > 0) {
@@ -69,7 +69,7 @@ class menu
 									  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
 									  WHERE id_menu = " . $this->id . "
 									  AND parent_id = " . $mi->getId() . "
-									  AND langue = '" . $_SESSION["lang"] . "' 
+									  AND langue = " . GetSQLValueString($_SESSION["lang"], "text") . " 
 									  ORDER BY ordre ASC";
                     $result2 = $db->queryS($SQLselect);
                     foreach ($result2 as $data2) {
@@ -90,7 +90,7 @@ class menu
 												  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
 												  WHERE id_menu = " . $this->id . "
 												  AND parent_id = " . $mi->getId() . "
-												  AND langue = '" . $_SESSION["lang"] . "' 
+												  AND langue = " . GetSQLValueString($_SESSION["lang"], "text") . " 
 												  ORDER BY ordre ASC";
                             $result3 = $db->queryS($SQLselect);
                             foreach ($result3 as $data3) {
@@ -129,7 +129,7 @@ class menu
 					  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
 					  WHERE id_menu = " . $this->id . " 
 					  AND parent_id = 0
-					  AND langue = '" . $_SESSION["lang"] . "' 
+					  AND langue = " . GetSQLValueString($_SESSION["lang"], "text") . " 
 					  ORDER BY ordre ASC";
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) > 0) {
@@ -152,7 +152,7 @@ class menu
 									  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
 									  WHERE id_menu = " . $this->id . "
 									  AND parent_id = " . $mi->getId() . "
-									  AND langue = '" . $_SESSION["lang"] . "' 
+									  AND langue = " . GetSQLValueString($_SESSION["lang"], "text") . " 
 									  ORDER BY ordre ASC";
                     $result2 = $db->queryS($SQLselect);
                     foreach ($result2 as $data2) {
@@ -733,7 +733,7 @@ $menuHTML .= '
 					  JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
 					  WHERE id_menu = " . $this->id . " 
 					  AND parent_id = 0
-					  AND langue = '" . $_SESSION["lang"] . "' 
+					  AND langue = " . GetSQLValueString($_SESSION["lang"], "text") . " 
 					  ORDER BY ordre ASC";
                 $result = $db->query($SQLselect);
                 if ($db->num_rows($result) > 0) {
@@ -765,7 +765,7 @@ $menuHTML .= '
                                                 JOIN " . __prefixe_db__ . "details_menu_item B ON A.id = B.id_menu_item
                                                 WHERE id_menu = " . $this->id . "
                                                 AND parent_id = " . $mi->getId() . "
-                                                AND langue = '" . $_SESSION["lang"] . "' 
+                                                AND langue = " . GetSQLValueString($_SESSION["lang"], "text") . " 
                                                 ORDER BY ordre ASC";
                             $result3 = $db->queryS($SQLselect);
                             

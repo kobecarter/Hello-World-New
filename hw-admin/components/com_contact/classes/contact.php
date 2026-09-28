@@ -11,7 +11,7 @@ class contact {
 
     public function __construct($id, $db) {
 
-        $SQLselect = "SELECT * FROM ".__prefixe_db__."contact WHERE id = $id";
+        $SQLselect = "SELECT * FROM ".__prefixe_db__."contact WHERE id = " . (int) $id . "";
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
 

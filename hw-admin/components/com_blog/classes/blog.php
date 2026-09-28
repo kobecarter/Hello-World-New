@@ -423,7 +423,7 @@ class blog
         );
 
         if($id){
-            $SQLselect .= " AND A.id != $id";
+            $SQLselect .= " AND A.id != " . (int) $id . "";
         }
 
         $result = $db->query($SQLselect);
@@ -459,7 +459,7 @@ class blog
     //             GetSQLValueString($newSlug, "text")
     //         );
     //         if($id){
-    //             $SQLselect .= " AND A.id != $id";
+    //             $SQLselect .= " AND A.id != " . (int) $id . "";
     //         }
     //         $result = $db->query($SQLselect);
     //         if ($db->num_rows($result) >= 1) {
@@ -483,7 +483,7 @@ class blog
 //             $SQLselect .= " AND active = 1";
 //         }
 //         if($categorie){
-//             $SQLselect .= " AND id_categorie = $categorie";
+//             $SQLselect .= " AND id_categorie = " . (int) $categorie . "";
 //         }
 				
 // 		$SQLselect .= " ORDER BY date_add DESC";
@@ -557,7 +557,7 @@ public static function findAll($langue, $active = false, $categories = false, $c
             $SQLselect .= " AND active = 1";
         }
         if ($categorie) {
-            $SQLselect .= " AND id_categorie = $categorie";
+            $SQLselect .= " AND id_categorie = " . (int) $categorie . "";
         }
 
         $SQLselect .= " ORDER BY date_add DESC";
@@ -643,7 +643,8 @@ public static function findAll($langue, $active = false, $categories = false, $c
         {
             extract($data);
 
-            $SQLupdate = sprintf("UPDATE " . static::$table . " SET active = $active WHERE id in$ids");
+            $ids = "(" . implode(",", array_map("intval", explode(",", trim((string) $ids, "() ")))) . ")";
+            $SQLupdate = "UPDATE " . static::$table . " SET active = " . (int) $active . " WHERE id in" . $ids;
             
             if(!$db->query($SQLupdate))
                 return 1;

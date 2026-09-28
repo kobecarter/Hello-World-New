@@ -17,8 +17,8 @@ class slide
     {
 
         $SQLselect = "SELECT A.*, B.* FROM " . __prefixe_db__ . "slides A
-						  LEFT JOIN " . __prefixe_db__ . "details_slide B ON A.id = B.id_slide AND langue = '$lang'
-						  WHERE A.id = $id";
+						  LEFT JOIN " . __prefixe_db__ . "details_slide B ON A.id = B.id_slide AND langue = " . GetSQLValueString($lang, "text") . "
+						  WHERE A.id = " . (int) $id . "";
         $result = $db->query($SQLselect);
 
         if ($db->num_rows($result) == 1) {
@@ -87,7 +87,7 @@ class slide
     {
         global $db;
         $ids = array();
-        $SQLselect = "SELECT id FROM " . __prefixe_db__ . "slides WHERE id_slider = $id_slider AND actif = 1 ORDER BY ordre ASC";
+        $SQLselect = "SELECT id FROM " . __prefixe_db__ . "slides WHERE id_slider = " . (int) $id_slider . " AND actif = 1 ORDER BY ordre ASC";
         $result = $db->queryS($SQLselect);
         foreach ($result as $data) {
             array_push($ids, $data['id']);

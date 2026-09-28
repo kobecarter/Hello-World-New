@@ -16,10 +16,10 @@
 
     <form action="<?php echo $siteURL; ?>components/com_client/controleurs/router.php?task=setNewPasswordApi" id="setNewPasswordApiForm" method="post" class="cl-auth-form formTemplate">
       <div class="msgbox"></div>
-      <input type="hidden" name="token" value="<?= $_GET['token'] ?>" required>
+      <input type="hidden" name="token" value="<?= htmlspecialchars(isset($_GET['token']) ? (string) $_GET['token'] : '', ENT_QUOTES, 'UTF-8') ?>" required>
 
       <div class="ct-group">
-        <input class="ct-input" type="email" name="email" id="cl-np-email" value="<?= $_GET['email'] ?>" placeholder=" " readonly required>
+        <input class="ct-input" type="email" name="email" id="cl-np-email" value="<?= htmlspecialchars(isset($_GET['email']) ? (string) $_GET['email'] : '', ENT_QUOTES, 'UTF-8') ?>" placeholder=" " readonly required>
         <label class="ct-float-label" for="cl-np-email"><?php echo $lang['CL_EMAIL'][$_SESSION['lang']]; ?></label>
         <span class="ct-line"></span>
       </div>

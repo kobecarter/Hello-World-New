@@ -13,7 +13,7 @@ class langue{
 
     public function __construct($id, $db) {
 
-        $SQLselect = "SELECT * FROM ".__prefixe_db__."langue WHERE id = $id";
+        $SQLselect = "SELECT * FROM ".__prefixe_db__."langue WHERE id = ".GetSQLValueString($id, "int");
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
 
@@ -68,7 +68,7 @@ class langue{
 
     public static function isLangueDefault($langue){
         global $db;
-        $SQLselect = "SELECT id FROM ".__prefixe_db__."langue WHERE code = '$langue'";
+        $SQLselect = "SELECT id FROM ".__prefixe_db__."langue WHERE code = ".GetSQLValueString($langue, "text");
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
             $data = $db->fetch_assoc($result);
@@ -103,7 +103,7 @@ class langue{
     public static function findOthers($langue){
         global $db;
         $ids = array();
-        $SQLselect = "SELECT id FROM ".__prefixe_db__."langue WHERE actif = 1 AND code != '".$langue."'";
+        $SQLselect = "SELECT id FROM ".__prefixe_db__."langue WHERE actif = 1 AND code != ".GetSQLValueString($langue, "text");
         $result = $db->queryS($SQLselect);
         foreach ($result as $data) {
             array_push($ids, $data['id']);
@@ -114,7 +114,7 @@ class langue{
     public static function getIdLangue($langue){
         global $db;
         $ids = array();
-        $SQLselect = "SELECT id FROM ".__prefixe_db__."langue WHERE code = '$langue'";
+        $SQLselect = "SELECT id FROM ".__prefixe_db__."langue WHERE code = ".GetSQLValueString($langue, "text");
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
             $data = $db->fetch_assoc($result);

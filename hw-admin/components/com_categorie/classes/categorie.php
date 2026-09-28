@@ -414,7 +414,7 @@ class categorie
                 GetSQLValueString($newSlug, "text")
             );
             if($id){
-                $SQLselect .= " AND A.id != $id";
+                $SQLselect .= " AND A.id != " . (int) $id . "";
             }
             $result = $db->query($SQLselect);
             if ($db->num_rows($result) >= 1) {

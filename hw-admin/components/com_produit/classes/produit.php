@@ -391,7 +391,7 @@ class produit
             $SQLselect .= " AND active = 1";
         }
         if($categorie){
-            $SQLselect .= " AND id_categorie = $categorie";
+            $SQLselect .= " AND id_categorie = " . (int) $categorie . "";
         }
 				
 		$SQLselect .= " ORDER BY date_add DESC";
@@ -479,7 +479,8 @@ class produit
         {
             extract($data);
 
-            $SQLupdate = sprintf("UPDATE " . static::$table . " SET active = $active WHERE id in$ids");
+            $ids = "(" . implode(",", array_map("intval", explode(",", trim((string) $ids, "() ")))) . ")";
+            $SQLupdate = "UPDATE " . static::$table . " SET active = " . (int) $active . " WHERE id in" . $ids;
             
             if(!$db->query($SQLupdate))
                 return 1;

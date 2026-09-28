@@ -412,7 +412,7 @@ class secteur
         );
 
         if($id){
-            $SQLselect .= " AND A.id != $id";
+            $SQLselect .= " AND A.id != " . (int) $id . "";
         }
 
         $result = $db->query($SQLselect);
@@ -550,7 +550,8 @@ public static function findAll($langue, $active = false, $services = false, $cur
         {
             extract($data);
 
-            $SQLupdate = sprintf("UPDATE " . static::$table . " SET active = $active WHERE id in$ids");
+            $ids = "(" . implode(",", array_map("intval", explode(",", trim((string) $ids, "() ")))) . ")";
+            $SQLupdate = "UPDATE " . static::$table . " SET active = " . (int) $active . " WHERE id in" . $ids;
             
             if(!$db->query($SQLupdate))
                 return 1;

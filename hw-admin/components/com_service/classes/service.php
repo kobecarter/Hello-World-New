@@ -591,7 +591,7 @@ class service
                 GetSQLValueString($newSlug, "text")
             );
             if($id){
-                $SQLselect .= " AND A.id != $id";
+                $SQLselect .= " AND A.id != " . (int) $id . "";
             }
             $result = $db->query($SQLselect);
             if ($db->num_rows($result) >= 1) {
@@ -680,7 +680,8 @@ class service
         {
             extract($data);
 
-            $SQLupdate = sprintf("UPDATE " . static::$table . " SET active = $active WHERE id in$ids");
+            $ids = "(" . implode(",", array_map("intval", explode(",", trim((string) $ids, "() ")))) . ")";
+            $SQLupdate = "UPDATE " . static::$table . " SET active = " . (int) $active . " WHERE id in" . $ids;
             
             if(!$db->query($SQLupdate))
                 return 1;

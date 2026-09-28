@@ -338,7 +338,8 @@ class formation
         global $db;
         if (isset($data['ids']) && !empty($data['ids']) && isset($data['active']) && $data['active'] != '') {
             extract($data);
-            $SQLupdate = "UPDATE " . static::$table . " SET active = $active WHERE id in$ids";
+            $ids = "(" . implode(",", array_map("intval", explode(",", trim((string) $ids, "() ")))) . ")";
+            $SQLupdate = "UPDATE " . static::$table . " SET active = " . (int) $active . " WHERE id in" . $ids;
             if (!$db->query($SQLupdate)) return 1;
             else return 2;
         }

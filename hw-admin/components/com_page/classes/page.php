@@ -21,8 +21,8 @@ class page{
     public function __construct($id, $db, $lang = 'fr') {
 
         $SQLselect = "SELECT A.*, B.* FROM ".__prefixe_db__."page A
-						  LEFT JOIN ".__prefixe_db__."details_page B ON A.id = B.id_page AND langue = '$lang'
-						  WHERE A.id = $id";
+						  LEFT JOIN ".__prefixe_db__."details_page B ON A.id = B.id_page AND langue = " . GetSQLValueString($lang, "text") . "
+						  WHERE A.id = " . (int) $id . "";
         $result = $db->query($SQLselect);
 
         if ($db->num_rows($result) == 1){
@@ -112,8 +112,8 @@ class page{
 
     public function istranslated($id, $db, $l){
         $SQLselect = "SELECT A.*, B.* FROM ".__prefixe_db__."page A
-						  LEFT JOIN ".__prefixe_db__."details_page B ON A.id = B.id_page AND langue = '$l'
-						  WHERE A.id = $id AND langue = '$l'" ;
+						  LEFT JOIN ".__prefixe_db__."details_page B ON A.id = B.id_page AND langue = " . GetSQLValueString($l, "text") . "
+						  WHERE A.id = " . (int) $id . " AND langue = " . GetSQLValueString($l, "text") . "" ;
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
             return  true ;

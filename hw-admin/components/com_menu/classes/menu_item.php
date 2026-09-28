@@ -27,8 +27,8 @@ class menu_item{
     public function __construct($id, $db, $lang = 'fr') {
 
         $SQLselect = "SELECT A.*, B.* FROM ".__prefixe_db__."menu_items A
-					  LEFT JOIN ".__prefixe_db__."details_menu_item B ON A.id = B.id_menu_item AND langue = '$lang'
-					  WHERE A.id = $id";
+					  LEFT JOIN ".__prefixe_db__."details_menu_item B ON A.id = B.id_menu_item AND langue = " . GetSQLValueString($lang, "text") . "
+					  WHERE A.id = " . (int) $id . "";
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
 

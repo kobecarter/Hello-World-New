@@ -3,6 +3,7 @@ include"../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if(isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -172,7 +173,7 @@ function deleteNewsletter($data){
     global $db;
     if(isset($data['id']) && !empty($data['id'])){
         $id = intval($data['id']);
-        $SQLdelete = "DELETE FROM ".__prefixe_db__."newsletter WHERE id = $id";
+        $SQLdelete = "DELETE FROM ".__prefixe_db__."newsletter WHERE id = " . (int) $id . "";
         if(!$db->query($SQLdelete)){
             echo '1';
         }else {

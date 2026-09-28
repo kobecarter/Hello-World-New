@@ -3,6 +3,7 @@ include"../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if(isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -174,7 +175,7 @@ function viewContact($data){
     if(isset($data['id']) && !empty($data['id'])){
         $id = intval($data['id']);
         $contact = new contact($id,$db);
-        $SQLupdate = "UPDATE ".__prefixe_db__."contact set confirm = 0 WHERE id = $id";
+        $SQLupdate = "UPDATE ".__prefixe_db__."contact set confirm = 0 WHERE id = " . (int) $id . "";
         $db->query($SQLupdate);
         echo $contact->getTemplate();
     }
@@ -187,7 +188,7 @@ function deleteContact($data){
     global $db;
     if(isset($data['id']) && !empty($data['id'])){
         $id = intval($data['id']);
-        $SQLdelete = "DELETE FROM ".__prefixe_db__."contact WHERE id = $id";
+        $SQLdelete = "DELETE FROM ".__prefixe_db__."contact WHERE id = " . (int) $id . "";
         if(!$db->query($SQLdelete)){
             echo '1';
         }else {

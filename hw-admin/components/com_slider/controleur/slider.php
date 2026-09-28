@@ -3,6 +3,7 @@ include"../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if (isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -73,12 +74,12 @@ function deleteSlider($data)
     if (isset($data['id']) && !empty($data['id'])) {
         $id = intval($data['id']);
         $s = new slider($id, $db);
-        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "slider WHERE id = $id";
-        $SQLdelete2 = "DELETE FROM " . __prefixe_db__ . "slides WHERE id_slider = $id";
+        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "slider WHERE id = " . (int) $id . "";
+        $SQLdelete2 = "DELETE FROM " . __prefixe_db__ . "slides WHERE id_slider = " . (int) $id . "";
         $ids_slides = $s->getIdChildrenSlide();
         $good = true;
         foreach ($ids_slides as $id_slide) {
-            $SQLdelete3 = "DELETE FROM " . __prefixe_db__ . "details_slide WHERE id_slide = $id_slide";
+            $SQLdelete3 = "DELETE FROM " . __prefixe_db__ . "details_slide WHERE id_slide = " . (int) $id_slide . "";
             $slide = new slide($id_slide,$db,$_SESSION['langue']);
             if (!$db->query($SQLdelete3)) {
                 @unlink("../../../../images/slides/" . $slide->getPhoto());
@@ -124,7 +125,7 @@ function editSlide($data)
             GetSQLValueString($id, "int"));
 
         if (!$db->query($updateSQL)) {
-            $SQLselect = "SELECT * FROM " . __prefixe_db__ . "details_slide WHERE id_slide = $id AND langue = '" . $_SESSION['langue'] . "'";
+            $SQLselect = "SELECT * FROM " . __prefixe_db__ . "details_slide WHERE id_slide = " . (int) $id . " AND langue = " . GetSQLValueString($_SESSION['langue'], "text");
             $result = $db->query($SQLselect);
             // ajout d'une nouvelle traduction
             if ($db->num_rows($result) == 0) {
@@ -201,8 +202,8 @@ function deleteSlide($data)
     if (isset($data['id']) && !empty($data['id'])) {
         $id = intval($data['id']);
         $s = new slide($id, $db);
-        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "slides WHERE id = $id";
-        $SQLdelete2 = "DELETE FROM " . __prefixe_db__ . "details_slide WHERE id_slide = $id";
+        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "slides WHERE id = " . (int) $id . "";
+        $SQLdelete2 = "DELETE FROM " . __prefixe_db__ . "details_slide WHERE id_slide = " . (int) $id . "";
         if (!$db->query($SQLdelete) && !$db->query($SQLdelete2)) {
             @unlink("../../../../images/slides/" . $s->getPhoto());
             echo '1';

@@ -16,7 +16,7 @@ class compte {
     private $dev;
 
     public function __construct($id, $db) {
-        $result = $db->query("SELECT * FROM ".__prefixe_db__."users WHERE id = $id");
+        $result = $db->query("SELECT * FROM ".__prefixe_db__."users WHERE id = " . (int) $id . "");
         if ($db->num_rows($result) == 1){
 
             $data = $db->fetch_assoc($result);

@@ -17,12 +17,11 @@ class user {
 
     public function __construct($login, $password, $db) {
         if (isset($login) && isset($password)){
-            $login = addslashes($login);
-            $password = hash('sha256', $password);
-            $result = $db->query("SELECT * FROM ".__prefixe_db__."users WHERE login = '".$login."' AND password = '".$password."' AND actif = 1");
-            if ($db->num_rows($result) == 1){
+            $result = $db->query("SELECT * FROM ".__prefixe_db__."users WHERE login = ".GetSQLValueString($login, "text")." AND actif = 1");
+            $data = ($result && $db->num_rows($result) == 1) ? $db->fetch_assoc($result) : null;
+            if ($data && static::verifyPassword($password, $data, $db)){
 
-                $data = $db->fetch_assoc($result);
+                $password = $data['password'];
                 $this->connected = true;
                 $this->id = $data['id'];
                 $this->username = $data['login'];
@@ -45,6 +44,34 @@ class user {
 
     public function __destruct(){
 
+    }
+
+    // Hash de mot de passe : password_hash() (bcrypt salé). Les anciens comptes stockent un
+    // SHA-256 non salé : accepté une dernière fois puis converti à la volée.
+    public static function hashPassword($password){
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    private static function verifyPassword($password, &$data, $db){
+        $stored = (string) $data['password'];
+        if (password_verify($password, $stored)) {
+            if (password_needs_rehash($stored, PASSWORD_DEFAULT)) {
+                static::storeHash($data, $db, static::hashPassword($password));
+            }
+            return true;
+        }
+        if (strlen($stored) === 64 && hash_equals($stored, hash('sha256', $password))) {
+            static::storeHash($data, $db, static::hashPassword($password));
+            return true;
+        }
+        return false;
+    }
+
+    private static function storeHash(&$data, $db, $hash){
+        $db->query(sprintf("UPDATE ".__prefixe_db__."users SET password = %s WHERE id = %s",
+            GetSQLValueString($hash, "text"),
+            GetSQLValueString($data['id'], "int")));
+        $data['password'] = $hash;
     }
 
     public function getId(){
@@ -117,7 +144,7 @@ class user {
 
     public static function isEmailValable($email){
         global $db;
-        $result = $db->query("SELECT * FROM ".__prefixe_db__."users WHERE email = '".$email."' AND actif = 1 AND id_profil = 1");
+        $result = $db->query("SELECT * FROM ".__prefixe_db__."users WHERE email = ".GetSQLValueString($email, "text")." AND actif = 1 AND id_profil = 1");
         if ($db->num_rows($result) == 1){
             return true;
         }else{

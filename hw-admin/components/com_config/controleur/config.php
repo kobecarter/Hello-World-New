@@ -3,6 +3,7 @@ include"../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if(isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -55,7 +56,7 @@ function updateConfig($data)
 
     if (!$db->query($updateSQL)) {
 
-        $SQLselect = "SELECT * FROM ".__prefixe_db__."details_config WHERE id_config = 0 AND langue = '".$_SESSION['langue']."'";
+        $SQLselect = "SELECT * FROM ".__prefixe_db__."details_config WHERE id_config = 0 AND langue = " . GetSQLValueString($_SESSION['langue'], "text");
         $result = $db->query($SQLselect);
         // ajout d'une nouvelle traduction
         if($db->num_rows($result) == 0){

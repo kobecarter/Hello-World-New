@@ -1,7 +1,8 @@
-# Dossier de fichiers envoyés : ni listing, ni exécution de script (même en double extension, ex. image.php.jpg)
+# Pas de listing du contenu des dossiers
 Options -Indexes
 
-<FilesMatch "\.(php[0-9]?|pht|phtml|phar|pl|py|cgi|sh|shtml|asp|aspx|jsp)(\.|$)">
+# Anciennes copies, archives de code et fichiers système : jamais servis
+<FilesMatch "(^_index\.php|\.zip|\.DS_Store)$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>

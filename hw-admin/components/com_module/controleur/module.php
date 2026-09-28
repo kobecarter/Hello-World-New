@@ -3,6 +3,13 @@ include "../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
+
+// L'id de module est un nom de dossier de composant, utilisé tel quel dans un include,
+// un rmdir récursif et du SQL : jamais de chemin ni de caractère spécial.
+if (isset($_POST['id']) && !preg_match('/^_?com_[a-z0-9_]+$/i', (string) $_POST['id'])) {
+    exit('0');
+}
 
 if (isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -202,7 +209,7 @@ function desinstallModule($data)
 
         $id_module = $data['id'];
         require_once "../../../components/" . $id_module . "/install.php";
-        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "modules WHERE id_module = '" . $id_module . "'";
+        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "modules WHERE id_module = " . GetSQLValueString($id_module, "text");
         $desinstall = "desinstall_" . $id_module;
         if (!$db->query($SQLdelete) && $desinstall() == 1) {
             echo 1;
@@ -220,7 +227,7 @@ function deleteModule($data)
 
         $id_module = $data['id'];
         require_once "../../../components/" . $id_module . "/install.php";
-        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "modules WHERE id_module = '" . $id_module . "'";
+        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "modules WHERE id_module = " . GetSQLValueString($id_module, "text");
         $desinstall = "desinstall_" . $id_module;
         if (!$db->query($SQLdelete) && $desinstall() == 1) {
             rmdir_recursive("../../../components/" . $id_module);

@@ -17,7 +17,7 @@ class module
 
     public function __construct($id_module, $db) {
 
-        $SQLselect = "SELECT * FROM ".__prefixe_db__."modules WHERE id_module = '". $id_module ."'";
+        $SQLselect = "SELECT * FROM ".__prefixe_db__."modules WHERE id_module = ".GetSQLValueString($id_module, "text")."";
         $result = $db->query($SQLselect);
 
         if ($db->num_rows($result) == 1){
@@ -99,7 +99,7 @@ class module
 
     public static function exists($id_module){
         global $db;
-        $SQLselect = "SELECT * FROM ".__prefixe_db__."modules WHERE id_module = '". $id_module ."' AND installed = 1 AND enabled = 1";
+        $SQLselect = "SELECT * FROM ".__prefixe_db__."modules WHERE id_module = ".GetSQLValueString($id_module, "text")." AND installed = 1 AND enabled = 1";
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
             return true;

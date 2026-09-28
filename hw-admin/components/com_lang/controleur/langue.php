@@ -3,6 +3,7 @@ include"../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if(isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -111,7 +112,7 @@ function deleteLangue($data){
     if(isset($data['id']) && !empty($data['id'])){
         $id = intval($data['id']);
         $l = new langue($id,$db);
-        $SQLdelete = "DELETE FROM ".__prefixe_db__."langue WHERE id = $id";
+        $SQLdelete = "DELETE FROM ".__prefixe_db__."langue WHERE id = " . (int) $id . "";
         if(!$db->query($SQLdelete)){
             // supprimer la photos
             @unlink('../../../../images/langues/'.$l->getflag());

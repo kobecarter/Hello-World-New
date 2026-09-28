@@ -4,6 +4,7 @@ require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if(isset($_GET['task']) && !empty($_GET['task'])) {
 
@@ -148,7 +149,7 @@ function editPopup($data){
 
 
 
-            $SQLselect = "SELECT * FROM ".__prefixe_db__."details_popup WHERE id_popup = $id AND langue = '".$_SESSION['langue']."'";
+            $SQLselect = "SELECT * FROM ".__prefixe_db__."details_popup WHERE id_popup = " . (int) $id . " AND langue = " . GetSQLValueString($_SESSION['langue'], "text");
 
             $result = $db->query($SQLselect);
 
@@ -231,9 +232,9 @@ function deletePopup($data){
 
         $b = new popup($id,$db,$_SESSION['langue']);
 
-        $SQLdelete = "DELETE FROM ".__prefixe_db__."popup WHERE id = $id";
+        $SQLdelete = "DELETE FROM ".__prefixe_db__."popup WHERE id = " . (int) $id . "";
 
-        $SQLdelete2 = "DELETE FROM ".__prefixe_db__."details_popup WHERE id_popup = $id";
+        $SQLdelete2 = "DELETE FROM ".__prefixe_db__."details_popup WHERE id_popup = " . (int) $id . "";
 
         if(!$db->query($SQLdelete) && !$db->query($SQLdelete2)){
 

@@ -340,7 +340,7 @@ class video
     {
         global $db;
         $items = array();
-        $SQLselect = sprintf("SELECT A.id as ID, A.*, B.* FROM " . static::$table . " A LEFT JOIN " . static::$table2 . " B ON A.id = B.id_video AND langue = %s WHERE id_categorie = ".$id_categorie,
+        $SQLselect = sprintf("SELECT A.id as ID, A.*, B.* FROM " . static::$table . " A LEFT JOIN " . static::$table2 . " B ON A.id = B.id_video AND langue = %s WHERE id_categorie = " . (int) $id_categorie,
             GetSQLValueString($langue, "text")
         );
         if($active){

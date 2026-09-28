@@ -396,7 +396,8 @@ class pack
         {
             extract($data);
 
-            $SQLupdate = sprintf("UPDATE " . static::$table . " SET active = $active WHERE id in$ids");
+            $ids = "(" . implode(",", array_map("intval", explode(",", trim((string) $ids, "() ")))) . ")";
+            $SQLupdate = "UPDATE " . static::$table . " SET active = " . (int) $active . " WHERE id in" . $ids;
             
             if(!$db->query($SQLupdate))
             {

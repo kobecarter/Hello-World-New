@@ -30,7 +30,7 @@ class config
     {
 
         $SQLselect = "SELECT A.*, B.* FROM " . __prefixe_db__ . "config A
-					  LEFT JOIN " . __prefixe_db__ . "details_config B ON A.id = B.id_config AND langue = '$lang'
+					  LEFT JOIN " . __prefixe_db__ . "details_config B ON A.id = B.id_config AND langue = " . GetSQLValueString($lang, "text") . "
 					  WHERE A.id = 0";
 
         $result = $db->query($SQLselect);

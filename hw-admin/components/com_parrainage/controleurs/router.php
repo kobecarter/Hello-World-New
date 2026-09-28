@@ -7,6 +7,7 @@ require_once("../../../includes/functions/functions.php");
 if (!isset($_SESSION)) {
     session_start();
 }
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if (!isset($_SESSION['user'])) {
     echo "0";

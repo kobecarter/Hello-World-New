@@ -294,7 +294,7 @@ class categorie_produit
             $SQLselect .= " AND active = 1";
         }
 		if($parent){
-            $SQLselect .= " AND id_parent = $parent";
+            $SQLselect .= " AND id_parent = " . (int) $parent . "";
         }
         if($ordre){
             $SQLselect .= " ORDER BY ordre ASC";

@@ -27,6 +27,10 @@ require_once('hw-admin/instanceDb.php');
 
 require_once('includes/functions/functions.php');
 
+require_once('hw-admin/includes/security.php');
+
+hwSendSecurityHeaders();
+
 if (!isset($_SESSION)){
 
     // PHP's default session cache limiter ('nocache') forces a full
@@ -36,8 +40,22 @@ if (!isset($_SESSION)){
     // Expires rule for text/html, which is too long for CMS-driven content.
     session_cache_limiter('private');
     session_cache_expire(5);
+    hwSecureSessionCookie();
     session_start();
 
+}
+
+// La langue en session finit dans presque toutes les requêtes SQL : une valeur posée
+// avant ce contrôle (ou forgée) est écartée.
+if (isset($_SESSION['lang']) && !hwIsKnownLanguage($_SESSION['lang'])) {
+    unset($_SESSION['lang']);
+}
+
+// Paramètres d'URL hors format (injection SQL, XSS, chemin de fichier...) : 404 direct.
+if (!hwRequestParamsValid($_GET) || (isset($_GET['l']) && $_GET['l'] !== '' && !hwIsKnownLanguage($_GET['l']))) {
+    http_response_code(404);
+    include('404.php');
+    exit;
 }
 
 require_once('includes/traduction.php');
@@ -63,7 +81,8 @@ if (preg_match("/com_/i",$option) && file_exists("components/".$option."/index.p
 
 }else{
 
-    include('404.html');
+    http_response_code(404);
+    include('404.php');
 
 }
 

@@ -1,4 +1,6 @@
 <?php
+// Script de migration ponctuel : exécutable en CLI uniquement, jamais via HTTP.
+if (PHP_SAPI !== 'cli') { http_response_code(403); exit; }
 /* One-off schema upgrade: adds the columns needed to make the mega menu
    fully admin-manageable. Safe to run more than once (checks
    information_schema before adding each column). Run via CLI:

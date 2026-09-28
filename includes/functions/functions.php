@@ -718,7 +718,7 @@ function pagination($req,$nb_elemPage,$pageActu)
 // teste d'unicit�
 function unique($table, $champ, $val, $claus = ''){
     global $db;
-    $SQLselect = "SELECT * FROM ".$table." WHERE ".$champ."='".$val."' $claus";
+    $SQLselect = "SELECT * FROM ".$table." WHERE ".$champ."=".GetSQLValueString($val, "text")." $claus";
     $n = $db->num_rows($db->query($SQLselect));
     if($n == 0)
         return true;
@@ -730,12 +730,12 @@ function unique($table, $champ, $val, $claus = ''){
 function getComponentLink($component){
     global $db;
     $langue = $_SESSION['lang'];
-    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
+    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = ".GetSQLValueString("index.php?option=".$component, "text")." AND langue = ".GetSQLValueString($langue, "text")." LIMIT 0,1";
     $result = $db->query($SQLselect);
     if($db->num_rows($result) != 1 && $langue != langue::getDefaultLanguage()){
         // Pas encore de traduction de cette page pour cette langue : on retombe sur la langue par défaut.
         $langue = langue::getDefaultLanguage();
-        $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
+        $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = ".GetSQLValueString("index.php?option=".$component, "text")." AND langue = ".GetSQLValueString($langue, "text")." LIMIT 0,1";
         $result = $db->query($SQLselect);
     }
     if($db->num_rows($result) == 1){
@@ -751,12 +751,12 @@ function getComponentLink($component){
 function getComponent($component){
     global $db;
     $langue = $_SESSION['lang'];
-    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
+    $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = ".GetSQLValueString("index.php?option=".$component, "text")." AND langue = ".GetSQLValueString($langue, "text")." LIMIT 0,1";
     $result = $db->query($SQLselect);
     if($db->num_rows($result) != 1 && $langue != langue::getDefaultLanguage()){
         // Pas encore de traduction de cette page pour cette langue : on retombe sur la langue par défaut.
         $langue = langue::getDefaultLanguage();
-        $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = 'index.php?option=$component' AND langue = '".$langue."' LIMIT 0,1";
+        $SQLselect = "SELECT DISTINCT(id_page) FROM ".__prefixe_db__."details_page WHERE externe = ".GetSQLValueString("index.php?option=".$component, "text")." AND langue = ".GetSQLValueString($langue, "text")." LIMIT 0,1";
         $result = $db->query($SQLselect);
     }
     if($db->num_rows($result) == 1){

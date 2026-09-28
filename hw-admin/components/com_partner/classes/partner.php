@@ -17,8 +17,8 @@ class partner
     {
 
         $SQLselect = "SELECT A.*, B.* FROM " . static::$table . " A
-					  LEFT JOIN " . static::$table2 . " B ON A.id = B.id_partner AND langue = '$lang'
-					  WHERE A.id = $id";
+					  LEFT JOIN " . static::$table2 . " B ON A.id = B.id_partner AND langue = " . GetSQLValueString($lang, "text") . "
+					  WHERE A.id = " . (int) $id . "";
 
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1) {

@@ -30,7 +30,15 @@ function CheckAuthentication()
 	// user logs in your system. To be able to use session variables don't
 	// forget to add session_start() at the top of this file.
 
-	return true;
+	// Réservé aux administrateurs connectés à hw-admin. Les classes de l'utilisateur en
+	// session doivent être chargées avant session_start() pour que l'objet soit restauré.
+	require_once __DIR__ . '/../../../hw-admin/components/com_users/classes/user.php';
+	require_once __DIR__ . '/../../../hw-admin/components/com_users/classes/compte.php';
+	if (session_status() !== PHP_SESSION_ACTIVE) {
+		session_start();
+	}
+	return isset($_SESSION['user']) && is_object($_SESSION['user'])
+		&& method_exists($_SESSION['user'], 'isConnected') && $_SESSION['user']->isConnected();
 }
 
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be

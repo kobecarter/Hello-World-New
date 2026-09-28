@@ -417,8 +417,8 @@ function consultingRendezVous($data)
 }
 /* ----------------------------------------- newsletter ----------------------------------------- */
 function newsletter($data){
-if(isset($data['email']) && !empty($data['email'])){
-	$email = addslashes($data['email']);
+if(isset($data['email']) && !empty($data['email']) && filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+	$email = $data['email'];
 	global $db;
 	if(unique(__prefixe_db__."newsletter", "email", $email)){
 		$SQLinsert = sprintf("INSERT INTO ".__prefixe_db__."newsletter (email, date_add, confirm) VALUES (%s, %s, %s)",

@@ -19,8 +19,8 @@ class popup {
     public function __construct($id, $db, $lang = 'en') {
 
         $SQLselect = "SELECT A.*, B.* FROM ".__prefixe_db__."popup A
-					  LEFT JOIN ".__prefixe_db__."details_popup B ON A.id = B.id_popup AND langue = '$lang'
-					  WHERE A.id = $id";
+					  LEFT JOIN ".__prefixe_db__."details_popup B ON A.id = B.id_popup AND langue = " . GetSQLValueString($lang, "text") . "
+					  WHERE A.id = " . (int) $id . "";
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 1){
 

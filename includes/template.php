@@ -609,7 +609,7 @@ var homePage = <?php echo isHome() ? 'true' : 'false'; ?>;
 var siteURL = '<?php echo $siteURL; ?>';
 var apiURL = '<?php echo $apiURL; ?>';
 var platURL = '<?php echo $platURL; ?>';
-var task = '<?php echo isset($_GET['task']) ? $_GET['task'] : '' ?>';
+var task = <?php echo json_encode(isset($_GET['task']) ? (string) $_GET['task'] : '', JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 var SUCCES_ENVOI = '<?= $lang['DEMANDE_ENVOI_SUCCES'][$_SESSION['lang']]; ?>';
 var CHAMPS_OBLIG = '<?= $lang['REMPLIR_CHAMP_OBLIG'][$_SESSION['lang']]; ?>';
 var EMAIL_EXISTE = '<?= $lang['EMAIL_EXIST_DEJA'][$_SESSION['lang']]; ?>';

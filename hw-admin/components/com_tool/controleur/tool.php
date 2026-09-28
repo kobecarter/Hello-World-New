@@ -3,6 +3,7 @@ include"../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if(isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -75,7 +76,7 @@ function editTool($data){
             GetSQLValueString($data['id'], "int"));
 
         if(!$db->query($updateSQL)){
-            $SQLselect = "SELECT * FROM ".__prefixe_db__."details_tool WHERE id_tool = $id AND langue = '".$_SESSION['langue']."'";
+            $SQLselect = "SELECT * FROM ".__prefixe_db__."details_tool WHERE id_tool = " . (int) $id . " AND langue = " . GetSQLValueString($_SESSION['langue'], "text");
             $result = $db->query($SQLselect);
             // ajout d'une nouvelle traduction
             if($db->num_rows($result) == 0){
@@ -116,8 +117,8 @@ function deleteTool($data){
     if(isset($data['id']) && !empty($data['id'])){
         $id = intval($data['id']);
         $p = new tool($id,$db);
-        $SQLdelete = "DELETE FROM ".__prefixe_db__."tool WHERE id = $id";
-        $SQLdelete2 = "DELETE FROM ".__prefixe_db__."details_tool WHERE id_Tool = $id";
+        $SQLdelete = "DELETE FROM ".__prefixe_db__."tool WHERE id = " . (int) $id . "";
+        $SQLdelete2 = "DELETE FROM ".__prefixe_db__."details_tool WHERE id_Tool = " . (int) $id . "";
         if(!$db->query($SQLdelete) && !$db->query($SQLdelete2)){
             @unlink("../../../../images/tools/".$s->getPhoto());
             echo '1';

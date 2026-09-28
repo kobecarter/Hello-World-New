@@ -3,6 +3,7 @@ include "../../../config.php";
 require_once('../../../instanceDb.php');
 require_once('../../../includes/functions/functions.php');
 session_start();
+require_once(__DIR__ . '/../../../includes/auth_guard.php');
 
 if (isset($_GET['task']) && !empty($_GET['task'])) {
     $task = $_GET['task'];
@@ -44,7 +45,7 @@ function editUser($data)
     if (isset($data['id']) && !empty($data['id']) && isset($data['prenom']) && !empty($data['prenom']) && isset($data['nom']) && !empty($data['nom']) && isset($data['email']) && !empty($data['email'])) {
 
         if ($data['password'] != "") {
-            $pass = hash('sha256', $data['password']);
+            $pass = user::hashPassword($data['password']);
             $password = " password= " . GetSQLValueString($pass, "text") . ",";
         } else
             $password = "";
@@ -77,11 +78,11 @@ function addUser($data)
     if (isset($data['prenom']) && !empty($data['prenom']) && isset($data['nom']) && !empty($data['nom']) && isset($data['login']) && !empty($data['login']) && isset($data['password']) && !empty($data['password']) && isset($data['email']) && !empty($data['email'])) {
 
 // teste d'unicité du login	
-        $SQLselect = "SELECT * FROM " . __prefixe_db__ . "users WHERE login = '" . $data['login'] . "'";
+        $SQLselect = "SELECT * FROM " . __prefixe_db__ . "users WHERE login = " . GetSQLValueString($data['login'], "text");
         $result = $db->query($SQLselect);
         if ($db->num_rows($result) == 0) {
 
-            $pass = hash('sha256', $data['password']);
+            $pass = user::hashPassword($data['password']);
 
             $insertSQL = sprintf("INSERT INTO " . __prefixe_db__ . "users (login, password, prenom, nom, email, tel, adresse, langue, su, id_profil) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 GetSQLValueString($data['login'], "text"),
@@ -111,7 +112,7 @@ function deleteUser($data)
     global $db;
     if (isset($data['id']) && !empty($data['id'])) {
         $id = intval($data['id']);
-        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "users WHERE id = $id";
+        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "users WHERE id = " . (int) $id . "";
         if (!$db->query($SQLdelete))
             echo '1';
         else
@@ -128,7 +129,7 @@ function enableUser($data)
         $id = intval($data['id']);
         $u = new compte($id, $db);
         $val = $u->isActif() ? 0 : 1;
-        $SQLdelete = "UPDATE " . __prefixe_db__ . "users SET actif = $val WHERE id = $id";
+        $SQLdelete = "UPDATE " . __prefixe_db__ . "users SET actif = $val WHERE id = " . (int) $id . "";
         if (!$db->query($SQLdelete))
             echo '1';
         else
@@ -180,7 +181,7 @@ function deleteProfil($data)
     global $db;
     if (isset($data['id']) && !empty($data['id'])) {
         $id = intval($data['id']);
-        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "profils WHERE id = $id";
+        $SQLdelete = "DELETE FROM " . __prefixe_db__ . "profils WHERE id = " . (int) $id . "";
         if (!$db->query($SQLdelete))
             echo '1';
         else

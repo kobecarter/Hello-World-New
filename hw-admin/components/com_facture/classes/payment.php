@@ -173,7 +173,7 @@ class payment
         $SQLselect = "SELECT * FROM " . static::$table . " WHERE 1 = 1";
 		
         if($id_facture){
-            $SQLselect .= " AND id_facture = $id_facture";
+            $SQLselect .= " AND id_facture = " . (int) $id_facture . "";
         }
 		
 		if($ordre){
