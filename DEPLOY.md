@@ -21,7 +21,11 @@ ssh hw-cpanel-deploy "cd ~/public_html/helloworld-agency.com/new/ && git pull or
 - Le fichier `.env` (identifiants DB/email) vit uniquement sur le serveur et sur les postes
   locaux — jamais dans Git. Voir `.env.example` pour le modèle.
 - `hw-admin/api/` est un dépôt séparé (`yossefEl/helloworld-app-api`), exclu de ce repo.
-- Le dossier `.git` est bloqué publiquement via une règle dans `.htaccess`.
+- Le `.htaccess` racine du serveur (hors Git) contient un bloc `# BEGIN Sécurité` … `# END Sécurité`
+  juste après `RewriteBase /` : fichiers cachés (`.git`, `.env`…), `hw-admin/config.php`, dumps,
+  archives, journaux et copies `*.bak*` bloqués, listing désactivé. À conserver lors de toute
+  modification de ce fichier. Ne jamais laisser de copie de `config.php` dans le site : un
+  `config.php.bak-…` est servi en texte brut (identifiants DB lisibles par tous).
 - L'IP de la machine hébergeant le runner (ce Mac) doit rester whitelistée dans cPanel
   → "Autorisation SSH". Si cette IP n'est pas fixe, le déploiement automatique cassera
   silencieusement au prochain changement d'IP (le job GitHub Actions échouera en timeout
