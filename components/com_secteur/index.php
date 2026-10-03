@@ -8,6 +8,11 @@ switch ($task)
                         
             $slug = $_GET["slug"];
             $secteur = secteur::findBySlug($slug, $_SESSION["lang"]);
+            if (!$secteur || !$secteur->getId()) {
+                // Pas de traduction : langue par defaut ; slug inconnu : vraie 404 (avant, page vide en 200).
+                $secteur = secteur::findBySlug($slug, langue::getDefaultLanguage());
+                if (!$secteur || !$secteur->getId()) { sendHttp404AndExit(); }
+            }
             $contactPage = getComponent("com_contact");
             
             switch($secteur->getId()){

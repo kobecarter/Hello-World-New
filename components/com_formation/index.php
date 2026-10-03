@@ -7,6 +7,11 @@ switch ($task) {
         if (isset($_GET['slug']) && !empty($_GET['slug'])) {
             $slug       = $_GET['slug'];
             $formation  = formation::findBySlug($slug, $_SESSION['lang']);
+            if (!$formation || !$formation->getId()) {
+                // Pas de traduction : langue par defaut ; slug inconnu : vraie 404 (avant, page vide en 200).
+                $formation = formation::findBySlug($slug, langue::getDefaultLanguage());
+                if (!$formation || !$formation->getId()) { sendHttp404AndExit(); }
+            }
             $page       = getComponent("com_formation");
             $pageContact = getComponent("com_contact");
             $formations  = formation::findAll($_SESSION['lang'], true);

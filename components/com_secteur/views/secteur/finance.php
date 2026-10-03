@@ -244,7 +244,7 @@
 <!-- ═══════ JOURNEY / TIMELINE ═══════ -->
 <section class="sh-journey" id="parcours">
   <div class="jp-bg">
-    <img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>/images/finance-journey-bg.jpg" alt="Finance AI trading room" loading="eager">
+    <img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>images/finance-journey-bg.jpg" alt="Finance AI trading room" loading="eager">
   </div>
   <div class="jp-content">
     <div class="container">
@@ -710,7 +710,7 @@
 <!-- ═══════ JOURNEY / TIMELINE ═══════ -->
 <section class="sh-journey" id="parcours">
   <div class="jp-bg">
-    <img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>/images/finance-journey-bg.jpg" alt="غرفة تداول بالذكاء الاصطناعي" loading="eager">
+    <img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>images/finance-journey-bg.jpg" alt="غرفة تداول بالذكاء الاصطناعي" loading="eager">
   </div>
   <div class="jp-content">
     <div class="container">
@@ -1176,7 +1176,7 @@
 <!-- ═══════ JOURNEY / TIMELINE ═══════ -->
 <section class="sh-journey" id="parcours">
   <div class="jp-bg">
-    <img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>/images/finance-journey-bg.jpg" alt="Trading room Finance IA" loading="eager">
+    <img id="jpImg" class="jp-img" src="<?php echo $siteURL; ?>images/finance-journey-bg.jpg" alt="Trading room Finance IA" loading="eager">
   </div>
   <div class="jp-content">
     <div class="container">

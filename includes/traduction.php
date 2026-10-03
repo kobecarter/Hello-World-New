@@ -764,7 +764,7 @@ $lang = array(
     ),
 
     "404" => array(
-        "fr" => "Oups! On dirait que tu t'es perdu",
+        "fr" => "Oups ! On dirait que vous vous êtes perdu",
         "en" => "Oops! Looks like you got lost",
         "ar" => "عذراً! يبدو أنكم ضللتم الطريق"
     ),
@@ -2026,6 +2026,18 @@ $lang = array(
         "en" => "<em>Explore</em> our video library",
         "ar" => "<em>استكشفوا</em> مكتبة الفيديو الخاصة بنا"
     ),
+
+    /* Page 404 */
+    'E404_KICKER' => array( 'fr' => "Erreur 404", 'en' => "Error 404", 'ar' => "خطأ 404" ),
+    'E404_SUB' => array( 'fr' => "La page que vous cherchez a été déplacée, renommée, ou n'a jamais existé. Reprenons depuis l'accueil, ou dites-nous ce que vous cherchiez.", 'en' => "The page you are looking for has moved, been renamed, or never existed. Start again from the homepage, or tell us what you were looking for.", 'ar' => "الصفحة التي تبحثون عنها تم نقلها أو تغيير اسمها أو لم تكن موجودة أصلاً. ابدأوا من الصفحة الرئيسية، أو أخبرونا بما تبحثون عنه." ),
+    'E404_CONTACT' => array( 'fr' => "Nous contacter", 'en' => "Contact us", 'ar' => "تواصلوا معنا" ),
+
+    /* Galerie photo (page production photo) et villes sous le H1 des pages service */
+    "PSH_KICKER" => array("fr" => "Photothèque", "en" => "Photo gallery", "ar" => "معرض الصور"),
+    "PSH_SUB" => array("fr" => "Quatorze univers, une même exigence de lumière. Filtrez par secteur pour voir nos séances photo réalisées à Marrakech, Casablanca et partout au Maroc.", "en" => "Fourteen worlds, one standard of light. Filter by sector to see the photo shoots we produced in Marrakech, Casablanca and across Morocco.", "ar" => "أربعة عشر عالماً ومعيار واحد للضوء. صنّفوا حسب القطاع لمشاهدة جلسات التصوير التي أنجزناها في مراكش والدار البيضاء وفي كل أنحاء المغرب."),
+    "PSH_LOAD_MORE" => array("fr" => "Voir plus de photos", "en" => "Load more photos", "ar" => "عرض المزيد من الصور"),
+    "PSH_PHOTOS" => array("fr" => "photos", "en" => "photos", "ar" => "صورة"),
+    "SVC_CITIES_TAG" => array("fr" => "Marrakech - Casablanca - Rabat - Tanger", "en" => "Marrakech - Casablanca - Rabat - Tangier", "ar" => "مراكش - الدار البيضاء - الرباط - طنجة"),
 
     "SVC_SECTION_PHOTOTHEQUE" => array(
         "fr" => "Plongez dans <br><em>nos séances photo</em>",

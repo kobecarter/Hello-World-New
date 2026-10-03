@@ -1298,7 +1298,11 @@ document.querySelectorAll('.card, .custom-sublink').forEach(item => {
     
       html+='<button class="acc-head" aria-expanded="false" data-acc>'+label+' <span class="chev">\u25BC</span></button><div class="acc-body"><div class="acc-inner">'+body+'</div></div>';
     });
-    html+='<a class="m-link" href="https://www.helloworld-agency.com/new/nos-agences/">Nos agences</a>';
+    <?php // Le lien pointait en dur sur /new/nos-agences/ (404), en francais dans toutes les langues.
+          $hwAgencesPage = new page(43, $db, $_SESSION['lang']);
+          $hwAgencesLink = trim((string) $hwAgencesPage->getLink()) !== '' ? $hwAgencesPage->getLink() : $siteURL . 'nos-agences/';
+          $hwAgencesLabel = trim((string) $hwAgencesPage->getTitre()) !== '' ? $hwAgencesPage->getTitre() : 'Nos agences'; ?>
+    html+='<a class="m-link" href="'+<?php echo json_encode($hwAgencesLink); ?>+'">'+<?php echo json_encode(htmlspecialchars($hwAgencesLabel, ENT_QUOTES, 'UTF-8')); ?>+'</a>';
     drawerNav.innerHTML=html;
 
     function openD(){drawer.classList.add('open');burger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}

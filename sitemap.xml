@@ -505,12 +505,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/motion-design/" />
   </url>
   <url>
-    <loc>https://www.helloworld-agency.com/service/production-photo-et-video/</loc>
-    <lastmod>2026-07-09</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/service/production-photo-et-video/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/service/production-photo-et-video/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/service/إنتاج-الصور-والفيديو/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/production-photo-et-video/" />
+    <loc>https://www.helloworld-agency.com/service/production-video-maroc/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/service/production-video-maroc/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/service/video-production-morocco/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/service/إنتاج-الفيديو-المغرب/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/production-video-maroc/" />
+  </url>
+  <url>
+    <loc>https://www.helloworld-agency.com/service/agence-photographie-maroc/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/service/agence-photographie-maroc/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/service/photography-agency-morocco/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/service/وكالة-تصوير-فوتوغرافي-المغرب/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/agence-photographie-maroc/" />
   </url>
   <url>
     <loc>https://www.helloworld-agency.com/service/marketing-de-celebrites-et-d-influenceurs/</loc>
@@ -3051,174 +3059,6 @@
     <lastmod>2024-01-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/produit/prime-position-seo-pro/27/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/produit/prime-position-seo-pro/27/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-pilote-landing-page-portfolio-vitrine/1/</loc>
-    <lastmod>2026-06-20</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-pilote-landing-page-portfolio-vitrine/1/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-pilot-landing-page-portfolio-showcase/1/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-pilote-landing-page-portfolio-vitrine/1/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-commandant-corporate-dynamique/2/</loc>
-    <lastmod>2026-06-20</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-commandant-corporate-dynamique/2/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-commander-corporate-dynamic/2/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-commandant-corporate-dynamique/2/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-astronaute-e-commerce-entreprise/3/</loc>
-    <lastmod>2026-06-20</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-astronaute-e-commerce-entreprise/3/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-astronaut-e-commerce-enterprise/3/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-astronaute-e-commerce-entreprise/3/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-pilote-seo/4/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-pilote-seo/4/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-seo-pilot/4/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-pilote-seo/4/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-commandant-seo-authorite/5/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-commandant-seo-authorite/5/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-seo-commander-authority/5/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-commandant-seo-authorite/5/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-astronaute-seo-galaxy/6/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-astronaute-seo-galaxy/6/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-seo-astronaut-galaxy/6/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-astronaute-seo-galaxy/6/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-pilote-l-impulsion-sociale/7/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-pilote-l-impulsion-sociale/7/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-pilot-social-kickstart/7/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-pilote-l-impulsion-sociale/7/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-commandant-le-flux-social/8/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-commandant-le-flux-social/8/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-commander-the-social-flow/8/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-commandant-le-flux-social/8/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-astronaute-l-univers-social/9/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-astronaute-l-univers-social/9/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-astronaut-the-social-universe/9/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-astronaute-l-univers-social/9/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-pilote-croissance-start-ups-et-pme/10/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-pilote-croissance-start-ups-et-pme/10/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-growth-pilot-startups-et-smes/10/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-pilote-croissance-start-ups-et-pme/10/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-commandant-entreprises-en-croissance/11/</loc>
-    <lastmod>2026-02-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-commandant-entreprises-en-croissance/11/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-commander-growing-businesses/11/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-commandant-entreprises-en-croissance/11/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-rsquo-astronaute-dominance-grandes-entreprises/12/</loc>
-    <lastmod>2026-02-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-rsquo-astronaute-dominance-grandes-entreprises/12/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-dominance-astronaut-large-enterprises/12/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-rsquo-astronaute-dominance-grandes-entreprises/12/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-pilote-essentiels-de-marque/13/</loc>
-    <lastmod>2026-02-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-pilote-essentiels-de-marque/13/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-pilot-brand-essentials/13/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-pilote-essentiels-de-marque/13/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-commandant-brand-guidelines/14/</loc>
-    <lastmod>2026-02-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-commandant-brand-guidelines/14/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-commander-brand-guidelines/14/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-commandant-brand-guidelines/14/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-astronaute-l-heritage-de-votre-marque/15/</loc>
-    <lastmod>2026-02-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-astronaute-l-heritage-de-votre-marque/15/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-astronaut-your-brand-s-legacy/15/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-astronaute-l-heritage-de-votre-marque/15/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-pilote-creation-de-contenu-nouvelles-marques/16/</loc>
-    <lastmod>2026-02-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-pilote-creation-de-contenu-nouvelles-marques/16/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-content-creation-pilot-new-brands/16/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-pilote-creation-de-contenu-nouvelles-marques/16/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/le-commandant-moteur-de-contenu-marque-existantes/17/</loc>
-    <lastmod>2026-02-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/le-commandant-moteur-de-contenu-marque-existantes/17/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-content-engine-commander-existing-brands/17/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/le-commandant-moteur-de-contenu-marque-existantes/17/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-astronaute-cinematique-content-grandes-entreprises/18/</loc>
-    <lastmod>2026-02-25</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-astronaute-cinematique-content-grandes-entreprises/18/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-cinematic-content-astronaut-large-enterprises/18/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-astronaute-cinematique-content-grandes-entreprises/18/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-acces-portail-simple/19/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-acces-portail-simple/19/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-access-simple-portal/19/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-acces-portail-simple/19/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-atelier-portail-business/20/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-atelier-portail-business/20/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-workshop-business-portal/20/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-atelier-portail-business/20/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-entreprise-portail-strategique/21/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-entreprise-portail-strategique/21/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-enterprise-strategic-portal/21/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-entreprise-portail-strategique/21/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-impulsion-team-building/22/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-impulsion-team-building/22/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-impulse-team-building/22/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-impulsion-team-building/22/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-experience-evenement-corporate/23/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-experience-evenement-corporate/23/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-experience-corporate-event/23/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-experience-evenement-corporate/23/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/pack/l-envergure-mice-premium-international/24/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/pack/l-envergure-mice-premium-international/24/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/pack/the-scale-premium-international-mice/24/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/pack/l-envergure-mice-premium-international/24/" />
   </url>
   <url>
     <loc>https://www.helloworld-agency.com/</loc>

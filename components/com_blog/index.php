@@ -26,9 +26,7 @@ switch ($task)
                         header("Location: " . $postDefault->getLink(), true, 302);
                         exit;
                     }
-                    header("HTTP/1.1 404 Not Found");
-                    include('404.html');
-                    exit;
+                    sendHttp404AndExit();
                 }
                 // detail.php's related-articles loop reassigns $post -- keep a
                 // stable reference to the actual post being viewed for anything
