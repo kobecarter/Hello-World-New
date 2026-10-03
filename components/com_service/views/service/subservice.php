@@ -164,8 +164,10 @@ else{
             ?>
         </div>
 
-<?php // Galerie photo : uniquement sur la page photo (service 148 sur ce site ; la 44 est la page video)
-if ($service->getId() == 148) :
+<?php // Galerie de la page : photos sur la page photo (service 148), videos sur la page video (service 44).
+// Les deux partagent la meme mise en page, les memes styles et le meme script.
+$pshMode = $service->getId() == 148 ? 'photo' : ($service->getId() == 44 ? 'video' : '');
+if ($pshMode !== '') :
 
 /*
  * Phototheque.
@@ -186,6 +188,7 @@ if ($service->getId() == 148) :
  * dans ce meme fichier.
  */
 
+if ($pshMode === 'photo') {
 $pshGalleryIds = array(40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53);
 $pshCats  = array();
 $pshItems = array();
@@ -209,13 +212,47 @@ foreach ($pshGalleryIds as $pshGid) {
         $pshItems[] = array('cat' => $pshGid, 'photo' => $pshPhoto);
     }
 }
+$pshKicker    = $lang['PSH_KICKER'][$_SESSION['lang']];
+$pshTitle     = $lang['SVC_SECTION_PHOTOTHEQUE'][$_SESSION['lang']];
+$pshSub       = $lang['PSH_SUB'][$_SESSION['lang']];
+$pshMoreLabel = $lang['PSH_LOAD_MORE'][$_SESSION['lang']];
+$pshUnit      = $lang['PSH_PHOTOS'][$_SESSION['lang']];
+} else {
+    // Videos : memes regles que la page /videotheque/. Une video saisie deux fois
+    // (meme identifiant YouTube) n'apparait qu'une fois ; les productions clients
+    // passent d'abord, la serie The Digital Expert (categorie 14) ensuite.
+    $pshCats   = array(100 => $lang['VLIB_CLIENTS_TITLE'][$_SESSION['lang']], 14 => $lang['VLIB_EXPERT_TITLE'][$_SESSION['lang']]);
+    $pshItems  = array();
+    $pshExpert = array();
+    $pshSeen   = array();
+    foreach (video::findAll($_SESSION['lang'], true, false) as $pshVideo) {
+        if (trim($pshVideo->getTitre()) == '' && $_SESSION['lang'] != langue::getDefaultLanguage()) {
+            $pshVideo = video::find($pshVideo->getId(), langue::getDefaultLanguage());
+        }
+        $pshKey = trim($pshVideo->getVideo());
+        if ($pshKey === '' || isset($pshSeen[$pshKey])) { continue; }
+        $pshSeen[$pshKey] = true;
+        $pshVideoCat = $pshVideo->getCategorie();
+        if ($pshVideoCat && (int) $pshVideoCat->getId() === 14) {
+            $pshExpert[] = array('cat' => 14, 'video' => $pshVideo);
+        } else {
+            $pshItems[] = array('cat' => 100, 'video' => $pshVideo);
+        }
+    }
+    $pshItems     = array_merge($pshItems, $pshExpert);
+    $pshKicker    = $lang['PSH_VIDEO_KICKER'][$_SESSION['lang']];
+    $pshTitle     = $lang['SVC_SECTION_VIDEOTHEQUE'][$_SESSION['lang']];
+    $pshSub       = $lang['PSH_VIDEO_SUB'][$_SESSION['lang']];
+    $pshMoreLabel = $lang['PSH_VIDEO_LOAD_MORE'][$_SESSION['lang']];
+    $pshUnit      = $lang['PSH_VIDEOS'][$_SESSION['lang']];
+}
 
 $pshCounts = array();
 foreach ($pshItems as $pshIt) {
     $pshCounts[$pshIt['cat']] = isset($pshCounts[$pshIt['cat']]) ? $pshCounts[$pshIt['cat']] + 1 : 1;
 }
 $pshTotal = count($pshItems);
-$pshBatch = 24;
+$pshBatch = $pshMode === 'video' ? 6 : 24;
 ?>
 
 <style>
@@ -225,7 +262,7 @@ $pshBatch = 24;
    (blur + saturate, --glass-border, rayon 18px, inset blanc).
    ========================================================================== */
 .psh{padding:7rem 0;background:var(--bg2);border-top:1px solid var(--border);position:relative;overflow:hidden}
-.psh::before{content:'';position:absolute;top:-18%;inset-inline-end:-12%;width:52vw;height:52vw;max-width:760px;max-height:760px;border-radius:50%;background:radial-gradient(circle,rgba(255,183,3,.10),rgba(255,124,70,.05) 45%,transparent 70%);pointer-events:none}
+.psh::before{content:'';position:absolute;top:-18%;inset-inline-end:-12%;width:52vw;height:52vw;max-width:760px;max-height:760px;border-radius:50%;background:radial-gradient(circle,rgba(9,161,190,.10),rgba(104,2,98,.05) 45%,transparent 70%);pointer-events:none}
 .psh > .container{position:relative;z-index:1}
 
 /* -- Titre -- */
@@ -251,7 +288,7 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
   padding:.62rem 1.05rem;border-radius:999px;transition:color .3s var(--ease),background .3s var(--ease)}
 .psh-chip b{font-size:.62rem;font-weight:600;opacity:.5;font-variant-numeric:tabular-nums}
 .psh-chip:hover{color:var(--txt);background:rgba(255,255,255,.55)}
-.psh-chip.is-active{color:#fff;background:linear-gradient(135deg,var(--gold),var(--gold2));box-shadow:0 6px 16px -6px rgba(255,124,70,.55)}
+.psh-chip.is-active{color:#fff;background:linear-gradient(135deg,var(--gold),var(--gold2));box-shadow:0 6px 16px -6px rgba(104,2,98,.55)}
 .psh-chip.is-active b{opacity:.8}
 .psh-chip:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
 
@@ -315,19 +352,36 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
   .psh-item{animation:none}
   .psh-link:hover img{transform:none}
 }
+
+/* -- Variante video : cartes 16/9, bouton lecture toujours visible, titre sous la carte -- */
+.psh--video .psh-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.6rem 1.3rem}
+.psh--video .psh-link{aspect-ratio:16/9}
+.psh--video .psh-link::after{opacity:1;background:linear-gradient(180deg,rgba(11,11,13,0) 55%,rgba(11,11,13,.45) 100%)}
+.psh-play{position:absolute;z-index:2;top:50%;inset-inline-start:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;font-size:1.25rem;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  transition:transform .45s var(--expo),background .3s ease}
+[dir="rtl"] .psh-play{margin:-29px -29px 0 0}
+.psh-link:hover .psh-play,.psh-link:focus-visible .psh-play{transform:scale(1.1);background:linear-gradient(135deg,var(--gold),var(--gold2))}
+.psh-cap{margin:.85rem .2rem 0;font-family:var(--fm);font-size:.82rem;font-weight:600;line-height:1.45;color:var(--txt)}
+.psh-all{margin:1.6rem 0 0;text-align:center}
+.psh-all a{font-family:var(--fm);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:.2rem}
+.psh-all a:hover{color:var(--gold)}
+.psh-all a:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
 </style>
 
-<section class="psh" id="photo-shoots">
+<section class="psh<?php echo $pshMode === 'video' ? ' psh--video' : ''; ?>" id="<?php echo $pshMode === 'video' ? 'video-library' : 'photo-shoots'; ?>">
   <div class="container">
 
     <div class="psh-head">
-      <span class="psh-kicker" data-psh-reveal><?php echo $lang['PSH_KICKER'][$_SESSION['lang']]; ?></span>
-      <h2 class="psh-title" data-psh-reveal><?php echo $lang['SVC_SECTION_PHOTOTHEQUE'][$_SESSION['lang']]; ?></h2>
-      <p class="psh-sub" data-psh-reveal><?php echo $lang['PSH_SUB'][$_SESSION['lang']]; ?></p>
+      <span class="psh-kicker" data-psh-reveal><?php echo $pshKicker; ?></span>
+      <h2 class="psh-title" data-psh-reveal><?php echo $pshTitle; ?></h2>
+      <p class="psh-sub" data-psh-reveal><?php echo $pshSub; ?></p>
     </div>
 
     <div class="psh-bar" data-psh-reveal>
-      <div class="psh-bar-scroll" role="tablist" aria-label="<?php echo htmlspecialchars($lang['PSH_KICKER'][$_SESSION['lang']], ENT_QUOTES, 'UTF-8'); ?>">
+      <div class="psh-bar-scroll" role="tablist" aria-label="<?php echo htmlspecialchars($pshKicker, ENT_QUOTES, 'UTF-8'); ?>">
         <button type="button" class="psh-chip is-active" data-psh-filter="all" role="tab" aria-selected="true">
           <?php echo $lang['SVC_FILTER_ALL'][$_SESSION['lang']]; ?> <b><?php echo $pshTotal; ?></b>
         </button>
@@ -342,6 +396,36 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
 
     <div class="psh-grid" id="pshGrid">
       <?php foreach ($pshItems as $pshIndex => $pshIt) :
+          if ($pshMode === 'video') :
+              $pshVideo    = $pshIt['video'];
+              $pshCatTitle = $pshCats[$pshIt['cat']];
+              $pshYt       = trim($pshVideo->getVideo());
+              // Meme regle de titre que /videotheque/ : titre d'episode pour la serie,
+              // nom du client pour les films clients (sans les "_" des noms de fichier).
+              $pshName  = trim(preg_replace('/\s+/', ' ', str_replace('_', ' ', html_entity_decode(strip_tags($pshVideo->getTitre()), ENT_QUOTES, 'UTF-8'))));
+              $pshEpis  = $pshIt['cat'] == 14 ? trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($pshVideo->getExtrait()), ENT_QUOTES, 'UTF-8'))) : '';
+              $pshLabel = $pshEpis !== '' ? $pshEpis : $pshName;
+              if ($pshLabel === '') { $pshLabel = $pshCatTitle; }
+              $pshUrl    = 'https://www.youtube.com/watch?v=' . rawurlencode($pshYt);
+              $pshPoster = trim($pshVideo->getPhoto()) !== ''
+                  ? $siteURL . 'images/videos/' . rawurlencode(trim($pshVideo->getPhoto()))
+                  : 'https://i.ytimg.com/vi/' . rawurlencode($pshYt) . '/hqdefault.jpg';
+      ?>
+      <figure class="psh-item<?php echo $pshIndex >= $pshBatch ? ' is-out' : ''; ?>" data-psh-cat="<?php echo (int) $pshIt['cat']; ?>">
+        <a class="psh-link"
+           href="<?php echo htmlspecialchars($pshUrl, ENT_QUOTES, 'UTF-8'); ?>"
+           data-fancybox="psh-gallery"
+           data-caption="<?php echo htmlspecialchars($pshLabel, ENT_QUOTES, 'UTF-8'); ?>"
+           target="_blank" rel="noopener">
+          <img src="<?php echo htmlspecialchars($pshPoster, ENT_QUOTES, 'UTF-8'); ?>"
+               alt="<?php echo htmlspecialchars($pshLabel, ENT_QUOTES, 'UTF-8'); ?>"
+               loading="lazy" decoding="async">
+          <span class="psh-tag"><?php echo htmlspecialchars($pshCatTitle, ENT_QUOTES, 'UTF-8'); ?></span>
+          <span class="psh-play" aria-hidden="true"><i class="fab fa-youtube"></i></span>
+        </a>
+        <figcaption class="psh-cap"><?php echo htmlspecialchars($pshLabel, ENT_QUOTES, 'UTF-8'); ?></figcaption>
+      </figure>
+      <?php continue; endif;
           $pshPhoto = $pshIt['photo'];
           $pshCatTitle = $pshCats[$pshIt['cat']];
           $pshSrc = $siteURL . 'images/galerie/' . rawurlencode(trim($pshPhoto->getPhoto()));
@@ -367,11 +451,14 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
 
     <div class="psh-more" id="pshMore"<?php echo $pshTotal <= $pshBatch ? ' hidden' : ''; ?>>
       <button type="button" class="psh-more-btn" id="pshMoreBtn">
-        <?php echo $lang['PSH_LOAD_MORE'][$_SESSION['lang']]; ?>
+        <?php echo $pshMoreLabel; ?>
         <span class="psh-more-count" id="pshMoreCount"></span>
         <i class="fa fa-arrow-down" aria-hidden="true"></i>
       </button>
     </div>
+    <?php if ($pshMode === 'video' && isset($pageVideo) && $pageVideo) : ?>
+    <p class="psh-all"><a href="<?php echo $pageVideo->getLink(); ?>"><?php echo $lang['SVC_CTA_DISCOVER_MORE_VIDEOS'][$_SESSION['lang']]; ?> <i class="fa fa-arrow-right" aria-hidden="true"></i></a></p>
+    <?php endif; ?>
 
   </div>
 </section>
@@ -389,7 +476,7 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
     var moreBtn  = document.getElementById('pshMoreBtn');
     var moreCnt  = document.getElementById('pshMoreCount');
     var BATCH    = <?php echo (int) $pshBatch; ?>;
-    var PHOTOS   = <?php echo json_encode($lang['PSH_PHOTOS'][$_SESSION['lang']]); ?>;
+    var PHOTOS   = <?php echo json_encode($pshUnit); ?>;
 
     var state   = { filter: 'all', shown: BATCH };
     var hasGsap = !!(window.gsap && window.ScrollTrigger);
@@ -499,66 +586,6 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
 </script>
 <?php endif; ?>
 
-<?php // Videotheque : uniquement sur la page video (service 44 sur ce site), placee comme la galerie photo juste avant "Nos services"
-if ($service->getId() == 44) : ?>
-<section class="videotheque">
-    <div class="discover-video">
-                <div class="container">
-                    <div class="row">
-                    <div class="col-sm-12">
-                        <h2 class="sec-title rv d1 fancy-title on mb-5"><?php echo $lang['SVC_SECTION_VIDEOTHEQUE'][$_SESSION['lang']]; ?></h2>
-                    </div>
-                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-6 px-0">
-                                        <?php $video = $videos_to_discover[0]; ?>
-                                        <div class="item-discover-video big-item">
-                                            <div class="imgbox">
-                                                <a h ref="javascript:void(0)"
-                                                    data-src="https://www.youtube.com/watch?v=<?php echo $video->getVideo(); ?>"
-                                                    data-fancybox><i class="fab fa-youtube"></i></a>
-                                                <img loading="lazy" src="<?php echo $siteURL; ?>images/videos/<?php echo $video->getPhoto(); ?>"
-                                                    alt="<?php echo $video->getTitre(); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <?php $cpt = 0; ?>
-                                            <?php foreach ($videos_to_discover as $video) :
-                                                    $cpt++;
-                                                    if ($cpt == 1) continue;
-                                                ?>
-                                            <div class="col-sm-6 px-0">
-                                                <div class="item-discover-video">
-                                                    <div class="imgbox">
-                                                        <a h ref="javascript:void(0)"
-                                                            data-src="https://www.youtube.com/watch?v=<?php echo $video->getVideo(); ?>"
-                                                            data-fancybox><i class="fab fa-youtube"></i></a>
-                                                        <img loading="lazy" src="<?php echo $siteURL; ?>images/videos/<?php echo $video->getPhoto(); ?>"
-                                                            alt="<?php echo $video->getTitre(); ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 mt-5 d-flex justify-content-center">                                        
-                                        <a href="<?php echo $pageVideo->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                                          <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DISCOVER_MORE_VIDEOS'][$_SESSION['lang']]; ?></span></div>
-                                          <div class="sb-knob"><i class="fal fa-play"></i></div> 
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-</section>
-<?php endif; ?>
 
         <?php if ($svcTexteRest !== '') : ?>
         <div class="service-content">

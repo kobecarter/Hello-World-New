@@ -94,13 +94,12 @@ $vlibSections = array(
     ),
 );
 
-// Chiffres de l'en-tete. Sur le site de Dubai ce sont des chiffres de notoriete
-// fournis par le client (500+ / 100+). Aucun chiffre equivalent n'a ete fourni
-// pour le Maroc : on affiche donc ce que la page contient reellement, sans "+".
-// Pour passer a des chiffres d'agence, les fixer ici et remettre le suffixe.
-$vlibStatVideos  = count($vlibById);
-$vlibStatClients = count($vlibClients);
-$vlibStatSuffix  = '';
+// Chiffres de notoriete de l'en-tete, fournis par l'agence le 04/10/2026 : ils
+// portent sur tout le travail produit, pas sur la selection montree ici.
+// A ajuster ici et nulle part ailleurs.
+$vlibStatVideos  = 300;
+$vlibStatClients = 900;
+$vlibStatSuffix  = '+';
 
 $vlibBanner    = $page->getPhoto() == '' ? 'images/banner.jpg' : 'images/pages/' . $page->getPhoto();
 $vlibWatchWord = $lang['VLIB_WATCH'][$_SESSION['lang']];

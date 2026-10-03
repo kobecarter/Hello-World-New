@@ -2027,11 +2027,17 @@ $lang = array(
         "ar" => "<em>استكشفوا</em> مكتبة الفيديو الخاصة بنا"
     ),
 
+    /* Galerie video de la page production video (meme bloc que la galerie photo) */
+    "PSH_VIDEO_KICKER" => array("fr" => "Vidéothèque", "en" => "Video library", "ar" => "مكتبة الفيديو"),
+    "PSH_VIDEO_SUB" => array("fr" => "Films de marque, vidéos de campagne et épisodes de notre série. Filtrez pour voir nos productions clients ou The Digital Expert.", "en" => "Brand films, campaign videos and episodes of our own series. Filter to see our client productions or The Digital Expert.", "ar" => "أفلام العلامات التجارية وفيديوهات الحملات وحلقات سلسلتنا. صنّفوا لمشاهدة أعمال عملائنا أو سلسلة The Digital Expert."),
+    "PSH_VIDEO_LOAD_MORE" => array("fr" => "Voir plus de vidéos", "en" => "Load more videos", "ar" => "عرض المزيد من الفيديوهات"),
+    "PSH_VIDEOS" => array("fr" => "vidéos", "en" => "videos", "ar" => "فيديو"),
+
     /* Videotheque (/videotheque/) */
     "VLIB_KICKER" => array("fr" => "Showreel", "en" => "Showreel", "ar" => "ريل الأعمال"),
     "VLIB_HERO_SUB" => array("fr" => "Films de marque, vidéos de campagne et la série The Digital Expert, produits au Maroc par Hello World Agency.", "en" => "Brand films, campaign videos and The Digital Expert series, produced in Morocco by Hello World Agency.", "ar" => "أفلام العلامات التجارية وفيديوهات الحملات وسلسلة The Digital Expert، من إنتاج Hello World Agency في المغرب."),
-    "VLIB_STAT_VIDEOS" => array("fr" => "Vidéos à voir", "en" => "Videos to watch", "ar" => "فيديو للمشاهدة"),
-    "VLIB_STAT_CLIENTS" => array("fr" => "Productions clients", "en" => "Client productions", "ar" => "إنتاج للعملاء"),
+    "VLIB_STAT_VIDEOS" => array("fr" => "Vidéos produites", "en" => "Videos produced", "ar" => "فيديو منتَج"),
+    "VLIB_STAT_CLIENTS" => array("fr" => "Clients accompagnés", "en" => "Clients served", "ar" => "عميل"),
     "VLIB_SCROLL" => array("fr" => "Défiler", "en" => "Scroll", "ar" => "مرّر"),
     "VLIB_CLIENTS_TITLE" => array("fr" => "Productions clients", "en" => "Client productions", "ar" => "أعمال العملاء"),
     "VLIB_CLIENTS_SUB" => array("fr" => "Des films tournés, réalisés et montés pour des marques à Marrakech, Casablanca, Rabat et partout au Maroc.", "en" => "Films we shot, directed and edited for brands in Marrakech, Casablanca, Rabat and across Morocco.", "ar" => "أفلام قمنا بتصويرها وإخراجها ومونتاجها لعلامات تجارية في مراكش والدار البيضاء والرباط وفي كل أنحاء المغرب."),
