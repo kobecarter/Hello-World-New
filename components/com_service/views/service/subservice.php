@@ -153,7 +153,7 @@ else{
             // comme avant : rien ne casse.
             $svcTexte     = $service->getTexte();
             $svcTexteRest = '';
-            if ($service->getId() == 148) {
+            if ($service->getId() == 148 || $service->getId() == 44) {
                 $svcCut = strpos($svcTexte, '<div class="container-fluid p-0">');
                 if ($svcCut !== false) {
                     $svcTexteRest = substr($svcTexte, $svcCut);
@@ -499,6 +499,67 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
 </script>
 <?php endif; ?>
 
+<?php // Videotheque : uniquement sur la page video (service 44 sur ce site), placee comme la galerie photo juste avant "Nos services"
+if ($service->getId() == 44) : ?>
+<section class="videotheque">
+    <div class="discover-video">
+                <div class="container">
+                    <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="sec-title rv d1 fancy-title on mb-5"><?php echo $lang['SVC_SECTION_VIDEOTHEQUE'][$_SESSION['lang']]; ?></h2>
+                    </div>
+                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-6 px-0">
+                                        <?php $video = $videos_to_discover[0]; ?>
+                                        <div class="item-discover-video big-item">
+                                            <div class="imgbox">
+                                                <a h ref="javascript:void(0)"
+                                                    data-src="https://www.youtube.com/watch?v=<?php echo $video->getVideo(); ?>"
+                                                    data-fancybox><i class="fab fa-youtube"></i></a>
+                                                <img loading="lazy" src="<?php echo $siteURL; ?>images/videos/<?php echo $video->getPhoto(); ?>"
+                                                    alt="<?php echo $video->getTitre(); ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <?php $cpt = 0; ?>
+                                            <?php foreach ($videos_to_discover as $video) :
+                                                    $cpt++;
+                                                    if ($cpt == 1) continue;
+                                                ?>
+                                            <div class="col-sm-6 px-0">
+                                                <div class="item-discover-video">
+                                                    <div class="imgbox">
+                                                        <a h ref="javascript:void(0)"
+                                                            data-src="https://www.youtube.com/watch?v=<?php echo $video->getVideo(); ?>"
+                                                            data-fancybox><i class="fab fa-youtube"></i></a>
+                                                        <img loading="lazy" src="<?php echo $siteURL; ?>images/videos/<?php echo $video->getPhoto(); ?>"
+                                                            alt="<?php echo $video->getTitre(); ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 mt-5 d-flex justify-content-center">                                        
+                                        <a href="<?php echo $pageVideo->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                          <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DISCOVER_MORE_VIDEOS'][$_SESSION['lang']]; ?></span></div>
+                                          <div class="sb-knob"><i class="fal fa-play"></i></div> 
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+</section>
+<?php endif; ?>
+
         <?php if ($svcTexteRest !== '') : ?>
         <div class="service-content">
             <?php echo $svcTexteRest; ?>
@@ -649,66 +710,6 @@ if (!$hideWorkSection) :
 <!---->
 
 <!--Galerie photo video service-->
-<?php // Videotheque : uniquement sur la page video (service 148)
-if ($service->getId() == 44) : ?>
-<section class="videotheque">
-    <div class="discover-video">
-                <div class="container">
-                    <div class="row">
-                    <div class="col-sm-12">
-                        <h2 class="sec-title rv d1 fancy-title on mb-5"><?php echo $lang['SVC_SECTION_VIDEOTHEQUE'][$_SESSION['lang']]; ?></h2>
-                    </div>
-                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-6 px-0">
-                                        <?php $video = $videos_to_discover[0]; ?>
-                                        <div class="item-discover-video big-item">
-                                            <div class="imgbox">
-                                                <a h ref="javascript:void(0)"
-                                                    data-src="https://www.youtube.com/watch?v=<?php echo $video->getVideo(); ?>"
-                                                    data-fancybox><i class="fab fa-youtube"></i></a>
-                                                <img loading="lazy" src="<?php echo $siteURL; ?>images/videos/<?php echo $video->getPhoto(); ?>"
-                                                    alt="<?php echo $video->getTitre(); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <?php $cpt = 0; ?>
-                                            <?php foreach ($videos_to_discover as $video) :
-                                                    $cpt++;
-                                                    if ($cpt == 1) continue;
-                                                ?>
-                                            <div class="col-sm-6 px-0">
-                                                <div class="item-discover-video">
-                                                    <div class="imgbox">
-                                                        <a h ref="javascript:void(0)"
-                                                            data-src="https://www.youtube.com/watch?v=<?php echo $video->getVideo(); ?>"
-                                                            data-fancybox><i class="fab fa-youtube"></i></a>
-                                                        <img loading="lazy" src="<?php echo $siteURL; ?>images/videos/<?php echo $video->getPhoto(); ?>"
-                                                            alt="<?php echo $video->getTitre(); ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 mt-5 d-flex justify-content-center">                                        
-                                        <a href="<?php echo $pageVideo->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                                          <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DISCOVER_MORE_VIDEOS'][$_SESSION['lang']]; ?></span></div>
-                                          <div class="sb-knob"><i class="fal fa-play"></i></div> 
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-</section>
-<?php endif; ?>
 
 
 <?php include('includes/testimonials.php'); ?>
