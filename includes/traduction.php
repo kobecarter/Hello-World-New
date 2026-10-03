@@ -2027,6 +2027,19 @@ $lang = array(
         "ar" => "<em>استكشفوا</em> مكتبة الفيديو الخاصة بنا"
     ),
 
+    /* Videotheque (/videotheque/) */
+    "VLIB_KICKER" => array("fr" => "Showreel", "en" => "Showreel", "ar" => "ريل الأعمال"),
+    "VLIB_HERO_SUB" => array("fr" => "Films de marque, vidéos de campagne et la série The Digital Expert, produits au Maroc par Hello World Agency.", "en" => "Brand films, campaign videos and The Digital Expert series, produced in Morocco by Hello World Agency.", "ar" => "أفلام العلامات التجارية وفيديوهات الحملات وسلسلة The Digital Expert، من إنتاج Hello World Agency في المغرب."),
+    "VLIB_STAT_VIDEOS" => array("fr" => "Vidéos à voir", "en" => "Videos to watch", "ar" => "فيديو للمشاهدة"),
+    "VLIB_STAT_CLIENTS" => array("fr" => "Productions clients", "en" => "Client productions", "ar" => "إنتاج للعملاء"),
+    "VLIB_SCROLL" => array("fr" => "Défiler", "en" => "Scroll", "ar" => "مرّر"),
+    "VLIB_CLIENTS_TITLE" => array("fr" => "Productions clients", "en" => "Client productions", "ar" => "أعمال العملاء"),
+    "VLIB_CLIENTS_SUB" => array("fr" => "Des films tournés, réalisés et montés pour des marques à Marrakech, Casablanca, Rabat et partout au Maroc.", "en" => "Films we shot, directed and edited for brands in Marrakech, Casablanca, Rabat and across Morocco.", "ar" => "أفلام قمنا بتصويرها وإخراجها ومونتاجها لعلامات تجارية في مراكش والدار البيضاء والرباط وفي كل أنحاء المغرب."),
+    "VLIB_EXPERT_TITLE" => array("fr" => "La série The Digital Expert", "en" => "The Digital Expert series", "ar" => "سلسلة The Digital Expert"),
+    "VLIB_EXPERT_SUB" => array("fr" => "Notre émission : des épisodes courts où nos stratèges décryptent le marketing digital, le branding et l'e-commerce.", "en" => "Our own show: short episodes where our strategists break down digital marketing, branding and e-commerce.", "ar" => "برنامجنا الخاص: حلقات قصيرة يشرح فيها خبراؤنا التسويق الرقمي والعلامات التجارية والتجارة الإلكترونية."),
+    "VLIB_EMPTY" => array("fr" => "Aucune vidéo dans cette section pour le moment.", "en" => "No video in this section yet.", "ar" => "لا يوجد فيديو في هذا القسم حتى الآن."),
+    "VLIB_WATCH" => array("fr" => "Regarder", "en" => "Watch", "ar" => "شاهد"),
+
     /* Page 404 */
     'E404_KICKER' => array( 'fr' => "Erreur 404", 'en' => "Error 404", 'ar' => "خطأ 404" ),
     'E404_SUB' => array( 'fr' => "La page que vous cherchez a été déplacée, renommée, ou n'a jamais existé. Reprenons depuis l'accueil, ou dites-nous ce que vous cherchiez.", 'en' => "The page you are looking for has moved, been renamed, or never existed. Start again from the homepage, or tell us what you were looking for.", 'ar' => "الصفحة التي تبحثون عنها تم نقلها أو تغيير اسمها أو لم تكن موجودة أصلاً. ابدأوا من الصفحة الرئيسية، أو أخبرونا بما تبحثون عنه." ),
