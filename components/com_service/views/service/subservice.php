@@ -81,7 +81,7 @@ else{
     }
     ?>
     
-    <img src="<?php echo $siteURL; ?>/images/services/<?php echo $photo; ?>" 
+    <img src="<?php echo $siteURL; ?>images/services/<?php echo $photo; ?>" 
          alt="<?php echo htmlspecialchars($service->getTitre()); ?>">
 </div>
     </div>

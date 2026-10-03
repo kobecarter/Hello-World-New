@@ -623,6 +623,18 @@ Header append Vary User-Agent env=!dont-vary
     $urls .= "RewriteRule ^en/service/production-photo-et-video/?$ /en/service/video-production-morocco/ [R=301,L]\n";
     $urls .= "RewriteRule ^ar/service/إنتاج-الصور-والفيديو/?$ /ar/service/إنتاج-الفيديو-المغرب/ [R=301,L,NE]\n";
 
+    // URLs mortes encore liees depuis le blog ou encore affichees dans Google (releve du 03/10/2026).
+    $urls .= "RewriteRule ^service/automatisation-et-agents-ia/?$ /service/automatisation-ia/ [R=301,L]\n";
+    $urls .= "RewriteRule ^service/creation-de-site-web-a-marrakech/?$ /service/creation-site-web-marrakech/ [R=301,L]\n";
+    $urls .= "RewriteRule ^service/developpement-site-web-marrakech/?$ /service/creation-site-web-marrakech/ [R=301,L]\n";
+    $urls .= "RewriteRule ^service/developpement-site-web-casablanca/?$ /service/creation-site-web-casablanca/ [R=301,L]\n";
+    $urls .= "RewriteRule ^service/agence-web-casablanca/?$ /service/creation-site-web-casablanca/ [R=301,L]\n";
+    $urls .= "RewriteRule ^service/developpement-application-mobiles/?$ /service/developpement-d-applications-mobiles/ [R=301,L]\n";
+    $urls .= "RewriteRule ^service/developpement-application-mobile-casablanca/?$ /service/developpement-d-applications-mobiles-a-casablanca/ [R=301,L]\n";
+    $urls .= "RewriteRule ^animation-videos-et-motion-design/?$ /service/motion-design/ [R=301,L]\n";
+    $urls .= "RewriteRule ^formations-ia-pour-dirigeants-et-equipes/?$ /formations-marketing-digital-ia-medias-marque-maroc/ [R=301,L]\n";
+    $urls .= "RewriteRule ^digital-market/?$ /marketplace/ [R=301,L]\n";
+
     $ids_modules_url = module::findAllUrl();
     $ids_langues = langue::findAll();
     foreach ($ids_modules_url as $id_module) {
