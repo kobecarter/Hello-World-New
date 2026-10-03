@@ -244,7 +244,7 @@ $ogDescriptionFinal = !empty($ogDescription) ? $ogDescription : $seoDescription;
 $ogImageFinal = !empty($ogImage) ? $ogImage : $siteURL . 'images/config/' . $config->getLogo();
 
 echo '<title>' . htmlspecialchars($seoTitle) . '</title>
-<meta name="description" content="' . htmlspecialchars(substr($seoDescription, 0, 160)) . '">
+<meta name="description" content="' . htmlspecialchars(mb_substr($seoDescription, 0, 160, 'UTF-8')) . '">
 <meta name="keywords" content="' . htmlspecialchars($seoKeywords) . '">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="'.$canonical.'">
@@ -839,6 +839,26 @@ if (!function_exists("GetSQLValueString")) {
 }
 
 
+
+// Vraie 404 depuis un composant : statut 404, tampons vides, page d'erreur, arret.
+// Sans cela une URL de contenu inexistant repond 200 (soft 404) ou 500.
+function sendHttp404AndExit(){
+
+    if (!headers_sent()) {
+        http_response_code(404);
+    }
+
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
+
+    $errorPage = dirname(dirname(__DIR__)) . '/404.php';
+    if (file_exists($errorPage)) {
+        include($errorPage);
+    }
+
+    exit;
+}
 
 function show404Error($val){
 

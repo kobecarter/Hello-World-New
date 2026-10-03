@@ -505,12 +505,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/motion-design/" />
   </url>
   <url>
-    <loc>https://www.helloworld-agency.com/service/production-photo-et-video/</loc>
-    <lastmod>2026-07-09</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/service/production-photo-et-video/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/service/production-photo-et-video/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/service/إنتاج-الصور-والفيديو/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/production-photo-et-video/" />
+    <loc>https://www.helloworld-agency.com/service/production-video-maroc/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/service/production-video-maroc/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/service/video-production-morocco/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/service/إنتاج-الفيديو-المغرب/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/production-video-maroc/" />
+  </url>
+  <url>
+    <loc>https://www.helloworld-agency.com/service/agence-photographie-maroc/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/service/agence-photographie-maroc/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/service/photography-agency-morocco/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/service/وكالة-تصوير-فوتوغرافي-المغرب/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/service/agence-photographie-maroc/" />
   </url>
   <url>
     <loc>https://www.helloworld-agency.com/service/marketing-de-celebrites-et-d-influenceurs/</loc>

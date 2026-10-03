@@ -14,9 +14,7 @@ switch ($task)
                     header("Location: " . $produitDefault->getLink(), true, 302);
                     exit;
                 }
-                header("HTTP/1.1 404 Not Found");
-                include('404.html');
-                exit;
+                sendHttp404AndExit();
             }
             include_once("components/com_produit/views/page/detail.php");
         }

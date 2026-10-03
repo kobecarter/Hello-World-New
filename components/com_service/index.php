@@ -30,6 +30,17 @@ switch ($task)
         }
         break;*/
         case "showDetails":
+            if(empty($_GET["slug"])){
+                // Ancienne URL a identifiant (/service/<slug>/<id>/) : 301 vers la page
+                // du service s'il existe, sinon vraie 404. Avant : page vide en 200.
+                $legacy = (isset($_GET["id"]) && ctype_digit((string) $_GET["id"])) ? service::find($_GET["id"], $_SESSION["lang"]) : null;
+                if($legacy && $legacy->getId() && $legacy->getSlug() != "" && $legacy->isActive()){
+                    while (ob_get_level() > 0) { ob_end_clean(); }
+                    header("Location: " . $legacy->getLink(), true, 301);
+                    exit;
+                }
+                sendHttp404AndExit();
+            }
             if(isset($_GET["slug"]) && !empty($_GET["slug"])){
                 $page = getComponent("com_service");
                 $pageContact = getComponent("com_contact");
@@ -58,6 +69,10 @@ switch ($task)
                 if(!$service->getId()){
                     // Pas encore de traduction pour cette langue : on retombe sur la langue par défaut plutôt que planter.
                     $service = service::findBySlug($slug, langue::getDefaultLanguage());
+                }
+                if(!$service->getId()){
+                    // Slug inconnu : vraie 404 (avant, la page plantait en 500).
+                    sendHttp404AndExit();
                 }
 
                 // $faqs = faq::findAll($_SESSION["lang"], true, $service->getId(), false);
