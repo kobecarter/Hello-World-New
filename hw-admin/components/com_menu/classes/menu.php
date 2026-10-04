@@ -304,6 +304,8 @@ class menu
     {
         global $siteURL;
         $img = $item->getImage();
+        // images de remplissage du seed (loremflickr.com) : externes et en erreur 401, on prend l'image de l'element a la place
+        if ($img && stripos($img, 'loremflickr.com') !== false) { $img = ''; }
         if ($img) {
             return (strpos($img, 'http://') === 0 || strpos($img, 'https://') === 0) ? $img : $siteURL . $img;
         }
