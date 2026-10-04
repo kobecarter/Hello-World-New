@@ -178,9 +178,34 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    // Sitewide Organization + WebSite structured data -- the site had zero
 	    // Schema.org markup anywhere before this (see SEO audit). Uses the same
 	    // $config object already loaded for meta tags, so no extra query.
+	    // Bureaux (adresse, telephone, lien Google Business Profile) : voir includes/business-profiles.php
+	    $hwOffices = file_exists(__DIR__ . '/business-profiles.php') ? include(__DIR__ . '/business-profiles.php') : array();
+	    $hwOfficeNodes = array();
+	    $hwOfficeRefs = array();
+	    foreach ($hwOffices as $hwKey => $hwOffice) {
+	        $officeNode = array(
+	            '@type' => 'ProfessionalService',
+	            '@id' => $siteURL . '#office-' . $hwKey,
+	            'name' => $hwOffice['name'],
+	            'parentOrganization' => array('@id' => $siteURL . '#organization'),
+	            'address' => array(
+	                '@type' => 'PostalAddress',
+	                'streetAddress' => $hwOffice['street'],
+	                'addressLocality' => $hwOffice['city'],
+	                'addressCountry' => $hwOffice['country'],
+	            ),
+	            'telephone' => $hwOffice['telephone'],
+	            'email' => $hwOffice['email'],
+	            'areaServed' => array('@type' => 'City', 'name' => $hwOffice['city']),
+	            'image' => $siteURL . 'images/config/' . $config->getLogo(),
+	        );
+	        if (!empty($hwOffice['gbp'])) { $officeNode['hasMap'] = $hwOffice['gbp']; }
+	        $hwOfficeNodes[] = $officeNode;
+	        $hwOfficeRefs[] = array('@id' => $siteURL . '#office-' . $hwKey);
+	    }
 	    $orgSchema = array(
 	        '@context' => 'https://schema.org',
-	        '@graph' => array(
+	        '@graph' => array_merge(array(
 	            array(
 	                '@type' => 'Organization',
 	                '@id' => $siteURL . '#organization',
@@ -199,6 +224,8 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	                    'email' => $config->getEmail(),
 	                    'contactType' => 'customer service',
 	                ),
+	                'areaServed' => array('@type' => 'Country', 'name' => 'Maroc'),
+	                'location' => $hwOfficeRefs,
 	            ),
 	            array(
 	                '@type' => 'WebSite',
@@ -208,12 +235,24 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	                'publisher' => array('@id' => $siteURL . '#organization'),
 	                'inLanguage' => $_SESSION['lang'],
 	            ),
-	        ),
+	        ), $hwOfficeNodes),
 	    );
 	    ?>
 	    <script type="application/ld+json"><?php echo json_encode($orgSchema, JSON_UNESCAPED_UNICODE); ?></script>
 	    <?php if ($detailOption === 'com_service' && $detailTask === 'showDetails' && isset($service) && $service->getId()): ?>
 	    <?php
+	    // Zone desservie : la ville de la page quand l'adresse en contient une, sinon tout le Maroc (avant : 4 villes
+	    // en dur sur toutes les pages, y compris celles de Fes, Agadir et Tanger).
+	    $hwCities = array('casablanca' => 'Casablanca', 'rabat' => 'Rabat', 'marrakech' => 'Marrakech', 'tanger' => 'Tanger', 'fes' => 'Fès', 'agadir' => 'Agadir',
+	        'الدار-البيضاء' => 'الدار البيضاء', 'الرباط' => 'الرباط', 'مراكش' => 'مراكش', 'طنجة' => 'طنجة', 'فاس' => 'فاس', 'أكادير' => 'أكادير');
+	    $hwServiceArea = array(array('@type' => 'Country', 'name' => 'Maroc'));
+	    $hwSlugLower = mb_strtolower((string) $service->getSlug(), 'UTF-8');
+	    foreach ($hwCities as $hwToken => $hwCityName) {
+	        if (mb_strpos($hwSlugLower, $hwToken, 0, 'UTF-8') !== false) {
+	            $hwServiceArea = array(array('@type' => 'City', 'name' => $hwCityName));
+	            break;
+	        }
+	    }
 	    $serviceSchema = array(
 	        '@context' => 'https://schema.org',
 	        '@type' => 'Service',
@@ -221,7 +260,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	        'description' => $service->getSeoDescription(),
 	        'url' => $service->getLink(),
 	        'provider' => array('@id' => $siteURL . '#organization'),
-	        'areaServed' => array('Casablanca', 'Marrakech', 'Rabat', 'Maroc'),
+	        'areaServed' => $hwServiceArea,
 	    );
 	    if ($service->getPhoto()) {
 	        $serviceSchema['image'] = $siteURL . 'images/services/' . $service->getPhoto();
