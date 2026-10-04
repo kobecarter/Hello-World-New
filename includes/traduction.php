@@ -893,6 +893,12 @@ $lang = array(
         "ar" => "خدماتنا <em>الأساسية</em>"
     ),
 
+    "HOME_SRV_CORE_TITLE_HOME" => array(
+        "fr" => "Nos services <em>digitaux</em> au Maroc",
+        "en" => "Our <em>digital</em> services in Morocco",
+        "ar" => "خدماتنا <em>الرقمية</em> في المغرب"
+    ),
+
     "HOME_SRV_WEB_TITLE" => array(
         "fr" => "Développement <em>Web</em>",
         "en" => "Web <em>Development</em>",
@@ -5080,39 +5086,39 @@ $lang = array(
     ),
 
     "HOME_H1_PART1" => array(
-        "fr" => "Spécialistes en création de",
-        "en" => "Specialists in custom",
-        "ar" => "متخصصون في إنشاء"
+        "fr" => "Agence digitale au Maroc :",
+        "en" => "Digital agency in Morocco:",
+        "ar" => "وكالة رقمية في المغرب:"
     ),
 
     "HOME_H1_PART2" => array(
-        "fr" => "sites web et d'applications sur-mesure,",
-        "en" => "website and application development,",
-        "ar" => "مواقع وتطبيقات ويب مخصصة،"
+        "fr" => "web, marketing et intelligence artificielle,",
+        "en" => "web, marketing and artificial intelligence,",
+        "ar" => "ويب وتسويق وذكاء اصطناعي،"
     ),
 
     "HOME_STATEMENT_PART1" => array(
-        "fr" => "Au-delà du simple code, ",
-        "en" => "Beyond mere code, ",
-        "ar" => "أبعد من مجرد البرمجة، "
+        "fr" => "Du site web à la campagne, ",
+        "en" => "From website to campaign, ",
+        "ar" => "من الموقع إلى الحملة، "
     ),
 
     "HOME_STATEMENT_PART2" => array(
-        "fr" => "nous concevons l'intelligence",
-        "en" => "we design the intelligence",
-        "ar" => "نصمم الذكاء"
+        "fr" => "nous concevons l'écosystème digital",
+        "en" => "we design the digital ecosystem",
+        "ar" => "نصمم المنظومة الرقمية"
     ),
 
     "HOME_STATEMENT_PART3" => array(
-        "fr" => " qui animera les produits ",
-        "en" => " that will power tomorrow's ",
-        "ar" => " الذي سيحرّك"
+        "fr" => " qui fait grandir ",
+        "en" => " that grows ",
+        "ar" => " التي تنمّي "
     ),
 
     "HOME_STATEMENT_PART4" => array(
-        "fr" => "les plus importants de demain.",
-        "en" => "most important products.",
-        "ar" => " أهم المنتجات في المستقبل."
+        "fr" => "les marques les plus ambitieuses du Maroc.",
+        "en" => "Morocco's most ambitious brands.",
+        "ar" => "أكثر العلامات التجارية طموحاً في المغرب."
     ),
 
     "HOME_WHY_LABEL" => array(
