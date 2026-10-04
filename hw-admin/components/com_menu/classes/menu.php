@@ -176,7 +176,7 @@ class menu
             $parentRecord = $this->resolveMenuRecord($group->getType(), $group->getIdItem(), $lang);
             $children = $parentRecord ? $parentRecord->getChildren($lang, true, true) : array();
             foreach ($children as $child) {
-                $img = $siteURL . 'images/services/' . $child->getPhoto();
+                $img = function_exists('hwSizedImage') ? hwSizedImage($siteURL . 'images/services/' . $child->getPhoto(), 120) : $siteURL . 'images/services/' . $child->getPhoto();
                 echo '<a href="' . $child->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" data-src="' . $img . '" alt=""><b>' . htmlspecialchars($child->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
             }
         } elseif (in_array($auto, array('formation', 'agent_ia', 'secteur'))) {
@@ -195,6 +195,7 @@ class menu
             foreach ($records as $rec) {
                 $photo = method_exists($rec, 'getPhotoProduit') && $rec->getPhotoProduit() ? $rec->getPhotoProduit() : $rec->getPhoto();
                 $img = $photo ? $siteURL . self::$menuImgDirByType[$auto] . $photo : $siteURL . 'images/pages/formation.webp';
+                if (function_exists('hwSizedImage')) { $img = hwSizedImage($img, 120); }
                 echo '<a href="' . $rec->getLink() . '" class="mm-acc-item"><img class="mm-acc-thumb" data-src="' . $img . '" alt=""><b>' . htmlspecialchars($rec->getTitre(), ENT_QUOTES, 'UTF-8') . '</b></a>';
             }
         }
@@ -210,6 +211,7 @@ class menu
             }
             $title = $item->getTitre() ?: ($record ? $record->getTitre() : '');
             $img = $this->resolveMenuImage($item, $type, $record);
+            if (function_exists('hwSizedImage')) { $img = hwSizedImage($img, 120); }
             echo '<a href="' . $link . '" class="mm-acc-item"><img class="mm-acc-thumb" data-src="' . $img . '" alt=""><b>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</b></a>';
         }
     }
@@ -356,7 +358,9 @@ class menu
         $desc    = htmlspecialchars($data['desc'], ENT_QUOTES, 'UTF-8');
         $grad    = htmlspecialchars($data['grad'], ENT_QUOTES, 'UTF-8');
         $ico     = htmlspecialchars($data['ico'], ENT_QUOTES, 'UTF-8');
-        $img     = $data['img'];
+        $imgFull = $data['img'];
+        $img     = function_exists('hwSizedImage') ? hwSizedImage($imgFull, 640) : $imgFull;   // apercu (data-img)
+        $imgThumb = function_exists('hwSizedImage') ? hwSizedImage($imgFull, 120) : $imgFull;  // vignette
         $link    = $data['link'];
         $packs   = isset($data['packsHtmlBank']) ? htmlspecialchars(base64_encode($data['packsHtmlBank']), ENT_QUOTES) : '';
 
@@ -375,7 +379,7 @@ class menu
                    data-grad="' . $grad . '">
                     <div class="card-h">
                         <span class="thumb ' . $grad . '">
-                            <img src="' . $img . '" alt="' . $service . '">
+                            <img src="' . $imgThumb . '" alt="' . $service . '" width="41" height="41" decoding="async">
                         </span>
                     </div>
                     <h3 class="card-title">' . $service . '</h3>
@@ -400,7 +404,7 @@ class menu
                 data-author="' . $author . '"
                 data-role="' . $role . '">
                 <span class="thumb ' . $grad . '" data-thumb>
-                    <img loading="lazy" src="' . $img . '" alt="' . $service . '">
+                    <img loading="lazy" src="' . $imgThumb . '" alt="' . $service . '" decoding="async">
                     <span class="thumb-ico"></span>
                 </span>
                 <span class="tx">

@@ -181,10 +181,7 @@ h1.e404-title{font-family:var(--fd);font-weight:300;letter-spacing:-.02em;line-h
 <body>
 
 <div class="e404" style="background-image:url('<?php echo $siteURL; ?>assets/video/hw-academy-cta-poster.jpg')">
-  <video class="e404-video" autoplay muted loop playsinline preload="auto"
-         poster="<?php echo $siteURL; ?>assets/video/hw-academy-cta-poster.jpg" aria-hidden="true" tabindex="-1">
-    <source src="<?php echo $siteURL; ?>assets/video/hw-academy-cta-bg.mp4" type="video/mp4">
-  </video>
+  <!-- Le fond video (4 Mo) n'est plus charge : l'affiche (28 Ko) suffit pour une page d'erreur qui doit rester legere. -->
   <div class="e404-scrim" aria-hidden="true"></div>
   <div class="e404-grid" aria-hidden="true"></div>
   <div class="e404-glow" aria-hidden="true"></div>

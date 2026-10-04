@@ -325,7 +325,7 @@ class blog
                 return $siteURL . $this->getLangue() . "/" . __CLASS__ . "/" . $this->getSlug() . "/";
             }
         } else
-            return "index.php?option=com_" . __CLASS__ . "&slug=" . $this->slug;
+            return function_exists('hwDefaultLangLink') ? hwDefaultLangLink(__CLASS__, $this->id) : "index.php?option=com_" . __CLASS__ . "&slug=" . $this->slug;
     }
     
     public function getCategorieLink(){
@@ -349,7 +349,7 @@ class blog
                 return $siteURL . $this->getLangue() . "/" . __CLASS__ . "/" . url_rewriting($this->getTitre()) . "/" . $this->id . "/";
             }
         } else
-            return "index.php?option=com_" . __CLASS__ . "&id=" . $this->id;
+            return function_exists('hwDefaultLangLink') ? hwDefaultLangLink(__CLASS__, $this->id) : "index.php?option=com_" . __CLASS__ . "&id=" . $this->id;
     }*/
 
     public static function getSeo(){

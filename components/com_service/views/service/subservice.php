@@ -428,7 +428,9 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
       <?php continue; endif;
           $pshPhoto = $pshIt['photo'];
           $pshCatTitle = $pshCats[$pshIt['cat']];
-          $pshSrc = $siteURL . 'images/galerie/' . rawurlencode(trim($pshPhoto->getPhoto()));
+          $pshFile  = 'images/galerie/' . trim($pshPhoto->getPhoto());
+          $pshSrc   = hwThumb($pshFile, 1600);   // visionneuse : 1600 px au lieu de l'original (jusqu'a plusieurs Mo)
+          $pshThumb = hwThumb($pshFile, 640);    // grille : miniature
           // L'ancien bloc mettait le nom du service en alt sur les 143 photos.
           // On prend le titre de la photo quand il existe, sinon la categorie.
           $pshAlt = trim(strip_tags($pshPhoto->getTitre()));
@@ -439,7 +441,7 @@ h2.psh-title em{font-style:italic;color:var(--gold2)}
            href="<?php echo htmlspecialchars($pshSrc, ENT_QUOTES, 'UTF-8'); ?>"
            data-fancybox="psh-gallery"
            data-caption="<?php echo htmlspecialchars($pshAlt, ENT_QUOTES, 'UTF-8'); ?>">
-          <img src="<?php echo htmlspecialchars($pshSrc, ENT_QUOTES, 'UTF-8'); ?>"
+          <img src="<?php echo htmlspecialchars($pshThumb, ENT_QUOTES, 'UTF-8'); ?>"
                alt="<?php echo htmlspecialchars($pshAlt, ENT_QUOTES, 'UTF-8'); ?>"
                loading="lazy" decoding="async">
           <span class="psh-tag"><?php echo htmlspecialchars($pshCatTitle, ENT_QUOTES, 'UTF-8'); ?></span>

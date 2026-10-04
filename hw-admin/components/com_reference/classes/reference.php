@@ -381,7 +381,7 @@ class reference
                 return $siteURL . $this->langue . "/" . __CLASS__ . "/" . url_rewriting($this->nom_client) . "/" . $this->id . "/";
             }
         } else
-            return "index.php?option=com_" . __CLASS__ . "&id=" . $this->id;
+            return function_exists('hwDefaultLangLink') ? hwDefaultLangLink(__CLASS__, $this->id) : "index.php?option=com_" . __CLASS__ . "&id=" . $this->id;
     }
 
     public static function getSeo(){

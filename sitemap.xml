@@ -3212,13 +3212,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/formations-marketing-digital-ia-medias-marque-maroc/" />
   </url>
   <url>
-    <loc>https://www.helloworld-agency.com/nos-produits/</loc>
-    <lastmod>2026-07-20</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/nos-produits/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/منتجاتنا/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/nos-produits/" />
-  </url>
-  <url>
     <loc>https://www.helloworld-agency.com/actualites-du-marketing-numerique/</loc>
     <lastmod>2026-07-20</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/actualites-du-marketing-numerique/" />
@@ -3304,11 +3297,5 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.helloworld-agency.com/en/our-agencies/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.helloworld-agency.com/ar/وكالاتنا/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/nos-agences/" />
-  </url>
-  <url>
-    <loc>https://www.helloworld-agency.com/produits/</loc>
-    <lastmod>2026-07-20</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.helloworld-agency.com/produits/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.helloworld-agency.com/produits/" />
   </url>
 </urlset>

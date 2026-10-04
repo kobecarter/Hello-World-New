@@ -19,3 +19,4 @@ hw-admin/api/
 # Environment-specific, edited directly on each host — not synced via git
 /.htaccess
 /hw-admin/config.php
+images/_cache/

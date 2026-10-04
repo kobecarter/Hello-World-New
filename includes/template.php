@@ -63,7 +63,9 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	                $currentPageObj = $pageCandidate;
 	            } else {
 	                $expectedExterne = 'index.php?option=' . $detailOption . ($detailTask !== '' ? '&task=' . $detailTask : '');
-	                if (rtrim($pageCandidate->getExterne()) === $expectedExterne) {
+	                // Les pages liste du blog portent leur categorie : index.php?option=com_blog&cat=1
+	                $expectedExterneCat = $expectedExterne . (isset($_GET['cat']) && ctype_digit((string) $_GET['cat']) ? '&cat=' . $_GET['cat'] : '');
+	                if (rtrim($pageCandidate->getExterne()) === $expectedExterne || rtrim($pageCandidate->getExterne()) === $expectedExterneCat) {
 	                    $currentPageObj = $pageCandidate;
 	                }
 	            }
@@ -108,6 +110,23 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	        // hreflang below rather than advertise a link that 404s.
 	        $hrefMissing = ($isPartialContentDetail && $currentDetailId || $currentPageObj) && $lOpt->getCode() != $_SESSION['lang'] && !$altHref;
 	        $link = $altHref ? $altHref : ($lOpt->isDefault() ? $siteURL . $targetPath : $siteURL . $lOpt->getCode() . '/' . $targetPath);
+	        if ($hrefMissing) {
+	            // Pas de traduction : un lien construit en remplacant le prefixe de langue menait a un 404.
+	            // On propose la meme page dans la langue par defaut si elle existe, sinon la page courante.
+	            $fallbackHref = null;
+	            $defCode = langue::getDefaultLanguage();
+	            if ($isPartialContentDetail && $currentDetailId) {
+	                $classByOption = array('com_blog' => 'blog', 'com_reference' => 'reference', 'com_produit' => 'produit', 'com_secteur' => 'secteur', 'com_agents_ia' => 'agent_ia', 'com_formation' => 'formation', 'com_service' => 'service');
+	                if (isset($classByOption[$detailOption]) && $_SESSION['lang'] != $defCode) {
+	                    $defRow = call_user_func(array($classByOption[$detailOption], 'find'), $currentDetailId, $defCode);
+	                    if ($defRow && $defRow->getTitre()) { $fallbackHref = $defRow->getLink(); }
+	                }
+	            } elseif ($currentPageObj && $_SESSION['lang'] != $defCode) {
+	                $defPage = new page($currentPageObj->getId(), $db, $defCode);
+	                if ($defPage->getTitre() != '') { $fallbackHref = $defPage->getLink(); }
+	            }
+	            $link = $fallbackHref ? $fallbackHref : $siteURL . ($_SESSION['lang'] == $defCode ? '' : $_SESSION['lang'] . '/') . $currentPath;
+	        }
 	        $langOptions[] = array(
 	            'code' => $lOpt->getCode(),
 	            'nom' => $lOpt->getNom(),
@@ -131,7 +150,9 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    // (pas encore de ligne active en base / pas de routes ni de traductions),
 	    // sans toucher au sélecteur desktop qui doit rester limité aux langues réelles.
 	    $mobileLangOptions = $langOptions;
-	    $mobileLangOptions[] = array(
+	    $hasArabic = false;
+	    foreach ($langOptions as $lo) { if ($lo['code'] == 'ar') { $hasArabic = true; } }
+	    if (!$hasArabic) $mobileLangOptions[] = array(
 	        'code' => 'ar',
 	        'nom' => 'العربية',
 	        'flag' => $langFlags['ar'],
@@ -232,7 +253,6 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	    <script type="application/ld+json"><?php echo json_encode($articleSchema, JSON_UNESCAPED_UNICODE); ?></script>
 	    <?php endif; ?>
       <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6N5Y8QJ1M"></script>
       <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -255,11 +275,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	        n.loaded = !0;
 	        n.version = '2.0';
 	        n.queue = [];
-	        t = b.createElement(e);
-	        t.async = !0;
-	        t.src = v;
-	        s = b.getElementsByTagName(e)[0];
-	        s.parentNode.insertBefore(t, s)
+	        // fbevents.js est charge plus tard par hwLoadThirdParty() (voir plus bas).
 	    }(window, document, 'script',
 	        'https://connect.facebook.net/en_US/fbevents.js');
 	    fbq('init', '1306708063569247');
@@ -274,6 +290,8 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;0,800;0,900;1,100;1,200;1,300&family=Raleway:wght@300;400;500;600;700;900&family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<?php // Anton (numeros des etapes, .number-step) : charge ici, en parallele, et non par un @import dans main.css ?>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <?php if (isset($option) && $option == 'com_client') : ?>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
 <?php endif; ?>
@@ -283,9 +301,64 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.css?v=9.56">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.57">
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+/* Scripts tiers : charges apres l'affichage de la page, et non pendant. Google Tag Manager, Google
+   Analytics, Meta Pixel et HubSpot pesaient ensemble pres de 1 Mo et une vingtaine de requetes avant
+   meme que la page soit utilisable. Ils partent des la premiere interaction du visiteur (clic, touche,
+   defilement, toucher) ou, a defaut, 3 secondes apres la fin du chargement. Les evenements envoyes
+   entre-temps (dataLayer, fbq) sont mis en file par les amorces ci-dessus et rejoues au chargement. */
+(function () {
+  var done = false;
+  function add(src, id) { var s = document.createElement('script'); s.async = true; s.src = src; if (id) { s.id = id; } document.head.appendChild(s); }
+  window.hwLoadThirdParty = function () {
+    if (done) { return; } done = true;
+    add('https://www.googletagmanager.com/gtag/js?id=G-V6N5Y8QJ1M');
+    add('https://www.googletagmanager.com/gtm.js?id=GTM-KZNQF2R');
+    add('https://connect.facebook.net/en_US/fbevents.js');
+    add('//js-eu1.hs-scripts.com/143509868.js', 'hs-script-loader');
+  };
+  ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) { window.addEventListener(e, window.hwLoadThirdParty, { once: true, passive: true }); });
+  window.addEventListener('load', function () { setTimeout(window.hwLoadThirdParty, 3000); });
+
+  /* reCAPTCHA : charge seulement quand un formulaire en a besoin (present dans la page, ou ajoute
+     ensuite par AJAX), et non sur chaque page. Le rendu est explicite pour couvrir les deux cas. */
+  var rcLoaded = false;
+  function rcRender() {
+    if (!window.grecaptcha || !grecaptcha.render) { return; }
+    document.querySelectorAll('.g-recaptcha').forEach(function (el) {
+      if (el.hasChildNodes() || el.getAttribute('data-hw-rendered')) { return; }
+      el.setAttribute('data-hw-rendered', '1');
+      try { grecaptcha.render(el, { sitekey: el.getAttribute('data-sitekey'), theme: el.getAttribute('data-theme') || 'light', size: el.getAttribute('data-size') || 'normal' }); } catch (e) {}
+    });
+  }
+
+  /* Videos de fond (voir hwLazyVideos) : lancees a l'approche du visiteur, pas au chargement de la page. */
+  document.addEventListener('DOMContentLoaded', function () {
+    var vids = document.querySelectorAll('video[data-hw-autoplay]');
+    if (!vids.length) { return; }
+    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var saver = navigator.connection && navigator.connection.saveData;
+    if (calm || saver) { return; }
+    // Une video deja visible a l'ouverture (barre collee en bas de l'ecran) attend 2,5 s apres le chargement de la page.
+    var settled = false, waiting = [];
+    function start(v) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) { p.catch(function () {}); } }
+    function go(v) { if (settled) { start(v); } else { waiting.push(v); } }
+    window.addEventListener('load', function () { setTimeout(function () { settled = true; waiting.splice(0).forEach(start); }, 2500); });
+    if (!('IntersectionObserver' in window)) { vids.forEach(go); return; }
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { go(e.target); io.unobserve(e.target); } }); }, { rootMargin: '300px' });
+    vids.forEach(function (v) { io.observe(v); });
+  });
+  window.hwRecaptchaReady = rcRender;
+  function rcLoad() { if (rcLoaded) { rcRender(); return; } rcLoaded = true; add('https://www.google.com/recaptcha/api.js?onload=hwRecaptchaReady&render=explicit'); }
+  function rcScan() { if (document.querySelector('.g-recaptcha')) { rcLoad(); } }
+  document.addEventListener('DOMContentLoaded', function () {
+    rcScan();
+    if (window.MutationObserver) { new MutationObserver(rcScan).observe(document.body, { childList: true, subtree: true }); }
+  });
+})();
+</script>
 
 	    <!-- Conversions Google Ads (Contact, Envoi de formulaire pour prospects) : déclenchées
 	         directement dans les callbacks de succès AJAX (voir assets/js/main.js), pas ici au
@@ -301,13 +374,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	            'gtm.start': new Date().getTime(),
 	            event: 'gtm.js'
 	        });
-	        var f = d.getElementsByTagName(s)[0],
-	            j = d.createElement(s),
-	            dl = l != 'dataLayer' ? '&l=' + l : '';
-	        j.async = true;
-	        j.src =
-	            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-	        f.parentNode.insertBefore(j, f);
+	        // Le conteneur est charge plus tard par hwLoadThirdParty() (voir plus bas).
 	    })(window, document, 'script', 'dataLayer', 'GTM-KZNQF2R');
 	    </script>
 	    <!-- End Google Tag Manager -->
@@ -1330,8 +1397,7 @@ document.querySelectorAll('.card, .custom-sublink').forEach(item => {
 })();
         </script>
         <!-- Start of HubSpot Embed Code -->
-	    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/143509868.js">
-	    </script>
+	    <!-- HubSpot : charge par hwLoadThirdParty() (voir <head>) -->
 	    <!-- End of HubSpot Embed Code -->
 
     <!-- Hello World — signal d'envoi des formulaires vers GTM -->
