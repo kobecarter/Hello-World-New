@@ -341,7 +341,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-              <img src="<?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 1400); ?>" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
+              <img src="<?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag">Web & Front-end</div>
@@ -369,7 +369,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-            <img src="<?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 1400); ?>" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
+            <img src="<?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag">iOS & Android</div>
@@ -397,7 +397,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-            <img src="<?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 1400); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
+            <img src="<?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_SAAS_TAG'][$_SESSION['lang']]; ?></div>
@@ -425,7 +425,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-             <img src="<?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 1400); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
+             <img src="<?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_IA_TAG'][$_SESSION['lang']]; ?></div>
@@ -1459,9 +1459,14 @@ const toArr = gsap.utils.toArray;
        rotate slides on a timer so the hero stays animated.
     ──────────────────────────────────────────────────────────────── */
     /* La video (1,1 Mo) ne part qu'apres l'affichage : elle ne concurrence plus l'image du hero. */
-    const startVid = () => { mainVid.preload = 'auto'; mainVid.play().catch(() => {}); };
-    if (document.readyState === 'complete') setTimeout(startVid, 800);
-    else window.addEventListener('load', () => setTimeout(startVid, 800), { once: true });
+    /* Sur mobile la video (1,1 Mo) ne demarre qu'a la premiere interaction (toucher, defilement), et jamais sur une connexion lente
+       ou en economie de donnees : le visiteur voit l'affiche tout de suite, sans payer 1,1 Mo qu'il n'a pas demandes. */
+    const conn = navigator.connection || {};
+    if (!conn.saveData && !/(^|-)2g$|3g/.test(conn.effectiveType || '')) {
+      let started = false;
+      const startVid = () => { if (started) return; started = true; mainVid.preload = 'auto'; mainVid.play().catch(() => {}); };
+      ['touchstart', 'scroll', 'pointerdown', 'keydown'].forEach(ev => window.addEventListener(ev, startVid, { once: true, passive: true }));
+    }
 
     let mobileIdx = 0;
     setInterval(() => {
