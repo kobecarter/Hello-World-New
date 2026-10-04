@@ -827,9 +827,9 @@ if (!$hideWorkSection) :
                                     <p><?= $photo->getDesc2() ?></p>
                                     <?php endif; ?>
                                 </div>
-                                <img src="<?= 'https://www.helloworld-agency.com/images/galerie/' . $photo->getPhoto(); ?>" alt="<?= $photo->getTitre(); ?>" class="">
+                                <img src="<?= hwThumb('images/galerie/' . trim($photo->getPhoto()), 640); ?>" alt="<?= $photo->getTitre(); ?>" class="" loading="lazy" decoding="async">
                                 <a h ref="javascript:void(0)"
-                                    data-src="<?= $siteURL . "images/galerie/" . $photo->getPhoto() ?>"
+                                    data-src="<?= hwThumb('images/galerie/' . trim($photo->getPhoto()), 1600) ?>"
                                     data-fancybox="gallery-market"><i class="fa fa-search-plus"></i></a>
                             </div>
                         </div>

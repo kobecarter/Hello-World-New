@@ -985,7 +985,11 @@ function hwLazyImages($html, $skipFirst = 2){
         $parts[$i] = preg_replace_callback('#<img\b[^>]*>#i', function ($m) use (&$seen, $skipFirst) {
             $seen++;
             $tag = $m[0];
-            if ($seen <= $skipFirst) { return $tag; }
+            // les premieres images (logo, image d'en-tete) restent chargees tout de suite ; l'image d'en-tete passe en priorite haute pour le LCP
+            if ($seen <= $skipFirst) {
+                if (!preg_match('#\bfetchpriority\s*=#i', $tag) && stripos($tag, 'logo') === false) { $tag = preg_replace('#\s*/?>$#', ' fetchpriority="high"$0', $tag, 1); }
+                return $tag;
+            }
             if (preg_match('#\bloading\s*=#i', $tag) || preg_match('#\bfetchpriority\s*=\s*["\']?high#i', $tag)) { return $tag; }
             $add = ' loading="lazy"';
             if (!preg_match('#\bdecoding\s*=#i', $tag)) { $add .= ' decoding="async"'; }

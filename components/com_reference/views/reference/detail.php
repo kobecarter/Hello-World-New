@@ -2,7 +2,7 @@
 <!-- HERO -->
 <section class="rd-hero">
   <div class="rd-hero-bg" aria-hidden="true">
-	<img src="<?php echo $siteURL; ?>images/references/<?php echo $reference->getPhoto(); ?>" alt="<?php echo $reference->getNomClient(); ?>">
+	<img src="<?php echo hwThumb('images/references/' . $reference->getPhoto(), 1600); ?>" alt="<?php echo $reference->getNomClient(); ?>">
   </div>
   <div class="rd-hero-noise" aria-hidden="true"></div>
   <span class="rd-hero-ghost" aria-hidden="true">Orbital</span>
@@ -85,7 +85,7 @@
   <!-- FULL IMAGE 1 -->
   <div class="rd-fullimg">
     <div class="rd-fullimg-inner" style="background:linear-gradient(160deg,#081428 0%,#0d2545 55%,#162d56 100%)">
-		<img src="<?php echo $siteURL; ?>images/references/<?php echo $reference->getPhoto(); ?>" alt="<?php echo $reference->getNomClient(); ?>">
+		<img src="<?php echo hwThumb('images/references/' . $reference->getPhoto(), 1600); ?>" alt="<?php echo $reference->getNomClient(); ?>">
 	</div>
     <div class="rd-fullimg-caption">Interface principale — dashboard analytics redesigné</div>
   </div>
@@ -99,8 +99,8 @@
     foreach($photos as $photo) {
       ?>
       <div class="rd-gal-item rv">
-        <a href="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" data-fancybox="rd-gallery-<?php echo $item->getGalerie()->getId(); ?>" data-caption="<?php echo $photo->getTitre(); ?>" class="rd-gal-inner">
-          <img src="<?php echo $siteURL; ?>images/galerie/<?php echo $photo->getPhoto(); ?>" alt="<?php echo $photo->getTitre(); ?>"/>
+        <a href="<?php echo hwThumb('images/galerie/' . $photo->getPhoto(), 1600); ?>" data-fancybox="rd-gallery-<?php echo $item->getGalerie()->getId(); ?>" data-caption="<?php echo $photo->getTitre(); ?>" class="rd-gal-inner">
+          <img src="<?php echo hwThumb('images/galerie/' . $photo->getPhoto(), 800); ?>" alt="<?php echo $photo->getTitre(); ?>"/>
         </a>
         <!-- <span class="rd-gal-num">01 / Dashboard</span> -->
       </div>
@@ -137,7 +137,7 @@
       <div class="rd-split-inner">
         <div class="rd-split-img rv<?php echo $item->getService() == 'mobile' ? ' rd-split-img--mobile' : ''; ?>">
           <div class="rd-split-img-inner" style="background:linear-gradient(135deg,#06080e 0%,#0e1525 60%,#14213a 100%)">
-			<img src="<?= $siteURL; ?>images/references/<?= $item->getPhoto(); ?>" alt="" />
+			<img src="<?= hwThumb('images/references/' . $item->getPhoto(), 1200); ?>" alt="" />
 		  </div>
         </div>
         <div>
