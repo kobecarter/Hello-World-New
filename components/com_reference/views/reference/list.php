@@ -59,7 +59,7 @@
       <!-- 1 — Orbital SaaS (big feature) -->
       <a href="<?php echo $reference->getLink(); ?>" class="rl-card" data-cat="web saas">
         <div class="rl-img-wrap" style="background:linear-gradient(160deg,#081428 0%,#0d2545 55%,#152d56 100%)">
-			<img src="<?php echo $siteURL; ?>images/references/<?php echo $reference->getPhoto(); ?>" alt="<?php echo $reference->getNomClient(); ?>">
+			<img src="<?php echo hwThumb('images/references/' . $reference->getPhoto(), 800); ?>" alt="<?php echo $reference->getNomClient(); ?>">
           <span class="rl-ghost-label"><?php echo $reference->getNomClient(); ?></span>
         </div>
         <div class="rl-card-info">
