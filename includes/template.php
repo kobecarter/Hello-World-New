@@ -437,7 +437,7 @@ if ($hwCrit) : ?>
 <header class="navshell <?php echo $headerColor; ?>" id="navshell">
   <nav class="navbar glass-nav">
     <div class="nav-row">
-      <a href="<?php echo $homeURL; ?>" class="logo-hw logo"><img src="<?php echo hwThumb('images/config/' . $config->getLogo(), 400); ?>" alt="<?php echo $config->getNom(); ?>"></a>
+      <a href="<?php echo $homeURL; ?>" class="logo-hw logo"><img src="<?php echo hwThumb('images/config/' . $config->getLogo(), 400); ?>" alt="<?php echo $config->getNom(); ?>" width="194" height="62"></a>
       <ul class="nav-links">
                 <?php
       // Single shared instance: the same 7 top-level rows drive both this
@@ -483,7 +483,7 @@ if ($hwCrit) : ?>
   <div class="mm-drawer" id="mmDrawer" role="dialog" aria-modal="true" aria-label="<?php echo $config->getNom(); ?>">
     <div class="mm-drawer-inner">
       <div class="mm-drawer-top">
-        <a href="<?php echo $homeURL; ?>"><img src="<?php echo hwThumb('images/config/' . $config->getLogo(), 400); ?>" alt="Hello World Agency" style="height:64px"></a>
+        <a href="<?php echo $homeURL; ?>"><img src="<?php echo hwThumb('images/config/' . $config->getLogo(), 400); ?>" alt="Hello World Agency" width="200" height="64" style="height:64px"></a>
         <button class="mm-close" id="mmClose" aria-label="<?php echo $lang['TPL_MENU_FERMER'][$_SESSION['lang']]; ?>"></button>
       </div>
       <?php
