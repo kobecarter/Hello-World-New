@@ -336,7 +336,7 @@ class categorie
                 return $siteURL . $this->getLangue() . "/" . __CLASS__ . "/" . url_rewriting($this->getTitre()) . "/" . $this->getId() . "/";
             }
         } else
-            return "index.php?option=com_" . __CLASS__ . "&id=" . $this->getId();
+            return function_exists('hwDefaultLangLink') ? hwDefaultLangLink(__CLASS__, $this->getId()) : "index.php?option=com_" . __CLASS__ . "&id=" . $this->getId();
     }
     
      public function getCategorieLink(){

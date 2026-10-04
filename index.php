@@ -75,7 +75,7 @@ if (preg_match("/com_/i",$option) && file_exists("components/".$option."/index.p
     $config = new config($db, $_SESSION['lang']);
     include("components/".$option."/index.php");
 
-    $page_content = ob_get_clean();
+    $page_content = hwLazyVideos(hwLazyImages(ob_get_clean()));
 
     include("includes/template.php");
 

@@ -860,6 +860,133 @@ function sendHttp404AndExit(){
     exit;
 }
 
+// Lien de repli d'un contenu qui n'a pas de traduction dans la langue courante : sa version en langue par
+// defaut. Avant, ces classes renvoyaient "index.php?option=...", une URL relative qui, ajoutee au chemin de la
+// page en cours, donnait un 404 (ex. /en/produits/index.php?option=com_produit&id=7). Si la version par defaut
+// n'existe pas non plus, on retombe sur l'accueil.
+function hwDefaultLangLink($class, $id){
+    global $siteURL;
+    static $busy = false;
+    if ($busy || !class_exists($class) || !method_exists($class, 'find')) { return $siteURL; }
+    $busy = true;
+    $link = $siteURL;
+    $row = call_user_func(array($class, 'find'), $id, langue::getDefaultLanguage());
+    if ($row && method_exists($row, 'getLink')) {
+        $l = $row->getLink();
+        if (is_string($l) && $l !== '' && strpos($l, 'index.php') !== 0) { $link = $l; }
+    }
+    $busy = false;
+    return $link;
+}
+
+// Version redimensionnee d'une image donnee par son URL complete. Si l'URL n'est pas une image du site
+// (externe, vide, deja une miniature), elle est rendue telle quelle. Sert au menu : ses vignettes de 41 px
+// et ses cartes de 294 px chargeaient sur chaque page les images d'origine, jusqu'a 1800 px de large.
+function hwSizedImage($url, $width){
+    global $siteURL;
+    $url = (string) $url;
+    if ($url === '' || strpos($url, $siteURL) !== 0) { return $url; }
+    $rel = substr($url, strlen($siteURL));
+    $rel = rawurldecode(strtok($rel, '?'));
+    return hwThumb($rel, $width);
+}
+
+// Version redimensionnee d'une image du site, en WebP, creee a la demande et gardee en cache.
+// $rel est le chemin relatif a la racine du site (ex. images/galerie/photo.png). Retourne l'URL de la
+// miniature, ou celle de l'original si la miniature ne peut pas etre produite (fichier absent,
+// extension GD WebP manquante, memoire insuffisante, dossier de cache non inscriptible) : la page
+// reste correcte dans tous les cas. Les images televersees depuis le back-office ne sont pas dans Git
+// et peuvent peser plusieurs Mo : c'est ce qui rend ce passage necessaire.
+function hwThumb($rel, $width = 640){
+    global $siteURL;
+    $rel = ltrim((string) $rel, '/');
+    $orig = $siteURL . implode('/', array_map('rawurlencode', explode('/', $rel)));
+    if (strpos($rel, '..') !== false || !preg_match('#^images/.+\.(jpe?g|png|webp)$#i', $rel)) { return $orig; }
+    $root = dirname(dirname(__DIR__));
+    $src = $root . '/' . $rel;
+    if (!is_file($src)) { return $orig; }
+    $dir = $root . '/images/_cache';
+    // WebP si l'extension GD le permet, sinon JPEG (une image PNG avec transparence reste alors telle quelle)
+    $useWebp = function_exists('imagewebp');
+    $ext = $useWebp ? 'webp' : 'jpg';
+    $name = substr(sha1($rel), 0, 16) . '-' . (int) $width . '.' . $ext;
+    $dst = $dir . '/' . $name;
+    $url = $siteURL . 'images/_cache/' . $name;
+    if (is_file($dst) && filemtime($dst) >= filemtime($src)) { return $url; }
+    if (!function_exists('imagescale') || (!is_dir($dir) && !@mkdir($dir, 0755, true)) || !is_writable($dir)) { return $orig; }
+    $info = @getimagesize($src);
+    if (!$info || $info[0] < 1) { return $orig; }
+    if ($info[0] <= $width) { return $orig; }
+    if (!$useWebp && $info[2] == IMAGETYPE_PNG && ord((string) file_get_contents($src, false, null, 25, 1)) >= 4) { return $orig; }
+    // memoire necessaire pour decoder : ~5 octets par pixel ; on garde une marge
+    $limit = trim(ini_get('memory_limit')); $bytes = (int) $limit;
+    if (stripos($limit, 'g') !== false) { $bytes *= 1073741824; } elseif (stripos($limit, 'm') !== false) { $bytes *= 1048576; } elseif (stripos($limit, 'k') !== false) { $bytes *= 1024; }
+    if ($bytes > 0 && $info[0] * $info[1] * 5 > $bytes * 0.6) { return $orig; }
+    // Toute erreur (fonction GD absente, image corrompue, memoire) laisse l'image d'origine : une page ne doit jamais tomber a cause d'une miniature.
+    try {
+        if ($info[2] == IMAGETYPE_PNG && function_exists('imagecreatefrompng')) { $img = @imagecreatefrompng($src); }
+        elseif ($info[2] == IMAGETYPE_JPEG && function_exists('imagecreatefromjpeg')) { $img = @imagecreatefromjpeg($src); }
+        elseif ($info[2] == IMAGETYPE_WEBP && function_exists('imagecreatefromwebp')) { $img = @imagecreatefromwebp($src); }
+        else { $img = false; }
+    } catch (\Throwable $e) { $img = false; }
+    if (!$img) { return $orig; }
+    if ($info[2] == IMAGETYPE_JPEG && function_exists('exif_read_data')) {
+        $exif = @exif_read_data($src);
+        $o = isset($exif['Orientation']) ? (int) $exif['Orientation'] : 1;
+        if ($o == 3) { $img = imagerotate($img, 180, 0); } elseif ($o == 6) { $img = imagerotate($img, -90, 0); } elseif ($o == 8) { $img = imagerotate($img, 90, 0); }
+    }
+    $small = imagescale($img, (int) $width, -1, IMG_BICUBIC);
+    imagedestroy($img);
+    if (!$small) { return $orig; }
+    imagepalettetotruecolor($small); imagealphablending($small, false); imagesavealpha($small, true);
+    $tmp = $dst . '.' . getmypid() . '.tmp';
+    if ($useWebp) { $ok = @imagewebp($small, $tmp, 82); } else { $ok = @imagejpeg($small, $tmp, 82); }
+    imagedestroy($small);
+    if (!$ok || !@rename($tmp, $dst)) { @unlink($tmp); return $orig; }
+    return $url;
+}
+
+// Video de fond du bandeau "Demarrer votre projet" (4 Mo, reconnue a son affiche hw-academy-cta-poster) : elle se telechargeait des l'ouverture de la page
+// (autoplay + preload="auto") alors qu'elle se trouve tout en bas. On retire autoplay et on passe preload a "none" ;
+// un petit script (voir includes/template.php) la lance quand le visiteur s'en approche. Sans JavaScript,
+// l'affiche reste affichee.
+function hwLazyVideos($html){
+    return preg_replace_callback('#<video\b[^>]*hw-academy-cta-poster[^>]*>#i', function ($m) {
+        $tag = preg_replace('#\sautoplay(?:="[^"]*")?#i', '', $m[0]);
+        $tag = preg_replace('#\bpreload="[^"]*"#i', 'preload="none"', $tag);
+        if (stripos($tag, 'preload=') === false) { $tag = preg_replace('#>$#', ' preload="none">', $tag); }
+        return preg_replace('#>$#', ' data-hw-autoplay>', $tag);
+    }, $html);
+}
+
+// Chargement paresseux des images du contenu de la page.
+// Ajoute loading="lazy" decoding="async" aux <img> qui n'ont pas deja un attribut loading, sauf les
+// premieres (au-dessus de la ligne de flottaison, pour ne pas retarder l'affichage). Les blocs
+// <script>, <style>, <noscript> et les commentaires ne sont pas touches : une balise <img> y est
+// souvent une chaine JavaScript, et y inserer des guillemets casserait le script. Les pages qui
+// utilisent Isotope (galeries en mosaique, positionnees d'apres la taille des images) sont laissees telles quelles.
+function hwLazyImages($html, $skipFirst = 2){
+    if (stripos($html, 'cs-isotop') !== false || stripos($html, 'isotope') !== false) {
+        return $html;
+    }
+    $parts = preg_split('#(<script\b.*?</script>|<style\b.*?</style>|<noscript\b.*?</noscript>|<!--.*?-->)#is', $html, -1, PREG_SPLIT_DELIM_CAPTURE);
+    if ($parts === false) { return $html; }
+    $seen = 0;
+    foreach ($parts as $i => $part) {
+        if ($i % 2 === 1) { continue; }
+        $parts[$i] = preg_replace_callback('#<img\b[^>]*>#i', function ($m) use (&$seen, $skipFirst) {
+            $seen++;
+            $tag = $m[0];
+            if ($seen <= $skipFirst) { return $tag; }
+            if (preg_match('#\bloading\s*=#i', $tag) || preg_match('#\bfetchpriority\s*=\s*["\']?high#i', $tag)) { return $tag; }
+            $add = ' loading="lazy"';
+            if (!preg_match('#\bdecoding\s*=#i', $tag)) { $add .= ' decoding="async"'; }
+            return preg_replace('#\s*/?>$#', $add . '$0', $tag, 1);
+        }, $part);
+    }
+    return implode('', $parts);
+}
+
 function show404Error($val){
 
     include_once($val.".html");
