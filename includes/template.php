@@ -301,7 +301,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.57">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.58">
 
 <script>
 /* Scripts tiers : charges apres l'affichage de la page, et non pendant. Google Tag Manager, Google
