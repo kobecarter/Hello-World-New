@@ -688,8 +688,8 @@ header .lang-btn{font-size:.72rem;padding:0}
 .statement{padding:8rem 0;background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .statement p,.statement h1{font-weight:200;font-size:clamp(1.6rem,3.2vw,3.2rem);line-height:1.3;text-align:center;margin:0 auto;letter-spacing:-.01em}
 .statement h1{font-size:clamp(1.1rem,1.8vw,1.6rem);text-transform:uppercase;letter-spacing:.14em;margin-bottom:1.8rem}
-.s-muted{color:rgba(13,11,9,.2)}
-.s-gold{color:var(--gold)}
+.s-muted{color:rgba(13,11,9,.62)}
+.s-gold{color:#07788d}
 
 /* FOOTER */
 footer.foot-in::before{animation:foot-line 1.8s ease forwards}
@@ -1149,21 +1149,23 @@ html[dir="rtl"] body .bottom .footer-bottom-menu {
   text-align: center;
 }
 .owl-carousel button.owl-dot {
-  width: 7px;
-  height: 7px;
-  margin: 0 5px;
-  border-radius: 50%;
+  /* zone tactile 24x24 px (accessibilite) ; le point visible reste de 7 px grace au padding + background-clip */
+  width: 24px;
+  height: 24px;
+  margin: 0 1px;
+  padding: 8.5px;
+  border: 0;
+  border-radius: 12px;
   background: var(--bg3);
-  border: 1px solid var(--border);
+  background-clip: content-box;
   cursor: pointer;
-  padding: 0;
   transition: all .3s;
 }
+
 .owl-carousel button.owl-dot.active{
 	background: var(--gold);
-	border-color: var(--gold);
-	width: 28px;
-	border-radius: 4px;
+	background-clip: content-box;
+	width: 45px;
 }
 .owl-carousel .owl-nav .owl-prev, .owl-carousel .owl-nav .owl-next{
 	width: 50px;
@@ -10156,3 +10158,12 @@ a.cl-points-how-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-ca
   width:52px;height:52px;font-size:1.6rem;
   box-shadow:0 6px 16px -6px rgba(66,133,244,.5);
 }
+
+
+/* Contraste (accessibilite) : textes accent #09A1BE / gris clair trop pales sur fond clair */
+.mi{color:#6b6b80}
+.sec-label{color:#07788d}
+.svc-more,.team-role{color:#07788d}
+
+/* Chiffres decoratifs : texte genere par CSS (non analyse comme texte, aria-hidden) */
+.px-ghost::before,.svc-num::before{content:attr(data-n)}

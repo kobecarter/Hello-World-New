@@ -265,7 +265,7 @@ img,video{display:block;max-width:100%}
 <!--
 <section class="hero" id="hero">
   <canvas id="hero-canvas"></canvas>
-  <span class="px-ghost" data-px="0.26" style="font-size:clamp(22rem,44vw,62rem);bottom:-6rem;right:-3rem;color:rgba(247,245,242,.016)" aria-hidden="true">01</span>
+  <span class="px-ghost" data-px="0.26" style="font-size:clamp(22rem,44vw,62rem);bottom:-6rem;right:-3rem;color:rgba(247,245,242,.016)" aria-hidden="true" data-n="01"></span>
   <div class="hero-body" data-px="-0.16">
     <h1 class="hero-title">
       <span class="ht-1">L'intelligence qui</span>
@@ -312,7 +312,7 @@ img,video{display:block;max-width:100%}
 -->
 
 <section class="statement">
-  <span class="px-ghost" data-px="0.22" style="font-size:clamp(12rem,28vw,40rem);bottom:-1.5rem;right:-1rem;color:rgba(0,0,0,.022)" aria-hidden="true">HW</span>
+  <span class="px-ghost" data-px="0.22" style="font-size:clamp(12rem,28vw,40rem);bottom:-1.5rem;right:-1rem;color:rgba(0,0,0,.022)" aria-hidden="true" data-n="HW"></span>
   <div class="container">
     <h1 class="rv">
       <span class="s-muted"><?php echo $lang['HOME_H1_PART1'][$_SESSION['lang']]; ?></span> <span class="s-gold"><?php echo $lang['HOME_H1_PART2'][$_SESSION['lang']]; ?></span>
@@ -495,7 +495,7 @@ img,video{display:block;max-width:100%}
       <?php foreach($services as $service): ?>
       <div class="svc-card">
         <a href="<?php echo $service->getLink(); ?>">
-        <div class="svc-num">0<?php echo $cpt+1; ?></div>
+        <div class="svc-num" data-n="0<?php echo $cpt+1; ?>" aria-hidden="true"></div>
         <div class="svc-icon"><i class="<?php echo $icones[$cpt]; ?>"></i></div>
         <h3 class="svc-name"><?php echo $service->getTitre(); ?></h3>
         <p class="svc-desc"><?php echo strip_tags($service->getTexteAccueil()); ?></p>
@@ -688,8 +688,8 @@ img,video{display:block;max-width:100%}
           <img src="<?php echo $siteURL; ?>images/references/<?php echo $references[0]->getPhoto(); ?>" alt="<?php echo $references[0]->getNomClient(); ?>">
         </a>
         <div class="port-gfx"></div>
-        <a href="<?php echo $references[0]->getLink(); ?>" class="port-overlay"></a>
-        <a href="<?php echo $references[0]->getLink(); ?>" class="port-arrow"><i class="fal fa-arrow-right"></i></a>
+        <a href="<?php echo $references[0]->getLink(); ?>" class="port-overlay" aria-label="<?php echo htmlspecialchars($references[0]->getNomClient()); ?>"></a>
+        <a href="<?php echo $references[0]->getLink(); ?>" class="port-arrow" aria-label="<?php echo htmlspecialchars($references[0]->getNomClient()); ?>"><i class="fal fa-arrow-right"></i></a>
         <div class="port-body">
           <span class="port-tag"><?php echo $references[0]->getSiteWeb(); ?></span>
           <h3 class="port-title"><?php echo $references[0]->getNomClient(); ?></h3>
@@ -702,8 +702,8 @@ img,video{display:block;max-width:100%}
           <img src="<?php echo $siteURL; ?>images/references/<?php echo $references[1]->getPhoto(); ?>" alt="<?php echo $references[1]->getNomClient(); ?>">
         </a>
         <div class="port-gfx"></div>
-        <a href="<?php echo $references[1]->getLink(); ?>" class="port-overlay"></a>
-        <a href="<?php echo $references[1]->getLink(); ?>" class="port-arrow"><i class="fal fa-arrow-right"></i></a>
+        <a href="<?php echo $references[1]->getLink(); ?>" class="port-overlay" aria-label="<?php echo htmlspecialchars($references[1]->getNomClient()); ?>"></a>
+        <a href="<?php echo $references[1]->getLink(); ?>" class="port-arrow" aria-label="<?php echo htmlspecialchars($references[1]->getNomClient()); ?>"><i class="fal fa-arrow-right"></i></a>
         <div class="port-body">
           <span class="port-tag"><?php echo $references[1]->getSiteWeb(); ?></span>
           <h3 class="port-title"><?php echo $references[1]->getNomClient(); ?></h3>
@@ -715,8 +715,8 @@ img,video{display:block;max-width:100%}
           <img src="<?php echo $siteURL; ?>images/references/<?php echo $references[2]->getPhoto(); ?>" alt="<?php echo $references[2]->getNomClient(); ?>">
         </a>
         <div class="port-gfx"></div>
-        <a href="<?php echo $references[2]->getLink(); ?>" class="port-overlay"></a>
-        <a href="<?php echo $references[2]->getLink(); ?>" class="port-arrow"><i class="fal fa-arrow-right"></i></a>
+        <a href="<?php echo $references[2]->getLink(); ?>" class="port-overlay" aria-label="<?php echo htmlspecialchars($references[2]->getNomClient()); ?>"></a>
+        <a href="<?php echo $references[2]->getLink(); ?>" class="port-arrow" aria-label="<?php echo htmlspecialchars($references[2]->getNomClient()); ?>"><i class="fal fa-arrow-right"></i></a>
         <div class="port-body">
           <span class="port-tag"><?php echo $references[2]->getSiteWeb(); ?></span>
           <h3 class="port-title"><?php echo $references[2]->getNomClient(); ?></h3>
@@ -1195,7 +1195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <section class="cta-band">
-  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">AI</span>
+  <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true" data-n="AI"></span>
   <div class="container" style="position:relative;z-index:2">
     <div class="sec-label"><?php echo $lang['HOME_CTA_LABEL'][$_SESSION['lang']]; ?></div>
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem"><?php echo $lang['HOME_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
