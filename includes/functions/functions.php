@@ -81,7 +81,7 @@ function getSeoMeta($data){
 					if(isset($data['id']) && !empty($data['id']) && isset($data['task'])){
 						$id = intval($data['id']);
 						$reference = reference::find($id, $_SESSION["lang"]);
-						$seoTitle = 'Nos références : '.$reference->getNomClient();
+						$seoTitle = hwReferenceTitle($reference->getNomClient(), $id);
 						$seoDescription = $reference->getExtrait();
 						$canonical = $reference->getLink();
 						$ogTitle =  $reference->getNomClient();
@@ -255,6 +255,22 @@ echo '<title>' . htmlspecialchars($seoTitle) . '</title>
 <meta property="og:site_name" content="' . htmlspecialchars($config->getNom()) . '" />
 <meta property="og:description" content="' . htmlspecialchars($ogDescriptionFinal) . '" />';
 
+}
+
+// Titre SEO d'une page de reference. Il etait « Nos references : <client> » en francais dans les 3 langues
+// (150 pages avec 50 titres identiques en trois exemplaires) ; le francais reste inchange, EN et AR sont traduits.
+function hwReferenceTitle($clientName, $id = 0){
+    $lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : '';
+    // nom absent dans cette langue : on reprend celui de la langue par defaut plutot que d'afficher un titre vide
+    if (trim((string) $clientName) === '' && $id) {
+        $fallback = reference::find($id, langue::getDefaultLanguage());
+        if ($fallback) { $clientName = $fallback->getNomClient(); }
+    }
+    if ($lang === 'en') { $prefix = 'Case study: '; $suffix = ' | Hello World'; }
+    elseif ($lang === 'ar') { $prefix = 'دراسة حالة: '; $suffix = ' | هيلو وورلد'; }
+    else { return 'Nos références : ' . $clientName; }
+    $room = max(10, 60 - mb_strlen($prefix . $suffix, 'UTF-8'));
+    return $prefix . mb_strimwidth((string) $clientName, 0, $room, '…', 'UTF-8') . $suffix;
 }
 
 // Pages 2, 3... d'une liste : leur canonical est leur propre adresse (avant : la page 1, ce qui les excluait de l'index).

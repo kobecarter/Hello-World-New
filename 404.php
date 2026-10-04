@@ -19,8 +19,15 @@ require_once('hw-admin/instanceDb.php');
 require_once('includes/functions/functions.php');
 require_once('hw-admin/includes/security.php');
 
+// PROTOTYPE (test) : une page 404 n'ouvre pas de session pour un visiteur anonyme (les robots qui testent
+// des adresses mortes ne doivent pas creer un fichier de session et un cookie a chaque requete).
 if (!isset($_SESSION)) {
-    session_start();
+    if (isset($_COOKIE[session_name()])) {
+        hwSecureSessionCookie();
+        session_start();
+    } else {
+        $_SESSION = array();
+    }
 }
 if (!isset($_SESSION['lang']) || !hwIsKnownLanguage($_SESSION['lang'])) {
     $_SESSION['lang'] = langue::getDefaultLanguage();
