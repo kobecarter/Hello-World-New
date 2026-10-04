@@ -918,8 +918,8 @@ function hwThumb($rel, $width = 640){
     if (!function_exists('imagescale') || (!is_dir($dir) && !@mkdir($dir, 0755, true)) || !is_writable($dir)) { return $orig; }
     $info = @getimagesize($src);
     if (!$info || $info[0] < 1) { return $orig; }
-    // image deja plus etroite que demande : on ne la reduit pas, mais si elle est lourde (PNG/JPEG de plusieurs centaines de Ko) on la reencode quand meme, a la meme largeur
-    if ($info[0] <= $width && filesize($src) < 150000) { return $orig; }
+    // image deja plus etroite que demande : on ne la reduit pas, mais si elle est lourde (plus de 300 Ko) on la reencode quand meme, a la meme largeur
+    if ($info[0] <= $width && filesize($src) < 300000) { return $orig; }
     $tw = min((int) $width, (int) $info[0]);
     if (!$useWebp && $info[2] == IMAGETYPE_PNG && ord((string) file_get_contents($src, false, null, 25, 1)) >= 4) { return $orig; }
     // memoire necessaire pour decoder : ~5 octets par pixel ; on garde une marge
