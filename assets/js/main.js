@@ -98,15 +98,20 @@ $(document).ready(function() {
 	-------------------------------------*/
     
     let brochure = siteURL + "assets/brochure/brochure.pdf";
-  	$(".btn-show-brochure").flipBook({
-		pdfUrl: brochure, // url du fichier pdf
-		tilt: -13, // pour l'effet d'inclinaison,
-		btnShare: { enabled: 0 },
-		btnDownloadPages: { enabled: 0 },
-		lightBox: true,
-		loadAllPages: false,
-		lightboxBackground: "rgba(0,0,0,0.8)",
-  	});
+  	if ($(".btn-show-brochure").length) {
+		// flipbook.min.js est charge a la demande (voir includes/template.php)
+		(window.hwFlipbookReady || function (cb) { if ($.fn.flipBook) cb(); })(function () {
+			$(".btn-show-brochure").flipBook({
+				pdfUrl: brochure, // url du fichier pdf
+				tilt: -13, // pour l'effet d'inclinaison,
+				btnShare: { enabled: 0 },
+				btnDownloadPages: { enabled: 0 },
+				lightBox: true,
+				loadAllPages: false,
+				lightboxBackground: "rgba(0,0,0,0.8)",
+			});
+		});
+	}
     
     /* -----------------------------------
 	Contact form

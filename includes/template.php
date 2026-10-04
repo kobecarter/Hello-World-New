@@ -697,9 +697,18 @@ var REDIRECT_LINK_CONG = '<?php echo $congPage->getLink(); ?>';
 <script src='<?php echo $siteURL; ?>assets/js/owl.carousel.min.js'></script>
 <script src='<?php echo $siteURL; ?>assets/js/isotope.pkg.min.js'></script>
 <script src='<?php echo $siteURL; ?>assets/js/jquery.form.js'></script>
-<script src='<?php echo $siteURL; ?>flip-book/js/flipbook.min.js'></script>
+<script>
+/* flipbook.min.js (100 Ko) n'est utile que pour le bouton brochure de l'accueil : on ne le charge que si ce bouton est dans la page */
+window.hwFlipbookReady = function (cb) {
+  if (window.jQuery && jQuery.fn.flipBook) { cb(); return; }
+  var s = document.createElement('script');
+  s.src = '<?php echo $siteURL; ?>flip-book/js/flipbook.min.js';
+  s.onload = cb;
+  document.head.appendChild(s);
+};
+</script>
 	    <script src="<?php echo $siteURL; ?>assets/js/jquery.fancybox.min.js" async defer></script>
-<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.14'></script>
+<script src='<?php echo $siteURL; ?>assets/js/main.js?v=1.15'></script>
 <script>
 /* CURSOR */
 const cur  = document.getElementById('cur');
@@ -884,7 +893,11 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
   let W, H, t = 0;
   const LINES = 40, SEGS = 240;
   function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  let raf = 0, onScreen = true;
+  /* l'animation ne tourne que si le canvas est visible a l'ecran et l'onglet actif */
+  function start() { if (!raf && onScreen && !document.hidden) raf = requestAnimationFrame(draw); }
   function draw() {
+    raf = 0;
     ctx.clearRect(0, 0, W, H);
     t += 0.0055;
     for (let l = 0; l < LINES; l++) {
@@ -907,10 +920,18 @@ document.querySelectorAll('.bl').forEach(el => statsIo.observe(el));
       ctx.lineWidth = 0.65;
       ctx.stroke();
     }
-    requestAnimationFrame(draw);
+    start();
   }
+  const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) { onScreen = false; }
   resize(); draw();
   window.addEventListener('resize', resize);
+  if (!reduceMotion) {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { onScreen = es[es.length - 1].isIntersecting; if (onScreen) start(); }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', start);
+  }
 })();
 
 /* FANCY TITLE — char split + wave hover */
