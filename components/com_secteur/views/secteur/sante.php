@@ -655,7 +655,7 @@
 </section>
 
 <!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
- <section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/sante.jpg')">
+ <section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/sante.webp')">
   <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">Health</span>
   <div class="container" style="position:relative;z-index:2">
     <div class="sec-label">Ready to take action?</div>
@@ -1332,7 +1332,7 @@
 </section>
 
 <!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
- <section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/sante.jpg')">
+ <section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/sante.webp')">
   <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">الصحة</span>
   <div class="container" style="position:relative;z-index:2">
     <div class="sec-label">هل أنتم مستعدون للانطلاق؟</div>
@@ -2009,7 +2009,7 @@
 </section>
 
 <!-- ══ FINAL CTA ════════════════════════════════════════════════ -->
- <section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/sante.jpg')">
+ <section class="cta-band" id="cta" style="background-image:url('<?php echo $siteURL; ?>images/sante.webp')">
   <span class="px-ghost" data-px="0.2" style="font-size:clamp(14rem,30vw,44rem);bottom:-2rem;right:-1rem;color:rgba(247,245,242,.022)" aria-hidden="true">Santé</span>
   <div class="container" style="position:relative;z-index:2">
     <div class="sec-label">Vous êtes prêt à passer à l’action ?</div>
