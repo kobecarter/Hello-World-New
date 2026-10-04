@@ -918,7 +918,9 @@ function hwThumb($rel, $width = 640){
     if (!function_exists('imagescale') || (!is_dir($dir) && !@mkdir($dir, 0755, true)) || !is_writable($dir)) { return $orig; }
     $info = @getimagesize($src);
     if (!$info || $info[0] < 1) { return $orig; }
-    if ($info[0] <= $width) { return $orig; }
+    // image deja plus etroite que demande : on ne la reduit pas, mais si elle est lourde (PNG/JPEG de plusieurs centaines de Ko) on la reencode quand meme, a la meme largeur
+    if ($info[0] <= $width && filesize($src) < 150000) { return $orig; }
+    $tw = min((int) $width, (int) $info[0]);
     if (!$useWebp && $info[2] == IMAGETYPE_PNG && ord((string) file_get_contents($src, false, null, 25, 1)) >= 4) { return $orig; }
     // memoire necessaire pour decoder : ~5 octets par pixel ; on garde une marge
     $limit = trim(ini_get('memory_limit')); $bytes = (int) $limit;
@@ -938,11 +940,11 @@ function hwThumb($rel, $width = 640){
         if ($o == 3) { $img = imagerotate($img, 180, 0); } elseif ($o == 6) { $img = imagerotate($img, -90, 0); } elseif ($o == 8) { $img = imagerotate($img, 90, 0); }
     }
     // imagescale() renvoie false avec IMG_BICUBIC sur le GD de certains hebergements : imagecopyresampled() marche partout
-    $h = max(1, (int) round($info[1] * $width / $info[0]));
-    $small = imagecreatetruecolor((int) $width, $h);
+    $h = max(1, (int) round($info[1] * $tw / $info[0]));
+    $small = imagecreatetruecolor($tw, $h);
     if ($small) {
         imagealphablending($small, false); imagesavealpha($small, true);
-        if (!imagecopyresampled($small, $img, 0, 0, 0, 0, (int) $width, $h, imagesx($img), imagesy($img))) { imagedestroy($small); $small = false; }
+        if (!imagecopyresampled($small, $img, 0, 0, 0, 0, $tw, $h, imagesx($img), imagesy($img))) { imagedestroy($small); $small = false; }
     }
     imagedestroy($img);
     if (!$small) { @touch($dst . '.fail'); return $orig; }
@@ -951,6 +953,8 @@ function hwThumb($rel, $width = 640){
     if ($useWebp) { $ok = @imagewebp($small, $tmp, 82); } else { $ok = @imagejpeg($small, $tmp, 82); }
     imagedestroy($small);
     if (!$ok || !@rename($tmp, $dst)) { @unlink($tmp); @touch($dst . '.fail'); return $orig; }
+    // jamais plus lourd que l'original
+    if (filesize($dst) >= filesize($src)) { @unlink($dst); @touch($dst . '.fail'); return $orig; }
     return $url;
 }
 
