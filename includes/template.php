@@ -199,7 +199,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 	            'areaServed' => array('@type' => 'City', 'name' => $hwOffice['city']),
 	            'image' => $siteURL . 'images/config/' . $config->getLogo(),
 	        );
-	        if (!empty($hwOffice['gbp'])) { $officeNode['hasMap'] = $hwOffice['gbp']; }
+	        if (!empty($hwOffice['gbp'])) { $officeNode['hasMap'] = $hwOffice['gbp']; $officeNode['sameAs'] = array($hwOffice['gbp']); }
 	        $hwOfficeNodes[] = $officeNode;
 	        $hwOfficeRefs[] = array('@id' => $siteURL . '#office-' . $hwKey);
 	    }
