@@ -1,0 +1,33 @@
+# Règles à ajouter dans le .htaccess RACINE DU SERVEUR (il n'est pas dans Git, voir DEPLOY.md).
+# Fichier : ~/public_html/helloworld-agency.com/.htaccess
+# Sauvegardez-le d'abord (cp .htaccess .htaccess.bak-seo), et gardez le bloc "# BEGIN Sécurité".
+
+# ---------------------------------------------------------------------------
+# 1) Une seule redirection vers https://www (au lieu de http://www puis https://www)
+#    A placer JUSTE APRES "RewriteEngine On" / "RewriteBase /" et AVANT toutes les autres règles.
+#    Supprimez les anciennes règles qui redirigent vers http://www ou vers https séparément.
+# ---------------------------------------------------------------------------
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.helloworld-agency\.com$ [NC]
+RewriteRule ^ https://www.helloworld-agency.com%{REQUEST_URI} [L,R=301]
+
+# ---------------------------------------------------------------------------
+# 2) Sitemap en double : /Sitemap.xml -> /sitemap.xml
+#    (le plus propre : supprimer aussi le fichier :  rm ~/public_html/helloworld-agency.com/Sitemap.xml )
+# ---------------------------------------------------------------------------
+RewriteRule ^Sitemap\.xml$ /sitemap.xml [R=301,L]
+
+# ---------------------------------------------------------------------------
+# 3) En-têtes de sécurité : UNE seule copie, y compris sur les pages d'erreur (404)
+#    "always set" remplace les valeurs envoyées en double par PHP et par Apache.
+#    HSTS : "includeSubDomains" et "preload" seulement si TOUS vos sous-domaines sont en https.
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  # Politique de sécurité de contenu : en MODE OBSERVATION seulement (n'empêche rien, ne peut rien casser).
+  # Header always set Content-Security-Policy-Report-Only "default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; frame-ancestors 'self'"
+</IfModule>

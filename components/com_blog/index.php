@@ -16,6 +16,16 @@ switch ($task)
         }
         break;*/
     case "showDetails":
+            // Adresse /blog/<texte>/<id>/ sans slug : l'article existe -> 301 vers son adresse, sinon vrai 404
+            // (avant, la page repondait 200 avec le contenu de l'accueil).
+            if ((!isset($_GET["slug"]) || empty($_GET["slug"])) && isset($_GET["id"]) && !empty($_GET["id"])) {
+                $legacyPost = blog::find(intval($_GET["id"]), $_SESSION["lang"]);
+                if ($legacyPost && $legacyPost->getId()) {
+                    header("Location: " . $legacyPost->getLink(), true, 301);
+                    exit;
+                }
+                sendHttp404AndExit();
+            }
             if(isset($_GET["slug"]) && !empty($_GET["slug"])){
 
         		$slug = $_GET["slug"];
@@ -50,6 +60,7 @@ switch ($task)
 
                 $slug_categorie = $_GET["slug"];
                 $categorie = categorie::findBySlug($slug_categorie,$_SESSION["lang"]);
+                if (!$categorie || !$categorie->getId()) { sendHttp404AndExit(); }
                 $categories = categorie::findAll($_SESSION["lang"], true, true);
                 $posts = blog::findAll($_SESSION["lang"],true,$categorie->getId());
         		$pageContact = getComponent("com_contact");
@@ -81,6 +92,13 @@ switch ($task)
         // pagination
 	
 		$blogAll = blog::findAll($_SESSION["lang"], true, $id_categorie, false, false);
+        // Pagination : /blog/1/ doublonne /blog/ (301), une page au-dela de la derniere est un vrai 404.
+        $nbPages = max(1, (int) ceil(count($blogAll) / $itemPerPage));
+        if ($currentPage > $nbPages) { sendHttp404AndExit(); }
+        if (is_numeric($lastPart) && $currentPage == 1 && $page && $page->getLink() != "") {
+            header("Location: " . $page->getLink(), true, 301);
+            exit;
+        }
 		$pageContact = getComponent("com_contact");
 	    $pageReference = getComponent("com_reference");
         include_once("components/com_blog/views/blog/list.php");
