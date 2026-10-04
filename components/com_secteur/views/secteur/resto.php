@@ -16,12 +16,12 @@
           </h1>
           <p class="sh-sub rv d2">Automate your order-taking and build customer loyalty with flawless service, even during the busiest rush hours.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a Restaurant demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Request a Restaurant demo">
               <div class="sb-label"><span class="sb-hint">Request a Restaurant demo</span></div>
               <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Try a live AI menu" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Try a live AI menu">
               <div class="sb-label"><span class="sb-hint">Try a live AI menu</span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
@@ -662,12 +662,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Restaurant: speed up your <br>orders without overloading <br><em>your teams</em></h2>
     <p class="cta-sub">Deploy an AI agent capable of handling order-taking, reservations and customer requests on WhatsApp, even during peak hours, while supporting your sales and loyalty goals.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a Restaurant audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Request a Restaurant audit">
             <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
             <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
         </a>
 
-        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Try a live AI menu" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Try a live AI menu">
             <div class="sb-label"><span class="sb-hint">Try a restaurant demo</span></div>
             <div class="sb-knob"><i class="fal fa-download"></i></div>
         </a>
@@ -693,12 +693,12 @@
           </h1>
           <p class="sh-sub rv d2">أتمتوا استقبال طلباتكم واكسبوا ولاء عملائكم بخدمة لا تشوبها شائبة، حتى في أوقات الذروة.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا عرضاً تجريبياً للمطعم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اطلبوا عرضاً تجريبياً للمطعم">
               <div class="sb-label"><span class="sb-hint">اطلبوا عرضاً تجريبياً للمطعم</span></div>
               <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="جربوا قائمة ذكية مباشرة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="جربوا قائمة ذكية مباشرة">
               <div class="sb-label"><span class="sb-hint">جربوا قائمة ذكية مباشرة</span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
@@ -1339,12 +1339,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">المطعم: سرّعوا <br>طلباتكم دون إثقال <br><em>فرقكم</em></h2>
     <p class="cta-sub">أرسوا وكيلاً بالذكاء الاصطناعي قادراً على إدارة استقبال الطلبات والحجوزات وطلبات العملاء عبر واتساب، حتى خلال أوقات الذروة، مع دعم أهدافكم في المبيعات والولاء.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي">
             <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
             <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
         </a>
 
-        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="جربوا عرضاً تجريبياً للمطعم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="جربوا عرضاً تجريبياً للمطعم">
             <div class="sb-label"><span class="sb-hint">جربوا عرضاً تجريبياً للمطعم</span></div>
             <div class="sb-knob"><i class="fal fa-download"></i></div>
         </a>
@@ -1370,12 +1370,12 @@
           </h1>
           <p class="sh-sub rv d2">Automatisez vos prises de commandes et fidélisez votre clientèle avec un service irréprochable, même en plein coup de feu.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander une démo Restaurant" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander une démo Restaurant">
               <div class="sb-label"><span class="sb-hint">Demander une démo Restaurant</span></div>
               <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Tester un menu IA en live" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Tester un menu IA en live">
               <div class="sb-label"><span class="sb-hint">Tester un menu IA en live</span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
@@ -2016,12 +2016,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Restaurant : accélérez vos <br>commandes sans alourdir <br><em>vos équipes</em></h2>
     <p class="cta-sub">Déployez un agent IA capable de gérer les prises de commande, les réservations et les demandes clients sur WhatsApp, même pendant les heures de pointe, tout en soutenant vos objectifs de vente et de fidélisation.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit Restauration" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander un audit Restauration">
             <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
             <div class="sb-knob"><i class="fal fa-utensils-alt"></i></div>
         </a>
 
-        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Tester un menu IA en live" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Tester un menu IA en live">
             <div class="sb-label"><span class="sb-hint">Tester une démo restaurant</span></div>
             <div class="sb-knob"><i class="fal fa-download"></i></div>
         </a>

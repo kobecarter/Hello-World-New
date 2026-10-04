@@ -11,12 +11,12 @@
           <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
           <p class="sh-sub">Execute your financial strategies with algorithmic precision. Automate the processing of your complex data flows and reduce your execution latency to under 100ms.</p>
           <div class="sh-cta-row">
-                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Configure your agent" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Configure your agent">
                   <div class="sb-label"><span class="sb-hint">Configure your agent</span></div>
                   <div class="sb-knob"><i class="fal fa-bolt"></i></div>
                 </a>
 
-                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Get the audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Get the audit">
                   <div class="sb-label"><span class="sb-hint">Get the audit</span></div>
                   <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
                 </a>
@@ -451,12 +451,12 @@
     <h2 class="sec-title rv">Make your operations more reliable and <br>reduce <em>manual</em> interventions</h2>
     <p class="cta-sub">Deploy AI agents to process your signals, monitor your flows, execute actions from Telegram and automate expense tracking, with a logic of performance, traceability and oversight suited to sensitive environments.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Audit your financial flows" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Audit your financial flows">
           <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
           <div class="sb-knob"><i class="fal fa-search"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Test a Telegram agent" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Test a Telegram agent">
           <div class="sb-label"><span class="sb-hint">Audit my financial flows</span></div>
           <div class="sb-knob"><i class="fab fa-telegram"></i></div>
         </a>
@@ -477,12 +477,12 @@
           <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
           <p class="sh-sub">نفّذوا استراتيجياتكم المالية بدقة خوارزمية. أتمتوا معالجة تدفقات بياناتكم المعقدة وقلّصوا زمن استجابة التنفيذ إلى أقل من 100 مللي ثانية.</p>
           <div class="sh-cta-row">
-                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="إعدوا وكيلكم الذكي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="إعدوا وكيلكم الذكي">
                   <div class="sb-label"><span class="sb-hint">إعدوا وكيلكم الذكي</span></div>
                   <div class="sb-knob"><i class="fal fa-bolt"></i></div>
                 </a>
 
-                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على التدقيق" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احصلوا على التدقيق">
                   <div class="sb-label"><span class="sb-hint">احصلوا على التدقيق</span></div>
                   <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
                 </a>
@@ -917,12 +917,12 @@
     <h2 class="sec-title rv">عزّزوا موثوقية عملياتكم <br>وقلّصوا التدخلات <em>اليدوية</em></h2>
     <p class="cta-sub">انشروا وكلاء ذكاء اصطناعي لمعالجة إشاراتكم، ومراقبة تدفقاتكم، وتنفيذ الإجراءات من تيليغرام، وأتمتة متابعة المصاريف، بمنطق أداء وتتبع وإشراف ملائم للبيئات الحساسة.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي">
           <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
           <div class="sb-knob"><i class="fal fa-search"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="دقّقوا تدفقاتي المالية" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="دقّقوا تدفقاتي المالية">
           <div class="sb-label"><span class="sb-hint">دقّقوا تدفقاتي المالية</span></div>
           <div class="sb-knob"><i class="fab fa-telegram"></i></div>
         </a>
@@ -943,12 +943,12 @@
           <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
           <p class="sh-sub">Exécutez vos stratégies financières avec une précision algorithmique. Automatisez le traitement de vos flux de données complexes et réduisez votre latence d'exécution à moins de 100ms.</p>
           <div class="sh-cta-row">
-                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Configurer votre agent" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Configurer votre agent">
                   <div class="sb-label"><span class="sb-hint">Configurer votre agent</span></div>
                   <div class="sb-knob"><i class="fal fa-bolt"></i></div>
                 </a>
 
-                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir l'audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Recevoir l'audit">
                   <div class="sb-label"><span class="sb-hint">Recevoir l'audit</span></div>
                   <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
                 </a>
@@ -1383,12 +1383,12 @@
     <h2 class="sec-title rv">Fiabilisez vos opérations et <br>réduisez les interventions <em>manuelles</em></h2>
     <p class="cta-sub">Déployez des agents IA pour traiter vos signaux, surveiller vos flux, exécuter des actions depuis Telegram et automatiser le suivi des dépenses, avec une logique de performance, de traçabilité et de supervision adaptée aux environnements sensibles.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Auditer vos flux financiers" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Auditer vos flux financiers">
           <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
           <div class="sb-knob"><i class="fal fa-search"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Tester un agent Telegram" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Tester un agent Telegram">
           <div class="sb-label"><span class="sb-hint">Auditer mes flux financiers</span></div>
           <div class="sb-knob"><i class="fab fa-telegram"></i></div>
         </a>

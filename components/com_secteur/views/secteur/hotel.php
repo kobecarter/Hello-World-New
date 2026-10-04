@@ -15,12 +15,12 @@
 
           <p class="sh-sub rv d2">Deliver a 5-star experience with a multilingual virtual receptionist available 24/7 for your future guests and residents.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Discover Hospitality AI" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Discover Hospitality AI">
               <div class="sb-label"><span class="sb-hint">Discover Hospitality AI</span></div>
               <div class="sb-knob"><i class="fal fa-hotel"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Calculate my OTA savings" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Calculate my OTA savings">
               <div class="sb-label"><span class="sb-hint">Calculate my OTA savings</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
@@ -661,12 +661,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Boost your direct bookings <br>and your quality <em>of service</em></h2>
     <p class="cta-sub">Give your prospects and guests an AI receptionist capable of responding immediately, handling frequent requests, streamlining guest relations and supporting your property's commercial performance.</p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a free AI audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Request a free AI audit">
           <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
           <div class="sb-knob"><i class="fal fa-hotel"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Book a hospitality demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Book a hospitality demo">
           <div class="sb-label"><span class="sb-hint">Book a hospitality demo</span></div>
           <div class="sb-knob"><i class="fal fa-calculator"></i></div>
         </a>
@@ -691,12 +691,12 @@
 
           <p class="sh-sub rv d2">قدّموا تجربة 5 نجوم بفضل موظف استقبال افتراضي متعدد اللغات متاح على مدار الساعة لعملائكم المستقبليين ونزلائكم.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اكتشفوا الذكاء الاصطناعي للفندقة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اكتشفوا الذكاء الاصطناعي للفندقة">
               <div class="sb-label"><span class="sb-hint">اكتشفوا الذكاء الاصطناعي للفندقة</span></div>
               <div class="sb-knob"><i class="fal fa-hotel"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احسبوا توفيري من عمولات OTA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احسبوا توفيري من عمولات OTA">
               <div class="sb-label"><span class="sb-hint">احسبوا توفيري من عمولات OTA</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
@@ -1337,12 +1337,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">عزّزوا حجوزاتكم المباشرة <br>وجودة <em>خدمتكم</em></h2>
     <p class="cta-sub">قدّموا لعملائكم المحتملين والحاليين موظف استقبال ذكياً قادراً على الرد فوراً، وإدارة الطلبات المتكررة، وتسهيل العلاقة مع العملاء، ودعم الأداء التجاري لمؤسستكم.</p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي">
           <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
           <div class="sb-knob"><i class="fal fa-hotel"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احجزوا عرضاً تجريبياً للفندقة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احجزوا عرضاً تجريبياً للفندقة">
           <div class="sb-label"><span class="sb-hint">احجزوا عرضاً تجريبياً للفندقة</span></div>
           <div class="sb-knob"><i class="fal fa-calculator"></i></div>
         </a>
@@ -1367,12 +1367,12 @@
 
           <p class="sh-sub rv d2">Offrez une expérience 5 étoiles grâce à un réceptionniste virtuel multilingue disponible 24h/24 pour vos futurs clients et résidents.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Découvrir l'IA Hôtellerie" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Découvrir l'IA Hôtellerie">
               <div class="sb-label"><span class="sb-hint">Découvrir l'IA Hôtellerie</span></div>
               <div class="sb-knob"><i class="fal fa-hotel"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Calculer mon économie OTA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Calculer mon économie OTA">
               <div class="sb-label"><span class="sb-hint">Calculer mon économie OTA</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
@@ -2013,12 +2013,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Boostez vos réservations directes <br>et votre qualité <em>de service</em></h2>
     <p class="cta-sub">Offrez à vos prospects et à vos clients un réceptionniste IA capable de répondre immédiatement, de gérer les demandes fréquentes, de fluidifier la relation client et de soutenir la performance commerciale de votre établissement.</p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit IA gratuit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander un audit IA gratuit">
           <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
           <div class="sb-knob"><i class="fal fa-hotel"></i></div>
         </a>
     
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Réserver une démo hôtellerie" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Réserver une démo hôtellerie">
           <div class="sb-label"><span class="sb-hint">Réserver une démo hôtellerie</span></div>
           <div class="sb-knob"><i class="fal fa-calculator"></i></div>
         </a>

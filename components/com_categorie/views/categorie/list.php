@@ -133,12 +133,12 @@ object-fit: cover;
         <h1 class="sh-h1 rv on"><?php echo $categorie->getTitre() ?></h1>
         
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander un devis">
               <div class="sb-label"><span class="sb-hint">Demander un audit technique</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
         
-            <a href="<?php echo $pageReference->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos offres" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageReference->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Voir nos offres">
               <div class="sb-label"><span class="sb-hint">Voir les réalisations</span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div> 
             </a>

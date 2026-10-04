@@ -868,7 +868,7 @@ $hwfdTitreForm = htmlspecialchars($formation ? ($formation->getTitre() ?? '') : 
         </div>
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?= $lang['FORML_CONTACT_EXPERT'][$hwl]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?= $lang['FORML_CONTACT_EXPERT'][$hwl]; ?>">
                   <div class="sb-label"><span class="sb-hint"><?= $lang['FORML_CONTACT_EXPERT'][$hwl]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>

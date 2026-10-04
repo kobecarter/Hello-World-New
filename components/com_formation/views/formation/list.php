@@ -28,12 +28,12 @@ $hwflMeta = [
         <h1 class="sh-h1" id="hwfl-h1"><?php echo $lang['FORML_HERO_H1'][$_SESSION['lang']]; ?></h1>
         <p class="wm-hero-sub" id="hwfl-sub"><?php echo strip_tags($page->getExtrait()); ?></p>
         <div class="wm-hero-ctas" id="hwfl-ctas">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['FORML_HERO_CTA_AUDIT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['FORML_HERO_CTA_AUDIT'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_HERO_CTA_AUDIT'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
 
-            <a href="#hwfl-catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['FORML_HERO_CTA_DISCOVER'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="#hwfl-catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['FORML_HERO_CTA_DISCOVER'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_HERO_CTA_DISCOVER'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-layer-group"></i></div>
             </a>
@@ -473,7 +473,7 @@ $hwflMeta = [
         </div>
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['FORML_CONTACT_EXPERT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['FORML_CONTACT_EXPERT'][$_SESSION['lang']]; ?>">
                   <div class="sb-label"><span class="sb-hint"><?php echo $lang['FORML_CONTACT_EXPERT'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>

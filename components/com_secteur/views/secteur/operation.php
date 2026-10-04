@@ -8,12 +8,12 @@
       <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">Connect your tools, streamline information flow and equip your teams with high-performing virtual assistants. Eliminate redundant tasks and bring order to your internal management.</p>
       <div class="sh-cta-row">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Optimize your operations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Optimize your operations">
           <div class="sb-label"><span class="sb-hint">Optimize your operations</span></div>
           <div class="sb-knob"><i class="fal fa-bolt"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Get the AI charter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Get the AI charter">
           <div class="sb-label"><span class="sb-hint">Get the AI charter</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
@@ -322,12 +322,12 @@
     <h2 class="sec-title rv">Improve coordination and <br>reduce <br><em>operational</em> friction</h2>
     <p class="cta-sub">Connect your internal tools to automate summaries, alerts, deadline tracking, conversation analysis and team assistance — to gain visibility, execution speed and operational discipline.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Optimize your internal operations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Optimize your internal operations">
           <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
           <div class="sb-knob"><i class="fal fa-bolt"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Get the AI usage charter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Get the AI usage charter">
           <div class="sb-label"><span class="sb-hint">Optimize my internal operations</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
@@ -345,12 +345,12 @@
       <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">اربطوا أدواتكم، وسهّلوا تدفق المعلومات، وزوّدوا موظفيكم بمساعدين افتراضيين فعّالين. ألغوا المهام المتكررة وهدّئوا إدارتكم الداخلية.</p>
       <div class="sh-cta-row">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="حسّنوا عملياتكم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="حسّنوا عملياتكم">
           <div class="sb-label"><span class="sb-hint">حسّنوا عملياتكم</span></div>
           <div class="sb-knob"><i class="fal fa-bolt"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على ميثاق الذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احصلوا على ميثاق الذكاء الاصطناعي">
           <div class="sb-label"><span class="sb-hint">احصلوا على ميثاق الذكاء الاصطناعي</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
@@ -591,12 +591,12 @@
     <h2 class="sec-title rv">حسّنوا التنسيق <br>وقلّصوا الاحتكاكات <br><em>التشغيلية</em></h2>
     <p class="cta-sub">اربطوا أدواتكم الداخلية لأتمتة الملخصات، والتنبيهات، ومتابعة المواعيد النهائية، وتحليل التبادلات، ومساعدة الفرق، لكسب مزيد من الرؤية وسرعة التنفيذ والانضباط التشغيلي.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="حسّنوا عملياتكم الداخلية" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="حسّنوا عملياتكم الداخلية">
           <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
           <div class="sb-knob"><i class="fal fa-bolt"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على ميثاق استخدام الذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احصلوا على ميثاق استخدام الذكاء الاصطناعي">
           <div class="sb-label"><span class="sb-hint">حسّنوا عملياتي الداخلية</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
@@ -614,12 +614,12 @@
       <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">Connectez vos outils, fluidifiez l'information et dotez vos collaborateurs d'assistants virtuels performants. Supprimez les tâches redondantes et pacifiez votre gestion interne.</p>
       <div class="sh-cta-row">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Optimiser vos opérations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Optimiser vos opérations">
           <div class="sb-label"><span class="sb-hint">Optimiser vos opérations</span></div>
           <div class="sb-knob"><i class="fal fa-bolt"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir la charte IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Recevoir la charte IA">
           <div class="sb-label"><span class="sb-hint">Recevoir la charte IA</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
@@ -928,12 +928,12 @@
     <h2 class="sec-title rv">Améliorez la coordination et <br>réduisez les frictions <br><em>opérationnelles</em></h2>
     <p class="cta-sub">Connectez vos outils internes pour automatiser les synthèses, les alertes, les suivis de deadlines, l’analyse des échanges et l’assistance aux équipes, afin de gagner en visibilité, en rapidité d’exécution et en discipline opérationnelle.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Optimiser vos opérations internes" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Optimiser vos opérations internes">
           <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
           <div class="sb-knob"><i class="fal fa-bolt"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir la charte d'usage IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Recevoir la charte d'usage IA">
           <div class="sb-label"><span class="sb-hint">Optimiser mes opérations internes</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>

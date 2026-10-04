@@ -18,12 +18,12 @@
             <p class="sh-sub"><?php echo strip_tags($page->getExtrait()); ?></p>
       
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un devis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander un devis">
               <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
         
-            <a href="#catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir nos packs" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="#catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Voir nos packs">
               <div class="sb-label"><span class="sb-hint">Voir nos packs</span></div>
               <div class="sb-knob"><i class="fal fa-robot"></i></div>
             </a>
@@ -205,7 +205,7 @@
         <div class="sb-label"><span class="sb-hint">Demander un devis</span></div>
         <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
       </a>
-        <a href="#catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Voir le marketplace IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="#catalogue" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Voir le marketplace IA">
           <div class="sb-label"><span class="sb-hint">Voir toutes les solutions</span></div>
           <div class="sb-knob"><i class="fal fa-shopping-basket"></i></div>
         </a>
