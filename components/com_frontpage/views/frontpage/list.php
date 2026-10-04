@@ -204,7 +204,7 @@ img,video{display:block;max-width:100%}
 <div class="main-container" id="main-container">
 
   <div class="hero-avatar-panel" id="hero-avatar-panel">
-    <video id="main-video" muted playsinline preload="auto" poster="<?php echo $siteURL; ?>assets/frames/avatar_01.jpg">
+    <video id="main-video" muted playsinline preload="none" poster="<?php echo $siteURL; ?>assets/frames/avatar_01.webp">
       <source src="<?php echo $siteURL; ?>assets/avatar-web.mp4" type="video/mp4">
     </video>
     <div class="avatar-right-line"></div>
@@ -1445,6 +1445,8 @@ const toArr = gsap.utils.toArray;
   // viewport is treated as mobile too, independently of pointer type.
   const isMobile = window.matchMedia('(pointer:coarse)').matches || window.innerWidth <= 900;
 
+  if (!isMobile) { mainVid.preload = 'auto'; mainVid.load(); }
+
   if (isMobile) {
     /* ── Mobile / iOS Safari fix ───────────────────────────────────
        On iOS, GSAP pin + ScrollTrigger + video currentTime scrubbing
@@ -1456,7 +1458,10 @@ const toArr = gsap.utils.toArray;
        Autoplay the video (muted + playsinline already set) and
        rotate slides on a timer so the hero stays animated.
     ──────────────────────────────────────────────────────────────── */
-    mainVid.play().catch(() => {});
+    /* La video (1,1 Mo) ne part qu'apres l'affichage : elle ne concurrence plus l'image du hero. */
+    const startVid = () => { mainVid.preload = 'auto'; mainVid.play().catch(() => {}); };
+    if (document.readyState === 'complete') setTimeout(startVid, 800);
+    else window.addEventListener('load', () => setTimeout(startVid, 800), { once: true });
 
     let mobileIdx = 0;
     setInterval(() => {

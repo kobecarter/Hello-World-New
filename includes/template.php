@@ -6,7 +6,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <html lang="<?php echo htmlspecialchars($_SESSION['lang']); ?>" dir="<?php echo $isRtl ? 'rtl' : 'ltr'; ?>">
 <head>
      <meta charset="utf-8">
-	    <meta content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
+	    <meta content="width=device-width, initial-scale=1"
 	        name="viewport" />
 
 	    <meta name="website" content="<?php echo $siteURL; ?>">
@@ -289,19 +289,43 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 <link rel="shortcut icon" href="<?= $siteURL; ?>assets/img/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;0,800;0,900;1,100;1,200;1,300&family=Raleway:wght@300;400;500;600;700;900&family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<?php // Anton (numeros des etapes, .number-step) : charge ici, en parallele, et non par un @import dans main.css ?>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<?php if (isset($option) && $option == 'com_client') : ?>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<?php // Polices : une seule requete, chargee sans bloquer l'affichage (texte visible tout de suite avec la police de secours, display=swap). Cairo n'est utilisee qu'en arabe. Anton = numeros des etapes. ?>
+<?php $hwFonts = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;0,800;0,900;1,100;1,200;1,300&family=Raleway:wght@300;400;500;600;700;900&family=Anton' . ($isRtl ? '&family=Cairo:wght@200;300;400;500;600;700;800;900' : '') . ((isset($option) && $option == 'com_client') ? '&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800' : '') . '&display=swap'; ?>
+<link rel="preload" as="style" href="<?php echo $hwFonts; ?>" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="<?php echo $hwFonts; ?>"></noscript>
+<?php if (function_exists('isHome') && isHome()) : ?>
+<link rel="preload" as="image" href="<?php echo $siteURL; ?>assets/frames/avatar_01.webp" fetchpriority="high">
 <?php endif; ?>
+<?php
+// Accueil (hors arabe) : le CSS du premier ecran est integre a la page (includes/critical-home.css, genere
+// depuis les regles reellement utilisees au-dessus de la ligne de flottaison) et les grandes feuilles
+// (Font Awesome, Bootstrap, main.min.css : ~205 Ko compresses) se chargent sans bloquer l'affichage.
+$hwCrit = (!$isRtl && function_exists('isHome') && isHome()) ? @file_get_contents(__DIR__ . '/critical-home.css') : false;
+$hwMain = $siteURL . 'assets/css/main.min.css?v=9.58';
+$hwBig = array($siteURL . 'assets/css/all.min.css', $siteURL . 'assets/css/bootstrap.min.css', $siteURL . 'assets/css/owl.carousel.css', $hwMain);
+if ($hwCrit) : ?>
+<style id="hw-critical"><?php echo str_replace('__SITE__', $siteURL, $hwCrit); ?></style>
+<?php foreach ($hwBig as $hwU) : ?>
+<link rel="preload" as="style" href="<?php echo $hwU; ?>" onload="this.onload=null;this.rel='stylesheet'">
+<?php endforeach; ?>
+<noscript><?php foreach ($hwBig as $hwU) : ?><link rel="stylesheet" href="<?php echo $hwU; ?>"><?php endforeach; ?></noscript>
+<?php else : ?>
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/all.min.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/themify-icons.css">
-<link rel="stylesheet" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css" async defer>
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
+<?php endif; ?>
+<?php // Feuilles secondaires (icones themify, fancybox, flipbook) : chargees sans bloquer le premier affichage ?>
+<link rel="preload" as="style" href="<?php echo $siteURL; ?>assets/css/themify-icons.css" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/themify-icons.css">
+<link rel="stylesheet" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
+</noscript>
+<?php if (!$hwCrit) : ?>
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.58">
+<?php endif; ?>
 
 <script>
 /* Scripts tiers : charges apres l'affichage de la page, et non pendant. Google Tag Manager, Google
