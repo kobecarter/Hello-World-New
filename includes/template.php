@@ -301,8 +301,8 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 // depuis les regles reellement utilisees au-dessus de la ligne de flottaison) et les grandes feuilles
 // (Font Awesome, Bootstrap, main.min.css : ~205 Ko compresses) se chargent sans bloquer l'affichage.
 $hwCrit = (!$isRtl && function_exists('isHome') && isHome()) ? @file_get_contents(__DIR__ . '/critical-home.css') : false;
-$hwMain = $siteURL . 'assets/css/main.min.css?v=9.58';
-$hwBig = array($siteURL . 'assets/css/all.min.css', $siteURL . 'assets/css/bootstrap.min.css', $siteURL . 'assets/css/owl.carousel.css', $hwMain);
+$hwMain = $siteURL . 'assets/css/main.min.css?v=9.60';
+$hwBig = array($siteURL . 'assets/css/all.min.css?v=2', $siteURL . 'assets/css/bootstrap.min.css', $siteURL . 'assets/css/owl.carousel.css', $hwMain);
 if ($hwCrit) : ?>
 <style id="hw-critical"><?php echo str_replace('__SITE__', $siteURL, $hwCrit); ?></style>
 <?php foreach ($hwBig as $hwU) : ?>
@@ -310,21 +310,21 @@ if ($hwCrit) : ?>
 <?php endforeach; ?>
 <noscript><?php foreach ($hwBig as $hwU) : ?><link rel="stylesheet" href="<?php echo $hwU; ?>"><?php endforeach; ?></noscript>
 <?php else : ?>
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/all.min.css">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/all.min.css?v=2">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/owl.carousel.css">
 <?php endif; ?>
 <?php // Feuilles secondaires (icones themify, fancybox, flipbook) : chargees sans bloquer le premier affichage ?>
-<link rel="preload" as="style" href="<?php echo $siteURL; ?>assets/css/themify-icons.css" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="<?php echo $siteURL; ?>assets/css/themify-icons.css?v=2" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" as="style" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" as="style" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css" onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/themify-icons.css">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/themify-icons.css?v=2">
 <link rel="stylesheet" href="<?= $siteURL; ?>assets/css/jquery.fancybox.min.css">
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 </noscript>
 <?php if (!$hwCrit) : ?>
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.58">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.60">
 <?php endif; ?>
 
 <script>
@@ -419,9 +419,9 @@ if ($hwCrit) : ?>
 	                class="click" target="_blank" title="Whatsapp chat"><i class="fab fa-whatsapp"></i></a>
 	         </li>-->
 	         <li class="whatsapp-link">
-	             <a href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20" class="click custom-tooltip" title="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip" id="chat-bubble" target="_blank" title="Whatsapp chat">
-                   <i class="fab fa-whatsapp"></i>
-                   <span>1</span></a>
+	             <a href="https://wa.me/212675472001?text=Bjr,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20l%E2%80%99un%20de%20vos%20services%20je%20souhaite%20plus%20d%E2%80%99info%20" class="click custom-tooltip" title="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" aria-label="<?php echo $lang['TPL_WHATSAPP_HAMID'][$_SESSION['lang']]; ?>" data-id="5" data-toggle="tooltip" id="chat-bubble" target="_blank">
+                   <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                   <span aria-hidden="true">1</span></a>
 	         </li>
 	         <li class="apple-app"><a href="https://apps.apple.com/ma/app/hello-world-agency/id1566017621?l=fr-FR" target="_blank" title="<?php echo $lang['TPL_APPSTORE_TITLE'][$_SESSION['lang']]; ?>"><i class="fab fa-apple"></i></a></li>
 	         <li class="android-app"><a href="https://play.google.com/store/apps/details?id=com.helloworldagency.clientspace" target="_blank" title="<?php echo $lang['TPL_PLAYSTORE_TITLE'][$_SESSION['lang']]; ?>"><i class="fab fa-google-play"></i></a></li>
@@ -438,7 +438,7 @@ if ($hwCrit) : ?>
   <nav class="navbar glass-nav">
     <div class="nav-row">
       <a href="<?php echo $homeURL; ?>" class="logo-hw logo"><img src="<?php echo $siteURL; ?>images/config/<?php echo $config->getLogo(); ?>" alt="<?php echo $config->getNom(); ?>"></a>
-      <ul class="nav-links" role="menubar">
+      <ul class="nav-links">
                 <?php
       // Single shared instance: the same 7 top-level rows drive both this
       // nav bar and the mega panels below, and the mobile drawer further
