@@ -3674,6 +3674,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:800;padding:0;display:flex;al
 .sh-ctx-body{font-size:.9rem;font-weight:300;color:var(--txt2);line-height:2;margin-bottom:2.5rem}
 .sh-ctx-body p{margin-bottom:1.4rem}
 .sh-ctx-body em{color:var(--gold);font-style:italic}
+.sh-ctx-body a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.sh-ctx-body a:hover{color:var(--gold2)}
 .sh-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
 .sh-pill{display:inline-flex;align-items:center;gap:.4rem;padding:.48rem 1rem;border:1px solid rgba(139,106,34,.22);background:var(--bg2);border-radius:50px;font-family:var(--fm);color: #999;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 .sh-pill i{font-size:.52rem}

@@ -1608,218 +1608,218 @@ $lang = array(
     ),
 
     "AGENCE_CASA_H1" => array(
-        "fr" => "Agence marketing <em>digital</em> Casablanca",
-        "en" => "Digital <em>Marketing</em> Agency Casablanca",
+        "fr" => "Votre agence de communication à Casablanca, depuis Aïn Sebaâ",
+        "en" => "Your communication agency in Casablanca, from Aïn Sebaâ",
         "ar" => "وكالة التسويق <em>الرقمي</em> الدار البيضاء"
     ),
 
     "AGENCE_CASA_CTXTITLE" => array(
-        "fr" => "<strong>Agence de marketing </strong>digital à Casablanca",
-        "en" => "<strong>Digital Marketing</strong> Agency in Casablanca",
+        "fr" => "<strong>Agence de communication</strong> à Casablanca",
+        "en" => "<strong>Communication agency</strong> in Casablanca",
         "ar" => "<strong>وكالة التسويق</strong> الرقمي بالدار البيضاء"
     ),
 
     "AGENCE_CASA_POURQUOI" => array(
-        "fr" => "Pourquoi choisir Hello World <br><em>Agency à Casablanca ?</em>",
-        "en" => "Why choose Hello World <br><em>Agency in Casablanca?</em>",
+        "fr" => "Pourquoi choisir notre agence <br><em>à Casablanca ?</em>",
+        "en" => "Why choose our agency <br><em>in Casablanca?</em>",
         "ar" => "لماذا تختارون هيلو وورلد <br><em>أجنسي بالدار البيضاء؟</em>"
     ),
 
     "AGENCE_CASA_INTRO" => array(
-        "fr" => "Choisir la bonne <b>agence de communication digitale à Casablanca</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous offrons une expertise locale, une approche sur-mesure et des résultats concrets. Voici trois raisons de nous faire confiance :",
-        "en" => "Choosing the right <b>digital communication agency in Casablanca</b> is a strategic decision for your business. At Hello World Agency, we offer local expertise, a tailored approach and concrete results. Here are three reasons to trust us:",
+        "fr" => "Une adresse à Aïn Sebaâ, des hôtels, des restaurants lounge, un cabinet médical et une agence éducative parmi nos clients de la ville : nous parlons de ce que nous avons réellement fait.",
+        "en" => "An address in Aïn Sebaâ, plus hotels, lounge restaurants, a medical practice and an education agency among our clients in the city: we talk about what we have actually done.",
         "ar" => "اختيار <b>وكالة الاتصال الرقمي المناسبة بالدار البيضاء</b> قرار استراتيجي لشركتكم. في هيلو وورلد أجنسي، نقدم خبرة محلية ونهجاً مخصصاً ونتائج ملموسة. إليكم ثلاثة أسباب لتثقوا بنا:"
     ),
 
     "AGENCE_CASA_EXPERTISE" => array(
-        "fr" => "Notre <b>agence marketing digital à Casablanca</b> connaît parfaitement le marché local, ce qui nous permet d’optimiser vos campagnes de SEO et de <b>publicité digitale</b> pour atteindre les bons clients.",
-        "en" => "Our <b>digital marketing agency in Casablanca</b> knows the local market inside out, allowing us to optimize your SEO and <b>digital advertising</b> campaigns to reach the right customers.",
+        "fr" => "Nous connaissons les attentes d'une clientèle exigeante : un hôtel doit rassurer, un restaurant doit donner envie, un cabinet doit inspirer confiance. Chaque secteur a son ton.",
+        "en" => "We know what a demanding clientele expects: a hotel must reassure, a restaurant must make you hungry, a practice must inspire trust. Each sector has its own tone.",
         "ar" => "تعرف <b>وكالتنا للتسويق الرقمي بالدار البيضاء</b> السوق المحلي معرفة تامة، مما يتيح لنا تحسين حملاتكم في <b>تحسين محركات البحث والإعلان الرقمي</b> للوصول إلى العملاء المناسبين."
     ),
 
     "AGENCE_CASA_STRATEGIES" => array(
-        "fr" => "Nous créons des plans sur mesure, combinant <b>gestion des réseaux sociaux à Casablanca</b>, <b>SEO</b> et <b>publicité en ligne</b>, pour booster votre visibilité et générer des résultats concrets.",
-        "en" => "We create tailor-made plans, combining <b>social media management in Casablanca</b>, <b>SEO</b> and <b>online advertising</b>, to boost your visibility and generate concrete results.",
+        "fr" => "Nous partons de votre objectif (réservations, rendez-vous, inscriptions) et nous choisissons les canaux qui y mènent : site, référencement, publicité en ligne ou réseaux sociaux.",
+        "en" => "We start from your goal (bookings, appointments, enrolments) and pick the channels that lead there: website, SEO, online advertising or social media.",
         "ar" => "نضع خططاً مخصصة، تجمع بين <b>إدارة وسائل التواصل الاجتماعي بالدار البيضاء</b> و<b>تحسين محركات البحث</b> و<b>الإعلان عبر الإنترنت</b>، لتعزيز ظهوركم وتحقيق نتائج ملموسة."
     ),
 
     "AGENCE_FES_H1" => array(
-        "fr" => "Agence marketing <em>digital</em> Fès",
-        "en" => "Digital <em>Marketing</em> Agency Fès",
+        "fr" => "Faire connaître votre activité à Fès, entre médina et ville nouvelle",
+        "en" => "Make your business known in Fez, between the medina and the new town",
         "ar" => "وكالة التسويق <em>الرقمي</em> فاس"
     ),
 
     "AGENCE_FES_CTXTITLE" => array(
-        "fr" => "<strong>Agence de marketing </strong>digital à Fès",
-        "en" => "<strong>Digital Marketing</strong> Agency in Fès",
+        "fr" => "<strong>Marketing digital</strong> à Fès",
+        "en" => "<strong>Digital marketing</strong> in Fez",
         "ar" => "<strong>وكالة التسويق</strong> الرقمي بفاس"
     ),
 
     "AGENCE_FES_POURQUOI" => array(
-        "fr" => "Pourquoi choisir <br><em>Hello World Agency à Fès ?</em>",
-        "en" => "Why choose <br><em>Hello World Agency in Fès?</em>",
+        "fr" => "Travailler avec nous <br><em>depuis Fès</em>",
+        "en" => "Working with us <br><em>from Fez</em>",
         "ar" => "لماذا تختارون <br><em>هيلو وورلد أجنسي بفاس؟</em>"
     ),
 
     "AGENCE_FES_INTRO" => array(
-        "fr" => "Choisir la bonne <b>agence de communication digitale à Fès</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous combinons expertise locale, approche sur-mesure et résultats concrets pour accompagner votre croissance digitale. Voici trois raisons de nous faire confiance :",
-        "en" => "Choosing the right <b>digital communication agency in Fès</b> is a strategic decision for your business. At Hello World Agency, we combine local expertise, a tailored approach and concrete results to support your digital growth. Here are three reasons to trust us:",
+        "fr" => "Nous n'avons pas de bureau à Fès. Nous travaillons à distance et en déplacement, avec des références d'artisanat, d'art et d'hôtellerie de charme qui parlent à vos métiers.",
+        "en" => "We do not have an office in Fez. We work remotely and on site, with references in crafts, art and boutique hospitality that speak to your trades.",
         "ar" => "اختيار <b>وكالة الاتصال الرقمي المناسبة بفاس</b> قرار استراتيجي لشركتكم. في هيلو وورلد أجنسي، نجمع بين الخبرة المحلية والنهج المخصص والنتائج الملموسة لمواكبة نموكم الرقمي. إليكم ثلاثة أسباب لتثقوا بنا:"
     ),
 
     "AGENCE_FES_EXPERTISE" => array(
-        "fr" => "Nous connaissons parfaitement le marché, les comportements des consommateurs et les spécificités digitales de la région Fès-Meknès. Nos stratégies prennent en compte les tendances locales et les particularités du marché fassi, entre artisanat traditionnel et entreprises modernes, garantissant des campagnes pertinentes et efficaces.",
-        "en" => "We have a deep understanding of the market, consumer behavior and digital specifics of the Fès-Meknès region. Our strategies take into account local trends and the particularities of the Fès market, between traditional craftsmanship and modern businesses, ensuring relevant and effective campaigns.",
+        "fr" => "Nous savons mettre en valeur un produit qui raconte une histoire : galerie, produit du terroir, maison d'hôtes. Photos soignées, textes précis, site clair.",
+        "en" => "We know how to showcase a product that tells a story: gallery, terroir product, guesthouse. Careful photos, precise copy, clear website.",
         "ar" => "نعرف جيداً السوق وسلوك المستهلكين والخصوصيات الرقمية لجهة فاس-مكناس. تراعي استراتيجياتنا الاتجاهات المحلية وخصوصيات السوق الفاسي، بين الحرفية التقليدية والشركات الحديثة، لضمان حملات ملائمة وفعالة."
     ),
 
     "AGENCE_FES_STRATEGIES" => array(
-        "fr" => "Chaque entreprise est unique. Nous créons des <b>stratégies personnalisées en SEO</b>, <b>gestion des réseaux sociaux, publicité digitale et marketing de contenu</b>, adaptées à vos objectifs et à votre audience locale. Notre approche permet de renforcer votre visibilité et votre notoriété à Fès et au-delà.",
-        "en" => "Every business is unique. We create <b>personalized strategies in SEO</b>, <b>social media management, digital advertising and content marketing</b>, tailored to your goals and local audience. Our approach strengthens your visibility and reputation in Fès and beyond.",
+        "fr" => "Un site qui donne envie, des visuels cohérents et un compte Instagram qui vit : nous commençons par ce qui rapportera des demandes le plus vite.",
+        "en" => "A website that makes people want to come, consistent visuals and an Instagram account that lives: we start with what will bring enquiries fastest.",
         "ar" => "كل شركة فريدة من نوعها. نضع <b>استراتيجيات مخصصة في تحسين محركات البحث</b> و<b>إدارة وسائل التواصل الاجتماعي، الإعلان الرقمي وتسويق المحتوى</b>، متكيفة مع أهدافكم وجمهوركم المحلي. يتيح نهجنا تعزيز ظهوركم وسمعتكم بفاس وخارجها."
     ),
 
     "AGENCE_RABAT_H1" => array(
-        "fr" => "Agence marketing <em>digital</em> Rabat",
-        "en" => "Digital <em>Marketing</em> Agency Rabat",
+        "fr" => "Le marketing digital à Rabat, pensé pour les écoles et les entreprises",
+        "en" => "Digital marketing in Rabat, built for schools and businesses",
         "ar" => "وكالة التسويق <em>الرقمي</em> الرباط"
     ),
 
     "AGENCE_RABAT_CTXTITLE" => array(
-        "fr" => "<strong>Agence de commnunication </strong> à Rabat",
-        "en" => "<strong>Communication Agency</strong> in Rabat",
+        "fr" => "<strong>Marketing digital</strong> à Rabat",
+        "en" => "<strong>Digital marketing</strong> in Rabat",
         "ar" => "<strong>وكالة الاتصال</strong> بالرباط"
     ),
 
     "AGENCE_RABAT_POURQUOI" => array(
-        "fr" => "Pourquoi choisir <br><em>Hello World Agency à Rabat ?</em>",
-        "en" => "Why choose <br><em>Hello World Agency in Rabat?</em>",
+        "fr" => "Pourquoi travailler avec nous <br><em>à Rabat ?</em>",
+        "en" => "Why work with us <br><em>in Rabat?</em>",
         "ar" => "لماذا تختارون <br><em>هيلو وورلد أجنسي بالرباط؟</em>"
     ),
 
     "AGENCE_RABAT_INTRO" => array(
-        "fr" => "Choisir la bonne <b>agence de communication digitale à Rabat</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous combinons expertise locale, approche sur-mesure et résultats concrets pour accompagner votre croissance digitale. Voici trois raisons de nous faire confiance :",
-        "en" => "Choosing the right <b>digital communication agency in Rabat</b> is a strategic decision for your business. At Hello World Agency, we combine local expertise, a tailored approach and concrete results to support your digital growth. Here are three reasons to trust us:",
+        "fr" => "Parce que nous avons déjà mené à Rabat des projets complets pour deux établissements scolaires, de l'identité visuelle au site, du référencement à la vidéo.",
+        "en" => "Because we have already delivered complete projects in Rabat for two schools, from visual identity to website, from SEO to video.",
         "ar" => "اختيار <b>وكالة الاتصال الرقمي المناسبة بالرباط</b> قرار استراتيجي لشركتكم. في هيلو وورلد أجنسي، نجمع بين الخبرة المحلية والنهج المخصص والنتائج الملموسة لمواكبة نموكم الرقمي. إليكم ثلاثة أسباب لتثقوا بنا:"
     ),
 
     "AGENCE_RABAT_EXPERTISE" => array(
-        "fr" => "Nous connaissons parfaitement le marché, les comportements des consommateurs et les spécificités digitales de la région. Nos stratégies prennent en compte les tendances locales et les particularités du marché rabati, garantissant des campagnes pertinentes et efficaces.",
-        "en" => "We have a deep understanding of the market, consumer behavior and digital specifics of the region. Our strategies take into account local trends and the particularities of the Rabat market, ensuring relevant and effective campaigns.",
+        "fr" => "Nous savons parler aux parents, aux étudiants et aux clients qui comparent plusieurs établissements ou entreprises avant de choisir.",
+        "en" => "We know how to speak to parents, students and customers who compare several schools or businesses before choosing.",
         "ar" => "نعرف جيداً السوق وسلوك المستهلكين والخصوصيات الرقمية للجهة. تراعي استراتيجياتنا الاتجاهات المحلية وخصوصيات السوق الرباطي، لضمان حملات ملائمة وفعالة."
     ),
 
     "AGENCE_RABAT_STRATEGIES" => array(
-        "fr" => "Chaque entreprise est unique. Nous créons des <b>stratégies personnalisées en SEO</b>, <b>gestion des réseaux sociaux, publicité digitale et marketing de contenu</b>, adaptées à vos objectifs et à votre audience locale. Notre approche permet de renforcer votre visibilité et votre notoriété à Rabat et au-delà.",
-        "en" => "Every business is unique. We create <b>personalized strategies in SEO</b>, <b>social media management, digital advertising and content marketing</b>, tailored to your goals and local audience. Our approach strengthens your visibility and reputation in Rabat and beyond.",
+        "fr" => "Un plan marketing d'abord, des outils ensuite : site, référencement, réseaux sociaux, photo et vidéo, selon ce qui compte pour vos inscriptions ou vos ventes.",
+        "en" => "A marketing plan first, tools second: website, SEO, social media, photo and video, depending on what matters for your enrolments or sales.",
         "ar" => "كل شركة فريدة من نوعها. نضع <b>استراتيجيات مخصصة في تحسين محركات البحث</b> و<b>إدارة وسائل التواصل الاجتماعي، الإعلان الرقمي وتسويق المحتوى</b>، متكيفة مع أهدافكم وجمهوركم المحلي. يتيح نهجنا تعزيز ظهوركم وسمعتكم بالرباط وخارجها."
     ),
 
     "AGENCE_TANGER_H1" => array(
-        "fr" => "Agence marketing <em>digital</em> Tanger",
-        "en" => "Digital <em>Marketing</em> Agency Tangier",
+        "fr" => "Le marketing digital à Tanger, entre le port, l'industrie et l'international",
+        "en" => "Digital marketing in Tangier, between the port, industry and the international market",
         "ar" => "وكالة التسويق <em>الرقمي</em> طنجة"
     ),
 
     "AGENCE_TANGER_CTXTITLE" => array(
-        "fr" => "<strong>Agence de commnunication </strong> à Tanger",
-        "en" => "<strong>Communication Agency</strong> in Tangier",
+        "fr" => "<strong>Marketing digital</strong> à Tanger",
+        "en" => "<strong>Digital marketing</strong> in Tangier",
         "ar" => "<strong>وكالة الاتصال</strong> بطنجة"
     ),
 
     "AGENCE_TANGER_POURQUOI" => array(
-        "fr" => "Pourquoi choisir <br>Hello World Agency<em> à Tanger ?</em>",
-        "en" => "Why choose <br>Hello World Agency<em> in Tangier?</em>",
+        "fr" => "Travailler avec nous <br><em>depuis Tanger</em>",
+        "en" => "Working with us <br><em>from Tangier</em>",
         "ar" => "لماذا تختارون <br>هيلو وورلد أجنسي<em> بطنجة؟</em>"
     ),
 
     "AGENCE_TANGER_INTRO" => array(
-        "fr" => "Choisir la bonne <b>agence de communication digitale à Tanger</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous combinons expertise locale, approche sur-mesure et résultats concrets pour accompagner votre croissance digitale. Voici trois raisons de nous faire confiance :",
-        "en" => "Choosing the right <b>digital communication agency in Tangier</b> is a strategic decision for your business. At Hello World Agency, we combine local expertise, a tailored approach and concrete results to support your digital growth. Here are three reasons to trust us:",
+        "fr" => "Nous n'avons pas de bureau à Tanger, et nous préférons vous le dire. Nous travaillons à distance et en déplacement, avec des références B2B comparables à vos enjeux.",
+        "en" => "We do not have an office in Tangier, and we prefer to say so. We work remotely and on site, with B2B references comparable to your challenges.",
         "ar" => "اختيار <b>وكالة الاتصال الرقمي المناسبة بطنجة</b> قرار استراتيجي لشركتكم. في هيلو وورلد أجنسي، نجمع بين الخبرة المحلية والنهج المخصص والنتائج الملموسة لمواكبة نموكم الرقمي. إليكم ثلاثة أسباب لتثقوا بنا:"
     ),
 
     "AGENCE_TANGER_EXPERTISE" => array(
-        "fr" => "Nous connaissons parfaitement le marché, les comportements des consommateurs et les spécificités digitales de la région. Nos stratégies prennent en compte les tendances locales et les particularités du marché de <b>Tanger</b>, garantissant des campagnes pertinentes et efficaces.",
-        "en" => "We have a deep understanding of the market, consumer behavior and digital specifics of the region. Our strategies take into account local trends and the particularities of the <b>Tangier</b> market, ensuring relevant and effective campaigns.",
+        "fr" => "Nous maîtrisons les sites multilingues et la prospection en ligne, utiles quand vos clients sont des professionnels, ici ou à l'étranger.",
+        "en" => "We master multilingual websites and online prospecting, useful when your customers are professionals, here or abroad.",
         "ar" => "نعرف جيداً السوق وسلوك المستهلكين والخصوصيات الرقمية للجهة. تراعي استراتيجياتنا الاتجاهات المحلية وخصوصيات سوق <b>طنجة</b>، لضمان حملات ملائمة وفعالة."
     ),
 
     "AGENCE_TANGER_STRATEGIES" => array(
-        "fr" => "Chaque entreprise est unique. Nous créons des <b>stratégies personnalisées en SEO à Tanger</b>, <b>gestion des réseaux sociaux à Tanger, publicité digitale et marketing de contenu</b>, adaptées à vos objectifs et à votre audience locale. Notre approche permet de renforcer votre visibilité et votre notoriété à <b>Tanger</b> et au-delà.",
-        "en" => "Every business is unique. We create <b>personalized SEO strategies in Tangier</b>, <b>social media management in Tangier, digital advertising and content marketing</b>, tailored to your goals and local audience. Our approach strengthens your visibility and reputation in <b>Tangier</b> and beyond.",
+        "fr" => "Un site qui répond à la question du client étranger, un référencement qui l'amène au bon endroit, et des outils pour relancer sans y passer vos journées.",
+        "en" => "A website that answers the foreign customer's question, SEO that brings them to the right place, and tools to follow up without spending your days on it.",
         "ar" => "كل شركة فريدة من نوعها. نضع <b>استراتيجيات مخصصة في تحسين محركات البحث بطنجة</b> و<b>إدارة وسائل التواصل الاجتماعي بطنجة، الإعلان الرقمي وتسويق المحتوى</b>، متكيفة مع أهدافكم وجمهوركم المحلي. يتيح نهجنا تعزيز ظهوركم وسمعتكم <b>بطنجة</b> وخارجها."
     ),
 
     "AGENCE_AGADIR_H1" => array(
-        "fr" => "Agence marketing <em>digital</em> Agadir",
-        "en" => "Digital <em>Marketing</em> Agency Agadir",
+        "fr" => "Le marketing digital à Agadir, du front de mer aux commerces du Souss",
+        "en" => "Digital marketing in Agadir, from the seafront to the shops of the Souss",
         "ar" => "وكالة التسويق <em>الرقمي</em> أكادير"
     ),
 
     "AGENCE_AGADIR_CTXTITLE" => array(
-        "fr" => "<strong>Agence de marketing </strong>digital à Agadir",
-        "en" => "<strong>Digital Marketing</strong> Agency in Agadir",
+        "fr" => "<strong>Marketing digital</strong> à Agadir",
+        "en" => "<strong>Digital marketing</strong> in Agadir",
         "ar" => "<strong>وكالة التسويق</strong> الرقمي بأكادير"
     ),
 
     "AGENCE_AGADIR_POURQUOI" => array(
-        "fr" => "Pourquoi choisir <br><em>Hello World Agency à Agadir ?</em>",
-        "en" => "Why choose <br><em>Hello World Agency in Agadir?</em>",
+        "fr" => "Travailler avec nous <br><em>depuis Agadir</em>",
+        "en" => "Working with us <br><em>from Agadir</em>",
         "ar" => "لماذا تختارون <br><em>هيلو وورلد أجنسي بأكادير؟</em>"
     ),
 
     "AGENCE_AGADIR_INTRO" => array(
-        "fr" => "Choisir la bonne <b>agence de communication digitale à Agadir</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous offrons une expertise locale, une approche sur-mesure et des résultats concrets. Voici trois raisons de nous faire confiance :",
-        "en" => "Choosing the right <b>digital communication agency in Agadir</b> is a strategic decision for your business. At Hello World Agency, we offer local expertise, a tailored approach and concrete results. Here are three reasons to trust us:",
+        "fr" => "Nous n'avons pas de bureau à Agadir. Nous travaillons à distance et en déplacement, avec des références hôtelières et de loisirs de nature comparable.",
+        "en" => "We do not have an office in Agadir. We work remotely and on site, with hospitality and leisure references of a comparable nature.",
         "ar" => "اختيار <b>وكالة الاتصال الرقمي المناسبة بأكادير</b> قرار استراتيجي لشركتكم. في هيلو وورلد أجنسي، نقدم خبرة محلية ونهجاً مخصصاً ونتائج ملموسة. إليكم ثلاثة أسباب لتثقوا بنا:"
     ),
 
     "AGENCE_AGADIR_EXPERTISE" => array(
-        "fr" => "Notre <b>agence marketing digital à Agadir</b> connaît le marché et accompagne les entreprises locales, de la <b>PME en quête de visibilité en ligne</b> à la grande société.",
-        "en" => "Our <b>digital marketing agency in Agadir</b> knows the market and supports local businesses, from <b>SMEs seeking online visibility</b> to large companies.",
+        "fr" => "Hôtels, riads, activités de loisirs : nous savons ce qui déclenche une réservation, de la photo au site mobile en passant par les plateformes.",
+        "en" => "Hotels, riads, leisure activities: we know what triggers a booking, from the photo to the mobile website and the platforms.",
         "ar" => "تعرف <b>وكالتنا للتسويق الرقمي بأكادير</b> السوق وتواكب الشركات المحلية، من <b>المقاولات الصغيرة والمتوسطة الباحثة عن ظهور رقمي</b> إلى الشركات الكبرى."
     ),
 
     "AGENCE_AGADIR_STRATEGIES" => array(
-        "fr" => "Nous créons des <b>stratégies marketing digital sur mesure à Agadir</b> : <b>SEO pour entreprises</b>, Google Ads, gestion des réseaux sociaux et <b>création de site internet professionnel.</b>",
-        "en" => "We create <b>tailor-made digital marketing strategies in Agadir</b>: <b>SEO for businesses</b>, Google Ads, social media management and <b>professional website creation.</b>",
+        "fr" => "Un site rapide sur mobile, une fiche Google à jour, des photos honnêtes et quelques campagnes bien placées avant la haute saison.",
+        "en" => "A fast mobile website, an up-to-date Google listing, honest photos and a few well-placed campaigns before the high season.",
         "ar" => "نضع <b>استراتيجيات تسويق رقمي مخصصة بأكادير</b>: <b>تحسين محركات البحث للشركات</b>، إعلانات جوجل، إدارة وسائل التواصل الاجتماعي و<b>إنشاء موقع إلكتروني احترافي.</b>"
     ),
 
     "AGENCE_MARRAKECH_H1" => array(
-        "fr" => "Agence marketing <em>digital</em> Marrakech",
-        "en" => "Digital <em>Marketing</em> Agency Marrakech",
+        "fr" => "Une agence de communication installée à Bab Doukala, au cœur de Marrakech",
+        "en" => "A communication agency based in Bab Doukala, in the heart of Marrakech",
         "ar" => "وكالة التسويق <em>الرقمي</em> مراكش"
     ),
 
     "AGENCE_MARRAKECH_CTXTITLE" => array(
-        "fr" => "<strong>Agence de marketing </strong>digital à Marrakech",
-        "en" => "<strong>Digital Marketing</strong> Agency in Marrakech",
+        "fr" => "<strong>Agence de communication</strong> à Marrakech",
+        "en" => "<strong>Communication agency</strong> in Marrakech",
         "ar" => "<strong>وكالة التسويق</strong> الرقمي بمراكش"
     ),
 
     "AGENCE_MARRAKECH_POURQUOI" => array(
-        "fr" => "Pourquoi choisir <br><em>Hello World Agency à Marrakech ?</em>",
-        "en" => "Why choose <br><em>Hello World Agency in Marrakech?</em>",
+        "fr" => "Pourquoi nous confier <br><em>votre communication à Marrakech ?</em>",
+        "en" => "Why trust us with <br><em>your communication in Marrakech?</em>",
         "ar" => "لماذا تختارون <br><em>هيلو وورلد أجنسي بمراكش؟</em>"
     ),
 
     "AGENCE_MARRAKECH_INTRO" => array(
-        "fr" => "Choisir la bonne <b>agence de communication digitale à Marrakech</b> est une décision stratégique pour votre entreprise. Chez Hello World Agency, nous offrons une expertise locale, une approche sur-mesure et des résultats concrets. Voici trois raisons de nous faire confiance :",
-        "en" => "Choosing the right <b>digital communication agency in Marrakech</b> is a strategic decision for your business. At Hello World Agency, we offer local expertise, a tailored approach and concrete results. Here are three reasons to trust us:",
+        "fr" => "Trois raisons concrètes : un bureau à Bab Doukala, des riads, des agences immobilières et des lieux de loisirs de la ville parmi nos clients, et une équipe qui produit en interne les photos, les vidéos et le code.",
+        "en" => "Three concrete reasons: an office in Bab Doukala, riads, real estate agencies and leisure venues of the city among our clients, and a team that produces the photos, videos and code in-house.",
         "ar" => "اختيار <b>وكالة الاتصال الرقمي المناسبة بمراكش</b> قرار استراتيجي لشركتكم. في هيلو وورلد أجنسي، نقدم خبرة محلية ونهجاً مخصصاً ونتائج ملموسة. إليكم ثلاثة أسباب لتثقوا بنا:"
     ),
 
     "AGENCE_MARRAKECH_EXPERTISE" => array(
-        "fr" => "Notre <b>agence marketing digital à Marrakech</b> connaît le marché marrakchi et accompagne les entreprises locales, de la <b>PME en quête de visibilité en ligne</b> à la grande société.",
-        "en" => "Our <b>digital marketing agency in Marrakech</b> knows the Marrakech market and supports local businesses, from <b>SMEs seeking online visibility</b> to large companies.",
+        "fr" => "Nous travaillons surtout pour l'hôtellerie de charme, l'immobilier de luxe et les loisirs. Nous savons ce qu'attend un voyageur qui choisit un riad depuis son téléphone.",
+        "en" => "We mostly work for boutique hospitality, luxury real estate and leisure. We know what a traveller choosing a riad from their phone expects.",
         "ar" => "تعرف <b>وكالتنا للتسويق الرقمي بمراكش</b> السوق المراكشي وتواكب الشركات المحلية، من <b>المقاولات الصغيرة والمتوسطة الباحثة عن ظهور رقمي</b> إلى الشركات الكبرى."
     ),
 
     "AGENCE_MARRAKECH_STRATEGIES" => array(
-        "fr" => "Nous créons des <b>stratégies marketing digital sur mesure à Marrakech</b> : <b>SEO pour entreprises</b>, Google Ads, gestion des réseaux sociaux et <b>création de site internet professionnel.</b>",
-        "en" => "We create <b>tailor-made digital marketing strategies in Marrakech</b>: <b>SEO for businesses</b>, Google Ads, social media management and <b>professional website creation.</b>",
+        "fr" => "Un site clair, un référencement qui suit vos mots-clés, des réseaux sociaux animés au rythme de la saison touristique : nous dosons selon votre activité.",
+        "en" => "A clear website, SEO that follows your keywords, social media run at the pace of the tourist season: we adjust the mix to your activity.",
         "ar" => "نضع <b>استراتيجيات تسويق رقمي مخصصة بمراكش</b>: <b>تحسين محركات البحث للشركات</b>، إعلانات جوجل، إدارة وسائل التواصل الاجتماعي و<b>إنشاء موقع إلكتروني احترافي.</b>"
     ),
 
