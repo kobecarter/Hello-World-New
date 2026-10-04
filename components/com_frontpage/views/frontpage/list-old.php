@@ -500,7 +500,7 @@ img,video{display:block;max-width:100%}
       <span class="slide-index-sep">—</span>
       <span>04</span>
     </div>
-    <a href="#" id="td-link" class="sb sb-compact" data-auto-reset="true" role="slider" tabindex="0" aria-label="Découvrir" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <a href="#" id="td-link" class="sb sb-compact" data-auto-reset="true" tabindex="0" aria-label="Découvrir">
       <div class="sb-label"><span class="sb-hint">Découvrir</span></div>
       <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
     </a>
@@ -550,14 +550,14 @@ img,video{display:block;max-width:100%}
     <button class="explore-btn" onclick="document.querySelector('.marquee').scrollIntoView({behavior:'smooth'})">EXPLORE</button>
   </div>
   <div class="hero-foot">
-    <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir les solutions">
       <div class="sb-label"><span class="sb-hint">Voir les solutions</span></div>
       <div class="sb-knob">
         <i class="fal fa-robot"></i>
       </div>
     </a>
 
-    <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Demander un audit IA">
       <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
       <div class="sb-knob">
         <i class="fal fa-search"></i>
@@ -828,7 +828,7 @@ img,video{display:block;max-width:100%}
             <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO technique & Core Web Vitals</li>
             <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Déploiement cloud & CI/CD</li>
           </ul>
-            <a href="<?php echo $serviceWeb->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Démarrer un projet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $serviceWeb->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Démarrer un projet">
               <div class="sb-label"><span class="sb-hint">Démarrer un projet</span></div>
               <div class="sb-knob"><i class="fal fa-laptop-code"></i></div>
             </a>
@@ -855,7 +855,7 @@ img,video{display:block;max-width:100%}
             <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Paiement in-app (Stripe / IAP)</li>
             <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Publication stores & mises à jour OTA</li>
           </ul>
-            <a href="<?php echo $serviceMobile->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les apps" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $serviceMobile->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir les apps">
               <div class="sb-label"><span class="sb-hint">Voir les apps</span></div>
               <div class="sb-knob"><i class="fal fa-mobile"></i></div>
             </a>
@@ -882,7 +882,7 @@ img,video{display:block;max-width:100%}
             <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
             <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
           </ul>
-            <a href="<?php echo $serviceSaaS->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Construire mon SaaS" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $serviceSaaS->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Construire mon SaaS">
               <div class="sb-label"><span class="sb-hint">Construire mon SaaS</span></div>
               <div class="sb-knob"><i class="fal fa-desktop"></i></div>
             </a>
@@ -909,7 +909,7 @@ img,video{display:block;max-width:100%}
             <li class="srv-feat" style="--fi:3"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics & tableau de bord intégré</li>
             <li class="srv-feat" style="--fi:4"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monitoring, alertes & SLA garanti</li>
           </ul>
-            <a href="<?php echo $serviceIA->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Construire mon agent" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $serviceIA->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Construire mon agent">
               <div class="sb-label"><span class="sb-hint">Construire mon agent</span></div>
               <div class="sb-knob"><i class="fal fa-robot"></i></div>
             </a>
@@ -969,7 +969,7 @@ img,video{display:block;max-width:100%}
       </div>
     </div>
     <div class="mt-5 text-center">
-        <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir plus de réalisations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir plus de réalisations">
           <div class="sb-label"><span class="sb-hint">Voir plus de réalisations</span></div>
           <div class="sb-knob"><i class="fal fa-trophy"></i></div>
         </a>
@@ -1042,7 +1042,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Contactez un expert" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Contactez un expert">
                   <div class="sb-label"><span class="sb-hint">Contactez un expert</span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>
@@ -1347,12 +1347,12 @@ img,video{display:block;max-width:100%}
     <p class="cta-sub">Que vous soyez une startup en phase d'amorçage ou une entreprise du Fortune 500, si vous bâtissez un projet ambitieux, nous voulons en faire partie.</p>
     
     <div class="cta-btns">
-        <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir les solutions">
           <div class="sb-label"><span class="sb-hint">Voir les solutions</span></div>
           <div class="sb-knob"><i class="fal fa-robot"></i></div>
         </a>
 
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Demander un audit IA">
           <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
           <div class="sb-knob"><i class="fal fa-search"></i></div>
         </a>    

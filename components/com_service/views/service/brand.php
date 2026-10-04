@@ -52,12 +52,12 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
         <p class="sh-sub"><?php echo strip_tags($service->getExtrait()); ?></p>
             
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
 
-            <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div>
             </a>
@@ -397,7 +397,7 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
   </div>
    <div class="container">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?>">
                   <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_PLUS_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-trophy"></i></div>
                 </a>
@@ -415,11 +415,11 @@ header.hdr-light:not(.scrolled) .lang-btn{border-color:rgba(247,245,242,.18);col
     <h2 class="sec-title rv d1"><?php echo $lang['BRAND_FINAL_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
     <p class="hw-f-list-cta-sub rv d2"><?php echo $lang['BRAND_FINAL_CTA_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns rv d3" style="justify-content:center">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_PARLER_PROJET'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_PARLER_PROJET'][$_SESSION['lang']]; ?>">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_PARLER_PROJET'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-phone"></i></div>
         </a>
-        <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['BRAND_FINAL_CTA_BTN2'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="#services" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['BRAND_FINAL_CTA_BTN2'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['BRAND_FINAL_CTA_BTN2'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
         </a>

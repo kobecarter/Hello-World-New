@@ -68,12 +68,12 @@ $cats = array_keys($catLabels);
         <h1 class="sh-h1 rv on"><?= $lang['AGENT_LIST_H1'][$_SESSION['lang']]; ?></h1>
         <p class="wm-hero-sub rv d1"><?php echo strip_tags($page->getExtrait()); ?></p>
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?= $lang['SVC_LIST_CTA_AUDIT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?= $lang['SVC_LIST_CTA_AUDIT'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?= $lang['SVC_LIST_CTA_AUDIT'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
 
-            <a href="<?php echo $pageReference->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?= $lang['SVC_CTA_VOIR_REALISATIONS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageReference->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?= $lang['SVC_CTA_VOIR_REALISATIONS'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?= $lang['SVC_CTA_VOIR_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div> 
             </a>

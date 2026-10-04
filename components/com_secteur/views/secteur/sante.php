@@ -16,12 +16,12 @@
           </h1>
           <p class="sh-sub rv d2">Modernize patient reception and eliminate no-shows with intelligent automation of your appointment scheduling in Morocco.</p>
           <div class="sh-cta-row rv d3">
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="View the solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="View the solutions">
               <div class="sb-label"><span class="sb-hint">View the solutions</span></div>
               <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Request an AI audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Request an AI audit">
               <div class="sb-label"><span class="sb-hint">Request an AI audit</span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
@@ -662,12 +662,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Reduce no-shows and <br>simplify<em> appointment <br>scheduling</em></h2>
     <p class="cta-sub">Implement an AI system capable of automating confirmations, reminders and medical schedule organization, while improving the patient experience and service quality of your practice.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a free AI audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Request a free AI audit">
             <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
             <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
         </a>
 
-        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Schedule a healthcare demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Schedule a healthcare demo">
             <div class="sb-label"><span class="sb-hint">Schedule a healthcare demo</span></div>
             <div class="sb-knob"><i class="fal fa-download"></i></div>
         </a>
@@ -693,12 +693,12 @@
           </h1>
           <p class="sh-sub rv d2">حدّثوا استقبال المرضى وقضوا على الغياب بفضل الأتمتة الذكية لحجز مواعيدكم في المغرب.</p>
           <div class="sh-cta-row rv d3">
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اكتشفوا الحلول" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اكتشفوا الحلول">
               <div class="sb-label"><span class="sb-hint">اكتشفوا الحلول</span></div>
               <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="اطلبوا تدقيقاً بالذكاء الاصطناعي">
               <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً بالذكاء الاصطناعي</span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
@@ -1339,12 +1339,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">قلّصوا الغياب و<br>بسّطوا عملية<em> حجز<br>المواعيد</em></h2>
     <p class="cta-sub">أرسوا نظاماً بالذكاء الاصطناعي قادراً على أتمتة التأكيدات والتذكيرات وتنظيم الأجندة الطبية، مع تحسين تجربة المريض وجودة خدمة مؤسستكم.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي">
             <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
             <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
         </a>
 
-        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احجزوا عرضاً تجريبياً للقطاع الصحي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احجزوا عرضاً تجريبياً للقطاع الصحي">
             <div class="sb-label"><span class="sb-hint">احجزوا عرضاً تجريبياً للقطاع الصحي</span></div>
             <div class="sb-knob"><i class="fal fa-download"></i></div>
         </a>
@@ -1370,12 +1370,12 @@
           </h1>
           <p class="sh-sub rv d2">Modernisez l'accueil patient et supprimez l'absentéisme grâce à l'automatisation intelligente de vos prises de rendez-vous au Maroc.</p>
           <div class="sh-cta-row rv d3">
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir les solutions">
               <div class="sb-label"><span class="sb-hint">Voir les solutions</span></div>
               <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Demander un audit IA">
               <div class="sb-label"><span class="sb-hint">Demander un audit IA</span></div>
               <div class="sb-knob"><i class="fal fa-search"></i></div>
             </a>
@@ -2016,12 +2016,12 @@
     <h2 class="sec-title" style="text-align:center;margin-bottom:1.5rem">Réduisez les no-shows et <br>simplifiez<em> la prise de <br>rendez-vous</em></h2>
     <p class="cta-sub">Mettez en place un système IA capable d’automatiser les confirmations, les rappels et l’organisation de l’agenda médical, tout en améliorant l’expérience patient et la qualité de service de votre structure.</p>
     <div class="cta-btns">
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit IA gratuit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander un audit IA gratuit">
             <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
             <div class="sb-knob"><i class="fal fa-stethoscope"></i></div>
         </a>
 
-        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Planifier une démo santé" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="mailto:<?php echo $config->getEmail(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Planifier une démo santé">
             <div class="sb-label"><span class="sb-hint">Planifier une démo santé</span></div>
             <div class="sb-knob"><i class="fal fa-download"></i></div>
         </a>

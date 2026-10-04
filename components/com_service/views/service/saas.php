@@ -18,12 +18,12 @@
         <p class="sh-sub"><?php echo strip_tags($service->getExtrait()); ?></p>
       
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
 
-            <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_CTA_VOIR_OFFRES'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div>
             </a>
@@ -231,7 +231,7 @@
         <div class="sb-label"><span class="sb-hint"><?php echo $lang['SAAS_CTA_BTN1'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-calendar-check"></i></div>
       </a>
-        <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['SAAS_CTA_BTN2'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="#offres" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['SAAS_CTA_BTN2'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['SAAS_CTA_BTN2'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-shopping-basket"></i></div>
         </a>

@@ -18,12 +18,12 @@
         <p class="sh-sub rv d2"><?php echo strip_tags($page->getExtrait()); ?></p>
 
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['REF_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_DEMANDER_DEVIS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
 
-            <a href="#rlGrid" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_VOIR_CAS_SIMILAIRE'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="#rlGrid" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['REF_CTA_VOIR_CAS_SIMILAIRE'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_VOIR_CAS_SIMILAIRE'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-suitcase"></i></div> 
             </a>
@@ -105,12 +105,12 @@
     <h2 class="sec-title"><?php echo $lang['REF_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
     <p class="cta-sub"><?php echo $lang['REF_CTA_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns">
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_DEMARRER_PROJET'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['REF_CTA_DEMARRER_PROJET'][$_SESSION['lang']]; ?>">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_DEMARRER_PROJET'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-suitcase"></i></div>
         </a>
 
-        <a href="<?php echo $pageBlog->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['REF_CTA_LIRE_INSIGHTS'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageBlog->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['REF_CTA_LIRE_INSIGHTS'][$_SESSION['lang']]; ?>">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['REF_CTA_LIRE_INSIGHTS'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-eye"></i></div> 
         </a>

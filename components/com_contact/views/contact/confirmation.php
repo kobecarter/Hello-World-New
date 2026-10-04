@@ -25,12 +25,12 @@
         <h1 class="ty-hero-title rv d1"><?php echo $lang['CT_CONFIRM_TITLE'][$_SESSION['lang']]; ?></h1>
         <p class="ty-hero-sub rv d2"><?php echo $lang['CT_CONFIRM_SUB'][$_SESSION['lang']]; ?></p>
         <div class="wm-hero-ctas rv d2">
-            <a href="<?php echo $siteURL; ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_CTA_QUOTE_ARIA'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $siteURL; ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_CTA_QUOTE_ARIA'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['CT_CONFIRM_BTN_HOME'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-home"></i></div>
             </a>
 
-            <a href="<?php echo $pageRealisation->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_CTA_REALISATIONS_ARIA'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageRealisation->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_CTA_REALISATIONS_ARIA'][$_SESSION['lang']]; ?>">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['CT_CONFIRM_BTN_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-eye"></i></div>
             </a>
@@ -100,12 +100,12 @@
     <h2 class="sec-title"><?php echo $lang['CT_CONFIRM_CTA_TITLE'][$_SESSION['lang']]; ?></h2>
     <p class="cta-sub"><?php echo $lang['CT_CONFIRM_CTA_SUB'][$_SESSION['lang']]; ?></p>
     <div class="cta-btns">
-      <a href="<?php echo $siteURL; ?>" class="sb sb-compact" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_BTN_HOME'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $siteURL; ?>" class="sb sb-compact" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_BTN_HOME'][$_SESSION['lang']]; ?>">
         <div class="sb-label"><span class="sb-hint"><?php echo $lang['CT_CONFIRM_BTN_HOME'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-home"></i></div>
       </a>
 
-      <a href="<?php echo $pageContact->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_CTA_SEND_ARIA'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $pageContact->getLink() ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="<?php echo $lang['CT_CONFIRM_CTA_SEND_ARIA'][$_SESSION['lang']]; ?>">
         <div class="sb-label"><span class="sb-hint"><?php echo $lang['CT_CONFIRM_CTA_SEND_ARIA'][$_SESSION['lang']]; ?></span></div>
         <div class="sb-knob"><i class="fal fa-envelope"></i></div>
       </a>

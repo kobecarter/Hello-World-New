@@ -16,12 +16,12 @@
           </h1>
           <p class="sh-sub rv d2">Automate your lead qualification and dominate the Moroccan real estate market with tireless virtual sales agents.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Discover Real Estate AI" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Discover Real Estate AI">
               <div class="sb-label"><span class="sb-hint">Discover Real Estate AI</span></div>
               <div class="sb-knob"><i class="fal fa-key"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Calculate my SDR savings" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Calculate my SDR savings">
               <div class="sb-label"><span class="sb-hint">Calculate my SDR savings</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
@@ -663,12 +663,12 @@
 
     <p class="cta-sub">Activate AI agents capable of processing your leads in real time, running WhatsApp campaigns, qualifying prospects by phone, and improving the visibility of your developments and construction sites for your buyers.<p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a free AI audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Request a free AI audit">
           <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
           <div class="sb-knob"><i class="fal fa-key"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Audit my real estate funnel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Audit my real estate funnel">
           <div class="sb-label"><span class="sb-hint">Audit my real estate funnel</span></div>
           <div class="sb-knob"><i class="fal fa-calculator"></i></div>
         </a>
@@ -694,12 +694,12 @@
           </h1>
           <p class="sh-sub rv d2">أتمتوا تأهيل عملائكم المحتملين وتصدّروا سوق العقار المغربي بوكلاء بيع افتراضيين لا يعرفون الكلل.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اكتشفوا الذكاء الاصطناعي للعقار" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اكتشفوا الذكاء الاصطناعي للعقار">
               <div class="sb-label"><span class="sb-hint">اكتشفوا الذكاء الاصطناعي للعقار</span></div>
               <div class="sb-knob"><i class="fal fa-key"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احسبوا توفيري في تكلفة SDR" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احسبوا توفيري في تكلفة SDR">
               <div class="sb-label"><span class="sb-hint">احسبوا توفيري في تكلفة SDR</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
@@ -1341,12 +1341,12 @@
 
     <p class="cta-sub">فعّلوا وكلاء ذكاء اصطناعي قادرين على معالجة عملائكم المحتملين في الوقت الفعلي، وإدارة حملات واتساب، وتأهيل العملاء المحتملين هاتفياً، وتحسين ظهور مشاريعكم وأوراشكم أمام مشتريكم.<p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي">
           <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
           <div class="sb-knob"><i class="fal fa-key"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="دقّقوا قمع مبيعاتي العقاري" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="دقّقوا قمع مبيعاتي العقاري">
           <div class="sb-label"><span class="sb-hint">دقّقوا قمع مبيعاتي العقاري</span></div>
           <div class="sb-knob"><i class="fal fa-calculator"></i></div>
         </a>
@@ -1372,12 +1372,12 @@
           </h1>
           <p class="sh-sub rv d2">Automatisez la qualification de vos leads et dominez le marché immobilier marocain avec des agents de vente virtuels infatigables.</p>
           <div class="sh-cta-row rv d3">
-              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Découvrir l'IA Immobilier" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Découvrir l'IA Immobilier">
               <div class="sb-label"><span class="sb-hint">Découvrir l'IA Immobilier</span></div>
               <div class="sb-knob"><i class="fal fa-key"></i></div>
             </a>
 
-            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Calculer mon économie SDR" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Calculer mon économie SDR">
               <div class="sb-label"><span class="sb-hint">Calculer mon économie SDR</span></div>
               <div class="sb-knob"><i class="fal fa-calculator"></i></div>
             </a>
@@ -2019,12 +2019,12 @@
 
     <p class="cta-sub">Activez des agents IA capables de traiter vos leads en temps réel, de mener des campagnes WhatsApp, de qualifier les prospects par téléphone et d’améliorer la visibilité de vos programmes et de vos chantiers auprès de vos acquéreurs.<p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit IA gratuit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander un audit IA gratuit">
           <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
           <div class="sb-knob"><i class="fal fa-key"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Auditer mon funnel immobilier" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Auditer mon funnel immobilier">
           <div class="sb-label"><span class="sb-hint">Auditer mon funnel immobilier</span></div>
           <div class="sb-knob"><i class="fal fa-calculator"></i></div>
         </a>

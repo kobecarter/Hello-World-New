@@ -8,12 +8,12 @@
         <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">Industrialize your content production, secure your SEO rankings and automate your performance reporting. Reclaim 10 hours a week from low value-added tasks.</p>
       <div class="sh-cta-row">
-          <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Automate your marketing" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Automate your marketing">
           <div class="sb-label"><span class="sb-hint">Automate your marketing</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Get a sample report" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Get a sample report">
           <div class="sb-label"><span class="sb-hint">Get a sample report</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
         </a>
@@ -263,12 +263,12 @@
 
     <p class="cta-sub">Build a higher-performing marketing machine with AI agents capable of tracking your SEO rankings, generating your weekly reports, preparing your shareable dashboards and distributing your content on the right channels at the right time.</p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Request a free AI audit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Request a free AI audit">
           <div class="sb-label"><span class="sb-hint">Request a free AI audit</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Get a marketing AI demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Get a marketing AI demo">
           <div class="sb-label"><span class="sb-hint">Get a marketing AI demo</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
         </a>
@@ -286,12 +286,12 @@
         <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">صنّعوا إنتاج محتواكم على نطاق واسع، وثبّتوا مراكزكم في محركات البحث، وأتمتوا تقارير أدائكم. استرجعوا 10 ساعات أسبوعياً من مهام منخفضة القيمة المضافة.</p>
       <div class="sh-cta-row">
-          <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="أتمتوا تسويقكم" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="أتمتوا تسويقكم">
           <div class="sb-label"><span class="sb-hint">أتمتوا تسويقكم</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على نموذج تقرير" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احصلوا على نموذج تقرير">
           <div class="sb-label"><span class="sb-hint">احصلوا على نموذج تقرير</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
         </a>
@@ -541,12 +541,12 @@
 
     <p class="cta-sub">نظّموا آلة تسويقية أكثر أداءً بفضل وكلاء ذكاء اصطناعي قادرين على متابعة مراكزكم في SEO، وتوليد تقاريركم الأسبوعية، وإعداد جداول المشاركة، وتوزيع محتواكم عبر القنوات المناسبة في الوقت المناسب.</p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي">
           <div class="sb-label"><span class="sb-hint">اطلبوا تدقيقاً مجانياً بالذكاء الاصطناعي</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="احصلوا على عرض تجريبي للتسويق الذكي" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="احصلوا على عرض تجريبي للتسويق الذكي">
           <div class="sb-label"><span class="sb-hint">احصلوا على عرض تجريبي للتسويق الذكي</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
         </a>
@@ -564,12 +564,12 @@
         <h1 class="sh-h1"><?php echo !empty($secteur->getH1()) ? $secteur->getH1() : $secteur->getTitre(); ?></h1>
       <p class="sh-sub">Industrialisez la production de vos contenus, sécurisez vos positions SEO et automatisez vos reportings de performance. Récupérez 10h par semaine sur des tâches à faible valeur ajoutée.</p>
       <div class="sh-cta-row">
-          <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Automatiser votre marketing" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Automatiser votre marketing">
           <div class="sb-label"><span class="sb-hint">Automatiser votre marketing</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir un exemple de rapport" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Recevoir un exemple de rapport">
           <div class="sb-label"><span class="sb-hint">Recevoir un exemple de rapport</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
         </a>
@@ -819,12 +819,12 @@
 
     <p class="cta-sub">Structurez une machine marketing plus performante grâce à des agents IA capables de suivre vos positions SEO, générer vos rapports hebdomadaires, préparer vos tableaux de partage et distribuer vos contenus sur les bons canaux au bon moment.</p>
     <div class="cta-btns">
-      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Demander un audit IA gratuit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Demander un audit IA gratuit">
           <div class="sb-label"><span class="sb-hint">Demander un audit IA gratuit</span></div>
           <div class="sb-knob"><i class="fal fa-chart-bar"></i></div>
         </a>
 
-        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Recevoir une démo marketing IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $contactPage->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Recevoir une démo marketing IA">
           <div class="sb-label"><span class="sb-hint">Recevoir une démo marketing IA</span></div>
           <div class="sb-knob"><i class="fal fa-file-alt"></i></div>
         </a>

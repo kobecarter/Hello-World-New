@@ -228,7 +228,7 @@ img,video{display:block;max-width:100%}
       <span class="slide-index-sep">—</span>
       <span>04</span>
     </div>
-    <a href="<?php echo $serviceWebMobile->getLink(); ?>" id="td-link" class="sb sb-compact" data-auto-reset="true" role="slider" tabindex="0" aria-label="Découvrir" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <a href="<?php echo $serviceWebMobile->getLink(); ?>" id="td-link" class="sb sb-compact" data-auto-reset="true" tabindex="0" aria-label="Découvrir">
       <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_DISCOVER'][$_SESSION['lang']]; ?></span></div>
       <div class="sb-knob"><i class="fal fa-arrow-right"></i></div>
     </a>
@@ -274,14 +274,14 @@ img,video{display:block;max-width:100%}
     <button class="explore-btn" onclick="document.querySelector('.marquee').scrollIntoView({behavior:'smooth'})">EXPLORE</button>
   </div>
   <div class="hero-foot">
-    <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir les solutions">
       <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_VOIR_SOLUTIONS'][$_SESSION['lang']]; ?></span></div>
       <div class="sb-knob">
         <i class="fal fa-robot"></i>
       </div>
     </a>
 
-    <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Demander un audit IA">
       <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_AUDIT_IA'][$_SESSION['lang']]; ?></span></div>
       <div class="sb-knob">
         <i class="fal fa-search"></i>
@@ -341,7 +341,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-              <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceWeb->getPhotoBanniere(); ?>" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
+              <img src="<?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 1400); ?>" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag">Web & Front-end</div>
@@ -369,7 +369,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceMobile->getPhoto(); ?>" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
+            <img src="<?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 1400); ?>" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag">iOS & Android</div>
@@ -397,7 +397,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-            <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceSaaS->getPhoto(); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
+            <img src="<?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 1400); ?>" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_SAAS_TAG'][$_SESSION['lang']]; ?></div>
@@ -425,7 +425,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-             <img src="<?php echo $siteURL; ?>images/services/<?php echo $serviceIA->getPhoto(); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
+             <img src="<?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 1400); ?>" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_IA_TAG'][$_SESSION['lang']]; ?></div>
@@ -525,7 +525,7 @@ img,video{display:block;max-width:100%}
   <div class="why-img-wrap">
 
     <!-- Image sets container height; hit zones % of this element -->
-    <img src="<?php echo $siteURL; ?>images/background-why-v2-web.jpg"
+    <img src="<?php echo hwThumb('images/background-why-v2-web.jpg', 1400); ?>"
          class="why-bg-img"
          alt="<?php echo $lang['HOME_WHY_BG_ALT'][$_SESSION['lang']]; ?>"
          loading="lazy"
@@ -725,7 +725,7 @@ img,video{display:block;max-width:100%}
       </div>
     </div>
     <div class="mt-5 text-center">
-        <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir plus de réalisations" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageReference->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir plus de réalisations">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_VOIR_REALISATIONS'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-trophy"></i></div>
         </a>
@@ -798,7 +798,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="row">
             <div class="col-sm-12 mt-5 text-center">
-                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="<?php echo $lang['HOME_CONTACT_EXPERT'][$_SESSION['lang']]; ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="<?php echo $lang['HOME_CONTACT_EXPERT'][$_SESSION['lang']]; ?>">
                   <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_CONTACT_EXPERT'][$_SESSION['lang']]; ?></span></div>
                   <div class="sb-knob"><i class="fal fa-envelope"></i></div>
                 </a>
@@ -1202,12 +1202,12 @@ document.addEventListener('DOMContentLoaded', function() {
     <p class="cta-sub"><?php echo $lang['HOME_CTA_SUB'][$_SESSION['lang']]; ?></p>
     
     <div class="cta-btns">
-        <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" role="slider" tabindex="0" aria-label="Voir les solutions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageService->getLink(); ?>" class="sb sb-compact" tabindex="0" aria-label="Voir les solutions">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_VOIR_SOLUTIONS'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-robot"></i></div>
         </a>
 
-        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="Demander un audit IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="Demander un audit IA">
           <div class="sb-label"><span class="sb-hint"><?php echo $lang['HOME_AUDIT_IA'][$_SESSION['lang']]; ?></span></div>
           <div class="sb-knob"><i class="fal fa-search"></i></div>
         </a>    

@@ -36,7 +36,7 @@
           
           <?php if(isset($_GET['option']) && $_GET['option'] == 'com_service'): ?>
           <div class="text-center mt-5">  
-            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" role="slider" tabindex="0" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <a href="<?php echo $pageContact->getLink(); ?>" class="sb sb-compact sb-invert" data-auto-reset="true" tabindex="0" aria-label="">
               <div class="sb-label"><span class="sb-hint"><?php echo $lang['SVC_TESTIMONIALS_JOIN'][$_SESSION['lang']]; ?></span></div>
               <div class="sb-knob"><i class="fal fa-trophy"></i></div> 
             </a>
