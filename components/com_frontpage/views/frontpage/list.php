@@ -329,7 +329,7 @@ img,video{display:block;max-width:100%}
     <div class="services-header">
       <div>
         <div class="sec-label rv"><?php echo $lang['HOME_SRV_DEV_LABEL'][$_SESSION['lang']]; ?></div>
-        <h2 class="sec-title rv d1"><?php echo $lang['HOME_SRV_CORE_TITLE'][$_SESSION['lang']]; ?></h2>
+        <h2 class="sec-title rv d1"><?php echo $lang['HOME_SRV_CORE_TITLE_HOME'][$_SESSION['lang']]; ?></h2>
       </div>
     </div>
     <div class="srv-grid rv d2" id="srvGrid3d">
