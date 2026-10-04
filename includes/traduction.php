@@ -1610,7 +1610,7 @@ $lang = array(
     "AGENCE_CASA_H1" => array(
         "fr" => "Agence Marketing Digital à Casablanca, du premier clic au contrat signé",
         "en" => "Digital Marketing Agency in Casablanca, from the first click to the signed contract",
-        "ar" => "وكالة التسويق <em>الرقمي</em> الدار البيضاء"
+        "ar" => "وكالة تسويق رقمي في الدار البيضاء: من النقرة الأولى إلى العقد الموقّع"
     ),
 
     "AGENCE_CASA_CTXTITLE" => array(
@@ -1646,7 +1646,7 @@ $lang = array(
     "AGENCE_FES_H1" => array(
         "fr" => "Agence Marketing Digital à Fès : une communication digitale à la hauteur de votre activité",
         "en" => "Digital Marketing Agency in Fez: digital communication that matches your activity",
-        "ar" => "وكالة التسويق <em>الرقمي</em> فاس"
+        "ar" => "وكالة تسويق رقمي في فاس: اتصال رقمي في مستوى نشاطكم"
     ),
 
     "AGENCE_FES_CTXTITLE" => array(
@@ -1682,7 +1682,7 @@ $lang = array(
     "AGENCE_RABAT_H1" => array(
         "fr" => "Agence Marketing Digital à Rabat : être visible auprès des bonnes personnes",
         "en" => "Digital Marketing Agency in Rabat: be visible to the right people",
-        "ar" => "وكالة التسويق <em>الرقمي</em> الرباط"
+        "ar" => "وكالة تسويق رقمي في الرباط: كونوا مرئيين للأشخاص المناسبين"
     ),
 
     "AGENCE_RABAT_CTXTITLE" => array(
@@ -1718,7 +1718,7 @@ $lang = array(
     "AGENCE_TANGER_H1" => array(
         "fr" => "Agence Marketing Digital à Tanger : votre communication digitale, de A à Z",
         "en" => "Digital Marketing Agency in Tangier: your digital communication, from A to Z",
-        "ar" => "وكالة التسويق <em>الرقمي</em> طنجة"
+        "ar" => "وكالة تسويق رقمي في طنجة: اتصالكم الرقمي من الألف إلى الياء"
     ),
 
     "AGENCE_TANGER_CTXTITLE" => array(
@@ -1754,7 +1754,7 @@ $lang = array(
     "AGENCE_AGADIR_H1" => array(
         "fr" => "Agence Marketing Digital à Agadir, une agence qui comprend votre business",
         "en" => "Digital Marketing Agency in Agadir, an agency that understands your business",
-        "ar" => "وكالة التسويق <em>الرقمي</em> أكادير"
+        "ar" => "وكالة تسويق رقمي في أكادير، وكالة تفهم نشاطكم التجاري"
     ),
 
     "AGENCE_AGADIR_CTXTITLE" => array(
@@ -1790,7 +1790,7 @@ $lang = array(
     "AGENCE_MARRAKECH_H1" => array(
         "fr" => "Agence Marketing Digital à Marrakech, au service de votre croissance",
         "en" => "Digital Marketing Agency in Marrakech, serving your growth",
-        "ar" => "وكالة التسويق <em>الرقمي</em> مراكش"
+        "ar" => "وكالة تسويق رقمي في مراكش في خدمة نموّ شركتكم"
     ),
 
     "AGENCE_MARRAKECH_CTXTITLE" => array(
@@ -5080,15 +5080,15 @@ $lang = array(
     ),
 
     "HOME_H1_PART1" => array(
-        "fr" => "Spécialistes en création de",
-        "en" => "Specialists in custom",
-        "ar" => "متخصصون في إنشاء"
+        "fr" => "Agence marketing digital et création de",
+        "en" => "Digital marketing agency and website",
+        "ar" => "وكالة تسويق رقمي وإنشاء"
     ),
 
     "HOME_H1_PART2" => array(
-        "fr" => "sites web et d'applications sur-mesure,",
-        "en" => "website and application development,",
-        "ar" => "مواقع وتطبيقات ويب مخصصة،"
+        "fr" => "sites web au Maroc, applications et agents IA sur-mesure,",
+        "en" => "creation in Morocco, custom apps and AI agents,",
+        "ar" => "مواقع إلكترونية في المغرب، وتطبيقات ووكلاء ذكاء اصطناعي مخصصة،"
     ),
 
     "HOME_STATEMENT_PART1" => array(
