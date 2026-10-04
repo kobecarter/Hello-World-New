@@ -582,6 +582,8 @@ class menu
             $panelTitle = $panel->getTitre() ?: ($record ? $record->getTitre() : '');
             $panelDesc = menu_item::shortenDescription($panel->getDescription(), $record, 200);
             $panelImg = $this->resolveMenuImage($panel, $type, $record);
+            // visuel par defaut du panneau : 640 px au lieu de l'original (saas.webp pesait 420 Ko sur chaque page)
+            if (function_exists('hwSizedImage')) { $panelImg = hwSizedImage($panelImg, 640); }
             $badge = htmlspecialchars($panel->getBadge(), ENT_QUOTES, 'UTF-8');
             $grad = htmlspecialchars($panel->getGradient(), ENT_QUOTES, 'UTF-8');
             $ico = htmlspecialchars($panel->getIcon(), ENT_QUOTES, 'UTF-8');
