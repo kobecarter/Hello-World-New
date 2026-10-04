@@ -131,7 +131,7 @@ object-fit: cover;
       <div>
         <div class="wm-hero-label"><?php echo $categorie->getTitre() ?></div>
         <h1 class="sh-h1 rv on"><?php echo $categorie->getTitre() ?></h1>
-        <p class="wm-hero-sub rv d1"><?php echo strip_tags($categorie->getExtrait()); ?></p>
+        <p class="wm-hero-sub rv d1"><?php echo strip_tags($categorie->getSeoDescription()); ?></p>
         <div class="wm-hero-ctas rv d2">
           <a href="<?php echo $pageContact->getLink(); ?>" class="btn-hw"><span>Demander un audit technique</span> <i class="fa fa-arrow-right fa-xs"></i></a>
           <a href="<?php echo $pageReference->getLink(); ?>" class="btn-hw" style="border-color:var(--border);color:var(--txt2)"><span>Voir les réalisations</span></a>
@@ -259,7 +259,8 @@ object-fit: cover;
 
                 <div class="pagination blog-pagination blog-pagination-new">
                     <?php
-                    for ($i = 1; $i <= ceil(count($blogAll) / $itemPerPage); $i++) {
+                    $nbPages = (isset($blogAll, $itemPerPage) && is_array($blogAll) && $itemPerPage > 0) ? (int) ceil(count($blogAll) / $itemPerPage) : 0; // la page categorie affiche tous ses articles : pas de pagination
+                    for ($i = 1; $i <= $nbPages; $i++) {
                         $current = ($i == $currentPage) ? 'current' : '';
                     ?>
                         <a href="<?php echo $page->getLink() . $i . '/'; ?>"

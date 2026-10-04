@@ -209,7 +209,7 @@ function getSeoMeta($data){
 					        $categorie = categorie::findBySlug($slug, $_SESSION["lang"]);
     						$seoTitle = $categorie->getSeoTitre();
     						$seoDescription = $categorie->getSeoDescription();
-    						$canonical = $categorie->getLink();
+    						$canonical = $categorie->getCategorieLink(); // adresse reelle (getLink() = ancienne adresse /categorie/.../id/, redirigee en 301)
     						$ogTitle =  $categorie->getTitre();
 						    $ogDescription = $categorie->getSeoDescription();
     					
@@ -226,12 +226,12 @@ function getSeoMeta($data){
 						$page = getComponent("com_blog&cat=".$data['cat']);
 						$seoTitle = $page->getSeoTitre();
 						$seoDescription = $page->getSeoDescription();
-						$canonical = $page->getLink();
+						$canonical = hwPaginatedCanonical($page->getLink());
 					}else{
 						$page = getComponent("com_blog");
 						$seoTitle = $page->getSeoTitre();
 						$seoDescription = $page->getSeoDescription();
-						$canonical = $page->getLink();
+						$canonical = hwPaginatedCanonical($page->getLink());
 					}
 					break;	
 			}
@@ -255,6 +255,15 @@ echo '<title>' . htmlspecialchars($seoTitle) . '</title>
 <meta property="og:site_name" content="' . htmlspecialchars($config->getNom()) . '" />
 <meta property="og:description" content="' . htmlspecialchars($ogDescriptionFinal) . '" />';
 
+}
+
+// Pages 2, 3... d'une liste : leur canonical est leur propre adresse (avant : la page 1, ce qui les excluait de l'index).
+function hwPaginatedCanonical($link){
+    $path = parse_url(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '', PHP_URL_PATH);
+    if ($path && preg_match('#/([0-9]+)/?$#', $path, $m) && intval($m[1]) > 1 && $link != '') {
+        return rtrim($link, '/') . '/' . intval($m[1]) . '/';
+    }
+    return $link;
 }
 
 function short_name($str, $limit)
