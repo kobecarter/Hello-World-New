@@ -913,6 +913,8 @@ function hwThumb($rel, $width = 640){
     $dst = $dir . '/' . $name;
     $url = $siteURL . 'images/_cache/' . $name;
     if (is_file($dst) && filemtime($dst) >= filemtime($src)) { return $url; }
+    // un essai deja rate pour cette image : on ne redecode pas l'original a chaque visite
+    if (is_file($dst . '.fail') && filemtime($dst . '.fail') >= filemtime($src)) { return $orig; }
     if (!function_exists('imagescale') || (!is_dir($dir) && !@mkdir($dir, 0755, true)) || !is_writable($dir)) { return $orig; }
     $info = @getimagesize($src);
     if (!$info || $info[0] < 1) { return $orig; }
@@ -929,20 +931,26 @@ function hwThumb($rel, $width = 640){
         elseif ($info[2] == IMAGETYPE_WEBP && function_exists('imagecreatefromwebp')) { $img = @imagecreatefromwebp($src); }
         else { $img = false; }
     } catch (\Throwable $e) { $img = false; }
-    if (!$img) { return $orig; }
+    if (!$img) { @touch($dst . '.fail'); return $orig; }
     if ($info[2] == IMAGETYPE_JPEG && function_exists('exif_read_data')) {
         $exif = @exif_read_data($src);
         $o = isset($exif['Orientation']) ? (int) $exif['Orientation'] : 1;
         if ($o == 3) { $img = imagerotate($img, 180, 0); } elseif ($o == 6) { $img = imagerotate($img, -90, 0); } elseif ($o == 8) { $img = imagerotate($img, 90, 0); }
     }
-    $small = imagescale($img, (int) $width, -1, IMG_BICUBIC);
+    // imagescale() renvoie false avec IMG_BICUBIC sur le GD de certains hebergements : imagecopyresampled() marche partout
+    $h = max(1, (int) round($info[1] * $width / $info[0]));
+    $small = imagecreatetruecolor((int) $width, $h);
+    if ($small) {
+        imagealphablending($small, false); imagesavealpha($small, true);
+        if (!imagecopyresampled($small, $img, 0, 0, 0, 0, (int) $width, $h, imagesx($img), imagesy($img))) { imagedestroy($small); $small = false; }
+    }
     imagedestroy($img);
-    if (!$small) { return $orig; }
+    if (!$small) { @touch($dst . '.fail'); return $orig; }
     imagepalettetotruecolor($small); imagealphablending($small, false); imagesavealpha($small, true);
     $tmp = $dst . '.' . getmypid() . '.tmp';
     if ($useWebp) { $ok = @imagewebp($small, $tmp, 82); } else { $ok = @imagejpeg($small, $tmp, 82); }
     imagedestroy($small);
-    if (!$ok || !@rename($tmp, $dst)) { @unlink($tmp); return $orig; }
+    if (!$ok || !@rename($tmp, $dst)) { @unlink($tmp); @touch($dst . '.fail'); return $orig; }
     return $url;
 }
 
