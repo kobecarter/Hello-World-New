@@ -910,7 +910,7 @@
       <div class="case-problem"><div class="case-problem-label">Problème identifié</div><div class="case-problem-text">Décisions prises en réunion jamais tracées. Deadlines découvertes en retard. Managers consacrant 30% de leur temps à des tâches de suivi administratif.</div></div>
       <p class="case-ctx" style="margin-bottom:0">Suite complète d'agents internes HW déployée : digest Slack, analyse Zoom, tri Gmail DG et support IT WhatsApp pour 180 collaborateurs.</p>
     </div>
-    <div class="case-right" style="background-image:url('<?php echo $siteURL; ?>images/operations-case-bg.jpg')">
+    <div class="case-right">
       <div class="case-results">
         <div class="result-big"><div class="result-num">65<span style="font-size:.5em">%</span></div><div class="result-lbl">Temps DG emails</div></div>
         <div class="result-big"><div class="result-num">+28<span style="font-size:.5em">%</span></div><div class="result-lbl">Deadlines OK</div></div>
