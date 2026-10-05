@@ -60,7 +60,7 @@ $agentTexte = str_replace(
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= $siteURL; ?>"><i class="fal fa-home"></i> <?= $lang['BREADCRUMB_HOME'][$_SESSION['lang']]; ?></a></li>
-                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>index.php?option=com_agents_ia"><?= $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></a></li>
+                <li class="breadcrumb-item"><a href="<?= $siteURL; ?>agents-ia/"><?= $lang['MQ2_SOLUTIONS_IA'][$_SESSION['lang']]; ?></a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?= $agent_ia->getTitre(); ?></li>
             </ol>
         </nav>
