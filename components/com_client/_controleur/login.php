@@ -7,10 +7,11 @@ function login($data){
 global $db, $siteURL;	
 if (isset($data['login']) && isset($data['mdp']) && !empty($data['login'])&& !empty($data['mdp']) ){
 	
-	$login = $data['login']; 
-	$mdp = md5($data['mdp']);
+	// Valeurs echappees : evite l'injection SQL (le login etait concatene tel quel)
+	$login = GetSQLValueString($data['login'], "text");
+	$mdp = GetSQLValueString(md5($data['mdp']), "text");
 	
-	$SQLselect = "SELECT * FROM ".__prefixe_db__."client WHERE login='$login' AND password='$mdp' ";
+	$SQLselect = "SELECT * FROM ".__prefixe_db__."client WHERE login=$login AND password=$mdp ";
 	$result = $db->query($SQLselect);
 
 	if ($db->num_rows($result) == 1) {

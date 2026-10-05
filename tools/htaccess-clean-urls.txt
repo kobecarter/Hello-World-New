@@ -1,0 +1,509 @@
+# =====================================================================================
+# URLs propres : /index.php et /index.php?option=... ne doivent JAMAIS etre visibles.
+# A coller dans le .htaccess RACINE DU SERVEUR (hors Git), juste apres "RewriteEngine on"
+# (et apres la redirection https/www), AVANT toutes les autres RewriteRule.
+# Sauvegardez d'abord :  cp .htaccess .htaccess.bak-urls   (et supprimez la copie apres test)
+# Le test sur THE_REQUEST ne regarde que la requete ENVOYEE PAR LE NAVIGATEUR : les reecritures
+# internes (/agents-ia/ -> index.php?option=...) ne sont pas touchees, pas de boucle.
+# =====================================================================================
+
+# 1) /index.php (sans parametres) -> /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteRule ^index\.php$ / [R=301,L]
+
+# 2) /index.php?option=... -> URL propre correspondante (une regle par page de la table de reecriture)
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=1&l=fr$
+RewriteRule ^index\.php$ /politique-de-confidentialite/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=1&l=en$
+RewriteRule ^index\.php$ /en/privacy-policy/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_reference&id=2&l=fr$
+RewriteRule ^index\.php$ /realisations-et-cas-clients/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_reference&id=2&l=en$
+RewriteRule ^index\.php$ /en/our-achievements/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_job&id=3&l=fr$
+RewriteRule ^index\.php$ /recrutement/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_job&id=3&l=en$
+RewriteRule ^index\.php$ /en/recruitment/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_about&id=4&l=fr$
+RewriteRule ^index\.php$ /qui-sommes-nous/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_about&id=4&l=en$
+RewriteRule ^index\.php$ /en/about-us/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=casa&id=32&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-casablanca/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=casa&id=32&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-casablanca/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_contact&id=5&l=fr$
+RewriteRule ^index\.php$ /contact/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_contact&id=5&l=en$
+RewriteRule ^index\.php$ /en/contact/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_contact&task=quote&id=6&l=fr$
+RewriteRule ^index\.php$ /devis-en-ligne/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_contact&task=quote&id=6&l=en$
+RewriteRule ^index\.php$ /en/online-quote/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=7&l=fr$
+RewriteRule ^index\.php$ /mentions-legales/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=7&l=en$
+RewriteRule ^index\.php$ /en/legal-notice/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=8&l=fr$
+RewriteRule ^index\.php$ /conditions-generales-de-ventes/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=8&l=en$
+RewriteRule ^index\.php$ /en/terms-and-conditions/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=1&id=9&l=fr$
+RewriteRule ^index\.php$ /blog/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=1&id=9&l=en$
+RewriteRule ^index\.php$ /en/blog/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=2&id=10&l=fr$
+RewriteRule ^index\.php$ /daily-life/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=2&id=10&l=en$
+RewriteRule ^index\.php$ /en/daily-life/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=3&id=11&l=fr$
+RewriteRule ^index\.php$ /presse/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=3&id=11&l=en$
+RewriteRule ^index\.php$ /en/press/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_service&id=12&l=fr$
+RewriteRule ^index\.php$ /notre-expertise/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_service&id=12&l=en$
+RewriteRule ^index\.php$ /en/our-expertise/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_video&id=13&l=fr$
+RewriteRule ^index\.php$ /videotheque/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_video&id=13&l=en$
+RewriteRule ^index\.php$ /en/video-library/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_intro&id=14&l=fr$
+RewriteRule ^index\.php$ /intro/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_intro&id=14&l=en$
+RewriteRule ^index\.php$ /en/intro/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=4&id=15&l=fr$
+RewriteRule ^index\.php$ /telechargement/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=4&id=15&l=en$
+RewriteRule ^index\.php$ /en/downloads/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=16&l=fr$
+RewriteRule ^index\.php$ /donnees-personnelles/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_client&task=enableAccount&id=17&l=fr$
+RewriteRule ^index\.php$ /activation-compte/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_client&id=18&l=fr$
+RewriteRule ^index\.php$ /client-space/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_contact&task=confirmation&id=19&l=fr$
+RewriteRule ^index\.php$ /confirmation/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=20&l=fr$
+RewriteRule ^index\.php$ /confirmation-devis/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_offre&id=21&l=fr$
+RewriteRule ^index\.php$ /offre-rise-up/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=22&l=fr$
+RewriteRule ^index\.php$ /se-connecter/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=23&l=fr$
+RewriteRule ^index\.php$ /panneaux-des-administrateurs/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_produit&id=24&l=fr$
+RewriteRule ^index\.php$ /marketplace/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_produit&id=24&l=en$
+RewriteRule ^index\.php$ /en/marketplace/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_formation&id=41&l=fr$
+RewriteRule ^index\.php$ /formations-marketing-digital-ia-medias-marque-maroc/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_formation&id=41&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-ai-media-branding-training-morocco/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_produit&task=produits&id=25&l=fr$
+RewriteRule ^index\.php$ /nos-produits/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_blog&cat=6&id=26&l=fr$
+RewriteRule ^index\.php$ /actualites-du-marketing-numerique/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=27&l=fr$
+RewriteRule ^index\.php$ /client-space/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_client&task=passwordRecovery&id=28&l=fr$
+RewriteRule ^index\.php$ /password-recovery/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_client&task=createNewPassword&id=29&l=fr$
+RewriteRule ^index\.php$ /create-a-new-password/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_video&task=categorie&id=14&id=30&l=fr$
+RewriteRule ^index\.php$ /digital-expert/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_video&task=categorie&id=14&id=30&l=en$
+RewriteRule ^index\.php$ /en/digital-expert/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_page&id=31&l=fr$
+RewriteRule ^index\.php$ /felicitations/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=marrakech&id=33&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-marrakech/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=marrakech&id=33&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-marrakech/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=uk&id=34&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-a-londres/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=uk&id=34&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-in-london/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agents_ia&id=44&l=fr$
+RewriteRule ^index\.php$ /agents-ia/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agents_ia&id=44&l=en$
+RewriteRule ^index\.php$ /en/ai-agents/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=dubai&id=36&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-a-dubai/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=dubai&id=36&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-in-dubai/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=rabat&id=37&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-rabat/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=rabat&id=37&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-rabat/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=tanger&id=38&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-tanger/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=tanger&id=38&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-tangier/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=agadir&id=39&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-agadir/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=agadir&id=39&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-agadir/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=fes&id=40&l=fr$
+RewriteRule ^index\.php$ /agence-marketing-digital-fes/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&task=fes&id=40&l=en$
+RewriteRule ^index\.php$ /en/digital-marketing-agency-fes/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&id=43&l=fr$
+RewriteRule ^index\.php$ /nos-agences/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence&id=43&l=en$
+RewriteRule ^index\.php$ /en/our-agencies/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_produit&task=produits&l=fr$
+RewriteRule ^index\.php$ /produits/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^l=en$
+RewriteRule ^index\.php$ /en/? [R=301,L]
+
+# 2b) /index.php?option=com_xxx (sans id/l, ex. index.php?option=com_agents_ia) -> page liste de la rubrique
+#     (anglais si l=en, sinon francais). Places apres les regles exactes ci-dessus.
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_reference(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/our-achievements/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_reference(&|$)
+RewriteRule ^index\.php$ /realisations-et-cas-clients/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_job(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/recruitment/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_job(&|$)
+RewriteRule ^index\.php$ /recrutement/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_about(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/about-us/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_about(&|$)
+RewriteRule ^index\.php$ /qui-sommes-nous/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_contact(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/contact/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_contact(&|$)
+RewriteRule ^index\.php$ /contact/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_service(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/our-expertise/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_service(&|$)
+RewriteRule ^index\.php$ /notre-expertise/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_video(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/video-library/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_video(&|$)
+RewriteRule ^index\.php$ /videotheque/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_intro(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/intro/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_intro(&|$)
+RewriteRule ^index\.php$ /intro/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_offre(&|$)
+RewriteRule ^index\.php$ /offre-rise-up/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_produit(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/marketplace/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_produit(&|$)
+RewriteRule ^index\.php$ /marketplace/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_formation(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/digital-marketing-ai-media-branding-training-morocco/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_formation(&|$)
+RewriteRule ^index\.php$ /formations-marketing-digital-ia-medias-marque-maroc/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agents_ia(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/ai-agents/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agents_ia(&|$)
+RewriteRule ^index\.php$ /agents-ia/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence(&|$)
+RewriteCond %{QUERY_STRING} (^|&)l=en(&|$)
+RewriteRule ^index\.php$ /en/our-agencies/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteCond %{QUERY_STRING} ^option=com_agence(&|$)
+RewriteRule ^index\.php$ /nos-agences/? [R=301,L]
+
+# 3) Tout autre /index.php?... demande directement (GET/HEAD) -> accueil (pas de fuite de la structure interne)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?
+RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+RewriteRule ^index\.php$ /? [R=301,L]

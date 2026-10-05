@@ -17,7 +17,8 @@ $r=base64_decode($id);
 $a=str_replace("hello","",$r);
 $f=str_replace("word","",$a);
 
-$sql="UPDATE ".__prefixe_db__."client set password= '$pswd1' where id='$f' ";
+// Echappement + md5 (login.php compare le md5) ; id force en entier
+$sql="UPDATE ".__prefixe_db__."client set password= ".GetSQLValueString(md5($pswd1), "text")." where id=".intval($f);
 	 $db->query($sql);
 	echo 1;
 	}

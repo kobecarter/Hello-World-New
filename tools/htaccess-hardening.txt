@@ -1,0 +1,28 @@
+# Durcissement complementaire : a coller dans le .htaccess RACINE DU SERVEUR (hors Git), a cote du bloc "# BEGIN Sécurité".
+# Sauvegardez d'abord (cp .htaccess .htaccess.bak-hard) et supprimez la copie apres test.
+
+# Fichiers de config/notes/outils : jamais servis (config.xml des composants admin, scripts, notes, SQL, archives...)
+<FilesMatch "(?i)(\.(sql|xml\.bak|bak|old|orig|swp|log|ini|sh|py|md|lock|zip|tar|gz|7z|rar|env)$|^config\.xml$|^composer\.(json|lock)$|^package(-lock)?\.json$|^htaccess-.*\.txt$|^besoins_.*\.json$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+# ATTENTION : sitemap.xml et robots.txt ne sont pas concernes (seul "config.xml" est bloque).
+
+# Pas de listing de dossiers, pas de signature serveur
+Options -Indexes
+ServerSignature Off
+
+# Methodes HTTP inutiles
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK|DELETE|PUT|CONNECT)$ [NC]
+RewriteRule ^ - [F,L]
+
+# Requetes d'attaque courantes dans l'URL (injection SQL, traversee de chemin, XSS, php://)
+RewriteCond %{QUERY_STRING} (\.\./|\.\.%2f|%00|php://|data:text|<script|%3Cscript|union(%20|\+)select|information_schema|base64_decode\() [NC]
+RewriteRule ^ - [F,L]
+
+# Ni exécution de PHP ni listing dans les dossiers d'images/uploads (deja fait via leurs .htaccess)
