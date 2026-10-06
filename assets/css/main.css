@@ -10167,3 +10167,12 @@ a.cl-points-how-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-ca
 
 /* Chiffres decoratifs : texte genere par CSS (non analyse comme texte, aria-hidden) */
 .px-ghost::before,.svc-num::before{content:attr(data-n)}
+
+/* Mobile : carrousels utilisables au doigt.
+   - .sb / .btn-custom-cta : "touch-action:none" empechait de faire defiler la page quand le doigt partait du bouton.
+   - .owl-stage : le navigateur garde le defilement vertical, le carrousel recoit les glissements horizontaux.
+   - fleche "suivant" : decalee pour ne plus passer sous la colonne de boutons flottants (WhatsApp, App Store...). */
+.sb,.btn-custom-cta{touch-action:manipulation}
+.owl-carousel .owl-stage{touch-action:pan-y}
+@media(max-width:991px){.owl-carousel .owl-nav .owl-next{margin-right:64px}}
+@media(hover:none){.srv-card{transform-style:flat;will-change:auto}.srv-visual{transform:none}}
