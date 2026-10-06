@@ -922,6 +922,11 @@ $lang = array(
         "en" => "<em>Mobile</em> Apps",
         "ar" => "تطبيقات <em>الهاتف</em>"
     ),
+    "HOME_SRV_MOBILE_DESC" => array(
+        "fr" => "Spécialistes du <b>développement d'applications mobiles à Casablanca et Marrakech</b>, nous créons des applications iOS et Android intuitives, fluides et performantes, adaptées à vos besoins.",
+        "en" => "Specialists in <b>mobile app development in Casablanca and Marrakech</b>, we build intuitive, smooth and powerful iOS and Android apps tailored to your needs.",
+        "ar" => "متخصصون في <b>تطوير تطبيقات الموبايل في الدار البيضاء ومراكش</b>، ننشئ تطبيقات iOS وAndroid بديهية وسلسة وقوية، مكيّفة مع احتياجاتكم."
+    ),
 
     "HOME_SRV_MOBILE_FEAT3" => array(
         "fr" => "Push, mode offline &amp; biométrie",
