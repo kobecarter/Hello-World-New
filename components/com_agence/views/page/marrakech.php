@@ -191,7 +191,7 @@
         </div>
         <div class="srv-body">
           <h3 class="srv-title"><?php echo $lang['HOME_SRV_MOBILE_TITLE'][$_SESSION['lang']]; ?></h3>
-          <p class="srv-desc"><?php echo $serviceMobile->getTexteAccueil(); ?></p>
+          <p class="srv-desc"><?php echo isset($lang['HOME_SRV_MOBILE_DESC'][$_SESSION['lang']]) ? $lang['HOME_SRV_MOBILE_DESC'][$_SESSION['lang']] : $serviceMobile->getTexteAccueil(); ?></p>
           <ul class="srv-features">
             <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iOS & Android natif / React Native</li>
             <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>UI/UX mobile-first & micro-animations</li>

@@ -20,3 +20,6 @@ hw-admin/api/
 /.htaccess
 /hw-admin/config.php
 images/_cache/
+
+# SQL dumps and local DB work files: never in Git, never on the web server
+/database/

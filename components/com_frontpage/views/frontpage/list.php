@@ -335,13 +335,14 @@ img,video{display:block;max-width:100%}
     <div class="srv-grid rv d2" id="srvGrid3d">
 
       <div id="owl-core-services" class="owl-carousel owl-theme">
+      <?php /* Visuels de ce bloc : fichiers fixes images/services/core-*.webp (4:3), independants des photos des fiches service */ ?>
 
       <!-- Web -->
       <?php $serviceWeb = service::find(38,$_SESSION['lang']); ?>
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-              <img src="<?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceWeb->getPhotoBanniere(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
+              <img src="<?php echo hwThumb('images/services/core-web.webp', 720); ?>" srcset="<?php echo hwThumb('images/services/core-web.webp', 720); ?> 720w, <?php echo hwThumb('images/services/core-web.webp', 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceWeb->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag">Web & Front-end</div>
@@ -369,7 +370,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-            <img src="<?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceMobile->getPhoto(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
+            <img src="<?php echo hwThumb('images/services/core-mobile.webp', 720); ?>" srcset="<?php echo hwThumb('images/services/core-mobile.webp', 720); ?> 720w, <?php echo hwThumb('images/services/core-mobile.webp', 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceMobile->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag">iOS & Android</div>
@@ -377,7 +378,7 @@ img,video{display:block;max-width:100%}
         </div>
         <div class="srv-body">
           <h3 class="srv-title"><?php echo $lang['HOME_SRV_MOBILE_TITLE'][$_SESSION['lang']]; ?></h3>
-          <p class="srv-desc"><?php echo $serviceMobile->getTexteAccueil(); ?></p>
+          <p class="srv-desc"><?php echo isset($lang['HOME_SRV_MOBILE_DESC'][$_SESSION['lang']]) ? $lang['HOME_SRV_MOBILE_DESC'][$_SESSION['lang']] : $serviceMobile->getTexteAccueil(); ?></p>
           <ul class="srv-features">
             <li class="srv-feat" style="--fi:0"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iOS & Android natif / React Native</li>
             <li class="srv-feat" style="--fi:1"><span class="srv-feat-ico"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><polyline points="1,4 3,6 7,2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>UI/UX mobile-first & micro-animations</li>
@@ -397,7 +398,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-            <img src="<?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceSaaS->getPhoto(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
+            <img src="<?php echo hwThumb('images/services/core-saas.webp', 720); ?>" srcset="<?php echo hwThumb('images/services/core-saas.webp', 720); ?> 720w, <?php echo hwThumb('images/services/core-saas.webp', 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceSaaS->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_SAAS_TAG'][$_SESSION['lang']]; ?></div>
@@ -425,7 +426,7 @@ img,video{display:block;max-width:100%}
       <div class="srv-card">
         <div class="srv-visual">
           <div class="srv-visual-bg">
-             <img src="<?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 720); ?>" srcset="<?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 720); ?> 720w, <?php echo hwThumb('images/services/' . $serviceIA->getPhoto(), 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
+             <img src="<?php echo hwThumb('images/services/core-ia.webp', 720); ?>" srcset="<?php echo hwThumb('images/services/core-ia.webp', 720); ?> 720w, <?php echo hwThumb('images/services/core-ia.webp', 1400); ?> 1400w" sizes="(max-width: 767px) 100vw, 721px" alt="<?php echo $serviceIA->getTitre(); ?>" class="h-100">
           </div>
           <div class="srv-visual-tint"></div>
           <div class="srv-visual-tag"><?php echo $lang['HOME_SRV_IA_TAG'][$_SESSION['lang']]; ?></div>

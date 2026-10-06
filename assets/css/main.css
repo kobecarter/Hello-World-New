@@ -363,7 +363,7 @@ header .lang-btn{font-size:.72rem;padding:0}
 /* .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:3.5rem} */
 .srv-card{position:relative;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.5);overflow:hidden;transition:background .4s,box-shadow .45s cubic-bezier(0.23,1,0.32,1),border-color .45s; margin: 0 10px;border-radius: 20px;transform-style:preserve-3d;will-change:transform;box-shadow:0 20px 50px -34px rgba(9,20,40,.2);background:rgba(255,255,255,.5);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%)}
 .srv-card:hover{background:rgba(255,255,255,.7);border-color:rgba(9,161,190,.4);box-shadow:0 44px 100px -34px rgba(9,161,190,.32)}
-.srv-visual{position:relative;overflow:hidden;height: 230px;flex-shrink:0;border-radius:15px;margin: 10px;transform:translateZ(30px)}
+.srv-visual{position:relative;overflow:hidden;height: 260px;flex-shrink:0;border-radius:15px;margin: 10px;transform:translateZ(30px)}
 .srv-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(247,245,242,.14) 50%,transparent 65%);transform:translateX(-100%);transition:transform .75s ease;pointer-events:none;z-index:3}
 .srv-card:hover .srv-visual::after{transform:translateX(130%)}
 .srv-visual-bg{position:absolute;inset:0;transition:transform .75s cubic-bezier(.25,.46,.45,.94)}
@@ -377,7 +377,7 @@ header .lang-btn{font-size:.72rem;padding:0}
 .srv-body{padding:0.4rem 1.2rem 1rem;flex:1;display:flex;flex-direction:column;transform:translateZ(15px)}
 .srv-title{font-family:var(--fm);font-weight:200;font-size:1.6rem;color:var(--txt);line-height:1;margin-bottom:.85rem;letter-spacing:-.01em}
 .srv-title em{color:var(--gold);font-style:italic}
-.srv-desc{font-size:.79rem;font-weight:300;color:var(--txt2);line-height:1.85;font-family:var(--fm);margin-bottom:.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);height: 170px;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 7;-webkit-box-orient: vertical;}
+.srv-desc{font-size:.79rem;font-weight:300;color:var(--txt2);line-height:1.85;font-family:var(--fm);margin-bottom:.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);height: 145px;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 7;-webkit-box-orient: vertical;}
 .srv-features{list-style:none;margin-bottom:.5rem;flex:1}
 .srv-feat{display:flex;align-items:flex-start;gap:.75rem;padding:.52rem 0;font-size:.76rem;font-weight:400;color:var(--txt2);font-family:var(--fm);border-bottom:1px solid var(--border);transform:translateX(-10px);opacity:.45;transition:transform .42s calc(var(--fi,0)*.07s) ease,opacity .42s calc(var(--fi,0)*.07s)}
 .srv-feat:last-child{border-bottom:none}
@@ -10167,3 +10167,12 @@ a.cl-points-how-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-ca
 
 /* Chiffres decoratifs : texte genere par CSS (non analyse comme texte, aria-hidden) */
 .px-ghost::before,.svc-num::before{content:attr(data-n)}
+
+/* Mobile : carrousels utilisables au doigt.
+   - .sb / .btn-custom-cta : "touch-action:none" empechait de faire defiler la page quand le doigt partait du bouton.
+   - .owl-stage : le navigateur garde le defilement vertical, le carrousel recoit les glissements horizontaux.
+   - fleche "suivant" : decalee pour ne plus passer sous la colonne de boutons flottants (WhatsApp, App Store...). */
+.sb,.btn-custom-cta{touch-action:manipulation}
+.owl-carousel .owl-stage{touch-action:pan-y}
+@media(max-width:991px){.owl-carousel .owl-nav .owl-next{margin-right:64px}}
+@media(hover:none){.srv-card{transform-style:flat;will-change:auto}.srv-visual{transform:none}}
