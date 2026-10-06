@@ -301,7 +301,7 @@ $isRtl = $idCurrentLang ? (new langue($idCurrentLang, $db))->isRtl() : false;
 // depuis les regles reellement utilisees au-dessus de la ligne de flottaison) et les grandes feuilles
 // (Font Awesome, Bootstrap, main.min.css : ~205 Ko compresses) se chargent sans bloquer l'affichage.
 $hwCrit = (!$isRtl && function_exists('isHome') && isHome()) ? @file_get_contents(__DIR__ . '/critical-home.css') : false;
-$hwMain = $siteURL . 'assets/css/main.min.css?v=9.60';
+$hwMain = $siteURL . 'assets/css/main.min.css?v=9.61';
 $hwBig = array($siteURL . 'assets/css/all.min.css?v=2', $siteURL . 'assets/css/bootstrap.min.css', $siteURL . 'assets/css/owl.carousel.css', $hwMain);
 if ($hwCrit) : ?>
 <style id="hw-critical"><?php echo str_replace('__SITE__', $siteURL, $hwCrit); ?></style>
@@ -324,7 +324,7 @@ if ($hwCrit) : ?>
 <link rel="stylesheet" href="<?php echo $siteURL; ?>flip-book/css/flipbook.style.css">
 </noscript>
 <?php if (!$hwCrit) : ?>
-<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.60">
+<link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/main.min.css?v=9.61">
 <?php endif; ?>
 
 <script>
